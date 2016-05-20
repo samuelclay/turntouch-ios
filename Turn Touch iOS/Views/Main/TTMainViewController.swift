@@ -9,7 +9,9 @@
 import UIKit
 
 class TTMainViewController: UIViewController {
-
+    
+    @IBOutlet var stackView: UIStackView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

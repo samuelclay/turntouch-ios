@@ -103,13 +103,16 @@
 		FFB41B6D1CEE9A3000CD5F09 /* modal_remote_hero.png in Resources */ = {isa = PBXBuildFile; fileRef = FFB41B0E1CEE9A3000CD5F09 /* modal_remote_hero.png */; };
 		FFB41B6E1CEE9A3000CD5F09 /* modal_remote_paired.png in Resources */ = {isa = PBXBuildFile; fileRef = FFB41B0F1CEE9A3000CD5F09 /* modal_remote_paired.png */; };
 		FFB41B6F1CEE9A3000CD5F09 /* modal_success.png in Resources */ = {isa = PBXBuildFile; fileRef = FFB41B101CEE9A3000CD5F09 /* modal_success.png */; };
+		FFB41B731CEE9C8000CD5F09 /* logo_180.png in Resources */ = {isa = PBXBuildFile; fileRef = FFB41B721CEE9C8000CD5F09 /* logo_180.png */; };
+		FFB41B761CEEA8A600CD5F09 /* TTModeTabsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB41B751CEEA8A600CD5F09 /* TTModeTabsViewController.swift */; };
+		FFB41B791CEEA8E500CD5F09 /* TTModeTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB41B781CEEA8E500CD5F09 /* TTModeTab.swift */; };
+		FFB41B7B1CEEA9E300CD5F09 /* TTModeDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB41B7A1CEEA9E300CD5F09 /* TTModeDirection.swift */; };
 		FFF270941CEE88E500E46575 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF270931CEE88E500E46575 /* AppDelegate.swift */; };
 		FFF2709D1CEE88E500E46575 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FFF2709C1CEE88E500E46575 /* Assets.xcassets */; };
 		FFF270A01CEE88E500E46575 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFF2709E1CEE88E500E46575 /* LaunchScreen.storyboard */; };
 		FFF270AB1CEE88E500E46575 /* Turn_Touch_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF270AA1CEE88E500E46575 /* Turn_Touch_iOSTests.swift */; };
 		FFF270B61CEE88E500E46575 /* Turn_Touch_iOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF270B51CEE88E500E46575 /* Turn_Touch_iOSUITests.swift */; };
 		FFF270C51CEE97AF00E46575 /* TTMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF270C31CEE97AF00E46575 /* TTMainViewController.swift */; };
-		FFF270C61CEE97AF00E46575 /* TTMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFF270C41CEE97AF00E46575 /* TTMainViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -226,6 +229,11 @@
 		FFB41B0E1CEE9A3000CD5F09 /* modal_remote_hero.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = modal_remote_hero.png; sourceTree = "<group>"; };
 		FFB41B0F1CEE9A3000CD5F09 /* modal_remote_paired.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = modal_remote_paired.png; sourceTree = "<group>"; };
 		FFB41B101CEE9A3000CD5F09 /* modal_success.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = modal_success.png; sourceTree = "<group>"; };
+		FFB41B721CEE9C8000CD5F09 /* logo_180.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_180.png; sourceTree = "<group>"; };
+		FFB41B741CEEA16000CD5F09 /* splash_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash_background.png; sourceTree = "<group>"; };
+		FFB41B751CEEA8A600CD5F09 /* TTModeTabsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeTabsViewController.swift; path = Views/Main/TTModeTabsViewController.swift; sourceTree = "<group>"; };
+		FFB41B781CEEA8E500CD5F09 /* TTModeTab.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeTab.swift; path = Views/Main/TTModeTab.swift; sourceTree = "<group>"; };
+		FFB41B7A1CEEA9E300CD5F09 /* TTModeDirection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeDirection.swift; path = Models/TTModeDirection.swift; sourceTree = "<group>"; };
 		FFF270901CEE88E500E46575 /* Turn Touch iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Turn Touch iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFF270931CEE88E500E46575 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FFF2709C1CEE88E500E46575 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -238,7 +246,6 @@
 		FFF270B51CEE88E500E46575 /* Turn_Touch_iOSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Turn_Touch_iOSUITests.swift; sourceTree = "<group>"; };
 		FFF270B71CEE88E500E46575 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FFF270C31CEE97AF00E46575 /* TTMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTMainViewController.swift; path = Views/Main/TTMainViewController.swift; sourceTree = "<group>"; };
-		FFF270C41CEE97AF00E46575 /* TTMainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TTMainViewController.xib; path = Views/Main/TTMainViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -381,12 +388,14 @@
 				FFB41AFD1CEE9A3000CD5F09 /* logo_256.png */,
 				FFB41AFE1CEE9A3000CD5F09 /* logo_32.png */,
 				FFB41AFF1CEE9A3000CD5F09 /* logo_512.png */,
+				FFB41B721CEE9C8000CD5F09 /* logo_180.png */,
 				FFB41B001CEE9A3000CD5F09 /* logo_64.png */,
 				FFB41B011CEE9A3000CD5F09 /* logo_white.png */,
 				FFB41B021CEE9A3000CD5F09 /* logo_white_with_title.png */,
 				FFB41B031CEE9A3000CD5F09 /* logo_with_title.png */,
 				FFB41B041CEE9A3000CD5F09 /* title.png */,
 				FFB41B051CEE9A3000CD5F09 /* title@2x.png */,
+				FFB41B741CEEA16000CD5F09 /* splash_background.png */,
 			);
 			path = logo;
 			sourceTree = "<group>";
@@ -422,9 +431,26 @@
 				FFF2709E1CEE88E500E46575 /* LaunchScreen.storyboard */,
 				FFB41AAA1CEE99A100CD5F09 /* Main.storyboard */,
 				FFF270C31CEE97AF00E46575 /* TTMainViewController.swift */,
-				FFF270C41CEE97AF00E46575 /* TTMainViewController.xib */,
+				FFB41B771CEEA8BA00CD5F09 /* Mode Tabs */,
 			);
 			name = Main;
+			sourceTree = "<group>";
+		};
+		FFB41B771CEEA8BA00CD5F09 /* Mode Tabs */ = {
+			isa = PBXGroup;
+			children = (
+				FFB41B751CEEA8A600CD5F09 /* TTModeTabsViewController.swift */,
+				FFB41B781CEEA8E500CD5F09 /* TTModeTab.swift */,
+			);
+			name = "Mode Tabs";
+			sourceTree = "<group>";
+		};
+		FFB41B7C1CEEA9E800CD5F09 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				FFB41B7A1CEEA9E300CD5F09 /* TTModeDirection.swift */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 		FFF270871CEE88E500E46575 = {
@@ -451,6 +477,7 @@
 			isa = PBXGroup;
 			children = (
 				FFF270931CEE88E500E46575 /* AppDelegate.swift */,
+				FFB41B7C1CEEA9E800CD5F09 /* Models */,
 				FFB41B701CEE9A3B00CD5F09 /* Views */,
 				FFB41AAC1CEE9A3000CD5F09 /* Images */,
 				FFF2709C1CEE88E500E46575 /* Assets.xcassets */,
@@ -639,7 +666,6 @@
 				FFB41B491CEE9A3000CD5F09 /* remote_graphic.png in Resources */,
 				FFB41B641CEE9A3000CD5F09 /* title.png in Resources */,
 				FFB41B181CEE9A3000CD5F09 /* hue_sleep.png in Resources */,
-				FFF270C61CEE97AF00E46575 /* TTMainViewController.xib in Resources */,
 				FFB41B301CEE9A3000CD5F09 /* icon_movie.png in Resources */,
 				FFB41B111CEE9A3000CD5F09 /* alarm_snooze.png in Resources */,
 				FFB41B401CEE9A3000CD5F09 /* mode_presentation.png in Resources */,
@@ -649,6 +675,7 @@
 				FFB41B191CEE9A3000CD5F09 /* hue_sunset.png in Resources */,
 				FFB41B621CEE9A3000CD5F09 /* logo_white_with_title.png in Resources */,
 				FFB41B3F1CEE9A3000CD5F09 /* mode_pandora.png in Resources */,
+				FFB41B731CEE9C8000CD5F09 /* logo_180.png in Resources */,
 				FFB41B661CEE9A3000CD5F09 /* modal_bar_button_chevron.png in Resources */,
 				FFB41B4C1CEE9A3000CD5F09 /* speaker.png in Resources */,
 				FFB41B371CEE9A3000CD5F09 /* mode_home.png in Resources */,
@@ -704,7 +731,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FFB41B7B1CEEA9E300CD5F09 /* TTModeDirection.swift in Sources */,
 				FFF270941CEE88E500E46575 /* AppDelegate.swift in Sources */,
+				FFB41B761CEEA8A600CD5F09 /* TTModeTabsViewController.swift in Sources */,
+				FFB41B791CEEA8E500CD5F09 /* TTModeTab.swift in Sources */,
 				FFF270C51CEE97AF00E46575 /* TTMainViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

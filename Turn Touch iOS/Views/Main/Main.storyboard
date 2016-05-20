@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Main View Controller-->
@@ -17,15 +18,21 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Turn Touch" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bn3-zA-Zsf">
-                                <rect key="frame" x="174" y="239" width="86" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ZUg-Ee-rMT">
+                                <rect key="frame" x="20" y="0.0" width="560" height="600"/>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ZUg-Ee-rMT" firstAttribute="trailing" secondItem="VVO-N9-DO4" secondAttribute="trailingMargin" id="BkN-ob-icq"/>
+                            <constraint firstItem="ZZZ-oZ-u9F" firstAttribute="top" secondItem="ZUg-Ee-rMT" secondAttribute="bottom" id="et7-aL-GDC"/>
+                            <constraint firstItem="ZUg-Ee-rMT" firstAttribute="top" secondItem="VVO-N9-DO4" secondAttribute="topMargin" id="g6m-X5-HKc"/>
+                            <constraint firstItem="ZUg-Ee-rMT" firstAttribute="leading" secondItem="VVO-N9-DO4" secondAttribute="leadingMargin" id="oHI-qO-ffV"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="stackView" destination="ZUg-Ee-rMT" id="Yl6-r8-9gd"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aRO-PC-eSA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
