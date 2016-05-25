@@ -18,18 +18,27 @@ class TTModeTab: UIView {
     var mode: TTMode = TTMode()
     var modeDirection: TTModeDirection = .NO_DIRECTION
     var modeTitle: String = ""
-    var modeAttributes: [String: AnyObject] = [:]
-    var textSize: CGSize = CGSizeZero
     var highlighted: Bool = false
+    var titleLabel: UILabel = UILabel()
     
     init(modeDirection: TTModeDirection) {
         self.modeDirection = modeDirection
+        let font = UIFont(name: "Effra", size: 13)
+        self.titleLabel.font = font
+        self.titleLabel.shadowOffset = CGSizeMake(0, 0.5)
+        self.titleLabel.shadowColor = UIColor.whiteColor()
+        self.titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        
         super.init(frame:CGRect.zero)
         translatesAutoresizingMaskIntoConstraints = false
         contentMode = UIViewContentMode.Redraw;
+        
+        self.addSubview(self.titleLabel)
+        self.addConstraint(NSLayoutConstraint(item: self.titleLabel, attribute: .CenterX, relatedBy: .Equal, toItem: self, attribute: .CenterX, multiplier: 1.0, constant: 0))
+        self.addConstraint(NSLayoutConstraint(item: self.titleLabel, attribute: .Bottom, relatedBy: .Equal, toItem: self, attribute: .Bottom, multiplier: 1.0, constant: -12))
 
+        
         setupMode()
-        setupTitleAttributes()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -49,21 +58,8 @@ class TTModeTab: UIView {
         default:
             break
         }
-    }
-    
-    func setupTitleAttributes() {
-        self.modeTitle = self.mode.title()
-        self.modeAttributes = [
-            UIFontDescriptorNameAttribute: UIFont(name: "Effra", size: 13)!,
-            NSShadowAttributeName: {
-                let shadow = NSShadow()
-                shadow.shadowColor = UIColor.whiteColor()
-                shadow.shadowOffset = CGSizeMake(0, 1)
-                shadow.shadowBlurRadius = 0
-                return shadow
-            }(),
-        ]
-        self.textSize = self.modeTitle.sizeWithAttributes(self.modeAttributes)
+        
+        self.modeTitle = self.mode.title().uppercaseString
     }
     
     override class func requiresConstraintBasedLayout() -> Bool {
@@ -73,15 +69,13 @@ class TTModeTab: UIView {
     override func drawRect(rect: CGRect) {
         super.drawRect(rect);
         
-        self.setupTitleAttributes()
         self.drawBackground()
         self.drawBorders()
         
-        let titleSize: CGSize = self.modeTitle.sizeWithAttributes(self.modeAttributes)
-        let titlePoint: CGPoint = CGPointMake(CGRectGetWidth(self.frame)/2 - titleSize.width/2,
-                                              CGRectGetMaxY(self.frame) - 24)
-        
-        self.modeTitle.drawAtPoint(titlePoint, withAttributes: self.modeAttributes)
+        let textColor = (appDelegate().modeMap.selectedModeDirection != self.modeDirection) ?
+            UIColor(hex: 0x808388) : UIColor(hex: 0x404A60)
+        self.titleLabel.textColor = textColor
+        self.titleLabel.text = self.modeTitle
         
 //        let diamondRect = CGRectMake(CGRectGetWidth(self.frame)/2 - (DIAMOND_SIZE * 1.3 / 2),
 //                                     CGRectGetHeight(self.frame) - 18 - DIAMOND_SIZE,

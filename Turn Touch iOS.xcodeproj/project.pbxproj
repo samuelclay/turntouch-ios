@@ -14,6 +14,7 @@
 		FF0F10CA1CF63F3B00CC1F29 /* TTModePhone.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0F10C91CF63F3B00CC1F29 /* TTModePhone.swift */; };
 		FF0F10CD1CF63F4D00CC1F29 /* TTModeHue.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0F10CC1CF63F4D00CC1F29 /* TTModeHue.swift */; };
 		FF0F10D01CF63F6100CC1F29 /* TTModeAlarmClock.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0F10CF1CF63F6100CC1F29 /* TTModeAlarmClock.swift */; };
+		FF0F10D51CF6430E00CC1F29 /* Effra_Rg.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FF0F10D41CF6430E00CC1F29 /* Effra_Rg.ttf */; };
 		FFB41AAB1CEE99A100CD5F09 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFB41AAA1CEE99A100CD5F09 /* Main.storyboard */; };
 		FFB41B111CEE9A3000CD5F09 /* alarm_snooze.png in Resources */ = {isa = PBXBuildFile; fileRef = FFB41AAE1CEE9A3000CD5F09 /* alarm_snooze.png */; };
 		FFB41B121CEE9A3000CD5F09 /* chevron_east.png in Resources */ = {isa = PBXBuildFile; fileRef = FFB41AAF1CEE9A3000CD5F09 /* chevron_east.png */; };
@@ -113,7 +114,6 @@
 		FFB41B731CEE9C8000CD5F09 /* logo_180.png in Resources */ = {isa = PBXBuildFile; fileRef = FFB41B721CEE9C8000CD5F09 /* logo_180.png */; };
 		FFB41B791CEEA8E500CD5F09 /* TTModeTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB41B781CEEA8E500CD5F09 /* TTModeTab.swift */; };
 		FFB41B7B1CEEA9E300CD5F09 /* TTModeDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB41B7A1CEEA9E300CD5F09 /* TTModeDirection.swift */; };
-		FFB41B801CF52E6F00CD5F09 /* Effra_Rg.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FFB41B7F1CF52E6F00CD5F09 /* Effra_Rg.ttf */; };
 		FFB41B821CF5341700CD5F09 /* TTMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB41B811CF5341700CD5F09 /* TTMode.swift */; };
 		FFB41B841CF5342100CD5F09 /* TTModeMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB41B831CF5342100CD5F09 /* TTModeMap.swift */; };
 		FFB41B861CF536AC00CD5F09 /* TTAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB41B851CF536AC00CD5F09 /* TTAction.swift */; };
@@ -151,6 +151,7 @@
 		FF0F10C91CF63F3B00CC1F29 /* TTModePhone.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModePhone.swift; path = Modes/Phone/TTModePhone.swift; sourceTree = "<group>"; };
 		FF0F10CC1CF63F4D00CC1F29 /* TTModeHue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeHue.swift; path = Modes/Hue/TTModeHue.swift; sourceTree = "<group>"; };
 		FF0F10CF1CF63F6100CC1F29 /* TTModeAlarmClock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeAlarmClock.swift; path = "Modes/Alarm Clock/TTModeAlarmClock.swift"; sourceTree = "<group>"; };
+		FF0F10D41CF6430E00CC1F29 /* Effra_Rg.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Effra_Rg.ttf; path = Fonts/Effra_Rg.ttf; sourceTree = "<group>"; };
 		FFB41AAA1CEE99A100CD5F09 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Views/Main/Main.storyboard; sourceTree = "<group>"; };
 		FFB41AAE1CEE9A3000CD5F09 /* alarm_snooze.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = alarm_snooze.png; sourceTree = "<group>"; };
 		FFB41AAF1CEE9A3000CD5F09 /* chevron_east.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chevron_east.png; sourceTree = "<group>"; };
@@ -251,7 +252,6 @@
 		FFB41B741CEEA16000CD5F09 /* splash_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash_background.png; sourceTree = "<group>"; };
 		FFB41B781CEEA8E500CD5F09 /* TTModeTab.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeTab.swift; path = Views/Main/TTModeTab.swift; sourceTree = "<group>"; };
 		FFB41B7A1CEEA9E300CD5F09 /* TTModeDirection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeDirection.swift; path = Models/TTModeDirection.swift; sourceTree = "<group>"; };
-		FFB41B7F1CF52E6F00CD5F09 /* Effra_Rg.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Effra_Rg.ttf; sourceTree = "<group>"; };
 		FFB41B811CF5341700CD5F09 /* TTMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTMode.swift; path = Models/TTMode.swift; sourceTree = "<group>"; };
 		FFB41B831CF5342100CD5F09 /* TTModeMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeMap.swift; path = Models/TTModeMap.swift; sourceTree = "<group>"; };
 		FFB41B851CF536AC00CD5F09 /* TTAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTAction.swift; path = Models/TTAction.swift; sourceTree = "<group>"; };
@@ -545,7 +545,7 @@
 		FFB41B7E1CF52E6200CD5F09 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				FFB41B7F1CF52E6F00CD5F09 /* Effra_Rg.ttf */,
+				FF0F10D41CF6430E00CC1F29 /* Effra_Rg.ttf */,
 			);
 			name = Fonts;
 			sourceTree = "<group>";
@@ -746,7 +746,6 @@
 				FFB41AAB1CEE99A100CD5F09 /* Main.storyboard in Resources */,
 				FFB41B1A1CEE9A3000CD5F09 /* music_ff.png in Resources */,
 				FFB41B481CEE9A3000CD5F09 /* presentation-chart.png in Resources */,
-				FFB41B801CF52E6F00CD5F09 /* Effra_Rg.ttf in Resources */,
 				FFB41B471CEE9A3000CD5F09 /* newspaper-3.png in Resources */,
 				FFB41B431CEE9A3000CD5F09 /* mode_timer.png in Resources */,
 				FFB41B4E1CEE9A3000CD5F09 /* television.png in Resources */,
@@ -791,6 +790,7 @@
 				FFB41B341CEE9A3000CD5F09 /* mode_alarm.png in Resources */,
 				FFB41B141CEE9A3000CD5F09 /* chevron_south.png in Resources */,
 				FFB41B2A1CEE9A3000CD5F09 /* cog.png in Resources */,
+				FF0F10D51CF6430E00CC1F29 /* Effra_Rg.ttf in Resources */,
 				FFF2709D1CEE88E500E46575 /* Assets.xcassets in Resources */,
 				FFB41B441CEE9A3000CD5F09 /* mode_video.png in Resources */,
 				FFB41B311CEE9A3000CD5F09 /* icon_music.png in Resources */,

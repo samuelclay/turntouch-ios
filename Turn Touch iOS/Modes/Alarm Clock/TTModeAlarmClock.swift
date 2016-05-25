@@ -11,6 +11,6 @@ import UIKit
 class TTModeAlarmClock: TTMode {
 
     override func title() -> String {
-        return "Alarm Clock"
+        return "Alarm"
     }
 }
