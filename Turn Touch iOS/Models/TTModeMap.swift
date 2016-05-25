@@ -8,7 +8,7 @@
 
 import Foundation
 
-class TTModeMap: NSObject {
+class TTModeMap {
     
     var activeModeDirection: TTModeDirection = .NO_DIRECTION
     var selectedModeDirection: TTModeDirection = .NO_DIRECTION
@@ -34,7 +34,7 @@ class TTModeMap: NSObject {
     var availableAddModes: [NSString] = []
     var availableAddActions: [NSString] = []
     
-    override init() {
+    init() {
         
         self.availableModes = [
             "TTModePhone": TTMode.self,
@@ -42,8 +42,6 @@ class TTModeMap: NSObject {
             "TTModeMusic": TTMode.self,
             "TTModeHue": TTMode.self,
         ]
-
-        super.init()
 
     }
     
@@ -53,13 +51,23 @@ class TTModeMap: NSObject {
 
     func setupModes() {
         let prefs = NSUserDefaults.standardUserDefaults()
-        let south = prefs.stringForKey("TT:mode:south")
-        NSLog("Prefs: \(south)")
         
         for direction: NSString in ["north", "east", "west", "south"] {
             if let directionModeName = prefs.stringForKey("TT:mode:\(direction)") {
-                let modeClass = self.availableModes[directionModeName]
-                self.setValue(modeClass, forKey: "\(direction)Mode")
+                let className = "Turn_Touch_iOS.\(directionModeName)"
+                let modeClass = NSClassFromString(className) as! TTMode.Type
+                switch (direction) {
+                case "north":
+                    northMode = modeClass.init()
+                case "east":
+                    eastMode = modeClass.init()
+                case "west":
+                    westMode = modeClass.init()
+                case "south":
+                    southMode = modeClass.init()
+                default:
+                    break
+                }
             }
         }
         
@@ -71,9 +79,7 @@ class TTModeMap: NSObject {
     func switchMode() {
         // batchActions.deactivate()
         
-        if self.selectedMode.respondsToSelector(Selector("deactivate")) {
-            self.selectedMode.deactivate()
-        }
+        self.selectedMode.deactivate()
         
         if self.selectedModeDirection != .NO_DIRECTION {
             self.selectedMode = self.modeInDirection(self.selectedModeDirection)

@@ -7,13 +7,13 @@
 	<key>TT:firmware:version</key>
 	<string>5</string>
 	<key>TT:mode:north</key>
-	<string>TTModeMac</string>
+	<string>TTMode</string>
 	<key>TT:mode:east</key>
-	<string>TTModeMusic</string>
+	<string>TTMode</string>
 	<key>TT:mode:west</key>
-	<string>TTModeHue</string>
+	<string>TTMode</string>
 	<key>TT:mode:south</key>
-	<string>TTModeAlarmClock</string>
+	<string>TTMode</string>
 	<key>TT:selectedModeDirection</key>
 	<string>2</string>
 </dict>

@@ -117,13 +117,13 @@ class TTModeTab: UIView {
     
     func drawActiveBorder() {
         let line = UIBezierPath()
+        line.lineWidth = 1.0
+        UIColor(hex: 0xC2CBCE).set()
         
         // Left border
         if self.modeDirection != .NORTH {
             line.moveToPoint(CGPointMake(CGRectGetMinX(self.bounds), CGRectGetMinY(self.bounds)))
             line.addLineToPoint(CGPointMake(CGRectGetMinX(self.bounds), CGRectGetMaxY(self.bounds)))
-            line.lineWidth = 1.0
-            UIColor(hex: 0xC2CBCE).set()
             line.stroke()
         }
         
@@ -131,15 +131,20 @@ class TTModeTab: UIView {
         if self.modeDirection != .SOUTH {
             line.moveToPoint(CGPointMake(CGRectGetMaxX(self.bounds), CGRectGetMinY(self.bounds)))
             line.addLineToPoint(CGPointMake(CGRectGetMaxX(self.bounds), CGRectGetMaxY(self.bounds)))
-            line.lineWidth = 1.0
-            UIColor(hex: 0xC2CBCE).set()
             line.stroke()
         }
+        
+        // Top border
+        line.moveToPoint(CGPointMake(CGRectGetMinX(self.bounds), CGRectGetMinY(self.bounds)))
+        line.addLineToPoint(CGPointMake(CGRectGetMaxX(self.bounds), CGRectGetMinY(self.bounds)))
+        line.stroke()
     }
     
     func drawInactiveBorder() {
         let line = UIBezierPath()
         let activeDirection = appDelegate().modeMap.selectedModeDirection
+        line.lineWidth = 1.0
+        UIColor(hex: 0xC2CBCE).set()
         
         // Right border
         if (self.modeDirection == .NORTH && activeDirection == .EAST) ||
@@ -150,16 +155,17 @@ class TTModeTab: UIView {
         } else {
             line.moveToPoint(CGPointMake(CGRectGetMaxX(self.bounds), CGRectGetMinY(self.bounds) + 24))
             line.addLineToPoint(CGPointMake(CGRectGetMaxX(self.bounds), CGRectGetMaxY(self.bounds) - 24))
-            line.lineWidth = 1.0
-            UIColor(hex: 0xC2CBCE).set()
             line.stroke()
         }
         
         // Bottom border
         line.moveToPoint(CGPointMake(CGRectGetMinX(self.bounds), CGRectGetMaxY(self.bounds)))
         line.addLineToPoint(CGPointMake(CGRectGetMaxX(self.bounds), CGRectGetMaxY(self.bounds)))
-        line.lineWidth = 1.0
-        UIColor(hex: 0xC2CBCE).set()
+        line.stroke()
+        
+        // Top border
+        line.moveToPoint(CGPointMake(CGRectGetMinX(self.bounds), CGRectGetMinY(self.bounds)))
+        line.addLineToPoint(CGPointMake(CGRectGetMaxX(self.bounds), CGRectGetMinY(self.bounds)))
         line.stroke()
     }
 

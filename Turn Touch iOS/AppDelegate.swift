@@ -20,8 +20,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let defaultPrefs = NSDictionary(contentsOfFile: defaultPrefsFile!)
         preferences.registerDefaults(defaultPrefs as! [String: AnyObject])
         preferences.synchronize()
-        let south = preferences.stringForKey("TT:mode:south")
-        NSLog("Prefs: \(defaultPrefs) - \(south)")
         
         modeMap.setupModes()
         

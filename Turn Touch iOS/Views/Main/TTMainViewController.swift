@@ -20,7 +20,7 @@ class TTMainViewController: UIViewController {
         
         stackView.addArrangedSubview(titleBarView)
         stackView.addConstraint(NSLayoutConstraint(item: titleBarView, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: stackView, attribute: NSLayoutAttribute.Width, multiplier: 1.0, constant: 0.0))
-        stackView.addConstraint(NSLayoutConstraint(item: titleBarView, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1.0, constant: 36))
+        stackView.addConstraint(NSLayoutConstraint(item: titleBarView, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1.0, constant: 40))
         
         modeTabs = [
             TTModeTab(modeDirection:.NORTH),

@@ -24,7 +24,8 @@ class TTMode : NSObject, TTModeProtocol {
     var action: TTAction = TTAction()
     
     required override init() {
-        
+        super.init()
+        NSLog("Initializing mode: \(self)")
     }
     
     func deactivate() {
