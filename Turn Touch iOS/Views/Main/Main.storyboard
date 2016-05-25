@@ -15,21 +15,22 @@
                         <viewControllerLayoutGuide type="bottom" id="ZZZ-oZ-u9F"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="VVO-N9-DO4">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ZUg-Ee-rMT">
-                                <rect key="frame" x="20" y="0.0" width="560" height="600"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="ZUg-Ee-rMT" firstAttribute="trailing" secondItem="VVO-N9-DO4" secondAttribute="trailingMargin" id="BkN-ob-icq"/>
+                            <constraint firstItem="ZUg-Ee-rMT" firstAttribute="trailing" secondItem="VVO-N9-DO4" secondAttribute="trailingMargin" constant="20" id="BkN-ob-icq"/>
                             <constraint firstItem="ZZZ-oZ-u9F" firstAttribute="top" secondItem="ZUg-Ee-rMT" secondAttribute="bottom" id="et7-aL-GDC"/>
                             <constraint firstItem="ZUg-Ee-rMT" firstAttribute="top" secondItem="VVO-N9-DO4" secondAttribute="topMargin" id="g6m-X5-HKc"/>
-                            <constraint firstItem="ZUg-Ee-rMT" firstAttribute="leading" secondItem="VVO-N9-DO4" secondAttribute="leadingMargin" id="oHI-qO-ffV"/>
+                            <constraint firstItem="ZUg-Ee-rMT" firstAttribute="leading" secondItem="VVO-N9-DO4" secondAttribute="leadingMargin" constant="-20" id="oHI-qO-ffV"/>
                         </constraints>
                     </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
                         <outlet property="stackView" destination="ZUg-Ee-rMT" id="Yl6-r8-9gd"/>
                     </connections>

@@ -104,9 +104,13 @@
 		FFB41B6E1CEE9A3000CD5F09 /* modal_remote_paired.png in Resources */ = {isa = PBXBuildFile; fileRef = FFB41B0F1CEE9A3000CD5F09 /* modal_remote_paired.png */; };
 		FFB41B6F1CEE9A3000CD5F09 /* modal_success.png in Resources */ = {isa = PBXBuildFile; fileRef = FFB41B101CEE9A3000CD5F09 /* modal_success.png */; };
 		FFB41B731CEE9C8000CD5F09 /* logo_180.png in Resources */ = {isa = PBXBuildFile; fileRef = FFB41B721CEE9C8000CD5F09 /* logo_180.png */; };
-		FFB41B761CEEA8A600CD5F09 /* TTModeTabsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB41B751CEEA8A600CD5F09 /* TTModeTabsViewController.swift */; };
 		FFB41B791CEEA8E500CD5F09 /* TTModeTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB41B781CEEA8E500CD5F09 /* TTModeTab.swift */; };
 		FFB41B7B1CEEA9E300CD5F09 /* TTModeDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB41B7A1CEEA9E300CD5F09 /* TTModeDirection.swift */; };
+		FFB41B801CF52E6F00CD5F09 /* Effra_Rg.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FFB41B7F1CF52E6F00CD5F09 /* Effra_Rg.ttf */; };
+		FFB41B821CF5341700CD5F09 /* TTMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB41B811CF5341700CD5F09 /* TTMode.swift */; };
+		FFB41B841CF5342100CD5F09 /* TTModeMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB41B831CF5342100CD5F09 /* TTModeMap.swift */; };
+		FFB41B861CF536AC00CD5F09 /* TTAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB41B851CF536AC00CD5F09 /* TTAction.swift */; };
+		FFB41B881CF536BB00CD5F09 /* TTActionMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB41B871CF536BB00CD5F09 /* TTActionMap.swift */; };
 		FFF270941CEE88E500E46575 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF270931CEE88E500E46575 /* AppDelegate.swift */; };
 		FFF2709D1CEE88E500E46575 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FFF2709C1CEE88E500E46575 /* Assets.xcassets */; };
 		FFF270A01CEE88E500E46575 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFF2709E1CEE88E500E46575 /* LaunchScreen.storyboard */; };
@@ -231,9 +235,13 @@
 		FFB41B101CEE9A3000CD5F09 /* modal_success.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = modal_success.png; sourceTree = "<group>"; };
 		FFB41B721CEE9C8000CD5F09 /* logo_180.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_180.png; sourceTree = "<group>"; };
 		FFB41B741CEEA16000CD5F09 /* splash_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash_background.png; sourceTree = "<group>"; };
-		FFB41B751CEEA8A600CD5F09 /* TTModeTabsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeTabsViewController.swift; path = Views/Main/TTModeTabsViewController.swift; sourceTree = "<group>"; };
 		FFB41B781CEEA8E500CD5F09 /* TTModeTab.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeTab.swift; path = Views/Main/TTModeTab.swift; sourceTree = "<group>"; };
 		FFB41B7A1CEEA9E300CD5F09 /* TTModeDirection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeDirection.swift; path = Models/TTModeDirection.swift; sourceTree = "<group>"; };
+		FFB41B7F1CF52E6F00CD5F09 /* Effra_Rg.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Effra_Rg.ttf; sourceTree = "<group>"; };
+		FFB41B811CF5341700CD5F09 /* TTMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTMode.swift; path = Models/TTMode.swift; sourceTree = "<group>"; };
+		FFB41B831CF5342100CD5F09 /* TTModeMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeMap.swift; path = Models/TTModeMap.swift; sourceTree = "<group>"; };
+		FFB41B851CF536AC00CD5F09 /* TTAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTAction.swift; path = Models/TTAction.swift; sourceTree = "<group>"; };
+		FFB41B871CF536BB00CD5F09 /* TTActionMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTActionMap.swift; path = Models/TTActionMap.swift; sourceTree = "<group>"; };
 		FFF270901CEE88E500E46575 /* Turn Touch iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Turn Touch iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFF270931CEE88E500E46575 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FFF2709C1CEE88E500E46575 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -439,7 +447,6 @@
 		FFB41B771CEEA8BA00CD5F09 /* Mode Tabs */ = {
 			isa = PBXGroup;
 			children = (
-				FFB41B751CEEA8A600CD5F09 /* TTModeTabsViewController.swift */,
 				FFB41B781CEEA8E500CD5F09 /* TTModeTab.swift */,
 			);
 			name = "Mode Tabs";
@@ -449,14 +456,36 @@
 			isa = PBXGroup;
 			children = (
 				FFB41B7A1CEEA9E300CD5F09 /* TTModeDirection.swift */,
+				FFB41B831CF5342100CD5F09 /* TTModeMap.swift */,
+				FFB41B811CF5341700CD5F09 /* TTMode.swift */,
+				FFB41B851CF536AC00CD5F09 /* TTAction.swift */,
+				FFB41B871CF536BB00CD5F09 /* TTActionMap.swift */,
 			);
 			name = Models;
+			sourceTree = "<group>";
+		};
+		FFB41B7D1CF52E5700CD5F09 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				FFB41B7E1CF52E6200CD5F09 /* Fonts */,
+			);
+			name = "Supporting Files";
+			path = "Turn Touch iOS";
+			sourceTree = "<group>";
+		};
+		FFB41B7E1CF52E6200CD5F09 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				FFB41B7F1CF52E6F00CD5F09 /* Effra_Rg.ttf */,
+			);
+			name = Fonts;
 			sourceTree = "<group>";
 		};
 		FFF270871CEE88E500E46575 = {
 			isa = PBXGroup;
 			children = (
 				FFF270921CEE88E500E46575 /* Turn Touch iOS */,
+				FFB41B7D1CF52E5700CD5F09 /* Supporting Files */,
 				FFF270A91CEE88E500E46575 /* Turn Touch iOSTests */,
 				FFF270B41CEE88E500E46575 /* Turn Touch iOSUITests */,
 				FFF270911CEE88E500E46575 /* Products */,
@@ -648,6 +677,7 @@
 				FFB41AAB1CEE99A100CD5F09 /* Main.storyboard in Resources */,
 				FFB41B1A1CEE9A3000CD5F09 /* music_ff.png in Resources */,
 				FFB41B481CEE9A3000CD5F09 /* presentation-chart.png in Resources */,
+				FFB41B801CF52E6F00CD5F09 /* Effra_Rg.ttf in Resources */,
 				FFB41B471CEE9A3000CD5F09 /* newspaper-3.png in Resources */,
 				FFB41B431CEE9A3000CD5F09 /* mode_timer.png in Resources */,
 				FFB41B4E1CEE9A3000CD5F09 /* television.png in Resources */,
@@ -731,11 +761,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FFB41B881CF536BB00CD5F09 /* TTActionMap.swift in Sources */,
 				FFB41B7B1CEEA9E300CD5F09 /* TTModeDirection.swift in Sources */,
 				FFF270941CEE88E500E46575 /* AppDelegate.swift in Sources */,
-				FFB41B761CEEA8A600CD5F09 /* TTModeTabsViewController.swift in Sources */,
+				FFB41B821CF5341700CD5F09 /* TTMode.swift in Sources */,
+				FFB41B841CF5342100CD5F09 /* TTModeMap.swift in Sources */,
 				FFB41B791CEEA8E500CD5F09 /* TTModeTab.swift in Sources */,
 				FFF270C51CEE97AF00E46575 /* TTMainViewController.swift in Sources */,
+				FFB41B861CF536AC00CD5F09 /* TTAction.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

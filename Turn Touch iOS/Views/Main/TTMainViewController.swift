@@ -11,16 +11,31 @@ import UIKit
 class TTMainViewController: UIViewController {
     
     @IBOutlet var stackView: UIStackView!
+    var modeTabsView: UIStackView!
+    var modeTabs: [TTModeTab] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        modeTabs = [
+            TTModeTab(modeDirection:.NORTH),
+            TTModeTab(modeDirection:.EAST),
+            TTModeTab(modeDirection:.WEST),
+            TTModeTab(modeDirection:.SOUTH),
+        ]
+        modeTabsView = UIStackView(arrangedSubviews: modeTabs)
+        modeTabsView.axis = .Horizontal
+        modeTabsView.distribution = .FillEqually
+        modeTabsView.alignment = .Fill
+        modeTabsView.spacing = 0
+        modeTabsView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.addArrangedSubview(modeTabsView);
+        
+        stackView.addConstraint(NSLayoutConstraint(item: modeTabsView, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: stackView, attribute: NSLayoutAttribute.Width, multiplier: 1.0, constant: 0.0))
+        stackView.addConstraint(NSLayoutConstraint(item: modeTabsView, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1.0, constant: 140.0))
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
 
@@ -33,5 +48,9 @@ class TTMainViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    override func viewWillAppear(animated: Bool) {
+        
+    }
 
 }
