@@ -12,12 +12,19 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    var modeMap: TTModeMap = TTModeMap()
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
-        let appName: String = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleName") as! String
-        NSLog("App name: \(appName)")
+        let preferences = NSUserDefaults.standardUserDefaults()
+        let defaultPrefsFile = NSBundle.mainBundle().pathForResource("Preferences", ofType: "plist")
+        let defaultPrefs = NSDictionary(contentsOfFile: defaultPrefsFile!)
+        preferences.registerDefaults(defaultPrefs as! [String: AnyObject])
+        preferences.synchronize()
+        let south = preferences.stringForKey("TT:mode:south")
+        NSLog("Prefs: \(defaultPrefs) - \(south)")
+        
+        modeMap.setupModes()
+        
         return true
     }
 

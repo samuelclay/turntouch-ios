@@ -11,6 +11,9 @@ import UIKit
 let DIAMOND_SIZE: CGFloat = 22.0
 
 class TTModeTab: UIView {
+
+    @IBInspectable var startColor: UIColor = UIColor.whiteColor()
+    @IBInspectable var endColor: UIColor = UIColor(hex: 0xE7E7E7)
     
     var modeDirection: TTModeDirection = .NO_DIRECTION
     var modeTitle: NSString = ""
@@ -22,6 +25,7 @@ class TTModeTab: UIView {
         self.modeDirection = modeDirection
         super.init(frame:CGRect.zero)
         translatesAutoresizingMaskIntoConstraints = false
+        contentMode = UIViewContentMode.Redraw;
 
         setupMode()
         setupTitleAttributes()
@@ -48,7 +52,7 @@ class TTModeTab: UIView {
             NSShadowAttributeName: {
                 let shadow = NSShadow()
                 shadow.shadowColor = UIColor.whiteColor()
-                shadow.shadowOffset = CGSizeMake(0, -1)
+                shadow.shadowOffset = CGSizeMake(0, 1)
                 shadow.shadowBlurRadius = 0
                 return shadow
             }(),
@@ -68,7 +72,7 @@ class TTModeTab: UIView {
         self.drawBorders()
         
         let titleSize: CGSize = self.modeTitle.sizeWithAttributes(self.modeAttributes)
-        let titlePoint: CGPoint = CGPointMake(CGRectGetWidth(self.frame)/2 - titleSize.width/2, 18)
+        let titlePoint: CGPoint = CGPointMake(CGRectGetWidth(self.frame)/2 - titleSize.width/2, 118)
         
         self.modeTitle.drawAtPoint(titlePoint, withAttributes: self.modeAttributes)
         
@@ -79,13 +83,83 @@ class TTModeTab: UIView {
     }
     
     func drawBackground() {
-        let context: CGContextRef = UIGraphicsGetCurrentContext()!
-        UIColor.blueColor().setFill()
-        CGContextFillRect(context, self.frame)
+        let context = UIGraphicsGetCurrentContext()
+        if appDelegate().modeMap.selectedModeDirection == self.modeDirection {
+            UIColor(hex: 0xFFFFFF).set()
+            CGContextFillRect(context, self.bounds);
+        } else {
+            let colors = [startColor.CGColor, endColor.CGColor]
+            let colorSpace = CGColorSpaceCreateDeviceRGB()
+            let colorLocations:[CGFloat] = [0.0, 1.0]
+            let gradient = CGGradientCreateWithColors(colorSpace,
+                                                      colors,
+                                                      colorLocations)
+            let startPoint = CGPoint.zero
+            let endPoint = CGPoint(x:0, y:self.bounds.height)
+
+            CGContextDrawLinearGradient(context,
+                                        gradient, 
+                                        startPoint, 
+                                        endPoint, 
+                                        [])
+        }
+        
     }
     
     func drawBorders() {
+        if appDelegate().modeMap.selectedModeDirection == self.modeDirection {
+            self.drawActiveBorder()
+        } else {
+            self.drawInactiveBorder()
+        }
+    }
+    
+    func drawActiveBorder() {
+        let line = UIBezierPath()
         
+        // Left border
+        if self.modeDirection != .NORTH {
+            line.moveToPoint(CGPointMake(CGRectGetMinX(self.bounds), CGRectGetMinY(self.bounds)))
+            line.addLineToPoint(CGPointMake(CGRectGetMinX(self.bounds), CGRectGetMaxY(self.bounds)))
+            line.lineWidth = 1.0
+            UIColor(hex: 0xC2CBCE).set()
+            line.stroke()
+        }
+        
+        // Right border
+        if self.modeDirection != .SOUTH {
+            line.moveToPoint(CGPointMake(CGRectGetMaxX(self.bounds), CGRectGetMinY(self.bounds)))
+            line.addLineToPoint(CGPointMake(CGRectGetMaxX(self.bounds), CGRectGetMaxY(self.bounds)))
+            line.lineWidth = 1.0
+            UIColor(hex: 0xC2CBCE).set()
+            line.stroke()
+        }
+    }
+    
+    func drawInactiveBorder() {
+        let line = UIBezierPath()
+        let activeDirection = appDelegate().modeMap.selectedModeDirection
+        
+        // Right border
+        if (self.modeDirection == .NORTH && activeDirection == .EAST) ||
+            (self.modeDirection == .EAST && activeDirection == .WEST) ||
+            (self.modeDirection == .WEST && activeDirection == .SOUTH) ||
+            (self.modeDirection == .SOUTH) {
+            
+        } else {
+            line.moveToPoint(CGPointMake(CGRectGetMaxX(self.bounds), CGRectGetMinY(self.bounds) + 24))
+            line.addLineToPoint(CGPointMake(CGRectGetMaxX(self.bounds), CGRectGetMaxY(self.bounds) - 24))
+            line.lineWidth = 1.0
+            UIColor(hex: 0xC2CBCE).set()
+            line.stroke()
+        }
+        
+        // Bottom border
+        line.moveToPoint(CGPointMake(CGRectGetMinX(self.bounds), CGRectGetMaxY(self.bounds)))
+        line.addLineToPoint(CGPointMake(CGRectGetMaxX(self.bounds), CGRectGetMaxY(self.bounds)))
+        line.lineWidth = 1.0
+        UIColor(hex: 0xC2CBCE).set()
+        line.stroke()
     }
 
 }

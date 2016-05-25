@@ -44,11 +44,6 @@ class TTModeMap: NSObject {
         ]
 
         super.init()
-        
-        self.setupModes()
-        let defaults = NSUserDefaults.standardUserDefaults()
-        self.selectedModeDirection = TTModeDirection(rawValue: defaults.integerForKey("TT:selectedModeDirection"))!
-        self.switchMode()
 
     }
     
@@ -58,12 +53,19 @@ class TTModeMap: NSObject {
 
     func setupModes() {
         let prefs = NSUserDefaults.standardUserDefaults()
+        let south = prefs.stringForKey("TT:mode:south")
+        NSLog("Prefs: \(south)")
         
         for direction: NSString in ["north", "east", "west", "south"] {
-            let directionModeName = prefs.stringForKey("TT:mode:\(direction)")!
-            let modeClass = self.availableModes[directionModeName]
-            self.setValue(modeClass, forKey: "\(direction)Mode")
+            if let directionModeName = prefs.stringForKey("TT:mode:\(direction)") {
+                let modeClass = self.availableModes[directionModeName]
+                self.setValue(modeClass, forKey: "\(direction)Mode")
+            }
         }
+        
+        let defaults = NSUserDefaults.standardUserDefaults()
+        self.selectedModeDirection = TTModeDirection(rawValue: defaults.integerForKey("TT:selectedModeDirection"))!
+        self.switchMode()
     }
     
     func switchMode() {
