@@ -36,7 +36,6 @@ class TTModeTab: UIView {
         self.addSubview(self.titleLabel)
         self.addConstraint(NSLayoutConstraint(item: self.titleLabel, attribute: .CenterX, relatedBy: .Equal, toItem: self, attribute: .CenterX, multiplier: 1.0, constant: 0))
         self.addConstraint(NSLayoutConstraint(item: self.titleLabel, attribute: .Bottom, relatedBy: .Equal, toItem: self, attribute: .Bottom, multiplier: 1.0, constant: -12))
-
         
         setupMode()
     }
@@ -59,23 +58,25 @@ class TTModeTab: UIView {
             break
         }
         
-        self.modeTitle = self.mode.title().uppercaseString
+        self.modeTitle = self.mode.title()
     }
     
     override class func requiresConstraintBasedLayout() -> Bool {
         return true
     }
-    
+
+    // MARK: Drawing
+
     override func drawRect(rect: CGRect) {
         super.drawRect(rect);
         
         self.drawBackground()
         self.drawBorders()
         
-        let textColor = (appDelegate().modeMap.selectedModeDirection != self.modeDirection) ?
+        let textColor = (appDelegate().modeMap.selectedModeDirection != self.modeDirection && !self.highlighted) ?
             UIColor(hex: 0x808388) : UIColor(hex: 0x404A60)
         self.titleLabel.textColor = textColor
-        self.titleLabel.text = self.modeTitle
+        self.titleLabel.text = self.modeTitle.uppercaseString
         
 //        let diamondRect = CGRectMake(CGRectGetWidth(self.frame)/2 - (DIAMOND_SIZE * 1.3 / 2),
 //                                     CGRectGetHeight(self.frame) - 18 - DIAMOND_SIZE,
@@ -101,8 +102,12 @@ class TTModeTab: UIView {
             CGContextDrawLinearGradient(context,
                                         gradient, 
                                         startPoint, 
-                                        endPoint, 
+                                        endPoint,
                                         [])
+            if self.highlighted {
+                CGContextSetRGBFillColor(context, 0, 0, 0, 0.025);
+                CGContextFillRect(context, self.bounds)
+            }
         }
         
     }
@@ -168,5 +173,29 @@ class TTModeTab: UIView {
         line.addLineToPoint(CGPointMake(CGRectGetMaxX(self.bounds), CGRectGetMinY(self.bounds)))
         line.stroke()
     }
-
+    
+    // MARK: Actions
+    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        self.highlighted = true
+        self.setNeedsDisplay()
+    }
+    
+    override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        if let touch = touches.first {
+            self.highlighted = CGRectContainsPoint(self.bounds, touch.locationInView(self))
+            self.setNeedsDisplay()
+        }
+    }
+    
+    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        self.highlighted = false
+        self.setNeedsDisplay()
+        
+        if let touch = touches.first {
+            if CGRectContainsPoint(self.bounds, touch.locationInView(self)) {
+                print(" Touched! \(self.modeTitle)")
+            }
+        }
+    }
 }
