@@ -39,7 +39,7 @@ class TTMainViewController: UIViewController {
         stackView.addArrangedSubview(modeTabsView);
         
         stackView.addConstraint(NSLayoutConstraint(item: modeTabsView, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: stackView, attribute: NSLayoutAttribute.Width, multiplier: 1.0, constant: 0.0))
-        stackView.addConstraint(NSLayoutConstraint(item: modeTabsView, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1.0, constant: 100.0))
+        stackView.addConstraint(NSLayoutConstraint(item: modeTabsView, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1.0, constant: 92.0))
     }
 
     override func didReceiveMemoryWarning() {

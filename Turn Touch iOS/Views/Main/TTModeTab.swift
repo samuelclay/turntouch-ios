@@ -20,6 +20,7 @@ class TTModeTab: UIView {
     var modeTitle: String = ""
     var highlighted: Bool = false
     var titleLabel: UILabel = UILabel()
+    var diamondView: TTDiamondView = TTDiamondView()
     
     init(modeDirection: TTModeDirection) {
         self.modeDirection = modeDirection
@@ -39,6 +40,10 @@ class TTModeTab: UIView {
         
         setupMode()
         self.registerAsObserver()
+
+        diamondView.overrideSelectedDirection = self.modeDirection
+        diamondView.ignoreSelectedMode = true
+        self.addSubview(diamondView)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -92,10 +97,10 @@ class TTModeTab: UIView {
         self.titleLabel.textColor = textColor
         self.titleLabel.text = self.modeTitle.uppercaseString
         
-//        let diamondRect = CGRectMake(CGRectGetWidth(self.frame)/2 - (DIAMOND_SIZE * 1.3 / 2),
-//                                     CGRectGetHeight(self.frame) - 18 - DIAMOND_SIZE,
-//                                     DIAMOND_SIZE * 1.3, DIAMOND_SIZE)
-        
+        let diamondRect = CGRectMake(CGRectGetWidth(self.bounds)/2 - (DIAMOND_SIZE * 1.3 / 2),
+                                     CGRectGetHeight(self.bounds)/2 - DIAMOND_SIZE,
+                                     DIAMOND_SIZE * 1.3, DIAMOND_SIZE)
+        diamondView.frame = diamondRect
     }
     
     func drawBackground() {
