@@ -19,14 +19,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="top" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ZUg-Ee-rMT">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                                <rect key="frame" x="0.0" y="20" width="414" height="716"/>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="ZUg-Ee-rMT" firstAttribute="top" secondItem="ltj-7S-ZHJ" secondAttribute="bottom" id="A2v-fp-gvS"/>
                             <constraint firstItem="ZUg-Ee-rMT" firstAttribute="trailing" secondItem="VVO-N9-DO4" secondAttribute="trailingMargin" constant="20" id="BkN-ob-icq"/>
                             <constraint firstItem="ZZZ-oZ-u9F" firstAttribute="top" secondItem="ZUg-Ee-rMT" secondAttribute="bottom" priority="999" id="et7-aL-GDC"/>
-                            <constraint firstItem="ZUg-Ee-rMT" firstAttribute="top" secondItem="VVO-N9-DO4" secondAttribute="topMargin" id="g6m-X5-HKc"/>
                             <constraint firstItem="ZUg-Ee-rMT" firstAttribute="leading" secondItem="VVO-N9-DO4" secondAttribute="leadingMargin" constant="-20" id="oHI-qO-ffV"/>
                         </constraints>
                     </view>

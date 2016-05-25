@@ -72,7 +72,8 @@ class TTModeTab: UIView {
         self.drawBorders()
         
         let titleSize: CGSize = self.modeTitle.sizeWithAttributes(self.modeAttributes)
-        let titlePoint: CGPoint = CGPointMake(CGRectGetWidth(self.frame)/2 - titleSize.width/2, 118)
+        let titlePoint: CGPoint = CGPointMake(CGRectGetWidth(self.frame)/2 - titleSize.width/2,
+                                              CGRectGetMaxY(self.frame) - 24)
         
         self.modeTitle.drawAtPoint(titlePoint, withAttributes: self.modeAttributes)
         

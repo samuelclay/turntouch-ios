@@ -11,11 +11,17 @@ import UIKit
 class TTMainViewController: UIViewController {
     
     @IBOutlet var stackView: UIStackView!
+    var titleBarView: TTTitleBarView = TTTitleBarView()
     var modeTabsView: UIStackView!
     var modeTabs: [TTModeTab] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        stackView.addArrangedSubview(titleBarView)
+        stackView.addConstraint(NSLayoutConstraint(item: titleBarView, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: stackView, attribute: NSLayoutAttribute.Width, multiplier: 1.0, constant: 0.0))
+        stackView.addConstraint(NSLayoutConstraint(item: titleBarView, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1.0, constant: 36))
+        
         modeTabs = [
             TTModeTab(modeDirection:.NORTH),
             TTModeTab(modeDirection:.EAST),
@@ -31,7 +37,7 @@ class TTMainViewController: UIViewController {
         stackView.addArrangedSubview(modeTabsView);
         
         stackView.addConstraint(NSLayoutConstraint(item: modeTabsView, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: stackView, attribute: NSLayoutAttribute.Width, multiplier: 1.0, constant: 0.0))
-        stackView.addConstraint(NSLayoutConstraint(item: modeTabsView, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1.0, constant: 140.0))
+        stackView.addConstraint(NSLayoutConstraint(item: modeTabsView, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1.0, constant: 100.0))
     }
 
     override func didReceiveMemoryWarning() {
