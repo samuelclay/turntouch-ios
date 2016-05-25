@@ -10,6 +10,10 @@
 		FF0F10BE1CF55A9000CC1F29 /* UIColor+hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0F10BD1CF55A9000CC1F29 /* UIColor+hex.swift */; };
 		FF0F10C01CF5638D00CC1F29 /* Preferences.plist in Resources */ = {isa = PBXBuildFile; fileRef = FF0F10BF1CF5638D00CC1F29 /* Preferences.plist */; };
 		FF0F10C21CF60C3D00CC1F29 /* TTTitleBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0F10C11CF60C3D00CC1F29 /* TTTitleBarView.swift */; };
+		FF0F10C71CF63F1600CC1F29 /* TTModeMusic.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0F10C61CF63F1600CC1F29 /* TTModeMusic.swift */; };
+		FF0F10CA1CF63F3B00CC1F29 /* TTModePhone.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0F10C91CF63F3B00CC1F29 /* TTModePhone.swift */; };
+		FF0F10CD1CF63F4D00CC1F29 /* TTModeHue.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0F10CC1CF63F4D00CC1F29 /* TTModeHue.swift */; };
+		FF0F10D01CF63F6100CC1F29 /* TTModeAlarmClock.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0F10CF1CF63F6100CC1F29 /* TTModeAlarmClock.swift */; };
 		FFB41AAB1CEE99A100CD5F09 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFB41AAA1CEE99A100CD5F09 /* Main.storyboard */; };
 		FFB41B111CEE9A3000CD5F09 /* alarm_snooze.png in Resources */ = {isa = PBXBuildFile; fileRef = FFB41AAE1CEE9A3000CD5F09 /* alarm_snooze.png */; };
 		FFB41B121CEE9A3000CD5F09 /* chevron_east.png in Resources */ = {isa = PBXBuildFile; fileRef = FFB41AAF1CEE9A3000CD5F09 /* chevron_east.png */; };
@@ -143,6 +147,10 @@
 		FF0F10BD1CF55A9000CC1F29 /* UIColor+hex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIColor+hex.swift"; path = "Categories/UIColor+hex.swift"; sourceTree = "<group>"; };
 		FF0F10BF1CF5638D00CC1F29 /* Preferences.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Preferences.plist; sourceTree = "<group>"; };
 		FF0F10C11CF60C3D00CC1F29 /* TTTitleBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTTitleBarView.swift; path = Views/Main/TTTitleBarView.swift; sourceTree = "<group>"; };
+		FF0F10C61CF63F1600CC1F29 /* TTModeMusic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeMusic.swift; path = Modes/Music/TTModeMusic.swift; sourceTree = "<group>"; };
+		FF0F10C91CF63F3B00CC1F29 /* TTModePhone.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModePhone.swift; path = Modes/Phone/TTModePhone.swift; sourceTree = "<group>"; };
+		FF0F10CC1CF63F4D00CC1F29 /* TTModeHue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeHue.swift; path = Modes/Hue/TTModeHue.swift; sourceTree = "<group>"; };
+		FF0F10CF1CF63F6100CC1F29 /* TTModeAlarmClock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeAlarmClock.swift; path = "Modes/Alarm Clock/TTModeAlarmClock.swift"; sourceTree = "<group>"; };
 		FFB41AAA1CEE99A100CD5F09 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Views/Main/Main.storyboard; sourceTree = "<group>"; };
 		FFB41AAE1CEE9A3000CD5F09 /* alarm_snooze.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = alarm_snooze.png; sourceTree = "<group>"; };
 		FFB41AAF1CEE9A3000CD5F09 /* chevron_east.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chevron_east.png; sourceTree = "<group>"; };
@@ -293,6 +301,49 @@
 				FF0F10BD1CF55A9000CC1F29 /* UIColor+hex.swift */,
 			);
 			name = Categories;
+			sourceTree = "<group>";
+		};
+		FF0F10C51CF63EF400CC1F29 /* Modes */ = {
+			isa = PBXGroup;
+			children = (
+				FF0F10D11CF63F6C00CC1F29 /* Alarm Clock */,
+				FF0F10CE1CF63F5100CC1F29 /* Hue */,
+				FF0F10C81CF63F1C00CC1F29 /* Music */,
+				FF0F10CB1CF63F3E00CC1F29 /* Phone */,
+			);
+			name = Modes;
+			sourceTree = "<group>";
+		};
+		FF0F10C81CF63F1C00CC1F29 /* Music */ = {
+			isa = PBXGroup;
+			children = (
+				FF0F10C61CF63F1600CC1F29 /* TTModeMusic.swift */,
+			);
+			name = Music;
+			sourceTree = "<group>";
+		};
+		FF0F10CB1CF63F3E00CC1F29 /* Phone */ = {
+			isa = PBXGroup;
+			children = (
+				FF0F10C91CF63F3B00CC1F29 /* TTModePhone.swift */,
+			);
+			name = Phone;
+			sourceTree = "<group>";
+		};
+		FF0F10CE1CF63F5100CC1F29 /* Hue */ = {
+			isa = PBXGroup;
+			children = (
+				FF0F10CC1CF63F4D00CC1F29 /* TTModeHue.swift */,
+			);
+			name = Hue;
+			sourceTree = "<group>";
+		};
+		FF0F10D11CF63F6C00CC1F29 /* Alarm Clock */ = {
+			isa = PBXGroup;
+			children = (
+				FF0F10CF1CF63F6100CC1F29 /* TTModeAlarmClock.swift */,
+			);
+			name = "Alarm Clock";
 			sourceTree = "<group>";
 		};
 		FFB41AAC1CEE9A3000CD5F09 /* Images */ = {
@@ -482,6 +533,9 @@
 		FFB41B7D1CF52E5700CD5F09 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				FF0F10BF1CF5638D00CC1F29 /* Preferences.plist */,
+				FFF270A11CEE88E500E46575 /* Info.plist */,
+				FFF2709C1CEE88E500E46575 /* Assets.xcassets */,
 				FFB41B7E1CF52E6200CD5F09 /* Fonts */,
 			);
 			name = "Supporting Files";
@@ -520,14 +574,12 @@
 		FFF270921CEE88E500E46575 /* Turn Touch iOS */ = {
 			isa = PBXGroup;
 			children = (
-				FF0F10BC1CF55A7F00CC1F29 /* Categories */,
 				FFF270931CEE88E500E46575 /* AppDelegate.swift */,
 				FFB41B7C1CEEA9E800CD5F09 /* Models */,
 				FFB41B701CEE9A3B00CD5F09 /* Views */,
+				FF0F10C51CF63EF400CC1F29 /* Modes */,
+				FF0F10BC1CF55A7F00CC1F29 /* Categories */,
 				FFB41AAC1CEE9A3000CD5F09 /* Images */,
-				FFF2709C1CEE88E500E46575 /* Assets.xcassets */,
-				FFF270A11CEE88E500E46575 /* Info.plist */,
-				FF0F10BF1CF5638D00CC1F29 /* Preferences.plist */,
 			);
 			path = "Turn Touch iOS";
 			sourceTree = "<group>";
@@ -779,12 +831,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FF0F10C71CF63F1600CC1F29 /* TTModeMusic.swift in Sources */,
+				FF0F10D01CF63F6100CC1F29 /* TTModeAlarmClock.swift in Sources */,
 				FFB41B881CF536BB00CD5F09 /* TTActionMap.swift in Sources */,
 				FFB41B7B1CEEA9E300CD5F09 /* TTModeDirection.swift in Sources */,
 				FFF270941CEE88E500E46575 /* AppDelegate.swift in Sources */,
 				FFB41B821CF5341700CD5F09 /* TTMode.swift in Sources */,
+				FF0F10CD1CF63F4D00CC1F29 /* TTModeHue.swift in Sources */,
 				FFB41B841CF5342100CD5F09 /* TTModeMap.swift in Sources */,
 				FF0F10C21CF60C3D00CC1F29 /* TTTitleBarView.swift in Sources */,
+				FF0F10CA1CF63F3B00CC1F29 /* TTModePhone.swift in Sources */,
 				FFB41B791CEEA8E500CD5F09 /* TTModeTab.swift in Sources */,
 				FF0F10BE1CF55A9000CC1F29 /* UIColor+hex.swift in Sources */,
 				FFF270C51CEE97AF00E46575 /* TTMainViewController.swift in Sources */,

@@ -35,4 +35,10 @@ class TTMode : NSObject, TTModeProtocol {
     func activate() {
         
     }
+    
+    // MARK: Mode settings
+    
+    func title() -> String {
+        return "Mode"
+    }
 }

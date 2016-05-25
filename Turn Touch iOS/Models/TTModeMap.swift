@@ -37,10 +37,10 @@ class TTModeMap {
     init() {
         
         self.availableModes = [
-            "TTModePhone": TTMode.self,
-            "TTModeAlarmClock": TTMode.self,
-            "TTModeMusic": TTMode.self,
-            "TTModeHue": TTMode.self,
+            "TTModePhone",
+            "TTModeAlarmClock",
+            "TTModeMusic",
+            "TTModeHue",
         ]
 
     }

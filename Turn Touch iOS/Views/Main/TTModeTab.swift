@@ -15,8 +15,9 @@ class TTModeTab: UIView {
     @IBInspectable var startColor: UIColor = UIColor.whiteColor()
     @IBInspectable var endColor: UIColor = UIColor(hex: 0xE7E7E7)
     
+    var mode: TTMode = TTMode()
     var modeDirection: TTModeDirection = .NO_DIRECTION
-    var modeTitle: NSString = ""
+    var modeTitle: String = ""
     var modeAttributes: [String: AnyObject] = [:]
     var textSize: CGSize = CGSizeZero
     var highlighted: Bool = false
@@ -38,15 +39,20 @@ class TTModeTab: UIView {
     func setupMode() {
         switch modeDirection {
         case .NORTH:
-            break
-            // itemMode = appDelegate.modeMap.northMode
+            self.mode = appDelegate().modeMap.northMode
+        case .EAST:
+            self.mode = appDelegate().modeMap.eastMode
+        case .WEST:
+            self.mode = appDelegate().modeMap.westMode
+        case .SOUTH:
+            self.mode = appDelegate().modeMap.southMode
         default:
             break
         }
     }
     
     func setupTitleAttributes() {
-        self.modeTitle = "Test"
+        self.modeTitle = self.mode.title()
         self.modeAttributes = [
             UIFontDescriptorNameAttribute: UIFont(name: "Effra", size: 13)!,
             NSShadowAttributeName: {
