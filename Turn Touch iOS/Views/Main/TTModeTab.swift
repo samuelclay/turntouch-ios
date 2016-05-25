@@ -38,6 +38,7 @@ class TTModeTab: UIView {
         self.addConstraint(NSLayoutConstraint(item: self.titleLabel, attribute: .Bottom, relatedBy: .Equal, toItem: self, attribute: .Bottom, multiplier: 1.0, constant: -12))
         
         setupMode()
+        self.registerAsObserver()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -64,7 +65,20 @@ class TTModeTab: UIView {
     override class func requiresConstraintBasedLayout() -> Bool {
         return true
     }
-
+    
+    // MARK: KVO
+    
+    func registerAsObserver() {
+        appDelegate().modeMap.addObserver(self, forKeyPath: "selectedModeDirection", options: .Initial, context: nil)
+    }
+    
+    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+        if keyPath == "selectedModeDirection" {
+            self.setupMode()
+            self.setNeedsDisplay()
+        }
+    }
+    
     // MARK: Drawing
 
     override func drawRect(rect: CGRect) {
@@ -194,8 +208,14 @@ class TTModeTab: UIView {
         
         if let touch = touches.first {
             if CGRectContainsPoint(self.bounds, touch.locationInView(self)) {
-                print(" Touched! \(self.modeTitle)")
+                self.switchMode()
             }
+        }
+    }
+    
+    func switchMode() {
+        if appDelegate().modeMap.selectedModeDirection != self.modeDirection {
+            appDelegate().modeMap.selectedModeDirection = self.modeDirection
         }
     }
 }

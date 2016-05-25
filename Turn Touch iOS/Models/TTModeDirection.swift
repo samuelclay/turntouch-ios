@@ -8,6 +8,7 @@
 
 import UIKit
 
+@objc
 enum TTModeDirection: Int {
     case NO_DIRECTION = 0
     case NORTH = 1

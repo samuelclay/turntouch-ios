@@ -8,17 +8,17 @@
 
 import Foundation
 
-class TTModeMap {
+class TTModeMap: NSObject {
     
-    var activeModeDirection: TTModeDirection = .NO_DIRECTION
-    var selectedModeDirection: TTModeDirection = .NO_DIRECTION
-    var inspectingModeDirection: TTModeDirection = .NO_DIRECTION
-    var hoverModeDirection: TTModeDirection = .NO_DIRECTION
+    dynamic var activeModeDirection: TTModeDirection = .NO_DIRECTION
+    dynamic var selectedModeDirection: TTModeDirection = .NO_DIRECTION
+    dynamic var inspectingModeDirection: TTModeDirection = .NO_DIRECTION
+    dynamic var hoverModeDirection: TTModeDirection = .NO_DIRECTION
     
     var tempModeName: NSString = ""
-    var openedModeChangeMenu: Bool = false
-    var openedActionChangeMenu: Bool = false
-    var openedAddActionChangeMenu: Bool = false
+    dynamic var openedModeChangeMenu: Bool = false
+    dynamic var openedActionChangeMenu: Bool = false
+    dynamic var openedAddActionChangeMenu: Bool = false
     
     var selectedMode: TTMode = TTMode()
     var northMode: TTMode = TTMode()
@@ -34,19 +34,34 @@ class TTModeMap {
     var availableAddModes: [NSString] = []
     var availableAddActions: [NSString] = []
     
-    init() {
-        
+    override init() {
         self.availableModes = [
             "TTModePhone",
             "TTModeAlarmClock",
             "TTModeMusic",
             "TTModeHue",
         ]
-
+        
+        super.init()
+        
+        self.addObserver(self, forKeyPath: "selectedModeDirection", options: [], context: nil)
+    }
+    
+    deinit {
+        self.removeObserver(self, forKeyPath: "selectedModeDirection")
     }
     
     // MARK: KVO
     
+    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+        if keyPath == "selectedModeDirection" {
+            let prefs = NSUserDefaults.standardUserDefaults()
+            prefs.setInteger(self.selectedModeDirection.rawValue, forKey: "TT:selectedModeDirection")
+            prefs.synchronize()
+            
+            self.switchMode()
+        }
+    }
     // MARK: Actions
 
     func setupModes() {
@@ -59,20 +74,23 @@ class TTModeMap {
                 switch (direction) {
                 case "north":
                     northMode = modeClass.init()
+                    northMode.modeDirection = .NORTH
                 case "east":
                     eastMode = modeClass.init()
+                    eastMode.modeDirection = .EAST
                 case "west":
                     westMode = modeClass.init()
+                    westMode.modeDirection = .WEST
                 case "south":
                     southMode = modeClass.init()
+                    southMode.modeDirection = .SOUTH
                 default:
                     break
                 }
             }
         }
         
-        let defaults = NSUserDefaults.standardUserDefaults()
-        self.selectedModeDirection = TTModeDirection(rawValue: defaults.integerForKey("TT:selectedModeDirection"))!
+        self.selectedModeDirection = TTModeDirection(rawValue: prefs.integerForKey("TT:selectedModeDirection"))!
         self.switchMode()
     }
     
