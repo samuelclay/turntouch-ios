@@ -9,7 +9,7 @@
 import UIKit
 
 let CORNER_RADIUS: CGFloat = 8.0
-let SETTINGS_ICON_SIZE: CGFloat = 16.0
+let SETTINGS_ICON_SIZE: CGFloat = 22.0
 
 class TTTitleBarView: UIView {
     @IBInspectable var startColor: UIColor = UIColor.whiteColor()
@@ -28,19 +28,27 @@ class TTTitleBarView: UIView {
         titleImageView.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(titleImageView)
         
-        self.addConstraint(NSLayoutConstraint(item: titleImageView, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 12))
-        self.addConstraint(NSLayoutConstraint(item: titleImageView, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 100))
-        self.addConstraint(NSLayoutConstraint(item: titleImageView, attribute: NSLayoutAttribute.CenterX, relatedBy: .Equal, toItem: self, attribute: .CenterX, multiplier: 1.0, constant: 0))
-        self.addConstraint(NSLayoutConstraint(item: titleImageView, attribute: NSLayoutAttribute.CenterY, relatedBy: .Equal, toItem: self, attribute: .CenterY, multiplier: 1.0, constant: 0))
+        self.addConstraint(NSLayoutConstraint(item: titleImageView, attribute: .Height, relatedBy: .Equal,
+            toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 12))
+        self.addConstraint(NSLayoutConstraint(item: titleImageView, attribute: .Width, relatedBy: .Equal,
+            toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 100))
+        self.addConstraint(NSLayoutConstraint(item: titleImageView, attribute: NSLayoutAttribute.CenterX, relatedBy: .Equal,
+            toItem: self, attribute: .CenterX, multiplier: 1.0, constant: 0))
+        self.addConstraint(NSLayoutConstraint(item: titleImageView, attribute: NSLayoutAttribute.CenterY, relatedBy: .Equal,
+            toItem: self, attribute: .CenterY, multiplier: 1.0, constant: 0))
         
         let settingsImage = UIImage(named: "settings")
         settingsButton.setImage(settingsImage, forState: UIControlState.Normal)
         settingsButton.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(settingsButton)
-        self.addConstraint(NSLayoutConstraint(item: settingsButton, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: SETTINGS_ICON_SIZE))
-        self.addConstraint(NSLayoutConstraint(item: settingsButton, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: SETTINGS_ICON_SIZE))
-        self.addConstraint(NSLayoutConstraint(item: settingsButton, attribute: NSLayoutAttribute.Right, relatedBy: .Equal, toItem: self, attribute: .Right, multiplier: 1.0, constant: -12))
-        self.addConstraint(NSLayoutConstraint(item: settingsButton, attribute: NSLayoutAttribute.CenterY, relatedBy: .Equal, toItem: self, attribute: .CenterY, multiplier: 1.0, constant: 0))
+        self.addConstraint(NSLayoutConstraint(item: settingsButton, attribute: .Height, relatedBy: .Equal,
+            toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: SETTINGS_ICON_SIZE))
+        self.addConstraint(NSLayoutConstraint(item: settingsButton, attribute: .Width, relatedBy: .Equal,
+            toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: SETTINGS_ICON_SIZE))
+        self.addConstraint(NSLayoutConstraint(item: settingsButton, attribute: NSLayoutAttribute.Right, relatedBy: .Equal,
+            toItem: self, attribute: .Right, multiplier: 1.0, constant: -18))
+        self.addConstraint(NSLayoutConstraint(item: settingsButton, attribute: NSLayoutAttribute.CenterY, relatedBy: .Equal,
+            toItem: self, attribute: .CenterY, multiplier: 1.0, constant: 0))
         
     }
     

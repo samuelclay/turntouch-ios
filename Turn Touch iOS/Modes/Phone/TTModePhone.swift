@@ -13,4 +13,12 @@ class TTModePhone: TTMode {
     override func title() -> String {
         return "Phone"
     }
+    
+    override func subtitle() -> String {
+        return "System-level controls"
+    }
+    
+    override func imageName() -> String {
+        return "mode_mac.png"
+    }
 }

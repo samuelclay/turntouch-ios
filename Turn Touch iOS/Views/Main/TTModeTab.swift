@@ -35,8 +35,10 @@ class TTModeTab: UIView {
         contentMode = UIViewContentMode.Redraw;
         
         self.addSubview(self.titleLabel)
-        self.addConstraint(NSLayoutConstraint(item: self.titleLabel, attribute: .CenterX, relatedBy: .Equal, toItem: self, attribute: .CenterX, multiplier: 1.0, constant: 0))
-        self.addConstraint(NSLayoutConstraint(item: self.titleLabel, attribute: .Bottom, relatedBy: .Equal, toItem: self, attribute: .Bottom, multiplier: 1.0, constant: -12))
+        self.addConstraint(NSLayoutConstraint(item: self.titleLabel, attribute: .CenterX, relatedBy: .Equal,
+            toItem: self, attribute: .CenterX, multiplier: 1.0, constant: 0))
+        self.addConstraint(NSLayoutConstraint(item: self.titleLabel, attribute: .Bottom, relatedBy: .Equal,
+            toItem: self, attribute: .Bottom, multiplier: 1.0, constant: -12))
         
         setupMode()
         self.registerAsObserver()
@@ -77,7 +79,8 @@ class TTModeTab: UIView {
         appDelegate().modeMap.addObserver(self, forKeyPath: "selectedModeDirection", options: .Initial, context: nil)
     }
     
-    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?,
+                                         change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
         if keyPath == "selectedModeDirection" {
             self.setupMode()
             self.setNeedsDisplay()

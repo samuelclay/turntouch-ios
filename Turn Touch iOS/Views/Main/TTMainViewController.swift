@@ -15,13 +15,16 @@ class TTMainViewController: UIViewController {
     var modeTabsView: UIStackView!
     var modeTabs: [TTModeTab] = []
     var titleBarConstraint = NSLayoutConstraint()
+    var modeTabsConstraint = NSLayoutConstraint()
+    var modeTitleView: TTModeTitleView = TTModeTitleView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         stackView.addArrangedSubview(titleBarView)
-        stackView.addConstraint(NSLayoutConstraint(item: titleBarView, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: stackView, attribute: NSLayoutAttribute.Width, multiplier: 1.0, constant: 0.0))
-        titleBarConstraint = NSLayoutConstraint(item: titleBarView, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1.0, constant: 44)
+        titleBarConstraint = NSLayoutConstraint(item: titleBarView, attribute: .Height,
+                                                relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute,
+                                                multiplier: 1.0, constant: 44)
         stackView.addConstraint(titleBarConstraint)
         
         modeTabs = [
@@ -38,8 +41,14 @@ class TTMainViewController: UIViewController {
         modeTabsView.translatesAutoresizingMaskIntoConstraints = false
         stackView.addArrangedSubview(modeTabsView);
         
-        stackView.addConstraint(NSLayoutConstraint(item: modeTabsView, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: stackView, attribute: NSLayoutAttribute.Width, multiplier: 1.0, constant: 0.0))
-        stackView.addConstraint(NSLayoutConstraint(item: modeTabsView, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1.0, constant: 92.0))
+        modeTabsConstraint = NSLayoutConstraint(item: modeTabsView, attribute: .Height, relatedBy: .Equal,
+                                                toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute,
+                                                multiplier: 1.0, constant: 92.0)
+        stackView.addConstraint(modeTabsConstraint)
+        
+        stackView.addArrangedSubview(modeTitleView)
+        stackView.addConstraint(NSLayoutConstraint(item: modeTitleView, attribute: .Height, relatedBy: .Equal,
+            toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 64))
     }
 
     override func didReceiveMemoryWarning() {
@@ -50,8 +59,10 @@ class TTMainViewController: UIViewController {
         super.traitCollectionDidChange(previousTraitCollection)
         if self.view.traitCollection.verticalSizeClass == UIUserInterfaceSizeClass.Compact {
             titleBarConstraint.constant = 28;
+            modeTabsConstraint.constant = 70;
         } else {
             titleBarConstraint.constant = 44;
+            modeTabsConstraint.constant = 92;
         }
     }
 

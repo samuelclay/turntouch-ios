@@ -13,4 +13,12 @@ class TTModeMusic: TTMode {
     override func title() -> String {
         return "Music"
     }
+    
+    override func subtitle() -> String {
+        return "Control your music"
+    }
+    
+    override func imageName() -> String {
+        return "mode_music.png"
+    }
 }

@@ -17,6 +17,9 @@ enum ActionLayout {
 protocol TTModeProtocol {
     func deactivate()
     func activate()
+    func title() -> String
+    func imageName() -> String
+    func subtitle() -> String
 }
 
 class TTMode : NSObject, TTModeProtocol {
@@ -40,5 +43,13 @@ class TTMode : NSObject, TTModeProtocol {
     
     func title() -> String {
         return "Mode"
+    }
+    
+    func imageName() -> String {
+        return ""
+    }
+    
+    func subtitle() -> String {
+        return ""
     }
 }

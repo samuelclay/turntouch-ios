@@ -53,7 +53,8 @@ class TTModeMap: NSObject {
     
     // MARK: KVO
     
-    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?,
+                                         change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
         if keyPath == "selectedModeDirection" {
             let prefs = NSUserDefaults.standardUserDefaults()
             prefs.setInteger(self.selectedModeDirection.rawValue, forKey: "TT:selectedModeDirection")

@@ -18,6 +18,8 @@
 		FF0F10D71CF6697A00CC1F29 /* TTDiamondView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0F10D61CF6697A00CC1F29 /* TTDiamondView.swift */; };
 		FF0F10DA1CF669AF00CC1F29 /* TTDiamondLabels.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0F10D91CF669AF00CC1F29 /* TTDiamondLabels.swift */; };
 		FF0F10DC1CF669BE00CC1F29 /* TTDiamondLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0F10DB1CF669BE00CC1F29 /* TTDiamondLabel.swift */; };
+		FF0F10DE1CF6763400CC1F29 /* TTModeTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0F10DD1CF6763400CC1F29 /* TTModeTitleView.swift */; };
+		FF0F10E01CF7D56200CC1F29 /* TTModeMenuContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0F10DF1CF7D56200CC1F29 /* TTModeMenuContainer.swift */; };
 		FFB41AAB1CEE99A100CD5F09 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFB41AAA1CEE99A100CD5F09 /* Main.storyboard */; };
 		FFB41B111CEE9A3000CD5F09 /* alarm_snooze.png in Resources */ = {isa = PBXBuildFile; fileRef = FFB41AAE1CEE9A3000CD5F09 /* alarm_snooze.png */; };
 		FFB41B121CEE9A3000CD5F09 /* chevron_east.png in Resources */ = {isa = PBXBuildFile; fileRef = FFB41AAF1CEE9A3000CD5F09 /* chevron_east.png */; };
@@ -158,6 +160,8 @@
 		FF0F10D61CF6697A00CC1F29 /* TTDiamondView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTDiamondView.swift; path = "Views/Mode Map/TTDiamondView.swift"; sourceTree = "<group>"; };
 		FF0F10D91CF669AF00CC1F29 /* TTDiamondLabels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTDiamondLabels.swift; path = "Views/Mode Map/TTDiamondLabels.swift"; sourceTree = "<group>"; };
 		FF0F10DB1CF669BE00CC1F29 /* TTDiamondLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTDiamondLabel.swift; path = "Views/Mode Map/TTDiamondLabel.swift"; sourceTree = "<group>"; };
+		FF0F10DD1CF6763400CC1F29 /* TTModeTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeTitleView.swift; path = Views/Main/TTModeTitleView.swift; sourceTree = "<group>"; };
+		FF0F10DF1CF7D56200CC1F29 /* TTModeMenuContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeMenuContainer.swift; path = Views/Main/TTModeMenuContainer.swift; sourceTree = "<group>"; };
 		FFB41AAA1CEE99A100CD5F09 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Views/Main/Main.storyboard; sourceTree = "<group>"; };
 		FFB41AAE1CEE9A3000CD5F09 /* alarm_snooze.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = alarm_snooze.png; sourceTree = "<group>"; };
 		FFB41AAF1CEE9A3000CD5F09 /* chevron_east.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chevron_east.png; sourceTree = "<group>"; };
@@ -510,7 +514,6 @@
 			isa = PBXGroup;
 			children = (
 				FFB41B711CEE9A4400CD5F09 /* Main */,
-				FFB41B771CEEA8BA00CD5F09 /* Mode Tabs */,
 				FF0F10D81CF6697F00CC1F29 /* Mode Map */,
 			);
 			name = Views;
@@ -522,17 +525,12 @@
 				FFF2709E1CEE88E500E46575 /* LaunchScreen.storyboard */,
 				FFB41AAA1CEE99A100CD5F09 /* Main.storyboard */,
 				FFF270C31CEE97AF00E46575 /* TTMainViewController.swift */,
-			);
-			name = Main;
-			sourceTree = "<group>";
-		};
-		FFB41B771CEEA8BA00CD5F09 /* Mode Tabs */ = {
-			isa = PBXGroup;
-			children = (
 				FF0F10C11CF60C3D00CC1F29 /* TTTitleBarView.swift */,
 				FFB41B781CEEA8E500CD5F09 /* TTModeTab.swift */,
+				FF0F10DD1CF6763400CC1F29 /* TTModeTitleView.swift */,
+				FF0F10DF1CF7D56200CC1F29 /* TTModeMenuContainer.swift */,
 			);
-			name = "Mode Tabs";
+			name = Main;
 			sourceTree = "<group>";
 		};
 		FFB41B7C1CEEA9E800CD5F09 /* Models */ = {
@@ -859,9 +857,11 @@
 				FF0F10CD1CF63F4D00CC1F29 /* TTModeHue.swift in Sources */,
 				FFB41B841CF5342100CD5F09 /* TTModeMap.swift in Sources */,
 				FF0F10C21CF60C3D00CC1F29 /* TTTitleBarView.swift in Sources */,
+				FF0F10E01CF7D56200CC1F29 /* TTModeMenuContainer.swift in Sources */,
 				FF0F10CA1CF63F3B00CC1F29 /* TTModePhone.swift in Sources */,
 				FFB41B791CEEA8E500CD5F09 /* TTModeTab.swift in Sources */,
 				FF0F10BE1CF55A9000CC1F29 /* UIColor+hex.swift in Sources */,
+				FF0F10DE1CF6763400CC1F29 /* TTModeTitleView.swift in Sources */,
 				FF0F10DC1CF669BE00CC1F29 /* TTDiamondLabel.swift in Sources */,
 				FFF270C51CEE97AF00E46575 /* TTMainViewController.swift in Sources */,
 				FFB41B861CF536AC00CD5F09 /* TTAction.swift in Sources */,
