@@ -50,10 +50,6 @@ class TTMainViewController: UIViewController {
         stackView.addConstraint(NSLayoutConstraint(item: modeTitleView, attribute: .Height, relatedBy: .Equal,
             toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 64))
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
     
     override func traitCollectionDidChange(previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)

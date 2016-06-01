@@ -18,11 +18,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="splash_background.png" translatesAutoresizingMaskIntoConstraints="NO" id="Iha-oZ-oPx">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="splash_background.png" translatesAutoresizingMaskIntoConstraints="NO" id="Iha-oZ-oPx">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_white_with_title.png" translatesAutoresizingMaskIntoConstraints="NO" id="ml2-XM-w5v">
-                                <rect key="frame" x="180" y="180" width="240" height="240"/>
+                                <rect key="frame" x="180" y="160" width="240" height="240"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="240" id="6Gw-RI-J0D"/>
                                     <constraint firstAttribute="height" constant="240" id="Nhf-Eq-ufn"/>
@@ -32,7 +32,7 @@
                         <color key="backgroundColor" red="0.23795303254437875" green="0.23680350098619335" blue="0.23910256410256414" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="Iha-oZ-oPx" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="3fl-Ll-U4x"/>
-                            <constraint firstItem="ml2-XM-w5v" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="80S-1B-4ki"/>
+                            <constraint firstItem="ml2-XM-w5v" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="-20" id="80S-1B-4ki"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Iha-oZ-oPx" secondAttribute="trailing" constant="-20" id="Fhn-gg-pNe"/>
                             <constraint firstItem="Iha-oZ-oPx" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="H7Q-j5-vTx"/>
                             <constraint firstItem="Iha-oZ-oPx" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="topMargin" id="UMs-ag-ZAb"/>

@@ -80,19 +80,15 @@ class TTDiamondView: UIView {
         let height: CGFloat = CGRectGetHeight(self.bounds)
         let spacing: CGFloat = SPACING_PCT * width
         
-//        northPathTop = UIBezierPath()
-//        northPathBottom = UIBezierPath()
         northPathTop.lineJoinStyle = CGLineJoin.Miter
         northPathBottom.lineJoinStyle = CGLineJoin.Miter
-        northPathTop.moveToPoint(CGPointMake(width * 1 / 4 + 1.3 * spacing, height * 3 / 4 + spacing))
-        northPathTop.addLineToPoint(CGPointMake(width / 2, height))
-        northPathTop.addLineToPoint(CGPointMake(width * 3 / 4 - 1.3 * spacing, height * 3 / 4 + spacing))
-        northPathBottom.moveToPoint(CGPointMake(width * 3 / 4 - 1.3 * spacing, height * 3 / 4 + spacing))
-        northPathBottom.addLineToPoint(CGPointMake(width / 2, height / 2 + spacing * 2))
-        northPathBottom.addLineToPoint(CGPointMake(width * 1 / 4 + 1.3 * spacing, height * 3 / 4 + spacing))
-        
-//        eastPathTop = UIBezierPath()
-//        eastPathBottom = uiBezierPath()
+        northPathTop.moveToPoint(CGPointMake(width * 3 / 4 - 1.3 * spacing, height * 1 / 4 - spacing))
+        northPathTop.addLineToPoint(CGPointMake(width * 1 / 2, height * 1 / 2 - spacing * 2))
+        northPathTop.addLineToPoint(CGPointMake(width * 1 / 4 + 1.3 * spacing, height * 1 / 4 - spacing))
+        northPathBottom.moveToPoint(CGPointMake(width * 1 / 4 + 1.3 * spacing, height * 1 / 4 - spacing))
+        northPathBottom.addLineToPoint(CGPointMake(width * 1 / 2, 0))
+        northPathBottom.addLineToPoint(CGPointMake(width * 3 / 4 - 1.3 * spacing, height * 1 / 4 - spacing))
+
         eastPathTop.lineJoinStyle = CGLineJoin.Miter
         eastPathBottom.lineJoinStyle = CGLineJoin.Miter
         eastPathTop.moveToPoint(CGPointMake(width * 1 / 2 + 1.3 * spacing * 2, height * 1 / 2))
@@ -102,8 +98,6 @@ class TTDiamondView: UIView {
         eastPathBottom.addLineToPoint(CGPointMake(width * 3 / 4 + 1.3 * spacing, height * 1 / 4 + spacing))
         eastPathBottom.addLineToPoint(CGPointMake(width * 1 / 2 + 1.3 * spacing * 2, height * 1 / 2))
         
-//        westPathTop = UIBezierPath()
-//        westPathBottom = UIBezierPath()
         westPathTop.lineJoinStyle = CGLineJoin.Miter
         westPathBottom.lineJoinStyle = CGLineJoin.Miter
         westPathTop.moveToPoint(CGPointMake(width * 1 / 2 - 1.3 * spacing * 2, height * 1 / 2))
@@ -113,16 +107,14 @@ class TTDiamondView: UIView {
         westPathBottom.addLineToPoint(CGPointMake(width * 1 / 4 - 1.3 * spacing, height * 1 / 4 + spacing))
         westPathBottom.addLineToPoint(CGPointMake(width * 1 / 2 - 1.3 * spacing * 2, height * 1 / 2))
         
-//        southPathTop = UIBezierPath()
-//        southPathBottom = UIBezierPath()
         southPathTop.lineJoinStyle = CGLineJoin.Miter
         southPathBottom.lineJoinStyle = CGLineJoin.Miter
-        southPathTop.moveToPoint(CGPointMake(width * 3 / 4 - 1.3 * spacing, height * 1 / 4 - spacing))
-        southPathTop.addLineToPoint(CGPointMake(width * 1 / 2, height * 1 / 2 - spacing * 2))
-        southPathTop.addLineToPoint(CGPointMake(width * 1 / 4 + 1.3 * spacing, height * 1 / 4 - spacing))
-        southPathBottom.moveToPoint(CGPointMake(width * 1 / 4 + 1.3 * spacing, height * 1 / 4 - spacing))
-        southPathBottom.addLineToPoint(CGPointMake(width * 1 / 2, 0))
-        southPathBottom.addLineToPoint(CGPointMake(width * 3 / 4 - 1.3 * spacing, height * 1 / 4 - spacing))
+        southPathTop.moveToPoint(CGPointMake(width * 1 / 4 + 1.3 * spacing, height * 3 / 4 + spacing))
+        southPathTop.addLineToPoint(CGPointMake(width / 2, height))
+        southPathTop.addLineToPoint(CGPointMake(width * 3 / 4 - 1.3 * spacing, height * 3 / 4 + spacing))
+        southPathBottom.moveToPoint(CGPointMake(width * 3 / 4 - 1.3 * spacing, height * 3 / 4 + spacing))
+        southPathBottom.addLineToPoint(CGPointMake(width / 2, height / 2 + spacing * 2))
+        southPathBottom.addLineToPoint(CGPointMake(width * 1 / 4 + 1.3 * spacing, height * 3 / 4 + spacing))
     }
     
     func colorPaths() {
