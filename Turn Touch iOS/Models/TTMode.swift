@@ -28,7 +28,7 @@ class TTMode : NSObject, TTModeProtocol {
     
     required override init() {
         super.init()
-        NSLog("Initializing mode: \(self)")
+//        NSLog("Initializing mode: \(self)")
     }
     
     func deactivate() {

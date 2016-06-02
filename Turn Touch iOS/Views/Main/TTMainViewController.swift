@@ -17,6 +17,8 @@ class TTMainViewController: UIViewController {
     var titleBarConstraint = NSLayoutConstraint()
     var modeTabsConstraint = NSLayoutConstraint()
     var modeTitleView: TTModeTitleView = TTModeTitleView()
+    var modeMenuView: TTModeMenuContainer = TTModeMenuContainer(menuType: TTMenuType.MENU_MODE)
+    var modeMenuConstaint: NSLayoutConstraint = NSLayoutConstraint()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,6 +51,11 @@ class TTMainViewController: UIViewController {
         stackView.addArrangedSubview(modeTitleView)
         stackView.addConstraint(NSLayoutConstraint(item: modeTitleView, attribute: .Height, relatedBy: .Equal,
             toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 64))
+        
+        stackView.addArrangedSubview(modeMenuView)
+        
+        modeMenuConstaint = NSLayoutConstraint(item: modeMenuView, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 100.0)
+        stackView.addConstraint(modeMenuConstaint)
     }
     
     override func traitCollectionDidChange(previousTraitCollection: UITraitCollection?) {

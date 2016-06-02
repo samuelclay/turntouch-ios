@@ -19,7 +19,10 @@
 		FF0F10DA1CF669AF00CC1F29 /* TTDiamondLabels.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0F10D91CF669AF00CC1F29 /* TTDiamondLabels.swift */; };
 		FF0F10DC1CF669BE00CC1F29 /* TTDiamondLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0F10DB1CF669BE00CC1F29 /* TTDiamondLabel.swift */; };
 		FF0F10DE1CF6763400CC1F29 /* TTModeTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0F10DD1CF6763400CC1F29 /* TTModeTitleView.swift */; };
-		FF0F10E01CF7D56200CC1F29 /* TTModeMenuContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0F10DF1CF7D56200CC1F29 /* TTModeMenuContainer.swift */; };
+		FF0F10E31CFFAC5300CC1F29 /* TTModeMenuContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0F10E21CFFAC5300CC1F29 /* TTModeMenuContainer.swift */; };
+		FF0F10E51CFFAD1B00CC1F29 /* TTModeMenuBordersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0F10E41CFFAD1B00CC1F29 /* TTModeMenuBordersView.swift */; };
+		FF0F10E91CFFAD6100CC1F29 /* TTModeMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0F10E81CFFAD6100CC1F29 /* TTModeMenuCell.swift */; };
+		FF0F10EB1CFFB4A800CC1F29 /* TTModeMenuCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0F10EA1CFFB4A800CC1F29 /* TTModeMenuCollectionView.swift */; };
 		FFB41AAB1CEE99A100CD5F09 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFB41AAA1CEE99A100CD5F09 /* Main.storyboard */; };
 		FFB41B111CEE9A3000CD5F09 /* alarm_snooze.png in Resources */ = {isa = PBXBuildFile; fileRef = FFB41AAE1CEE9A3000CD5F09 /* alarm_snooze.png */; };
 		FFB41B121CEE9A3000CD5F09 /* chevron_east.png in Resources */ = {isa = PBXBuildFile; fileRef = FFB41AAF1CEE9A3000CD5F09 /* chevron_east.png */; };
@@ -161,7 +164,10 @@
 		FF0F10D91CF669AF00CC1F29 /* TTDiamondLabels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTDiamondLabels.swift; path = "Views/Mode Map/TTDiamondLabels.swift"; sourceTree = "<group>"; };
 		FF0F10DB1CF669BE00CC1F29 /* TTDiamondLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTDiamondLabel.swift; path = "Views/Mode Map/TTDiamondLabel.swift"; sourceTree = "<group>"; };
 		FF0F10DD1CF6763400CC1F29 /* TTModeTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeTitleView.swift; path = Views/Main/TTModeTitleView.swift; sourceTree = "<group>"; };
-		FF0F10DF1CF7D56200CC1F29 /* TTModeMenuContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeMenuContainer.swift; path = Views/Main/TTModeMenuContainer.swift; sourceTree = "<group>"; };
+		FF0F10E21CFFAC5300CC1F29 /* TTModeMenuContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeMenuContainer.swift; path = "Views/Mode menu/TTModeMenuContainer.swift"; sourceTree = "<group>"; };
+		FF0F10E41CFFAD1B00CC1F29 /* TTModeMenuBordersView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeMenuBordersView.swift; path = "Views/Mode menu/TTModeMenuBordersView.swift"; sourceTree = "<group>"; };
+		FF0F10E81CFFAD6100CC1F29 /* TTModeMenuCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeMenuCell.swift; path = "Views/Mode menu/TTModeMenuCell.swift"; sourceTree = "<group>"; };
+		FF0F10EA1CFFB4A800CC1F29 /* TTModeMenuCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeMenuCollectionView.swift; path = "Views/Mode menu/TTModeMenuCollectionView.swift"; sourceTree = "<group>"; };
 		FFB41AAA1CEE99A100CD5F09 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Views/Main/Main.storyboard; sourceTree = "<group>"; };
 		FFB41AAE1CEE9A3000CD5F09 /* alarm_snooze.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = alarm_snooze.png; sourceTree = "<group>"; };
 		FFB41AAF1CEE9A3000CD5F09 /* chevron_east.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chevron_east.png; sourceTree = "<group>"; };
@@ -366,6 +372,17 @@
 			name = "Mode Map";
 			sourceTree = "<group>";
 		};
+		FF0F10E11CFFAB7500CC1F29 /* Mode Menu */ = {
+			isa = PBXGroup;
+			children = (
+				FF0F10E21CFFAC5300CC1F29 /* TTModeMenuContainer.swift */,
+				FF0F10E41CFFAD1B00CC1F29 /* TTModeMenuBordersView.swift */,
+				FF0F10EA1CFFB4A800CC1F29 /* TTModeMenuCollectionView.swift */,
+				FF0F10E81CFFAD6100CC1F29 /* TTModeMenuCell.swift */,
+			);
+			name = "Mode Menu";
+			sourceTree = "<group>";
+		};
 		FFB41AAC1CEE9A3000CD5F09 /* Images */ = {
 			isa = PBXGroup;
 			children = (
@@ -515,6 +532,7 @@
 			children = (
 				FFB41B711CEE9A4400CD5F09 /* Main */,
 				FF0F10D81CF6697F00CC1F29 /* Mode Map */,
+				FF0F10E11CFFAB7500CC1F29 /* Mode Menu */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -528,7 +546,6 @@
 				FF0F10C11CF60C3D00CC1F29 /* TTTitleBarView.swift */,
 				FFB41B781CEEA8E500CD5F09 /* TTModeTab.swift */,
 				FF0F10DD1CF6763400CC1F29 /* TTModeTitleView.swift */,
-				FF0F10DF1CF7D56200CC1F29 /* TTModeMenuContainer.swift */,
 			);
 			name = Main;
 			sourceTree = "<group>";
@@ -846,18 +863,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FF0F10E91CFFAD6100CC1F29 /* TTModeMenuCell.swift in Sources */,
+				FF0F10E51CFFAD1B00CC1F29 /* TTModeMenuBordersView.swift in Sources */,
 				FF0F10C71CF63F1600CC1F29 /* TTModeMusic.swift in Sources */,
 				FF0F10D71CF6697A00CC1F29 /* TTDiamondView.swift in Sources */,
 				FF0F10D01CF63F6100CC1F29 /* TTModeAlarmClock.swift in Sources */,
 				FFB41B881CF536BB00CD5F09 /* TTActionMap.swift in Sources */,
+				FF0F10EB1CFFB4A800CC1F29 /* TTModeMenuCollectionView.swift in Sources */,
 				FFB41B7B1CEEA9E300CD5F09 /* TTModeDirection.swift in Sources */,
 				FFF270941CEE88E500E46575 /* AppDelegate.swift in Sources */,
 				FFB41B821CF5341700CD5F09 /* TTMode.swift in Sources */,
 				FF0F10DA1CF669AF00CC1F29 /* TTDiamondLabels.swift in Sources */,
 				FF0F10CD1CF63F4D00CC1F29 /* TTModeHue.swift in Sources */,
+				FF0F10E31CFFAC5300CC1F29 /* TTModeMenuContainer.swift in Sources */,
 				FFB41B841CF5342100CD5F09 /* TTModeMap.swift in Sources */,
 				FF0F10C21CF60C3D00CC1F29 /* TTTitleBarView.swift in Sources */,
-				FF0F10E01CF7D56200CC1F29 /* TTModeMenuContainer.swift in Sources */,
 				FF0F10CA1CF63F3B00CC1F29 /* TTModePhone.swift in Sources */,
 				FFB41B791CEEA8E500CD5F09 /* TTModeTab.swift in Sources */,
 				FF0F10BE1CF55A9000CC1F29 /* UIColor+hex.swift in Sources */,
