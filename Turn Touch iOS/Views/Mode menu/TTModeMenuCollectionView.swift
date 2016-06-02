@@ -18,6 +18,7 @@ class TTModeMenuCollectionView: UICollectionView, UICollectionViewDataSource, UI
         self.registerClass(TTModeMenuCell.self, forCellWithReuseIdentifier: CollectionViewCellIdentifier)
         self.delegate = self
         self.dataSource = self
+        self.backgroundColor = UIColor.clearColor()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -34,7 +35,7 @@ class TTModeMenuCollectionView: UICollectionView, UICollectionViewDataSource, UI
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(CollectionViewCellIdentifier, forIndexPath: indexPath)
-        cell.backgroundColor = UIColor.brownColor()
+        cell.backgroundColor = UIColor.clearColor()
         return cell;
     }
 
