@@ -31,7 +31,7 @@ class TTModeMenuContainer: UIView {
         
         self.backgroundColor = UIColor.clearColor()
         self.clipsToBounds = true
-        
+
         flowLayout.itemSize = CGSizeMake(MENU_WIDTH, MENU_HEIGHT/2)
         flowLayout.minimumInteritemSpacing = 0
         flowLayout.minimumLineSpacing = 0

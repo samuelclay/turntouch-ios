@@ -19,6 +19,7 @@ class TTModeMenuCollectionView: UICollectionView, UICollectionViewDataSource, UI
         self.delegate = self
         self.dataSource = self
         self.backgroundColor = UIColor.clearColor()
+        self.delaysContentTouches = false
     }
     
     required init?(coder aDecoder: NSCoder) {

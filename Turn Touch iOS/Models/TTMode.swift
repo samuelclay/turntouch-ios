@@ -22,6 +22,11 @@ protocol TTModeProtocol {
     func subtitle() -> String
 }
 
+infix operator >!< {}
+func >!< (object1: AnyObject!, object2: AnyObject!) -> Bool {
+    return (object_getClassName(object1) == object_getClassName(object2))
+}
+
 class TTMode : NSObject, TTModeProtocol {
     var modeDirection: TTModeDirection = .NO_DIRECTION
     var action: TTAction = TTAction()

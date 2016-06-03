@@ -41,11 +41,32 @@ class TTModeMenuCell: UICollectionViewCell {
             toItem: imageView, attribute: .Trailing, multiplier: 1.0, constant: 12))
         self.addConstraint(NSLayoutConstraint(item: titleLabel, attribute: .CenterY, relatedBy: .Equal,
             toItem: self, attribute: .CenterY, multiplier: 1.0, constant: 0))
+        
+        self.registerAsObserver()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
+    
+    // MARK: KVO
+    
+    func registerAsObserver() {
+        appDelegate().modeMap.addObserver(self, forKeyPath: "selectedModeDirection", options: [], context: nil)
+    }
+    
+    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?,
+                                         change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+        if keyPath == "selectedModeDirection" {
+            self.setNeedsDisplay()
+        }
+    }
+    
+    deinit {
+        appDelegate().modeMap.removeObserver(self, forKeyPath: "selectedModeDirection")
+    }
+    
+    // MARK: Drawing
     
     override func prepareForReuse() {
         let className = "Turn_Touch_iOS.\(modeName)"
@@ -54,14 +75,16 @@ class TTModeMenuCell: UICollectionViewCell {
     }
 
     override func drawRect(rect: CGRect) {
-        super.drawRect(rect)
-        
         if activeMode == nil {
             self.prepareForReuse()
         }
+
+        super.drawRect(rect)
         
+        selected = activeMode >!< appDelegate().modeMap.selectedMode
         self.drawBackground()
         
+        titleLabel.textColor = highlighted || selected ? UIColor(hex: 0x404A60) : UIColor(hex: 0x808388)
         titleLabel.text = activeMode.title().uppercaseString
         
         imageView.image = UIImage(named:activeMode.imageName())
@@ -69,7 +92,32 @@ class TTModeMenuCell: UICollectionViewCell {
     
     func drawBackground() {
         let context = UIGraphicsGetCurrentContext()
-        UIColor(hex: 0xFBFBFD).set()
+        if selected {
+            UIColor(hex: 0xE3EDF6).set()
+        } else if highlighted {
+            UIColor(hex: 0xF6F6F9).set()
+        } else {
+            UIColor(hex: 0xFBFBFD).set()
+        }
         CGContextFillRect(context, self.bounds);
+    }
+    
+    // MARK: Touches
+    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        highlighted = true
+        self.setNeedsDisplay()
+    }
+    
+    override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        if let touch = touches.first {
+            highlighted = CGRectContainsPoint(self.bounds, touch.locationInView(self))
+            self.setNeedsDisplay()
+        }
+    }
+    
+    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        highlighted = false
+        self.setNeedsDisplay()
     }
 }
