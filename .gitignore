@@ -79,3 +79,4 @@ profile
 *.moved-aside
 DerivedData
 .idea/
+.DS_Store
