@@ -17,6 +17,7 @@ enum TTMenuType {
 
 class TTModeMenuContainer: UIView {
     @IBInspectable var MENU_HEIGHT: CGFloat = 100
+    @IBInspectable var MENU_WIDTH: CGFloat = 176
     
     var menuType: TTMenuType = .MENU_MODE
     var bordersView = TTModeMenuBordersView()
@@ -31,7 +32,7 @@ class TTModeMenuContainer: UIView {
         self.backgroundColor = UIColor.clearColor()
         self.clipsToBounds = true
         
-        flowLayout.itemSize = CGSizeMake(200, MENU_HEIGHT/2)
+        flowLayout.itemSize = CGSizeMake(MENU_WIDTH, MENU_HEIGHT/2)
         flowLayout.minimumInteritemSpacing = 0
         flowLayout.minimumLineSpacing = 0
         flowLayout.scrollDirection = UICollectionViewScrollDirection.Horizontal
@@ -91,6 +92,7 @@ class TTModeMenuContainer: UIView {
     func toggleModeMenu() {
         if menuType == .MENU_MODE {
             UIView.animateWithDuration(0.5, animations: {
+                self.collectionView.flashScrollIndicators()
                 let openedModeChangeMenu: Bool = appDelegate().modeMap.openedModeChangeMenu
                 if openedModeChangeMenu {
                     self.bordersView.setNeedsDisplay()
