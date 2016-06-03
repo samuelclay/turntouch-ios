@@ -54,8 +54,10 @@ class TTMainViewController: UIViewController {
         
         stackView.addArrangedSubview(modeMenuView)
         
-        modeMenuConstaint = NSLayoutConstraint(item: modeMenuView, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 100.0)
+        modeMenuConstaint = NSLayoutConstraint(item: modeMenuView, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 1.0)
         stackView.addConstraint(modeMenuConstaint)
+        
+        self.registerAsObserver()
     }
     
     override func traitCollectionDidChange(previousTraitCollection: UITraitCollection?) {
@@ -67,6 +69,34 @@ class TTMainViewController: UIViewController {
             titleBarConstraint.constant = 44;
             modeTabsConstraint.constant = 92;
         }
+    }
+    
+    // MARK: KVO
+    
+    func registerAsObserver() {
+        appDelegate().modeMap.addObserver(self, forKeyPath: "openedModeChangeMenu", options: [], context: nil)
+    }
+    
+    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?,
+                                         change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+        if keyPath == "openedModeChangeMenu" {
+            self.toggleModeMenu()
+        }
+    }
+    
+    deinit {
+        appDelegate().modeMap.removeObserver(self, forKeyPath: "openedModeChangeMenu")
+    }
+    
+    // MARK: Drawing
+    
+    func toggleModeMenu() {
+        self.modeMenuConstaint.constant = appDelegate().modeMap.openedModeChangeMenu ? modeMenuView.MENU_HEIGHT : 1
+        UIView.animateWithDuration(0.42) {
+            self.view.layoutIfNeeded()
+            self.modeMenuView.toggleModeMenu()
+        }
+        
     }
 
 }

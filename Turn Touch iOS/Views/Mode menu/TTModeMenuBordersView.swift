@@ -19,6 +19,7 @@ class TTModeMenuBordersView: UIView {
         super.init(frame: frame)
         translatesAutoresizingMaskIntoConstraints = false
         self.backgroundColor = UIColor.clearColor()
+        self.userInteractionEnabled = false
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -31,7 +32,7 @@ class TTModeMenuBordersView: UIView {
         if !hideBorder && !hideShadow {
             self.drawShadowTop(rect)
             if CGRectGetHeight(rect) > 36 {
-//                self.drawShadowBottom(rect)
+                self.drawShadowBottom(rect)
             }
         } else {
             if borderStyle == TTMenuType.MENU_ADD_MODE || borderStyle == TTMenuType.MENU_ADD_ACTION {
@@ -59,9 +60,10 @@ class TTModeMenuBordersView: UIView {
     func maskForRectBottom(rect: CGRect) -> CGImageRef {
         var maskRect = rect
         maskRect.size.height = CGFloat(fminf(Float(CGRectGetHeight(rect)), 8))
-        maskRect.origin.y = CGRectGetMaxY(rect) - 8
+        maskRect.origin.y = CGRectGetHeight(rect) - 8
         let colorSpace: CGColorSpaceRef = CGColorSpaceCreateDeviceRGB()!
-        let context = UIGraphicsGetCurrentContext()
+        let bitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.PremultipliedLast.rawValue)
+        let context = CGBitmapContextCreate(nil, Int(rect.size.width), Int(rect.size.height), 8, 0, colorSpace, bitmapInfo.rawValue)
         CGContextClipToRect(context, maskRect)
         let num_locations: size_t = 3
         let locations: [CGFloat] = [0.0, 0.5, 1.0]
@@ -76,8 +78,7 @@ class TTModeMenuBordersView: UIView {
         CGContextDrawLinearGradient(context, myGradient, myStartPoint, myEndPoint, CGGradientDrawingOptions(rawValue: 0))
         let theImage: CGImageRef = CGBitmapContextCreateImage(context)!
         let theMask: CGImageRef = CGImageMaskCreate(CGImageGetWidth(theImage), CGImageGetHeight(theImage), CGImageGetBitsPerComponent(theImage), CGImageGetBitsPerPixel(theImage), CGImageGetBytesPerRow(theImage), CGImageGetDataProvider(theImage), nil, true)!
-//        CGColorSpaceRelease(colorSpace)
-//        CGContextRelease(context)
+
         return theMask
     }
     
@@ -90,7 +91,7 @@ class TTModeMenuBordersView: UIView {
         rect.size.height = 8
         let colorSpace: CGColorSpaceRef = CGColorSpaceCreateDeviceRGB()!
         CGContextClipToRect(context, rect)
-//        CGContextClipToMask(context, rect, self.maskForRectBottom(rect))
+        CGContextClipToMask(context, rect, self.maskForRectBottom(rect))
         let num_locations: size_t = 2
         let locations: [CGFloat] = [0.0, 1.0]
         let components: [CGFloat] = [
@@ -103,7 +104,6 @@ class TTModeMenuBordersView: UIView {
         CGContextDrawLinearGradient(context, myGradient, myStartPoint, myEndPoint, CGGradientDrawingOptions(rawValue: 0))
         CGContextSetRGBFillColor(context, 0.315, 0.371, 0.450, 0.2)
         CGContextFillRect(context, lineRect)
-//        CGColorSpaceRelease(colorSpace)
         CGContextRestoreGState(context)
     }
     
@@ -129,8 +129,7 @@ class TTModeMenuBordersView: UIView {
         CGContextDrawLinearGradient(context, myGradient, myStartPoint, myEndPoint, CGGradientDrawingOptions(rawValue: 0))
         let theImage: CGImageRef = CGBitmapContextCreateImage(context)!
         let theMask: CGImageRef = CGImageMaskCreate(CGImageGetWidth(theImage), CGImageGetHeight(theImage), CGImageGetBitsPerComponent(theImage), CGImageGetBitsPerPixel(theImage), CGImageGetBytesPerRow(theImage), CGImageGetDataProvider(theImage), nil, true)!
-//        CGColorSpaceRelease(colorSpace)
-//        CGContextRelease(context)
+
         return theMask
     }
     
@@ -160,7 +159,6 @@ class TTModeMenuBordersView: UIView {
         let lineRect: CGRect = CGRectMake(rect.origin.x, 0, rect.size.width, 1.0)
         CGContextSetRGBFillColor(context, 0.315, 0.371, 0.450, 0.2)
         CGContextFillRect(context, lineRect)
-//        CGColorSpaceRelease(colorSpace)
         CGContextRestoreGState(context)
     }
 }

@@ -26,6 +26,8 @@ class TTModeTitleView: UIView {
         changeButton.setTitle("Change", forState: UIControlState.Normal)
         changeButton.titleLabel!.font = UIFont(name: "Effra", size: 13)
         changeButton.titleLabel!.textColor = UIColor(hex: 0xA0A0A0)
+        changeButton.titleLabel!.lineBreakMode = NSLineBreakMode.ByClipping
+        changeButton.addTarget(self, action: #selector(self.pressChange), forControlEvents: .TouchUpInside)
         self.addSubview(changeButton)
         self.addConstraint(NSLayoutConstraint(item: changeButton, attribute: .Trailing, relatedBy: .Equal,
             toItem: self, attribute: .Trailing, multiplier: 1.0, constant: -24))
@@ -64,27 +66,44 @@ class TTModeTitleView: UIView {
     
     func registerAsObserver() {
         appDelegate().modeMap.addObserver(self, forKeyPath: "selectedModeDirection", options: [], context: nil)
+        appDelegate().modeMap.addObserver(self, forKeyPath: "openedModeChangeMenu", options: [], context: nil)
     }
     
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?,
                                          change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
         if keyPath == "selectedModeDirection" {
             self.setNeedsDisplay()
+        } else if keyPath == "openedModeChangeMenu" {
+            self.setNeedsDisplay()
         }
     }
     
     deinit {
         appDelegate().modeMap.removeObserver(self, forKeyPath: "selectedModeDirection")
+        appDelegate().modeMap.removeObserver(self, forKeyPath: "openedModeChangeMenu")
     }
     
     // MARK: Drawing
     
     override func drawRect(rect: CGRect) {
-        super.drawRect(rect)
+        if appDelegate().modeMap.openedModeChangeMenu {
+            changeButton.setTitle("Done", forState: .Normal)
+        } else {
+            changeButton.setTitle("Change", forState: .Normal)
+        }
         
         titleLabel.text = appDelegate().modeMap.selectedMode.subtitle()
-        
         modeImageView.image = UIImage(named:appDelegate().modeMap.selectedMode.imageName())
+        
+        super.drawRect(rect)
+    }
+    
+    // MARK: Actions
+    
+    func pressChange(sender: UIButton!) {
+        appDelegate().modeMap.openedModeChangeMenu = !appDelegate().modeMap.openedModeChangeMenu
+        appDelegate().modeMap.inspectingModeDirection = .NO_DIRECTION
+        self.setNeedsDisplay()
     }
 
 }

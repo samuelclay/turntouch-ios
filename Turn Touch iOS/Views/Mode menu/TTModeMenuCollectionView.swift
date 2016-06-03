@@ -30,7 +30,7 @@ class TTModeMenuCollectionView: UICollectionView, UICollectionViewDataSource, UI
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return appDelegate().modeMap.availableModes.count
+        return appDelegate().modeMap.availableModes.count * 2
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
