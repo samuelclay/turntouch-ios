@@ -20,7 +20,7 @@ class TTModeMap: NSObject {
     dynamic var openedActionChangeMenu: Bool = false
     dynamic var openedAddActionChangeMenu: Bool = false
     
-    var selectedMode: TTMode = TTMode()
+    dynamic var selectedMode: TTMode = TTMode()
     var northMode: TTMode = TTMode()
     var eastMode: TTMode = TTMode()
     var westMode: TTMode = TTMode()
@@ -63,6 +63,7 @@ class TTModeMap: NSObject {
             self.switchMode()
         }
     }
+    
     // MARK: Actions
 
     func setupModes() {
@@ -95,6 +96,11 @@ class TTModeMap: NSObject {
         self.switchMode()
     }
     
+    func reset() {
+        inspectingModeDirection = .NO_DIRECTION
+        hoverModeDirection = .NO_DIRECTION
+    }
+    
     func switchMode() {
         // batchActions.deactivate()
         
@@ -120,4 +126,32 @@ class TTModeMap: NSObject {
         }
     }
     
+    func directionName(direction: TTModeDirection) -> String {
+        switch direction {
+        case .NORTH:
+            return "north"
+        case .EAST:
+            return "east"
+        case .WEST:
+            return "west"
+        case .SOUTH:
+            return "south"
+        default:
+            return ""
+        }
+    }
+    
+    // MARK: Changing modes, actions, batch actions
+    
+    func changeDirection(direction: TTModeDirection, toMode modeClassName: NSString) {
+        let prefs = NSUserDefaults.standardUserDefaults()
+        let directionName = self.directionName(direction)
+        let prefKey = "TT:mode:\(directionName)"
+        
+        prefs.setObject(modeClassName, forKey: prefKey)
+        prefs.synchronize()
+        
+        self.setupModes()
+        self.switchMode()
+    }
 }

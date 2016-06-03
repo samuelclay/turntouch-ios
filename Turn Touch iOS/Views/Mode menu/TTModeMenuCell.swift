@@ -118,6 +118,13 @@ class TTModeMenuCell: UICollectionViewCell {
     
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
         highlighted = false
+        if let touch = touches.first {
+            if CGRectContainsPoint(self.bounds, touch.locationInView(self)) {
+                if menuType == .MENU_MODE {
+                    appDelegate().modeMap.changeDirection(appDelegate().modeMap.selectedModeDirection, toMode:modeName)
+                }
+            }
+        }
         self.setNeedsDisplay()
     }
 }

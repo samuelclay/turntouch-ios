@@ -75,12 +75,15 @@ class TTMainViewController: UIViewController {
     
     func registerAsObserver() {
         appDelegate().modeMap.addObserver(self, forKeyPath: "openedModeChangeMenu", options: [], context: nil)
+        appDelegate().modeMap.addObserver(self, forKeyPath: "selectedMode", options: [], context: nil)
     }
     
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?,
                                          change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
         if keyPath == "openedModeChangeMenu" {
             self.toggleModeMenu()
+        } else if keyPath == "selectedMode" {
+            self.resetPosition()
         }
     }
     
@@ -96,7 +99,22 @@ class TTMainViewController: UIViewController {
             self.view.layoutIfNeeded()
             self.modeMenuView.toggleModeMenu()
         }
+    }
+    
+    func resetPosition() {
+        let modeMap = appDelegate().modeMap
         
+        modeMap.reset()
+        
+        if modeMap.openedModeChangeMenu {
+            modeMap.openedModeChangeMenu = false
+        }
+        if modeMap.openedActionChangeMenu {
+            modeMap.openedActionChangeMenu = false
+        }
+        if modeMap.openedAddActionChangeMenu {
+            modeMap.openedAddActionChangeMenu = false
+        }
     }
 
 }
