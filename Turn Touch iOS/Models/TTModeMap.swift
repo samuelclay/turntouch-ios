@@ -29,10 +29,10 @@ class TTModeMap: NSObject {
     
     // var batchActions: TTBatchActions
     
-    var availableModes: AnyObject
-    var availableAction: [NSString] = []
-    var availableAddModes: [NSString] = []
-    var availableAddActions: [NSString] = []
+    var availableModes: [String] = []
+    var availableAction: [String] = []
+    var availableAddModes: [String] = []
+    var availableAddActions: [String] = []
     
     override init() {
         self.availableModes = [

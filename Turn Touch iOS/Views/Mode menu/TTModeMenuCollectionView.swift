@@ -30,12 +30,13 @@ class TTModeMenuCollectionView: UICollectionView, UICollectionViewDataSource, UI
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return appDelegate().modeMap.availableModes.count * 2
+        return appDelegate().modeMap.availableModes.count
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(CollectionViewCellIdentifier, forIndexPath: indexPath)
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(CollectionViewCellIdentifier, forIndexPath: indexPath) as! TTModeMenuCell
         cell.backgroundColor = UIColor.clearColor()
+        cell.modeName = appDelegate().modeMap.availableModes[indexPath.row]
         return cell;
     }
 

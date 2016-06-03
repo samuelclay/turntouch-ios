@@ -15,6 +15,7 @@ class TTModeMenuCell: UICollectionViewCell {
     var menuType = TTMenuType.MENU_MODE
     var modeName = ""
     var actionName = ""
+    var activeMode: TTMode!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -46,14 +47,24 @@ class TTModeMenuCell: UICollectionViewCell {
         super.init(coder: aDecoder)
     }
     
+    override func prepareForReuse() {
+        let className = "Turn_Touch_iOS.\(modeName)"
+        let activeModeType = NSClassFromString(className) as! TTMode.Type
+        activeMode = activeModeType.init()
+    }
+
     override func drawRect(rect: CGRect) {
         super.drawRect(rect)
         
+        if activeMode == nil {
+            self.prepareForReuse()
+        }
+        
         self.drawBackground()
         
-        titleLabel.text = appDelegate().modeMap.selectedMode.subtitle()
+        titleLabel.text = activeMode.title().uppercaseString
         
-        imageView.image = UIImage(named:appDelegate().modeMap.selectedMode.imageName())
+        imageView.image = UIImage(named:activeMode.imageName())
     }
     
     func drawBackground() {
