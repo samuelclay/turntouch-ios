@@ -40,7 +40,10 @@ class TTDiamondView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
         self.backgroundColor = UIColor.clearColor()
+        self.translatesAutoresizingMaskIntoConstraints = false
+        
         self.registerAsObserver()
     }
     
@@ -82,39 +85,39 @@ class TTDiamondView: UIView {
         
         northPathTop.lineJoinStyle = CGLineJoin.Miter
         northPathBottom.lineJoinStyle = CGLineJoin.Miter
-        northPathTop.moveToPoint(CGPointMake(width * 3 / 4 - 1.3 * spacing, height * 1 / 4 - spacing))
-        northPathTop.addLineToPoint(CGPointMake(width * 1 / 2, height * 1 / 2 - spacing * 2))
-        northPathTop.addLineToPoint(CGPointMake(width * 1 / 4 + 1.3 * spacing, height * 1 / 4 - spacing))
-        northPathBottom.moveToPoint(CGPointMake(width * 1 / 4 + 1.3 * spacing, height * 1 / 4 - spacing))
-        northPathBottom.addLineToPoint(CGPointMake(width * 1 / 2, 0))
-        northPathBottom.addLineToPoint(CGPointMake(width * 3 / 4 - 1.3 * spacing, height * 1 / 4 - spacing))
+        northPathBottom.moveToPoint(CGPointMake(width * 3 / 4 - 1.3 * spacing, height * 1 / 4 - spacing))
+        northPathBottom.addLineToPoint(CGPointMake(width * 1 / 2, height * 1 / 2 - spacing * 2))
+        northPathBottom.addLineToPoint(CGPointMake(width * 1 / 4 + 1.3 * spacing, height * 1 / 4 - spacing))
+        northPathTop.moveToPoint(CGPointMake(width * 1 / 4 + 1.3 * spacing, height * 1 / 4 - spacing))
+        northPathTop.addLineToPoint(CGPointMake(width * 1 / 2, 0))
+        northPathTop.addLineToPoint(CGPointMake(width * 3 / 4 - 1.3 * spacing, height * 1 / 4 - spacing))
 
         eastPathTop.lineJoinStyle = CGLineJoin.Miter
         eastPathBottom.lineJoinStyle = CGLineJoin.Miter
-        eastPathTop.moveToPoint(CGPointMake(width * 1 / 2 + 1.3 * spacing * 2, height * 1 / 2))
-        eastPathTop.addLineToPoint(CGPointMake(width * 3 / 4 + 1.3 * spacing, height * 3 / 4 - spacing))
-        eastPathTop.addLineToPoint(CGPointMake(width, height * 1 / 2))
-        eastPathBottom.moveToPoint(CGPointMake(width, height * 1 / 2))
-        eastPathBottom.addLineToPoint(CGPointMake(width * 3 / 4 + 1.3 * spacing, height * 1 / 4 + spacing))
-        eastPathBottom.addLineToPoint(CGPointMake(width * 1 / 2 + 1.3 * spacing * 2, height * 1 / 2))
+        eastPathBottom.moveToPoint(CGPointMake(width * 1 / 2 + 1.3 * spacing * 2, height * 1 / 2))
+        eastPathBottom.addLineToPoint(CGPointMake(width * 3 / 4 + 1.3 * spacing, height * 3 / 4 - spacing))
+        eastPathBottom.addLineToPoint(CGPointMake(width, height * 1 / 2))
+        eastPathTop.moveToPoint(CGPointMake(width, height * 1 / 2))
+        eastPathTop.addLineToPoint(CGPointMake(width * 3 / 4 + 1.3 * spacing, height * 1 / 4 + spacing))
+        eastPathTop.addLineToPoint(CGPointMake(width * 1 / 2 + 1.3 * spacing * 2, height * 1 / 2))
         
         westPathTop.lineJoinStyle = CGLineJoin.Miter
         westPathBottom.lineJoinStyle = CGLineJoin.Miter
-        westPathTop.moveToPoint(CGPointMake(width * 1 / 2 - 1.3 * spacing * 2, height * 1 / 2))
-        westPathTop.addLineToPoint(CGPointMake(width * 1 / 4 - 1.3 * spacing, height * 3 / 4 - spacing))
-        westPathTop.addLineToPoint(CGPointMake(0, height * 1 / 2))
-        westPathBottom.moveToPoint(CGPointMake(0, height * 1 / 2))
-        westPathBottom.addLineToPoint(CGPointMake(width * 1 / 4 - 1.3 * spacing, height * 1 / 4 + spacing))
-        westPathBottom.addLineToPoint(CGPointMake(width * 1 / 2 - 1.3 * spacing * 2, height * 1 / 2))
+        westPathBottom.moveToPoint(CGPointMake(width * 1 / 2 - 1.3 * spacing * 2, height * 1 / 2))
+        westPathBottom.addLineToPoint(CGPointMake(width * 1 / 4 - 1.3 * spacing, height * 3 / 4 - spacing))
+        westPathBottom.addLineToPoint(CGPointMake(0, height * 1 / 2))
+        westPathTop.moveToPoint(CGPointMake(0, height * 1 / 2))
+        westPathTop.addLineToPoint(CGPointMake(width * 1 / 4 - 1.3 * spacing, height * 1 / 4 + spacing))
+        westPathTop.addLineToPoint(CGPointMake(width * 1 / 2 - 1.3 * spacing * 2, height * 1 / 2))
         
         southPathTop.lineJoinStyle = CGLineJoin.Miter
         southPathBottom.lineJoinStyle = CGLineJoin.Miter
-        southPathTop.moveToPoint(CGPointMake(width * 1 / 4 + 1.3 * spacing, height * 3 / 4 + spacing))
-        southPathTop.addLineToPoint(CGPointMake(width / 2, height))
-        southPathTop.addLineToPoint(CGPointMake(width * 3 / 4 - 1.3 * spacing, height * 3 / 4 + spacing))
-        southPathBottom.moveToPoint(CGPointMake(width * 3 / 4 - 1.3 * spacing, height * 3 / 4 + spacing))
-        southPathBottom.addLineToPoint(CGPointMake(width / 2, height / 2 + spacing * 2))
-        southPathBottom.addLineToPoint(CGPointMake(width * 1 / 4 + 1.3 * spacing, height * 3 / 4 + spacing))
+        southPathBottom.moveToPoint(CGPointMake(width * 1 / 4 + 1.3 * spacing, height * 3 / 4 + spacing))
+        southPathBottom.addLineToPoint(CGPointMake(width / 2, height))
+        southPathBottom.addLineToPoint(CGPointMake(width * 3 / 4 - 1.3 * spacing, height * 3 / 4 + spacing))
+        southPathTop.moveToPoint(CGPointMake(width * 3 / 4 - 1.3 * spacing, height * 3 / 4 + spacing))
+        southPathTop.addLineToPoint(CGPointMake(width / 2, height / 2 + spacing * 2))
+        southPathTop.addLineToPoint(CGPointMake(width * 1 / 4 + 1.3 * spacing, height * 3 / 4 + spacing))
     }
     
     func colorPaths() {

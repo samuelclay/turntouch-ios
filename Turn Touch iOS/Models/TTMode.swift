@@ -57,4 +57,87 @@ class TTMode : NSObject, TTModeProtocol {
     func subtitle() -> String {
         return ""
     }
+    
+    // MARK: Defaults
+    
+    func defaultNorth() -> String {
+        return "TTAction1"
+    }
+    
+    func defaultEast() -> String {
+        return "TTAction2"
+    }
+    
+    func defaultWest() -> String {
+        return "TTAction3"
+    }
+    
+    func defaultSouth() -> String {
+        return "TTAction4"
+    }
+    
+    func defaultInfo() -> String? {
+        return nil
+    }
+    
+    // MARK: Map directions to actions
+    
+    func titleInDirection(direction: TTModeDirection, buttonMoment: TTButtonMoment) -> String {
+        let actionName = self.actionNameInDirection(direction)
+        
+        if actionName == nil {
+            return ""
+        }
+        
+        return self.titleForAction(actionName!, buttonMoment:buttonMoment)
+    }
+    
+    func titleForAction(actionName: String, buttonMoment: TTButtonMoment) -> String {
+        var runAction = "title"
+        if buttonMoment == .BUTTON_MOMENT_DOUBLE {
+            runAction = "doubleTitle"
+        }
+        
+        let selector = NSSelectorFromString("\(runAction)\(actionName)")
+        if !self.respondsToSelector(selector) && buttonMoment != .BUTTON_MOMENT_PRESSUP {
+            print(" ---> No double click title: \(actionName)")
+            return self.titleForAction(actionName, buttonMoment: .BUTTON_MOMENT_PRESSUP)
+        }
+        
+        if !self.respondsToSelector(selector) {
+            return ""
+        }
+        
+        let actionTitle = self.performSelector(selector, withObject: self).takeRetainedValue() as! String
+        return actionTitle
+    }
+    
+    func actionNameInDirection(direction: TTModeDirection) -> String? {
+        let prefs = NSUserDefaults.standardUserDefaults()
+        
+        let modeDirectionName = appDelegate().modeMap.directionName(modeDirection)
+        let actionDirectionName = appDelegate().modeMap.directionName(direction)
+        let prefKey = "TT:\(self.nameOfClass)-\(modeDirectionName):action:\(actionDirectionName)"
+        var directionAction = prefs.stringForKey(prefKey)
+        print("Direction action: \(prefKey) - \(directionAction)")
+        
+        if directionAction != nil {
+            switch direction {
+            case .NORTH:
+                directionAction = self.defaultNorth()
+            case .EAST:
+                directionAction = self.defaultEast()
+            case .WEST:
+                directionAction = self.defaultWest()
+            case .SOUTH:
+                directionAction = self.defaultSouth()
+            case .INFO:
+                directionAction = self.defaultInfo()
+            default:
+                directionAction = nil
+            }
+        }
+        
+        return directionAction
+    }
 }

@@ -17,8 +17,10 @@ class TTMainViewController: UIViewController {
     var titleBarConstraint = NSLayoutConstraint()
     var modeTabsConstraint = NSLayoutConstraint()
     var modeTitleView: TTModeTitleView = TTModeTitleView()
+    var modeTitleConstraint = NSLayoutConstraint()
     var modeMenuView: TTModeMenuContainer = TTModeMenuContainer(menuType: TTMenuType.MENU_MODE)
     var modeMenuConstaint: NSLayoutConstraint = NSLayoutConstraint()
+    var actionDiamondView = TTActionDiamondView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,7 +42,6 @@ class TTMainViewController: UIViewController {
         modeTabsView.distribution = .FillEqually
         modeTabsView.alignment = .Fill
         modeTabsView.spacing = 0
-        modeTabsView.translatesAutoresizingMaskIntoConstraints = false
         stackView.addArrangedSubview(modeTabsView);
         
         modeTabsConstraint = NSLayoutConstraint(item: modeTabsView, attribute: .Height, relatedBy: .Equal,
@@ -49,13 +50,17 @@ class TTMainViewController: UIViewController {
         stackView.addConstraint(modeTabsConstraint)
         
         stackView.addArrangedSubview(modeTitleView)
-        stackView.addConstraint(NSLayoutConstraint(item: modeTitleView, attribute: .Height, relatedBy: .Equal,
-            toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 64))
+        modeTitleConstraint = NSLayoutConstraint(item: modeTitleView, attribute: .Height, relatedBy: .Equal,
+                                                 toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 64)
+        stackView.addConstraint(modeTitleConstraint)
         
         stackView.addArrangedSubview(modeMenuView)
         
         modeMenuConstaint = NSLayoutConstraint(item: modeMenuView, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 1.0)
         stackView.addConstraint(modeMenuConstaint)
+        
+        stackView.addArrangedSubview(actionDiamondView)
+        stackView.addConstraint(NSLayoutConstraint(item: actionDiamondView, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 270))
         
         self.registerAsObserver()
     }
@@ -63,11 +68,13 @@ class TTMainViewController: UIViewController {
     override func traitCollectionDidChange(previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
         if self.view.traitCollection.verticalSizeClass == UIUserInterfaceSizeClass.Compact {
-            titleBarConstraint.constant = 28;
-            modeTabsConstraint.constant = 70;
+            titleBarConstraint.constant = 28
+            modeTabsConstraint.constant = 70
+            modeTitleConstraint.constant = 48
         } else {
-            titleBarConstraint.constant = 44;
-            modeTabsConstraint.constant = 92;
+            titleBarConstraint.constant = 44
+            modeTabsConstraint.constant = 92
+            modeTitleConstraint.constant = 64
         }
     }
     

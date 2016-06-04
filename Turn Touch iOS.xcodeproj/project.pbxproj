@@ -16,7 +16,6 @@
 		FF0F10D01CF63F6100CC1F29 /* TTModeAlarmClock.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0F10CF1CF63F6100CC1F29 /* TTModeAlarmClock.swift */; };
 		FF0F10D51CF6430E00CC1F29 /* Effra_Rg.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FF0F10D41CF6430E00CC1F29 /* Effra_Rg.ttf */; };
 		FF0F10D71CF6697A00CC1F29 /* TTDiamondView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0F10D61CF6697A00CC1F29 /* TTDiamondView.swift */; };
-		FF0F10DA1CF669AF00CC1F29 /* TTDiamondLabels.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0F10D91CF669AF00CC1F29 /* TTDiamondLabels.swift */; };
 		FF0F10DC1CF669BE00CC1F29 /* TTDiamondLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0F10DB1CF669BE00CC1F29 /* TTDiamondLabel.swift */; };
 		FF0F10DE1CF6763400CC1F29 /* TTModeTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0F10DD1CF6763400CC1F29 /* TTModeTitleView.swift */; };
 		FF0F10E31CFFAC5300CC1F29 /* TTModeMenuContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0F10E21CFFAC5300CC1F29 /* TTModeMenuContainer.swift */; };
@@ -146,6 +145,8 @@
 		FFB41B841CF5342100CD5F09 /* TTModeMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB41B831CF5342100CD5F09 /* TTModeMap.swift */; };
 		FFB41B861CF536AC00CD5F09 /* TTAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB41B851CF536AC00CD5F09 /* TTAction.swift */; };
 		FFB41B881CF536BB00CD5F09 /* TTActionMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB41B871CF536BB00CD5F09 /* TTActionMap.swift */; };
+		FFC9FE951D021A0400038817 /* TTActionDiamondView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC9FE941D021A0400038817 /* TTActionDiamondView.swift */; };
+		FFC9FE991D02520300038817 /* NSObject+Class.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC9FE981D02520300038817 /* NSObject+Class.swift */; };
 		FFF270941CEE88E500E46575 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF270931CEE88E500E46575 /* AppDelegate.swift */; };
 		FFF2709D1CEE88E500E46575 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FFF2709C1CEE88E500E46575 /* Assets.xcassets */; };
 		FFF270A01CEE88E500E46575 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFF2709E1CEE88E500E46575 /* LaunchScreen.storyboard */; };
@@ -181,7 +182,6 @@
 		FF0F10CF1CF63F6100CC1F29 /* TTModeAlarmClock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeAlarmClock.swift; path = "Modes/Alarm Clock/TTModeAlarmClock.swift"; sourceTree = "<group>"; };
 		FF0F10D41CF6430E00CC1F29 /* Effra_Rg.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Effra_Rg.ttf; path = Fonts/Effra_Rg.ttf; sourceTree = "<group>"; };
 		FF0F10D61CF6697A00CC1F29 /* TTDiamondView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTDiamondView.swift; path = "Views/Mode Map/TTDiamondView.swift"; sourceTree = "<group>"; };
-		FF0F10D91CF669AF00CC1F29 /* TTDiamondLabels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTDiamondLabels.swift; path = "Views/Mode Map/TTDiamondLabels.swift"; sourceTree = "<group>"; };
 		FF0F10DB1CF669BE00CC1F29 /* TTDiamondLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTDiamondLabel.swift; path = "Views/Mode Map/TTDiamondLabel.swift"; sourceTree = "<group>"; };
 		FF0F10DD1CF6763400CC1F29 /* TTModeTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeTitleView.swift; path = Views/Main/TTModeTitleView.swift; sourceTree = "<group>"; };
 		FF0F10E21CFFAC5300CC1F29 /* TTModeMenuContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeMenuContainer.swift; path = "Views/Mode menu/TTModeMenuContainer.swift"; sourceTree = "<group>"; };
@@ -312,6 +312,8 @@
 		FFB41B831CF5342100CD5F09 /* TTModeMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeMap.swift; path = Models/TTModeMap.swift; sourceTree = "<group>"; };
 		FFB41B851CF536AC00CD5F09 /* TTAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTAction.swift; path = Models/TTAction.swift; sourceTree = "<group>"; };
 		FFB41B871CF536BB00CD5F09 /* TTActionMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTActionMap.swift; path = Models/TTActionMap.swift; sourceTree = "<group>"; };
+		FFC9FE941D021A0400038817 /* TTActionDiamondView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTActionDiamondView.swift; path = "Views/Action diamond/TTActionDiamondView.swift"; sourceTree = "<group>"; };
+		FFC9FE981D02520300038817 /* NSObject+Class.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSObject+Class.swift"; path = "Categories/NSObject+Class.swift"; sourceTree = "<group>"; };
 		FFF270901CEE88E500E46575 /* Turn Touch iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Turn Touch iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFF270931CEE88E500E46575 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FFF2709C1CEE88E500E46575 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -355,6 +357,7 @@
 			isa = PBXGroup;
 			children = (
 				FF0F10BD1CF55A9000CC1F29 /* UIColor+hex.swift */,
+				FFC9FE981D02520300038817 /* NSObject+Class.swift */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -406,8 +409,6 @@
 			isa = PBXGroup;
 			children = (
 				FF0F10D61CF6697A00CC1F29 /* TTDiamondView.swift */,
-				FF0F10D91CF669AF00CC1F29 /* TTDiamondLabels.swift */,
-				FF0F10DB1CF669BE00CC1F29 /* TTDiamondLabel.swift */,
 			);
 			name = "Mode Map";
 			sourceTree = "<group>";
@@ -602,6 +603,7 @@
 				FFB41B711CEE9A4400CD5F09 /* Main */,
 				FF0F10D81CF6697F00CC1F29 /* Mode Map */,
 				FF0F10E11CFFAB7500CC1F29 /* Mode Menu */,
+				FFC9FE961D021A0800038817 /* Action Diamond */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -649,6 +651,15 @@
 				FF0F10D41CF6430E00CC1F29 /* Effra_Rg.ttf */,
 			);
 			name = Fonts;
+			sourceTree = "<group>";
+		};
+		FFC9FE961D021A0800038817 /* Action Diamond */ = {
+			isa = PBXGroup;
+			children = (
+				FFC9FE941D021A0400038817 /* TTActionDiamondView.swift */,
+				FF0F10DB1CF669BE00CC1F29 /* TTDiamondLabel.swift */,
+			);
+			name = "Action Diamond";
 			sourceTree = "<group>";
 		};
 		FFF270871CEE88E500E46575 = {
@@ -961,9 +972,10 @@
 				FF0F10EB1CFFB4A800CC1F29 /* TTModeMenuCollectionView.swift in Sources */,
 				FFB41B7B1CEEA9E300CD5F09 /* TTModeDirection.swift in Sources */,
 				FFF270941CEE88E500E46575 /* AppDelegate.swift in Sources */,
+				FFC9FE991D02520300038817 /* NSObject+Class.swift in Sources */,
 				FFB41B821CF5341700CD5F09 /* TTMode.swift in Sources */,
-				FF0F10DA1CF669AF00CC1F29 /* TTDiamondLabels.swift in Sources */,
 				FF0F10CD1CF63F4D00CC1F29 /* TTModeHue.swift in Sources */,
+				FFC9FE951D021A0400038817 /* TTActionDiamondView.swift in Sources */,
 				FF0F10E31CFFAC5300CC1F29 /* TTModeMenuContainer.swift in Sources */,
 				FFB41B841CF5342100CD5F09 /* TTModeMap.swift in Sources */,
 				FF0F10C21CF60C3D00CC1F29 /* TTTitleBarView.swift in Sources */,
