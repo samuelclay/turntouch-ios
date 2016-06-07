@@ -45,7 +45,7 @@ class TTActionDiamondView: UIView {
         self.addConstraint(NSLayoutConstraint(item: northLabel, attribute: .Top, relatedBy: .Equal,
             toItem: diamondView, attribute: .Top, multiplier: 1.0, constant: 0))
         self.addConstraint(NSLayoutConstraint(item: northLabel, attribute: .Height, relatedBy: .Equal,
-            toItem: diamondView, attribute: .Height, multiplier: 0.45, constant: 0))
+            toItem: diamondView, attribute: .Height, multiplier: 0.47, constant: 0))
         self.addConstraint(NSLayoutConstraint(item: northLabel, attribute: .Width, relatedBy: .Equal,
             toItem: diamondView, attribute: .Width, multiplier: 1.0, constant: 0))
         
@@ -57,7 +57,7 @@ class TTActionDiamondView: UIView {
         self.addConstraint(NSLayoutConstraint(item: eastLabel, attribute: .Height, relatedBy: .Equal,
             toItem: diamondView, attribute: .Height, multiplier: 1.0, constant: 0))
         self.addConstraint(NSLayoutConstraint(item: eastLabel, attribute: .Width, relatedBy: .Equal,
-            toItem: diamondView, attribute: .Width, multiplier: 0.45, constant: 0))
+            toItem: diamondView, attribute: .Width, multiplier: 0.47, constant: 0))
         
         self.addSubview(westLabel)
         self.addConstraint(NSLayoutConstraint(item: westLabel, attribute: .Right, relatedBy: .Equal,
@@ -67,7 +67,7 @@ class TTActionDiamondView: UIView {
         self.addConstraint(NSLayoutConstraint(item: westLabel, attribute: .Height, relatedBy: .Equal,
             toItem: diamondView, attribute: .Height, multiplier: 1.0, constant: 0))
         self.addConstraint(NSLayoutConstraint(item: westLabel, attribute: .Width, relatedBy: .Equal,
-            toItem: diamondView, attribute: .Width, multiplier: 0.45, constant: 0))
+            toItem: diamondView, attribute: .Width, multiplier: 0.47, constant: 0))
         
         self.addSubview(southLabel)
         self.addConstraint(NSLayoutConstraint(item: southLabel, attribute: .CenterX, relatedBy: .Equal,
@@ -75,7 +75,7 @@ class TTActionDiamondView: UIView {
         self.addConstraint(NSLayoutConstraint(item: southLabel, attribute: .Bottom, relatedBy: .Equal,
             toItem: diamondView, attribute: .Bottom, multiplier: 1.0, constant: 0))
         self.addConstraint(NSLayoutConstraint(item: southLabel, attribute: .Height, relatedBy: .Equal,
-            toItem: diamondView, attribute: .Height, multiplier: 0.45, constant: 0))
+            toItem: diamondView, attribute: .Height, multiplier: 0.47, constant: 0))
         self.addConstraint(NSLayoutConstraint(item: southLabel, attribute: .Width, relatedBy: .Equal,
             toItem: diamondView, attribute: .Width, multiplier: 1.0, constant: 0))
     }

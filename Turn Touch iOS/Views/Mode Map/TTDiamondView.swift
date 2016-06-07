@@ -15,18 +15,18 @@ enum TTDiamondType: Int {
     case DIAMOND_TYPE_PAIRING
 }
 
-let SPACING_PCT: CGFloat = 0.015
+let SPACING_PCT: CGFloat = 0.0175
 
 class TTDiamondView: UIView {
     
-    var northPathTop = UIBezierPath()
-    var northPathBottom = UIBezierPath()
-    var eastPathTop = UIBezierPath()
-    var eastPathBottom = UIBezierPath()
-    var westPathTop = UIBezierPath()
-    var westPathBottom = UIBezierPath()
-    var southPathTop = UIBezierPath()
-    var southPathBottom = UIBezierPath()
+    var northPathTop: UIBezierPath!
+    var northPathBottom: UIBezierPath!
+    var eastPathTop: UIBezierPath!
+    var eastPathBottom: UIBezierPath!
+    var westPathTop: UIBezierPath!
+    var westPathBottom: UIBezierPath!
+    var southPathTop: UIBezierPath!
+    var southPathBottom: UIBezierPath!
     
     var diamondType: TTDiamondType = .DIAMOND_TYPE_MODE
     var overrideSelectedDirection: TTModeDirection = .NO_DIRECTION
@@ -80,7 +80,15 @@ class TTDiamondView: UIView {
     func drawPaths() {
         let width: CGFloat = CGRectGetWidth(self.bounds)
         let height: CGFloat = CGRectGetHeight(self.bounds)
-        let spacing: CGFloat = SPACING_PCT * width
+        let spacing: CGFloat = SPACING_PCT * height
+        northPathTop = UIBezierPath()
+        northPathBottom = UIBezierPath()
+        eastPathTop = UIBezierPath()
+        eastPathBottom = UIBezierPath()
+        westPathTop = UIBezierPath()
+        westPathBottom = UIBezierPath()
+        southPathTop = UIBezierPath()
+        southPathBottom = UIBezierPath()
         
         northPathTop.lineJoinStyle = CGLineJoin.Miter
         northPathBottom.lineJoinStyle = CGLineJoin.Miter
