@@ -20,6 +20,7 @@ class TTDiamondLabel: UIView {
         super.init(frame: CGRectZero)
         self.backgroundColor = UIColor.clearColor()
         self.translatesAutoresizingMaskIntoConstraints = false
+        self.userInteractionEnabled = false
         
         labelDirection = inDirection
         diamondMode = appDelegate().modeMap.selectedMode
@@ -57,4 +58,5 @@ class TTDiamondLabel: UIView {
 
         self.setNeedsDisplay()
     }
+    
 }

@@ -253,50 +253,51 @@ class TTDiamondView: UIView {
     // NOTE: None of these work for some reason. The tap area is tiny and in the center of the diamond.
     //       You can find this functionality in TTActionDiamondView.
     
-//    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-//        super.touchesBegan(touches, withEvent: event)
-//        
-//        if diamondType != .DIAMOND_TYPE_INTERACTIVE {
-//            return
-//        }
-//        
-//        if let touch = touches.first {
-//            let location = touch.locationInView(self)
-//            if northPathTop.containsPoint(location) || northPathBottom.containsPoint(location) {
-//                overrideActiveDirection = .NORTH
-//            } else if eastPathTop.containsPoint(location) || eastPathBottom.containsPoint(location) {
-//                overrideActiveDirection = .EAST
-//            } else if westPathTop.containsPoint(location) || westPathBottom.containsPoint(location) {
-//                overrideActiveDirection = .WEST
-//            } else if southPathTop.containsPoint(location) || southPathBottom.containsPoint(location) {
-//                overrideActiveDirection = .SOUTH
-//            }
-//        }
-//        
-//        self.setNeedsDisplay()
-//    }
-//    
-//    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
-//        super.touchesEnded(touches, withEvent: event)
-//        
-//        if diamondType != .DIAMOND_TYPE_INTERACTIVE {
-//            return
-//        }
-//        
-//        if let touch = touches.first {
-//            let location = touch.locationInView(self)
-//            if northPathTop.containsPoint(location) || northPathBottom.containsPoint(location) {
-//                appDelegate().modeMap.toggleInspectingModeDirection(.NORTH)
-//            } else if eastPathTop.containsPoint(location) || eastPathBottom.containsPoint(location) {
-//                appDelegate().modeMap.toggleInspectingModeDirection(.EAST)
-//            } else if westPathTop.containsPoint(location) || westPathBottom.containsPoint(location) {
-//                appDelegate().modeMap.toggleInspectingModeDirection(.WEST)
-//            } else if southPathTop.containsPoint(location) || southPathBottom.containsPoint(location) {
-//                appDelegate().modeMap.toggleInspectingModeDirection(.SOUTH)
-//            }
-//        }
-//        
-//        self.setNeedsDisplay()
-//    }
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        super.touchesBegan(touches, withEvent: event)
+        
+        if diamondType != .DIAMOND_TYPE_INTERACTIVE {
+            return
+        }
+        
+        if let touch = touches.first {
+            let location = touch.locationInView(self)
+            if northPathTop.containsPoint(location) || northPathBottom.containsPoint(location) {
+                overrideActiveDirection = .NORTH
+            } else if eastPathTop.containsPoint(location) || eastPathBottom.containsPoint(location) {
+                overrideActiveDirection = .EAST
+            } else if westPathTop.containsPoint(location) || westPathBottom.containsPoint(location) {
+                overrideActiveDirection = .WEST
+            } else if southPathTop.containsPoint(location) || southPathBottom.containsPoint(location) {
+                overrideActiveDirection = .SOUTH
+            }
+        }
+        
+        self.setNeedsDisplay()
+    }
+    
+    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        super.touchesEnded(touches, withEvent: event)
+        
+        if diamondType != .DIAMOND_TYPE_INTERACTIVE {
+            return
+        }
+        
+        if let touch = touches.first {
+            let location = touch.locationInView(self)
+            if northPathTop.containsPoint(location) || northPathBottom.containsPoint(location) {
+                appDelegate().modeMap.toggleInspectingModeDirection(.NORTH)
+            } else if eastPathTop.containsPoint(location) || eastPathBottom.containsPoint(location) {
+                appDelegate().modeMap.toggleInspectingModeDirection(.EAST)
+            } else if westPathTop.containsPoint(location) || westPathBottom.containsPoint(location) {
+                appDelegate().modeMap.toggleInspectingModeDirection(.WEST)
+            } else if southPathTop.containsPoint(location) || southPathBottom.containsPoint(location) {
+                appDelegate().modeMap.toggleInspectingModeDirection(.SOUTH)
+            }
+            overrideActiveDirection = .NO_DIRECTION
+        }
+        
+        self.setNeedsDisplay()
+    }
     
 }
