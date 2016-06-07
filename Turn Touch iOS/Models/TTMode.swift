@@ -86,7 +86,8 @@ class TTMode : NSObject, TTModeProtocol {
         let actionName = self.actionNameInDirection(direction)
         
         if actionName == nil {
-            return ""
+            print(" ---> Set title for \(direction)")
+            return "Set \(direction)"
         }
         
         return self.titleForAction(actionName!, buttonMoment:buttonMoment)
@@ -105,10 +106,11 @@ class TTMode : NSObject, TTModeProtocol {
         }
         
         if !self.respondsToSelector(selector) {
-            return ""
+            print(" ---> Set title for \(selector)")
+            return "Set \(selector)"
         }
         
-        let actionTitle = self.performSelector(selector, withObject: self).takeRetainedValue() as! String
+        let actionTitle = self.performSelector(selector, withObject: self).takeUnretainedValue() as! String
         return actionTitle
     }
     
@@ -121,7 +123,7 @@ class TTMode : NSObject, TTModeProtocol {
         var directionAction = prefs.stringForKey(prefKey)
         print("Direction action: \(prefKey) - \(directionAction)")
         
-        if directionAction != nil {
+        if directionAction == nil {
             switch direction {
             case .NORTH:
                 directionAction = self.defaultNorth()

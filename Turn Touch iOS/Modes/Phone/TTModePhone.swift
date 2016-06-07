@@ -21,4 +21,65 @@ class TTModePhone: TTMode {
     override func imageName() -> String {
         return "mode_mac.png"
     }
+    
+    // MARK: Actions
+    
+    func actions() -> [AnyObject] {
+        return ["TTModePhoneVolumeDown",
+                "TTModePhoneVolumeUp",
+                "TTModePhoneVolumeMute",
+                "TTModePhoneVolumeJump"]
+    }
+    
+    func titleTTModePhoneVolumeUp() -> String {
+        return "Volume up"
+    }
+    
+    func titleTTModePhoneVolumeDown() -> String {
+        return "Volume down"
+    }
+    
+    func titleTTModePhoneVolumeMute() -> String {
+        return "Mute"
+    }
+    
+    func titleTTModePhoneVolumeJump() -> String {
+        return "Jump to volume"
+    }
+    
+    // MARK: Action images
+    
+    func imageTTModePhoneVolumeUp() -> String {
+        return "music_volume_up.png"
+    }
+    
+    func imageTTModePhoneVolumeDown() -> String {
+        return "music_volume_down.png"
+    }
+    
+    func imageTTModePhoneVolumeMute() -> String {
+        return "music_volume_mute.png"
+    }
+    
+    func imageTTModePhoneVolumeJump() -> String {
+        return "music_volume_up.png"
+    }
+    
+    // MARK: Defaults
+    
+    override func defaultNorth() -> String {
+        return "TTModePhoneVolumeUp"
+    }
+    
+    override func defaultEast() -> String {
+        return "TTModePhoneVolumeJump"
+    }
+    
+    override func defaultWest() -> String {
+        return "TTModePhoneVolumeMute"
+    }
+    
+    override func defaultSouth() -> String {
+        return "TTModePhoneVolumeDown"
+    }
 }

@@ -44,24 +44,24 @@ class TTModeMap: NSObject {
         
         super.init()
         
-        self.addObserver(self, forKeyPath: "selectedModeDirection", options: [], context: nil)
+//        self.addObserver(self, forKeyPath: "selectedModeDirection", options: [], context: nil)
     }
     
     deinit {
-        self.removeObserver(self, forKeyPath: "selectedModeDirection")
+//        self.removeObserver(self, forKeyPath: "selectedModeDirection")
     }
     
     // MARK: KVO
     
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?,
                                          change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
-        if keyPath == "selectedModeDirection" {
-            let prefs = NSUserDefaults.standardUserDefaults()
-            prefs.setInteger(self.selectedModeDirection.rawValue, forKey: "TT:selectedModeDirection")
-            prefs.synchronize()
-            
-            self.switchMode()
-        }
+//        if keyPath == "selectedModeDirection" {
+//            let prefs = NSUserDefaults.standardUserDefaults()
+//            prefs.setInteger(self.selectedModeDirection.rawValue, forKey: "TT:selectedModeDirection")
+//            prefs.synchronize()
+//            
+//            self.switchMode()
+//        }
     }
     
     // MARK: Actions
@@ -93,7 +93,7 @@ class TTModeMap: NSObject {
         }
         
         self.selectedModeDirection = TTModeDirection(rawValue: prefs.integerForKey("TT:selectedModeDirection"))!
-        self.switchMode()
+        self.switchMode(self.selectedModeDirection)
     }
     
     func reset() {
@@ -101,14 +101,18 @@ class TTModeMap: NSObject {
         hoverModeDirection = .NO_DIRECTION
     }
     
-    func switchMode() {
+    func switchMode(direction: TTModeDirection) {
         // batchActions.deactivate()
         
         self.selectedMode.deactivate()
         
-        if self.selectedModeDirection != .NO_DIRECTION {
-            self.selectedMode = self.modeInDirection(self.selectedModeDirection)
+        if direction != .NO_DIRECTION {
+            self.selectedMode = self.modeInDirection(direction)
         }
+        
+        //        if self.selectedModeDirection != direction {
+        self.selectedModeDirection = direction
+        //        }
     }
     
     func modeInDirection(direction: TTModeDirection) -> (TTMode) {
@@ -152,6 +156,6 @@ class TTModeMap: NSObject {
         prefs.synchronize()
         
         self.setupModes()
-        self.switchMode()
+        self.switchMode(direction)
     }
 }

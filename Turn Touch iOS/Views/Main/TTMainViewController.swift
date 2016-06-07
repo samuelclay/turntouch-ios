@@ -21,6 +21,8 @@ class TTMainViewController: UIViewController {
     var modeMenuView: TTModeMenuContainer = TTModeMenuContainer(menuType: TTMenuType.MENU_MODE)
     var modeMenuConstaint: NSLayoutConstraint = NSLayoutConstraint()
     var actionDiamondView = TTActionDiamondView()
+    var actionMenuView: TTModeMenuContainer = TTModeMenuContainer(menuType: TTMenuType.MENU_ACTION)
+    var actionMenuConstaint: NSLayoutConstraint = NSLayoutConstraint()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,13 +57,16 @@ class TTMainViewController: UIViewController {
         stackView.addConstraint(modeTitleConstraint)
         
         stackView.addArrangedSubview(modeMenuView)
-        
         modeMenuConstaint = NSLayoutConstraint(item: modeMenuView, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 1.0)
         stackView.addConstraint(modeMenuConstaint)
         
         stackView.addArrangedSubview(actionDiamondView)
         stackView.addConstraint(NSLayoutConstraint(item: actionDiamondView, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 270))
-        
+
+        stackView.addArrangedSubview(actionMenuView)
+        actionMenuConstaint = NSLayoutConstraint(item: actionMenuView, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 1.0)
+        stackView.addConstraint(actionMenuConstaint)
+
         self.registerAsObserver()
     }
     
@@ -96,6 +101,7 @@ class TTMainViewController: UIViewController {
     
     deinit {
         appDelegate().modeMap.removeObserver(self, forKeyPath: "openedModeChangeMenu")
+        appDelegate().modeMap.removeObserver(self, forKeyPath: "selectedMode")
     }
     
     // MARK: Drawing

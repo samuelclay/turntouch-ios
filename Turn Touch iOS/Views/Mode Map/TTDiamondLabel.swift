@@ -12,25 +12,32 @@ class TTDiamondLabel: UIView {
     
     var diamondMode: TTMode!
     var labelDirection = TTModeDirection.NO_DIRECTION
+    var titleLabel: UILabel!
 //    let iconView: UIImageView!
-    let titleLabel = UILabel()
     
     
     init(inDirection: TTModeDirection) {
         super.init(frame: CGRectZero)
         self.backgroundColor = UIColor.clearColor()
         self.translatesAutoresizingMaskIntoConstraints = false
-
-        labelDirection = inDirection
         
+        labelDirection = inDirection
+        diamondMode = appDelegate().modeMap.selectedMode
+        
+        titleLabel = UILabel()
         titleLabel.font = UIFont(name: "Effra", size: 13)
         titleLabel.textColor = UIColor(hex: 0x404A60)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        titleLabel.textAlignment = .Center
         self.addSubview(titleLabel)
-        self.addConstraint(NSLayoutConstraint(item: titleLabel, attribute: .CenterX, relatedBy: .Equal,
-            toItem: self, attribute: .CenterX, multiplier: 1.0, constant: 0))
-        self.addConstraint(NSLayoutConstraint(item: titleLabel, attribute: .CenterY, relatedBy: .Equal,
-            toItem: self, attribute: .CenterY, multiplier: 1.0, constant: 0))
+        self.addConstraint(NSLayoutConstraint(item: titleLabel, attribute: .Top, relatedBy: .Equal,
+            toItem: self, attribute: .Top, multiplier: 1.0, constant: 0))
+        self.addConstraint(NSLayoutConstraint(item: titleLabel, attribute: .Left, relatedBy: .Equal,
+            toItem: self, attribute: .Left, multiplier: 1.0, constant: 0))
+        self.addConstraint(NSLayoutConstraint(item: titleLabel, attribute: .Height, relatedBy: .Equal,
+            toItem: self, attribute: .Height, multiplier: 1.0, constant: 0))
+        self.addConstraint(NSLayoutConstraint(item: titleLabel, attribute: .Width, relatedBy: .Equal,
+            toItem: self, attribute: .Width, multiplier: 1.0, constant: 0))
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -40,11 +47,14 @@ class TTDiamondLabel: UIView {
     override func drawRect(rect: CGRect) {
         super.drawRect(rect)
         
-        titleLabel.text = appDelegate().modeMap.selectedMode.titleInDirection(labelDirection,
-                                                                              buttonMoment: .BUTTON_MOMENT_PRESSUP)
+        let actionString = appDelegate().modeMap.selectedMode.titleInDirection(labelDirection,
+                                                                               buttonMoment: .BUTTON_MOMENT_PRESSUP)
+        titleLabel.text = actionString
     }
     
     func setMode(mode: TTMode) {
         diamondMode = mode
+
+        self.setNeedsDisplay()
     }
 }

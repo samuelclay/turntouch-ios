@@ -222,8 +222,6 @@ class TTModeTab: UIView {
     }
     
     func switchMode() {
-        if appDelegate().modeMap.selectedModeDirection != self.modeDirection {
-            appDelegate().modeMap.selectedModeDirection = self.modeDirection
-        }
+        appDelegate().modeMap.switchMode(self.modeDirection)
     }
 }
