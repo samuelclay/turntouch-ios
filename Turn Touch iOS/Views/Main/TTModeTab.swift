@@ -8,7 +8,7 @@
 
 import UIKit
 
-let DIAMOND_SIZE: CGFloat = 22.0
+let DIAMOND_SIZE: CGFloat = 24.0
 
 class TTModeTab: UIView {
 
@@ -31,21 +31,29 @@ class TTModeTab: UIView {
         self.titleLabel.translatesAutoresizingMaskIntoConstraints = false
         
         super.init(frame:CGRect.zero)
-        translatesAutoresizingMaskIntoConstraints = false
-        contentMode = UIViewContentMode.Redraw;
+        self.translatesAutoresizingMaskIntoConstraints = false
+        self.contentMode = UIViewContentMode.Redraw;
         
         self.addSubview(self.titleLabel)
         self.addConstraint(NSLayoutConstraint(item: self.titleLabel, attribute: .CenterX, relatedBy: .Equal,
             toItem: self, attribute: .CenterX, multiplier: 1.0, constant: 0))
         self.addConstraint(NSLayoutConstraint(item: self.titleLabel, attribute: .Bottom, relatedBy: .Equal,
             toItem: self, attribute: .Bottom, multiplier: 1.0, constant: -12))
-        
-        setupMode()
-        self.registerAsObserver()
 
         diamondView.overrideSelectedDirection = self.modeDirection
         diamondView.ignoreSelectedMode = true
         self.addSubview(diamondView)
+        self.addConstraint(NSLayoutConstraint(item: diamondView, attribute: .CenterX, relatedBy: .Equal,
+            toItem: self, attribute: .CenterX, multiplier: 1.0, constant: 0))
+        self.addConstraint(NSLayoutConstraint(item: diamondView, attribute: .CenterY, relatedBy: .Equal,
+            toItem: self, attribute: .CenterY, multiplier: 1.0, constant: -DIAMOND_SIZE/2))
+        diamondView.addConstraint(NSLayoutConstraint(item: diamondView, attribute: .Width, relatedBy: .Equal,
+            toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: DIAMOND_SIZE*1.3))
+        diamondView.addConstraint(NSLayoutConstraint(item: diamondView, attribute: .Height, relatedBy: .Equal,
+            toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: DIAMOND_SIZE))
+        
+        self.setupMode()
+        self.registerAsObserver()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -99,11 +107,6 @@ class TTModeTab: UIView {
             UIColor(hex: 0x808388) : UIColor(hex: 0x404A60)
         self.titleLabel.textColor = textColor
         self.titleLabel.text = self.modeTitle.uppercaseString
-        
-        let diamondRect = CGRectMake(CGRectGetWidth(self.bounds)/2 - (DIAMOND_SIZE * 1.3 / 2),
-                                     CGRectGetHeight(self.bounds)/2 - DIAMOND_SIZE,
-                                     DIAMOND_SIZE * 1.3, DIAMOND_SIZE)
-        diamondView.frame = diamondRect
     }
     
     func drawBackground() {
@@ -199,11 +202,13 @@ class TTModeTab: UIView {
     // MARK: Actions
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        super.touchesBegan(touches, withEvent: event)
         self.highlighted = true
         self.setNeedsDisplay()
     }
     
     override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        super.touchesMoved(touches, withEvent: event)
         if let touch = touches.first {
             self.highlighted = CGRectContainsPoint(self.bounds, touch.locationInView(self))
             self.setNeedsDisplay()
@@ -213,7 +218,8 @@ class TTModeTab: UIView {
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
         self.highlighted = false
         self.setNeedsDisplay()
-        
+        super.touchesEnded(touches, withEvent: event)
+
         if let touch = touches.first {
             if CGRectContainsPoint(self.bounds, touch.locationInView(self)) {
                 self.switchMode()

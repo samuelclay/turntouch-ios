@@ -17,7 +17,7 @@ class TTModeMenuBordersView: UIView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        translatesAutoresizingMaskIntoConstraints = false
+        self.translatesAutoresizingMaskIntoConstraints = false
         self.backgroundColor = UIColor.clearColor()
         self.userInteractionEnabled = false
     }

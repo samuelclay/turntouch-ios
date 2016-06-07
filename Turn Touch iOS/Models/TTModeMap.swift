@@ -158,4 +158,17 @@ class TTModeMap: NSObject {
         self.setupModes()
         self.switchMode(direction)
     }
+    
+    // MARK: Direction helpers
+    
+    func toggleInspectingModeDirection(direction: TTModeDirection) {
+        if inspectingModeDirection == direction {
+            self.openedModeChangeMenu = false
+            self.openedAddActionChangeMenu = false
+            self.inspectingModeDirection = .NO_DIRECTION
+        } else {
+            self.inspectingModeDirection = direction
+        }
+    }
+    
 }

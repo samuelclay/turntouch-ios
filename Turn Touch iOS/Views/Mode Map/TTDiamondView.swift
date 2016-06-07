@@ -19,7 +19,6 @@ let SPACING_PCT: CGFloat = 0.015
 
 class TTDiamondView: UIView {
     
-    var highlighted = false
     var northPathTop = UIBezierPath()
     var northPathBottom = UIBezierPath()
     var eastPathTop = UIBezierPath()
@@ -30,7 +29,6 @@ class TTDiamondView: UIView {
     var southPathBottom = UIBezierPath()
     
     var diamondType: TTDiamondType = .DIAMOND_TYPE_MODE
-    var size: CGFloat = 144
     var overrideSelectedDirection: TTModeDirection = .NO_DIRECTION
     var overrideActiveDirection: TTModeDirection = .NO_DIRECTION
     var ignoreSelectedMode = false
@@ -43,6 +41,7 @@ class TTDiamondView: UIView {
         
         self.backgroundColor = UIColor.clearColor()
         self.translatesAutoresizingMaskIntoConstraints = false
+        self.userInteractionEnabled = true
         
         self.registerAsObserver()
     }
@@ -196,27 +195,29 @@ class TTDiamondView: UIView {
                 }
             }
             
+            let combinedPath = UIBezierPath()
+            combinedPath.appendPath(path)
             if path == northPathTop {
-                path.appendPath(northPathBottom)
+                combinedPath.appendPath(northPathBottom)
             }
             if path == eastPathTop {
-                path.appendPath(eastPathBottom)
+                combinedPath.appendPath(eastPathBottom)
             }
             if path == westPathTop {
-                path.appendPath(westPathBottom)
+                combinedPath.appendPath(westPathBottom)
             }
             if path == southPathTop {
-                path.appendPath(southPathBottom)
+                combinedPath.appendPath(southPathBottom)
             }
             if !showOutline {
                 modeColor!.setFill()
                 if !bottomHalf {
-                    path.fill()
+                    combinedPath.fill()
                 }
             } else {
-                path.lineWidth = isInspectingDirection ? 3.0 : 1.0
+                combinedPath.lineWidth = isInspectingDirection ? 3.0 : 1.0
                 modeColor!.setStroke()
-                path.stroke()
+                combinedPath.stroke()
             }
             
             if diamondType == .DIAMOND_TYPE_INTERACTIVE {
@@ -231,11 +232,71 @@ class TTDiamondView: UIView {
                 }
                 
                 if !bottomHalf {
-                    path.fill()
+                    combinedPath.fill()
                 }
             }
         }
-
     }
+    
+    override func traitCollectionDidChange(previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        if self.traitCollection.verticalSizeClass == UIUserInterfaceSizeClass.Compact {
+            self.setNeedsDisplay()
+        } else {
+            self.setNeedsDisplay()
+        }
+    }
+    
+    // MARK: Events
+
+    
+    // NOTE: None of these work for some reason. The tap area is tiny and in the center of the diamond.
+    //       You can find this functionality in TTActionDiamondView.
+    
+//    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+//        super.touchesBegan(touches, withEvent: event)
+//        
+//        if diamondType != .DIAMOND_TYPE_INTERACTIVE {
+//            return
+//        }
+//        
+//        if let touch = touches.first {
+//            let location = touch.locationInView(self)
+//            if northPathTop.containsPoint(location) || northPathBottom.containsPoint(location) {
+//                overrideActiveDirection = .NORTH
+//            } else if eastPathTop.containsPoint(location) || eastPathBottom.containsPoint(location) {
+//                overrideActiveDirection = .EAST
+//            } else if westPathTop.containsPoint(location) || westPathBottom.containsPoint(location) {
+//                overrideActiveDirection = .WEST
+//            } else if southPathTop.containsPoint(location) || southPathBottom.containsPoint(location) {
+//                overrideActiveDirection = .SOUTH
+//            }
+//        }
+//        
+//        self.setNeedsDisplay()
+//    }
+//    
+//    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+//        super.touchesEnded(touches, withEvent: event)
+//        
+//        if diamondType != .DIAMOND_TYPE_INTERACTIVE {
+//            return
+//        }
+//        
+//        if let touch = touches.first {
+//            let location = touch.locationInView(self)
+//            if northPathTop.containsPoint(location) || northPathBottom.containsPoint(location) {
+//                appDelegate().modeMap.toggleInspectingModeDirection(.NORTH)
+//            } else if eastPathTop.containsPoint(location) || eastPathBottom.containsPoint(location) {
+//                appDelegate().modeMap.toggleInspectingModeDirection(.EAST)
+//            } else if westPathTop.containsPoint(location) || westPathBottom.containsPoint(location) {
+//                appDelegate().modeMap.toggleInspectingModeDirection(.WEST)
+//            } else if southPathTop.containsPoint(location) || southPathBottom.containsPoint(location) {
+//                appDelegate().modeMap.toggleInspectingModeDirection(.SOUTH)
+//            }
+//        }
+//        
+//        self.setNeedsDisplay()
+//    }
     
 }

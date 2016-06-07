@@ -26,6 +26,8 @@ class TTMainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.userInteractionEnabled = true
+        stackView.userInteractionEnabled = true
         
         stackView.addArrangedSubview(titleBarView)
         titleBarConstraint = NSLayoutConstraint(item: titleBarView, attribute: .Height,
@@ -129,5 +131,14 @@ class TTMainViewController: UIViewController {
             modeMap.openedAddActionChangeMenu = false
         }
     }
+    
+    // MARK: Events
+    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        super.touchesBegan(touches, withEvent: event)
+    }
 
+    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        super.touchesEnded(touches, withEvent: event)
+    }
 }

@@ -10,7 +10,7 @@ import UIKit
 
 class TTActionDiamondView: UIView {
     
-    let diamondView = TTDiamondView()
+    var diamondView: TTDiamondView!
     var diamondMode: TTMode!
     let northLabel = TTDiamondLabel(inDirection: .NORTH)
     let eastLabel = TTDiamondLabel(inDirection: .EAST)
@@ -21,7 +21,11 @@ class TTActionDiamondView: UIView {
         super.init(frame: frame)
         self.translatesAutoresizingMaskIntoConstraints = false
         self.backgroundColor = UIColor(hex: 0xF5F6F8)
+        self.userInteractionEnabled = true
+
+        self.registerAsObserver()
         
+        diamondView = TTDiamondView(frame: frame)
         diamondView.showOutline = true
         diamondView.ignoreSelectedMode = true
         diamondView.diamondType = TTDiamondType.DIAMOND_TYPE_INTERACTIVE
@@ -74,8 +78,6 @@ class TTActionDiamondView: UIView {
             toItem: diamondView, attribute: .Height, multiplier: 0.45, constant: 0))
         self.addConstraint(NSLayoutConstraint(item: southLabel, attribute: .Width, relatedBy: .Equal,
             toItem: diamondView, attribute: .Width, multiplier: 1.0, constant: 0))
-        
-        self.registerAsObserver()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -92,7 +94,7 @@ class TTActionDiamondView: UIView {
                                          change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
         if keyPath == "selectedModeDirection" {
             self.setMode(appDelegate().modeMap.selectedMode)
-            self.setNeedsDisplay()
+            self.setNeedsLayout()
         }
     }
     
@@ -104,7 +106,7 @@ class TTActionDiamondView: UIView {
 
     func setMode(mode: TTMode) {
         diamondMode = mode
-        self.setNeedsDisplay()
+        self.setNeedsLayout()
 
         northLabel.setMode(mode)
         eastLabel.setMode(mode)
@@ -120,5 +122,53 @@ class TTActionDiamondView: UIView {
         } else {
             self.setNeedsDisplay()
         }
+    }
+    
+    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        super.touchesBegan(touches, withEvent: event)
+        
+        if diamondView.diamondType != .DIAMOND_TYPE_INTERACTIVE {
+            return
+        }
+        
+        if let touch = touches.first {
+            let location = touch.locationInView(diamondView)
+            if diamondView.northPathTop.containsPoint(location) || diamondView.northPathBottom.containsPoint(location) {
+                diamondView.overrideActiveDirection = .NORTH
+            } else if diamondView.eastPathTop.containsPoint(location) || diamondView.eastPathBottom.containsPoint(location) {
+                diamondView.overrideActiveDirection = .EAST
+            } else if diamondView.westPathTop.containsPoint(location) || diamondView.westPathBottom.containsPoint(location) {
+                diamondView.overrideActiveDirection = .WEST
+            } else if diamondView.southPathTop.containsPoint(location) || diamondView.southPathBottom.containsPoint(location) {
+                diamondView.overrideActiveDirection = .SOUTH
+            }
+        }
+        
+        diamondView.setNeedsDisplay()
+    }
+    
+    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        super.touchesEnded(touches, withEvent: event)
+
+        if diamondView.diamondType != .DIAMOND_TYPE_INTERACTIVE {
+            return
+        }
+        
+        if let touch = touches.first {
+            let location = touch.locationInView(diamondView)
+            if diamondView.northPathTop.containsPoint(location) || diamondView.northPathBottom.containsPoint(location) {
+                appDelegate().modeMap.toggleInspectingModeDirection(.NORTH)
+            } else if diamondView.eastPathTop.containsPoint(location) || diamondView.eastPathBottom.containsPoint(location) {
+                appDelegate().modeMap.toggleInspectingModeDirection(.EAST)
+            } else if diamondView.westPathTop.containsPoint(location) || diamondView.westPathBottom.containsPoint(location) {
+                appDelegate().modeMap.toggleInspectingModeDirection(.WEST)
+            } else if diamondView.southPathTop.containsPoint(location) || diamondView.southPathBottom.containsPoint(location) {
+                appDelegate().modeMap.toggleInspectingModeDirection(.SOUTH)
+            }
+            diamondView.overrideActiveDirection = .NO_DIRECTION
+        }
+        
+        diamondView.setNeedsDisplay()
     }
 }
