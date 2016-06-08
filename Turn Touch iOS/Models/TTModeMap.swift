@@ -30,7 +30,7 @@ class TTModeMap: NSObject {
     // var batchActions: TTBatchActions
     
     var availableModes: [String] = []
-    var availableAction: [String] = []
+    var availableActions: [String] = []
     var availableAddModes: [String] = []
     var availableAddActions: [String] = []
     
@@ -110,6 +110,7 @@ class TTModeMap: NSObject {
             self.selectedMode = self.modeInDirection(direction)
         }
         
+        availableActions = selectedMode.actions()
         //        if self.selectedModeDirection != direction {
         self.selectedModeDirection = direction
         //        }
@@ -162,9 +163,16 @@ class TTModeMap: NSObject {
     // MARK: Direction helpers
     
     func toggleInspectingModeDirection(direction: TTModeDirection) {
-        if inspectingModeDirection == direction {
-            self.openedModeChangeMenu = false
-            self.openedAddActionChangeMenu = false
+        if self.inspectingModeDirection == direction {
+            if self.openedModeChangeMenu {
+                self.openedModeChangeMenu = false
+            }
+            if self.openedActionChangeMenu {
+                self.openedActionChangeMenu = false
+            }
+            if self.openedAddActionChangeMenu {
+                self.openedAddActionChangeMenu = false
+            }
             self.inspectingModeDirection = .NO_DIRECTION
         } else {
             self.inspectingModeDirection = direction

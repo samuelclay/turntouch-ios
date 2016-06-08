@@ -11,6 +11,7 @@ import UIKit
 class TTModeMenuCollectionView: UICollectionView, UICollectionViewDataSource, UICollectionViewDelegate {
     
     var CollectionViewCellIdentifier = "CollectionViewCellIdentifier"
+    var menuType: TTMenuType = .MENU_MODE
 
     override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
         super.init(frame: frame, collectionViewLayout: layout)
@@ -31,13 +32,23 @@ class TTModeMenuCollectionView: UICollectionView, UICollectionViewDataSource, UI
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return appDelegate().modeMap.availableModes.count
+        if menuType == .MENU_MODE {
+            return appDelegate().modeMap.availableModes.count
+        } else if menuType == .MENU_ACTION {
+            return appDelegate().modeMap.availableActions.count
+        }
+        return 1
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(CollectionViewCellIdentifier, forIndexPath: indexPath) as! TTModeMenuCell
         cell.backgroundColor = UIColor.clearColor()
-        cell.modeName = appDelegate().modeMap.availableModes[indexPath.row]
+        cell.menuType = menuType
+        if menuType == .MENU_MODE {
+            cell.modeName = appDelegate().modeMap.availableModes[indexPath.row]
+        } else if menuType == .MENU_ACTION {
+            cell.modeName = appDelegate().modeMap.availableActions[indexPath.row]
+        }
         return cell;
     }
 

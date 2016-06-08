@@ -20,6 +20,7 @@ protocol TTModeProtocol {
     func title() -> String
     func imageName() -> String
     func subtitle() -> String
+    func actions() -> [String]
 }
 
 infix operator >!< {}
@@ -56,6 +57,10 @@ class TTMode : NSObject, TTModeProtocol {
     
     func subtitle() -> String {
         return ""
+    }
+    
+    func actions() -> [String] {
+        return []
     }
     
     // MARK: Defaults
@@ -114,6 +119,20 @@ class TTMode : NSObject, TTModeProtocol {
         return actionTitle
     }
     
+    func actionTitleForAction(actionName: String, buttonMoment: TTButtonMoment) -> String? {
+        var runAction = "actionTitle"
+        if buttonMoment == .BUTTON_MOMENT_DOUBLE {
+            runAction = "doubleActionTitle"
+        }
+        let titleSelector = NSSelectorFromString("\(runAction)\(actionName)")
+        if !self.respondsToSelector(titleSelector) {
+            return self.titleForAction(actionName, buttonMoment: buttonMoment)
+        }
+        
+        let actionTitle = self.performSelector(titleSelector, withObject: self).takeUnretainedValue() as! String
+        return actionTitle
+    }
+    
     func actionNameInDirection(direction: TTModeDirection) -> String? {
         let prefs = NSUserDefaults.standardUserDefaults()
         
@@ -141,5 +160,23 @@ class TTMode : NSObject, TTModeProtocol {
         }
         
         return directionAction
+    }
+    
+    // MARK: Images
+    
+    func imageNameInDirection(direction: TTModeDirection) -> String? {
+        let actionName = self.actionNameInDirection(direction)
+        return self.imageNameForAction(actionName)
+    }
+    
+    func imageNameForAction(actionName: String?) -> String? {
+        let titleSelector = NSSelectorFromString("image\(actionName)")
+        if !self.respondsToSelector(titleSelector) {
+            return nil
+        }
+        
+        let actionImageName = self.performSelector(titleSelector, withObject: self).takeUnretainedValue() as! String
+        return actionImageName
+        
     }
 }

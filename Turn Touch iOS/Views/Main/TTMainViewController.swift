@@ -14,15 +14,17 @@ class TTMainViewController: UIViewController {
     var titleBarView: TTTitleBarView = TTTitleBarView()
     var modeTabsView: UIStackView!
     var modeTabs: [TTModeTab] = []
-    var titleBarConstraint = NSLayoutConstraint()
-    var modeTabsConstraint = NSLayoutConstraint()
+    var titleBarConstraint: NSLayoutConstraint!
+    var modeTabsConstraint: NSLayoutConstraint!
     var modeTitleView: TTModeTitleView = TTModeTitleView()
     var modeTitleConstraint = NSLayoutConstraint()
     var modeMenuView: TTModeMenuContainer = TTModeMenuContainer(menuType: TTMenuType.MENU_MODE)
-    var modeMenuConstaint: NSLayoutConstraint = NSLayoutConstraint()
+    var modeMenuConstaint: NSLayoutConstraint!
     var actionDiamondView = TTActionDiamondView()
     var actionMenuView: TTModeMenuContainer = TTModeMenuContainer(menuType: TTMenuType.MENU_ACTION)
-    var actionMenuConstaint: NSLayoutConstraint = NSLayoutConstraint()
+    var actionMenuConstaint: NSLayoutConstraint!
+    var actionTitleView = TTActionTitleView()
+    var actionTitleConstraint: NSLayoutConstraint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,8 +51,7 @@ class TTMainViewController: UIViewController {
         stackView.addArrangedSubview(modeTabsView);
         
         modeTabsConstraint = NSLayoutConstraint(item: modeTabsView, attribute: .Height, relatedBy: .Equal,
-                                                toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute,
-                                                multiplier: 1.0, constant: 92.0)
+                                                toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 92.0)
         stackView.addConstraint(modeTabsConstraint)
         
         stackView.addArrangedSubview(modeTitleView)
@@ -59,15 +60,28 @@ class TTMainViewController: UIViewController {
         stackView.addConstraint(modeTitleConstraint)
         
         stackView.addArrangedSubview(modeMenuView)
-        modeMenuConstaint = NSLayoutConstraint(item: modeMenuView, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 1.0)
+        modeMenuConstaint = NSLayoutConstraint(item: modeMenuView, attribute: .Height, relatedBy: .Equal,
+                                               toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 1.0)
         stackView.addConstraint(modeMenuConstaint)
         
         stackView.addArrangedSubview(actionDiamondView)
-        stackView.addConstraint(NSLayoutConstraint(item: actionDiamondView, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 270))
+        stackView.addConstraint(NSLayoutConstraint(item: actionDiamondView, attribute: .Height, relatedBy: .Equal,
+            toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 270))
 
         stackView.addArrangedSubview(actionMenuView)
-        actionMenuConstaint = NSLayoutConstraint(item: actionMenuView, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 1.0)
+        actionMenuConstaint = NSLayoutConstraint(item: actionMenuView, attribute: .Height, relatedBy: .Equal,
+                                                 toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 1.0)
         stackView.addConstraint(actionMenuConstaint)
+
+        stackView.addArrangedSubview(actionTitleView)
+        actionTitleConstraint = NSLayoutConstraint(item: actionTitleView, attribute: .Top, relatedBy: .Equal,
+                                                   toItem: actionMenuView, attribute: .Bottom, multiplier: 1.0, constant: -48)
+        stackView.addConstraint(actionTitleConstraint)
+        stackView.addConstraint(NSLayoutConstraint(item: actionTitleView, attribute: .Height, relatedBy: .Equal,
+            toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 48))
+        
+        actionDiamondView.layer.zPosition = 2.0
+        actionTitleView.layer.zPosition = 1.0
 
         self.registerAsObserver()
     }
@@ -89,21 +103,29 @@ class TTMainViewController: UIViewController {
     
     func registerAsObserver() {
         appDelegate().modeMap.addObserver(self, forKeyPath: "openedModeChangeMenu", options: [], context: nil)
+        appDelegate().modeMap.addObserver(self, forKeyPath: "openedActionChangeMenu", options: [], context: nil)
         appDelegate().modeMap.addObserver(self, forKeyPath: "selectedMode", options: [], context: nil)
+        appDelegate().modeMap.addObserver(self, forKeyPath: "inspectingModeDirection", options: [], context: nil)
     }
     
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?,
                                          change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
         if keyPath == "openedModeChangeMenu" {
             self.toggleModeMenu()
+        } else if keyPath == "openedActionChangeMenu" {
+            self.toggleActionMenu()
         } else if keyPath == "selectedMode" {
             self.resetPosition()
+        } else if keyPath == "inspectingModeDirection" {
+            self.toggleActionView()
         }
     }
     
     deinit {
         appDelegate().modeMap.removeObserver(self, forKeyPath: "openedModeChangeMenu")
+        appDelegate().modeMap.removeObserver(self, forKeyPath: "openedActionChangeMenu")
         appDelegate().modeMap.removeObserver(self, forKeyPath: "selectedMode")
+        appDelegate().modeMap.removeObserver(self, forKeyPath: "inspectingModeDirection")
     }
     
     // MARK: Drawing
@@ -112,7 +134,15 @@ class TTMainViewController: UIViewController {
         self.modeMenuConstaint.constant = appDelegate().modeMap.openedModeChangeMenu ? modeMenuView.MENU_HEIGHT : 1
         UIView.animateWithDuration(0.42) {
             self.view.layoutIfNeeded()
-            self.modeMenuView.toggleModeMenu()
+//            self.modeMenuView.toggleModeMenu()
+        }
+    }
+    
+    func toggleActionMenu() {
+        self.actionMenuConstaint.constant = appDelegate().modeMap.openedActionChangeMenu ? modeMenuView.MENU_HEIGHT : 1
+        UIView.animateWithDuration(0.42) {
+            self.view.layoutIfNeeded()
+//            self.actionMenuView.toggleModeMenu()
         }
     }
     
@@ -129,6 +159,15 @@ class TTMainViewController: UIViewController {
         }
         if modeMap.openedAddActionChangeMenu {
             modeMap.openedAddActionChangeMenu = false
+        }
+    }
+    
+    func toggleActionView() {
+        actionTitleConstraint.constant = appDelegate().modeMap.inspectingModeDirection == .NO_DIRECTION ? -48 : 0
+        
+        UIView.animateWithDuration(0.24) {
+            self.view.layoutIfNeeded()
+//            self.actionMenuView.toggleModeMenu()
         }
     }
     

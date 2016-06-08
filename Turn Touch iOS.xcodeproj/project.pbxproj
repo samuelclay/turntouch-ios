@@ -42,6 +42,7 @@
 		FF2023401D021605005129E5 /* Icon-60@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FF20233E1D021605005129E5 /* Icon-60@2x.png */; };
 		FF2023411D021605005129E5 /* Icon-60@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = FF20233F1D021605005129E5 /* Icon-60@3x.png */; };
 		FF2023431D0216AF005129E5 /* Icon-83.5.png in Resources */ = {isa = PBXBuildFile; fileRef = FF2023421D0216AF005129E5 /* Icon-83.5.png */; };
+		FF44875F1D078FAC00ED8099 /* TTActionTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF44875E1D078FAB00ED8099 /* TTActionTitleView.swift */; };
 		FFB41AAB1CEE99A100CD5F09 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFB41AAA1CEE99A100CD5F09 /* Main.storyboard */; };
 		FFB41B111CEE9A3000CD5F09 /* alarm_snooze.png in Resources */ = {isa = PBXBuildFile; fileRef = FFB41AAE1CEE9A3000CD5F09 /* alarm_snooze.png */; };
 		FFB41B121CEE9A3000CD5F09 /* chevron_east.png in Resources */ = {isa = PBXBuildFile; fileRef = FFB41AAF1CEE9A3000CD5F09 /* chevron_east.png */; };
@@ -208,6 +209,7 @@
 		FF20233E1D021605005129E5 /* Icon-60@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-60@2x.png"; path = "Turn Touch iOS/Images/app icon/Icon-60@2x.png"; sourceTree = SOURCE_ROOT; };
 		FF20233F1D021605005129E5 /* Icon-60@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-60@3x.png"; path = "Turn Touch iOS/Images/app icon/Icon-60@3x.png"; sourceTree = SOURCE_ROOT; };
 		FF2023421D0216AF005129E5 /* Icon-83.5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-83.5.png"; path = "Turn Touch iOS/Images/app icon/Icon-83.5.png"; sourceTree = SOURCE_ROOT; };
+		FF44875E1D078FAB00ED8099 /* TTActionTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTActionTitleView.swift; path = Views/Actions/TTActionTitleView.swift; sourceTree = "<group>"; };
 		FFB41AAA1CEE99A100CD5F09 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Views/Main/Main.storyboard; sourceTree = "<group>"; };
 		FFB41AAE1CEE9A3000CD5F09 /* alarm_snooze.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = alarm_snooze.png; sourceTree = "<group>"; };
 		FFB41AAF1CEE9A3000CD5F09 /* chevron_east.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chevron_east.png; sourceTree = "<group>"; };
@@ -452,6 +454,14 @@
 			path = "actions/app icon";
 			sourceTree = "<group>";
 		};
+		FF4487601D078FB000ED8099 /* Actions */ = {
+			isa = PBXGroup;
+			children = (
+				FF44875E1D078FAB00ED8099 /* TTActionTitleView.swift */,
+			);
+			name = Actions;
+			sourceTree = "<group>";
+		};
 		FFB41AAC1CEE9A3000CD5F09 /* Images */ = {
 			isa = PBXGroup;
 			children = (
@@ -604,6 +614,7 @@
 				FF0F10D81CF6697F00CC1F29 /* Mode Map */,
 				FF0F10E11CFFAB7500CC1F29 /* Mode Menu */,
 				FFC9FE961D021A0800038817 /* Action Diamond */,
+				FF4487601D078FB000ED8099 /* Actions */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -976,6 +987,7 @@
 				FFB41B821CF5341700CD5F09 /* TTMode.swift in Sources */,
 				FF0F10CD1CF63F4D00CC1F29 /* TTModeHue.swift in Sources */,
 				FFC9FE951D021A0400038817 /* TTActionDiamondView.swift in Sources */,
+				FF44875F1D078FAC00ED8099 /* TTActionTitleView.swift in Sources */,
 				FF0F10E31CFFAC5300CC1F29 /* TTModeMenuContainer.swift in Sources */,
 				FFB41B841CF5342100CD5F09 /* TTModeMap.swift in Sources */,
 				FF0F10C21CF60C3D00CC1F29 /* TTTitleBarView.swift in Sources */,

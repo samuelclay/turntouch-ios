@@ -24,7 +24,7 @@ class TTModeMusic: TTMode {
     
     // MARK: Actions
     
-    func actions() -> [AnyObject] {
+    override func actions() -> [String] {
         return ["TTModeMusicVolumeDown",
                 "TTModeMusicVolumeUp",
                 "TTModeMusicVolumeMute",

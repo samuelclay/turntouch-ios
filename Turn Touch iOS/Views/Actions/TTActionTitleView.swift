@@ -1,20 +1,20 @@
 //
-//  TTModeTitleView.swift
+//  TTActionTitleView.swift
 //  Turn Touch iOS
 //
-//  Created by Samuel Clay on 5/25/16.
+//  Created by Samuel Clay on 6/7/16.
 //  Copyright © 2016 Turn Touch. All rights reserved.
 //
 
 import UIKit
 
-class TTModeTitleView: UIView {
-
+class TTActionTitleView: UIView {
+    
     @IBOutlet var changeButton = UIButton(type: UIButtonType.System) as UIButton!
     var modeImage: UIImage = UIImage()
     var modeTitle: String = ""
     var titleLabel: UILabel = UILabel()
-    var modeImageView: UIImageView = UIImageView()
+    var diamondView: TTDiamondView!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -34,16 +34,19 @@ class TTModeTitleView: UIView {
         self.addConstraint(NSLayoutConstraint(item: changeButton, attribute: .CenterY, relatedBy: .Equal,
             toItem: self, attribute: .CenterY, multiplier: 1.0, constant: 0))
         
-        modeImageView.translatesAutoresizingMaskIntoConstraints = false
-        self.addSubview(modeImageView)
-        self.addConstraint(NSLayoutConstraint(item: modeImageView, attribute: .Leading, relatedBy: .Equal,
+        diamondView = TTDiamondView()
+        diamondView.diamondType = TTDiamondType.DIAMOND_TYPE_MODE
+        diamondView.ignoreSelectedMode = true
+        diamondView.ignoreActiveMode = true
+        self.addSubview(diamondView)
+        self.addConstraint(NSLayoutConstraint(item: diamondView, attribute: .Leading, relatedBy: .Equal,
             toItem: self, attribute: .Leading, multiplier: 1.0, constant: 24))
-        self.addConstraint(NSLayoutConstraint(item: modeImageView, attribute: .CenterY, relatedBy: .Equal,
+        self.addConstraint(NSLayoutConstraint(item: diamondView, attribute: .CenterY, relatedBy: .Equal,
             toItem: self, attribute: .CenterY, multiplier: 1.0, constant: 0))
-        modeImageView.addConstraint(NSLayoutConstraint(item: modeImageView, attribute: .Width, relatedBy: .Equal,
-            toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 32))
-        modeImageView.addConstraint(NSLayoutConstraint(item: modeImageView, attribute: .Height, relatedBy: .Equal,
-            toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 32))
+        diamondView.addConstraint(NSLayoutConstraint(item: diamondView, attribute: .Width, relatedBy: .Equal,
+            toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 1.3*24))
+        diamondView.addConstraint(NSLayoutConstraint(item: diamondView, attribute: .Height, relatedBy: .Equal,
+            toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 24))
         
         
         titleLabel.font = UIFont(name: "Effra", size: 13)
@@ -51,7 +54,7 @@ class TTModeTitleView: UIView {
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(titleLabel)
         self.addConstraint(NSLayoutConstraint(item: titleLabel, attribute: .Leading, relatedBy: .Equal,
-            toItem: modeImageView, attribute: .Trailing, multiplier: 1.0, constant: 12))
+            toItem: diamondView, attribute: .Trailing, multiplier: 1.0, constant: 12))
         self.addConstraint(NSLayoutConstraint(item: titleLabel, attribute: .CenterY, relatedBy: .Equal,
             toItem: self, attribute: .CenterY, multiplier: 1.0, constant: 0))
         
@@ -65,35 +68,35 @@ class TTModeTitleView: UIView {
     // MARK: KVO
     
     func registerAsObserver() {
-        appDelegate().modeMap.addObserver(self, forKeyPath: "selectedModeDirection", options: [], context: nil)
-        appDelegate().modeMap.addObserver(self, forKeyPath: "openedModeChangeMenu", options: [], context: nil)
+        appDelegate().modeMap.addObserver(self, forKeyPath: "inspectingModeDirection", options: [], context: nil)
     }
     
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?,
                                          change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
-        if keyPath == "selectedModeDirection" {
-            self.setNeedsDisplay()
-        } else if keyPath == "openedModeChangeMenu" {
+        if keyPath == "inspectingModeDirection" {
             self.setNeedsDisplay()
         }
     }
     
     deinit {
-        appDelegate().modeMap.removeObserver(self, forKeyPath: "selectedModeDirection")
-        appDelegate().modeMap.removeObserver(self, forKeyPath: "openedModeChangeMenu")
+        appDelegate().modeMap.removeObserver(self, forKeyPath: "inspectingModeDirection")
     }
     
     // MARK: Drawing
     
     override func drawRect(rect: CGRect) {
-        if appDelegate().modeMap.openedModeChangeMenu {
+        if appDelegate().modeMap.openedActionChangeMenu {
             changeButton.setTitle("Done", forState: .Normal)
         } else {
             changeButton.setTitle("Change", forState: .Normal)
         }
         
-        titleLabel.text = appDelegate().modeMap.selectedMode.subtitle()
-        modeImageView.image = UIImage(named:appDelegate().modeMap.selectedMode.imageName())
+        let direction = appDelegate().modeMap.inspectingModeDirection
+        if direction != .NO_DIRECTION {
+            titleLabel.text = appDelegate().modeMap.selectedMode.titleInDirection(direction, buttonMoment: .BUTTON_MOMENT_PRESSUP)
+        }
+        diamondView.overrideActiveDirection = appDelegate().modeMap.inspectingModeDirection
+        diamondView.setNeedsDisplay()
         
         super.drawRect(rect)
     }
@@ -101,12 +104,7 @@ class TTModeTitleView: UIView {
     // MARK: Actions
     
     func pressChange(sender: UIButton!) {
-        appDelegate().modeMap.openedModeChangeMenu = !appDelegate().modeMap.openedModeChangeMenu
-        if appDelegate().modeMap.openedActionChangeMenu {
-            appDelegate().modeMap.openedActionChangeMenu = false
-        }
-        appDelegate().modeMap.inspectingModeDirection = .NO_DIRECTION
-
+        appDelegate().modeMap.openedActionChangeMenu = !appDelegate().modeMap.openedActionChangeMenu
         self.setNeedsDisplay()
     }
 

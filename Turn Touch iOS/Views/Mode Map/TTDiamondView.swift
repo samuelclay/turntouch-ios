@@ -54,14 +54,18 @@ class TTDiamondView: UIView {
     
     func registerAsObserver() {
         appDelegate().modeMap.addObserver(self, forKeyPath: "selectedModeDirection", options: [], context: nil)
+        appDelegate().modeMap.addObserver(self, forKeyPath: "inspectingModeDirection", options: [], context: nil)
     }
     
     deinit {
         appDelegate().modeMap.removeObserver(self, forKeyPath: "selectedModeDirection")
+        appDelegate().modeMap.removeObserver(self, forKeyPath: "inspectingModeDirection")
     }
     
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
         if keyPath == "selectedModeDirection" {
+            self.setNeedsDisplay()
+        } else if keyPath == "inspectingModeDirection" {
             self.setNeedsDisplay()
         }
     }

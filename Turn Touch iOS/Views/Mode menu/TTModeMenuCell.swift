@@ -53,41 +53,58 @@ class TTModeMenuCell: UICollectionViewCell {
     
     func registerAsObserver() {
         appDelegate().modeMap.addObserver(self, forKeyPath: "selectedModeDirection", options: [], context: nil)
+        appDelegate().modeMap.addObserver(self, forKeyPath: "inspectingModeDirection", options: [], context: nil)
     }
     
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?,
                                          change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
         if keyPath == "selectedModeDirection" {
             self.setNeedsDisplay()
+        } else if keyPath == "inspectingModeDirection" {
+            self.setNeedsDisplay()
         }
     }
     
     deinit {
         appDelegate().modeMap.removeObserver(self, forKeyPath: "selectedModeDirection")
+        appDelegate().modeMap.removeObserver(self, forKeyPath: "inspectingModeDirection")
     }
     
     // MARK: Drawing
     
     override func prepareForReuse() {
-        let className = "Turn_Touch_iOS.\(modeName)"
-        let activeModeType = NSClassFromString(className) as! TTMode.Type
-        activeMode = activeModeType.init()
+        if menuType == .MENU_MODE {
+            let className = "Turn_Touch_iOS.\(modeName)"
+            let activeModeType = NSClassFromString(className) as! TTMode.Type
+            activeMode = activeModeType.init()
+        } else if menuType == .MENU_ACTION {
+            activeMode = appDelegate().modeMap.selectedMode
+        } else if menuType == .MENU_ADD_MODE {
+//            activeMode = NSClassFromString(modeName)
+        } else if menuType == .MENU_ADD_ACTION {
+            activeMode = appDelegate().modeMap.tempMode
+        }
     }
 
     override func drawRect(rect: CGRect) {
+        super.drawRect(rect)
         if activeMode == nil {
             self.prepareForReuse()
         }
-
-        super.drawRect(rect)
-        
-        selected = activeMode >!< appDelegate().modeMap.selectedMode
-        self.drawBackground()
         
         titleLabel.textColor = highlighted || selected ? UIColor(hex: 0x404A60) : UIColor(hex: 0x808388)
-        titleLabel.text = activeMode.title().uppercaseString
-        
-        imageView.image = UIImage(named:activeMode.imageName())
+
+        if menuType == .MENU_MODE {
+            selected = activeMode >!< appDelegate().modeMap.selectedMode
+            titleLabel.text = activeMode.title().uppercaseString
+            imageView.image = UIImage(named:activeMode.imageName())
+        } else if menuType == .MENU_ACTION {
+            selected = activeMode.actionNameInDirection(appDelegate().modeMap.inspectingModeDirection) == modeName
+            imageView.image = UIImage(named:activeMode.imageNameForAction(modeName) ?? "")
+            titleLabel.text = activeMode.titleForAction(modeName, buttonMoment: .BUTTON_MOMENT_PRESSUP).uppercaseString
+        }
+
+        self.drawBackground()
     }
     
     func drawBackground() {
