@@ -134,7 +134,6 @@ class TTMainViewController: UIViewController {
         self.modeMenuConstaint.constant = appDelegate().modeMap.openedModeChangeMenu ? modeMenuView.MENU_HEIGHT : 1
         UIView.animateWithDuration(0.42) {
             self.view.layoutIfNeeded()
-//            self.modeMenuView.toggleModeMenu()
         }
     }
     
@@ -142,7 +141,14 @@ class TTMainViewController: UIViewController {
         self.actionMenuConstaint.constant = appDelegate().modeMap.openedActionChangeMenu ? modeMenuView.MENU_HEIGHT : 1
         UIView.animateWithDuration(0.42) {
             self.view.layoutIfNeeded()
-//            self.actionMenuView.toggleModeMenu()
+        }
+    }
+    
+    func toggleActionView() {
+        actionTitleConstraint.constant = appDelegate().modeMap.inspectingModeDirection == .NO_DIRECTION ? -48 : 0
+        
+        UIView.animateWithDuration(0.24) {
+            self.view.layoutIfNeeded()
         }
     }
     
@@ -159,15 +165,6 @@ class TTMainViewController: UIViewController {
         }
         if modeMap.openedAddActionChangeMenu {
             modeMap.openedAddActionChangeMenu = false
-        }
-    }
-    
-    func toggleActionView() {
-        actionTitleConstraint.constant = appDelegate().modeMap.inspectingModeDirection == .NO_DIRECTION ? -48 : 0
-        
-        UIView.animateWithDuration(0.24) {
-            self.view.layoutIfNeeded()
-//            self.actionMenuView.toggleModeMenu()
         }
     }
     

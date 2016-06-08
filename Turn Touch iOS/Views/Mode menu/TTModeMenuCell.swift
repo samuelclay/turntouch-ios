@@ -59,6 +59,7 @@ class TTModeMenuCell: UICollectionViewCell {
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?,
                                          change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
         if keyPath == "selectedModeDirection" {
+            activeMode = nil
             self.setNeedsDisplay()
         } else if keyPath == "inspectingModeDirection" {
             self.setNeedsDisplay()

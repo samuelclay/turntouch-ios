@@ -25,14 +25,14 @@ class TTModeMap: NSObject {
     var eastMode: TTMode = TTMode()
     var westMode: TTMode = TTMode()
     var southMode: TTMode = TTMode()
-    var tempMode: TTMode = TTMode()
+    dynamic var tempMode: TTMode = TTMode()
     
     // var batchActions: TTBatchActions
     
-    var availableModes: [String] = []
-    var availableActions: [String] = []
-    var availableAddModes: [String] = []
-    var availableAddActions: [String] = []
+    dynamic var availableModes: [String] = []
+    dynamic var availableActions: [String] = []
+    dynamic var availableAddModes: [String] = []
+    dynamic var availableAddActions: [String] = []
     
     override init() {
         self.availableModes = [
@@ -110,7 +110,7 @@ class TTModeMap: NSObject {
             self.selectedMode = self.modeInDirection(direction)
         }
         
-        availableActions = selectedMode.actions()
+        self.availableActions = selectedMode.actions()
         //        if self.selectedModeDirection != direction {
         self.selectedModeDirection = direction
         //        }

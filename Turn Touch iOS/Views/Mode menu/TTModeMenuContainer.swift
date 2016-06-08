@@ -77,6 +77,7 @@ class TTModeMenuContainer: UIView {
     func registerAsObserver() {
         appDelegate().modeMap.addObserver(self, forKeyPath: "openedModeChangeMenu", options: [], context: nil)
         appDelegate().modeMap.addObserver(self, forKeyPath: "openedActionChangeMenu", options: [], context: nil)
+        appDelegate().modeMap.addObserver(self, forKeyPath: "availableActions", options: [], context: nil)
         appDelegate().modeMap.addObserver(self, forKeyPath: "inspectingModeDirection", options: [], context: nil)
     }
     
@@ -86,9 +87,13 @@ class TTModeMenuContainer: UIView {
             self.toggleModeMenu()
         } else if keyPath == "openedActionChangeMenu" {
             self.toggleModeMenu()
+        } else if keyPath == "availableActions" {
+            collectionView.reloadData()
         } else if keyPath == "inspectingModeDirection" {
             if menuType == .MENU_MODE && appDelegate().modeMap.inspectingModeDirection != .NO_DIRECTION {
-                appDelegate().modeMap.openedModeChangeMenu = false
+                if appDelegate().modeMap.openedModeChangeMenu {
+                    appDelegate().modeMap.openedModeChangeMenu = false
+                }
             }
         }
     }
@@ -96,6 +101,7 @@ class TTModeMenuContainer: UIView {
     deinit {
         appDelegate().modeMap.removeObserver(self, forKeyPath: "openedModeChangeMenu")
         appDelegate().modeMap.removeObserver(self, forKeyPath: "openedActionChangeMenu")
+        appDelegate().modeMap.removeObserver(self, forKeyPath: "availableActions")
         appDelegate().modeMap.removeObserver(self, forKeyPath: "inspectingModeDirection")
     }
 
@@ -106,7 +112,7 @@ class TTModeMenuContainer: UIView {
     }
     
     func toggleModeMenu() {
-        if menuType == .MENU_MODE {            
+        if menuType == .MENU_MODE {
             UIView.animateWithDuration(0.5, animations: {
                 self.collectionView.flashScrollIndicators()
                 let openedModeChangeMenu: Bool = appDelegate().modeMap.openedModeChangeMenu
@@ -123,21 +129,22 @@ class TTModeMenuContainer: UIView {
                     }
             })
         } else if menuType == .MENU_ACTION {
-            UIView.animateWithDuration(0.5, animations: {
-                self.collectionView.flashScrollIndicators()
-                let openedActionChangeMenu: Bool = appDelegate().modeMap.openedActionChangeMenu
-                if openedActionChangeMenu {
-                    self.bordersView.setNeedsDisplay()
-                }
-                
-                self.collectionView.alpha = openedActionChangeMenu ? 1.0 : 0
-                self.setNeedsLayout()
+            UIView.animateWithDuration(0.5, animations:
+                {
+                    self.collectionView.flashScrollIndicators()
+                    let openedActionChangeMenu: Bool = appDelegate().modeMap.openedActionChangeMenu
+                    if openedActionChangeMenu {
+                        self.bordersView.setNeedsDisplay()
+                    }
+                    
+                    self.collectionView.alpha = openedActionChangeMenu ? 1.0 : 0
+                    self.setNeedsLayout()
                 }, completion: { (done) in
                     let openedActionChangeMenu: Bool = appDelegate().modeMap.openedActionChangeMenu
                     if !openedActionChangeMenu {
                         self.bordersView.setNeedsDisplay()
                     }
-            })
+                })
         }
     }
     

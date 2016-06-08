@@ -419,9 +419,9 @@
 			isa = PBXGroup;
 			children = (
 				FF0F10E21CFFAC5300CC1F29 /* TTModeMenuContainer.swift */,
-				FF0F10E41CFFAD1B00CC1F29 /* TTModeMenuBordersView.swift */,
 				FF0F10EA1CFFB4A800CC1F29 /* TTModeMenuCollectionView.swift */,
 				FF0F10E81CFFAD6100CC1F29 /* TTModeMenuCell.swift */,
+				FF0F10E41CFFAD1B00CC1F29 /* TTModeMenuBordersView.swift */,
 			);
 			name = "Mode Menu";
 			sourceTree = "<group>";
