@@ -52,5 +52,5 @@ class TTModeMenuCollectionView: UICollectionView, UICollectionViewDataSource, UI
         }
         return cell;
     }
-
+    
 }

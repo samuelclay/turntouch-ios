@@ -40,6 +40,7 @@ class TTTitleBarView: UIView {
         let settingsImage = UIImage(named: "settings")
         settingsButton.setImage(settingsImage, forState: UIControlState.Normal)
         settingsButton.translatesAutoresizingMaskIntoConstraints = false
+        settingsButton.addTarget(self, action: #selector(self.pressSettings(_:)), forControlEvents: .TouchUpInside)
         self.addSubview(settingsButton)
         self.addConstraint(NSLayoutConstraint(item: settingsButton, attribute: .Height, relatedBy: .Equal,
             toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: SETTINGS_ICON_SIZE))
@@ -79,5 +80,11 @@ class TTTitleBarView: UIView {
                                     endPoint,
                                     [])
 
+    }
+    
+    // MARK: Events
+    
+    func pressSettings(sender: UIButton!) {
+        appDelegate().mainViewController.toggleTitleMenu(sender)
     }
 }

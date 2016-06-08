@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TTMainViewController: UIViewController {
+class TTMainViewController: UIViewController, UIPopoverPresentationControllerDelegate {
     
     var stackView = UIStackView()
     var titleBarView: TTTitleBarView = TTTitleBarView()
@@ -84,12 +84,11 @@ class TTMainViewController: UIViewController {
                                                  toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 1.0)
         stackView.addConstraint(actionMenuConstaint)
 
+        actionTitleView.alpha = 0
         stackView.addArrangedSubview(actionTitleView)
-        actionTitleConstraint = NSLayoutConstraint(item: actionTitleView, attribute: .Top, relatedBy: .Equal,
-                                                   toItem: actionMenuView, attribute: .Bottom, multiplier: 1.0, constant: -48)
+        actionTitleConstraint = NSLayoutConstraint(item: actionTitleView, attribute: .Height, relatedBy: .Equal,
+                                                   toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 0)
         stackView.addConstraint(actionTitleConstraint)
-        stackView.addConstraint(NSLayoutConstraint(item: actionTitleView, attribute: .Height, relatedBy: .Equal,
-            toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 48))
         
         actionDiamondView.layer.zPosition = 2.0
         actionTitleView.layer.zPosition = 1.0
@@ -156,10 +155,11 @@ class TTMainViewController: UIViewController {
     }
     
     func toggleActionView() {
-        actionTitleConstraint.constant = appDelegate().modeMap.inspectingModeDirection == .NO_DIRECTION ? -48 : 0
+        actionTitleConstraint.constant = appDelegate().modeMap.inspectingModeDirection == .NO_DIRECTION ? 0 : 48
         
         UIView.animateWithDuration(0.24) {
             self.view.layoutIfNeeded()
+            self.actionTitleView.alpha = appDelegate().modeMap.inspectingModeDirection == .NO_DIRECTION ? 0 : 1
         }
     }
     
@@ -188,4 +188,25 @@ class TTMainViewController: UIViewController {
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
         super.touchesEnded(touches, withEvent: event)
     }
+    
+    // MARK: Modals and menus
+    
+    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
+        return .None
+    }
+    
+    func toggleTitleMenu(sender: UIButton) {
+        let titleMenu = TTTitleMenuPopover()
+        titleMenu.modalPresentationStyle = .Popover
+        titleMenu.preferredContentSize = CGSize(width: 204,
+                                                height: 32 * titleMenu.menuOptions.count)
+        let popoverViewController = titleMenu.popoverPresentationController
+        popoverViewController!.permittedArrowDirections = .Up
+        popoverViewController!.delegate = self
+        popoverViewController!.sourceView = sender
+        popoverViewController!.sourceRect = CGRect(x: -8, y: 0,
+                                                   width: CGRectGetWidth(sender.frame), height: CGRectGetHeight(sender.frame))
+        self.presentViewController(titleMenu, animated: true, completion: nil)
+    }
+
 }

@@ -128,7 +128,7 @@ class TTModeMenuCell: UICollectionViewCell {
     
     override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
         if let touch = touches.first {
-            highlighted = CGRectContainsPoint(self.bounds, touch.locationInView(self))
+            highlighted = false
             self.setNeedsDisplay()
         }
     }
