@@ -15,7 +15,7 @@ class TTModeMap: NSObject {
     dynamic var inspectingModeDirection: TTModeDirection = .NO_DIRECTION
     dynamic var hoverModeDirection: TTModeDirection = .NO_DIRECTION
     
-    var tempModeName: NSString = ""
+    var tempModeName: String = ""
     dynamic var openedModeChangeMenu: Bool = false
     dynamic var openedActionChangeMenu: Bool = false
     dynamic var openedAddActionChangeMenu: Bool = false
@@ -69,7 +69,7 @@ class TTModeMap: NSObject {
     func setupModes() {
         let prefs = NSUserDefaults.standardUserDefaults()
         
-        for direction: NSString in ["north", "east", "west", "south"] {
+        for direction: String in ["north", "east", "west", "south"] {
             if let directionModeName = prefs.stringForKey("TT:mode:\(direction)") {
                 let className = "Turn_Touch_iOS.\(directionModeName)"
                 let modeClass = NSClassFromString(className) as! TTMode.Type
@@ -148,7 +148,7 @@ class TTModeMap: NSObject {
     
     // MARK: Changing modes, actions, batch actions
     
-    func changeDirection(direction: TTModeDirection, toMode modeClassName: NSString) {
+    func changeDirection(direction: TTModeDirection, toMode modeClassName: String) {
         let prefs = NSUserDefaults.standardUserDefaults()
         let directionName = self.directionName(direction)
         let prefKey = "TT:mode:\(directionName)"
@@ -158,6 +158,10 @@ class TTModeMap: NSObject {
         
         self.setupModes()
         self.switchMode(direction)
+    }
+    
+    func changeDirection(direction: TTModeDirection, toAction actionClassName: String) {
+        selectedMode.changeDirection(direction, toAction:actionClassName)
     }
     
     // MARK: Direction helpers

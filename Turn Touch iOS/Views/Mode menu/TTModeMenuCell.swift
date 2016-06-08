@@ -93,8 +93,6 @@ class TTModeMenuCell: UICollectionViewCell {
             self.prepareForReuse()
         }
         
-        titleLabel.textColor = highlighted || selected ? UIColor(hex: 0x404A60) : UIColor(hex: 0x808388)
-
         if menuType == .MENU_MODE {
             selected = activeMode >!< appDelegate().modeMap.selectedMode
             titleLabel.text = activeMode.title().uppercaseString
@@ -105,6 +103,7 @@ class TTModeMenuCell: UICollectionViewCell {
             titleLabel.text = activeMode.titleForAction(modeName, buttonMoment: .BUTTON_MOMENT_PRESSUP).uppercaseString
         }
 
+        titleLabel.textColor = highlighted || selected ? UIColor(hex: 0x404A60) : UIColor(hex: 0x808388)
         self.drawBackground()
     }
     
@@ -140,6 +139,16 @@ class TTModeMenuCell: UICollectionViewCell {
             if CGRectContainsPoint(self.bounds, touch.locationInView(self)) {
                 if menuType == .MENU_MODE {
                     appDelegate().modeMap.changeDirection(appDelegate().modeMap.selectedModeDirection, toMode:modeName)
+                } else if menuType == .MENU_ACTION {
+                    appDelegate().modeMap.changeDirection(appDelegate().modeMap.inspectingModeDirection, toAction:modeName)
+                    // Update the mode menu
+                    appDelegate().modeMap.inspectingModeDirection = appDelegate().modeMap.inspectingModeDirection
+                    // Update the action diamond
+                    appDelegate().modeMap.selectedModeDirection = appDelegate().modeMap.selectedModeDirection
+                } else if menuType == .MENU_ADD_MODE {
+                    
+                } else if menuType == .MENU_ADD_ACTION {
+                    
                 }
             }
         }

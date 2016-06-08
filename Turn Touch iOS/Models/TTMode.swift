@@ -162,6 +162,21 @@ class TTMode : NSObject, TTModeProtocol {
         return directionAction
     }
     
+    func changeDirection(direction: TTModeDirection, toAction actionClassName: String) {
+        let prefs = NSUserDefaults.standardUserDefaults()
+        
+        let modeDirectionName = appDelegate().modeMap.directionName(modeDirection)
+        let actionDirectionName = appDelegate().modeMap.directionName(direction)
+        let prefKey = "TT:\(self.nameOfClass)-\(modeDirectionName):action:\(actionDirectionName)"
+        let directionAction = prefs.stringForKey(prefKey)
+        print("Direction action: \(prefKey) - \(directionAction) to \(actionClassName)")
+        
+        prefs.setObject(actionClassName, forKey: prefKey)
+        prefs.synchronize()
+        
+        
+    }
+    
     // MARK: Images
     
     func imageNameInDirection(direction: TTModeDirection) -> String? {

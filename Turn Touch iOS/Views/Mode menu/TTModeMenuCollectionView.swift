@@ -44,6 +44,7 @@ class TTModeMenuCollectionView: UICollectionView, UICollectionViewDataSource, UI
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(CollectionViewCellIdentifier, forIndexPath: indexPath) as! TTModeMenuCell
         cell.backgroundColor = UIColor.clearColor()
         cell.menuType = menuType
+        cell.activeMode = nil
         if menuType == .MENU_MODE {
             cell.modeName = appDelegate().modeMap.availableModes[indexPath.row]
         } else if menuType == .MENU_ACTION {

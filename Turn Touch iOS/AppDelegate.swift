@@ -11,9 +11,10 @@ import UIKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    var window: UIWindow?
+    var window: UIWindow? = UIWindow(frame: UIScreen.mainScreen().bounds)
     var modeMap: TTModeMap = TTModeMap()
-
+    @IBOutlet var mainViewController: TTMainViewController!
+    
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         let preferences = NSUserDefaults.standardUserDefaults()
         let defaultPrefsFile = NSBundle.mainBundle().pathForResource("Preferences", ofType: "plist")
@@ -21,7 +22,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         preferences.registerDefaults(defaultPrefs as! [String: AnyObject])
         preferences.synchronize()
         
+        mainViewController = TTMainViewController()
         modeMap.setupModes()
+        window!.rootViewController = mainViewController
+        window!.makeKeyAndVisible()
         
         return true
     }

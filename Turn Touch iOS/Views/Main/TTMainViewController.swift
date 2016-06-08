@@ -10,7 +10,7 @@ import UIKit
 
 class TTMainViewController: UIViewController {
     
-    @IBOutlet var stackView: UIStackView!
+    var stackView = UIStackView()
     var titleBarView: TTTitleBarView = TTTitleBarView()
     var modeTabsView: UIStackView!
     var modeTabs: [TTModeTab] = []
@@ -29,7 +29,18 @@ class TTMainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.userInteractionEnabled = true
-        stackView.userInteractionEnabled = true
+        self.view.backgroundColor = UIColor.whiteColor()
+        
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .Vertical
+        stackView.distribution = .Fill
+        stackView.alignment = .Fill
+        stackView.spacing = 0
+        self.view.addSubview(stackView)
+        self.view.addConstraint(NSLayoutConstraint(item: stackView, attribute: .Width, relatedBy: .Equal, toItem: self.view, attribute: .Width, multiplier: 1.0, constant: 0.0))
+        self.view.addConstraint(NSLayoutConstraint(item: stackView, attribute: .Top, relatedBy: .Equal, toItem: self.view, attribute: .Top, multiplier: 1.0, constant: 20.0))
+        self.view.addConstraint(NSLayoutConstraint(item: stackView, attribute: .Left, relatedBy: .Equal, toItem: self.view, attribute: .Left, multiplier: 1.0, constant: 0.0))
+        
         
         stackView.addArrangedSubview(titleBarView)
         titleBarConstraint = NSLayoutConstraint(item: titleBarView, attribute: .Height,
