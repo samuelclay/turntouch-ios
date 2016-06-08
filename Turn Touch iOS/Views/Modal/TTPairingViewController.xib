@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TTPairingViewController" customModule="Turn_Touch_iOS" customModuleProvider="target">
+            <connections>
+                <outlet property="countdownIndicator" destination="Z5U-8b-OEm" id="37v-YV-not"/>
+                <outlet property="diamondView" destination="Wdc-e5-1UP" id="6tU-hV-AxK"/>
+                <outlet property="labelScanning" destination="mmc-cH-6oo" id="ks5-Oz-h2r"/>
+                <outlet property="spinnerScanning" destination="OBG-Ce-ya7" id="tsx-sp-dZQ"/>
+                <outlet property="view" destination="iN0-l3-epB" id="i3L-qp-Rfx"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wdc-e5-1UP" customClass="TTDiamondView" customModule="Turn_Touch_iOS" customModuleProvider="target">
+                    <rect key="frame" x="164" y="96" width="272" height="200"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="272" id="hT1-HE-mrK"/>
+                        <constraint firstAttribute="height" constant="200" id="puG-m6-LWb"/>
+                    </constraints>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mmc-cH-6oo">
+                    <rect key="frame" x="279" y="383" width="42" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Z5U-8b-OEm">
+                    <rect key="frame" x="225" y="500" width="150" height="2"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="2" id="4Vd-XV-dTF"/>
+                        <constraint firstAttribute="width" constant="150" id="FNV-5d-Yv6"/>
+                    </constraints>
+                </progressView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OBG-Ce-ya7" customClass="TTPairingSpinner" customModule="Turn_Touch_iOS" customModuleProvider="target">
+                    <rect key="frame" x="282.5" y="483" width="36" height="36"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="36" id="6Xt-M9-goS"/>
+                        <constraint firstAttribute="height" constant="36" id="fSM-hj-O5W"/>
+                    </constraints>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eLU-kC-wZb">
+                    <rect key="frame" x="279" y="318" width="42" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="mmc-cH-6oo" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="0b0-dL-4b0"/>
+                <constraint firstItem="OBG-Ce-ya7" firstAttribute="centerY" secondItem="Z5U-8b-OEm" secondAttribute="centerY" id="0z3-A6-OnW"/>
+                <constraint firstItem="OBG-Ce-ya7" firstAttribute="centerY" secondItem="Z5U-8b-OEm" secondAttribute="centerY" id="AEs-XO-T2M"/>
+                <constraint firstItem="OBG-Ce-ya7" firstAttribute="centerX" secondItem="Z5U-8b-OEm" secondAttribute="centerX" id="GHM-ML-Bi6"/>
+                <constraint firstItem="Wdc-e5-1UP" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="96" id="Qdq-fB-E0K"/>
+                <constraint firstItem="eLU-kC-wZb" firstAttribute="top" secondItem="Wdc-e5-1UP" secondAttribute="bottom" constant="22" id="Tic-bA-S9D"/>
+                <constraint firstItem="Z5U-8b-OEm" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="YRS-zD-9Af"/>
+                <constraint firstItem="mmc-cH-6oo" firstAttribute="top" secondItem="eLU-kC-wZb" secondAttribute="bottom" constant="44" id="YRr-AZ-RTs"/>
+                <constraint firstItem="eLU-kC-wZb" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="apR-4O-CE1"/>
+                <constraint firstItem="Wdc-e5-1UP" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="bx4-1a-HSC"/>
+                <constraint firstItem="Z5U-8b-OEm" firstAttribute="top" secondItem="mmc-cH-6oo" secondAttribute="bottom" constant="96" id="oV8-KI-Nc2"/>
+                <constraint firstItem="OBG-Ce-ya7" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="x6T-ds-WEX"/>
+            </constraints>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="0z3-A6-OnW"/>
+                    <exclude reference="GHM-ML-Bi6"/>
+                </mask>
+            </variation>
+        </view>
+    </objects>
+</document>

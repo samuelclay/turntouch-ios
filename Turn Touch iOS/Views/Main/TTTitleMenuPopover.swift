@@ -65,6 +65,13 @@ class TTTitleMenuPopover: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        print(" Selected \(indexPath)")
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        
+        switch indexPath.row {
+        case 0:
+            appDelegate().mainViewController.showPairingModal()
+        default:
+            break
+        }
     }
 }

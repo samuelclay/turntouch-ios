@@ -25,6 +25,10 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
     var actionMenuConstaint: NSLayoutConstraint!
     var actionTitleView = TTActionTitleView()
     var actionTitleConstraint: NSLayoutConstraint!
+
+    let titleMenu = TTTitleMenuPopover()
+    let pairingViewController = TTPairingViewController(nibName: "TTPairingViewController", bundle: nil)
+    var pairingNavController: UINavigationController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,9 +41,12 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
         stackView.alignment = .Fill
         stackView.spacing = 0
         self.view.addSubview(stackView)
-        self.view.addConstraint(NSLayoutConstraint(item: stackView, attribute: .Width, relatedBy: .Equal, toItem: self.view, attribute: .Width, multiplier: 1.0, constant: 0.0))
-        self.view.addConstraint(NSLayoutConstraint(item: stackView, attribute: .Top, relatedBy: .Equal, toItem: self.view, attribute: .Top, multiplier: 1.0, constant: 20.0))
-        self.view.addConstraint(NSLayoutConstraint(item: stackView, attribute: .Left, relatedBy: .Equal, toItem: self.view, attribute: .Left, multiplier: 1.0, constant: 0.0))
+        self.view.addConstraint(NSLayoutConstraint(item: stackView, attribute: .Width,
+            relatedBy: .Equal, toItem: self.view, attribute: .Width, multiplier: 1.0, constant: 0.0))
+        self.view.addConstraint(NSLayoutConstraint(item: stackView, attribute: .Top,
+            relatedBy: .Equal, toItem: self.topLayoutGuide, attribute: .Bottom, multiplier: 1.0, constant: 0.0))
+        self.view.addConstraint(NSLayoutConstraint(item: stackView, attribute: .Left,
+            relatedBy: .Equal, toItem: self.view, attribute: .Left, multiplier: 1.0, constant: 0.0))
         
         
         stackView.addArrangedSubview(titleBarView)
@@ -191,12 +198,12 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
     
     // MARK: Modals and menus
     
-    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
+    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController)
+        -> UIModalPresentationStyle {
         return .None
     }
     
     func toggleTitleMenu(sender: UIButton) {
-        let titleMenu = TTTitleMenuPopover()
         titleMenu.modalPresentationStyle = .Popover
         titleMenu.preferredContentSize = CGSize(width: 204,
                                                 height: 32 * titleMenu.menuOptions.count)
@@ -205,8 +212,21 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
         popoverViewController!.delegate = self
         popoverViewController!.sourceView = sender
         popoverViewController!.sourceRect = CGRect(x: -8, y: 0,
-                                                   width: CGRectGetWidth(sender.frame), height: CGRectGetHeight(sender.frame))
+                                                   width: CGRectGetWidth(sender.frame),
+                                                   height: CGRectGetHeight(sender.frame))
         self.presentViewController(titleMenu, animated: true, completion: nil)
     }
-
+    
+    func showPairingModal() {
+        titleMenu.dismissViewControllerAnimated(true , completion: nil)
+        
+        pairingNavController = UINavigationController(rootViewController: pairingViewController)
+        pairingNavController.modalPresentationStyle = .OverFullScreen
+        
+        self.presentViewController(pairingNavController, animated: true, completion: nil)
+    }
+    
+    func closePairingModal() {
+        pairingNavController.dismissViewControllerAnimated(true, completion: nil)
+    }
 }
