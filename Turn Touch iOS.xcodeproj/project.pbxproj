@@ -51,6 +51,7 @@
 		FF44876D1D08E62200ED8099 /* TTBluetoothMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF44876C1D08E62200ED8099 /* TTBluetoothMonitor.swift */; };
 		FF4487701D08EF6400ED8099 /* TTDeviceList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF44876F1D08EF6400ED8099 /* TTDeviceList.swift */; };
 		FF4487721D08F01000ED8099 /* TTDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4487711D08F01000ED8099 /* TTDevice.swift */; };
+		FF4487741D09300B00ED8099 /* NSData+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4487731D09300B00ED8099 /* NSData+Hex.swift */; };
 		FFB41B111CEE9A3000CD5F09 /* alarm_snooze.png in Resources */ = {isa = PBXBuildFile; fileRef = FFB41AAE1CEE9A3000CD5F09 /* alarm_snooze.png */; };
 		FFB41B121CEE9A3000CD5F09 /* chevron_east.png in Resources */ = {isa = PBXBuildFile; fileRef = FFB41AAF1CEE9A3000CD5F09 /* chevron_east.png */; };
 		FFB41B131CEE9A3000CD5F09 /* chevron_north.png in Resources */ = {isa = PBXBuildFile; fileRef = FFB41AB01CEE9A3000CD5F09 /* chevron_north.png */; };
@@ -225,6 +226,7 @@
 		FF44876C1D08E62200ED8099 /* TTBluetoothMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTBluetoothMonitor.swift; path = Bluetooth/TTBluetoothMonitor.swift; sourceTree = "<group>"; };
 		FF44876F1D08EF6400ED8099 /* TTDeviceList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTDeviceList.swift; path = Bluetooth/TTDeviceList.swift; sourceTree = "<group>"; };
 		FF4487711D08F01000ED8099 /* TTDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTDevice.swift; path = Bluetooth/TTDevice.swift; sourceTree = "<group>"; };
+		FF4487731D09300B00ED8099 /* NSData+Hex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSData+Hex.swift"; path = "Categories/NSData+Hex.swift"; sourceTree = "<group>"; };
 		FFB41AAE1CEE9A3000CD5F09 /* alarm_snooze.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = alarm_snooze.png; sourceTree = "<group>"; };
 		FFB41AAF1CEE9A3000CD5F09 /* chevron_east.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chevron_east.png; sourceTree = "<group>"; };
 		FFB41AB01CEE9A3000CD5F09 /* chevron_north.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chevron_north.png; sourceTree = "<group>"; };
@@ -374,6 +376,7 @@
 			children = (
 				FF0F10BD1CF55A9000CC1F29 /* UIColor+hex.swift */,
 				FFC9FE981D02520300038817 /* NSObject+Class.swift */,
+				FF4487731D09300B00ED8099 /* NSData+Hex.swift */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -1033,6 +1036,7 @@
 				FFB41B841CF5342100CD5F09 /* TTModeMap.swift in Sources */,
 				FF0F10C21CF60C3D00CC1F29 /* TTTitleBarView.swift in Sources */,
 				FF0F10CA1CF63F3B00CC1F29 /* TTModePhone.swift in Sources */,
+				FF4487741D09300B00ED8099 /* NSData+Hex.swift in Sources */,
 				FF4487641D08AA8800ED8099 /* TTTitleMenuCell.swift in Sources */,
 				FFB41B791CEEA8E500CD5F09 /* TTModeTab.swift in Sources */,
 				FF0F10BE1CF55A9000CC1F29 /* UIColor+hex.swift in Sources */,

@@ -157,4 +157,15 @@ class TTDeviceList: NSObject {
         return count
     }
     
+    func totalPairedCount() -> Int {
+        let prefs = NSUserDefaults.standardUserDefaults()
+        let pairedDevices = prefs.arrayForKey("TT:devices:paired") as! [String]?
+        
+        if pairedDevices == nil {
+            return 0
+        }
+
+        return pairedDevices!.count
+    }
+    
 }
