@@ -13,6 +13,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow? = UIWindow(frame: UIScreen.mainScreen().bounds)
     var modeMap: TTModeMap = TTModeMap()
+    let bluetoothMonitor = TTBluetoothMonitor()
     @IBOutlet var mainViewController: TTMainViewController!
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
@@ -21,6 +22,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let defaultPrefs = NSDictionary(contentsOfFile: defaultPrefsFile!)
         preferences.registerDefaults(defaultPrefs as! [String: AnyObject])
         preferences.synchronize()
+        
+        let centralManagerIdentifiers = launchOptions?[UIApplicationLaunchOptionsBluetoothCentralsKey]
+        print(" centralManagerIdentifiers: \(centralManagerIdentifiers)")
         
         mainViewController = TTMainViewController()
         modeMap.setupModes()
