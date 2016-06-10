@@ -184,6 +184,8 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
         if modeMap.openedAddActionChangeMenu {
             modeMap.openedAddActionChangeMenu = false
         }
+        
+        modeTabsView.setNeedsDisplay()
     }
     
     // MARK: Events

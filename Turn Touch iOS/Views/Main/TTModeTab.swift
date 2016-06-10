@@ -92,17 +92,16 @@ class TTModeTab: UIView {
                                          change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
         if keyPath == "selectedModeDirection" {
             self.setupMode()
-            self.setNeedsDisplay()
-        } else if keyPath == "activeModeDirection" {
+        }
+        if keyPath == "activeModeDirection" || keyPath == "selectedModeDirection" {
             if appDelegate().modeMap.selectedModeDirection == modeDirection {
                 diamondView.ignoreSelectedMode = false
                 diamondView.ignoreActiveMode = false
-//                self.setupMode()
-                diamondView.setNeedsDisplay()
             } else {
                 diamondView.ignoreSelectedMode = true
                 diamondView.ignoreActiveMode = true
             }
+            self.setNeedsDisplay()
         }
     }
     
@@ -243,6 +242,6 @@ class TTModeTab: UIView {
     }
     
     func switchMode() {
-        appDelegate().modeMap.switchMode(self.modeDirection)
+        appDelegate().modeMap.selectedModeDirection = self.modeDirection
     }
 }
