@@ -31,7 +31,7 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
     let DEVICE_V2_CHARACTERISTIC_NICKNAME_UUID         = "99c31526-dc4f-41b1-bb04-4e4deb81fadd"
     
     var manager: CBCentralManager!
-//    let buttonTimer = TTButtonTimer()
+    let buttonTimer = TTButtonTimer()
     var batteryLevelTimer: NSTimer!
     var manufacturer: NSString?
     let foundDevices = TTDeviceList()
@@ -313,7 +313,7 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
             device.state = TTDeviceState.DEVICE_STATE_CONNECTING
             device.needsReconnection = false
             
-            // buttonTimer.resetPairingState()
+             buttonTimer.resetPairingState()
             self.countDevices()
             
             let noPairedDevices = foundDevices.totalPairedCount() == 0
@@ -435,9 +435,12 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
             if characteristic.value != nil {
                 print(" ---> \(bluetoothState) Button press: \(characteristic.value?.hexadecimalString)")
                 if device.isPaired {
-                    // buttonTimer.readBluetoothData(characteristic.value)
+                    buttonTimer.readBluetoothData(characteristic.value!)
                 } else {
-                    // buttonTimer.readBluetoothDataDuringPairing(characteristic.value)
+                    buttonTimer.readBluetoothDataDuringPairing(characteristic.value!)
+                    if buttonTimer.isDevicePaired() {
+                        self.pairDeviceSuccess(peripheral)
+                    }
                 }
                 device.lastActionDate = NSDate()
             } else {
@@ -491,7 +494,19 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
     // MARK: Pairing
     
     func pairDeviceSuccess(peripheral: CBPeripheral) {
+        let preferences = NSUserDefaults.standardUserDefaults()
+        var pairedDevices = preferences.arrayForKey("TT:devices:paired") as! [String]?
+        if pairedDevices == nil {
+            pairedDevices = []
+        }
+        pairedDevices?.append(peripheral.identifier.UUIDString)
+        preferences.setObject(pairedDevices, forKey: "TT:devices:paired")
+        preferences.synchronize()
         
+        buttonTimer.resetPairingState()
+        self.countDevices()
+        appDelegate().modeMap.activeModeDirection = .NO_DIRECTION
+        // appDelegate().mainViewController.switchPanelModalPairing(.MODAL_PAIRING_SUCCESS)
     }
     
     func disconnectUnpairedDevices() {

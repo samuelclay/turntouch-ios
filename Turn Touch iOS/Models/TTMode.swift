@@ -30,7 +30,7 @@ func >!< (object1: AnyObject!, object2: AnyObject!) -> Bool {
 
 class TTMode : NSObject, TTModeProtocol {
     var modeDirection: TTModeDirection = .NO_DIRECTION
-    var action: TTAction = TTAction()
+    var action: TTAction!
     
     required override init() {
         super.init()
@@ -86,6 +86,54 @@ class TTMode : NSObject, TTModeProtocol {
     }
     
     // MARK: Map directions to actions
+    
+    func runDirection(direction: TTModeDirection) {
+        let actionName = self.actionNameInDirection(direction)!
+        self.runAction(actionName, direction: direction, funcAction: "run")
+    }
+    
+    func runAction(actionName: String, direction: TTModeDirection) {
+        self.runAction(actionName, direction: direction, funcAction: "run")
+    }
+    
+    func runDoubleDirection(direction: TTModeDirection) {
+        if !self.runDirection(direction, funcAction: "doubleRun") {
+            self.runDirection(direction)
+        }
+    }
+    
+    func runDirection(direction: TTModeDirection, funcAction: String) -> Bool {
+        let actionName = self.actionNameInDirection(direction)!
+        return self.runAction(actionName, direction: direction, funcAction: funcAction)
+    }
+    
+    func runAction(actionName: String, direction: TTModeDirection, funcAction: String) -> Bool {
+        var success = false
+        print(" ---> Running \(direction): \(funcAction)\(actionName)")
+        if self.action == nil || self.action.batchActionKey == nil {
+            self.action = TTAction(actionName: actionName)
+        }
+        
+        // runAction:direction
+        let titleSelector = NSSelectorFromString("\(funcAction)\(actionName):")
+        if self.respondsToSelector(titleSelector) {
+            self.performSelector(titleSelector, withObject: self)
+            success = true
+        } else {
+            // runAction
+            let titleSelector = NSSelectorFromString("\(funcAction)\(actionName):")
+            if self.respondsToSelector(titleSelector) {
+                self.performSelector(titleSelector, withObject: self)
+                success = true
+            }
+        }
+        
+        if self.action.batchActionKey == nil {
+            self.action = nil
+        }
+        
+        return success
+    }
     
     func titleInDirection(direction: TTModeDirection, buttonMoment: TTButtonMoment) -> String {
         let actionName = self.actionNameInDirection(direction)
@@ -161,6 +209,30 @@ class TTMode : NSObject, TTModeProtocol {
         
         return directionAction
     }
+    
+    func shouldIgnoreSingleBeforeDouble(direction: TTModeDirection) -> Bool {
+        let actionName = self.actionNameInDirection(direction)
+        let titleSelector = NSSelectorFromString("shouldIgnoreSingleBeforeDouble\(actionName)")
+        if !self.respondsToSelector(titleSelector) {
+            return false
+        }
+        
+        let ignore = self.performSelector(titleSelector, withObject: self).takeUnretainedValue() as! Bool
+        return ignore
+    }
+    
+    func shouldFireImmediateOnPress(direction: TTModeDirection) -> Bool {
+        let actionName = self.actionNameInDirection(direction)
+        let titleSelector = NSSelectorFromString("shouldFireImmediate\(actionName)")
+        if !self.respondsToSelector(titleSelector) {
+            return false
+        }
+        
+        let immediate = self.performSelector(titleSelector, withObject: self).takeUnretainedValue() as! Bool
+        return immediate
+    }
+
+    // MARK: Changing mode settings
     
     func changeDirection(direction: TTModeDirection, toAction actionClassName: String) {
         let prefs = NSUserDefaults.standardUserDefaults()

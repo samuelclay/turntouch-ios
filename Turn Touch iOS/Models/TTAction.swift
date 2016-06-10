@@ -10,4 +10,11 @@ import Foundation
 
 class TTAction: NSObject {
     
+    var actionName: String!
+    var batchActionKey: String!
+    
+    init(actionName: String) {
+        super.init()
+    }
+    
 }

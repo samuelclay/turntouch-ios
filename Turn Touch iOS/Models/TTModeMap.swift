@@ -34,6 +34,8 @@ class TTModeMap: NSObject {
     dynamic var availableAddModes: [String] = []
     dynamic var availableAddActions: [String] = []
     
+    var waitingForDoubleClick = false
+    
     override init() {
         self.availableModes = [
             "TTModePhone",
@@ -65,6 +67,11 @@ class TTModeMap: NSObject {
     }
     
     // MARK: Actions
+    
+    func reset() {
+        inspectingModeDirection = .NO_DIRECTION
+        hoverModeDirection = .NO_DIRECTION
+    }
 
     func setupModes() {
         let prefs = NSUserDefaults.standardUserDefaults()
@@ -96,9 +103,12 @@ class TTModeMap: NSObject {
         self.switchMode(self.selectedModeDirection)
     }
     
-    func reset() {
-        inspectingModeDirection = .NO_DIRECTION
-        hoverModeDirection = .NO_DIRECTION
+    func activateTimers() {
+//        for mode in [northMode, eastMode, westMode, southMode] {
+//            if mode.respondsToSelector(#selector("activateTimers")) {
+//                mode.activateTimers()
+//            }
+//        }
     }
     
     func switchMode(direction: TTModeDirection) {
@@ -115,6 +125,75 @@ class TTModeMap: NSObject {
         self.selectedModeDirection = direction
         //        }
     }
+    
+    func runActiveButton() {
+        let direction = activeModeDirection
+        activeModeDirection = .NO_DIRECTION
+        
+        if selectedMode.shouldIgnoreSingleBeforeDouble(direction) {
+            waitingForDoubleClick = true
+            let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(DOUBLE_CLICK_ACTION_DURATION * Double(NSEC_PER_SEC)))
+            dispatch_after(delayTime, dispatch_get_main_queue(), {
+                if self.waitingForDoubleClick {
+                    self.runDirection(direction)
+                }
+            })
+        } else {
+            self.runDirection(direction)
+        }
+        
+        activeModeDirection = .NO_DIRECTION
+    }
+    
+    func runDirection(direction: TTModeDirection) {
+        if !selectedMode.shouldFireImmediateOnPress(direction) {
+            selectedMode.action = TTAction(actionName: selectedMode.actionNameInDirection(direction)!)
+            selectedMode.runDirection(direction)
+        }
+        
+        // Batch actions
+//        let actions = self.selectedModeBatchActions(direction)
+//        for batchAction: TTAction in actions {
+//            batchAction.mode.runDirection(direction)
+//        }
+    }
+    
+    func runDoubleButton(direction: TTModeDirection) {
+        waitingForDoubleClick = false
+        activeModeDirection = .NO_DIRECTION
+        if selectedMode.shouldFireImmediateOnPress(direction) {
+            return
+        }
+        
+        selectedMode.runDoubleDirection(direction)
+        
+        // Batch actions
+//        let actions = self.selectedModeBatchActions(direction)
+//        for batchAction: TTAction in actions {
+//            batchAction.mode.runDoubleDirection(direction)
+//        }
+    }
+    
+    // MARK: Changing modes, actions, batch actions
+    
+    func changeDirection(direction: TTModeDirection, toMode modeClassName: String) {
+        let prefs = NSUserDefaults.standardUserDefaults()
+        let directionName = self.directionName(direction)
+        let prefKey = "TT:mode:\(directionName)"
+        
+        prefs.setObject(modeClassName, forKey: prefKey)
+        prefs.synchronize()
+        
+        self.setupModes()
+        self.switchMode(direction)
+    }
+    
+    func changeDirection(direction: TTModeDirection, toAction actionClassName: String) {
+        selectedMode.changeDirection(direction, toAction:actionClassName)
+    }
+    
+    // MARK: Direction helpers
+    
     
     func modeInDirection(direction: TTModeDirection) -> (TTMode) {
         switch direction {
@@ -145,26 +224,6 @@ class TTModeMap: NSObject {
             return ""
         }
     }
-    
-    // MARK: Changing modes, actions, batch actions
-    
-    func changeDirection(direction: TTModeDirection, toMode modeClassName: String) {
-        let prefs = NSUserDefaults.standardUserDefaults()
-        let directionName = self.directionName(direction)
-        let prefKey = "TT:mode:\(directionName)"
-        
-        prefs.setObject(modeClassName, forKey: prefKey)
-        prefs.synchronize()
-        
-        self.setupModes()
-        self.switchMode(direction)
-    }
-    
-    func changeDirection(direction: TTModeDirection, toAction actionClassName: String) {
-        selectedMode.changeDirection(direction, toAction:actionClassName)
-    }
-    
-    // MARK: Direction helpers
     
     func toggleInspectingModeDirection(direction: TTModeDirection) {
         if self.inspectingModeDirection == direction {
