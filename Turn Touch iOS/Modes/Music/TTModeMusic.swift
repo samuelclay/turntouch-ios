@@ -114,6 +114,8 @@ class TTModeMusic: TTMode {
         if !observing {
             try! AVAudioSession.sharedInstance().setActive(true)
             AVAudioSession.sharedInstance().addObserver(self, forKeyPath: "outputVolume", options: NSKeyValueObservingOptions.New, context: nil)
+            MPMusicPlayerController.systemMusicPlayer().addObserver(self, forKeyPath: "nowPlayingItem", options: .New, context: nil)
+            MPMusicPlayerController.systemMusicPlayer().beginGeneratingPlaybackNotifications()
             observing = true
         }
     }
@@ -121,6 +123,7 @@ class TTModeMusic: TTMode {
     override func deactivate() {
         if observing {
             AVAudioSession.sharedInstance().removeObserver(self, forKeyPath: "outputVolume")
+            MPMusicPlayerController.systemMusicPlayer().removeObserver(self, forKeyPath: "nowPlayingItem")
             observing = false
         }
     }
@@ -128,6 +131,8 @@ class TTModeMusic: TTMode {
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
         if keyPath == "outputVolume" {
             print(" Volume: \(AVAudioSession.sharedInstance().outputVolume)")
+        } else if keyPath == "nowPlayingInfo" {
+            print(" Now playing info: \(MPMusicPlayerController.systemMusicPlayer().nowPlayingItem)")
         }
     }
     
@@ -174,5 +179,19 @@ class TTModeMusic: TTMode {
     
     func runTTModeMusicNextTrack() {
         MPMusicPlayerController.systemMusicPlayer().skipToNextItem()
+    }
+    
+    func doubleRunTTModeMusicNextTrack() {
+        let nowPlaying = MPMusicPlayerController.systemMusicPlayer().nowPlayingItem
+        let originalAlbum = nowPlaying?.albumTitle
+        var currentAlbum: String!
+        
+        for _ in 0..<30 {
+            MPMusicPlayerController.systemMusicPlayer().skipToNextItem()
+            currentAlbum = MPMusicPlayerController.systemMusicPlayer().nowPlayingItem?.albumTitle
+            if currentAlbum != originalAlbum {
+                break
+            }
+        }
     }
 }

@@ -31,4 +31,9 @@ class TTPairingViewController: UIViewController {
     func close(sender: UIBarButtonItem!) {
         appDelegate().mainViewController.closePairingModal()
     }
+    
+    override func viewDidAppear(animated: Bool) {
+        print(" Pairing view appeared")
+        appDelegate().bluetoothMonitor.scanUnknown()
+    }
 }

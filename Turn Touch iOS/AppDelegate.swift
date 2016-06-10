@@ -42,14 +42,38 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidEnterBackground(application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+        print("applicationDidEnterBackground")
+        
+        var bgTask: UIBackgroundTaskIdentifier = 0
+        bgTask = UIApplication.sharedApplication().beginBackgroundTaskWithExpirationHandler {
+            print(" Background time: \(UIApplication.sharedApplication().backgroundTimeRemaining)")
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
+                self.bluetoothMonitor.scanKnown()
+            }
+            UIApplication.sharedApplication().endBackgroundTask(bgTask)
+        }
+
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
+            for device: TTDevice in self.bluetoothMonitor.foundDevices.devices {
+                //                self.bluetoothMonitor.manager.cancelPeripheralConnection(device.peripheral)
+                device.peripheral.setNotifyValue(true, forCharacteristic: device.buttonStatusChar)
+                device.peripheral.readValueForCharacteristic(device.buttonStatusChar)
+            }
+            self.bluetoothMonitor.scanKnown()
+            print(" Background time remaining: \(UIApplication.sharedApplication().backgroundTimeRemaining)")
+            UIApplication.sharedApplication().endBackgroundTask(bgTask)
+        }
     }
 
     func applicationWillEnterForeground(application: UIApplication) {
         // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+        print("applicationWillEnterForeground")
+
     }
 
     func applicationDidBecomeActive(application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        print("applicationDidBecomeActive")
     }
 
     func applicationWillTerminate(application: UIApplication) {

@@ -21,6 +21,7 @@ class TTDevice: NSObject {
     var nickname: String!
     var uuid: NSString!
     var peripheral: CBPeripheral!
+    var buttonStatusChar: CBCharacteristic!
     var batteryPct: NSNumber!
     var lastActionDate: NSDate!
     var isPaired = false
