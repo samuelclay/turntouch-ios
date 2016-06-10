@@ -41,6 +41,12 @@ class TTMode : NSObject, TTModeProtocol {
         
     }
     
+    func activate(direction: TTModeDirection) {
+        modeDirection = direction
+        
+        self.activate()
+    }
+    
     func activate() {
         
     }
@@ -121,7 +127,7 @@ class TTMode : NSObject, TTModeProtocol {
             success = true
         } else {
             // runAction
-            let titleSelector = NSSelectorFromString("\(funcAction)\(actionName):")
+            let titleSelector = NSSelectorFromString("\(funcAction)\(actionName)")
             if self.respondsToSelector(titleSelector) {
                 self.performSelector(titleSelector, withObject: self)
                 success = true

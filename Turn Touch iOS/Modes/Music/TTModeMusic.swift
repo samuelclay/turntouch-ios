@@ -7,9 +7,14 @@
 //
 
 import UIKit
+import MediaPlayer
 
 class TTModeMusic: TTMode {
-
+    
+    let ITUNES_VOLUME_CHANGE: Float = 0.06
+    var observing = false
+    var lastVolume: Float!
+    
     override func title() -> String {
         return "Music"
     }
@@ -28,7 +33,11 @@ class TTModeMusic: TTMode {
         return ["TTModeMusicVolumeUp",
                 "TTModeMusicVolumeDown",
                 "TTModeMusicVolumeJump",
-                "TTModeMusicVolumeMute"]
+                "TTModeMusicVolumeMute",
+        "TTModeMusicPlayPause",
+        "TTModeMusicPlay",
+        "TTModeMusicPause",
+        "TTModeMusicNextTrack"]
     }
     
     func titleTTModeMusicVolumeUp() -> String {
@@ -45,6 +54,22 @@ class TTModeMusic: TTMode {
     
     func titleTTModeMusicVolumeJump() -> String {
         return "Jump to volume"
+    }
+    
+    func titleTTModeMusicPlayPause() -> String {
+        return "Play/pause"
+    }
+    
+    func titleTTModeMusicPlay() -> String {
+        return "Play music"
+    }
+    
+    func titleTTModeMusicPause() -> String {
+        return "Pause music"
+    }
+    
+    func titleTTModeMusicNextTrack() -> String {
+        return "Next track"
     }
     
     // MARK: Action images
@@ -72,14 +97,82 @@ class TTModeMusic: TTMode {
     }
     
     override func defaultEast() -> String {
-        return "TTModeMusicVolumeJump"
+        return "TTModeMusicNextTrack"
     }
     
     override func defaultWest() -> String {
-        return "TTModeMusicVolumeMute"
+        return "TTModeMusicPlayPause"
     }
     
     override func defaultSouth() -> String {
         return "TTModeMusicVolumeDown"
+    }
+    
+    // MARK: Initialize
+    
+    override func activate() {
+        if !observing {
+            try! AVAudioSession.sharedInstance().setActive(true)
+            AVAudioSession.sharedInstance().addObserver(self, forKeyPath: "outputVolume", options: NSKeyValueObservingOptions.New, context: nil)
+            observing = true
+        }
+    }
+    
+    override func deactivate() {
+        if observing {
+            AVAudioSession.sharedInstance().removeObserver(self, forKeyPath: "outputVolume")
+            observing = false
+        }
+    }
+    
+    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+        if keyPath == "outputVolume" {
+            print(" Volume: \(AVAudioSession.sharedInstance().outputVolume)")
+        }
+    }
+    
+    // MARK: Actions
+    
+    var volumeSlider: UISlider {
+        get {
+            return (MPVolumeView().subviews.filter { NSStringFromClass($0.classForCoder) == "MPVolumeSlider" }.first as! UISlider)
+        }
+    }
+    
+    func runTTModeMusicVolumeUp() {
+        if lastVolume == nil {
+            lastVolume = AVAudioSession.sharedInstance().outputVolume
+        }
+        lastVolume = min(1, lastVolume + ITUNES_VOLUME_CHANGE)
+        volumeSlider.setValue(lastVolume, animated: false)
+        
+    }
+    
+    func runTTModeMusicVolumeDown() {
+        if lastVolume == nil {
+            lastVolume = AVAudioSession.sharedInstance().outputVolume
+        }
+        lastVolume = max(0, lastVolume - ITUNES_VOLUME_CHANGE)
+        volumeSlider.setValue(lastVolume, animated: false)
+    }
+    
+    func runTTModeMusicPlayPause() {
+        if MPMusicPlayerController.systemMusicPlayer().playbackState == .Playing {
+            MPMusicPlayerController.systemMusicPlayer().pause()
+        } else {
+            MPMusicPlayerController.systemMusicPlayer().play()
+        }
+    }
+    
+    func runTTModeMusicPlay() {
+        MPMusicPlayerController.systemMusicPlayer().play()
+    }
+    
+    func runTTModeMusicPause() {
+        MPMusicPlayerController.systemMusicPlayer().pause()
+    }
+    
+    func runTTModeMusicNextTrack() {
+        MPMusicPlayerController.systemMusicPlayer().skipToNextItem()
     }
 }

@@ -113,14 +113,19 @@ class TTModeMap: NSObject {
     
     func switchMode(direction: TTModeDirection) {
         // batchActions.deactivate()
-        
         self.selectedMode.deactivate()
         
         if direction != .NO_DIRECTION {
             self.selectedMode = self.modeInDirection(direction)
+        } else {
+//            let className = "Turn_Touch_iOS.\(modeName)"
+//            let modeClass = NSClassFromString(className) as! TTMode.Type
+
         }
         
         self.availableActions = selectedMode.actions()
+        selectedMode.activate(direction)
+        self.reset()
         //        if self.selectedModeDirection != direction {
 //        self.selectedModeDirection = direction
         //        }
