@@ -55,17 +55,21 @@ class TTDiamondView: UIView {
     func registerAsObserver() {
         appDelegate().modeMap.addObserver(self, forKeyPath: "selectedModeDirection", options: [], context: nil)
         appDelegate().modeMap.addObserver(self, forKeyPath: "inspectingModeDirection", options: [], context: nil)
+        appDelegate().modeMap.addObserver(self, forKeyPath: "activeModeDirection", options: [], context: nil)
     }
     
     deinit {
         appDelegate().modeMap.removeObserver(self, forKeyPath: "selectedModeDirection")
         appDelegate().modeMap.removeObserver(self, forKeyPath: "inspectingModeDirection")
+        appDelegate().modeMap.removeObserver(self, forKeyPath: "activeModeDirection")
     }
     
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
         if keyPath == "selectedModeDirection" {
             self.setNeedsDisplay()
         } else if keyPath == "inspectingModeDirection" {
+            self.setNeedsDisplay()
+        } else if keyPath == "activeModeDirection" {
             self.setNeedsDisplay()
         }
     }
@@ -155,14 +159,14 @@ class TTDiamondView: UIView {
             
             let isHoveringDirection: Bool = hoverModeDirection == direction
             var isInspectingDirection: Bool = inspectingModeDirection == direction
-            let isSelectedDirection: Bool = selectedModeDirection == direction
+            var isSelectedDirection: Bool = selectedModeDirection == direction
             let isActiveDirection: Bool = activeModeDirection == direction
             if diamondType != .DIAMOND_TYPE_INTERACTIVE {
                 isInspectingDirection = false
             }
-//            if diamondType == .DIAMOND_TYPE_PAIRING {
-//                isSelectedDirection = appD.bluetoothMonitor.buttonTimer.isDirectionPaired(direction)
-//            }
+            if diamondType == .DIAMOND_TYPE_PAIRING {
+                isSelectedDirection = appD.bluetoothMonitor.buttonTimer.isDirectionPaired(direction)
+            }
             // Fill in the color as a stroke or fill
             var modeColor: UIColor?
             if diamondType == .DIAMOND_TYPE_HUD {

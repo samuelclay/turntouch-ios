@@ -55,8 +55,8 @@ class TTButtonTimer : NSObject {
     }
     
     func heldStateFromData(data: NSData) -> Bool {
-        let bytes = self.bytesFromData(data.subdataWithRange(NSRange(location: 0, length: 1)))
-        return bytes[0] == 0x0
+        let bytes = self.bytesFromData(data.subdataWithRange(NSRange(location: 1, length: 1)))
+        return bytes[0] == 0xFF
     }
     
     func readBluetoothData(data: NSData) {
@@ -71,7 +71,7 @@ class TTButtonTimer : NSObject {
         latestButtonState.west = (state & (1 << 2)) != 0x0
         latestButtonState.south = (state & (1 << 3)) != 0x0
         
-        print(" ---> Bluetooth data: \(data) (\(doubleState)/\(state)/\(heldState)) was:\(previousButtonState) is:\(latestButtonState)")
+//        print(" ---> Bluetooth data: \(data) (\(doubleState)/\(state)/\(heldState)) was:\(previousButtonState) is:\(latestButtonState)")
         
         var i = latestButtonState.count
         while i > 0 {
@@ -152,7 +152,6 @@ class TTButtonTimer : NSObject {
             }
         } else if anyButtonLifted {
             // Press up button
-            print(" ---> Lift button \(previousButtonState.inMultitouch() ? "(multi-touch)" : ""): \(buttonLifted)")
             previousButtonState = latestButtonState
             var buttonPressedDirection: TTModeDirection!
             switch buttonLifted {
@@ -167,6 +166,8 @@ class TTButtonTimer : NSObject {
             default:
                 buttonPressedDirection = .NO_DIRECTION
             }
+            
+            print(" ---> Lift button\(previousButtonState.inMultitouch() ? " (multi-touch)" : ""): \(buttonPressedDirection)")
             
             if menuState == .Active {
                 if buttonPressedDirection == .NORTH {

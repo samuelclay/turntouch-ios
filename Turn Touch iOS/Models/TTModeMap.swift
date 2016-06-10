@@ -46,24 +46,24 @@ class TTModeMap: NSObject {
         
         super.init()
         
-//        self.addObserver(self, forKeyPath: "selectedModeDirection", options: [], context: nil)
+        self.addObserver(self, forKeyPath: "selectedModeDirection", options: [], context: nil)
     }
     
     deinit {
-//        self.removeObserver(self, forKeyPath: "selectedModeDirection")
+        self.removeObserver(self, forKeyPath: "selectedModeDirection")
     }
     
     // MARK: KVO
     
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?,
                                          change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
-//        if keyPath == "selectedModeDirection" {
-//            let prefs = NSUserDefaults.standardUserDefaults()
-//            prefs.setInteger(self.selectedModeDirection.rawValue, forKey: "TT:selectedModeDirection")
-//            prefs.synchronize()
-//            
-//            self.switchMode()
-//        }
+        if keyPath == "selectedModeDirection" {
+            let prefs = NSUserDefaults.standardUserDefaults()
+            prefs.setInteger(self.selectedModeDirection.rawValue, forKey: "TT:selectedModeDirection")
+            prefs.synchronize()
+            
+            self.switchMode(self.selectedModeDirection)
+        }
     }
     
     // MARK: Actions
@@ -122,7 +122,7 @@ class TTModeMap: NSObject {
         
         self.availableActions = selectedMode.actions()
         //        if self.selectedModeDirection != direction {
-        self.selectedModeDirection = direction
+//        self.selectedModeDirection = direction
         //        }
     }
     

@@ -85,6 +85,7 @@ class TTModeTab: UIView {
     
     func registerAsObserver() {
         appDelegate().modeMap.addObserver(self, forKeyPath: "selectedModeDirection", options: .Initial, context: nil)
+        appDelegate().modeMap.addObserver(self, forKeyPath: "activeModeDirection", options: .Initial, context: nil)
     }
     
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?,
@@ -92,9 +93,23 @@ class TTModeTab: UIView {
         if keyPath == "selectedModeDirection" {
             self.setupMode()
             self.setNeedsDisplay()
+        } else if keyPath == "activeModeDirection" {
+            if appDelegate().modeMap.selectedModeDirection == modeDirection {
+                diamondView.ignoreSelectedMode = false
+                diamondView.ignoreActiveMode = false
+//                self.setupMode()
+                diamondView.setNeedsDisplay()
+            } else {
+                diamondView.ignoreSelectedMode = true
+                diamondView.ignoreActiveMode = true
+            }
         }
     }
     
+    deinit {
+        appDelegate().modeMap.removeObserver(self, forKeyPath: "selectedModeDirection")
+        appDelegate().modeMap.removeObserver(self, forKeyPath: "activeModeDirection")
+    }
     // MARK: Drawing
 
     override func drawRect(rect: CGRect) {
