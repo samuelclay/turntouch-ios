@@ -224,51 +224,61 @@ class TTButtonTimer : NSObject {
     }
     
     func activateMode(direction: TTModeDirection) {
-        appDelegate().modeMap.activeModeDirection = .NO_DIRECTION
-        appDelegate().modeMap.selectedModeDirection = direction
-        
-//        appDelegate().hudController.holdToastActiveMode(true)
+        dispatch_async(dispatch_get_main_queue(), {
+            appDelegate().modeMap.activeModeDirection = .NO_DIRECTION
+            appDelegate().modeMap.selectedModeDirection = direction
+            
+    //        appDelegate().hudController.holdToastActiveMode(true)
+        })
     }
     
     func activateButton(direction: TTModeDirection) {
-        appDelegate().modeMap.activeModeDirection = direction
-        
-//        let actionnNme = appDelegate().modeMap.selectedMode.actionNameInDirection(direction)
-//        appDelegate().hudController.holdToastActiveAction(actionName, direction: direction)
-        
-        if direction != .NO_DIRECTION {
-            // Mac has a timer here that shows the HUD. May not be necessary on iOS
-        }
+        dispatch_async(dispatch_get_main_queue(), {
+            appDelegate().modeMap.activeModeDirection = direction
+            
+    //        let actionnNme = appDelegate().modeMap.selectedMode.actionNameInDirection(direction)
+    //        appDelegate().hudController.holdToastActiveAction(actionName, direction: direction)
+            
+            if direction != .NO_DIRECTION {
+                // Mac has a timer here that shows the HUD. May not be necessary on iOS
+            }
+        })
     }
     
     func fireMenuButton(direction: TTModeDirection) {
+        dispatch_async(dispatch_get_main_queue(), {
 //        appDelegate().hudController.modeHUDController.runDirection(direction)
+        })
     }
     
     func fireButton(direction: TTModeDirection) {
-        appDelegate().modeMap.activeModeDirection = direction
-        if !skipButtonActions {
-            appDelegate().modeMap.runActiveButton()
-        }
-        appDelegate().modeMap.activeModeDirection = .NO_DIRECTION
-        
-//        let actionnNme = appDelegate().modeMap.selectedMode.actionNameInDirection(direction)
-//        appDelegate().hudController.toastActiveAction(actionName, direction: direction)
+        dispatch_async(dispatch_get_main_queue(), {
+            appDelegate().modeMap.activeModeDirection = direction
+            if !self.skipButtonActions {
+                appDelegate().modeMap.runActiveButton()
+            }
+            appDelegate().modeMap.activeModeDirection = .NO_DIRECTION
+            
+    //        let actionnNme = appDelegate().modeMap.selectedMode.actionNameInDirection(direction)
+    //        appDelegate().hudController.toastActiveAction(actionName, direction: direction)
+        })
     }
     
     func fireDoubleButton(direction: TTModeDirection) {
-        if direction == .NO_DIRECTION {
-            return
-        }
-        
-        if !skipButtonActions {
-            appDelegate().modeMap.runDoubleButton(direction)
-        }
-        
-        appDelegate().modeMap.activeModeDirection = .NO_DIRECTION
-        
-//        let actionnNme = appDelegate().modeMap.selectedMode.actionNameInDirection(direction)
-//        appDelegate().hudController.toastActiveAction(actionName, direction: direction)
+        dispatch_async(dispatch_get_main_queue(), {
+            if direction == .NO_DIRECTION {
+                return
+            }
+            
+            if !self.skipButtonActions {
+                appDelegate().modeMap.runDoubleButton(direction)
+            }
+            
+            appDelegate().modeMap.activeModeDirection = .NO_DIRECTION
+            
+    //        let actionnNme = appDelegate().modeMap.selectedMode.actionNameInDirection(direction)
+    //        appDelegate().hudController.toastActiveAction(actionName, direction: direction)
+        })
     }
     
     func closeMenu() {

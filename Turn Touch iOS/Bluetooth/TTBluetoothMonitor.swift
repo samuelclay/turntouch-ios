@@ -46,7 +46,7 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
     override init() {
         super.init()
         
-        manager = CBCentralManager(delegate: self, queue: nil,
+        manager = CBCentralManager(delegate: self, queue: dispatch_get_global_queue(QOS_CLASS_BACKGROUND, 0),
                                    options: [CBCentralManagerOptionRestoreIdentifierKey: "centralManagerIdentifier",
                                     CBConnectPeripheralOptionNotifyOnDisconnectionKey: NSNumber(bool: true),
                                     CBConnectPeripheralOptionNotifyOnConnectionKey: NSNumber(bool: true),
@@ -440,7 +440,7 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
             self.countDevices()
             
             bluetoothState = .BT_STATE_IDLE
-//            self.scanKnown()
+            self.scanKnown()
         }
     }
     

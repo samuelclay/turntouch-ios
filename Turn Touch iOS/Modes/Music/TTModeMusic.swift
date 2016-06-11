@@ -112,7 +112,11 @@ class TTModeMusic: TTMode {
     
     override func activate() {
         if !observing {
-            try! AVAudioSession.sharedInstance().setActive(true)
+            do {
+                try AVAudioSession.sharedInstance().setActive(true)
+            } catch {
+                print(error)
+            }
             AVAudioSession.sharedInstance().addObserver(self, forKeyPath: "outputVolume", options: NSKeyValueObservingOptions.New, context: nil)
             MPMusicPlayerController.systemMusicPlayer().addObserver(self, forKeyPath: "nowPlayingItem", options: .New, context: nil)
             MPMusicPlayerController.systemMusicPlayer().beginGeneratingPlaybackNotifications()
