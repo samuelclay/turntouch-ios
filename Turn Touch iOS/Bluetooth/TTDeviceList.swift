@@ -28,6 +28,9 @@ class TTDeviceList: NSObject {
     
     func deviceForPeripheral(peripheral: CBPeripheral) -> TTDevice? {
         for device: TTDevice in devices {
+            if device.peripheral == nil {
+                continue
+            }
             if device.peripheral == peripheral {
                 return device
             }

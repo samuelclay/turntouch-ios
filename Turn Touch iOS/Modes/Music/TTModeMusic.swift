@@ -117,8 +117,9 @@ class TTModeMusic: TTMode {
             } catch {
                 print(error)
             }
-            AVAudioSession.sharedInstance().addObserver(self, forKeyPath: "outputVolume", options: NSKeyValueObservingOptions.New, context: nil)
+            AVAudioSession.sharedInstance().addObserver(self, forKeyPath: "outputVolume", options: .New, context: nil)
             MPMusicPlayerController.systemMusicPlayer().addObserver(self, forKeyPath: "nowPlayingItem", options: .New, context: nil)
+            MPMusicPlayerController.applicationMusicPlayer().addObserver(self, forKeyPath: "nowPlayingItem", options: .New, context: nil)
             MPMusicPlayerController.systemMusicPlayer().beginGeneratingPlaybackNotifications()
             observing = true
         }
@@ -128,13 +129,17 @@ class TTModeMusic: TTMode {
         if observing {
             AVAudioSession.sharedInstance().removeObserver(self, forKeyPath: "outputVolume")
             MPMusicPlayerController.systemMusicPlayer().removeObserver(self, forKeyPath: "nowPlayingItem")
+            MPMusicPlayerController.applicationMusicPlayer().removeObserver(self, forKeyPath: "nowPlayingItem")
             observing = false
         }
     }
     
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
         if keyPath == "outputVolume" {
-            print(" Volume: \(AVAudioSession.sharedInstance().outputVolume)")
+            print(" Volume: \(AVAudioSession.sharedInstance().outputVolume) \(change!["new"]) \(object)")
+            if change!["new"] as! Float != lastVolume {
+                lastVolume = change!["new"] as! Float
+            }
         } else if keyPath == "nowPlayingInfo" {
             print(" Now playing info: \(MPMusicPlayerController.systemMusicPlayer().nowPlayingItem)")
         }
@@ -169,11 +174,13 @@ class TTModeMusic: TTMode {
         if MPMusicPlayerController.systemMusicPlayer().playbackState == .Playing {
             MPMusicPlayerController.systemMusicPlayer().pause()
         } else {
+            MPMusicPlayerController.systemMusicPlayer().prepareToPlay()
             MPMusicPlayerController.systemMusicPlayer().play()
         }
     }
     
     func runTTModeMusicPlay() {
+        MPMusicPlayerController.systemMusicPlayer().prepareToPlay()
         MPMusicPlayerController.systemMusicPlayer().play()
     }
     

@@ -399,6 +399,10 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
     
     func peripheral(peripheral: CBPeripheral, didDiscoverCharacteristicsForService service: CBService, error: NSError?) {
         bluetoothState = .BT_STATE_CHAR_NOTIFICATION
+
+        if service.characteristics == nil {
+            return
+        }
         
         if service.UUID.isEqual(CBUUID(string: DEVICE_V2_SERVICE_BUTTON_UUID)) {
             for characteristic: CBCharacteristic in service.characteristics! {
