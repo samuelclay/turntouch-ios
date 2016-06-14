@@ -166,6 +166,14 @@
 		FFF270C51CEE97AF00E46575 /* TTMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF270C31CEE97AF00E46575 /* TTMainViewController.swift */; };
 		FFF46BC51D0E58C000158751 /* TTDeviceTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF46BC41D0E58C000158751 /* TTDeviceTitleView.swift */; };
 		FFF46BC71D0E5C8400158751 /* TTDeviceTitlesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF46BC61D0E5C8400158751 /* TTDeviceTitlesView.swift */; };
+		FFF46BDB1D10941500158751 /* DDAbstractDatabaseLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = FFF46BCC1D10941500158751 /* DDAbstractDatabaseLogger.m */; };
+		FFF46BDC1D10941500158751 /* DDASLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = FFF46BCE1D10941500158751 /* DDASLLogger.m */; };
+		FFF46BDD1D10941500158751 /* DDFileLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = FFF46BD01D10941500158751 /* DDFileLogger.m */; };
+		FFF46BDE1D10941500158751 /* DDLog.m in Sources */ = {isa = PBXBuildFile; fileRef = FFF46BD21D10941500158751 /* DDLog.m */; };
+		FFF46BDF1D10941500158751 /* DDTTYLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = FFF46BD41D10941500158751 /* DDTTYLogger.m */; };
+		FFF46BE01D10941500158751 /* ContextFilterLogFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = FFF46BD71D10941500158751 /* ContextFilterLogFormatter.m */; };
+		FFF46BE11D10941500158751 /* DispatchQueueLogFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = FFF46BD91D10941500158751 /* DispatchQueueLogFormatter.m */; };
+		FFF46BE71D1096DC00158751 /* HueSDK_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFF46BE61D1096DC00158751 /* HueSDK_iOS.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -352,6 +360,22 @@
 		FFF270C31CEE97AF00E46575 /* TTMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTMainViewController.swift; path = Views/Main/TTMainViewController.swift; sourceTree = "<group>"; };
 		FFF46BC41D0E58C000158751 /* TTDeviceTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTDeviceTitleView.swift; path = Views/Main/TTDeviceTitleView.swift; sourceTree = "<group>"; };
 		FFF46BC61D0E5C8400158751 /* TTDeviceTitlesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTDeviceTitlesView.swift; path = Views/Main/TTDeviceTitlesView.swift; sourceTree = "<group>"; };
+		FFF46BCB1D10941500158751 /* DDAbstractDatabaseLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDAbstractDatabaseLogger.h; sourceTree = "<group>"; };
+		FFF46BCC1D10941500158751 /* DDAbstractDatabaseLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDAbstractDatabaseLogger.m; sourceTree = "<group>"; };
+		FFF46BCD1D10941500158751 /* DDASLLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDASLLogger.h; sourceTree = "<group>"; };
+		FFF46BCE1D10941500158751 /* DDASLLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDASLLogger.m; sourceTree = "<group>"; };
+		FFF46BCF1D10941500158751 /* DDFileLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDFileLogger.h; sourceTree = "<group>"; };
+		FFF46BD01D10941500158751 /* DDFileLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDFileLogger.m; sourceTree = "<group>"; };
+		FFF46BD11D10941500158751 /* DDLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDLog.h; sourceTree = "<group>"; };
+		FFF46BD21D10941500158751 /* DDLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDLog.m; sourceTree = "<group>"; };
+		FFF46BD31D10941500158751 /* DDTTYLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDTTYLogger.h; sourceTree = "<group>"; };
+		FFF46BD41D10941500158751 /* DDTTYLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDTTYLogger.m; sourceTree = "<group>"; };
+		FFF46BD61D10941500158751 /* ContextFilterLogFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContextFilterLogFormatter.h; sourceTree = "<group>"; };
+		FFF46BD71D10941500158751 /* ContextFilterLogFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContextFilterLogFormatter.m; sourceTree = "<group>"; };
+		FFF46BD81D10941500158751 /* DispatchQueueLogFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DispatchQueueLogFormatter.h; sourceTree = "<group>"; };
+		FFF46BD91D10941500158751 /* DispatchQueueLogFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DispatchQueueLogFormatter.m; sourceTree = "<group>"; };
+		FFF46BE51D10956600158751 /* Turn_Touch_iOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Turn_Touch_iOS-Bridging-Header.h"; sourceTree = "<group>"; };
+		FFF46BE61D1096DC00158751 /* HueSDK_iOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = HueSDK_iOS.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -359,6 +383,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FFF46BE71D1096DC00158751 /* HueSDK_iOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -729,6 +754,7 @@
 			children = (
 				FFF270921CEE88E500E46575 /* Turn Touch iOS */,
 				FFB41B7D1CF52E5700CD5F09 /* Supporting Files */,
+				FFF46BC81D10941500158751 /* Vendor */,
 				FFF270A91CEE88E500E46575 /* Turn Touch iOSTests */,
 				FFF270B41CEE88E500E46575 /* Turn Touch iOSUITests */,
 				FFF270911CEE88E500E46575 /* Products */,
@@ -775,6 +801,46 @@
 				FFF270B71CEE88E500E46575 /* Info.plist */,
 			);
 			path = "Turn Touch iOSUITests";
+			sourceTree = "<group>";
+		};
+		FFF46BC81D10941500158751 /* Vendor */ = {
+			isa = PBXGroup;
+			children = (
+				FFF46BE61D1096DC00158751 /* HueSDK_iOS.framework */,
+				FFF46BCA1D10941500158751 /* Lumberjack */,
+				FFF46BE51D10956600158751 /* Turn_Touch_iOS-Bridging-Header.h */,
+			);
+			name = Vendor;
+			path = "Turn Touch iOS/Vendor";
+			sourceTree = "<group>";
+		};
+		FFF46BCA1D10941500158751 /* Lumberjack */ = {
+			isa = PBXGroup;
+			children = (
+				FFF46BCB1D10941500158751 /* DDAbstractDatabaseLogger.h */,
+				FFF46BCC1D10941500158751 /* DDAbstractDatabaseLogger.m */,
+				FFF46BCD1D10941500158751 /* DDASLLogger.h */,
+				FFF46BCE1D10941500158751 /* DDASLLogger.m */,
+				FFF46BCF1D10941500158751 /* DDFileLogger.h */,
+				FFF46BD01D10941500158751 /* DDFileLogger.m */,
+				FFF46BD11D10941500158751 /* DDLog.h */,
+				FFF46BD21D10941500158751 /* DDLog.m */,
+				FFF46BD31D10941500158751 /* DDTTYLogger.h */,
+				FFF46BD41D10941500158751 /* DDTTYLogger.m */,
+				FFF46BD51D10941500158751 /* Extensions */,
+			);
+			path = Lumberjack;
+			sourceTree = "<group>";
+		};
+		FFF46BD51D10941500158751 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				FFF46BD61D10941500158751 /* ContextFilterLogFormatter.h */,
+				FFF46BD71D10941500158751 /* ContextFilterLogFormatter.m */,
+				FFF46BD81D10941500158751 /* DispatchQueueLogFormatter.h */,
+				FFF46BD91D10941500158751 /* DispatchQueueLogFormatter.m */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1027,9 +1093,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				FF0F10E91CFFAD6100CC1F29 /* TTModeMenuCell.swift in Sources */,
+				FFF46BDD1D10941500158751 /* DDFileLogger.m in Sources */,
 				FF0F10E51CFFAD1B00CC1F29 /* TTModeMenuBordersView.swift in Sources */,
 				FF0F10C71CF63F1600CC1F29 /* TTModeMusic.swift in Sources */,
 				FF4487661D08CE7900ED8099 /* TTPairingViewController.swift in Sources */,
+				FFF46BDC1D10941500158751 /* DDASLLogger.m in Sources */,
 				FF0F10D71CF6697A00CC1F29 /* TTDiamondView.swift in Sources */,
 				FF4487781D09367000ED8099 /* TTButtonState.swift in Sources */,
 				FF0F10D01CF63F6100CC1F29 /* TTModeAlarmClock.swift in Sources */,
@@ -1038,18 +1106,23 @@
 				FFB41B7B1CEEA9E300CD5F09 /* TTModeDirection.swift in Sources */,
 				FFF270941CEE88E500E46575 /* AppDelegate.swift in Sources */,
 				FF44876B1D08E1D600ED8099 /* TTPairingSpinner.swift in Sources */,
+				FFF46BDB1D10941500158751 /* DDAbstractDatabaseLogger.m in Sources */,
 				FFC9FE991D02520300038817 /* NSObject+Class.swift in Sources */,
 				FFB41B821CF5341700CD5F09 /* TTMode.swift in Sources */,
 				FF0F10CD1CF63F4D00CC1F29 /* TTModeHue.swift in Sources */,
 				FFF46BC71D0E5C8400158751 /* TTDeviceTitlesView.swift in Sources */,
 				FF4487761D09365200ED8099 /* TTButtonTimer.swift in Sources */,
+				FFF46BDE1D10941500158751 /* DDLog.m in Sources */,
+				FFF46BDF1D10941500158751 /* DDTTYLogger.m in Sources */,
 				FF4487621D08986200ED8099 /* TTTitleMenuPopover.swift in Sources */,
 				FF4487701D08EF6400ED8099 /* TTDeviceList.swift in Sources */,
 				FFF46BC51D0E58C000158751 /* TTDeviceTitleView.swift in Sources */,
 				FFC9FE951D021A0400038817 /* TTActionDiamondView.swift in Sources */,
 				FF44875F1D078FAC00ED8099 /* TTActionTitleView.swift in Sources */,
+				FFF46BE11D10941500158751 /* DispatchQueueLogFormatter.m in Sources */,
 				FF0F10E31CFFAC5300CC1F29 /* TTModeMenuContainer.swift in Sources */,
 				FFB41B841CF5342100CD5F09 /* TTModeMap.swift in Sources */,
+				FFF46BE01D10941500158751 /* ContextFilterLogFormatter.m in Sources */,
 				FF0F10C21CF60C3D00CC1F29 /* TTTitleBarView.swift in Sources */,
 				FF0F10CA1CF63F3B00CC1F29 /* TTModePhone.swift in Sources */,
 				FF4487741D09300B00ED8099 /* NSData+Hex.swift in Sources */,
@@ -1197,10 +1270,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(PROJECT_DIR)/Turn Touch iOS/Vendor\"",
+				);
 				INFOPLIST_FILE = "Turn Touch iOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.turntouch.ios-remote";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Turn Touch iOS/Vendor/Turn_Touch_iOS-Bridging-Header.h";
 			};
 			name = Debug;
 		};
@@ -1208,10 +1286,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(PROJECT_DIR)/Turn Touch iOS/Vendor\"",
+				);
 				INFOPLIST_FILE = "Turn Touch iOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.turntouch.ios-remote";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Turn Touch iOS/Vendor/Turn_Touch_iOS-Bridging-Header.h";
 			};
 			name = Release;
 		};
