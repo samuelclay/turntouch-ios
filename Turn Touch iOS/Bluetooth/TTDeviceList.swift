@@ -57,6 +57,9 @@ class TTDeviceList: NSObject {
         addDevice.isPaired = self.isDevicePaired(addDevice)
         
         for foundDevice in devices {
+            if foundDevice.peripheral == nil {
+                continue
+            }
             if foundDevice.peripheral.identifier.UUIDString == addDevice.peripheral.identifier.UUIDString {
                 print(" ---> Already added device: \(foundDevice) - \(addDevice)")
                 addDevice = foundDevice
@@ -169,6 +172,24 @@ class TTDeviceList: NSObject {
         }
 
         return pairedDevices!.count
+    }
+    
+    func connected() -> [TTDevice] {
+        return devices.filter { (device) in
+            device.peripheral != nil && device.state == TTDeviceState.DEVICE_STATE_CONNECTED
+        }
+    }
+    
+    func pairedConnected() -> [TTDevice] {
+        return devices.filter { (device) in
+            device.peripheral != nil && self.isPeripheralPaired(device.peripheral) && device.state == TTDeviceState.DEVICE_STATE_CONNECTED
+        }
+    }
+    
+    func nicknamedConnected() -> [TTDevice] {
+        return self.pairedConnected().filter { (device) in
+            device.nickname != nil
+        }
     }
     
 }

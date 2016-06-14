@@ -112,7 +112,7 @@ class TTButtonTimer : NSObject {
             }
             self.activateButton(.NO_DIRECTION)
         } else if anyButtonPressed {
-            print(" ---> Press down button \(previousButtonState.inMultitouch() ? "(multi-touch)" : "")")
+//            print(" ---> Press down button \(previousButtonState.inMultitouch() ? "(multi-touch)" : "")")
             previousButtonState = latestButtonState
             
             if latestButtonState.inMultitouch() {
@@ -167,7 +167,7 @@ class TTButtonTimer : NSObject {
                 buttonPressedDirection = .NO_DIRECTION
             }
             
-            print(" ---> Lift button\(previousButtonState.inMultitouch() ? " (multi-touch)" : ""): \(buttonPressedDirection)")
+//            print(" ---> Lift button\(previousButtonState.inMultitouch() ? " (multi-touch)" : ""): \(buttonPressedDirection)")
             
             if menuState == .Active {
                 if buttonPressedDirection == .NORTH {

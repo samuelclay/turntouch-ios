@@ -136,7 +136,7 @@ class TTModeMusic: TTMode {
     
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
         if keyPath == "outputVolume" {
-            print(" Volume: \(AVAudioSession.sharedInstance().outputVolume) \(change!["new"]) \(object)")
+//            print(" Volume: \(AVAudioSession.sharedInstance().outputVolume) \(change!["new"]) \(object)")
             if change!["new"] as! Float != lastVolume {
                 lastVolume = change!["new"] as! Float
             }

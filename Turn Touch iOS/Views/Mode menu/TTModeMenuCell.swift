@@ -96,10 +96,16 @@ class TTModeMenuCell: UICollectionViewCell {
         if menuType == .MENU_MODE {
             selected = activeMode >!< appDelegate().modeMap.selectedMode
             titleLabel.text = activeMode.title().uppercaseString
-            imageView.image = UIImage(named:activeMode.imageName())
+            let imageName = activeMode.imageName()
+            if imageName != "" {
+                imageView.image = UIImage(named:imageName)
+            }
         } else if menuType == .MENU_ACTION {
             selected = activeMode.actionNameInDirection(appDelegate().modeMap.inspectingModeDirection) == modeName
-            imageView.image = UIImage(named:activeMode.imageNameForAction(modeName) ?? "")
+            let imageName = activeMode.imageNameForAction(modeName)
+            if imageName != nil {
+                imageView.image = UIImage(named:imageName!)
+            }
             titleLabel.text = activeMode.titleForAction(modeName, buttonMoment: .BUTTON_MOMENT_PRESSUP).uppercaseString
         }
 

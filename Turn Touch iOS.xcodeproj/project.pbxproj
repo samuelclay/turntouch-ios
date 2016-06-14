@@ -164,6 +164,8 @@
 		FFF270AB1CEE88E500E46575 /* Turn_Touch_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF270AA1CEE88E500E46575 /* Turn_Touch_iOSTests.swift */; };
 		FFF270B61CEE88E500E46575 /* Turn_Touch_iOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF270B51CEE88E500E46575 /* Turn_Touch_iOSUITests.swift */; };
 		FFF270C51CEE97AF00E46575 /* TTMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF270C31CEE97AF00E46575 /* TTMainViewController.swift */; };
+		FFF46BC51D0E58C000158751 /* TTDeviceTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF46BC41D0E58C000158751 /* TTDeviceTitleView.swift */; };
+		FFF46BC71D0E5C8400158751 /* TTDeviceTitlesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF46BC61D0E5C8400158751 /* TTDeviceTitlesView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -348,6 +350,8 @@
 		FFF270B51CEE88E500E46575 /* Turn_Touch_iOSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Turn_Touch_iOSUITests.swift; sourceTree = "<group>"; };
 		FFF270B71CEE88E500E46575 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FFF270C31CEE97AF00E46575 /* TTMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTMainViewController.swift; path = Views/Main/TTMainViewController.swift; sourceTree = "<group>"; };
+		FFF46BC41D0E58C000158751 /* TTDeviceTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTDeviceTitleView.swift; path = Views/Main/TTDeviceTitleView.swift; sourceTree = "<group>"; };
+		FFF46BC61D0E5C8400158751 /* TTDeviceTitlesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTDeviceTitlesView.swift; path = Views/Main/TTDeviceTitlesView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -673,6 +677,8 @@
 				FF4487631D08AA8800ED8099 /* TTTitleMenuCell.swift */,
 				FFB41B781CEEA8E500CD5F09 /* TTModeTab.swift */,
 				FF0F10DD1CF6763400CC1F29 /* TTModeTitleView.swift */,
+				FFF46BC61D0E5C8400158751 /* TTDeviceTitlesView.swift */,
+				FFF46BC41D0E58C000158751 /* TTDeviceTitleView.swift */,
 			);
 			name = Main;
 			sourceTree = "<group>";
@@ -1035,9 +1041,11 @@
 				FFC9FE991D02520300038817 /* NSObject+Class.swift in Sources */,
 				FFB41B821CF5341700CD5F09 /* TTMode.swift in Sources */,
 				FF0F10CD1CF63F4D00CC1F29 /* TTModeHue.swift in Sources */,
+				FFF46BC71D0E5C8400158751 /* TTDeviceTitlesView.swift in Sources */,
 				FF4487761D09365200ED8099 /* TTButtonTimer.swift in Sources */,
 				FF4487621D08986200ED8099 /* TTTitleMenuPopover.swift in Sources */,
 				FF4487701D08EF6400ED8099 /* TTDeviceList.swift in Sources */,
+				FFF46BC51D0E58C000158751 /* TTDeviceTitleView.swift in Sources */,
 				FFC9FE951D021A0400038817 /* TTActionDiamondView.swift in Sources */,
 				FF44875F1D078FAC00ED8099 /* TTActionTitleView.swift in Sources */,
 				FF0F10E31CFFAC5300CC1F29 /* TTModeMenuContainer.swift in Sources */,

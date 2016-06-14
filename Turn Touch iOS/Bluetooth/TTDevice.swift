@@ -18,7 +18,7 @@ enum TTDeviceState {
 
 class TTDevice: NSObject {
     
-    var nickname: String!
+    var nickname: String?
     var uuid: NSString!
     var peripheral: CBPeripheral!
     var buttonStatusChar: CBCharacteristic!
@@ -59,9 +59,9 @@ class TTDevice: NSObject {
                 break
             }
         }
-        fixedNickname.appendBytes(bytes, length: dataLength+1)
+        fixedNickname.appendBytes(bytes, length: dataLength)
         
-        nickname = NSString(data: fixedNickname, encoding: NSUTF8StringEncoding) as! String
+        nickname = String(data: fixedNickname, encoding: NSUTF8StringEncoding)
     }
     
     func setFirmwareVersion(firmwareVersion version: Int) {

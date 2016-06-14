@@ -34,7 +34,7 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
     let buttonTimer = TTButtonTimer()
     var batteryLevelTimer: NSTimer!
     var manufacturer: NSString?
-    let foundDevices = TTDeviceList()
+    var foundDevices = TTDeviceList()
     var bluetoothState = TTBluetoothState.BT_STATE_IDLE
     var onceUnknownToken: dispatch_once_t = 0
     var onceKnownToken: dispatch_once_t = 0
@@ -100,29 +100,34 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
         print(" ---> (\(bluetoothState)) Scanning known: \(self.knownPeripheralIdentifiers().count) remotes")
         
         let peripherals = manager.retrievePeripheralsWithIdentifiers(self.knownPeripheralIdentifiers())
-        for peripheral: CBPeripheral in peripherals {
-            var foundDevice = foundDevices.deviceForPeripheral(peripheral)
-            if foundDevice == nil {
-                foundDevice = foundDevices.addPeripheral(peripheral)
-            } else if foundDevice!.state == TTDeviceState.DEVICE_STATE_CONNECTING {
-                isActivelyConnecting = true
+        let connectedPeripherals = manager.retrieveConnectedPeripheralsWithServices([CBUUID(string:"1523")])
+
+        for peripheralGroup: [CBPeripheral] in [connectedPeripherals, peripherals] {
+            for peripheral: CBPeripheral in peripheralGroup {
+                var foundDevice = foundDevices.deviceForPeripheral(peripheral)
+                if foundDevice == nil {
+                    foundDevice = foundDevices.addPeripheral(peripheral)
+                } else if foundDevice!.state == TTDeviceState.DEVICE_STATE_CONNECTING {
+                    isActivelyConnecting = true
+                }
+                
+                if peripheral.state != CBPeripheralState.Disconnected && foundDevice!.state != TTDeviceState.DEVICE_STATE_SEARCHING {
+                    print(" ---> Already connected: \(foundDevice!)")
+                    continue
+                } else {
+                    knownDevicesStillDisconnected = true
+                }
+                
+                bluetoothState = .BT_STATE_CONNECTING_KNOWN
+                print(" ---> (\(bluetoothState)) Attempting connect to known: \(foundDevice)")
+                
+    //            manager.cancelPeripheralConnection(peripheral)
+                
+                manager.connectPeripheral(peripheral, options: [CBCentralManagerOptionRestoreIdentifierKey: "centralManagerIdentifier",
+                    CBConnectPeripheralOptionNotifyOnDisconnectionKey: NSNumber(bool: true),
+                    CBConnectPeripheralOptionNotifyOnConnectionKey: NSNumber(bool: true),
+                    CBConnectPeripheralOptionNotifyOnNotificationKey: NSNumber(bool: true)])
             }
-            
-            if peripheral.state != CBPeripheralState.Disconnected && foundDevice!.state != TTDeviceState.DEVICE_STATE_SEARCHING {
-                print(" ---> Already connected: \(foundDevice!)")
-                continue
-            } else {
-                knownDevicesStillDisconnected = true
-            }
-            
-            bluetoothState = .BT_STATE_CONNECTING_KNOWN
-            print(" ---> (\(bluetoothState)) Attempting connect to known: \(foundDevice)")
-            
-//            manager.cancelPeripheralConnection(peripheral)
-            manager.connectPeripheral(peripheral, options: [CBCentralManagerOptionRestoreIdentifierKey: "centralManagerIdentifier",
-                CBConnectPeripheralOptionNotifyOnDisconnectionKey: NSNumber(bool: true),
-                CBConnectPeripheralOptionNotifyOnConnectionKey: NSNumber(bool: true),
-                CBConnectPeripheralOptionNotifyOnNotificationKey: NSNumber(bool: true)])
         }
         
         if !knownDevicesStillDisconnected {
@@ -138,7 +143,7 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
         // Search for unpaired devices or paired devices that aren't responding to `connectPeripheral`
         
         dispatch_once(&onceUnknownToken) {
-            let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(60 * Double(NSEC_PER_SEC)))
+            let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(5 * Double(NSEC_PER_SEC)))
             dispatch_after(delayTime, dispatch_get_main_queue(), {
                 self.onceUnknownToken = 0
                 if self.bluetoothState != .BT_STATE_SCANNING_KNOWN && self.bluetoothState != .BT_STATE_CONNECTING_KNOWN {
@@ -244,12 +249,32 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
 //        self.updateBluetoothState(true)
 //    }
     
-    // func terminate
+    func terminate() {
+        let identifiers = foundDevices.connected().map { (device) -> NSUUID in
+            device.peripheral.identifier
+        }
+        let peripherals = manager.retrievePeripheralsWithIdentifiers(identifiers)
+        for peripheral in peripherals {
+            if peripheral.state != .Connected {
+                continue
+            }
+            manager.cancelPeripheralConnection(peripheral)
+            let device = foundDevices.deviceForPeripheral(peripheral)
+            if device != nil {
+                foundDevices.removeDevice(device!)
+            }
+        }
+        
+        foundDevices = TTDeviceList()
+    }
     
     func countDevices() {
         foundDevices.ensureDevicesConnected()
         
-//        self.setValue(foundDevices.nicknamedCount(), forKey: "nicknamedConnectedCount")
+        pairedDevicesCount = foundDevices.pairedConnected().count
+        self.didChangeValueForKey("pairedDevicesCount")
+        nicknamedConnectedCount = foundDevices.nicknamedConnected().count
+        self.didChangeValueForKey("nicknamedConnectedCount")
     }
     
     func centralManager(central: CBCentralManager, didDiscoverPeripheral peripheral: CBPeripheral,
@@ -302,7 +327,7 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
         for foundDevice: TTDevice in foundDevices.devices {
             if foundDevice.state == TTDeviceState.DEVICE_STATE_CONNECTING && foundDevice.peripheral == peripheral {
                 print(" ---> (\(bluetoothState)) Connecting to another, canceling: \(foundDevice)/\(peripheral)")
-//                manager.cancelPeripheralConnection(peripheral)
+                manager.cancelPeripheralConnection(peripheral)
                 return
             }
         }
@@ -378,7 +403,11 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
     func peripheral(peripheral: CBPeripheral, didDiscoverServices error: NSError?) {
         bluetoothState = .BT_STATE_DISCOVER_CHARACTERISTICS
         let device = foundDevices.deviceForPeripheral(peripheral)!
-
+        if peripheral.services == nil {
+            print("Nil services")
+            return
+        }
+        
         for service: CBService in peripheral.services! {
             if service.UUID.isEqual(CBUUID(string: DEVICE_V2_SERVICE_BUTTON_UUID)) {
                 device.firmwareVersion = 2
@@ -450,7 +479,7 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
     
     func peripheral(peripheral: CBPeripheral, didUpdateValueForCharacteristic characteristic: CBCharacteristic, error: NSError?) {
         let device = foundDevices.deviceForPeripheral(peripheral)!
-        print(" ---> Value: \(characteristic.value)")
+//        print(" ---> Value: \(characteristic.value)")
         
         if characteristic.UUID.isEqual(CBUUID(string: DEVICE_V2_CHARACTERISTIC_BUTTON_STATUS_UUID)) {
             if characteristic.value != nil {
@@ -491,11 +520,80 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
     // MARK: Firmware options and customization
     
     func ensureNicknameOnDevice(device: TTDevice) {
+        var newNickname: String!
+        let emptyNickname = NSMutableData(length: 32)
+        let deviceNickname = device.nickname
+        let deviceNicknameData = device.nickname?.dataUsingEncoding(NSUTF8StringEncoding)
+        let prefs = NSUserDefaults.standardUserDefaults()
+        let nicknameKey = "TT:device:\(device.uuid):nickname"
+        let existingNickname = prefs.stringForKey(nicknameKey)
         
+        var hasDeviceNickname: Bool = false
+        if deviceNickname != nil {
+            hasDeviceNickname = !deviceNicknameData!.isEqualToData(emptyNickname!) && (deviceNickname!.stringByTrimmingCharactersInSet(NSCharacterSet.alphanumericCharacterSet().invertedSet).characters.count) > 0
+        }
+        
+        if existingNickname == nil && hasDeviceNickname {
+            prefs.setObject(device.nickname, forKey: nicknameKey)
+            prefs.synchronize()
+        }
+        
+        if !hasDeviceNickname {
+            if existingNickname != nil && existingNickname?.characters.count > 0 {
+                newNickname = existingNickname!
+            } else {
+                let emoji = [
+                    "🐱", "🐼", "🐶", "🐨", "🐙", "🐝", "🐠", "🐳", "⛄️",
+                    "⚽️", "🎻", "🎱", "🌀", "📚", "🔮", "📡", "⛵️", "🚲",
+                    "☀️", "🌎", "🌵", "🌴", "🎋", "🍉", "🍒", "🌻", "🌸",
+                    "🏺", "🚀", "🔭", "🔬", "🗿", "🏮", "💎", "🎵", "🍄"
+                ]
+                let randomEmoji = emoji[Int(arc4random_uniform(UInt32(emoji.count)))]
+                newNickname = "\(randomEmoji) Turn Touch Remote"
+            }
+            
+            print(" ---> Generating emoji nickname: \(newNickname)")
+            
+            self.writeNicknameToDevice(device, nickname: newNickname)
+        }
     }
     
     func writeNicknameToDevice(device: TTDevice, nickname: String) {
+        var data = NSMutableData(data: nickname.dataUsingEncoding(NSUTF8StringEncoding)!)
+        let prefs = NSUserDefaults.standardUserDefaults()
+
+        if data.length > 32 {
+            var dataString = String(data: data, encoding: NSUTF8StringEncoding)
+            dataString = dataString?.substringToIndex(dataString!.startIndex.advancedBy(32))
+            var maxLength = min(32, dataString!.characters.count)
+            
+            while maxLength > 0 {
+                let encodedLength = dataString?.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)
+                if encodedLength > 32 || encodedLength == 0 {
+                    maxLength -= 1
+                    dataString = dataString?.substringToIndex(dataString!.startIndex.advancedBy(maxLength))
+                } else {
+                    break
+                }
+            }
+            
+//            dataString?.substringToIndex(dataString!.startIndex.advancedBy(maxLength))
+            data = NSMutableData(data: dataString!.dataUsingEncoding(NSUTF8StringEncoding)!)
+        } else {
+            data.increaseLengthBy(32-data.length)
+        }
         
+        let characteristic = self.characteristicInPeripheral(device.peripheral, serviceUUID: DEVICE_V2_SERVICE_BUTTON_UUID,
+                                                             characteristicUUID: DEVICE_V2_CHARACTERISTIC_NICKNAME_UUID)
+        
+        print(" ---> New nickname: \(nickname) (\(data))")
+        device.peripheral.writeValue(data, forCharacteristic: characteristic!, type: .WithResponse)
+        
+        device.setNicknameData(data)
+        prefs.setObject(nickname, forKey: "TT:device:\(device.uuid):nickname")
+        prefs.synchronize()
+        
+        self.countDevices()
     }
     
     func clearDataOfNullBytes(data: NSMutableData) {

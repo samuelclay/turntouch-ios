@@ -25,7 +25,9 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
     var actionMenuConstaint: NSLayoutConstraint!
     var actionTitleView = TTActionTitleView()
     var actionTitleConstraint: NSLayoutConstraint!
-
+    var deviceTitlesView = TTDeviceTitlesView()
+    var deviceTitlesConstraint: NSLayoutConstraint!
+    
     let titleMenu = TTTitleMenuPopover()
     let pairingViewController = TTPairingViewController(nibName: "TTPairingViewController", bundle: nil)
     var pairingNavController: UINavigationController!
@@ -99,6 +101,11 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
         
         actionDiamondView.layer.zPosition = 2.0
         actionTitleView.layer.zPosition = 1.0
+        
+        stackView.addArrangedSubview(deviceTitlesView)
+        deviceTitlesConstraint = NSLayoutConstraint(item: deviceTitlesView, attribute: .Height, relatedBy: .Equal,
+                                                    toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 0)
+        stackView.addConstraint(deviceTitlesConstraint)
 
         self.registerAsObserver()
     }
@@ -123,6 +130,8 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
         appDelegate().modeMap.addObserver(self, forKeyPath: "openedActionChangeMenu", options: [], context: nil)
         appDelegate().modeMap.addObserver(self, forKeyPath: "selectedMode", options: [], context: nil)
         appDelegate().modeMap.addObserver(self, forKeyPath: "inspectingModeDirection", options: [], context: nil)
+        appDelegate().bluetoothMonitor.addObserver(self, forKeyPath: "nicknamedConnectedCount", options: [], context: nil)
+        appDelegate().bluetoothMonitor.addObserver(self, forKeyPath: "pairedDevicesCount", options: [], context: nil)
     }
     
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?,
@@ -135,6 +144,10 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
             self.resetPosition()
         } else if keyPath == "inspectingModeDirection" {
             self.toggleActionView()
+        } else if keyPath == "nicknamedConnectedCount" {
+            self.adjustDeviceTitles()
+        } else if keyPath == "pairedDevicesCount" {
+            self.adjustDeviceTitles()
         }
     }
     
@@ -143,6 +156,8 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
         appDelegate().modeMap.removeObserver(self, forKeyPath: "openedActionChangeMenu")
         appDelegate().modeMap.removeObserver(self, forKeyPath: "selectedMode")
         appDelegate().modeMap.removeObserver(self, forKeyPath: "inspectingModeDirection")
+        appDelegate().bluetoothMonitor.removeObserver(self, forKeyPath: "nicknamedConnectedCount")
+        appDelegate().bluetoothMonitor.removeObserver(self, forKeyPath: "pairedDevicesCount")
     }
     
     // MARK: Drawing
@@ -167,6 +182,16 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
         UIView.animateWithDuration(0.24) {
             self.view.layoutIfNeeded()
             self.actionTitleView.alpha = appDelegate().modeMap.inspectingModeDirection == .NO_DIRECTION ? 0 : 1
+        }
+    }
+    
+    func adjustDeviceTitles() {
+        dispatch_async(dispatch_get_main_queue()) { 
+            let devices = appDelegate().bluetoothMonitor.foundDevices.nicknamedConnected()
+            
+            UIView.animateWithDuration(0.42) {
+                self.deviceTitlesConstraint.constant = CGFloat(40 * devices.count)
+            }
         }
     }
     
@@ -206,6 +231,20 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
     }
     
     func toggleTitleMenu(sender: UIButton) {
+        titleMenu.modalPresentationStyle = .Popover
+        titleMenu.preferredContentSize = CGSize(width: 204,
+                                                height: 32 * titleMenu.menuOptions.count)
+        let popoverViewController = titleMenu.popoverPresentationController
+        popoverViewController!.permittedArrowDirections = .Up
+        popoverViewController!.delegate = self
+        popoverViewController!.sourceView = sender
+        popoverViewController!.sourceRect = CGRect(x: -8, y: 0,
+                                                   width: CGRectGetWidth(sender.frame),
+                                                   height: CGRectGetHeight(sender.frame))
+        self.presentViewController(titleMenu, animated: true, completion: nil)
+    }
+    
+    func toggleDeviceMenu(sender: UIButton, device: TTDevice) {
         titleMenu.modalPresentationStyle = .Popover
         titleMenu.preferredContentSize = CGSize(width: 204,
                                                 height: 32 * titleMenu.menuOptions.count)
