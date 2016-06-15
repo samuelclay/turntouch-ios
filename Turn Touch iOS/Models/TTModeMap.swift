@@ -179,6 +179,20 @@ class TTModeMap: NSObject {
 //        }
     }
     
+    // MARK: Batch actions
+    
+    func selectedModeBatchActions(direction: TTModeDirection) {
+        
+    }
+    
+    func addBatchAction(actionName: String) {
+        
+    }
+    
+    func removeBatchAction(batchActionKey: String) {
+        
+    }
+    
     // MARK: Changing modes, actions, batch actions
     
     func changeDirection(direction: TTModeDirection, toMode modeClassName: String) {

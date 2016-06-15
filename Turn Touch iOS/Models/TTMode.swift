@@ -256,6 +256,103 @@ class TTMode : NSObject, TTModeProtocol {
         
     }
     
+    // MARK: Action options
+    
+    func actionOptionValue(optionName: String, actionName: String, direction: TTModeDirection) -> AnyObject? {
+        let prefs = NSUserDefaults.standardUserDefaults()
+        let modeDirectionName = appDelegate().modeMap.directionName(modeDirection)
+        let actionDirectionName = appDelegate().modeMap.directionName(direction)
+        
+        if direction == .NO_DIRECTION {
+            // Rotate through directions looking for prefs
+            for modeDirection: TTModeDirection in [.NORTH, .EAST, .WEST, .SOUTH] {
+                let modeActionDirectionName = appDelegate().modeMap.directionName(modeDirection)
+                let optionKey = "TT:mode:\(self.nameOfClass)-\(modeDirectionName):action:\(actionName)-\(modeActionDirectionName):option:\(optionName)"
+                let pref = prefs.objectForKey(optionKey)
+                print(" -> Getting action options \(optionKey): \(pref)")
+                if pref == nil {
+                    continue
+                }
+                return pref
+            }
+        }
+        
+        let optionKey = "TT:mode:\(self.nameOfClass)-\(modeDirectionName):action:\(actionName)-\(actionDirectionName):option:\(optionName)"
+        var pref = prefs.objectForKey(optionKey)
+        print(" -> Getting action options \(optionKey): \(pref)")
+        if pref == nil {
+            pref = self.defaultOption(actionName, optionName: optionName)
+        }
+        if pref == nil {
+            pref = self.defaultOption(optionName)
+        }
+        
+        return pref
+    }
+    
+    func batchActionOptionValue(batchAction: TTAction, optionName: String, direction: TTModeDirection) -> AnyObject? {
+        let prefs = NSUserDefaults.standardUserDefaults()
+        let modeDirectionName = appDelegate().modeMap.directionName(modeDirection)
+        let actionDirectionName = appDelegate().modeMap.directionName(direction)
+        let optionKey = "TT:mode:\(modeDirectionName):action:\(actionDirectionName):batchactions:\(action.batchActionKey):actionoption:\(optionName)"
+        var pref = prefs.objectForKey(optionKey)
+        print(" -> Getting batch action options \(optionKey): \(pref)")
+        if pref == nil {
+            pref = self.defaultOption(action.actionName, optionName: optionName)
+        }
+        if pref == nil {
+            pref = self.defaultOption(optionName)
+        }
+        
+        return pref
+    }
+    
+    func defaultOption(optionName: String) -> AnyObject? {
+        let defaultPrefsFile = NSBundle.mainBundle().pathForResource(self.nameOfClass, ofType: "plist")
+        let modeDefaults: Dictionary<String, AnyObject>? = NSDictionary(contentsOfFile: defaultPrefsFile!) as? Dictionary<String, AnyObject>
+        print(" -> Getting mode option default \(optionName): \(modeDefaults?[optionName])")
+        
+        return modeDefaults?[optionName]
+    }
+    
+    func defaultOption(actionName: String, optionName: String) -> AnyObject? {
+        let defaultPrefsFile = NSBundle.mainBundle().pathForResource(self.nameOfClass, ofType: "plist")
+        let modeDefaults: Dictionary<String, AnyObject>? = NSDictionary(contentsOfFile: defaultPrefsFile!) as? Dictionary<String, AnyObject>
+        let optionKey = "\(actionName):\(optionName)"
+        print(" -> Getting mode action option default \(optionKey): \(modeDefaults?[optionName])")
+        
+        return modeDefaults?[optionName]
+    }
+    
+    // MARK: Setting action options
+    
+    func changeActionOption(optionName: String, to optionValue: AnyObject) {
+        let prefs = NSUserDefaults.standardUserDefaults()
+        let inspectingModeDirection = appDelegate().modeMap.inspectingModeDirection
+        let modeDirectionName = appDelegate().modeMap.directionName(modeDirection)
+        let actionDirectionName = appDelegate().modeMap.directionName(inspectingModeDirection)
+        let actionName = self.actionNameInDirection(inspectingModeDirection)
+        let optionKey = "TT:mode:\(self.nameOfClass)-\(modeDirectionName):action:\(actionName)-\(actionDirectionName):option:\(optionName)"
+        let pref = prefs.objectForKey(optionKey)
+        print(" -> Setting action options \(optionKey) from (\(pref)) to (\(optionValue))")
+        
+        prefs.setObject(optionValue, forKey: optionKey)
+        prefs.synchronize()
+    }
+    
+    func changeBatchActionOption(batchActionKey: String, optionName: String, to optionValue: AnyObject) {
+        let prefs = NSUserDefaults.standardUserDefaults()
+        let inspectingModeDirection = appDelegate().modeMap.inspectingModeDirection
+        let modeDirectionName = appDelegate().modeMap.directionName(modeDirection)
+        let actionDirectionName = appDelegate().modeMap.directionName(inspectingModeDirection)
+        let optionKey = "TT:mode:\(modeDirectionName):action:\(actionDirectionName):batchactions:\(batchActionKey):actionoption:\(optionName)"
+        let pref = prefs.objectForKey(optionKey)
+        print(" -> Setting batch action options \(optionKey) from (\(pref)) to (\(optionValue))")
+        
+        prefs.setObject(optionValue, forKey: optionKey)
+        prefs.synchronize()
+    }
+    
     // MARK: Images
     
     func imageNameInDirection(direction: TTModeDirection) -> String? {

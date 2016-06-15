@@ -60,6 +60,7 @@ class TTModeHue: TTMode {
     var delegate: TTModeHueDelegate?
     
     required init() {
+        super.init()
         self.initializeHue()
     }
     
@@ -199,14 +200,14 @@ class TTModeHue: TTMode {
         
         let bridgeSendAPI = PHBridgeSendAPI()
         let cache = PHBridgeResourcesReader.readBridgeResourcesCache()
-        var activeScene: PHScene!
-        var sceneIdentifier: String? = self.action.optionValue(doubleTap ? kDoubleTapHueScene : kHueScene)
+//        var activeScene: PHScene!
+        var sceneIdentifier: String? = self.action.optionValue(doubleTap ? kDoubleTapHueScene : kHueScene, direction: direction) as? String
         var scenes: Array<Dictionary<String, String>> = []
         for (_, value) in cache.scenes {
             let scene = value as! PHScene
-            if scene.identifier == sceneIdentifier {
-                activeScene = scene
-            }
+//            if scene.identifier == sceneIdentifier {
+//                activeScene = scene
+//            }
             scenes.append(["name": scene.name, "identifier": scene.identifier])
         }
         
@@ -243,15 +244,13 @@ class TTModeHue: TTMode {
     }
     
     func runTTModeHueSleep(direction: TTModeDirection) {
-        var sceneDuration: Int = Int(appDelegate().modeMap.mode(self.action.mode,
-            actionOptionValue: kHueDuration, actionName: "TTModeHueSleep", direction: direction))
+        let sceneDuration: Int = self.action.mode.actionOptionValue(kHueDuration, actionName: "TTModeHueSleep", direction: direction) as! Int
         self.runTTModeHueSleep(direction, duration: sceneDuration)
     }
     
     func doubleRunTTModeHueSleep(direction: TTModeDirection) {
         //    NSLog(@"Running scene off... %d", direction);
-        var sceneDuration: Int = Int(appDelegate().modeMap.mode(self.action.mode,
-            actionOptionValue: kHueDoubleTapDuration, actionName: "TTModeHueSleep", direction: direction))
+        let sceneDuration: Int = self.action.mode.actionOptionValue(kHueDoubleTapDuration, actionName: "TTModeHueSleep", direction: direction) as! Int
         self.runTTModeHueSleep(direction, duration: sceneDuration)
     }
     
@@ -302,15 +301,19 @@ class TTModeHue: TTMode {
     
     func runTTModeHueRandom(direction: TTModeDirection, doubleTap: Bool) {
         //    NSLog(@"Running scene off... %d", direction);
-        var cache: PHBridgeResourcesCache = PHBridgeResourcesReader.readBridgeResourcesCache()
-        var bridgeSendAPI: PHBridgeSendAPI = PHBridgeSendAPI()
-        var randomColors = TTHueRandomColors(rawValue: Int(self.action.optionValue((doubleTap ? kDoubleTapRandomColors : kRandomColors), direction: direction)))
-        var randomBrightnesses = TTHueRandomBrightness(rawValue: Int(self.action.optionValue((doubleTap ? kDoubleTapRandomBrightness : kRandomBrightness), direction: direction)))
-        var randomSaturation = TTHueRandomSaturation(rawValue: Int(self.action.optionValue((doubleTap ? kDoubleTapRandomSaturation : kRandomSaturation), direction: direction)))
-        var randomColor: Int = Int(arc4random_uniform(MAX_HUE))
+        let cache: PHBridgeResourcesCache = PHBridgeResourcesReader.readBridgeResourcesCache()
+        let bridgeSendAPI: PHBridgeSendAPI = PHBridgeSendAPI()
+        let randomColors = TTHueRandomColors(rawValue: (self.action.optionValue((doubleTap ?
+            kDoubleTapRandomColors : kRandomColors), direction: direction) as! Int))
+        let randomBrightnesses = TTHueRandomBrightness(rawValue: (self.action.optionValue((doubleTap ?
+            kDoubleTapRandomBrightness : kRandomBrightness), direction: direction) as! Int))
+        let randomSaturation = TTHueRandomSaturation(rawValue: (self.action.optionValue((doubleTap ?
+            kDoubleTapRandomSaturation : kRandomSaturation), direction: direction) as! Int))
+        let randomColor: Int = Int(arc4random_uniform(MAX_HUE))
+        
         for (_, value) in cache.lights {
             let light = value as! PHLight
-            var lightState = PHLightState()
+            let lightState = PHLightState()
             
             if (randomColors == .AllSame) || (randomColors == .SomeDifferent && arc4random() % 10 > 5) {
                 lightState.hue = randomColor
