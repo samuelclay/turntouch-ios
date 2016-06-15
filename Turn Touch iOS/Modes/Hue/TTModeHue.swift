@@ -54,19 +54,27 @@ protocol TTModeHueDelegate {
 
 class TTModeHue: TTMode {
     
-    let phHueSdk: PHHueSDK = PHHueSDK()
+    var phHueSdk: PHHueSDK!
     var hueState: TTHueState = TTHueState.NotConnected
     var bridgeSearch: PHBridgeSearching!
     var delegate: TTModeHueDelegate?
     
     required init() {
         super.init()
+    }
+    
+    override func activate() {
         self.initializeHue()
     }
     
     func initializeHue() {
+        if phHueSdk != nil {
+            return;
+        }
+        
+        phHueSdk = PHHueSDK()
         phHueSdk.startUpSDK()
-        phHueSdk.enableLogging(true)
+        phHueSdk.enableLogging(false)
         
         let notificationManager = PHNotificationManager.defaultManager()
         

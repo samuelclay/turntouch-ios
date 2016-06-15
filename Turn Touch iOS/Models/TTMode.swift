@@ -309,6 +309,9 @@ class TTMode : NSObject, TTModeProtocol {
     
     func defaultOption(optionName: String) -> AnyObject? {
         let defaultPrefsFile = NSBundle.mainBundle().pathForResource(self.nameOfClass, ofType: "plist")
+        if defaultPrefsFile == nil {
+            return nil
+        }
         let modeDefaults: Dictionary<String, AnyObject>? = NSDictionary(contentsOfFile: defaultPrefsFile!) as? Dictionary<String, AnyObject>
         print(" -> Getting mode option default \(optionName): \(modeDefaults?[optionName])")
         
@@ -317,6 +320,9 @@ class TTMode : NSObject, TTModeProtocol {
     
     func defaultOption(actionName: String, optionName: String) -> AnyObject? {
         let defaultPrefsFile = NSBundle.mainBundle().pathForResource(self.nameOfClass, ofType: "plist")
+        if defaultPrefsFile == nil {
+            return nil
+        }
         let modeDefaults: Dictionary<String, AnyObject>? = NSDictionary(contentsOfFile: defaultPrefsFile!) as? Dictionary<String, AnyObject>
         let optionKey = "\(actionName):\(optionName)"
         print(" -> Getting mode action option default \(optionKey): \(modeDefaults?[optionName])")

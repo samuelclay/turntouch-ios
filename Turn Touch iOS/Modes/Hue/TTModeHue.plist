@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>TTModeHueRandom:doubleTapRandomSaturation</key>
+	<integer>3</integer>
+	<key>TTModeHueRandom:randomSaturation</key>
+	<integer>3</integer>
+	<key>TTModeHueRandom:doubleTapRandomBrightness</key>
+	<integer>1</integer>
+	<key>TTModeHueRandom:randomBrightness</key>
+	<integer>3</integer>
+	<key>TTModeHueRandom:doubleTapRandomColors</key>
+	<integer>2</integer>
+	<key>TTModeHueRandom:randomColors</key>
+	<integer>3</integer>
+	<key>hueDuration</key>
+	<integer>0</integer>
+	<key>TTModeHueSleep:hueDoubleTapDuration</key>
+	<integer>5</integer>
+	<key>TTModeHueSleep:hueDuration</key>
+	<integer>30</integer>
+</dict>
+</plist>

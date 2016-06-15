@@ -174,6 +174,7 @@
 		FFF46BE01D10941500158751 /* ContextFilterLogFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = FFF46BD71D10941500158751 /* ContextFilterLogFormatter.m */; };
 		FFF46BE11D10941500158751 /* DispatchQueueLogFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = FFF46BD91D10941500158751 /* DispatchQueueLogFormatter.m */; };
 		FFF46BE71D1096DC00158751 /* HueSDK_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFF46BE61D1096DC00158751 /* HueSDK_iOS.framework */; };
+		FFF46BE91D10DB2D00158751 /* TTModeHue.plist in Resources */ = {isa = PBXBuildFile; fileRef = FFF46BE81D10DB2D00158751 /* TTModeHue.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -376,6 +377,7 @@
 		FFF46BD91D10941500158751 /* DispatchQueueLogFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DispatchQueueLogFormatter.m; sourceTree = "<group>"; };
 		FFF46BE51D10956600158751 /* Turn_Touch_iOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Turn_Touch_iOS-Bridging-Header.h"; sourceTree = "<group>"; };
 		FFF46BE61D1096DC00158751 /* HueSDK_iOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = HueSDK_iOS.framework; sourceTree = "<group>"; };
+		FFF46BE81D10DB2D00158751 /* TTModeHue.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = TTModeHue.plist; path = Modes/Hue/TTModeHue.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -444,6 +446,7 @@
 		FF0F10CE1CF63F5100CC1F29 /* Hue */ = {
 			isa = PBXGroup;
 			children = (
+				FFF46BE81D10DB2D00158751 /* TTModeHue.plist */,
 				FF0F10CC1CF63F4D00CC1F29 /* TTModeHue.swift */,
 			);
 			name = Hue;
@@ -1021,6 +1024,7 @@
 				FFB41B301CEE9A3000CD5F09 /* icon_movie.png in Resources */,
 				FFB41B111CEE9A3000CD5F09 /* alarm_snooze.png in Resources */,
 				FFB41B401CEE9A3000CD5F09 /* mode_presentation.png in Resources */,
+				FFF46BE91D10DB2D00158751 /* TTModeHue.plist in Resources */,
 				FFB41B421CEE9A3000CD5F09 /* mode_spotify.png in Resources */,
 				FFB41B6D1CEE9A3000CD5F09 /* modal_remote_hero.png in Resources */,
 				FFB41B451CEE9A3000CD5F09 /* mode_web.png in Resources */,
@@ -1276,6 +1280,7 @@
 				);
 				INFOPLIST_FILE = "Turn Touch iOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.turntouch.ios-remote";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Turn Touch iOS/Vendor/Turn_Touch_iOS-Bridging-Header.h";
@@ -1292,6 +1297,7 @@
 				);
 				INFOPLIST_FILE = "Turn Touch iOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.turntouch.ios-remote";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Turn Touch iOS/Vendor/Turn_Touch_iOS-Bridging-Header.h";
