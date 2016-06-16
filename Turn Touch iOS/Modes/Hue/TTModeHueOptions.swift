@@ -22,7 +22,11 @@ class TTModeHueOptions: TTOptionsDetailViewController, TTModeHueDelegate {
         
         self.modeHue = appDelegate().modeMap.selectedMode as! TTModeHue
         self.modeHue.delegate = self
-        
+        self.view.clipsToBounds = true
+
+        if self.modeHue.hueState == .Connecting {
+            self.modeHue.hueState = .NotConnected
+        }
         self.changeState(self.modeHue.hueState, mode: self.modeHue, message: nil)
     }
 
@@ -33,16 +37,24 @@ class TTModeHueOptions: TTOptionsDetailViewController, TTModeHueDelegate {
     
 
 
-    func changeState(hueState: TTHueState, mode: TTModeHue, message: String?) {
+    func changeState(hueState: TTHueState, mode: TTModeHue, message: AnyObject?) {
+        print(" ---> Changing hue state: \(hueState) - \(message)")
         switch hueState {
         case .NotConnected:
             self.drawConnectViewController()
+            self.connectViewController?.setStoppedWithMessage(message as? String)
         case .Connecting:
             self.drawConnectingViewController()
+            self.connectingViewController?.setConnectingWithMessage(message as? String)
         case .BridgeSelect:
             self.drawBridgeViewController()
+            if message != nil {
+                self.modeHue.foundBridges = message as! [String: String]
+            }
+            self.bridgeViewController?.setBridges(self.modeHue.foundBridges)
         case .Pushlink:
             self.drawPushlinkViewController()
+            self.pushlinkViewController?.setProgress(message as? Int)
         case .Connected:
             self.drawConnectedViewController()
         }
@@ -72,11 +84,16 @@ class TTModeHueOptions: TTOptionsDetailViewController, TTModeHueDelegate {
     }
     
     func drawViewController(viewController: TTOptionsDetailViewController) {
-        self.view!.addSubview(viewController.view!)
-        self.view!.addConstraint(NSLayoutConstraint(item: viewController.view!, attribute: .Top, relatedBy: .Equal, toItem: self.view!, attribute: .Top, multiplier: 1.0, constant: 0))
-        self.view!.addConstraint(NSLayoutConstraint(item: viewController.view!, attribute: .Bottom, relatedBy: .Equal, toItem: self.view!, attribute: .Bottom, multiplier: 1.0, constant: 0))
-        self.view!.addConstraint(NSLayoutConstraint(item: viewController.view!, attribute: .Leading, relatedBy: .Equal, toItem: self.view!, attribute: .Leading, multiplier: 1.0, constant: 0))
-        self.view!.addConstraint(NSLayoutConstraint(item: viewController.view!, attribute: .Trailing, relatedBy: .Equal, toItem: self.view!, attribute: .Trailing, multiplier: 1.0, constant: 0))
+        self.view.removeConstraints(self.view.constraints)
+        self.view.addSubview(viewController.view)
+        self.view.addConstraint(NSLayoutConstraint(item: viewController.view, attribute: .Top, relatedBy: .Equal, toItem: self.view, attribute: .Top, multiplier: 1.0, constant: 0))
+        self.view.addConstraint(NSLayoutConstraint(item: viewController.view, attribute: .Bottom, relatedBy: .Equal, toItem: self.view, attribute: .Bottom, multiplier: 1.0, constant: 0))
+        self.view.addConstraint(NSLayoutConstraint(item: viewController.view, attribute: .Leading, relatedBy: .Equal, toItem: self.view, attribute: .Leading, multiplier: 1.0, constant: 0))
+        self.view.addConstraint(NSLayoutConstraint(item: viewController.view, attribute: .Trailing, relatedBy: .Equal, toItem: self.view, attribute: .Trailing, multiplier: 1.0, constant: 0))
+        
+        self.view.layoutIfNeeded()
+        appDelegate().mainViewController.adjustOptionsHeight(nil)
+        
     }
     
     func drawConnectViewController() {

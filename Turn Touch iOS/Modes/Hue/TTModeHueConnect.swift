@@ -11,28 +11,28 @@ import UIKit
 class TTModeHueConnect: TTOptionsDetailViewController {
 
     var modeHue: TTModeHue!
+    @IBOutlet var progressMessage: UILabel!
+    @IBOutlet var progressIndicator: UIProgressView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.translatesAutoresizingMaskIntoConstraints = false
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func setStoppedWithMessage(message: String?) {
+        var m = message
+        if message == nil {
+            m = "Connect to Hue..."
+        }
+        self.progressMessage.text = m
     }
-    */
-
+    
+    func setLoadingWithMessage(message: String?) {
+        self.progressMessage.text = message
+    }
+    
+    @IBAction func searchForBridge(sender: UIButton) {
+        self.setLoadingWithMessage("Searching for Hue...")
+        self.modeHue.searchForBridgeLocal()
+    }
 }

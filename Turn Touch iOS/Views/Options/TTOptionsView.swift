@@ -17,6 +17,7 @@ class TTOptionsView: UIView {
         super.init(frame: frame)
         self.translatesAutoresizingMaskIntoConstraints = false
 
+        self.clipsToBounds = true
         self.clearOptionDetailViews()
         self.registerAsObserver()
     }
@@ -106,6 +107,8 @@ class TTOptionsView: UIView {
             relatedBy: .Equal, toItem: self, attribute: .Leading, multiplier: 1.0, constant: 0))
         self.addConstraint(NSLayoutConstraint(item: modeOptionsViewController.view, attribute: .Width,
             relatedBy: .Equal, toItem: self, attribute: .Width, multiplier: 1.0, constant: 0))
+        self.addConstraint(NSLayoutConstraint(item: self, attribute: .Height,
+            relatedBy: .Equal, toItem: modeOptionsViewController.view, attribute: .Height, multiplier: 1.0, constant: 0))
         
         appDelegate().mainViewController.adjustOptionsHeight(modeOptionsViewController.view)
     }

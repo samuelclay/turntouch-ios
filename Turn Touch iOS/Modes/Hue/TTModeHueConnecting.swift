@@ -10,29 +10,25 @@ import UIKit
 
 class TTModeHueConnecting: TTOptionsDetailViewController {
     
+    @IBOutlet var progressMessage: UILabel!
+    
     var modeHue: TTModeHue!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.translatesAutoresizingMaskIntoConstraints = false
+        self.view.clipsToBounds = true
 
         // Do any additional setup after loading the view.
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func setConnectingWithMessage(message: String?) {
+        var m = message
+        if message == nil {
+            m = "Connecting to Hue..."
+        }
+        
+        self.progressMessage.text = m
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

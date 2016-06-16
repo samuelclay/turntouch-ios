@@ -55,6 +55,8 @@
 		FF37EDE01D11179E0026F70D /* TTModeHuePushlink.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF37EDDE1D11179E0026F70D /* TTModeHuePushlink.xib */; };
 		FF37EDE31D1117B20026F70D /* TTModeHueConnected.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF37EDE11D1117B20026F70D /* TTModeHueConnected.swift */; };
 		FF37EDE41D1117B20026F70D /* TTModeHueConnected.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF37EDE21D1117B20026F70D /* TTModeHueConnected.xib */; };
+		FF37EDE61D12563D0026F70D /* refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = FF37EDE51D12563D0026F70D /* refresh.png */; };
+		FF37EDE81D13610B0026F70D /* press_smartbridge.png in Resources */ = {isa = PBXBuildFile; fileRef = FF37EDE71D13610B0026F70D /* press_smartbridge.png */; };
 		FF44875F1D078FAC00ED8099 /* TTActionTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF44875E1D078FAB00ED8099 /* TTActionTitleView.swift */; };
 		FF4487621D08986200ED8099 /* TTTitleMenuPopover.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4487611D08986200ED8099 /* TTTitleMenuPopover.swift */; };
 		FF4487641D08AA8800ED8099 /* TTTitleMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4487631D08AA8800ED8099 /* TTTitleMenuCell.swift */; };
@@ -258,6 +260,8 @@
 		FF37EDDE1D11179E0026F70D /* TTModeHuePushlink.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TTModeHuePushlink.xib; path = Modes/Hue/TTModeHuePushlink.xib; sourceTree = "<group>"; };
 		FF37EDE11D1117B20026F70D /* TTModeHueConnected.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeHueConnected.swift; path = Modes/Hue/TTModeHueConnected.swift; sourceTree = "<group>"; };
 		FF37EDE21D1117B20026F70D /* TTModeHueConnected.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TTModeHueConnected.xib; path = Modes/Hue/TTModeHueConnected.xib; sourceTree = "<group>"; };
+		FF37EDE51D12563D0026F70D /* refresh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = refresh.png; sourceTree = "<group>"; };
+		FF37EDE71D13610B0026F70D /* press_smartbridge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = press_smartbridge.png; sourceTree = "<group>"; };
 		FF44875E1D078FAB00ED8099 /* TTActionTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTActionTitleView.swift; path = Views/Actions/TTActionTitleView.swift; sourceTree = "<group>"; };
 		FF4487611D08986200ED8099 /* TTTitleMenuPopover.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTTitleMenuPopover.swift; path = Views/Main/TTTitleMenuPopover.swift; sourceTree = "<group>"; };
 		FF4487631D08AA8800ED8099 /* TTTitleMenuCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTTitleMenuCell.swift; path = Views/Main/TTTitleMenuCell.swift; sourceTree = "<group>"; };
@@ -667,6 +671,8 @@
 				FFB41AE41CEE9A3000CD5F09 /* mode_wemo.png */,
 				FFB41AE51CEE9A3000CD5F09 /* newspaper-3.png */,
 				FFB41AE61CEE9A3000CD5F09 /* presentation-chart.png */,
+				FF37EDE71D13610B0026F70D /* press_smartbridge.png */,
+				FF37EDE51D12563D0026F70D /* refresh.png */,
 				FFB41AE71CEE9A3000CD5F09 /* remote_graphic.png */,
 				FFB41AE81CEE9A3000CD5F09 /* settings.png */,
 				FFB41AE91CEE9A3000CD5F09 /* settings@2x.png */,
@@ -1065,6 +1071,7 @@
 				FF2023401D021605005129E5 /* Icon-60@2x.png in Resources */,
 				FFB41B431CEE9A3000CD5F09 /* mode_timer.png in Resources */,
 				FFB41B4E1CEE9A3000CD5F09 /* television.png in Resources */,
+				FF37EDE61D12563D0026F70D /* refresh.png in Resources */,
 				FFB41B5F1CEE9A3000CD5F09 /* logo_512.png in Resources */,
 				FF2023341D02147A005129E5 /* Icon-57.png in Resources */,
 				FFB41B691CEE9A3000CD5F09 /* modal_ftux_change_mode.png in Resources */,
@@ -1100,6 +1107,7 @@
 				FF37EDDC1D11178D0026F70D /* TTModeHueBridge.xib in Resources */,
 				FFB41B661CEE9A3000CD5F09 /* modal_bar_button_chevron.png in Resources */,
 				FFB41B4C1CEE9A3000CD5F09 /* speaker.png in Resources */,
+				FF37EDE81D13610B0026F70D /* press_smartbridge.png in Resources */,
 				FFB41B371CEE9A3000CD5F09 /* mode_home.png in Resources */,
 				FF2023301D02147A005129E5 /* Icon-40@2x.png in Resources */,
 				FFB41B151CEE9A3000CD5F09 /* chevron_west.png in Resources */,

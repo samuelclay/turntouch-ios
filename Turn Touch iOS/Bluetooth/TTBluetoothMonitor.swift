@@ -322,7 +322,13 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
     }
     
     func centralManager(central: CBCentralManager, didConnectPeripheral peripheral: CBPeripheral) {
-        let device = foundDevices.deviceForPeripheral(peripheral)! as TTDevice
+        let device = foundDevices.deviceForPeripheral(peripheral) as TTDevice?
+        
+        if device == nil {
+            print(" ---> No device found for peripheral: \(peripheral)")
+            manager.cancelPeripheralConnection(peripheral)
+            return
+        }
         
         for foundDevice: TTDevice in foundDevices.devices {
             if foundDevice.state == TTDeviceState.DEVICE_STATE_CONNECTING && foundDevice.peripheral == peripheral {
@@ -336,9 +342,9 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
     
         print(" ---> (\(bluetoothState)) Connected: \(device)")
         
-        if device.isPaired {
-            device.state = TTDeviceState.DEVICE_STATE_CONNECTING
-            device.needsReconnection = false
+        if device!.isPaired {
+            device!.state = TTDeviceState.DEVICE_STATE_CONNECTING
+            device!.needsReconnection = false
             
             self.countDevices()
             
@@ -347,8 +353,8 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
             // Never seen before, start pairing
             bluetoothState = .BT_STATE_PAIRING_UNKNOWN
             
-            device.state = TTDeviceState.DEVICE_STATE_CONNECTING
-            device.needsReconnection = false
+            device!.state = TTDeviceState.DEVICE_STATE_CONNECTING
+            device!.needsReconnection = false
             
              buttonTimer.resetPairingState()
             self.countDevices()

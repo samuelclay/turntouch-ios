@@ -16,6 +16,10 @@ class TTActionDiamondView: UIView {
     let eastLabel = TTDiamondLabel(inDirection: .EAST)
     let westLabel = TTDiamondLabel(inDirection: .WEST)
     let southLabel = TTDiamondLabel(inDirection: .SOUTH)
+    var widthRegularConstraint: NSLayoutConstraint!
+    var widthCompactConstraint: NSLayoutConstraint!
+    var heightRegularConstraint: NSLayoutConstraint!
+    var heightCompactConstraint: NSLayoutConstraint!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -34,10 +38,15 @@ class TTActionDiamondView: UIView {
             toItem: self, attribute: .CenterX, multiplier: 1.0, constant: 0))
         self.addConstraint(NSLayoutConstraint(item: diamondView, attribute: .CenterY, relatedBy: .Equal,
             toItem: self, attribute: .CenterY, multiplier: 1.0, constant: 0))
-        self.addConstraint(NSLayoutConstraint(item: diamondView, attribute: .Height, relatedBy: .Equal,
-            toItem: self, attribute: .Height, multiplier: 0.8, constant: 0))
-        self.addConstraint(NSLayoutConstraint(item: diamondView, attribute: .Width, relatedBy: .Equal,
-            toItem: self, attribute: .Width, multiplier: 0.8, constant: 0))
+        heightRegularConstraint = NSLayoutConstraint(item: diamondView, attribute: .Height, relatedBy: .Equal,
+                                                     toItem: self, attribute: .Height, multiplier: 0.8, constant: 0)
+        heightCompactConstraint = NSLayoutConstraint(item: diamondView, attribute: .Height, relatedBy: .Equal,
+                                                     toItem: self, attribute: .Height, multiplier: 0.9, constant: 0)
+        widthRegularConstraint = NSLayoutConstraint(item: diamondView, attribute: .Width, relatedBy: .Equal,
+                                                    toItem: nil, attribute: .NotAnAttribute,
+                                                    multiplier: 1.0, constant: 525)
+        widthCompactConstraint = NSLayoutConstraint(item: diamondView, attribute: .Width, relatedBy: .Equal,
+                                                    toItem: self, attribute: .Width, multiplier: 0.8, constant: 0)
         
         self.addSubview(northLabel)
         self.addConstraint(NSLayoutConstraint(item: northLabel, attribute: .CenterX, relatedBy: .Equal,
@@ -114,13 +123,32 @@ class TTActionDiamondView: UIView {
         southLabel.setMode(mode)
     }
     
+    override func drawRect(rect: CGRect) {
+        super.drawRect(rect)
+    }
+    
+    func updateLayout() {
+        if self.traitCollection.horizontalSizeClass == .Compact {
+            self.removeConstraint(heightRegularConstraint)
+            self.removeConstraint(widthRegularConstraint)
+            self.addConstraint(heightCompactConstraint)
+            self.addConstraint(widthCompactConstraint)
+        } else {
+            self.removeConstraint(heightCompactConstraint)
+            self.removeConstraint(widthCompactConstraint)
+            self.addConstraint(heightRegularConstraint)
+            self.addConstraint(widthRegularConstraint)
+        }
+        
+        self.layoutIfNeeded()
+    }
     
     override func traitCollectionDidChange(previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
         if self.traitCollection.verticalSizeClass == UIUserInterfaceSizeClass.Compact {
-            self.setNeedsDisplay()
+            self.updateLayout()
         } else {
-            self.setNeedsDisplay()
+            self.updateLayout()
         }
     }
     

@@ -76,7 +76,7 @@ class TTDeviceTitlesView: UIStackView {
             let deviceView = TTDeviceTitleView(device: device)
             self.addArrangedSubview(deviceView)
             deviceTitleConstraints.append(NSLayoutConstraint(item: deviceView, attribute: .Height,
-                relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 40))
+                relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 44))
             deviceTitleConstraints.append(NSLayoutConstraint(item: deviceView, attribute: .Width,
                 relatedBy: .Equal, toItem: self, attribute: .Width, multiplier: 1.0, constant: 0))
             deviceTitleConstraints.append(NSLayoutConstraint(item: deviceView, attribute: .Leading,

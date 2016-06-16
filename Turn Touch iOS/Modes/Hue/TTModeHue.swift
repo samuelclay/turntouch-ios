@@ -49,7 +49,7 @@ let kHueDuration: String = "hueDuration"
 let kHueDoubleTapDuration: String = "hueDoubleTapDuration"
 
 protocol TTModeHueDelegate {
-    func changeState(hueState: TTHueState, mode: TTModeHue, message: String?)
+    func changeState(hueState: TTHueState, mode: TTModeHue, message: AnyObject?)
 }
 
 class TTModeHue: TTMode {
@@ -58,7 +58,8 @@ class TTModeHue: TTMode {
     var hueState: TTHueState = TTHueState.NotConnected
     var bridgeSearch: PHBridgeSearching!
     var delegate: TTModeHueDelegate?
-    
+    var foundBridges: [String: String] = [:]
+
     required init() {
         super.init()
     }
@@ -67,14 +68,14 @@ class TTModeHue: TTMode {
         self.initializeHue()
     }
     
-    func initializeHue() {
-        if phHueSdk != nil {
+    func initializeHue(force: Bool = false) {
+        if phHueSdk != nil && !force {
             return;
         }
         
         phHueSdk = PHHueSDK()
         phHueSdk.startUpSDK()
-        phHueSdk.enableLogging(false)
+        phHueSdk.enableLogging(true)
         
         let notificationManager = PHNotificationManager.defaultManager()
         
@@ -92,6 +93,12 @@ class TTModeHue: TTMode {
         notificationManager.registerObject(self, withSelector: #selector(self.noLocalConnection), forNotification: NO_LOCAL_CONNECTION_NOTIFICATION)
         notificationManager.registerObject(self, withSelector: #selector(self.notAuthenticated), forNotification: NO_LOCAL_AUTHENTICATION_NOTIFICATION)
         
+        notificationManager.registerObject(self, withSelector: #selector(self.authenticationSuccess), forNotification: PUSHLINK_LOCAL_AUTHENTICATION_SUCCESS_NOTIFICATION)
+        notificationManager.registerObject(self, withSelector: #selector(self.authenticationFailed), forNotification: PUSHLINK_LOCAL_AUTHENTICATION_FAILED_NOTIFICATION)
+        notificationManager.registerObject(self, withSelector: #selector(self.noLocalConnection), forNotification: PUSHLINK_NO_LOCAL_CONNECTION_NOTIFICATION)
+        notificationManager.registerObject(self, withSelector: #selector(self.noLocalBridge), forNotification: PUSHLINK_NO_LOCAL_BRIDGE_KNOWN_NOTIFICATION)
+        notificationManager.registerObject(self, withSelector: #selector(self.buttonNotPressed(_:)), forNotification: PUSHLINK_BUTTON_NOT_PRESSED_NOTIFICATION)
+
         hueState = .Connecting
         self.delegate?.changeState(hueState, mode:self, message:"Connecting...")
         
@@ -433,6 +440,9 @@ class TTModeHue: TTMode {
      */
     
     func searchForBridgeLocal() {
+        // In case if in pushlink loop
+        phHueSdk.cancelPushLinkAuthentication()
+
         // Stop heartbeats
         self.disableLocalHeartbeat()
         // Start search
@@ -446,7 +456,7 @@ class TTModeHue: TTMode {
             // Check for results
             if bridgesFound.count > 0 {
                 self.hueState = .BridgeSelect
-                self.delegate?.changeState(self.hueState, mode: self, message: nil)
+                self.delegate?.changeState(self.hueState, mode: self, message: bridgesFound)
             } else {
                 /***************************************************
                  No bridge was found was found. Tell the user and offer to retry..
@@ -458,12 +468,17 @@ class TTModeHue: TTMode {
     }
     
     func bridgeSelectedWithIpAddress(ipAddress: String, andBridgeId bridgeId: String) {
+        print(" ---> Selected bridge: \(ipAddress) - \(bridgeId)")
         hueState = .Connecting
         self.delegate?.changeState(hueState, mode: self, message: "Found Hue bridge...")
         //    NSString *macAddress = [[bridgesFound allKeys] objectAtIndex:1];
         //    NSString *ipAddress = [bridgesFound objectForKey:macAddress];
         phHueSdk.setBridgeToUseWithId(bridgeId, ipAddress: ipAddress)
-        self.performSelector(#selector(self.enableLocalHeartbeat), withObject: nil, afterDelay: 1)
+        let delay = 1 * Double(NSEC_PER_SEC)
+        let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
+        dispatch_after(time, dispatch_get_main_queue()) {
+            self.enableLocalHeartbeat()
+        }
     }
     
     /**
@@ -517,18 +532,18 @@ class TTModeHue: TTMode {
          Set up the notifications for push linkng
          *****************************************************/
         // Register for notifications about pushlinking
-        let phNotificationMgr: PHNotificationManager = PHNotificationManager.defaultManager()
-        phNotificationMgr.deregisterObjectForAllNotifications(self)
-        phNotificationMgr.registerObject(self, withSelector: #selector(self.authenticationSuccess),
-                                         forNotification: PUSHLINK_LOCAL_AUTHENTICATION_SUCCESS_NOTIFICATION)
-        phNotificationMgr.registerObject(self, withSelector: #selector(self.authenticationFailed),
-                                         forNotification: PUSHLINK_LOCAL_AUTHENTICATION_FAILED_NOTIFICATION)
-        phNotificationMgr.registerObject(self, withSelector: #selector(self.noLocalConnection),
-                                         forNotification: PUSHLINK_NO_LOCAL_CONNECTION_NOTIFICATION)
-        phNotificationMgr.registerObject(self, withSelector: #selector(self.noLocalBridge),
-                                         forNotification: PUSHLINK_NO_LOCAL_BRIDGE_KNOWN_NOTIFICATION)
-        phNotificationMgr.registerObject(self, withSelector: #selector(self.buttonNotPressed(_:)),
-                                         forNotification: PUSHLINK_BUTTON_NOT_PRESSED_NOTIFICATION)
+//        let phNotificationMgr: PHNotificationManager = PHNotificationManager.defaultManager()
+//        phNotificationMgr.deregisterObjectForAllNotifications(self)
+//        phNotificationMgr.registerObject(self, withSelector: #selector(self.authenticationSuccess),
+//                                         forNotification: PUSHLINK_LOCAL_AUTHENTICATION_SUCCESS_NOTIFICATION)
+//        phNotificationMgr.registerObject(self, withSelector: #selector(self.authenticationFailed),
+//                                         forNotification: PUSHLINK_LOCAL_AUTHENTICATION_FAILED_NOTIFICATION)
+//        phNotificationMgr.registerObject(self, withSelector: #selector(self.noLocalConnection),
+//                                         forNotification: PUSHLINK_NO_LOCAL_CONNECTION_NOTIFICATION)
+//        phNotificationMgr.registerObject(self, withSelector: #selector(self.noLocalBridge),
+//                                         forNotification: PUSHLINK_NO_LOCAL_BRIDGE_KNOWN_NOTIFICATION)
+//        phNotificationMgr.registerObject(self, withSelector: #selector(self.buttonNotPressed(_:)),
+//                                         forNotification: PUSHLINK_BUTTON_NOT_PRESSED_NOTIFICATION)
         // Call to the hue SDK to start pushlinking process
         /***************************************************
          Call the SDK to start Push linking.
@@ -549,7 +564,7 @@ class TTModeHue: TTMode {
          pushLinkSuccess on the delegate
          *****************************************************/
         // Deregister for all notifications
-        PHNotificationManager.defaultManager().deregisterObjectForAllNotifications(self)
+//        PHNotificationManager.defaultManager().deregisterObjectForAllNotifications(self)
         hueState = .Connected
         self.delegate?.changeState(hueState, mode: self, message: nil)
         self.disableLocalHeartbeat()
@@ -562,7 +577,7 @@ class TTModeHue: TTMode {
     
     func authenticationFailed() {
         // Deregister for all notifications
-        PHNotificationManager.defaultManager().deregisterObjectForAllNotifications(self)
+//        PHNotificationManager.defaultManager().deregisterObjectForAllNotifications(self)
         // Inform delegate
         self.pushlinkFailed(PHError(domain: SDK_ERROR_DOMAIN, code: Int(PUSHLINK_TIME_LIMIT_REACHED.rawValue), userInfo: [
             NSLocalizedDescriptionKey : "Authentication failed: time limit reached."
@@ -574,7 +589,7 @@ class TTModeHue: TTMode {
     
     func noLocalBridge() {
         // Deregister for all notifications
-        PHNotificationManager.defaultManager().deregisterObjectForAllNotifications(self)
+//        PHNotificationManager.defaultManager().deregisterObjectForAllNotifications(self)
         // Inform delegate
         self.pushlinkFailed(PHError(domain: SDK_ERROR_DOMAIN, code: Int(PUSHLINK_NO_LOCAL_BRIDGE.rawValue), userInfo: [
             NSLocalizedDescriptionKey : "Authentication failed: No local bridge found."
@@ -590,13 +605,15 @@ class TTModeHue: TTMode {
         var dict: [NSObject : AnyObject] = notification.userInfo!
         let progressPercentage: Int = (dict["progressPercentage"] as! Int)
         hueState = .Pushlink
-        self.delegate?.changeState(hueState, mode: self, message: "\(progressPercentage)")
+        self.delegate?.changeState(hueState, mode: self, message: progressPercentage)
     }
+    
     /**
      Delegate method for PHBridgePushLinkViewController which is invoked if the pushlinking was not successfull
      */
     
     func pushlinkFailed(error: PHError) {
+        phHueSdk.cancelPushLinkAuthentication()
         // Check which error occured
         if error.code == Int(PUSHLINK_NO_CONNECTION.rawValue) {
             // No local connection to bridge
@@ -605,8 +622,13 @@ class TTModeHue: TTMode {
             self.performSelector(#selector(self.enableLocalHeartbeat), withObject: nil, afterDelay: 1)
         }
         else {
+            // Retry:
+            // self.doAuthentication()
+            
             // Bridge button not pressed in time
+            self.disableLocalHeartbeat()
             self.showNotAuthenticatedDialog()
+            self.searchForBridgeLocal()
         }
     }
     
@@ -614,6 +636,11 @@ class TTModeHue: TTMode {
         let bridgeSendAPI = PHBridgeSendAPI()
         let cache = PHBridgeResourcesReader.readBridgeResourcesCache()
         // Collect scene ids to check against
+        
+        if cache.scenes == nil {
+            print(" ---> Scenes not ready yet")
+            return
+        }
         let scenes: [NSObject : AnyObject] = cache.scenes
         var foundScenes: [String] = []
         for value in scenes.values {

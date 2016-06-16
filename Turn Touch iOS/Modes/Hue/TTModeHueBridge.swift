@@ -8,31 +8,73 @@
 
 import UIKit
 
-class TTModeHueBridge: TTOptionsDetailViewController {
+class TTModeHueBridge: TTOptionsDetailViewController, UITableViewDelegate, UITableViewDataSource {
     
+    let CellReuseIdentifier = "TTModeHueBridgeCell"
     var modeHue: TTModeHue!
+    @IBOutlet var tableView: UITableView!
+    @IBOutlet var searchButton: UIButton!
+    @IBOutlet var label: UILabel!
+    var bridgesFound: [String: String] = [:]
+    var sortedBridgeKeys: [String] = []
+    @IBOutlet var tableHeightConstraint: NSLayoutConstraint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.translatesAutoresizingMaskIntoConstraints = false
-
-        // Do any additional setup after loading the view.
+        self.tableView.allowsSelection = true
+        
+        tableHeightConstraint.constant = CGFloat(self.bridgesFound.count * 44)
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func setBridges(foundBridges: [String: String]?) {
+        if foundBridges != nil {
+            self.bridgesFound = foundBridges!
+            self.sortedBridgeKeys = self.bridgesFound.keys.sort()
+        }
+        self.label.text = "Please select a Hue bridge"
+        
+        print(" ---> Found hue bridges: \(self.bridgesFound)")
+        self.tableView.reloadData()
+        
+        tableHeightConstraint.constant = CGFloat(self.bridgesFound.count * 44)
+        self.view.layoutIfNeeded()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    @IBAction func performRefresh(sender: UIButton?) {
+        self.modeHue.searchForBridgeLocal()
+        self.label.text = "Searching for Hue bridges..."
     }
-    */
-
+    
+    // MARK: Table view data source
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.bridgesFound.count
+    }
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 44
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = TTTitleMenuCell(style: .Subtitle, reuseIdentifier: nil)
+        
+        cell.textLabel?.text = self.sortedBridgeKeys[indexPath.row]
+        cell.detailTextLabel?.text = self.bridgesFound[self.sortedBridgeKeys[indexPath.row]]
+        
+        cell.accessoryType = .DisclosureIndicator
+        cell.selectionStyle = .Gray
+        
+        cell.contentView.setNeedsLayout()
+        cell.contentView.layoutIfNeeded()
+        
+        return cell
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let bridgeId = self.sortedBridgeKeys[indexPath.row]
+        let ipAddress = self.bridgesFound[bridgeId]
+        
+        self.modeHue.bridgeSelectedWithIpAddress(ipAddress!, andBridgeId: bridgeId)
+    }
 }

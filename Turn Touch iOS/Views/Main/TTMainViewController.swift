@@ -21,6 +21,7 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
     var modeMenuView: TTModeMenuContainer = TTModeMenuContainer(menuType: TTMenuType.MENU_MODE)
     var modeMenuConstaint: NSLayoutConstraint!
     var actionDiamondView = TTActionDiamondView()
+    var actionDiamondConstraint: NSLayoutConstraint!
     var actionMenuView: TTModeMenuContainer = TTModeMenuContainer(menuType: TTMenuType.MENU_ACTION)
     var actionMenuConstaint: NSLayoutConstraint!
     var actionTitleView = TTActionTitleView()
@@ -34,8 +35,10 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
     let pairingViewController = TTPairingViewController(nibName: "TTPairingViewController", bundle: nil)
     var pairingNavController: UINavigationController!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        
         self.view.userInteractionEnabled = true
         self.view.backgroundColor = UIColor.whiteColor()
         
@@ -87,8 +90,9 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
         stackView.addConstraint(modeMenuConstaint)
         
         stackView.addArrangedSubview(actionDiamondView)
-        stackView.addConstraint(NSLayoutConstraint(item: actionDiamondView, attribute: .Height, relatedBy: .Equal,
-            toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 270))
+        actionDiamondConstraint = NSLayoutConstraint(item: actionDiamondView, attribute: .Height, relatedBy: .Equal,
+                                                     toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 270)
+        stackView.addConstraint(actionDiamondConstraint)
 
         stackView.addArrangedSubview(actionMenuView)
         actionMenuConstaint = NSLayoutConstraint(item: actionMenuView, attribute: .Height, relatedBy: .Equal,
@@ -106,16 +110,20 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
         
         stackView.addArrangedSubview(optionsView)
         optionsConstraint = NSLayoutConstraint(item: optionsView, attribute: .Height, relatedBy: .Equal,
-                                               toItem: optionsView.modeOptionsViewController.view, attribute: .Height,
+                                               toItem: nil, attribute: .NotAnAttribute,
                                                multiplier: 1.0, constant: 0)
-        stackView.addConstraint(optionsConstraint)
+//        stackView.addConstraint(optionsConstraint)
         
         stackView.addArrangedSubview(deviceTitlesView)
         deviceTitlesConstraint = NSLayoutConstraint(item: deviceTitlesView, attribute: .Height, relatedBy: .Equal,
                                                     toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 0)
-        stackView.addConstraint(deviceTitlesConstraint)
+//        stackView.addConstraint(deviceTitlesConstraint)
 
         self.registerAsObserver()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
     }
     
     override func traitCollectionDidChange(previousTraitCollection: UITraitCollection?) {
@@ -128,6 +136,12 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
             titleBarConstraint.constant = 44
             modeTabsConstraint.constant = 92
             modeTitleConstraint.constant = 64
+        }
+        
+        if self.traitCollection.horizontalSizeClass == .Compact {
+            actionDiamondConstraint.constant = 270
+        } else {
+            actionDiamondConstraint.constant = 420
         }
     }
     
@@ -194,13 +208,13 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
     }
     
     func adjustDeviceTitles() {
-        dispatch_async(dispatch_get_main_queue()) { 
-            let devices = appDelegate().bluetoothMonitor.foundDevices.nicknamedConnected()
-            
-            UIView.animateWithDuration(0.42) {
-                self.deviceTitlesConstraint.constant = CGFloat(40 * devices.count)
-            }
-        }
+//        dispatch_async(dispatch_get_main_queue()) { 
+//            let devices = appDelegate().bluetoothMonitor.foundDevices.nicknamedConnected()
+//            
+//            UIView.animateWithDuration(0.42) {
+//                self.deviceTitlesConstraint.constant = CGFloat(40 * devices.count)
+//            }
+//        }
     }
     
     func resetPosition() {
@@ -238,17 +252,21 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
             return
         }
         
-        stackView.removeConstraint(optionsConstraint)
+//        stackView.removeConstraint(optionsConstraint)
         
         if optionsDetailView == nil {
             optionsConstraint = NSLayoutConstraint(item: optionsView, attribute: .Height, relatedBy: .Equal,
                                                    toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 0)
-            stackView.addConstraint(optionsConstraint)
+//            stackView.addConstraint(optionsConstraint)
         } else {
-            optionsConstraint = NSLayoutConstraint(item: optionsView, attribute: .Bottom, relatedBy: .Equal,
-                                                   toItem: optionsDetailView, attribute: .Bottom, multiplier: 1.0, constant: 0)
-            optionsView.addConstraint(optionsConstraint)
+            optionsConstraint = NSLayoutConstraint(item: optionsView, attribute: .Height, relatedBy: .Equal,
+                                                   toItem: optionsDetailView, attribute: .Height, multiplier: 1.0, constant: 0)
+//            stackView.addConstraint(optionsConstraint)
         }
+        
+        stackView.setNeedsUpdateConstraints()
+        stackView.updateConstraintsIfNeeded()
+        stackView.setNeedsLayout()
     }
     
     // MARK: Modals and menus
