@@ -499,8 +499,9 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
         } else if characteristic.UUID.isEqual(CBUUID(string: DEVICE_V2_CHARACTERISTIC_NICKNAME_UUID)) {
             if (characteristic.value == nil) || (characteristic.value!.length == 0) {
                 print(" ---> \(bluetoothState) No nickname: \(device)")
+            } else {
+                device.setNicknameData(characteristic.value!)
             }
-            device.setNicknameData(characteristic.value!)
             self.countDevices()
             
             print(" ---> \(bluetoothState) Hello: \(device)")

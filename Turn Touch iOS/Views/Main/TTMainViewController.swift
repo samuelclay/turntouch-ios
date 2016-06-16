@@ -27,6 +27,8 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
     var actionTitleConstraint: NSLayoutConstraint!
     var deviceTitlesView = TTDeviceTitlesView()
     var deviceTitlesConstraint: NSLayoutConstraint!
+    var optionsView = TTOptionsView()
+    var optionsConstraint: NSLayoutConstraint!
     
     let titleMenu = TTTitleMenuPopover()
     let pairingViewController = TTPairingViewController(nibName: "TTPairingViewController", bundle: nil)
@@ -101,6 +103,12 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
         
         actionDiamondView.layer.zPosition = 2.0
         actionTitleView.layer.zPosition = 1.0
+        
+        stackView.addArrangedSubview(optionsView)
+        optionsConstraint = NSLayoutConstraint(item: optionsView, attribute: .Height, relatedBy: .Equal,
+                                               toItem: optionsView.modeOptionsViewController.view, attribute: .Height,
+                                               multiplier: 1.0, constant: 0)
+        stackView.addConstraint(optionsConstraint)
         
         stackView.addArrangedSubview(deviceTitlesView)
         deviceTitlesConstraint = NSLayoutConstraint(item: deviceTitlesView, attribute: .Height, relatedBy: .Equal,
@@ -221,6 +229,26 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
 
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
         super.touchesEnded(touches, withEvent: event)
+    }
+    
+    // MARK: Options
+    
+    func adjustOptionsHeight(optionsDetailView: UIView?) {
+        if optionsConstraint == nil {
+            return
+        }
+        
+        stackView.removeConstraint(optionsConstraint)
+        
+        if optionsDetailView == nil {
+            optionsConstraint = NSLayoutConstraint(item: optionsView, attribute: .Height, relatedBy: .Equal,
+                                                   toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 0)
+            stackView.addConstraint(optionsConstraint)
+        } else {
+            optionsConstraint = NSLayoutConstraint(item: optionsView, attribute: .Bottom, relatedBy: .Equal,
+                                                   toItem: optionsDetailView, attribute: .Bottom, multiplier: 1.0, constant: 0)
+            optionsView.addConstraint(optionsConstraint)
+        }
     }
     
     // MARK: Modals and menus

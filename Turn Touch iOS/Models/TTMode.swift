@@ -325,9 +325,9 @@ class TTMode : NSObject, TTModeProtocol {
         }
         let modeDefaults: Dictionary<String, AnyObject>? = NSDictionary(contentsOfFile: defaultPrefsFile!) as? Dictionary<String, AnyObject>
         let optionKey = "\(actionName):\(optionName)"
-        print(" -> Getting mode action option default \(optionKey): \(modeDefaults?[optionName])")
+        print(" -> Getting mode action option default \(optionKey): \(modeDefaults?[optionKey])")
         
-        return modeDefaults?[optionName]
+        return modeDefaults?[optionKey]
     }
     
     // MARK: Setting action options

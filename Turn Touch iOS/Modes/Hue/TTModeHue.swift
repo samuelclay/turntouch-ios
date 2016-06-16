@@ -283,6 +283,12 @@ class TTModeHue: TTMode {
         let cache = PHBridgeResourcesReader.readBridgeResourcesCache()
         let bridgeSendAPI = PHBridgeSendAPI()
         let sceneTransition = sceneDuration * 10
+        
+        if cache.lights == nil {
+            print(" ---> Not running sleep, no lights found")
+            return
+        }
+        
         for (_, value) in cache.lights {
             let light = value as! PHLight
             let lightState = PHLightState()
@@ -318,6 +324,11 @@ class TTModeHue: TTMode {
         let randomSaturation = TTHueRandomSaturation(rawValue: (self.action.optionValue((doubleTap ?
             kDoubleTapRandomSaturation : kRandomSaturation), direction: direction) as! Int))
         let randomColor: Int = Int(arc4random_uniform(MAX_HUE))
+        
+        if cache.lights == nil {
+            print(" ---> Not running random, no lights found")
+            return
+        }
         
         for (_, value) in cache.lights {
             let light = value as! PHLight
