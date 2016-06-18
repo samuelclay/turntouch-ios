@@ -252,8 +252,6 @@ class TTMode : NSObject, TTModeProtocol {
         
         prefs.setObject(actionClassName, forKey: prefKey)
         prefs.synchronize()
-        
-        
     }
     
     // MARK: Action options
@@ -333,11 +331,15 @@ class TTMode : NSObject, TTModeProtocol {
     // MARK: Setting action options
     
     func changeActionOption(optionName: String, to optionValue: AnyObject) {
+        if optionName == "" {
+            print(" ---> BUSTED: \(optionValue)")
+            return
+        }
         let prefs = NSUserDefaults.standardUserDefaults()
         let inspectingModeDirection = appDelegate().modeMap.inspectingModeDirection
         let modeDirectionName = appDelegate().modeMap.directionName(modeDirection)
         let actionDirectionName = appDelegate().modeMap.directionName(inspectingModeDirection)
-        let actionName = self.actionNameInDirection(inspectingModeDirection)
+        let actionName = self.actionNameInDirection(inspectingModeDirection)!
         let optionKey = "TT:mode:\(self.nameOfClass)-\(modeDirectionName):action:\(actionName)-\(actionDirectionName):option:\(optionName)"
         let pref = prefs.objectForKey(optionKey)
         print(" -> Setting action options \(optionKey) from (\(pref)) to (\(optionValue))")

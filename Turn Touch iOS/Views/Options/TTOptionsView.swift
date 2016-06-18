@@ -99,6 +99,7 @@ class TTOptionsView: UIView {
         
         modeOptionsViewController.mode = appDelegate().modeMap.selectedMode
         modeOptionsViewController.menuType = TTMenuType.MENU_MODE
+        modeOptionsViewController.view.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(modeOptionsViewController.view)
         
         self.addConstraint(NSLayoutConstraint(item: modeOptionsViewController.view, attribute: .Top,
@@ -117,7 +118,7 @@ class TTOptionsView: UIView {
         self.clearOptionDetailViews()
         
         let actionName = appDelegate().modeMap.selectedMode.actionNameInDirection(appDelegate().modeMap.inspectingModeDirection)
-        let actionOptionsViewControllerName = "Turn_Touch_iOS.\(actionName)Options"
+        let actionOptionsViewControllerName = "Turn_Touch_iOS.\(actionName!)Options"
         let actionOptionsClass: AnyClass? = NSClassFromString(actionOptionsViewControllerName)
         if actionOptionsClass == nil {
             actionOptionsViewController = TTOptionsDetailViewController()
@@ -131,6 +132,7 @@ class TTOptionsView: UIView {
         actionOptionsViewController.mode = appDelegate().modeMap.selectedMode
         actionOptionsViewController.mode.action=actionOptionsViewController.action
         actionOptionsViewController.action.mode = appDelegate().modeMap.selectedMode // To parallel batch actions
+        actionOptionsViewController.view.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(actionOptionsViewController.view)
         
         self.addConstraint(NSLayoutConstraint(item: actionOptionsViewController.view, attribute: .Top,
@@ -139,6 +141,8 @@ class TTOptionsView: UIView {
             relatedBy: .Equal, toItem: self, attribute: .Leading, multiplier: 1.0, constant: 0))
         self.addConstraint(NSLayoutConstraint(item: actionOptionsViewController.view, attribute: .Width,
             relatedBy: .Equal, toItem: self, attribute: .Width, multiplier: 1.0, constant: 0))
+        self.addConstraint(NSLayoutConstraint(item: self, attribute: .Height,
+            relatedBy: .Equal, toItem: actionOptionsViewController.view, attribute: .Height, multiplier: 1.0, constant: 0))
         
         appDelegate().mainViewController.adjustOptionsHeight(actionOptionsViewController.view)
     }

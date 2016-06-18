@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import AudioToolbox
 
 enum TTPressState: Int {
     case Active = 0x01
@@ -227,7 +228,7 @@ class TTButtonTimer : NSObject {
         dispatch_async(dispatch_get_main_queue(), {
             appDelegate().modeMap.activeModeDirection = .NO_DIRECTION
             appDelegate().modeMap.selectedModeDirection = direction
-            
+            AudioServicesPlayAlertSound(kSystemSoundID_Vibrate)
     //        appDelegate().hudController.holdToastActiveMode(true)
         })
     }

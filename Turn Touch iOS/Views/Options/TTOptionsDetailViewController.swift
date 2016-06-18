@@ -18,7 +18,8 @@ class TTOptionsDetailViewController: UIViewController {
     required override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         
-        self.view.translatesAutoresizingMaskIntoConstraints = false
+        // Don't touch self.view yet, since lots of instance variables need to be set first
+//        self.view.translatesAutoresizingMaskIntoConstraints = false
     }
     
     required init?(coder aDecoder: NSCoder) {

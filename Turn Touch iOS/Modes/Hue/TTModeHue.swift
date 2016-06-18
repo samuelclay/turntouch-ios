@@ -37,16 +37,18 @@ enum TTHueRandomSaturation: Int {
 let MAX_HUE: UInt32 = 65535
 let MAX_BRIGHTNESS: UInt32 = 255
 
-let kRandomColors: String = "randomColors"
-let kRandomBrightness: String = "randomBrightness"
-let kRandomSaturation: String = "randomSaturation"
-let kDoubleTapRandomColors: String = "doubleTapRandomColors"
-let kDoubleTapRandomBrightness: String = "doubleTapRandomBrightness"
-let kDoubleTapRandomSaturation: String = "doubleTapRandomSaturation"
-let kHueScene: String = "hueScene"
-let kDoubleTapHueScene: String = "doubleTapHueScene"
-let kHueDuration: String = "hueDuration"
-let kHueDoubleTapDuration: String = "hueDoubleTapDuration"
+struct TTModeHueConstants {
+    static let kRandomColors: String = "randomColors"
+    static let kRandomBrightness: String = "randomBrightness"
+    static let kRandomSaturation: String = "randomSaturation"
+    static let kDoubleTapRandomColors: String = "doubleTapRandomColors"
+    static let kDoubleTapRandomBrightness: String = "doubleTapRandomBrightness"
+    static let kDoubleTapRandomSaturation: String = "doubleTapRandomSaturation"
+    static let kHueScene: String = "hueScene"
+    static let kDoubleTapHueScene: String = "doubleTapHueScene"
+    static let kHueDuration: String = "hueDuration"
+    static let kHueDoubleTapDuration: String = "hueDoubleTapDuration"
+}
 
 protocol TTModeHueDelegate {
     func changeState(hueState: TTHueState, mode: TTModeHue, message: AnyObject?)
@@ -75,7 +77,7 @@ class TTModeHue: TTMode {
         
         phHueSdk = PHHueSDK()
         phHueSdk.startUpSDK()
-        phHueSdk.enableLogging(true)
+        phHueSdk.enableLogging(false)
         
         let notificationManager = PHNotificationManager.defaultManager()
         
@@ -208,28 +210,32 @@ class TTModeHue: TTMode {
     
     // MARK: Action methods
     
-    func runScene(sceneName: String, direction: TTModeDirection, doubleTap: Bool) {
+    func runScene(sceneName: String, direction: TTModeDirection, doubleTap: Bool, defaultIdentifier: String) {
         if !phHueSdk.localConnected() {
             return
         }
         
         let bridgeSendAPI = PHBridgeSendAPI()
         let cache = PHBridgeResourcesReader.readBridgeResourcesCache()
-//        var activeScene: PHScene!
-        var sceneIdentifier: String? = self.action.optionValue(doubleTap ? kDoubleTapHueScene : kHueScene, direction: direction) as? String
+        var defaultScene: PHScene?
+        var sceneIdentifier: String? = self.action.optionValue(doubleTap ? TTModeHueConstants.kDoubleTapHueScene : TTModeHueConstants.kHueScene, direction: direction) as? String
         var scenes: Array<Dictionary<String, String>> = []
         for (_, value) in cache.scenes {
             let scene = value as! PHScene
-//            if scene.identifier == sceneIdentifier {
-//                activeScene = scene
-//            }
+            if scene.identifier == defaultIdentifier {
+                defaultScene = scene
+            }
             scenes.append(["name": scene.name, "identifier": scene.identifier])
         }
         
         scenes = scenes.sort { $0["name"] > $1["name"] }
         
         if sceneIdentifier == nil || sceneIdentifier!.characters.count == 0 {
-            sceneIdentifier = scenes[0]["identifier"]
+            if let _defaultScene = defaultScene {
+                sceneIdentifier = _defaultScene.identifier
+            } else {
+                sceneIdentifier = scenes[0]["identifier"] // Last resort
+            }
         }
         
         bridgeSendAPI.activateSceneWithIdentifier(sceneIdentifier, onGroup: "0") { (errors: [AnyObject]!) in
@@ -238,19 +244,19 @@ class TTModeHue: TTMode {
     }
     
     func runTTModeHueSceneEarlyEvening(direction: TTModeDirection) {
-        self.runScene("TTModeHueSceneEarlyEvening", direction: direction, doubleTap: false)
+        self.runScene("TTModeHueSceneEarlyEvening", direction: direction, doubleTap: false, defaultIdentifier: "TT-ee-1")
     }
     
     func doubleRunTTModeHueSceneEarlyEvening(direction: TTModeDirection) {
-        self.runScene("TTModeHueSceneEarlyEvening", direction: direction, doubleTap: true)
+        self.runScene("TTModeHueSceneEarlyEvening", direction: direction, doubleTap: true, defaultIdentifier: "TT-ee-2")
     }
     
     func runTTModeHueSceneLateEvening(direction: TTModeDirection) {
-        self.runScene("TTModeHueSceneLateEvening", direction: direction, doubleTap: false)
+        self.runScene("TTModeHueSceneLateEvening", direction: direction, doubleTap: false, defaultIdentifier: "TT-le-1")
     }
     
     func doubleRunTTModeHueSceneLateEvening(direction: TTModeDirection) {
-        self.runScene("TTModeHueSceneLateEvening", direction: direction, doubleTap: true)
+        self.runScene("TTModeHueSceneLateEvening", direction: direction, doubleTap: true, defaultIdentifier: "TT-le-2")
     }
     
     func runTTModeHueOff(direction: TTModeDirection) {
@@ -259,13 +265,13 @@ class TTModeHue: TTMode {
     }
     
     func runTTModeHueSleep(direction: TTModeDirection) {
-        let sceneDuration: Int = self.action.mode.actionOptionValue(kHueDuration, actionName: "TTModeHueSleep", direction: direction) as! Int
+        let sceneDuration: Int = self.action.mode.actionOptionValue(TTModeHueConstants.kHueDuration, actionName: "TTModeHueSleep", direction: direction) as! Int
         self.runTTModeHueSleep(direction, duration: sceneDuration)
     }
     
     func doubleRunTTModeHueSleep(direction: TTModeDirection) {
         //    NSLog(@"Running scene off... %d", direction);
-        let sceneDuration: Int = self.action.mode.actionOptionValue(kHueDoubleTapDuration, actionName: "TTModeHueSleep", direction: direction) as! Int
+        let sceneDuration: Int = self.action.mode.actionOptionValue(TTModeHueConstants.kHueDoubleTapDuration, actionName: "TTModeHueSleep", direction: direction) as! Int
         self.runTTModeHueSleep(direction, duration: sceneDuration)
     }
     
@@ -306,7 +312,7 @@ class TTModeHue: TTMode {
             lightState.alert = PHLightAlertMode.init(0)
             dispatch_async(dispatch_get_main_queue(), {
                 bridgeSendAPI.updateLightStateForId(light.identifier, withLightState: lightState, completionHandler: {(errors) in
-                    NSLog("Sleep light in %@: %@", sceneTransition, errors)
+                    print(" ---> Sleep light in \(sceneTransition): \(errors)")
                 })
             })
         }
@@ -325,11 +331,11 @@ class TTModeHue: TTMode {
         let cache: PHBridgeResourcesCache = PHBridgeResourcesReader.readBridgeResourcesCache()
         let bridgeSendAPI: PHBridgeSendAPI = PHBridgeSendAPI()
         let randomColors = TTHueRandomColors(rawValue: (self.action.optionValue((doubleTap ?
-            kDoubleTapRandomColors : kRandomColors), direction: direction) as! Int))
+            TTModeHueConstants.kDoubleTapRandomColors : TTModeHueConstants.kRandomColors), direction: direction) as! Int))
         let randomBrightnesses = TTHueRandomBrightness(rawValue: (self.action.optionValue((doubleTap ?
-            kDoubleTapRandomBrightness : kRandomBrightness), direction: direction) as! Int))
+            TTModeHueConstants.kDoubleTapRandomBrightness : TTModeHueConstants.kRandomBrightness), direction: direction) as! Int))
         let randomSaturation = TTHueRandomSaturation(rawValue: (self.action.optionValue((doubleTap ?
-            kDoubleTapRandomSaturation : kRandomSaturation), direction: direction) as! Int))
+            TTModeHueConstants.kDoubleTapRandomSaturation : TTModeHueConstants.kRandomSaturation), direction: direction) as! Int))
         let randomColor: Int = Int(arc4random_uniform(MAX_HUE))
         
         if cache.lights == nil {
@@ -403,9 +409,11 @@ class TTModeHue: TTMode {
             self.showNoConnectionDialog()
         } else {
             // One of the connections is made, remove popups and loading views
-            hueState = .Connected
-            self.delegate?.changeState(hueState, mode: self, message: nil)
-            self.ensureScenes()
+            if hueState != .Connected {
+                hueState = .Connected
+                self.delegate?.changeState(hueState, mode: self, message: nil)
+                self.ensureScenes()
+            }
         }
     }
     
@@ -470,7 +478,7 @@ class TTModeHue: TTMode {
     func bridgeSelectedWithIpAddress(ipAddress: String, andBridgeId bridgeId: String) {
         print(" ---> Selected bridge: \(ipAddress) - \(bridgeId)")
         hueState = .Connecting
-        self.delegate?.changeState(hueState, mode: self, message: "Found Hue bridge...")
+        self.delegate?.changeState(hueState, mode: self, message: "Connecting to Hue bridge...")
         //    NSString *macAddress = [[bridgesFound allKeys] objectAtIndex:1];
         //    NSString *ipAddress = [bridgesFound objectForKey:macAddress];
         phHueSdk.setBridgeToUseWithId(bridgeId, ipAddress: ipAddress)
@@ -655,17 +663,86 @@ class TTModeHue: TTMode {
             scene.identifier = "TT-all-off"
             scene.lightIdentifiers = cache.lights.map { (_, value) in (value as! PHLight).identifier }
             bridgeSendAPI.saveSceneWithCurrentLightStates(scene, completionHandler: {(errors) in
-                NSLog("Hue:SceneOff scene: %@", errors)
+                print("Hue:SceneOff scene: \(errors)")
                 for (_, value) in cache.lights {
                     let light = value as! PHLight
                     let lightState: PHLightState = light.lightState
                     lightState.on = Int(false)
                     lightState.alert = PHLightAlertMode.init(0)
                     bridgeSendAPI.saveLightState(lightState, forLightIdentifier: light.identifier, inSceneWithIdentifier: scene.identifier, completionHandler: {(errors) in
-                        NSLog("Hue:SceneOff light: %@", errors)
+                        print("Hue:SceneOff light: \(errors)")
                     })
                 }
             })
         }
+        
+        if !foundScenes.contains("TT-loop") {
+            let scene: PHScene = PHScene()
+            scene.name = "Color loop"
+            scene.identifier = "TT-loop"
+            scene.lightIdentifiers = cache.lights.map { (_, value) in (value as! PHLight).identifier }
+            bridgeSendAPI.saveSceneWithCurrentLightStates(scene, completionHandler: {(errors) in
+                print("Hue:Loop scene: \(errors)")
+                for (_, value) in cache.lights {
+                    let light = value as! PHLight
+                    let lightState: PHLightState = light.lightState
+                    lightState.on = NSNumber(bool: true)
+                    lightState.alert = PHLightAlertMode.init(0)
+                    lightState.effect = EFFECT_COLORLOOP
+                    bridgeSendAPI.saveLightState(lightState, forLightIdentifier: light.identifier, inSceneWithIdentifier: scene.identifier, completionHandler: {(errors) in
+                        print("Hue:Loop light: \(errors)")
+                    })
+                }
+            })
+        }
+        
+        if !foundScenes.contains("TT-ee-1") || true {
+            let scene: PHScene = PHScene()
+            scene.name = "Early Evening"
+            scene.identifier = "TT-ee-1"
+            scene.lightIdentifiers = cache.lights.map { (_, value) in (value as! PHLight).identifier }
+            bridgeSendAPI.saveSceneWithCurrentLightStates(scene, completionHandler: {(errors) in
+                print("Hue:EE1 scene: \(errors)")
+                for (_, value) in cache.lights {
+                    let light = value as! PHLight
+                    let lightState: PHLightState = light.lightState
+                    lightState.on = NSNumber(bool: true)
+                    lightState.alert = PHLightAlertMode.init(0)
+                    let point = PHUtilities.calculateXY(UIColor(red: 204/255.0, green: 132/255.0, blue: 63/255.0, alpha: 1), forModel: light.modelNumber)
+                    lightState.x = NSNumber(float: Float(point.x))
+                    lightState.y = NSNumber(float: Float(point.y))
+                    lightState.brightness = NSNumber(integer: Int(MAX_BRIGHTNESS))
+                    lightState.saturation = NSNumber(integer: Int(MAX_BRIGHTNESS))
+                    bridgeSendAPI.saveLightState(lightState, forLightIdentifier: light.identifier, inSceneWithIdentifier: scene.identifier, completionHandler: {(errors) in
+                        print("Hue:EE1 scene: \(errors)")
+                    })
+                }
+            })
+        }
+        
+        if !foundScenes.contains("TT-ee-2") || true {
+            let scene: PHScene = PHScene()
+            scene.name = "Early Evening 2"
+            scene.identifier = "TT-ee-2"
+            scene.lightIdentifiers = cache.lights.map { (_, value) in (value as! PHLight).identifier }
+            bridgeSendAPI.saveSceneWithCurrentLightStates(scene, completionHandler: {(errors) in
+                print("Hue:EE2 scene: \(errors)")
+                for (_, value) in cache.lights {
+                    let light = value as! PHLight
+                    let lightState: PHLightState = light.lightState
+                    lightState.on = NSNumber(bool: true)
+                    lightState.alert = PHLightAlertMode.init(0)
+                    let point = PHUtilities.calculateXY(UIColor(red: 204/255.0, green: 132/255.0, blue: 63/255.0, alpha: 1), forModel: light.modelNumber)
+                    lightState.x = NSNumber(float: Float(point.x))
+                    lightState.y = NSNumber(float: Float(point.y))
+                    lightState.brightness = NSNumber(int: 200)
+                    lightState.saturation = NSNumber(integer: Int(MAX_BRIGHTNESS))
+                    bridgeSendAPI.saveLightState(lightState, forLightIdentifier: light.identifier, inSceneWithIdentifier: scene.identifier, completionHandler: {(errors) in
+                        print("Hue:EE2 scene: \(errors)")
+                    })
+                }
+            })
+        }
+        
     }
 }

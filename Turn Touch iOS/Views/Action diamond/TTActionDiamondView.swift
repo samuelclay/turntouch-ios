@@ -129,15 +129,18 @@ class TTActionDiamondView: UIView {
     
     func updateLayout() {
         if self.traitCollection.horizontalSizeClass == .Compact {
-            self.removeConstraint(heightRegularConstraint)
             self.removeConstraint(widthRegularConstraint)
-            self.addConstraint(heightCompactConstraint)
             self.addConstraint(widthCompactConstraint)
         } else {
-            self.removeConstraint(heightCompactConstraint)
             self.removeConstraint(widthCompactConstraint)
-            self.addConstraint(heightRegularConstraint)
             self.addConstraint(widthRegularConstraint)
+        }
+        if self.traitCollection.verticalSizeClass == .Compact {
+            self.removeConstraint(heightRegularConstraint)
+            self.addConstraint(heightCompactConstraint)
+        } else {
+            self.removeConstraint(heightCompactConstraint)
+            self.addConstraint(heightRegularConstraint)
         }
         
         self.layoutIfNeeded()
