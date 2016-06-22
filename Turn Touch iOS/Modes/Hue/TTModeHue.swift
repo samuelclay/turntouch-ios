@@ -275,20 +275,20 @@ class TTModeHue: TTMode {
         self.runTTModeHueSleep(direction, duration: sceneDuration)
     }
     
-    func shouldIgnoreSingleBeforeDoubleTTModeHueSceneEarlyEvening() -> Bool {
-        return true
+    func shouldIgnoreSingleBeforeDoubleTTModeHueSceneEarlyEvening() -> NSNumber {
+        return NSNumber(bool: true)
     }
     
-    func shouldIgnoreSingleBeforeDoubleTTModeHueSceneLateEvening() -> Bool {
-        return true
+    func shouldIgnoreSingleBeforeDoubleTTModeHueSceneLateEvening() -> NSNumber {
+        return NSNumber(bool: true)
     }
     
-    func shouldIgnoreSingleBeforeDoubleTTModeHueSleep() -> Bool {
-        return true
+    func shouldIgnoreSingleBeforeDoubleTTModeHueSleep() -> NSNumber {
+        return NSNumber(bool: true)
     }
     
-    func shouldIgnoreSingleBeforeDoubleTTModeHueRandom() -> Bool {
-        return true
+    func shouldIgnoreSingleBeforeDoubleTTModeHueRandom() -> NSNumber {
+        return NSNumber(bool: true)
     }
     
     func runTTModeHueSleep(direction: TTModeDirection, duration sceneDuration: Int) {
@@ -708,7 +708,7 @@ class TTModeHue: TTMode {
                     let lightState: PHLightState = light.lightState
                     lightState.on = NSNumber(bool: true)
                     lightState.alert = PHLightAlertMode.init(0)
-                    let point = PHUtilities.calculateXY(UIColor(red: 204/255.0, green: 132/255.0, blue: 63/255.0, alpha: 1), forModel: light.modelNumber)
+                    let point = PHUtilities.calculateXY(UIColor(red: 235/255.0, green: 206/255.0, blue: 146/255.0, alpha: 1), forModel: light.modelNumber)
                     lightState.x = NSNumber(float: Float(point.x))
                     lightState.y = NSNumber(float: Float(point.y))
                     lightState.brightness = NSNumber(integer: Int(MAX_BRIGHTNESS))
@@ -727,18 +727,72 @@ class TTModeHue: TTMode {
             scene.lightIdentifiers = cache.lights.map { (_, value) in (value as! PHLight).identifier }
             bridgeSendAPI.saveSceneWithCurrentLightStates(scene, completionHandler: {(errors) in
                 print("Hue:EE2 scene: \(errors)")
-                for (_, value) in cache.lights {
+                for (i, (_, value)) in cache.lights.enumerate() {
                     let light = value as! PHLight
                     let lightState: PHLightState = light.lightState
                     lightState.on = NSNumber(bool: true)
                     lightState.alert = PHLightAlertMode.init(0)
-                    let point = PHUtilities.calculateXY(UIColor(red: 204/255.0, green: 132/255.0, blue: 63/255.0, alpha: 1), forModel: light.modelNumber)
+                    var point = PHUtilities.calculateXY(UIColor(red: 245/255.0, green: 176/255.0, blue: 116/255.0, alpha: 1), forModel: light.modelNumber)
+                    if i % 3 == 2 {
+                        point = PHUtilities.calculateXY(UIColor(red: 44/255.0, green: 56/255.0, blue: 225/255.0, alpha: 1), forModel: light.modelNumber)
+                    }
                     lightState.x = NSNumber(float: Float(point.x))
                     lightState.y = NSNumber(float: Float(point.y))
                     lightState.brightness = NSNumber(int: 200)
                     lightState.saturation = NSNumber(integer: Int(MAX_BRIGHTNESS))
                     bridgeSendAPI.saveLightState(lightState, forLightIdentifier: light.identifier, inSceneWithIdentifier: scene.identifier, completionHandler: {(errors) in
                         print("Hue:EE2 scene: \(errors)")
+                    })
+                }
+            })
+        }
+        
+        if !foundScenes.contains("TT-le-1") || true {
+            let scene: PHScene = PHScene()
+            scene.name = "Late Evening"
+            scene.identifier = "TT-le-1"
+            scene.lightIdentifiers = cache.lights.map { (_, value) in (value as! PHLight).identifier }
+            bridgeSendAPI.saveSceneWithCurrentLightStates(scene, completionHandler: {(errors) in
+                print("Hue:LE1 scene: \(errors)")
+                for (_, value) in cache.lights {
+                    let light = value as! PHLight
+                    let lightState: PHLightState = light.lightState
+                    lightState.on = NSNumber(bool: true)
+                    lightState.alert = PHLightAlertMode.init(0)
+                    let point = PHUtilities.calculateXY(UIColor(red: 135/255.0, green: 106/255.0, blue: 46/255.0, alpha: 1), forModel: light.modelNumber)
+                    lightState.x = NSNumber(float: Float(point.x))
+                    lightState.y = NSNumber(float: Float(point.y))
+                    lightState.brightness = NSNumber(integer: Int(MAX_BRIGHTNESS))
+                    lightState.saturation = NSNumber(integer: Int(MAX_BRIGHTNESS))
+                    bridgeSendAPI.saveLightState(lightState, forLightIdentifier: light.identifier, inSceneWithIdentifier: scene.identifier, completionHandler: {(errors) in
+                        print("Hue:LE1 scene: \(errors)")
+                    })
+                }
+            })
+        }
+        
+        if !foundScenes.contains("TT-le-2") || true {
+            let scene: PHScene = PHScene()
+            scene.name = "Late Evening 2"
+            scene.identifier = "TT-le-2"
+            scene.lightIdentifiers = cache.lights.map { (_, value) in (value as! PHLight).identifier }
+            bridgeSendAPI.saveSceneWithCurrentLightStates(scene, completionHandler: {(errors) in
+                print("Hue:LE2 scene: \(errors)")
+                for (i, (_, value)) in cache.lights.enumerate() {
+                    let light = value as! PHLight
+                    let lightState: PHLightState = light.lightState
+                    lightState.on = NSNumber(bool: true)
+                    lightState.alert = PHLightAlertMode.init(0)
+                    var point = PHUtilities.calculateXY(UIColor(red: 145/255.0, green: 76/255.0, blue: 16/255.0, alpha: 1), forModel: light.modelNumber)
+                    if i % 3 == 2 {
+                        point = PHUtilities.calculateXY(UIColor(red: 134/255.0, green: 56/255.0, blue: 205/255.0, alpha: 1), forModel: light.modelNumber)
+                    }
+                    lightState.x = NSNumber(float: Float(point.x))
+                    lightState.y = NSNumber(float: Float(point.y))
+                    lightState.brightness = NSNumber(int: 200)
+                    lightState.saturation = NSNumber(integer: Int(MAX_BRIGHTNESS))
+                    bridgeSendAPI.saveLightState(lightState, forLightIdentifier: light.identifier, inSceneWithIdentifier: scene.identifier, completionHandler: {(errors) in
+                        print("Hue:LE2 scene: \(errors)")
                     })
                 }
             })

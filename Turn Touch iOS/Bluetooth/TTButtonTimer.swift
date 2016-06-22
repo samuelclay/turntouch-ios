@@ -20,7 +20,7 @@ enum TTHUDMenuState {
     case Active
 }
 
-let DOUBLE_CLICK_ACTION_DURATION = 0.5
+let DOUBLE_CLICK_ACTION_DURATION = 0.25
 
 class TTButtonTimer : NSObject {
     

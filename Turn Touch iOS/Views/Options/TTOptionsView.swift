@@ -118,7 +118,7 @@ class TTOptionsView: UIView {
         self.clearOptionDetailViews()
         
         let actionName = appDelegate().modeMap.selectedMode.actionNameInDirection(appDelegate().modeMap.inspectingModeDirection)
-        let actionOptionsViewControllerName = "Turn_Touch_iOS.\(actionName!)Options"
+        let actionOptionsViewControllerName = "Turn_Touch_iOS.\(actionName)Options"
         let actionOptionsClass: AnyClass? = NSClassFromString(actionOptionsViewControllerName)
         if actionOptionsClass == nil {
             actionOptionsViewController = TTOptionsDetailViewController()
@@ -128,7 +128,7 @@ class TTOptionsView: UIView {
         }
         
         actionOptionsViewController.menuType = TTMenuType.MENU_ACTION
-        actionOptionsViewController.action = TTAction(actionName: actionName!)
+        actionOptionsViewController.action = TTAction(actionName: actionName)
         actionOptionsViewController.mode = appDelegate().modeMap.selectedMode
         actionOptionsViewController.mode.action=actionOptionsViewController.action
         actionOptionsViewController.action.mode = appDelegate().modeMap.selectedMode // To parallel batch actions

@@ -62,6 +62,7 @@
 		FF37EDEE1D13823F0026F70D /* TTModeHueSceneEarlyEveningOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF37EDED1D13823F0026F70D /* TTModeHueSceneEarlyEveningOptions.swift */; };
 		FF37EDF01D14A9E80026F70D /* single_tap.png in Resources */ = {isa = PBXBuildFile; fileRef = FF37EDEF1D14A9E80026F70D /* single_tap.png */; };
 		FF37EDF41D14AEE00026F70D /* TTModeHueScenePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF37EDF31D14AEE00026F70D /* TTModeHueScenePickerViewController.swift */; };
+		FF37EDF61D1B1A310026F70D /* TTModeHueSceneLateEveningOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF37EDF51D1B1A310026F70D /* TTModeHueSceneLateEveningOptions.swift */; };
 		FF44875F1D078FAC00ED8099 /* TTActionTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF44875E1D078FAB00ED8099 /* TTActionTitleView.swift */; };
 		FF4487621D08986200ED8099 /* TTTitleMenuPopover.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4487611D08986200ED8099 /* TTTitleMenuPopover.swift */; };
 		FF4487641D08AA8800ED8099 /* TTTitleMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4487631D08AA8800ED8099 /* TTTitleMenuCell.swift */; };
@@ -272,6 +273,7 @@
 		FF37EDED1D13823F0026F70D /* TTModeHueSceneEarlyEveningOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeHueSceneEarlyEveningOptions.swift; path = Modes/Hue/TTModeHueSceneEarlyEveningOptions.swift; sourceTree = "<group>"; };
 		FF37EDEF1D14A9E80026F70D /* single_tap.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = single_tap.png; sourceTree = "<group>"; };
 		FF37EDF31D14AEE00026F70D /* TTModeHueScenePickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeHueScenePickerViewController.swift; path = Modes/Hue/TTModeHueScenePickerViewController.swift; sourceTree = "<group>"; };
+		FF37EDF51D1B1A310026F70D /* TTModeHueSceneLateEveningOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeHueSceneLateEveningOptions.swift; path = Modes/Hue/TTModeHueSceneLateEveningOptions.swift; sourceTree = "<group>"; };
 		FF44875E1D078FAB00ED8099 /* TTActionTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTActionTitleView.swift; path = Views/Actions/TTActionTitleView.swift; sourceTree = "<group>"; };
 		FF4487611D08986200ED8099 /* TTTitleMenuPopover.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTTitleMenuPopover.swift; path = Views/Main/TTTitleMenuPopover.swift; sourceTree = "<group>"; };
 		FF4487631D08AA8800ED8099 /* TTTitleMenuCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTTitleMenuCell.swift; path = Views/Main/TTTitleMenuCell.swift; sourceTree = "<group>"; };
@@ -508,6 +510,7 @@
 				FF37EDEA1D137A210026F70D /* TTModeHueSceneOptions.xib */,
 				FF37EDF31D14AEE00026F70D /* TTModeHueScenePickerViewController.swift */,
 				FF37EDED1D13823F0026F70D /* TTModeHueSceneEarlyEveningOptions.swift */,
+				FF37EDF51D1B1A310026F70D /* TTModeHueSceneLateEveningOptions.swift */,
 			);
 			name = Hue;
 			sourceTree = "<group>";
@@ -1226,6 +1229,7 @@
 				FFC9FE951D021A0400038817 /* TTActionDiamondView.swift in Sources */,
 				FF44875F1D078FAC00ED8099 /* TTActionTitleView.swift in Sources */,
 				FF37EDD71D1117670026F70D /* TTModeHueConnecting.swift in Sources */,
+				FF37EDF61D1B1A310026F70D /* TTModeHueSceneLateEveningOptions.swift in Sources */,
 				FFF46BE11D10941500158751 /* DispatchQueueLogFormatter.m in Sources */,
 				FF0F10E31CFFAC5300CC1F29 /* TTModeMenuContainer.swift in Sources */,
 				FFB41B841CF5342100CD5F09 /* TTModeMap.swift in Sources */,
@@ -1437,6 +1441,7 @@
 		FFF270C11CEE88E500E46575 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "Turn Touch iOSUITests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.turntouch.Turn-Touch-iOSUITests";
@@ -1448,6 +1453,7 @@
 		FFF270C21CEE88E500E46575 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "Turn Touch iOSUITests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.turntouch.Turn-Touch-iOSUITests";

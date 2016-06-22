@@ -19,14 +19,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     @IBOutlet var mainViewController: TTMainViewController!
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        let preferences = NSUserDefaults.standardUserDefaults()
+        let prefs = NSUserDefaults.standardUserDefaults()
         let defaultPrefsFile = NSBundle.mainBundle().pathForResource("Preferences", ofType: "plist")
-        let defaultPrefs = NSDictionary(contentsOfFile: defaultPrefsFile!)
-        preferences.registerDefaults(defaultPrefs as! [String: AnyObject])
-        preferences.synchronize()
+        let defaultPrefs = NSDictionary(contentsOfFile: defaultPrefsFile!) as! [String: AnyObject]
+        prefs.registerDefaults(defaultPrefs)
+        prefs.synchronize()
         
         let centralManagerIdentifiers = launchOptions?[UIApplicationLaunchOptionsBluetoothCentralsKey]
-        print(" centralManagerIdentifiers: \(centralManagerIdentifiers)")
+        if centralManagerIdentifiers != nil {
+            print(" ---> centralManagerIdentifiers: \(centralManagerIdentifiers)")
+        }
         
         mainViewController = TTMainViewController()
         modeMap.setupModes()
@@ -63,6 +65,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
         print("applicationDidEnterBackground")
+        let prefs = NSUserDefaults.standardUserDefaults()
+        prefs.synchronize()
     }
 
     func applicationWillEnterForeground(application: UIApplication) {
@@ -79,6 +83,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         bluetoothMonitor.terminate()
+        let prefs = NSUserDefaults.standardUserDefaults()
+        prefs.synchronize()
     }
     
     func beginLocationUpdates() {

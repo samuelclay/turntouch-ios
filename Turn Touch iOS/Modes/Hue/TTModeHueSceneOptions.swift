@@ -41,11 +41,25 @@ class TTModeHueSceneOptions: TTOptionsDetailViewController, UITextFieldDelegate,
         let cache = PHBridgeResourcesReader.readBridgeResourcesCache()
         
         if sceneSelected == nil {
-            sceneSelected = "TT-ee-1"
+            switch self.action.actionName {
+            case "TTModeHueSceneEarlyEvening":
+                sceneSelected = "TT-ee-1"
+            case "TTModeHueSceneLateEvening":
+                sceneSelected = "TT-le-1"
+            default:
+                sceneSelected = "TT-ee-1"
+            }
             self.action.changeActionOption(TTModeHueConstants.kHueScene, to: sceneSelected!)
         }
         if doubleSceneSelected == nil {
-            doubleSceneSelected = "TT-ee-2"
+            switch self.action.actionName {
+            case "TTModeHueSceneEarlyEvening":
+                doubleSceneSelected = "TT-ee-2"
+            case "TTModeHueSceneLateEvening":
+                doubleSceneSelected = "TT-le-2"
+            default:
+                doubleSceneSelected = "TT-ee-2"
+            }
             self.action.changeActionOption(TTModeHueConstants.kDoubleTapHueScene, to: doubleSceneSelected!)
         }
         

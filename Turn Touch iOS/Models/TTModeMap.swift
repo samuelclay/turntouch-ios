@@ -152,7 +152,7 @@ class TTModeMap: NSObject {
     
     func runDirection(direction: TTModeDirection) {
         if !selectedMode.shouldFireImmediateOnPress(direction) {
-            selectedMode.action = TTAction(actionName: selectedMode.actionNameInDirection(direction)!)
+            selectedMode.action = TTAction(actionName: selectedMode.actionNameInDirection(direction))
             selectedMode.runDirection(direction)
         }
         
