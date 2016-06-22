@@ -759,10 +759,10 @@ class TTModeHue: TTMode {
                     let lightState: PHLightState = light.lightState
                     lightState.on = NSNumber(bool: true)
                     lightState.alert = PHLightAlertMode.init(0)
-                    let point = PHUtilities.calculateXY(UIColor(red: 135/255.0, green: 106/255.0, blue: 46/255.0, alpha: 1), forModel: light.modelNumber)
+                    let point = PHUtilities.calculateXY(UIColor(red: 95/255.0, green: 76/255.0, blue: 36/255.0, alpha: 1), forModel: light.modelNumber)
                     lightState.x = NSNumber(float: Float(point.x))
                     lightState.y = NSNumber(float: Float(point.y))
-                    lightState.brightness = NSNumber(integer: Int(MAX_BRIGHTNESS))
+                    lightState.brightness = NSNumber(integer: Int(Double(MAX_BRIGHTNESS)*(7/10.0)))
                     lightState.saturation = NSNumber(integer: Int(MAX_BRIGHTNESS))
                     bridgeSendAPI.saveLightState(lightState, forLightIdentifier: light.identifier, inSceneWithIdentifier: scene.identifier, completionHandler: {(errors) in
                         print("Hue:LE1 scene: \(errors)")
@@ -784,12 +784,13 @@ class TTModeHue: TTMode {
                     lightState.on = NSNumber(bool: true)
                     lightState.alert = PHLightAlertMode.init(0)
                     var point = PHUtilities.calculateXY(UIColor(red: 145/255.0, green: 76/255.0, blue: 16/255.0, alpha: 1), forModel: light.modelNumber)
+                    lightState.brightness = NSNumber(integer: Int(Double(MAX_BRIGHTNESS)*(6/10.0)))
                     if i % 3 == 2 {
                         point = PHUtilities.calculateXY(UIColor(red: 134/255.0, green: 56/255.0, blue: 205/255.0, alpha: 1), forModel: light.modelNumber)
+                        lightState.brightness = NSNumber(integer: Int(Double(MAX_BRIGHTNESS)*(8/10.0)))
                     }
                     lightState.x = NSNumber(float: Float(point.x))
                     lightState.y = NSNumber(float: Float(point.y))
-                    lightState.brightness = NSNumber(int: 200)
                     lightState.saturation = NSNumber(integer: Int(MAX_BRIGHTNESS))
                     bridgeSendAPI.saveLightState(lightState, forLightIdentifier: light.identifier, inSceneWithIdentifier: scene.identifier, completionHandler: {(errors) in
                         print("Hue:LE2 scene: \(errors)")
