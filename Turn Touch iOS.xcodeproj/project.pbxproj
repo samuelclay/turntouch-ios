@@ -42,6 +42,8 @@
 		FF2023401D021605005129E5 /* Icon-60@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FF20233E1D021605005129E5 /* Icon-60@2x.png */; };
 		FF2023411D021605005129E5 /* Icon-60@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = FF20233F1D021605005129E5 /* Icon-60@3x.png */; };
 		FF2023431D0216AF005129E5 /* Icon-83.5.png in Resources */ = {isa = PBXBuildFile; fileRef = FF2023421D0216AF005129E5 /* Icon-83.5.png */; };
+		FF254F641D1B2C6B00E96378 /* TTModeHueRandomOptions.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF254F621D1B2C6B00E96378 /* TTModeHueRandomOptions.xib */; };
+		FF254F651D1B2C6B00E96378 /* TTModeHueSleepOptions.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF254F631D1B2C6B00E96378 /* TTModeHueSleepOptions.xib */; };
 		FF37EDCB1D1102620026F70D /* TTTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF37EDCA1D1102620026F70D /* TTTabView.swift */; };
 		FF37EDCF1D1113C10026F70D /* TTModeHueOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF37EDCD1D1113C10026F70D /* TTModeHueOptions.swift */; };
 		FF37EDD01D1113C10026F70D /* TTModeHueOptions.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF37EDCE1D1113C10026F70D /* TTModeHueOptions.xib */; };
@@ -63,6 +65,8 @@
 		FF37EDF01D14A9E80026F70D /* single_tap.png in Resources */ = {isa = PBXBuildFile; fileRef = FF37EDEF1D14A9E80026F70D /* single_tap.png */; };
 		FF37EDF41D14AEE00026F70D /* TTModeHueScenePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF37EDF31D14AEE00026F70D /* TTModeHueScenePickerViewController.swift */; };
 		FF37EDF61D1B1A310026F70D /* TTModeHueSceneLateEveningOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF37EDF51D1B1A310026F70D /* TTModeHueSceneLateEveningOptions.swift */; };
+		FF37EDF91D1B23750026F70D /* TTModeHueSleepOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF37EDF71D1B23750026F70D /* TTModeHueSleepOptions.swift */; };
+		FF37EDFD1D1B23B70026F70D /* TTModeHueRandomOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF37EDFB1D1B23B70026F70D /* TTModeHueRandomOptions.swift */; };
 		FF44875F1D078FAC00ED8099 /* TTActionTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF44875E1D078FAB00ED8099 /* TTActionTitleView.swift */; };
 		FF4487621D08986200ED8099 /* TTTitleMenuPopover.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4487611D08986200ED8099 /* TTTitleMenuPopover.swift */; };
 		FF4487641D08AA8800ED8099 /* TTTitleMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4487631D08AA8800ED8099 /* TTTitleMenuCell.swift */; };
@@ -253,6 +257,8 @@
 		FF20233E1D021605005129E5 /* Icon-60@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-60@2x.png"; path = "Turn Touch iOS/Images/app icon/Icon-60@2x.png"; sourceTree = SOURCE_ROOT; };
 		FF20233F1D021605005129E5 /* Icon-60@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-60@3x.png"; path = "Turn Touch iOS/Images/app icon/Icon-60@3x.png"; sourceTree = SOURCE_ROOT; };
 		FF2023421D0216AF005129E5 /* Icon-83.5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-83.5.png"; path = "Turn Touch iOS/Images/app icon/Icon-83.5.png"; sourceTree = SOURCE_ROOT; };
+		FF254F621D1B2C6B00E96378 /* TTModeHueRandomOptions.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TTModeHueRandomOptions.xib; path = Modes/Hue/TTModeHueRandomOptions.xib; sourceTree = "<group>"; };
+		FF254F631D1B2C6B00E96378 /* TTModeHueSleepOptions.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TTModeHueSleepOptions.xib; path = Modes/Hue/TTModeHueSleepOptions.xib; sourceTree = "<group>"; };
 		FF37EDCA1D1102620026F70D /* TTTabView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTTabView.swift; path = "Turn Touch iOS/Views/Controls/TTTabView.swift"; sourceTree = SOURCE_ROOT; };
 		FF37EDCD1D1113C10026F70D /* TTModeHueOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeHueOptions.swift; path = Modes/Hue/TTModeHueOptions.swift; sourceTree = "<group>"; };
 		FF37EDCE1D1113C10026F70D /* TTModeHueOptions.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TTModeHueOptions.xib; path = Modes/Hue/TTModeHueOptions.xib; sourceTree = "<group>"; };
@@ -274,6 +280,8 @@
 		FF37EDEF1D14A9E80026F70D /* single_tap.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = single_tap.png; sourceTree = "<group>"; };
 		FF37EDF31D14AEE00026F70D /* TTModeHueScenePickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeHueScenePickerViewController.swift; path = Modes/Hue/TTModeHueScenePickerViewController.swift; sourceTree = "<group>"; };
 		FF37EDF51D1B1A310026F70D /* TTModeHueSceneLateEveningOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeHueSceneLateEveningOptions.swift; path = Modes/Hue/TTModeHueSceneLateEveningOptions.swift; sourceTree = "<group>"; };
+		FF37EDF71D1B23750026F70D /* TTModeHueSleepOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeHueSleepOptions.swift; path = Modes/Hue/TTModeHueSleepOptions.swift; sourceTree = "<group>"; };
+		FF37EDFB1D1B23B70026F70D /* TTModeHueRandomOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeHueRandomOptions.swift; path = Modes/Hue/TTModeHueRandomOptions.swift; sourceTree = "<group>"; };
 		FF44875E1D078FAB00ED8099 /* TTActionTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTActionTitleView.swift; path = Views/Actions/TTActionTitleView.swift; sourceTree = "<group>"; };
 		FF4487611D08986200ED8099 /* TTTitleMenuPopover.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTTitleMenuPopover.swift; path = Views/Main/TTTitleMenuPopover.swift; sourceTree = "<group>"; };
 		FF4487631D08AA8800ED8099 /* TTTitleMenuCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTTitleMenuCell.swift; path = Views/Main/TTTitleMenuCell.swift; sourceTree = "<group>"; };
@@ -511,6 +519,10 @@
 				FF37EDF31D14AEE00026F70D /* TTModeHueScenePickerViewController.swift */,
 				FF37EDED1D13823F0026F70D /* TTModeHueSceneEarlyEveningOptions.swift */,
 				FF37EDF51D1B1A310026F70D /* TTModeHueSceneLateEveningOptions.swift */,
+				FF37EDF71D1B23750026F70D /* TTModeHueSleepOptions.swift */,
+				FF254F631D1B2C6B00E96378 /* TTModeHueSleepOptions.xib */,
+				FF37EDFB1D1B23B70026F70D /* TTModeHueRandomOptions.swift */,
+				FF254F621D1B2C6B00E96378 /* TTModeHueRandomOptions.xib */,
 			);
 			name = Hue;
 			sourceTree = "<group>";
@@ -1077,6 +1089,7 @@
 				FFB41B351CEE9A3000CD5F09 /* mode_electricobjects.png in Resources */,
 				FFB41B6E1CEE9A3000CD5F09 /* modal_remote_paired.png in Resources */,
 				FFB41B271CEE9A3000CD5F09 /* button_x.png in Resources */,
+				FF254F651D1B2C6B00E96378 /* TTModeHueSleepOptions.xib in Resources */,
 				FFB41B601CEE9A3000CD5F09 /* logo_64.png in Resources */,
 				FFB41B161CEE9A3000CD5F09 /* hue_evening.png in Resources */,
 				FFB41B681CEE9A3000CD5F09 /* modal_ftux_change_action.png in Resources */,
@@ -1128,6 +1141,7 @@
 				FFB41B4C1CEE9A3000CD5F09 /* speaker.png in Resources */,
 				FF37EDE81D13610B0026F70D /* press_smartbridge.png in Resources */,
 				FFB41B371CEE9A3000CD5F09 /* mode_home.png in Resources */,
+				FF254F641D1B2C6B00E96378 /* TTModeHueRandomOptions.xib in Resources */,
 				FF2023301D02147A005129E5 /* Icon-40@2x.png in Resources */,
 				FFB41B151CEE9A3000CD5F09 /* chevron_west.png in Resources */,
 				FFB41B3D1CEE9A3000CD5F09 /* mode_nest.png in Resources */,
@@ -1226,11 +1240,13 @@
 				FF4487621D08986200ED8099 /* TTTitleMenuPopover.swift in Sources */,
 				FF4487701D08EF6400ED8099 /* TTDeviceList.swift in Sources */,
 				FFF46BC51D0E58C000158751 /* TTDeviceTitleView.swift in Sources */,
+				FF37EDFD1D1B23B70026F70D /* TTModeHueRandomOptions.swift in Sources */,
 				FFC9FE951D021A0400038817 /* TTActionDiamondView.swift in Sources */,
 				FF44875F1D078FAC00ED8099 /* TTActionTitleView.swift in Sources */,
 				FF37EDD71D1117670026F70D /* TTModeHueConnecting.swift in Sources */,
 				FF37EDF61D1B1A310026F70D /* TTModeHueSceneLateEveningOptions.swift in Sources */,
 				FFF46BE11D10941500158751 /* DispatchQueueLogFormatter.m in Sources */,
+				FF37EDF91D1B23750026F70D /* TTModeHueSleepOptions.swift in Sources */,
 				FF0F10E31CFFAC5300CC1F29 /* TTModeMenuContainer.swift in Sources */,
 				FFB41B841CF5342100CD5F09 /* TTModeMap.swift in Sources */,
 				FF37EDEE1D13823F0026F70D /* TTModeHueSceneEarlyEveningOptions.swift in Sources */,

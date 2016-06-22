@@ -264,9 +264,10 @@ class TTModeHue: TTMode {
         self.runTTModeHueSleep(direction, duration: 1)
     }
     
-    func runTTModeHueSleep(direction: TTModeDirection) {
-        let sceneDuration: Int = self.action.mode.actionOptionValue(TTModeHueConstants.kHueDuration, actionName: "TTModeHueSleep", direction: direction) as! Int
-        self.runTTModeHueSleep(direction, duration: sceneDuration)
+    func runTTModeHueSleep(directionNumber: NSNumber) {
+        let direction = TTModeDirection(rawValue: directionNumber.integerValue)
+        let sceneDuration: Int = self.action.mode.actionOptionValue(TTModeHueConstants.kHueDuration, actionName: "TTModeHueSleep", direction: direction!) as! Int
+        self.runTTModeHueSleep(direction!, duration: sceneDuration)
     }
     
     func doubleRunTTModeHueSleep(direction: TTModeDirection) {
@@ -304,12 +305,11 @@ class TTModeHue: TTMode {
         
         for (_, value) in cache.lights {
             let light = value as! PHLight
-            let lightState = PHLightState()
-            lightState.on = Int(false)
-            lightState.transitionTime = sceneTransition
-            lightState.brightness = Int(0)
-            lightState.transitionTime = sceneTransition
+            let lightState = light.lightState
+            lightState.on = NSNumber(bool: false)
             lightState.alert = PHLightAlertMode.init(0)
+            lightState.transitionTime = NSNumber(integer: sceneTransition)
+
             dispatch_async(dispatch_get_main_queue(), {
                 bridgeSendAPI.updateLightStateForId(light.identifier, withLightState: lightState, completionHandler: {(errors) in
                     print(" ---> Sleep light in \(sceneTransition): \(errors)")

@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="Effra_Rg.ttf">
@@ -41,25 +42,25 @@
                     <rect key="frame" x="557" y="23" width="20" height="20"/>
                 </activityIndicatorView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="single_tap.png" translatesAutoresizingMaskIntoConstraints="NO" id="LHz-wQ-pfb">
-                    <rect key="frame" x="22" y="14" width="32" height="30"/>
+                    <rect key="frame" x="22" y="8" width="32" height="30"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="32" id="h6h-fR-Gcz"/>
                         <constraint firstAttribute="height" constant="30" id="mhy-tn-v90"/>
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Single tap" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Eu-vA-Pmt">
-                    <rect key="frame" x="62" y="22" width="81" height="13"/>
+                    <rect key="frame" x="62" y="22" width="81" height="1"/>
                     <fontDescription key="fontDescription" name="Effra-Regular" family="Effra" pointSize="17"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AcK-qV-YAe">
-                    <rect key="frame" x="165" y="14" width="368" height="30"/>
+                    <rect key="frame" x="165" y="8" width="368" height="30"/>
                     <fontDescription key="fontDescription" name="Effra-Regular" family="Effra" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bpc-Sm-bgr">
-                    <rect key="frame" x="555" y="71" width="24" height="24"/>
+                    <rect key="frame" x="555" y="65" width="24" height="24"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="24" id="Jk8-0X-cC1"/>
                         <constraint firstAttribute="height" constant="24" id="QnL-29-w7e"/>
@@ -67,21 +68,21 @@
                     <state key="normal" image="refresh.png"/>
                 </button>
                 <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="IFh-w4-INz">
-                    <rect key="frame" x="557" y="73" width="20" height="20"/>
+                    <rect key="frame" x="557" y="67" width="20" height="20"/>
                 </activityIndicatorView>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WhT-xH-XIz">
-                    <rect key="frame" x="165" y="68" width="368" height="30"/>
+                    <rect key="frame" x="165" y="62" width="368" height="30"/>
                     <fontDescription key="fontDescription" name="Effra-Regular" family="Effra" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Double tap" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BJi-uJ-ihJ">
-                    <rect key="frame" x="62" y="72" width="81" height="21"/>
+                    <rect key="frame" x="62" y="66" width="81" height="21"/>
                     <fontDescription key="fontDescription" name="Effra-Regular" family="Effra" pointSize="17"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="double_tap.png" translatesAutoresizingMaskIntoConstraints="NO" id="0LA-9r-eSS">
-                    <rect key="frame" x="22" y="68" width="32" height="30"/>
+                    <rect key="frame" x="22" y="62" width="32" height="30"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="eu2-O7-rha"/>
                         <constraint firstAttribute="width" constant="32" id="oUC-mK-pri"/>
@@ -109,7 +110,7 @@
                 <constraint firstItem="BJi-uJ-ihJ" firstAttribute="centerY" secondItem="0LA-9r-eSS" secondAttribute="centerY" id="e7g-kh-An4"/>
                 <constraint firstItem="AcK-qV-YAe" firstAttribute="centerY" secondItem="2Eu-vA-Pmt" secondAttribute="centerY" id="ge5-Lo-2ni"/>
                 <constraint firstAttribute="trailing" secondItem="bpc-Sm-bgr" secondAttribute="trailing" constant="21" id="h70-Zb-v13"/>
-                <constraint firstAttribute="bottom" secondItem="0LA-9r-eSS" secondAttribute="bottom" constant="24" id="jeg-Ur-zSi"/>
+                <constraint firstAttribute="bottomMargin" secondItem="0LA-9r-eSS" secondAttribute="bottom" constant="22" id="jeg-Ur-zSi"/>
                 <constraint firstItem="2Eu-vA-Pmt" firstAttribute="centerY" secondItem="LHz-wQ-pfb" secondAttribute="centerY" id="mEp-5i-Wc8"/>
                 <constraint firstItem="2Eu-vA-Pmt" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="22" id="qpH-1i-ds5"/>
                 <constraint firstItem="BJi-uJ-ihJ" firstAttribute="leading" secondItem="0LA-9r-eSS" secondAttribute="trailing" constant="8" id="sYC-R5-L70"/>

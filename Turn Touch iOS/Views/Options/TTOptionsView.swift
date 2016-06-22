@@ -124,7 +124,7 @@ class TTOptionsView: UIView {
             actionOptionsViewController = TTOptionsDetailViewController()
             actionOptionsViewController.view.translatesAutoresizingMaskIntoConstraints = false
         } else {
-            actionOptionsViewController = (actionOptionsClass as! TTOptionsDetailViewController.Type).init(nibName: actionOptionsViewControllerName, bundle: nil)
+            actionOptionsViewController = (actionOptionsClass as! TTOptionsDetailViewController.Type).init(nibName: actionOptionsViewControllerName, bundle: NSBundle.mainBundle())
         }
         
         actionOptionsViewController.menuType = TTMenuType.MENU_ACTION

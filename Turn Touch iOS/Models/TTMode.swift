@@ -123,13 +123,13 @@ class TTMode : NSObject, TTModeProtocol {
         // runAction:direction
         let titleSelector = NSSelectorFromString("\(funcAction)\(actionName):")
         if self.respondsToSelector(titleSelector) {
-            self.performSelector(titleSelector, withObject: self)
+            self.performSelector(titleSelector, withObject: NSNumber(integer: direction.rawValue))
             success = true
         } else {
             // runAction
             let titleSelector = NSSelectorFromString("\(funcAction)\(actionName)")
             if self.respondsToSelector(titleSelector) {
-                self.performSelector(titleSelector, withObject: self)
+                self.performSelector(titleSelector)
                 success = true
             }
         }
