@@ -211,6 +211,8 @@ class TTMode : NSObject, TTModeProtocol {
             default:
                 directionAction = ""
             }
+        } else {
+            directionAction = prefDirectionAction!
         }
 //        print("Direction action: \(prefKey) - \(directionAction)")
         
