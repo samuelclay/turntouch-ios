@@ -24,6 +24,7 @@ class TTModeHueScenePickerViewController: UIViewController {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         
         scenePicker = UIPickerView()
+        scenePicker.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(scenePicker)
         self.view.addConstraint(NSLayoutConstraint(item: scenePicker, attribute: .Top, relatedBy: .Equal, toItem: self.view, attribute: .Top, multiplier: 1.0, constant: 0))
         self.view.addConstraint(NSLayoutConstraint(item: scenePicker, attribute: .Leading, relatedBy: .Equal, toItem: self.view, attribute: .Leading, multiplier: 1.0, constant: 0))

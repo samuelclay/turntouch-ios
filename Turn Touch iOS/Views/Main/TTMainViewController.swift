@@ -282,13 +282,14 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
         titleMenu.modalPresentationStyle = .Popover
         titleMenu.preferredContentSize = CGSize(width: 204,
                                                 height: 32 * titleMenu.menuOptions.count)
-        let popoverViewController = titleMenu.popoverPresentationController
-        popoverViewController!.permittedArrowDirections = .Up
-        popoverViewController!.delegate = self
-        popoverViewController!.sourceView = sender
-        popoverViewController!.sourceRect = CGRect(x: -8, y: 0,
-                                                   width: CGRectGetWidth(sender.frame),
-                                                   height: CGRectGetHeight(sender.frame))
+        if let popoverViewController = titleMenu.popoverPresentationController {
+            popoverViewController.permittedArrowDirections = .Up
+            popoverViewController.delegate = self
+            popoverViewController.sourceView = sender
+            popoverViewController.sourceRect = CGRect(x: -8, y: 0,
+                                                      width: CGRectGetWidth(sender.frame),
+                                                      height: CGRectGetHeight(sender.frame))
+        }
         self.presentViewController(titleMenu, animated: true, completion: nil)
     }
     

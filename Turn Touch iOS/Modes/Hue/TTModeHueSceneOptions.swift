@@ -40,6 +40,10 @@ class TTModeHueSceneOptions: TTOptionsDetailViewController, UITextFieldDelegate,
 
         let cache = PHBridgeResourcesReader.readBridgeResourcesCache()
         
+        if cache.scenes == nil {
+            return
+        }
+        
         if sceneSelected == nil {
             switch self.action.actionName {
             case "TTModeHueSceneEarlyEvening":
@@ -113,7 +117,7 @@ class TTModeHueSceneOptions: TTOptionsDetailViewController, UITextFieldDelegate,
         scenePickerVC.delegate = self
         scenePickerVC.textField = textField
         scenePickerVC.modalPresentationStyle = .Popover
-        scenePickerVC.preferredContentSize = CGSize(width: 340, height: 180)
+        scenePickerVC.preferredContentSize = CGSize(width: 240, height: 180)
         scenePickerVC.scenePicker.delegate = self
         
         scenePopover = scenePickerVC.popoverPresentationController
@@ -147,7 +151,12 @@ class TTModeHueSceneOptions: TTOptionsDetailViewController, UITextFieldDelegate,
     }
     
     //MARK: - Delegates and data sources
-
+    
+    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController)
+        -> UIModalPresentationStyle {
+            return .None
+    }
+    
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
         return 1
     }
