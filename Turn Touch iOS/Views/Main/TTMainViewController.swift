@@ -254,6 +254,7 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
         
 //        stackView.removeConstraint(optionsConstraint)
         
+        
         if optionsDetailView == nil {
             optionsConstraint = NSLayoutConstraint(item: optionsView, attribute: .Height, relatedBy: .Equal,
                                                    toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 0)
@@ -263,10 +264,11 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
                                                    toItem: optionsDetailView, attribute: .Height, multiplier: 1.0, constant: 0)
 //            stackView.addConstraint(optionsConstraint)
         }
-        
-        stackView.setNeedsUpdateConstraints()
-        stackView.updateConstraintsIfNeeded()
-        stackView.setNeedsLayout()
+        UIView.animateWithDuration(0.42) {
+            self.stackView.setNeedsUpdateConstraints()
+            self.stackView.updateConstraintsIfNeeded()
+            self.stackView.setNeedsLayout()
+        }
     }
     
     // MARK: Modals and menus

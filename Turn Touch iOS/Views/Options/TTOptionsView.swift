@@ -55,9 +55,9 @@ class TTOptionsView: UIView {
     override func drawRect(rect: CGRect) {
         super.drawRect(rect)
         
-//        let context = UIGraphicsGetCurrentContext()
-//        UIColor(hex: 0xFFFFFF).set()
-//        CGContextFillRect(context, self.bounds);
+        let context = UIGraphicsGetCurrentContext()
+        UIColor(hex: 0xFFFFFF).set()
+        CGContextFillRect(context, self.bounds);
 
     }
     

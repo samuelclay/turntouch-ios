@@ -36,14 +36,14 @@
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Single tap" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FLT-Da-zeL">
-                    <rect key="frame" x="62" y="22" width="81" height="127"/>
-                    <fontDescription key="fontDescription" name="Effra-Regular" family="Effra" pointSize="17"/>
+                    <rect key="frame" x="62" y="22" width="62" height="127"/>
+                    <fontDescription key="fontDescription" name="Effra-Regular" family="Effra" pointSize="13"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Double tap" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XgR-3t-wco">
-                    <rect key="frame" x="62" y="129" width="81" height="21"/>
-                    <fontDescription key="fontDescription" name="Effra-Regular" family="Effra" pointSize="17"/>
+                    <rect key="frame" x="62" y="131.5" width="62" height="16"/>
+                    <fontDescription key="fontDescription" name="Effra-Regular" family="Effra" pointSize="13"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -55,29 +55,29 @@
                     </constraints>
                 </imageView>
                 <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="30" minValue="0.0" maxValue="60" translatesAutoresizingMaskIntoConstraints="NO" id="Dag-yf-WNu">
-                    <rect key="frame" x="163" y="71" width="98" height="31"/>
+                    <rect key="frame" x="144" y="71" width="133" height="31"/>
                     <connections>
                         <action selector="changeDuration:" destination="-1" eventType="valueChanged" id="cjj-nw-NWA"/>
                     </connections>
                 </slider>
                 <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="5" minValue="0.0" maxValue="60" translatesAutoresizingMaskIntoConstraints="NO" id="XDH-50-361">
-                    <rect key="frame" x="163" y="125" width="98" height="31"/>
+                    <rect key="frame" x="144" y="125" width="133" height="31"/>
                     <connections>
                         <action selector="changeDuration:" destination="-1" eventType="valueChanged" id="a8T-Yn-EtF"/>
                     </connections>
                 </slider>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="30 seconds" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="spW-B6-Q0n">
-                    <rect key="frame" x="281" y="75" width="90" height="21"/>
+                    <rect key="frame" x="297" y="77.5" width="74" height="16"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="90" id="jJO-ry-gTv"/>
+                        <constraint firstAttribute="width" constant="74" id="jJO-ry-gTv"/>
                     </constraints>
-                    <fontDescription key="fontDescription" name="Effra-Regular" family="Effra" pointSize="17"/>
+                    <fontDescription key="fontDescription" name="Effra-Regular" family="Effra" pointSize="13"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5 seconds" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PgQ-H7-AJF">
-                    <rect key="frame" x="281" y="129" width="90" height="21"/>
-                    <fontDescription key="fontDescription" name="Effra-Regular" family="Effra" pointSize="17"/>
+                    <rect key="frame" x="297" y="131.5" width="74" height="16"/>
+                    <fontDescription key="fontDescription" name="Effra-Regular" family="Effra" pointSize="13"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
