@@ -24,7 +24,7 @@ class TTActionDiamondView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.translatesAutoresizingMaskIntoConstraints = false
-        self.backgroundColor = UIColor(hex: 0xF5F6F8)
+        self.backgroundColor = UIColor.clearColor()
         self.userInteractionEnabled = true
 
         self.registerAsObserver()

@@ -21,7 +21,7 @@ class TTDeviceTitleView: UIView {
         self.device = device
         self.translatesAutoresizingMaskIntoConstraints = false
         self.contentMode = UIViewContentMode.Redraw;
-        self.backgroundColor = UIColor.clearColor()
+        self.backgroundColor = UIColor(hex: 0xF5F6F8)
         
         deviceImageView.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(deviceImageView)
@@ -94,6 +94,19 @@ class TTDeviceTitleView: UIView {
         titleLabel.text = device.nickname
         
         super.drawRect(rect)
+        
+        self.drawBorder()
+    }
+    
+    func drawBorder() {
+        let line = UIBezierPath()
+        line.lineWidth = 1.0
+        UIColor(hex: 0xC2CBCE).set()
+        
+        // Top border
+        line.moveToPoint(CGPointMake(CGRectGetMinX(self.bounds), CGRectGetMinY(self.bounds)))
+        line.addLineToPoint(CGPointMake(CGRectGetMaxX(self.bounds), CGRectGetMinY(self.bounds)))
+        line.stroke()
     }
     
     // MARK: Actions
