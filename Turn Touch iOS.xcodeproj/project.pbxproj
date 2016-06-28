@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		85D8B548CD81B8F0353F6C06 /* Pods_Turn_Touch_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACFD869DD1D0B508AA8C9258 /* Pods_Turn_Touch_iOS.framework */; };
 		FF0F10BE1CF55A9000CC1F29 /* UIColor+hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0F10BD1CF55A9000CC1F29 /* UIColor+hex.swift */; };
 		FF0F10C01CF5638D00CC1F29 /* Preferences.plist in Resources */ = {isa = PBXBuildFile; fileRef = FF0F10BF1CF5638D00CC1F29 /* Preferences.plist */; };
 		FF0F10C21CF60C3D00CC1F29 /* TTTitleBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0F10C11CF60C3D00CC1F29 /* TTTitleBarView.swift */; };
@@ -44,6 +45,9 @@
 		FF2023431D0216AF005129E5 /* Icon-83.5.png in Resources */ = {isa = PBXBuildFile; fileRef = FF2023421D0216AF005129E5 /* Icon-83.5.png */; };
 		FF254F641D1B2C6B00E96378 /* TTModeHueRandomOptions.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF254F621D1B2C6B00E96378 /* TTModeHueRandomOptions.xib */; };
 		FF254F651D1B2C6B00E96378 /* TTModeHueSleepOptions.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF254F631D1B2C6B00E96378 /* TTModeHueSleepOptions.xib */; };
+		FF254F6B1D21C2CF00E96378 /* TTModeWemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF254F6A1D21C2CE00E96378 /* TTModeWemo.swift */; };
+		FF254F8E1D21CAF100E96378 /* TTModeWemoMulticastServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF254F8D1D21CAF100E96378 /* TTModeWemoMulticastServer.swift */; };
+		FF254FDA1D21EF1200E96378 /* TTModeWemoDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF254FD91D21EF1200E96378 /* TTModeWemoDevice.swift */; };
 		FF37EDCB1D1102620026F70D /* TTTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF37EDCA1D1102620026F70D /* TTTabView.swift */; };
 		FF37EDCF1D1113C10026F70D /* TTModeHueOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF37EDCD1D1113C10026F70D /* TTModeHueOptions.swift */; };
 		FF37EDD01D1113C10026F70D /* TTModeHueOptions.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF37EDCE1D1113C10026F70D /* TTModeHueOptions.xib */; };
@@ -222,6 +226,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		552AD10F15F394A44BF4BD6D /* Pods-Turn Touch iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Turn Touch iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Turn Touch iOS/Pods-Turn Touch iOS.debug.xcconfig"; sourceTree = "<group>"; };
+		87558F01A91A74C470B9149B /* Pods-Turn Touch iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Turn Touch iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-Turn Touch iOS/Pods-Turn Touch iOS.release.xcconfig"; sourceTree = "<group>"; };
+		ACFD869DD1D0B508AA8C9258 /* Pods_Turn_Touch_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Turn_Touch_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF0F10BD1CF55A9000CC1F29 /* UIColor+hex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIColor+hex.swift"; path = "Categories/UIColor+hex.swift"; sourceTree = "<group>"; };
 		FF0F10BF1CF5638D00CC1F29 /* Preferences.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Preferences.plist; sourceTree = "<group>"; };
 		FF0F10C11CF60C3D00CC1F29 /* TTTitleBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTTitleBarView.swift; path = Views/Main/TTTitleBarView.swift; sourceTree = "<group>"; };
@@ -259,6 +266,9 @@
 		FF2023421D0216AF005129E5 /* Icon-83.5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-83.5.png"; path = "Turn Touch iOS/Images/app icon/Icon-83.5.png"; sourceTree = SOURCE_ROOT; };
 		FF254F621D1B2C6B00E96378 /* TTModeHueRandomOptions.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TTModeHueRandomOptions.xib; path = Modes/Hue/TTModeHueRandomOptions.xib; sourceTree = "<group>"; };
 		FF254F631D1B2C6B00E96378 /* TTModeHueSleepOptions.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TTModeHueSleepOptions.xib; path = Modes/Hue/TTModeHueSleepOptions.xib; sourceTree = "<group>"; };
+		FF254F6A1D21C2CE00E96378 /* TTModeWemo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeWemo.swift; path = Modes/Wemo/TTModeWemo.swift; sourceTree = "<group>"; };
+		FF254F8D1D21CAF100E96378 /* TTModeWemoMulticastServer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeWemoMulticastServer.swift; path = Modes/Wemo/TTModeWemoMulticastServer.swift; sourceTree = "<group>"; };
+		FF254FD91D21EF1200E96378 /* TTModeWemoDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeWemoDevice.swift; path = Modes/Wemo/TTModeWemoDevice.swift; sourceTree = "<group>"; };
 		FF37EDCA1D1102620026F70D /* TTTabView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTTabView.swift; path = "Turn Touch iOS/Views/Controls/TTTabView.swift"; sourceTree = SOURCE_ROOT; };
 		FF37EDCD1D1113C10026F70D /* TTModeHueOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeHueOptions.swift; path = Modes/Hue/TTModeHueOptions.swift; sourceTree = "<group>"; };
 		FF37EDCE1D1113C10026F70D /* TTModeHueOptions.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TTModeHueOptions.xib; path = Modes/Hue/TTModeHueOptions.xib; sourceTree = "<group>"; };
@@ -440,6 +450,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FFF46BE71D1096DC00158751 /* HueSDK_iOS.framework in Frameworks */,
+				85D8B548CD81B8F0353F6C06 /* Pods_Turn_Touch_iOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -460,6 +471,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0F31B8744850402114AE49F7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				ACFD869DD1D0B508AA8C9258 /* Pods_Turn_Touch_iOS.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2052B86C8110B5F324537385 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				552AD10F15F394A44BF4BD6D /* Pods-Turn Touch iOS.debug.xcconfig */,
+				87558F01A91A74C470B9149B /* Pods-Turn Touch iOS.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		FF0F10BC1CF55A7F00CC1F29 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
@@ -477,6 +505,7 @@
 				FF0F10CE1CF63F5100CC1F29 /* Hue */,
 				FF0F10C81CF63F1C00CC1F29 /* Music */,
 				FF0F10CB1CF63F3E00CC1F29 /* Phone */,
+				FF254F6C1D21C2D300E96378 /* Wemo */,
 			);
 			name = Modes;
 			sourceTree = "<group>";
@@ -580,6 +609,16 @@
 			);
 			name = "app icon";
 			path = "actions/app icon";
+			sourceTree = "<group>";
+		};
+		FF254F6C1D21C2D300E96378 /* Wemo */ = {
+			isa = PBXGroup;
+			children = (
+				FF254F6A1D21C2CE00E96378 /* TTModeWemo.swift */,
+				FF254FD91D21EF1200E96378 /* TTModeWemoDevice.swift */,
+				FF254F8D1D21CAF100E96378 /* TTModeWemoMulticastServer.swift */,
+			);
+			name = Wemo;
 			sourceTree = "<group>";
 		};
 		FF37EDCC1D1102660026F70D /* Controls */ = {
@@ -850,6 +889,8 @@
 				FFF270A91CEE88E500E46575 /* Turn Touch iOSTests */,
 				FFF270B41CEE88E500E46575 /* Turn Touch iOSUITests */,
 				FFF270911CEE88E500E46575 /* Products */,
+				2052B86C8110B5F324537385 /* Pods */,
+				0F31B8744850402114AE49F7 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -952,9 +993,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FFF270BA1CEE88E500E46575 /* Build configuration list for PBXNativeTarget "Turn Touch iOS" */;
 			buildPhases = (
+				E84948726AC5908F3E1E4D38 /* [CP] Check Pods Manifest.lock */,
 				FFF2708C1CEE88E500E46575 /* Sources */,
 				FFF2708D1CEE88E500E46575 /* Frameworks */,
 				FFF2708E1CEE88E500E46575 /* Resources */,
+				837731E774B58F7A7D8DA486 /* [CP] Embed Pods Frameworks */,
+				7138ECB9CCF993ED990A6B4C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1202,6 +1246,54 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		7138ECB9CCF993ED990A6B4C /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Turn Touch iOS/Pods-Turn Touch iOS-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		837731E774B58F7A7D8DA486 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Turn Touch iOS/Pods-Turn Touch iOS-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E84948726AC5908F3E1E4D38 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		FFF2708C1CEE88E500E46575 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -1229,8 +1321,10 @@
 				FFB41B821CF5341700CD5F09 /* TTMode.swift in Sources */,
 				FF37EDDB1D11178D0026F70D /* TTModeHueBridge.swift in Sources */,
 				FF0F10CD1CF63F4D00CC1F29 /* TTModeHue.swift in Sources */,
+				FF254F6B1D21C2CF00E96378 /* TTModeWemo.swift in Sources */,
 				FF37EDE31D1117B20026F70D /* TTModeHueConnected.swift in Sources */,
 				FFF46BC71D0E5C8400158751 /* TTDeviceTitlesView.swift in Sources */,
+				FF254FDA1D21EF1200E96378 /* TTModeWemoDevice.swift in Sources */,
 				FFF46BF01D10E6D400158751 /* TTOptionsDetailViewController.swift in Sources */,
 				FF4487761D09365200ED8099 /* TTButtonTimer.swift in Sources */,
 				FFF46BDE1D10941500158751 /* DDLog.m in Sources */,
@@ -1246,6 +1340,7 @@
 				FF37EDD71D1117670026F70D /* TTModeHueConnecting.swift in Sources */,
 				FF37EDF61D1B1A310026F70D /* TTModeHueSceneLateEveningOptions.swift in Sources */,
 				FFF46BE11D10941500158751 /* DispatchQueueLogFormatter.m in Sources */,
+				FF254F8E1D21CAF100E96378 /* TTModeWemoMulticastServer.swift in Sources */,
 				FF37EDF91D1B23750026F70D /* TTModeHueSleepOptions.swift in Sources */,
 				FF0F10E31CFFAC5300CC1F29 /* TTModeMenuContainer.swift in Sources */,
 				FFB41B841CF5342100CD5F09 /* TTModeMap.swift in Sources */,
@@ -1398,34 +1493,42 @@
 		};
 		FFF270BB1CEE88E500E46575 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 552AD10F15F394A44BF4BD6D /* Pods-Turn Touch iOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(PROJECT_DIR)/Turn Touch iOS/Vendor\"",
 				);
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Turn\\ Touch\\ iOS/Vendor";
 				INFOPLIST_FILE = "Turn Touch iOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/Turn\\ Touch\\ iOS/Vendor/**";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.turntouch.ios-remote";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_INCLUDE_PATHS = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Turn Touch iOS/Vendor/Turn_Touch_iOS-Bridging-Header.h";
 			};
 			name = Debug;
 		};
 		FFF270BC1CEE88E500E46575 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 87558F01A91A74C470B9149B /* Pods-Turn Touch iOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(PROJECT_DIR)/Turn Touch iOS/Vendor\"",
 				);
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Turn\\ Touch\\ iOS/Vendor";
 				INFOPLIST_FILE = "Turn Touch iOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/Turn\\ Touch\\ iOS/Vendor/**";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.turntouch.ios-remote";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_INCLUDE_PATHS = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Turn Touch iOS/Vendor/Turn_Touch_iOS-Bridging-Header.h";
 			};
 			name = Release;
