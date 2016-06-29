@@ -48,6 +48,7 @@
 		FF254F6B1D21C2CF00E96378 /* TTModeWemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF254F6A1D21C2CE00E96378 /* TTModeWemo.swift */; };
 		FF254F8E1D21CAF100E96378 /* TTModeWemoMulticastServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF254F8D1D21CAF100E96378 /* TTModeWemoMulticastServer.swift */; };
 		FF254FDA1D21EF1200E96378 /* TTModeWemoDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF254FD91D21EF1200E96378 /* TTModeWemoDevice.swift */; };
+		FF254FDE1D22F26500E96378 /* XPathQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = FF254FDD1D22F26500E96378 /* XPathQuery.m */; };
 		FF37EDCB1D1102620026F70D /* TTTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF37EDCA1D1102620026F70D /* TTTabView.swift */; };
 		FF37EDCF1D1113C10026F70D /* TTModeHueOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF37EDCD1D1113C10026F70D /* TTModeHueOptions.swift */; };
 		FF37EDD01D1113C10026F70D /* TTModeHueOptions.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF37EDCE1D1113C10026F70D /* TTModeHueOptions.xib */; };
@@ -269,6 +270,8 @@
 		FF254F6A1D21C2CE00E96378 /* TTModeWemo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeWemo.swift; path = Modes/Wemo/TTModeWemo.swift; sourceTree = "<group>"; };
 		FF254F8D1D21CAF100E96378 /* TTModeWemoMulticastServer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeWemoMulticastServer.swift; path = Modes/Wemo/TTModeWemoMulticastServer.swift; sourceTree = "<group>"; };
 		FF254FD91D21EF1200E96378 /* TTModeWemoDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeWemoDevice.swift; path = Modes/Wemo/TTModeWemoDevice.swift; sourceTree = "<group>"; };
+		FF254FDC1D22F26500E96378 /* XPathQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPathQuery.h; sourceTree = "<group>"; };
+		FF254FDD1D22F26500E96378 /* XPathQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPathQuery.m; sourceTree = "<group>"; };
 		FF37EDCA1D1102620026F70D /* TTTabView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTTabView.swift; path = "Turn Touch iOS/Views/Controls/TTTabView.swift"; sourceTree = SOURCE_ROOT; };
 		FF37EDCD1D1113C10026F70D /* TTModeHueOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeHueOptions.swift; path = Modes/Hue/TTModeHueOptions.swift; sourceTree = "<group>"; };
 		FF37EDCE1D1113C10026F70D /* TTModeHueOptions.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TTModeHueOptions.xib; path = Modes/Hue/TTModeHueOptions.xib; sourceTree = "<group>"; };
@@ -621,6 +624,15 @@
 			name = Wemo;
 			sourceTree = "<group>";
 		};
+		FF254FDB1D22F26500E96378 /* XPathQuery */ = {
+			isa = PBXGroup;
+			children = (
+				FF254FDC1D22F26500E96378 /* XPathQuery.h */,
+				FF254FDD1D22F26500E96378 /* XPathQuery.m */,
+			);
+			path = XPathQuery;
+			sourceTree = "<group>";
+		};
 		FF37EDCC1D1102660026F70D /* Controls */ = {
 			isa = PBXGroup;
 			children = (
@@ -939,6 +951,7 @@
 		FFF46BC81D10941500158751 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				FF254FDB1D22F26500E96378 /* XPathQuery */,
 				FFF46BE61D1096DC00158751 /* HueSDK_iOS.framework */,
 				FFF46BCA1D10941500158751 /* Lumberjack */,
 				FFF46BE51D10956600158751 /* Turn_Touch_iOS-Bridging-Header.h */,
@@ -1323,6 +1336,7 @@
 				FF0F10CD1CF63F4D00CC1F29 /* TTModeHue.swift in Sources */,
 				FF254F6B1D21C2CF00E96378 /* TTModeWemo.swift in Sources */,
 				FF37EDE31D1117B20026F70D /* TTModeHueConnected.swift in Sources */,
+				FF254FDE1D22F26500E96378 /* XPathQuery.m in Sources */,
 				FFF46BC71D0E5C8400158751 /* TTDeviceTitlesView.swift in Sources */,
 				FF254FDA1D21EF1200E96378 /* TTModeWemoDevice.swift in Sources */,
 				FFF46BF01D10E6D400158751 /* TTOptionsDetailViewController.swift in Sources */,

@@ -8,6 +8,10 @@
 
 import UIKit
 
+struct TTModeWemoConstants {
+    static let kWemoDeviceLocation = "wemoDeviceLocation"
+}
+
 enum TTWemoState {
     case Disconnected
     case Connecting
@@ -20,4 +24,164 @@ protocol TTModeWemoDelegate {
 
 class TTModeWemo: TTMode, TTModeWemoMulticastDelegate, TTModeWemoDeviceDelegate {
     
+    var delegate: TTModeWemoDelegate!
+    var wemoState: TTWemoState
+    static var multicastServer = TTModeWemoMulticastServer()
+    static var foundDevices: [TTModeWemoDevice] = []
+    
+    required init() {
+        super.init()
+        
+        TTModeWemo.multicastServer.delegate = self
+    }
+    
+    override func title() -> String {
+        return "Wemo"
+    }
+    
+    override func subtitle() -> String {
+        return "Smart power meter and outlet"
+    }
+    
+    override func imageName() -> String {
+        return "mode_wemo.png"
+    }
+    
+    // MARK: Actions
+    
+    override func actions() -> [String] {
+        return ["TTModeWemoDeviceOn",
+                "TTModeWemoDeviceOff",
+                "TTModeWemoDeviceToggle"]
+    }
+    
+    // MARK: Action titles
+    
+    func titleTTModeWemoDeviceOn() -> String {
+        return "Turn on"
+    }
+    
+    func titleTTModeWemoDeviceOff() -> String {
+        return "Turn off"
+    }
+    
+    func titleTTModeWemoDeviceToggle() -> String {
+        return "Toggle device"
+    }
+    
+    // MARK: Action images
+    
+    func imageTTModeWemoDeviceOn() -> String {
+        return "next_story.png"
+    }
+    
+    func imageTTModeWemoDeviceOff() -> String {
+        return "next_site.png"
+    }
+    
+    func imageTTModeWemoDeviceToggle() -> String {
+        return "previous_story.png"
+    }
+    
+    
+    // MARK: Defaults
+    
+    override func defaultNorth() -> String {
+        return "TTModeWemoDeviceOn"
+    }
+    
+    override func defaultEast() -> String {
+        return "TTModeWemoDeviceToggle"
+    }
+    
+    override func defaultWest() -> String {
+        return "TTModeWemoDeviceToggle"
+    }
+    
+    override func defaultSouth() -> String {
+        return "TTModeWemoDeviceOff"
+    }
+    
+    // MARK: Action methods
+    
+    override func activate() {
+        if TTModeWemo.foundDevices.count == 0 {
+            wemoState == .Connecting
+            self.beginConnectingToWemo()
+        } else {
+            wemoState == .Connected
+        }
+        delegate.changeState(wemoState, mode: self)
+    }
+    
+    override func deactivate() {
+        TTModeWemo.multicastServer.deactivate()
+    }
+    
+    func runTTModeWemoDeviceOn(direction: TTModeDirection) {
+        if let device = self.selectedDevice(direction) {
+            device.changeDeviceState(.On)
+        }
+    }
+    
+    func runTTModeWemoDeviceOff(direction: TTModeDirection) {
+        if let device = self.selectedDevice(direction) {
+            device.changeDeviceState(.Off)
+        }
+    }
+    
+    func runTTModeWemoDeviceToggle(direction: TTModeDirection) {
+        if let device = self.selectedDevice(direction) {
+            device.requestDeviceState {
+                if device.deviceState == TTModeWemoDeviceState.On {
+                    device.changeDeviceState(.Off)
+                } else {
+                    device.changeDeviceState(.On)
+                }
+            }
+        }
+    }
+    
+    // MARK: Wemo devices
+    
+    func selectedDevice(direction: TTModeDirection) -> TTModeWemoDevice? {
+        if TTModeWemo.foundDevices.count == 0 {
+            return nil
+        }
+        
+        if let deviceLocation = self.action.optionValue(TTModeWemoConstants.kWemoDeviceLocation, direction: direction) as! String? {
+            for foundDevice in TTModeWemo.foundDevices {
+                if foundDevice.location() == deviceLocation {
+                    return foundDevice
+                }
+            }
+        }
+        
+        return TTModeWemo.foundDevices[0]
+    }
+    
+    func beginConnectingToWemo() {
+        wemoState = .Connecting
+        delegate.changeState(wemoState, mode: self)
+        
+        TTModeWemo.multicastServer.beginBroadcast()
+    }
+    
+    func cancelConnectingToWemo() {
+        wemoState = .Disconnected
+        delegate.changeState(wemoState, mode: self)
+    }
+    
+    // MARK: Multicast delegate
+    
+    func foundDevice(headers: NSDictionary, host: String, port: Int) {
+        
+    }
+    
+    // MARK: Device delegate
+    
+    func deviceReady(device: TTModeWemoDevice) {
+        wemoState = .Connected
+        delegate.changeState(wemoState, mode: self)
+    }
 }

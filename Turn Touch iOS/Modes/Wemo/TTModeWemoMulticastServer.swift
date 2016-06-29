@@ -11,13 +11,13 @@ import CocoaAsyncSocket
 
 let MULTICASE_GROUP_IP = "239.255.255.250"
 
-protocol TTModeWemoMulticaseDelegate {
+protocol TTModeWemoMulticastDelegate {
     func foundDevice(headers: NSDictionary, host: String, port: Int)
 }
 
 class TTModeWemoMulticastServer: NSObject, GCDAsyncUdpSocketDelegate {
 
-    var delegate: TTModeWemoMulticaseDelegate!
+    var delegate: TTModeWemoMulticastDelegate!
     var udpSocket: GCDAsyncUdpSocket!
     var attemptsLeft: Int = 0
 

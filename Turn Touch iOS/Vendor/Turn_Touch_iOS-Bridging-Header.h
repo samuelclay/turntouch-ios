@@ -10,5 +10,6 @@
 #define HueBridgingHeader_h
 
 #import <HueSDK_iOS/HueSDK.h>
+#import <XPathQuery/XPathQuery.h>
 
 #endif /* HueBridgingHeader_h */
