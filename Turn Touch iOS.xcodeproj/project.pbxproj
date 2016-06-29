@@ -84,6 +84,7 @@
 		FF4487741D09300B00ED8099 /* NSData+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4487731D09300B00ED8099 /* NSData+Hex.swift */; };
 		FF4487761D09365200ED8099 /* TTButtonTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4487751D09365200ED8099 /* TTButtonTimer.swift */; };
 		FF4487781D09367000ED8099 /* TTButtonState.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4487771D09367000ED8099 /* TTButtonState.swift */; };
+		FF4AF7AF1D2475B50009C777 /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = FF4AF7AB1D2475630009C777 /* libxml2.tbd */; };
 		FFB41B111CEE9A3000CD5F09 /* alarm_snooze.png in Resources */ = {isa = PBXBuildFile; fileRef = FFB41AAE1CEE9A3000CD5F09 /* alarm_snooze.png */; };
 		FFB41B121CEE9A3000CD5F09 /* chevron_east.png in Resources */ = {isa = PBXBuildFile; fileRef = FFB41AAF1CEE9A3000CD5F09 /* chevron_east.png */; };
 		FFB41B131CEE9A3000CD5F09 /* chevron_north.png in Resources */ = {isa = PBXBuildFile; fileRef = FFB41AB01CEE9A3000CD5F09 /* chevron_north.png */; };
@@ -307,6 +308,8 @@
 		FF4487731D09300B00ED8099 /* NSData+Hex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSData+Hex.swift"; path = "Categories/NSData+Hex.swift"; sourceTree = "<group>"; };
 		FF4487751D09365200ED8099 /* TTButtonTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTButtonTimer.swift; path = Bluetooth/TTButtonTimer.swift; sourceTree = "<group>"; };
 		FF4487771D09367000ED8099 /* TTButtonState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTButtonState.swift; path = Bluetooth/TTButtonState.swift; sourceTree = "<group>"; };
+		FF4AF7AB1D2475630009C777 /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
+		FF4AF7AD1D2475780009C777 /* libxml2.2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.2.tbd; path = usr/lib/libxml2.2.tbd; sourceTree = SDKROOT; };
 		FFB41AAE1CEE9A3000CD5F09 /* alarm_snooze.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = alarm_snooze.png; sourceTree = "<group>"; };
 		FFB41AAF1CEE9A3000CD5F09 /* chevron_east.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chevron_east.png; sourceTree = "<group>"; };
 		FFB41AB01CEE9A3000CD5F09 /* chevron_north.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chevron_north.png; sourceTree = "<group>"; };
@@ -452,6 +455,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FF4AF7AF1D2475B50009C777 /* libxml2.tbd in Frameworks */,
 				FFF46BE71D1096DC00158751 /* HueSDK_iOS.framework in Frameworks */,
 				85D8B548CD81B8F0353F6C06 /* Pods_Turn_Touch_iOS.framework in Frameworks */,
 			);
@@ -477,6 +481,8 @@
 		0F31B8744850402114AE49F7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FF4AF7AD1D2475780009C777 /* libxml2.2.tbd */,
+				FF4AF7AB1D2475630009C777 /* libxml2.tbd */,
 				ACFD869DD1D0B508AA8C9258 /* Pods_Turn_Touch_iOS.framework */,
 			);
 			name = Frameworks;
@@ -1514,7 +1520,10 @@
 					"$(inherited)",
 					"\"$(PROJECT_DIR)/Turn Touch iOS/Vendor\"",
 				);
-				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Turn\\ Touch\\ iOS/Vendor";
+				HEADER_SEARCH_PATHS = (
+					"$(SDKROOT)/usr/include/libxml2",
+					"$(PROJECT_DIR)/Turn\\ Touch\\ iOS/Vendor",
+				);
 				INFOPLIST_FILE = "Turn Touch iOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/Turn\\ Touch\\ iOS/Vendor/**";
@@ -1535,7 +1544,10 @@
 					"$(inherited)",
 					"\"$(PROJECT_DIR)/Turn Touch iOS/Vendor\"",
 				);
-				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Turn\\ Touch\\ iOS/Vendor";
+				HEADER_SEARCH_PATHS = (
+					"$(SDKROOT)/usr/include/libxml2",
+					"$(PROJECT_DIR)/Turn\\ Touch\\ iOS/Vendor",
+				);
 				INFOPLIST_FILE = "Turn Touch iOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/Turn\\ Touch\\ iOS/Vendor/**";

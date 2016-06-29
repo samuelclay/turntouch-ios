@@ -24,8 +24,8 @@ protocol TTModeWemoDelegate {
 
 class TTModeWemo: TTMode, TTModeWemoMulticastDelegate, TTModeWemoDeviceDelegate {
     
-    var delegate: TTModeWemoDelegate!
-    var wemoState: TTWemoState
+    var delegate: TTModeWemoDelegate?
+    var wemoState = TTWemoState.Disconnected
     static var multicastServer = TTModeWemoMulticastServer()
     static var foundDevices: [TTModeWemoDevice] = []
     
@@ -174,8 +174,26 @@ class TTModeWemo: TTMode, TTModeWemoMulticastDelegate, TTModeWemoDeviceDelegate 
     
     // MARK: Multicast delegate
     
-    func foundDevice(headers: NSDictionary, host: String, port: Int) {
+    func foundDevice(headers: NSDictionary, host ipAddress: String, port: Int) {
+        var alreadyFound = false
         
+        let newDevice = TTModeWemoDevice(ipAddress: ipAddress, port: port)
+        newDevice.delegate = self
+        
+        for device in TTModeWemo.foundDevices {
+            if device.isEqualToDevice(newDevice) {
+                alreadyFound = true
+                break
+            }
+        }
+        
+        if alreadyFound {
+            return
+        }
+        
+        TTModeWemo.foundDevices.append(newDevice)
+        
+        newDevice.requestDeviceInfo()
     }
     
     // MARK: Device delegate

@@ -12,5 +12,7 @@
 //  appreciated but not required.
 //
 
+#import <Foundation/Foundation.h>
+
 NSArray *PerformHTMLXPathQuery(NSData *document, NSString *query, char *ns, char *xmlNs);
 NSArray *PerformXMLXPathQuery(NSData *document, NSString *query, char *ns, char *xmlNs);
