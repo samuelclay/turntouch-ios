@@ -58,7 +58,6 @@ class TTOptionsView: UIView {
         let context = UIGraphicsGetCurrentContext()
         UIColor(hex: 0xFFFFFF).set()
         CGContextFillRect(context, self.bounds);
-
     }
     
     func redrawOptions() {
@@ -130,7 +129,7 @@ class TTOptionsView: UIView {
         actionOptionsViewController.menuType = TTMenuType.MENU_ACTION
         actionOptionsViewController.action = TTAction(actionName: actionName)
         actionOptionsViewController.mode = appDelegate().modeMap.selectedMode
-        actionOptionsViewController.mode.action=actionOptionsViewController.action
+        actionOptionsViewController.mode.action = actionOptionsViewController.action
         actionOptionsViewController.action.mode = appDelegate().modeMap.selectedMode // To parallel batch actions
         actionOptionsViewController.view.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(actionOptionsViewController.view)

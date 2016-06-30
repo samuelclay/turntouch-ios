@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TTModeWemoDeviceOnOptions: TTOptionsDetailViewController {
+class TTModeWemoDeviceOnOptions: TTModeWemoDeviceSwitchOptions {
 
     required init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         super.init(nibName: "TTModeWemoDeviceSwitchOptions", bundle: nibBundleOrNil)

@@ -119,8 +119,8 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
                                                    toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 0)
         scrollStackView.addConstraint(actionTitleConstraint)
         
-        actionDiamondView.layer.zPosition = 2.0
-        actionTitleView.layer.zPosition = 1.0
+//        actionDiamondView.layer.zPosition = 2.0
+//        actionTitleView.layer.zPosition = 1.0
         
         optionsView.setContentCompressionResistancePriority(UILayoutPriorityDefaultHigh, forAxis: .Vertical)
         scrollStackView.addArrangedSubview(optionsView)

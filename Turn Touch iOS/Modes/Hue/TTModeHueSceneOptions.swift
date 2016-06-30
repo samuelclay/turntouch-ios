@@ -13,7 +13,7 @@ class TTModeHueSceneOptions: TTOptionsDetailViewController, UITextFieldDelegate,
 //    typealias pickerCallback = (row: Int, forTextField: UITextField) -> ()
 
     var pickerVC: TTPickerViewController!
-    var scenePopover: UIPopoverPresentationController?
+    var popoverController: UIPopoverPresentationController?
     var textField: UITextField!
     var presented = false
 
@@ -27,6 +27,10 @@ class TTModeHueSceneOptions: TTOptionsDetailViewController, UITextFieldDelegate,
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.drawScenes()
+    }
+    
+    func drawScenes() {
         singlePicker.delegate = self
         doublePicker.delegate = self
         
@@ -102,6 +106,11 @@ class TTModeHueSceneOptions: TTOptionsDetailViewController, UITextFieldDelegate,
     @IBAction func refreshScenes(sender: AnyObject) {
         spinner.forEach({ $0.hidden = false })
         refreshButton.forEach({ $0.hidden = true })
+        
+        let bridgeSendApi = PHBridgeSendAPI()
+        bridgeSendApi.getAllScenesWithCompletionHandler { (dictionary, errors) in
+            self.drawScenes()
+        }
     }
     
     // MARK: Text Field delegate
@@ -120,8 +129,8 @@ class TTModeHueSceneOptions: TTOptionsDetailViewController, UITextFieldDelegate,
         pickerVC.preferredContentSize = CGSize(width: 240, height: 180)
         pickerVC.picker.delegate = self
         
-        scenePopover = pickerVC.popoverPresentationController
-        if let popover = scenePopover {
+        popoverController = pickerVC.popoverPresentationController
+        if let popover = popoverController {
             popover.sourceView = textField
             popover.sourceRect = CGRect(origin: CGPoint(x: CGRectGetMidX(textField.bounds), y: -8), size: CGSize.zero)
             popover.delegate = self
@@ -137,14 +146,14 @@ class TTModeHueSceneOptions: TTOptionsDetailViewController, UITextFieldDelegate,
                 sceneSelected = self.action.optionValue(TTModeHueConstants.kDoubleTapHueScene,
                                                         direction: appDelegate().modeMap.inspectingModeDirection) as? String
             }
-            var currentSceneRow: Int = 0
+            var currentRow: Int = 0
             for (i, scene) in scenes.enumerate() {
                 if scene["identifier"] == sceneSelected {
-                    currentSceneRow = i
+                    currentRow = i
                     break
                 }
             }
-            pickerVC.picker.selectRow(currentSceneRow, inComponent: 0, animated: true)
+            pickerVC.picker.selectRow(currentRow, inComponent: 0, animated: true)
         }
 
         return false

@@ -19,7 +19,7 @@ class TTModeMenuCollectionView: UICollectionView, UICollectionViewDataSource, UI
         self.registerClass(TTModeMenuCell.self, forCellWithReuseIdentifier: CollectionViewCellIdentifier)
         self.delegate = self
         self.dataSource = self
-        self.backgroundColor = UIColor.clearColor()
+        self.backgroundColor = UIColor.whiteColor()
         self.delaysContentTouches = false
     }
     

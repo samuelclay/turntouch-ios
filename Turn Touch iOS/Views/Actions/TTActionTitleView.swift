@@ -19,8 +19,7 @@ class TTActionTitleView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.translatesAutoresizingMaskIntoConstraints = false
-        self.contentMode = UIViewContentMode.Redraw;
-        self.backgroundColor = UIColor.clearColor()
+//        self.contentMode = UIViewContentMode.Redraw;
         
         changeButton.translatesAutoresizingMaskIntoConstraints = false
         changeButton.setTitle("Change", forState: UIControlState.Normal)
@@ -99,6 +98,13 @@ class TTActionTitleView: UIView {
         diamondView.setNeedsDisplay()
         
         super.drawRect(rect)
+        self.drawBackground()
+    }
+    
+    func drawBackground() {
+        let context = UIGraphicsGetCurrentContext()
+        UIColor(hex: 0xFFFFFF).set()
+        CGContextFillRect(context, self.bounds);
     }
     
     // MARK: Actions
