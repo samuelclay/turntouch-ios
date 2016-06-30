@@ -3,5 +3,5 @@ use_frameworks!
 
 target "Turn Touch iOS" do
     pod "CocoaAsyncSocket"
-    pod "sonos-objc"
+    pod "AFNetworking", "~> 3.0"
 end

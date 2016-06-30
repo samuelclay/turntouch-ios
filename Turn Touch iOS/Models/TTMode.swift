@@ -240,6 +240,36 @@ class TTMode : NSObject, TTModeProtocol {
         let immediate = self.performSelector(titleSelector).takeUnretainedValue() as! NSNumber
         return immediate.boolValue
     }
+    
+    // MARK: Mode options
+    
+    func modeOptionValue(optionName: String, modeDirection: TTModeDirection) -> AnyObject? {
+        let prefs = NSUserDefaults.standardUserDefaults()
+        let modeDirectionName = appDelegate().modeMap.directionName(modeDirection)
+        
+        if modeDirection == .NO_DIRECTION {
+            // Rotate through directions looking for prefs
+            for direction: TTModeDirection in [.NORTH, .EAST, .WEST, .SOUTH] {
+                let directionName = appDelegate().modeMap.directionName(direction)
+                let optionKey = "TT:mode:\(self.nameOfClass)-\(directionName):option:\(optionName)"
+                let pref = prefs.objectForKey(optionKey)
+                print(" -> Getting mode options (\(directionName)) \(optionKey): \(pref)")
+                if pref == nil {
+                    continue
+                }
+                return pref
+            }
+        }
+        
+        let optionKey = "TT:mode:\(self.nameOfClass)-\(modeDirectionName):option:\(optionName)"
+        var pref = prefs.objectForKey(optionKey)
+        print(" -> Getting mode options \(optionKey): \(pref)")
+        if pref == nil {
+            pref = self.defaultOption(optionName)
+        }
+        
+        return pref
+    }
 
     // MARK: Changing mode settings
     
@@ -254,6 +284,21 @@ class TTMode : NSObject, TTModeProtocol {
 //        print("Direction action: \(prefKey) - \(directionAction) to \(actionClassName)")
         
         prefs.setObject(actionClassName, forKey: prefKey)
+        prefs.synchronize()
+    }
+    
+    func changeModeOption(optionName: String, to optionValue: AnyObject) {
+        if optionName == "" {
+            print(" ---> BUSTED: \(optionValue)")
+            return
+        }
+        let prefs = NSUserDefaults.standardUserDefaults()
+        let modeDirectionName = appDelegate().modeMap.directionName(modeDirection)
+        let optionKey = "TT:mode:\(self.nameOfClass)-\(modeDirectionName):option:\(optionName)"
+        let pref = prefs.objectForKey(optionKey)
+        print(" -> Setting mode option \(optionKey) from (\(pref)) to (\(optionValue))")
+        
+        prefs.setObject(optionValue, forKey: optionKey)
         prefs.synchronize()
     }
     

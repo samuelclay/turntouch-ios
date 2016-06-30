@@ -98,6 +98,20 @@
 		FF4AF7C71D248A860009C777 /* TTModeWemoDeviceOnOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4AF7C61D248A860009C777 /* TTModeWemoDeviceOnOptions.swift */; };
 		FF4AF7C91D248AD00009C777 /* TTModeWemoDeviceOffOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4AF7C81D248AD00009C777 /* TTModeWemoDeviceOffOptions.swift */; };
 		FF4AF7CB1D24C65A0009C777 /* TTPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4AF7CA1D24C65A0009C777 /* TTPickerViewController.swift */; };
+		FF4AF7D51D24ECF60009C777 /* SonosController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF4AF7CE1D24ECF60009C777 /* SonosController.m */; };
+		FF4AF7D61D24ECF60009C777 /* SonosDiscover.m in Sources */ = {isa = PBXBuildFile; fileRef = FF4AF7D01D24ECF60009C777 /* SonosDiscover.m */; };
+		FF4AF7D71D24ECF60009C777 /* SonosManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FF4AF7D21D24ECF60009C777 /* SonosManager.m */; };
+		FF4AF7D81D24ECF60009C777 /* XMLReader.m in Sources */ = {isa = PBXBuildFile; fileRef = FF4AF7D41D24ECF60009C777 /* XMLReader.m */; };
+		FF4AF7DA1D24F8D40009C777 /* mode_sonos.png in Resources */ = {isa = PBXBuildFile; fileRef = FF4AF7D91D24F8D40009C777 /* mode_sonos.png */; };
+		FF4AF7DC1D24F9370009C777 /* TTModeSonos.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4AF7DB1D24F9370009C777 /* TTModeSonos.swift */; };
+		FF4AF7E71D24F9E70009C777 /* TTModeSonosConnect.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4AF7DE1D24F9E70009C777 /* TTModeSonosConnect.swift */; };
+		FF4AF7E81D24F9E70009C777 /* TTModeSonosConnect.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF4AF7DF1D24F9E70009C777 /* TTModeSonosConnect.xib */; };
+		FF4AF7E91D24F9E70009C777 /* TTModeSonosConnected.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4AF7E01D24F9E70009C777 /* TTModeSonosConnected.swift */; };
+		FF4AF7EA1D24F9E70009C777 /* TTModeSonosConnected.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF4AF7E11D24F9E70009C777 /* TTModeSonosConnected.xib */; };
+		FF4AF7EB1D24F9E70009C777 /* TTModeSonosConnecting.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4AF7E21D24F9E70009C777 /* TTModeSonosConnecting.swift */; };
+		FF4AF7EC1D24F9E70009C777 /* TTModeSonosConnecting.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF4AF7E31D24F9E70009C777 /* TTModeSonosConnecting.xib */; };
+		FF4AF7EE1D24F9E70009C777 /* TTModeSonosOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4AF7E51D24F9E70009C777 /* TTModeSonosOptions.swift */; };
+		FF4AF7EF1D24F9E70009C777 /* TTModeSonosOptions.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF4AF7E61D24F9E70009C777 /* TTModeSonosOptions.xib */; };
 		FFB41B111CEE9A3000CD5F09 /* alarm_snooze.png in Resources */ = {isa = PBXBuildFile; fileRef = FFB41AAE1CEE9A3000CD5F09 /* alarm_snooze.png */; };
 		FFB41B121CEE9A3000CD5F09 /* chevron_east.png in Resources */ = {isa = PBXBuildFile; fileRef = FFB41AAF1CEE9A3000CD5F09 /* chevron_east.png */; };
 		FFB41B131CEE9A3000CD5F09 /* chevron_north.png in Resources */ = {isa = PBXBuildFile; fileRef = FFB41AB01CEE9A3000CD5F09 /* chevron_north.png */; };
@@ -336,6 +350,24 @@
 		FF4AF7C61D248A860009C777 /* TTModeWemoDeviceOnOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeWemoDeviceOnOptions.swift; path = Modes/Wemo/TTModeWemoDeviceOnOptions.swift; sourceTree = "<group>"; };
 		FF4AF7C81D248AD00009C777 /* TTModeWemoDeviceOffOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeWemoDeviceOffOptions.swift; path = Modes/Wemo/TTModeWemoDeviceOffOptions.swift; sourceTree = "<group>"; };
 		FF4AF7CA1D24C65A0009C777 /* TTPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTPickerViewController.swift; path = "Turn Touch iOS/Views/Controls/TTPickerViewController.swift"; sourceTree = SOURCE_ROOT; };
+		FF4AF7CD1D24ECF60009C777 /* SonosController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SonosController.h; sourceTree = "<group>"; };
+		FF4AF7CE1D24ECF60009C777 /* SonosController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SonosController.m; sourceTree = "<group>"; };
+		FF4AF7CF1D24ECF60009C777 /* SonosDiscover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SonosDiscover.h; sourceTree = "<group>"; };
+		FF4AF7D01D24ECF60009C777 /* SonosDiscover.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SonosDiscover.m; sourceTree = "<group>"; };
+		FF4AF7D11D24ECF60009C777 /* SonosManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SonosManager.h; sourceTree = "<group>"; };
+		FF4AF7D21D24ECF60009C777 /* SonosManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SonosManager.m; sourceTree = "<group>"; };
+		FF4AF7D31D24ECF60009C777 /* XMLReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLReader.h; sourceTree = "<group>"; };
+		FF4AF7D41D24ECF60009C777 /* XMLReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLReader.m; sourceTree = "<group>"; };
+		FF4AF7D91D24F8D40009C777 /* mode_sonos.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mode_sonos.png; sourceTree = "<group>"; };
+		FF4AF7DB1D24F9370009C777 /* TTModeSonos.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeSonos.swift; path = Modes/Sonos/TTModeSonos.swift; sourceTree = "<group>"; };
+		FF4AF7DE1D24F9E70009C777 /* TTModeSonosConnect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeSonosConnect.swift; path = Modes/Sonos/TTModeSonosConnect.swift; sourceTree = "<group>"; };
+		FF4AF7DF1D24F9E70009C777 /* TTModeSonosConnect.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TTModeSonosConnect.xib; path = Modes/Sonos/TTModeSonosConnect.xib; sourceTree = "<group>"; };
+		FF4AF7E01D24F9E70009C777 /* TTModeSonosConnected.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeSonosConnected.swift; path = Modes/Sonos/TTModeSonosConnected.swift; sourceTree = "<group>"; };
+		FF4AF7E11D24F9E70009C777 /* TTModeSonosConnected.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TTModeSonosConnected.xib; path = Modes/Sonos/TTModeSonosConnected.xib; sourceTree = "<group>"; };
+		FF4AF7E21D24F9E70009C777 /* TTModeSonosConnecting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeSonosConnecting.swift; path = Modes/Sonos/TTModeSonosConnecting.swift; sourceTree = "<group>"; };
+		FF4AF7E31D24F9E70009C777 /* TTModeSonosConnecting.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TTModeSonosConnecting.xib; path = Modes/Sonos/TTModeSonosConnecting.xib; sourceTree = "<group>"; };
+		FF4AF7E51D24F9E70009C777 /* TTModeSonosOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeSonosOptions.swift; path = Modes/Sonos/TTModeSonosOptions.swift; sourceTree = "<group>"; };
+		FF4AF7E61D24F9E70009C777 /* TTModeSonosOptions.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TTModeSonosOptions.xib; path = Modes/Sonos/TTModeSonosOptions.xib; sourceTree = "<group>"; };
 		FFB41AAE1CEE9A3000CD5F09 /* alarm_snooze.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = alarm_snooze.png; sourceTree = "<group>"; };
 		FFB41AAF1CEE9A3000CD5F09 /* chevron_east.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chevron_east.png; sourceTree = "<group>"; };
 		FFB41AB01CEE9A3000CD5F09 /* chevron_north.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chevron_north.png; sourceTree = "<group>"; };
@@ -541,6 +573,7 @@
 				FF0F10C81CF63F1C00CC1F29 /* Music */,
 				FF0F10CB1CF63F3E00CC1F29 /* Phone */,
 				FF254F6C1D21C2D300E96378 /* Wemo */,
+				FF4AF7DD1D24F93B0009C777 /* Sonos */,
 			);
 			name = Modes;
 			sourceTree = "<group>";
@@ -717,6 +750,38 @@
 			name = Bluetooth;
 			sourceTree = "<group>";
 		};
+		FF4AF7CC1D24ECF60009C777 /* sonos-objc */ = {
+			isa = PBXGroup;
+			children = (
+				FF4AF7CD1D24ECF60009C777 /* SonosController.h */,
+				FF4AF7CE1D24ECF60009C777 /* SonosController.m */,
+				FF4AF7CF1D24ECF60009C777 /* SonosDiscover.h */,
+				FF4AF7D01D24ECF60009C777 /* SonosDiscover.m */,
+				FF4AF7D11D24ECF60009C777 /* SonosManager.h */,
+				FF4AF7D21D24ECF60009C777 /* SonosManager.m */,
+				FF4AF7D31D24ECF60009C777 /* XMLReader.h */,
+				FF4AF7D41D24ECF60009C777 /* XMLReader.m */,
+			);
+			name = "sonos-objc";
+			path = "Turn Touch iOS/Vendor/sonos-objc";
+			sourceTree = SOURCE_ROOT;
+		};
+		FF4AF7DD1D24F93B0009C777 /* Sonos */ = {
+			isa = PBXGroup;
+			children = (
+				FF4AF7DB1D24F9370009C777 /* TTModeSonos.swift */,
+				FF4AF7E51D24F9E70009C777 /* TTModeSonosOptions.swift */,
+				FF4AF7E61D24F9E70009C777 /* TTModeSonosOptions.xib */,
+				FF4AF7DE1D24F9E70009C777 /* TTModeSonosConnect.swift */,
+				FF4AF7DF1D24F9E70009C777 /* TTModeSonosConnect.xib */,
+				FF4AF7E01D24F9E70009C777 /* TTModeSonosConnected.swift */,
+				FF4AF7E11D24F9E70009C777 /* TTModeSonosConnected.xib */,
+				FF4AF7E21D24F9E70009C777 /* TTModeSonosConnecting.swift */,
+				FF4AF7E31D24F9E70009C777 /* TTModeSonosConnecting.xib */,
+			);
+			name = Sonos;
+			sourceTree = "<group>";
+		};
 		FFB41AAC1CEE9A3000CD5F09 /* Images */ = {
 			isa = PBXGroup;
 			children = (
@@ -789,6 +854,7 @@
 				FFB41ADD1CEE9A3000CD5F09 /* mode_pandora.png */,
 				FFB41ADE1CEE9A3000CD5F09 /* mode_presentation.png */,
 				FFB41ADF1CEE9A3000CD5F09 /* mode_smartlock.png */,
+				FF4AF7D91D24F8D40009C777 /* mode_sonos.png */,
 				FFB41AE01CEE9A3000CD5F09 /* mode_spotify.png */,
 				FFB41AE11CEE9A3000CD5F09 /* mode_timer.png */,
 				FFB41AE21CEE9A3000CD5F09 /* mode_video.png */,
@@ -999,6 +1065,7 @@
 				FF254FDB1D22F26500E96378 /* XPathQuery */,
 				FFF46BE61D1096DC00158751 /* HueSDK_iOS.framework */,
 				FFF46BCA1D10941500158751 /* Lumberjack */,
+				FF4AF7CC1D24ECF60009C777 /* sonos-objc */,
 				FFF46BE51D10956600158751 /* Turn_Touch_iOS-Bridging-Header.h */,
 			);
 			name = Vendor;
@@ -1190,6 +1257,7 @@
 				FF37EDD41D11174C0026F70D /* TTModeHueConnect.xib in Resources */,
 				FFB41B4A1CEE9A3000CD5F09 /* settings.png in Resources */,
 				FFB41B351CEE9A3000CD5F09 /* mode_electricobjects.png in Resources */,
+				FF4AF7DA1D24F8D40009C777 /* mode_sonos.png in Resources */,
 				FFB41B6E1CEE9A3000CD5F09 /* modal_remote_paired.png in Resources */,
 				FFB41B271CEE9A3000CD5F09 /* button_x.png in Resources */,
 				FF254F651D1B2C6B00E96378 /* TTModeHueSleepOptions.xib in Resources */,
@@ -1198,7 +1266,9 @@
 				FFB41B681CEE9A3000CD5F09 /* modal_ftux_change_action.png in Resources */,
 				FFF270A01CEE88E500E46575 /* LaunchScreen.storyboard in Resources */,
 				FF37EDEC1D137A210026F70D /* TTModeHueSceneOptions.xib in Resources */,
+				FF4AF7EC1D24F9E70009C777 /* TTModeSonosConnecting.xib in Resources */,
 				FFB41B211CEE9A3000CD5F09 /* music_volume_mute.png in Resources */,
+				FF4AF7EF1D24F9E70009C777 /* TTModeSonosOptions.xib in Resources */,
 				FFB41B261CEE9A3000CD5F09 /* button_plus.png in Resources */,
 				FFB41B1A1CEE9A3000CD5F09 /* music_ff.png in Resources */,
 				FFB41B481CEE9A3000CD5F09 /* presentation-chart.png in Resources */,
@@ -1207,6 +1277,7 @@
 				FFB41B431CEE9A3000CD5F09 /* mode_timer.png in Resources */,
 				FFB41B4E1CEE9A3000CD5F09 /* television.png in Resources */,
 				FF37EDE61D12563D0026F70D /* refresh.png in Resources */,
+				FF4AF7E81D24F9E70009C777 /* TTModeSonosConnect.xib in Resources */,
 				FFB41B5F1CEE9A3000CD5F09 /* logo_512.png in Resources */,
 				FF2023341D02147A005129E5 /* Icon-57.png in Resources */,
 				FFB41B691CEE9A3000CD5F09 /* modal_ftux_change_mode.png in Resources */,
@@ -1224,6 +1295,7 @@
 				FFB41B561CEE9A3000CD5F09 /* itunes_playlist_icon.png in Resources */,
 				FFB41B1E1CEE9A3000CD5F09 /* music_rewind.png in Resources */,
 				FF2023311D02147A005129E5 /* Icon-40@3x.png in Resources */,
+				FF4AF7EA1D24F9E70009C777 /* TTModeSonosConnected.xib in Resources */,
 				FFB41B491CEE9A3000CD5F09 /* remote_graphic.png in Resources */,
 				FFB41B641CEE9A3000CD5F09 /* title.png in Resources */,
 				FFB41B181CEE9A3000CD5F09 /* hue_sleep.png in Resources */,
@@ -1365,18 +1437,22 @@
 				FF0F10E91CFFAD6100CC1F29 /* TTModeMenuCell.swift in Sources */,
 				FF4AF7B61D248A180009C777 /* TTModeWemoConnect.swift in Sources */,
 				FFF46BDD1D10941500158751 /* DDFileLogger.m in Sources */,
+				FF4AF7EB1D24F9E70009C777 /* TTModeSonosConnecting.swift in Sources */,
 				FF0F10E51CFFAD1B00CC1F29 /* TTModeMenuBordersView.swift in Sources */,
 				FF0F10C71CF63F1600CC1F29 /* TTModeMusic.swift in Sources */,
 				FF37EDDF1D11179E0026F70D /* TTModeHuePushlink.swift in Sources */,
 				FF4487661D08CE7900ED8099 /* TTPairingViewController.swift in Sources */,
 				FFF46BEE1D10E6A300158751 /* TTOptionsView.swift in Sources */,
+				FF4AF7E91D24F9E70009C777 /* TTModeSonosConnected.swift in Sources */,
 				FFF46BDC1D10941500158751 /* DDASLLogger.m in Sources */,
+				FF4AF7D51D24ECF60009C777 /* SonosController.m in Sources */,
 				FF0F10D71CF6697A00CC1F29 /* TTDiamondView.swift in Sources */,
 				FF4487781D09367000ED8099 /* TTButtonState.swift in Sources */,
 				FF0F10D01CF63F6100CC1F29 /* TTModeAlarmClock.swift in Sources */,
 				FFB41B881CF536BB00CD5F09 /* TTActionMap.swift in Sources */,
 				FF0F10EB1CFFB4A800CC1F29 /* TTModeMenuCollectionView.swift in Sources */,
 				FF4AF7B21D2486F90009C777 /* TTModeWemoOptions.swift in Sources */,
+				FF4AF7DC1D24F9370009C777 /* TTModeSonos.swift in Sources */,
 				FFB41B7B1CEEA9E300CD5F09 /* TTModeDirection.swift in Sources */,
 				FFF270941CEE88E500E46575 /* AppDelegate.swift in Sources */,
 				FF44876B1D08E1D600ED8099 /* TTPairingSpinner.swift in Sources */,
@@ -1385,6 +1461,7 @@
 				FFB41B821CF5341700CD5F09 /* TTMode.swift in Sources */,
 				FF4AF7CB1D24C65A0009C777 /* TTPickerViewController.swift in Sources */,
 				FF37EDDB1D11178D0026F70D /* TTModeHueBridge.swift in Sources */,
+				FF4AF7D71D24ECF60009C777 /* SonosManager.m in Sources */,
 				FF0F10CD1CF63F4D00CC1F29 /* TTModeHue.swift in Sources */,
 				FF254F6B1D21C2CF00E96378 /* TTModeWemo.swift in Sources */,
 				FF37EDE31D1117B20026F70D /* TTModeHueConnected.swift in Sources */,
@@ -1394,6 +1471,7 @@
 				FF4AF7C51D248A630009C777 /* TTModeWemoDeviceToggleOptions.swift in Sources */,
 				FFF46BF01D10E6D400158751 /* TTOptionsDetailViewController.swift in Sources */,
 				FF4AF7BE1D248A3A0009C777 /* TTModeWemoConnected.swift in Sources */,
+				FF4AF7D81D24ECF60009C777 /* XMLReader.m in Sources */,
 				FF4487761D09365200ED8099 /* TTButtonTimer.swift in Sources */,
 				FFF46BDE1D10941500158751 /* DDLog.m in Sources */,
 				FF37EDCF1D1113C10026F70D /* TTModeHueOptions.swift in Sources */,
@@ -1417,6 +1495,7 @@
 				FFF46BE01D10941500158751 /* ContextFilterLogFormatter.m in Sources */,
 				FF4AF7C71D248A860009C777 /* TTModeWemoDeviceOnOptions.swift in Sources */,
 				FF4AF7BA1D248A290009C777 /* TTModeWemoConnecting.swift in Sources */,
+				FF4AF7EE1D24F9E70009C777 /* TTModeSonosOptions.swift in Sources */,
 				FF0F10C21CF60C3D00CC1F29 /* TTTitleBarView.swift in Sources */,
 				FF0F10CA1CF63F3B00CC1F29 /* TTModePhone.swift in Sources */,
 				FF4487741D09300B00ED8099 /* NSData+Hex.swift in Sources */,
@@ -1428,7 +1507,9 @@
 				FF0F10DE1CF6763400CC1F29 /* TTModeTitleView.swift in Sources */,
 				FF37EDEB1D137A210026F70D /* TTModeHueSceneOptions.swift in Sources */,
 				FF0F10DC1CF669BE00CC1F29 /* TTDiamondLabel.swift in Sources */,
+				FF4AF7D61D24ECF60009C777 /* SonosDiscover.m in Sources */,
 				FF4AF7C91D248AD00009C777 /* TTModeWemoDeviceOffOptions.swift in Sources */,
+				FF4AF7E71D24F9E70009C777 /* TTModeSonosConnect.swift in Sources */,
 				FFF270C51CEE97AF00E46575 /* TTMainViewController.swift in Sources */,
 				FFB41B861CF536AC00CD5F09 /* TTAction.swift in Sources */,
 				FF44876D1D08E62200ED8099 /* TTBluetoothMonitor.swift in Sources */,

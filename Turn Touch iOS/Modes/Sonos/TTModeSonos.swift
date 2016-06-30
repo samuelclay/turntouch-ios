@@ -1,0 +1,263 @@
+//
+//  TTModeSonos.swift
+//  Turn Touch iOS
+//
+//  Created by Samuel Clay on 6/29/16.
+//  Copyright © 2016 Turn Touch. All rights reserved.
+//
+
+import UIKit
+
+struct TTModeSonosConstants {
+    static let kSonosDeviceId = "sonosDeviceUUID"
+}
+
+enum TTSonosState {
+    case Disconnected
+    case Connecting
+    case Connected
+}
+
+protocol TTModeSonosDelegate {
+    func changeState(state: TTSonosState, mode: TTModeSonos)
+}
+
+class TTModeSonos: TTMode {
+    
+    var delegate: TTModeSonosDelegate!
+    var sonosState = TTSonosState.Disconnected
+    var sonosManager = SonosManager.sharedInstance()
+    
+    required init() {
+        super.init()
+        
+    }
+    
+    override class func title() -> String {
+        return "Sonos"
+    }
+    
+    override class func subtitle() -> String {
+        return "Connected wireless speakers"
+    }
+    
+    override class func imageName() -> String {
+        return "mode_sonos.png"
+    }
+    
+    // MARK: Actions
+    
+    override class func actions() -> [String] {
+        return ["TTModeSonosVolumeUp",
+                "TTModeSonosVolumeDown",
+                "TTModeSonosVolumeMute",
+                "TTModeSonosPlayPause",
+                "TTModeSonosPlay",
+                "TTModeSonosPause",
+                "TTModeSonosNextTrack",
+                "TTModeSonosPreviousTrack",
+        ]
+    }
+    
+    // MARK: Action titles
+    
+    func titleTTModeSonosVolumeUp() -> String {
+        return "Volume up"
+    }
+    
+    func titleTTModeSonosVolumeDown() -> String {
+        return "Volume down"
+    }
+    
+    func titleTTModeSonosVolumeMute() -> String {
+        return "Mute"
+    }
+    
+    func titleTTModeSonosPlayPause() -> String {
+        return "Play/pause"
+    }
+    
+    func titleTTModeSonosPlay() -> String {
+        return "Play"
+    }
+    
+    func titleTTModeSonosPause() -> String {
+        return "Pause"
+    }
+    
+    func titleTTModeSonosNextTrack() -> String {
+        return "Next track"
+    }
+    
+    func titleTTModeSonosPreviousTrack() -> String {
+        return "Previous track"
+    }
+    
+    
+    // MARK: Action images
+    
+    func imageTTModeSonosVolumeUp() -> String {
+        return "Volume up"
+    }
+    
+    func imageTTModeSonosVolumeDown() -> String {
+        return "Volume down"
+    }
+    
+    func imageTTModeSonosVolumeMute() -> String {
+        return "Mute"
+    }
+    
+    func imageTTModeSonosPlayPause() -> String {
+        return "Play/pause"
+    }
+    
+    func imageTTModeSonosPlay() -> String {
+        return "Play"
+    }
+    
+    func imageTTModeSonosPause() -> String {
+        return "Pause"
+    }
+    
+    func imageTTModeSonosNextTrack() -> String {
+        return "Next track"
+    }
+    
+    func imageTTModeSonosPreviousTrack() -> String {
+        return "Previous track"
+    }
+    
+    // MARK: Defaults
+    
+    override func defaultNorth() -> String {
+        return "TTModeSonosVolumeUp"
+    }
+    
+    override func defaultEast() -> String {
+        return "TTModeSonosNextTrack"
+    }
+    
+    override func defaultWest() -> String {
+        return "TTModeSonosPlayPause"
+    }
+    
+    override func defaultSouth() -> String {
+        return "TTModeSonosVolumeDown"
+    }
+    
+    // MARK: Action methods
+    
+    override func activate() {
+        if sonosManager.allDevices().count == 0 {
+            sonosState = .Connecting
+            self.beginConnectingToSonos()
+        } else {
+            sonosState = .Connected
+        }
+        delegate.changeState(sonosState, mode: self)
+    }
+    
+    override func deactivate() {
+
+    }
+    
+    
+    func runTTModeSonosVolumeUp() {
+        if let device = self.selectedDevice() {
+            device.getVolume({ (volume, speakers, error) in
+                device.setVolume(volume + 8, mergeRequests: true, completion: { (speakers, error) in
+                    print(" ---> Turned volume: \(volume)+8 (\(error), \(speakers)")
+                })
+            })
+        }
+    }
+    
+    func runTTModeSonosVolumeDown() {
+        if let device = self.selectedDevice() {
+            device.getVolume({ (volume, speakers, error) in
+                device.setVolume(volume - 8, mergeRequests: true, completion: { (speakers, error) in
+                    print(" ---> Turned volume: \(volume)-8 (\(error), \(speakers)")
+                })
+            })
+        }
+    }
+    
+    func runTTModeSonosVolumeMute() {
+
+    }
+    
+    func runTTModeSonosPlayPause() {
+
+    }
+    
+    func runTTModeSonosPlay() {
+
+    }
+    
+    func runTTModeSonosPause() {
+
+    }
+    
+    func runTTModeSonosNextTrack() {
+
+    }
+    
+    func runTTModeSonosPreviousTrack() {
+
+    }
+    
+    func runTTModeSonosDeviceOn(direction: NSNumber) {
+//        if let device = self.selectedDevice(TTModeDirection(rawValue: direction.integerValue)!) {
+//            device.changeDeviceState(.On)
+//        }
+    }
+    
+    // MARK: Sonos devices
+    
+    func selectedDevice() -> SonosController? {
+        if sonosManager.allDevices().count == 0 {
+            return nil
+        }
+        
+        let devices = sonosManager.allDevices() as! [SonosController]
+        if let deviceId = self.action.mode.modeOptionValue(TTModeSonosConstants.kSonosDeviceId, modeDirection: appDelegate().modeMap.selectedModeDirection) as! String? {
+            for foundDevice: SonosController in devices {
+                if foundDevice.uuid == deviceId {
+                    return foundDevice
+                }
+            }
+        }
+        
+        return devices[0]
+    }
+    
+    func beginConnectingToSonos() {
+        sonosState = .Connecting
+        delegate.changeState(sonosState, mode: self)
+        
+        sonosManager.discoverControllers {
+            dispatch_async(dispatch_get_main_queue(), {
+                let devices = self.sonosManager.allDevices() as! [SonosController]
+                for device in devices {
+                    self.deviceReady(device)
+                }
+                if devices.count == 0 {
+                    self.cancelConnectingToSonos()
+                }
+            })
+        }
+    }
+    
+    func cancelConnectingToSonos() {
+        sonosState = .Disconnected
+        delegate.changeState(sonosState, mode: self)
+    }
+    
+    // MARK: Device delegate
+    
+    func deviceReady(device: SonosController) {
+        sonosState = .Connected
+        delegate.changeState(sonosState, mode: self)
+    }
+}

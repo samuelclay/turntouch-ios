@@ -11,5 +11,8 @@
 
 #import <HueSDK_iOS/HueSDK.h>
 #import <XPathQuery/XPathQuery.h>
+#import <sonos-objc/SonosController.h>
+#import <sonos-objc/SonosManager.h>
+#import <sonos-objc/SonosDiscover.h>
 
 #endif /* HueBridgingHeader_h */

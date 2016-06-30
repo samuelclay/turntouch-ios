@@ -43,6 +43,7 @@ class TTModeMap: NSObject {
             "TTModeMusic",
             "TTModeHue",
             "TTModeWemo",
+            "TTModeSonos",
         ]
         
         super.init()
