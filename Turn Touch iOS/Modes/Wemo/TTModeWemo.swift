@@ -118,14 +118,14 @@ class TTModeWemo: TTMode, TTModeWemoMulticastDelegate, TTModeWemoDeviceDelegate 
         TTModeWemo.multicastServer.deactivate()
     }
     
-    func runTTModeWemoDeviceOn(direction: TTModeDirection) {
-        if let device = self.selectedDevice(direction) {
+    func runTTModeWemoDeviceOn(direction: NSNumber) {
+        if let device = self.selectedDevice(TTModeDirection(rawValue: direction.integerValue)!) {
             device.changeDeviceState(.On)
         }
     }
     
-    func runTTModeWemoDeviceOff(direction: TTModeDirection) {
-        if let device = self.selectedDevice(direction) {
+    func runTTModeWemoDeviceOff(direction: NSNumber) {
+        if let device = self.selectedDevice(TTModeDirection(rawValue: direction.integerValue)!) {
             device.changeDeviceState(.Off)
         }
     }

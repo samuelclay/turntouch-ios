@@ -40,19 +40,19 @@ class TTModeWemoDeviceSwitchOptions: TTOptionsDetailViewController, UITextFieldD
     
     func selectDevice() {
         devices = []
-        let deviceSelected = self.action.optionValue(TTModeWemoConstants.kWemoDeviceLocation,
+        var deviceSelected = self.action.optionValue(TTModeWemoConstants.kWemoDeviceLocation,
                                                     direction: appDelegate().modeMap.inspectingModeDirection) as? String
 //        var doubleSceneSelected = self.action.optionValue(TTModeHueConstants.kDoubleTapHueScene,
 //                                                          direction: appDelegate().modeMap.inspectingModeDirection) as? String
         
         for device in TTModeWemo.foundDevices {
             devices.append(["name": device.deviceName, "identifier": device.location()])
-            if deviceSelected == device.location() {
+            if deviceSelected == nil {
+                singlePicker.text = device.deviceName
+                deviceSelected = device.location()
+            } else if deviceSelected == device.location() {
                 singlePicker.text = device.deviceName
             }
-//            if doubleSceneSelected == scene.identifier {
-//                doublePicker.text = scene.name
-//            }
         }
         
         devices = devices.sort {

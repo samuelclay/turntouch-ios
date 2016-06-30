@@ -1,6 +1,7 @@
-platform :ios, '9.0'
+platform :ios, "9.0"
 use_frameworks!
 
-target 'Turn Touch iOS' do
-    pod 'CocoaAsyncSocket'
+target "Turn Touch iOS" do
+    pod "CocoaAsyncSocket"
+    pod "sonos-objc"
 end
