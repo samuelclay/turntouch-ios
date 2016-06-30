@@ -14,6 +14,7 @@ class TTModeMenuCell: UICollectionViewCell {
     var imageView = UIImageView()
     var menuType = TTMenuType.MENU_MODE
     var modeName = ""
+    var modeClass: TTMode.Type!
     var actionName = ""
     var activeMode: TTMode!
     
@@ -76,8 +77,7 @@ class TTModeMenuCell: UICollectionViewCell {
     override func prepareForReuse() {
         if menuType == .MENU_MODE {
             let className = "Turn_Touch_iOS.\(modeName)"
-            let activeModeType = NSClassFromString(className) as! TTMode.Type
-            activeMode = activeModeType.init()
+            modeClass = NSClassFromString(className) as! TTMode.Type
         } else if menuType == .MENU_ACTION {
             activeMode = appDelegate().modeMap.selectedMode
         } else if menuType == .MENU_ADD_MODE {
@@ -95,8 +95,8 @@ class TTModeMenuCell: UICollectionViewCell {
         
         if menuType == .MENU_MODE {
             selected = activeMode >!< appDelegate().modeMap.selectedMode
-            titleLabel.text = activeMode.title().uppercaseString
-            let imageName = activeMode.imageName()
+            titleLabel.text = modeClass.title().uppercaseString
+            let imageName = modeClass.imageName()
             if imageName != "" {
                 imageView.image = UIImage(named:imageName)
             }

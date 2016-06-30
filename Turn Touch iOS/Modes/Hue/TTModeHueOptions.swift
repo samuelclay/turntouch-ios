@@ -93,7 +93,6 @@ class TTModeHueOptions: TTOptionsDetailViewController, TTModeHueDelegate {
         
         self.view.layoutIfNeeded()
         appDelegate().mainViewController.adjustOptionsHeight(nil)
-        
     }
     
     func drawConnectViewController() {

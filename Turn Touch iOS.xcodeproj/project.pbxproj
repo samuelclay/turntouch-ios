@@ -68,7 +68,6 @@
 		FF37EDEC1D137A210026F70D /* TTModeHueSceneOptions.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF37EDEA1D137A210026F70D /* TTModeHueSceneOptions.xib */; };
 		FF37EDEE1D13823F0026F70D /* TTModeHueSceneEarlyEveningOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF37EDED1D13823F0026F70D /* TTModeHueSceneEarlyEveningOptions.swift */; };
 		FF37EDF01D14A9E80026F70D /* single_tap.png in Resources */ = {isa = PBXBuildFile; fileRef = FF37EDEF1D14A9E80026F70D /* single_tap.png */; };
-		FF37EDF41D14AEE00026F70D /* TTModeHueScenePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF37EDF31D14AEE00026F70D /* TTModeHueScenePickerViewController.swift */; };
 		FF37EDF61D1B1A310026F70D /* TTModeHueSceneLateEveningOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF37EDF51D1B1A310026F70D /* TTModeHueSceneLateEveningOptions.swift */; };
 		FF37EDF91D1B23750026F70D /* TTModeHueSleepOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF37EDF71D1B23750026F70D /* TTModeHueSleepOptions.swift */; };
 		FF37EDFD1D1B23B70026F70D /* TTModeHueRandomOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF37EDFB1D1B23B70026F70D /* TTModeHueRandomOptions.swift */; };
@@ -85,6 +84,20 @@
 		FF4487761D09365200ED8099 /* TTButtonTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4487751D09365200ED8099 /* TTButtonTimer.swift */; };
 		FF4487781D09367000ED8099 /* TTButtonState.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4487771D09367000ED8099 /* TTButtonState.swift */; };
 		FF4AF7AF1D2475B50009C777 /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = FF4AF7AB1D2475630009C777 /* libxml2.tbd */; };
+		FF4AF7B21D2486F90009C777 /* TTModeWemoOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4AF7B01D2486F90009C777 /* TTModeWemoOptions.swift */; };
+		FF4AF7B31D2486F90009C777 /* TTModeWemoOptions.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF4AF7B11D2486F90009C777 /* TTModeWemoOptions.xib */; };
+		FF4AF7B61D248A180009C777 /* TTModeWemoConnect.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4AF7B41D248A180009C777 /* TTModeWemoConnect.swift */; };
+		FF4AF7B71D248A180009C777 /* TTModeWemoConnect.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF4AF7B51D248A180009C777 /* TTModeWemoConnect.xib */; };
+		FF4AF7BA1D248A290009C777 /* TTModeWemoConnecting.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4AF7B81D248A290009C777 /* TTModeWemoConnecting.swift */; };
+		FF4AF7BB1D248A290009C777 /* TTModeWemoConnecting.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF4AF7B91D248A290009C777 /* TTModeWemoConnecting.xib */; };
+		FF4AF7BE1D248A3A0009C777 /* TTModeWemoConnected.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4AF7BC1D248A3A0009C777 /* TTModeWemoConnected.swift */; };
+		FF4AF7BF1D248A3A0009C777 /* TTModeWemoConnected.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF4AF7BD1D248A3A0009C777 /* TTModeWemoConnected.xib */; };
+		FF4AF7C21D248A4D0009C777 /* TTModeWemoDeviceSwitchOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4AF7C01D248A4D0009C777 /* TTModeWemoDeviceSwitchOptions.swift */; };
+		FF4AF7C31D248A4D0009C777 /* TTModeWemoDeviceSwitchOptions.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF4AF7C11D248A4D0009C777 /* TTModeWemoDeviceSwitchOptions.xib */; };
+		FF4AF7C51D248A630009C777 /* TTModeWemoDeviceToggleOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4AF7C41D248A630009C777 /* TTModeWemoDeviceToggleOptions.swift */; };
+		FF4AF7C71D248A860009C777 /* TTModeWemoDeviceOnOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4AF7C61D248A860009C777 /* TTModeWemoDeviceOnOptions.swift */; };
+		FF4AF7C91D248AD00009C777 /* TTModeWemoDeviceOffOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4AF7C81D248AD00009C777 /* TTModeWemoDeviceOffOptions.swift */; };
+		FF4AF7CB1D24C65A0009C777 /* TTPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4AF7CA1D24C65A0009C777 /* TTPickerViewController.swift */; };
 		FFB41B111CEE9A3000CD5F09 /* alarm_snooze.png in Resources */ = {isa = PBXBuildFile; fileRef = FFB41AAE1CEE9A3000CD5F09 /* alarm_snooze.png */; };
 		FFB41B121CEE9A3000CD5F09 /* chevron_east.png in Resources */ = {isa = PBXBuildFile; fileRef = FFB41AAF1CEE9A3000CD5F09 /* chevron_east.png */; };
 		FFB41B131CEE9A3000CD5F09 /* chevron_north.png in Resources */ = {isa = PBXBuildFile; fileRef = FFB41AB01CEE9A3000CD5F09 /* chevron_north.png */; };
@@ -292,7 +305,6 @@
 		FF37EDEA1D137A210026F70D /* TTModeHueSceneOptions.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TTModeHueSceneOptions.xib; path = Modes/Hue/TTModeHueSceneOptions.xib; sourceTree = "<group>"; };
 		FF37EDED1D13823F0026F70D /* TTModeHueSceneEarlyEveningOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeHueSceneEarlyEveningOptions.swift; path = Modes/Hue/TTModeHueSceneEarlyEveningOptions.swift; sourceTree = "<group>"; };
 		FF37EDEF1D14A9E80026F70D /* single_tap.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = single_tap.png; sourceTree = "<group>"; };
-		FF37EDF31D14AEE00026F70D /* TTModeHueScenePickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeHueScenePickerViewController.swift; path = Modes/Hue/TTModeHueScenePickerViewController.swift; sourceTree = "<group>"; };
 		FF37EDF51D1B1A310026F70D /* TTModeHueSceneLateEveningOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeHueSceneLateEveningOptions.swift; path = Modes/Hue/TTModeHueSceneLateEveningOptions.swift; sourceTree = "<group>"; };
 		FF37EDF71D1B23750026F70D /* TTModeHueSleepOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeHueSleepOptions.swift; path = Modes/Hue/TTModeHueSleepOptions.swift; sourceTree = "<group>"; };
 		FF37EDFB1D1B23B70026F70D /* TTModeHueRandomOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeHueRandomOptions.swift; path = Modes/Hue/TTModeHueRandomOptions.swift; sourceTree = "<group>"; };
@@ -310,6 +322,20 @@
 		FF4487771D09367000ED8099 /* TTButtonState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTButtonState.swift; path = Bluetooth/TTButtonState.swift; sourceTree = "<group>"; };
 		FF4AF7AB1D2475630009C777 /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
 		FF4AF7AD1D2475780009C777 /* libxml2.2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.2.tbd; path = usr/lib/libxml2.2.tbd; sourceTree = SDKROOT; };
+		FF4AF7B01D2486F90009C777 /* TTModeWemoOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeWemoOptions.swift; path = Modes/Wemo/TTModeWemoOptions.swift; sourceTree = "<group>"; };
+		FF4AF7B11D2486F90009C777 /* TTModeWemoOptions.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TTModeWemoOptions.xib; path = Modes/Wemo/TTModeWemoOptions.xib; sourceTree = "<group>"; };
+		FF4AF7B41D248A180009C777 /* TTModeWemoConnect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeWemoConnect.swift; path = Modes/Wemo/TTModeWemoConnect.swift; sourceTree = "<group>"; };
+		FF4AF7B51D248A180009C777 /* TTModeWemoConnect.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TTModeWemoConnect.xib; path = Modes/Wemo/TTModeWemoConnect.xib; sourceTree = "<group>"; };
+		FF4AF7B81D248A290009C777 /* TTModeWemoConnecting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeWemoConnecting.swift; path = Modes/Wemo/TTModeWemoConnecting.swift; sourceTree = "<group>"; };
+		FF4AF7B91D248A290009C777 /* TTModeWemoConnecting.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TTModeWemoConnecting.xib; path = Modes/Wemo/TTModeWemoConnecting.xib; sourceTree = "<group>"; };
+		FF4AF7BC1D248A3A0009C777 /* TTModeWemoConnected.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeWemoConnected.swift; path = Modes/Wemo/TTModeWemoConnected.swift; sourceTree = "<group>"; };
+		FF4AF7BD1D248A3A0009C777 /* TTModeWemoConnected.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TTModeWemoConnected.xib; path = Modes/Wemo/TTModeWemoConnected.xib; sourceTree = "<group>"; };
+		FF4AF7C01D248A4D0009C777 /* TTModeWemoDeviceSwitchOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeWemoDeviceSwitchOptions.swift; path = Modes/Wemo/TTModeWemoDeviceSwitchOptions.swift; sourceTree = "<group>"; };
+		FF4AF7C11D248A4D0009C777 /* TTModeWemoDeviceSwitchOptions.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TTModeWemoDeviceSwitchOptions.xib; path = Modes/Wemo/TTModeWemoDeviceSwitchOptions.xib; sourceTree = "<group>"; };
+		FF4AF7C41D248A630009C777 /* TTModeWemoDeviceToggleOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeWemoDeviceToggleOptions.swift; path = Modes/Wemo/TTModeWemoDeviceToggleOptions.swift; sourceTree = "<group>"; };
+		FF4AF7C61D248A860009C777 /* TTModeWemoDeviceOnOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeWemoDeviceOnOptions.swift; path = Modes/Wemo/TTModeWemoDeviceOnOptions.swift; sourceTree = "<group>"; };
+		FF4AF7C81D248AD00009C777 /* TTModeWemoDeviceOffOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeWemoDeviceOffOptions.swift; path = Modes/Wemo/TTModeWemoDeviceOffOptions.swift; sourceTree = "<group>"; };
+		FF4AF7CA1D24C65A0009C777 /* TTPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTPickerViewController.swift; path = "Turn Touch iOS/Views/Controls/TTPickerViewController.swift"; sourceTree = SOURCE_ROOT; };
 		FFB41AAE1CEE9A3000CD5F09 /* alarm_snooze.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = alarm_snooze.png; sourceTree = "<group>"; };
 		FFB41AAF1CEE9A3000CD5F09 /* chevron_east.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chevron_east.png; sourceTree = "<group>"; };
 		FFB41AB01CEE9A3000CD5F09 /* chevron_north.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chevron_north.png; sourceTree = "<group>"; };
@@ -554,7 +580,6 @@
 				FF37EDE21D1117B20026F70D /* TTModeHueConnected.xib */,
 				FF37EDE91D137A210026F70D /* TTModeHueSceneOptions.swift */,
 				FF37EDEA1D137A210026F70D /* TTModeHueSceneOptions.xib */,
-				FF37EDF31D14AEE00026F70D /* TTModeHueScenePickerViewController.swift */,
 				FF37EDED1D13823F0026F70D /* TTModeHueSceneEarlyEveningOptions.swift */,
 				FF37EDF51D1B1A310026F70D /* TTModeHueSceneLateEveningOptions.swift */,
 				FF37EDF71D1B23750026F70D /* TTModeHueSleepOptions.swift */,
@@ -626,6 +651,19 @@
 				FF254F6A1D21C2CE00E96378 /* TTModeWemo.swift */,
 				FF254FD91D21EF1200E96378 /* TTModeWemoDevice.swift */,
 				FF254F8D1D21CAF100E96378 /* TTModeWemoMulticastServer.swift */,
+				FF4AF7B01D2486F90009C777 /* TTModeWemoOptions.swift */,
+				FF4AF7B11D2486F90009C777 /* TTModeWemoOptions.xib */,
+				FF4AF7B41D248A180009C777 /* TTModeWemoConnect.swift */,
+				FF4AF7B51D248A180009C777 /* TTModeWemoConnect.xib */,
+				FF4AF7B81D248A290009C777 /* TTModeWemoConnecting.swift */,
+				FF4AF7B91D248A290009C777 /* TTModeWemoConnecting.xib */,
+				FF4AF7BC1D248A3A0009C777 /* TTModeWemoConnected.swift */,
+				FF4AF7BD1D248A3A0009C777 /* TTModeWemoConnected.xib */,
+				FF4AF7C01D248A4D0009C777 /* TTModeWemoDeviceSwitchOptions.swift */,
+				FF4AF7C11D248A4D0009C777 /* TTModeWemoDeviceSwitchOptions.xib */,
+				FF4AF7C41D248A630009C777 /* TTModeWemoDeviceToggleOptions.swift */,
+				FF4AF7C61D248A860009C777 /* TTModeWemoDeviceOnOptions.swift */,
+				FF4AF7C81D248AD00009C777 /* TTModeWemoDeviceOffOptions.swift */,
 			);
 			name = Wemo;
 			sourceTree = "<group>";
@@ -643,6 +681,7 @@
 			isa = PBXGroup;
 			children = (
 				FF37EDCA1D1102620026F70D /* TTTabView.swift */,
+				FF4AF7CA1D24C65A0009C777 /* TTPickerViewController.swift */,
 			);
 			name = Controls;
 			path = Views/Options;
@@ -1123,6 +1162,7 @@
 				FFB41B1B1CEE9A3000CD5F09 /* music_pause.png in Resources */,
 				FF20232E1D02147A005129E5 /* Icon-29@3x.png in Resources */,
 				FFB41B521CEE9A3000CD5F09 /* itunes_itunesu_icon.png in Resources */,
+				FF4AF7C31D248A4D0009C777 /* TTModeWemoDeviceSwitchOptions.xib in Resources */,
 				FFB41B581CEE9A3000CD5F09 /* itunes_tv_icon.png in Resources */,
 				FFB41B591CEE9A3000CD5F09 /* originals.png in Resources */,
 				FFB41B3C1CEE9A3000CD5F09 /* mode_music.png in Resources */,
@@ -1198,6 +1238,7 @@
 				FFB41B191CEE9A3000CD5F09 /* hue_sunset.png in Resources */,
 				FFB41B621CEE9A3000CD5F09 /* logo_white_with_title.png in Resources */,
 				FFB41B3F1CEE9A3000CD5F09 /* mode_pandora.png in Resources */,
+				FF4AF7BB1D248A290009C777 /* TTModeWemoConnecting.xib in Resources */,
 				FFB41B731CEE9C8000CD5F09 /* logo_180.png in Resources */,
 				FF37EDDC1D11178D0026F70D /* TTModeHueBridge.xib in Resources */,
 				FFB41B661CEE9A3000CD5F09 /* modal_bar_button_chevron.png in Resources */,
@@ -1221,6 +1262,7 @@
 				FFB41B391CEE9A3000CD5F09 /* mode_mac.png in Resources */,
 				FFB41B331CEE9A3000CD5F09 /* macbookpro.png in Resources */,
 				FFB41B2F1CEE9A3000CD5F09 /* heart.png in Resources */,
+				FF4AF7B71D248A180009C777 /* TTModeWemoConnect.xib in Resources */,
 				FFB41B341CEE9A3000CD5F09 /* mode_alarm.png in Resources */,
 				FFB41B141CEE9A3000CD5F09 /* chevron_south.png in Resources */,
 				FF37EDE41D1117B20026F70D /* TTModeHueConnected.xib in Resources */,
@@ -1230,6 +1272,7 @@
 				FFF2709D1CEE88E500E46575 /* Assets.xcassets in Resources */,
 				FFB41B441CEE9A3000CD5F09 /* mode_video.png in Resources */,
 				FFB41B311CEE9A3000CD5F09 /* icon_music.png in Resources */,
+				FF4AF7BF1D248A3A0009C777 /* TTModeWemoConnected.xib in Resources */,
 				FF20232B1D02147A005129E5 /* Icon-120.png in Resources */,
 				FFB41B2E1CEE9A3000CD5F09 /* finger.png in Resources */,
 				FFB41B5E1CEE9A3000CD5F09 /* logo_32.png in Resources */,
@@ -1246,6 +1289,7 @@
 				FFB41B6B1CEE9A3000CD5F09 /* modal_ftux_mode.png in Resources */,
 				FFB41B1D1CEE9A3000CD5F09 /* music_playlist.png in Resources */,
 				FFB41B651CEE9A3000CD5F09 /* title@2x.png in Resources */,
+				FF4AF7B31D2486F90009C777 /* TTModeWemoOptions.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1319,11 +1363,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				FF0F10E91CFFAD6100CC1F29 /* TTModeMenuCell.swift in Sources */,
+				FF4AF7B61D248A180009C777 /* TTModeWemoConnect.swift in Sources */,
 				FFF46BDD1D10941500158751 /* DDFileLogger.m in Sources */,
 				FF0F10E51CFFAD1B00CC1F29 /* TTModeMenuBordersView.swift in Sources */,
 				FF0F10C71CF63F1600CC1F29 /* TTModeMusic.swift in Sources */,
 				FF37EDDF1D11179E0026F70D /* TTModeHuePushlink.swift in Sources */,
-				FF37EDF41D14AEE00026F70D /* TTModeHueScenePickerViewController.swift in Sources */,
 				FF4487661D08CE7900ED8099 /* TTPairingViewController.swift in Sources */,
 				FFF46BEE1D10E6A300158751 /* TTOptionsView.swift in Sources */,
 				FFF46BDC1D10941500158751 /* DDASLLogger.m in Sources */,
@@ -1332,12 +1376,14 @@
 				FF0F10D01CF63F6100CC1F29 /* TTModeAlarmClock.swift in Sources */,
 				FFB41B881CF536BB00CD5F09 /* TTActionMap.swift in Sources */,
 				FF0F10EB1CFFB4A800CC1F29 /* TTModeMenuCollectionView.swift in Sources */,
+				FF4AF7B21D2486F90009C777 /* TTModeWemoOptions.swift in Sources */,
 				FFB41B7B1CEEA9E300CD5F09 /* TTModeDirection.swift in Sources */,
 				FFF270941CEE88E500E46575 /* AppDelegate.swift in Sources */,
 				FF44876B1D08E1D600ED8099 /* TTPairingSpinner.swift in Sources */,
 				FFF46BDB1D10941500158751 /* DDAbstractDatabaseLogger.m in Sources */,
 				FFC9FE991D02520300038817 /* NSObject+Class.swift in Sources */,
 				FFB41B821CF5341700CD5F09 /* TTMode.swift in Sources */,
+				FF4AF7CB1D24C65A0009C777 /* TTPickerViewController.swift in Sources */,
 				FF37EDDB1D11178D0026F70D /* TTModeHueBridge.swift in Sources */,
 				FF0F10CD1CF63F4D00CC1F29 /* TTModeHue.swift in Sources */,
 				FF254F6B1D21C2CF00E96378 /* TTModeWemo.swift in Sources */,
@@ -1345,7 +1391,9 @@
 				FF254FDE1D22F26500E96378 /* XPathQuery.m in Sources */,
 				FFF46BC71D0E5C8400158751 /* TTDeviceTitlesView.swift in Sources */,
 				FF254FDA1D21EF1200E96378 /* TTModeWemoDevice.swift in Sources */,
+				FF4AF7C51D248A630009C777 /* TTModeWemoDeviceToggleOptions.swift in Sources */,
 				FFF46BF01D10E6D400158751 /* TTOptionsDetailViewController.swift in Sources */,
+				FF4AF7BE1D248A3A0009C777 /* TTModeWemoConnected.swift in Sources */,
 				FF4487761D09365200ED8099 /* TTButtonTimer.swift in Sources */,
 				FFF46BDE1D10941500158751 /* DDLog.m in Sources */,
 				FF37EDCF1D1113C10026F70D /* TTModeHueOptions.swift in Sources */,
@@ -1354,6 +1402,7 @@
 				FF4487621D08986200ED8099 /* TTTitleMenuPopover.swift in Sources */,
 				FF4487701D08EF6400ED8099 /* TTDeviceList.swift in Sources */,
 				FFF46BC51D0E58C000158751 /* TTDeviceTitleView.swift in Sources */,
+				FF4AF7C21D248A4D0009C777 /* TTModeWemoDeviceSwitchOptions.swift in Sources */,
 				FF37EDFD1D1B23B70026F70D /* TTModeHueRandomOptions.swift in Sources */,
 				FFC9FE951D021A0400038817 /* TTActionDiamondView.swift in Sources */,
 				FF44875F1D078FAC00ED8099 /* TTActionTitleView.swift in Sources */,
@@ -1366,6 +1415,8 @@
 				FFB41B841CF5342100CD5F09 /* TTModeMap.swift in Sources */,
 				FF37EDEE1D13823F0026F70D /* TTModeHueSceneEarlyEveningOptions.swift in Sources */,
 				FFF46BE01D10941500158751 /* ContextFilterLogFormatter.m in Sources */,
+				FF4AF7C71D248A860009C777 /* TTModeWemoDeviceOnOptions.swift in Sources */,
+				FF4AF7BA1D248A290009C777 /* TTModeWemoConnecting.swift in Sources */,
 				FF0F10C21CF60C3D00CC1F29 /* TTTitleBarView.swift in Sources */,
 				FF0F10CA1CF63F3B00CC1F29 /* TTModePhone.swift in Sources */,
 				FF4487741D09300B00ED8099 /* NSData+Hex.swift in Sources */,
@@ -1377,6 +1428,7 @@
 				FF0F10DE1CF6763400CC1F29 /* TTModeTitleView.swift in Sources */,
 				FF37EDEB1D137A210026F70D /* TTModeHueSceneOptions.swift in Sources */,
 				FF0F10DC1CF669BE00CC1F29 /* TTDiamondLabel.swift in Sources */,
+				FF4AF7C91D248AD00009C777 /* TTModeWemoDeviceOffOptions.swift in Sources */,
 				FFF270C51CEE97AF00E46575 /* TTMainViewController.swift in Sources */,
 				FFB41B861CF536AC00CD5F09 /* TTAction.swift in Sources */,
 				FF44876D1D08E62200ED8099 /* TTBluetoothMonitor.swift in Sources */,

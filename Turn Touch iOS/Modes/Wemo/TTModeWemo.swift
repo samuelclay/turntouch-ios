@@ -24,7 +24,7 @@ protocol TTModeWemoDelegate {
 
 class TTModeWemo: TTMode, TTModeWemoMulticastDelegate, TTModeWemoDeviceDelegate {
     
-    var delegate: TTModeWemoDelegate?
+    var delegate: TTModeWemoDelegate!
     var wemoState = TTWemoState.Disconnected
     static var multicastServer = TTModeWemoMulticastServer()
     static var foundDevices: [TTModeWemoDevice] = []
@@ -35,21 +35,21 @@ class TTModeWemo: TTMode, TTModeWemoMulticastDelegate, TTModeWemoDeviceDelegate 
         TTModeWemo.multicastServer.delegate = self
     }
     
-    override func title() -> String {
+    override class func title() -> String {
         return "Wemo"
     }
     
-    override func subtitle() -> String {
+    override class func subtitle() -> String {
         return "Smart power meter and outlet"
     }
     
-    override func imageName() -> String {
+    override class func imageName() -> String {
         return "mode_wemo.png"
     }
     
     // MARK: Actions
     
-    override func actions() -> [String] {
+    override class func actions() -> [String] {
         return ["TTModeWemoDeviceOn",
                 "TTModeWemoDeviceOff",
                 "TTModeWemoDeviceToggle"]
@@ -106,10 +106,10 @@ class TTModeWemo: TTMode, TTModeWemoMulticastDelegate, TTModeWemoDeviceDelegate 
     
     override func activate() {
         if TTModeWemo.foundDevices.count == 0 {
-            wemoState == .Connecting
+            wemoState = .Connecting
             self.beginConnectingToWemo()
         } else {
-            wemoState == .Connected
+            wemoState = .Connected
         }
         delegate.changeState(wemoState, mode: self)
     }

@@ -10,21 +10,21 @@ import UIKit
 
 class TTModePhone: TTMode {
 
-    override func title() -> String {
+    override class func title() -> String {
         return "Phone"
     }
     
-    override func subtitle() -> String {
+    override class func subtitle() -> String {
         return "System-level controls"
     }
     
-    override func imageName() -> String {
+    override class func imageName() -> String {
         return "mode_mac.png"
     }
     
     // MARK: Actions
     
-    override func actions() -> [String] {
+    override class func actions() -> [String] {
         return ["TTModePhoneVolumeUp",
                 "TTModePhoneVolumeDown",
                 "TTModePhoneVolumeJump",

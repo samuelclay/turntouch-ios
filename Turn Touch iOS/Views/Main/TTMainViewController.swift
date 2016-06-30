@@ -49,6 +49,7 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
         stackView.distribution = .Fill
         stackView.alignment = .Fill
         stackView.spacing = 0
+        stackView.contentMode = .ScaleToFill
         self.view.addSubview(stackView)
         self.view.addConstraint(NSLayoutConstraint(item: stackView, attribute: .Width,
             relatedBy: .Equal, toItem: self.view, attribute: .Width, multiplier: 1.0, constant: 0.0))
@@ -79,6 +80,7 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
         modeTabsView.distribution = .FillEqually
         modeTabsView.alignment = .Fill
         modeTabsView.spacing = 0
+        modeTabsView.contentMode = .ScaleToFill
         stackView.addArrangedSubview(modeTabsView);
         
         modeTabsConstraint = NSLayoutConstraint(item: modeTabsView, attribute: .Height, relatedBy: .Equal,
@@ -100,7 +102,7 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
         scrollStackView.distribution = .Fill
         scrollStackView.alignment = .Fill
         scrollStackView.spacing = 0
-        scrollStackView.contentMode = UIViewContentMode.Top
+        scrollStackView.contentMode = .ScaleToFill
         scrollStackView.addArrangedSubview(actionDiamondView)
         actionDiamondConstraint = NSLayoutConstraint(item: actionDiamondView, attribute: .Height, relatedBy: .Equal,
                                                      toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 270)

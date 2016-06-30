@@ -15,21 +15,21 @@ class TTModeMusic: TTMode {
     var observing = false
     var lastVolume: Float!
     
-    override func title() -> String {
+    override class func title() -> String {
         return "Music"
     }
     
-    override func subtitle() -> String {
+    override class func subtitle() -> String {
         return "Control your music"
     }
     
-    override func imageName() -> String {
+    override class func imageName() -> String {
         return "mode_music.png"
     }
     
     // MARK: Actions
     
-    override func actions() -> [String] {
+    override class func actions() -> [String] {
         return ["TTModeMusicVolumeUp",
                 "TTModeMusicVolumeDown",
                 "TTModeMusicVolumeJump",

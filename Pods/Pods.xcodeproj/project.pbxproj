@@ -10,7 +10,6 @@
 		070058532C319A764F9A63027A599866 /* CocoaAsyncSocket-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 34FBCD0D04A26FFA243FC140F6984EBD /* CocoaAsyncSocket-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1F878DDC909F5F7E7ACA3ABC5F8CAF23 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EABC45C2732A4ED943A7E8ECF24F14F7 /* Foundation.framework */; };
 		3AE803F25CB4433BA72F1FDBC09FADAA /* Pods-Turn Touch iOS-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 15750F491A9622A9741B8A043FF35807 /* Pods-Turn Touch iOS-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3BFE0FF881509FB8C45AD280DB5611EE /* AsyncUdpSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 953C513BB6781C2B5085D4C6B24106A5 /* AsyncUdpSocket.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		4BD3E8DD3B487C1BE08B72DA24CFBF54 /* CocoaAsyncSocket-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 7060F100E1077D28097480BE0714C074 /* CocoaAsyncSocket-dummy.m */; };
 		592A4D51530100AE7A9CDE29AC85D0BE /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5135EC14FA83C331E94D40C19DAB0764 /* CFNetwork.framework */; };
 		617225CEC4CF980B68F24F74A25DFC39 /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F5A0703D7E8AA572AC80C313AD831C4 /* GCDAsyncSocket.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
@@ -55,7 +54,6 @@
 		7CAF4AB1ECD042E4FED766B8370F6530 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
 		7CEFDCE14C1450CCFDA696A41875780D /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		953C513BB6781C2B5085D4C6B24106A5 /* AsyncUdpSocket.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AsyncUdpSocket.m; path = Source/RunLoop/AsyncUdpSocket.m; sourceTree = "<group>"; };
 		9C5143EF78C43C95E97195416A1ABF32 /* Pods-Turn Touch iOS.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-Turn Touch iOS.modulemap"; sourceTree = "<group>"; };
 		9D3D46148E980E198BD3A5DE847CF236 /* CocoaAsyncSocket.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CocoaAsyncSocket.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A57C247B4560436EA3562ECF0DF94DD1 /* Pods-Turn Touch iOS-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Turn Touch iOS-resources.sh"; sourceTree = "<group>"; };
@@ -140,7 +138,6 @@
 				F6A44879068E4CF9CA0E7E926CAA2D93 /* AsyncSocket.h */,
 				53CB751DF690A6243F8B521021EF0643 /* AsyncSocket.m */,
 				53075107A6AB0883F2E92E2140BF437E /* AsyncUdpSocket.h */,
-				953C513BB6781C2B5085D4C6B24106A5 /* AsyncUdpSocket.m */,
 			);
 			name = RunLoop;
 			sourceTree = "<group>";
@@ -310,7 +307,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				EDC4BBB15172C2CD5478C8D64A03D212 /* AsyncSocket.m in Sources */,
-				3BFE0FF881509FB8C45AD280DB5611EE /* AsyncUdpSocket.m in Sources */,
 				4BD3E8DD3B487C1BE08B72DA24CFBF54 /* CocoaAsyncSocket-dummy.m in Sources */,
 				617225CEC4CF980B68F24F74A25DFC39 /* GCDAsyncSocket.m in Sources */,
 				CE57BDDB852096B24716EDB6C7779619 /* GCDAsyncUdpSocket.m in Sources */,

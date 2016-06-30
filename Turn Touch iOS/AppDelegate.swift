@@ -30,11 +30,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             print(" ---> centralManagerIdentifiers: \(centralManagerIdentifiers)")
         }
         
-        mainViewController = TTMainViewController()
         modeMap.setupModes()
+        mainViewController = TTMainViewController()
         window!.rootViewController = mainViewController
         window!.makeKeyAndVisible()
-        
+        modeMap.activateModes()
+
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0)) {
             self.beginLocationUpdates()
             self.bluetoothMonitor.updateBluetoothState(false)

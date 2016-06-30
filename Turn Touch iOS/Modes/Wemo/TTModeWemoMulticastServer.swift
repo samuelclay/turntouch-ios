@@ -69,8 +69,8 @@ class TTModeWemoMulticastServer: NSObject, GCDAsyncUdpSocketDelegate {
                        "USER-AGENT: Turn Touch iOS Wemo Finder",
                        "", ""].joinWithSeparator("\r\n")
         let data = message.dataUsingEncoding(NSUTF8StringEncoding)
-        udpSocket.sendData(data, toHost: MULTICASE_GROUP_IP, port: 1900, withTimeout: NSTimeInterval(2), tag: 0)
-        let tt = dispatch_time(DISPATCH_TIME_NOW, Int64(2 * Double(NSEC_PER_SEC)));
+        udpSocket.sendData(data, toHost: MULTICASE_GROUP_IP, port: 1900, withTimeout: NSTimeInterval(5), tag: 0)
+        let tt = dispatch_time(DISPATCH_TIME_NOW, Int64(5 * Double(NSEC_PER_SEC)));
         dispatch_after(tt, dispatch_get_main_queue()) {
             if self.attemptsLeft == 0 || self.udpSocket == nil {
                 return
@@ -113,10 +113,12 @@ class TTModeWemoMulticastServer: NSObject, GCDAsyncUdpSocketDelegate {
     // MARK: Async delegate
     
     func udpSocket(sock: GCDAsyncUdpSocket!, didReceiveData data: NSData!, fromAddress address: NSData!, withFilterContext filterContext: AnyObject!) {
-        self.checkDevice(NSString(data: data, encoding: NSUTF8StringEncoding)!, host: GCDAsyncUdpSocket.hostFromAddress(address), port: GCDAsyncUdpSocket.portFromAddress(address))
+        self.checkDevice(NSString(data: data, encoding: NSUTF8StringEncoding)!,
+                         host: GCDAsyncUdpSocket.hostFromAddress(address),
+                         port: GCDAsyncUdpSocket.portFromAddress(address))
     }
     
     func udpSocketDidClose(sock: GCDAsyncUdpSocket!, withError error: NSError!) {
-        
+        print(" ---> Closing UDP socket. \(error)")
     }
 }

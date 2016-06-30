@@ -51,7 +51,7 @@ class TTModeWemoDevice: NSObject {
         let session = NSURLSession.sharedSession()
         request.HTTPMethod = "GET"
         
-        session.dataTaskWithRequest(request) { (data, response, connectionError) in
+        let task = session.dataTaskWithRequest(request) { (data, response, connectionError) in
             if connectionError == nil {
                 if let httpResponse = response as? NSHTTPURLResponse {
                     if httpResponse.statusCode == 200 {
@@ -67,6 +67,7 @@ class TTModeWemoDevice: NSObject {
                 print(" ---> Wemo REST error: \(connectionError)")
             }
         }
+        task.resume()
     }
     
     func parseSetupXml(data: NSData) {
@@ -82,8 +83,10 @@ class TTModeWemoDevice: NSObject {
 //            deviceName = results[0]["nodeContent"] // kills syntax highlighting
             print(" ---> Found wemo: \(deviceName) (\(self.location()))")
         }
-
-        delegate.deviceReady(self)
+        
+        dispatch_async(dispatch_get_main_queue()) {
+            self.delegate.deviceReady(self)
+        }
     }
     
     func requestDeviceState(callback: () -> Void) {

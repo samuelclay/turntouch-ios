@@ -21,11 +21,11 @@ class TTModeMap: NSObject {
     dynamic var openedAddActionChangeMenu: Bool = false
     
     dynamic var selectedMode: TTMode = TTMode()
-    var northMode: TTMode = TTMode()
-    var eastMode: TTMode = TTMode()
-    var westMode: TTMode = TTMode()
-    var southMode: TTMode = TTMode()
-    dynamic var tempMode: TTMode = TTMode()
+    var northMode: TTMode!
+    var eastMode: TTMode!
+    var westMode: TTMode!
+    var southMode: TTMode!
+    dynamic var tempMode: TTMode!
     
     // var batchActions: TTBatchActions
     
@@ -63,7 +63,7 @@ class TTModeMap: NSObject {
             prefs.setInteger(self.selectedModeDirection.rawValue, forKey: "TT:selectedModeDirection")
             prefs.synchronize()
             
-            self.switchMode(self.selectedModeDirection)
+//            self.switchMode(self.selectedModeDirection)
         }
     }
     
@@ -76,7 +76,7 @@ class TTModeMap: NSObject {
 
     func setupModes() {
         let prefs = NSUserDefaults.standardUserDefaults()
-        
+
         for direction: String in ["north", "east", "west", "south"] {
             if let directionModeName = prefs.stringForKey("TT:mode:\(direction)") {
                 let className = "Turn_Touch_iOS.\(directionModeName)"
@@ -100,8 +100,16 @@ class TTModeMap: NSObject {
             }
         }
         
-        self.selectedModeDirection = TTModeDirection(rawValue: prefs.integerForKey("TT:selectedModeDirection"))!
-        self.switchMode(self.selectedModeDirection)
+//        self.selectedModeDirection = TTModeDirection(rawValue: prefs.integerForKey("TT:selectedModeDirection"))!
+//        self.switchMode(self.selectedModeDirection)
+    }
+    
+    func activateModes() {
+        let prefs = NSUserDefaults.standardUserDefaults()
+
+        let direction = TTModeDirection(rawValue: prefs.integerForKey("TT:selectedModeDirection"))!
+        self.switchMode(direction)
+        self.selectedModeDirection = direction
     }
     
     func activateTimers() {
@@ -121,10 +129,10 @@ class TTModeMap: NSObject {
         } else {
 //            let className = "Turn_Touch_iOS.\(modeName)"
 //            let modeClass = NSClassFromString(className) as! TTMode.Type
-
+            print(" ---> Can't switch into non-direciton mode. Easy fix right here...")
         }
         
-        self.availableActions = selectedMode.actions()
+        self.availableActions = selectedMode.dynamicType.actions()
         selectedMode.activate(direction)
         self.reset()
         //        if self.selectedModeDirection != direction {

@@ -92,8 +92,8 @@ class TTModeTitleView: UIView {
             changeButton.setTitle("Change", forState: .Normal)
         }
         
-        titleLabel.text = appDelegate().modeMap.selectedMode.subtitle()
-        modeImageView.image = UIImage(named:appDelegate().modeMap.selectedMode.imageName())
+        titleLabel.text = appDelegate().modeMap.selectedMode.dynamicType.subtitle()
+        modeImageView.image = UIImage(named:appDelegate().modeMap.selectedMode.dynamicType.imageName())
         
         super.drawRect(rect)
     }

@@ -74,7 +74,7 @@ class TTModeTab: UIView {
             break
         }
         
-        self.modeTitle = self.mode.title()
+        self.modeTitle = self.mode.dynamicType.title()
     }
     
     override class func requiresConstraintBasedLayout() -> Bool {
@@ -242,6 +242,7 @@ class TTModeTab: UIView {
     }
     
     func switchMode() {
+        appDelegate().modeMap.switchMode(self.modeDirection)
         appDelegate().modeMap.selectedModeDirection = self.modeDirection
     }
 }

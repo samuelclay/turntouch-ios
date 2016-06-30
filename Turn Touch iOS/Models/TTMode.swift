@@ -17,10 +17,10 @@ enum ActionLayout {
 protocol TTModeProtocol {
     func deactivate()
     func activate()
-    func title() -> String
-    func imageName() -> String
-    func subtitle() -> String
-    func actions() -> [String]
+    static func title() -> String
+    static func imageName() -> String
+    static func subtitle() -> String
+    static func actions() -> [String]
 }
 
 infix operator >!< {}
@@ -53,19 +53,19 @@ class TTMode : NSObject, TTModeProtocol {
     
     // MARK: Mode settings
     
-    func title() -> String {
+    class func title() -> String {
         return "Mode"
     }
     
-    func imageName() -> String {
+    class func imageName() -> String {
         return ""
     }
     
-    func subtitle() -> String {
+    class func subtitle() -> String {
         return ""
     }
     
-    func actions() -> [String] {
+    class func actions() -> [String] {
         return []
     }
     
