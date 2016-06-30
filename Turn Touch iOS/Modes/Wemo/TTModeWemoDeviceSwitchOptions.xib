@@ -32,6 +32,9 @@
                         <constraint firstAttribute="height" constant="24" id="c6P-ss-IOs"/>
                     </constraints>
                     <state key="normal" image="refresh.png"/>
+                    <connections>
+                        <action selector="refreshDevices:" destination="-1" eventType="touchUpInside" id="6yX-gr-cGF"/>
+                    </connections>
                 </button>
                 <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="c6u-gn-l11">
                     <rect key="frame" x="556" y="24" width="20" height="20"/>

@@ -130,8 +130,8 @@ class TTModeWemo: TTMode, TTModeWemoMulticastDelegate, TTModeWemoDeviceDelegate 
         }
     }
     
-    func runTTModeWemoDeviceToggle(direction: TTModeDirection) {
-        if let device = self.selectedDevice(direction) {
+    func runTTModeWemoDeviceToggle(direction: NSNumber) {
+        if let device = self.selectedDevice(TTModeDirection(rawValue: direction.integerValue)!) {
             device.requestDeviceState {
                 if device.deviceState == TTModeWemoDeviceState.On {
                     device.changeDeviceState(.Off)

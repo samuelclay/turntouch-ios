@@ -270,7 +270,7 @@ class TTMode : NSObject, TTModeProtocol {
                 let modeActionDirectionName = appDelegate().modeMap.directionName(modeDirection)
                 let optionKey = "TT:mode:\(self.nameOfClass)-\(modeDirectionName):action:\(actionName)-\(modeActionDirectionName):option:\(optionName)"
                 let pref = prefs.objectForKey(optionKey)
-                print(" -> Getting action options \(optionKey): \(pref)")
+                print(" -> Getting action options (\(modeActionDirectionName)) \(optionKey): \(pref)")
                 if pref == nil {
                     continue
                 }

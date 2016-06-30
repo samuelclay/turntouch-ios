@@ -37,6 +37,9 @@
                         <constraint firstAttribute="height" constant="24" id="xbV-EN-Mdh"/>
                     </constraints>
                     <state key="normal" image="refresh.png"/>
+                    <connections>
+                        <action selector="refreshScenes:" destination="-1" eventType="touchUpInside" id="ToB-z0-FbY"/>
+                    </connections>
                 </button>
                 <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="zJ2-R2-mLi">
                     <rect key="frame" x="557" y="23" width="20" height="20"/>
@@ -66,6 +69,9 @@
                         <constraint firstAttribute="height" constant="24" id="QnL-29-w7e"/>
                     </constraints>
                     <state key="normal" image="refresh.png"/>
+                    <connections>
+                        <action selector="refreshScenes:" destination="-1" eventType="touchUpInside" id="zt4-xn-bjR"/>
+                    </connections>
                 </button>
                 <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="IFh-w4-INz">
                     <rect key="frame" x="557" y="81" width="20" height="20"/>

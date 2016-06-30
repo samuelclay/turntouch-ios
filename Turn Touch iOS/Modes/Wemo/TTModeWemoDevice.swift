@@ -111,11 +111,11 @@ class TTModeWemoDevice: NSObject {
         let request = NSMutableURLRequest(URL: url!)
         let session = NSURLSession.sharedSession()
         request.HTTPMethod = "POST"
-        request.setValue("urn:Belkin:service:basicevent:1#GetBinaryState", forHTTPHeaderField: "SOAPACTION")
+        request.setValue("\"urn:Belkin:service:basicevent:1#GetBinaryState\"", forHTTPHeaderField: "SOAPACTION")
         request.setValue("text/xml", forHTTPHeaderField: "Content-Type")
         request.HTTPBody = body
         
-        session.dataTaskWithRequest(request) { (data, response, connectionError) in
+        let task = session.dataTaskWithRequest(request) { (data, response, connectionError) in
             if connectionError == nil {
                 if let httpResponse = response as? NSHTTPURLResponse {
                     if httpResponse.statusCode == 200 {
@@ -131,6 +131,7 @@ class TTModeWemoDevice: NSObject {
                 print(" ---> Wemo REST error: \(connectionError)")
             }
         }
+        task.resume()
     }
     
     func parseBasicEventXml(data: NSData, _ callback: () -> Void) {
@@ -166,18 +167,16 @@ class TTModeWemoDevice: NSObject {
         let request = NSMutableURLRequest(URL: url!)
         let session = NSURLSession.sharedSession()
         request.HTTPMethod = "POST"
-        request.setValue("urn:Belkin:service:basicevent:1#SetBinaryState", forHTTPHeaderField: "SOAPACTION")
+        request.setValue("\"urn:Belkin:service:basicevent:1#SetBinaryState\"", forHTTPHeaderField: "SOAPACTION")
         request.setValue("text/xml", forHTTPHeaderField: "Content-Type")
         request.HTTPBody = body
         
-        session.dataTaskWithRequest(request) { (data, response, connectionError) in
+        let task = session.dataTaskWithRequest(request) { (data, response, connectionError) in
             if connectionError == nil {
                 if let httpResponse = response as? NSHTTPURLResponse {
                     if httpResponse.statusCode == 200 {
-                        if let responseData = data {
-                            print(" ---> Wemo basicevent: \(responseData)")
-                        } else {
-                            print(" ---> Wemo REST 200 error: \(connectionError)")
+                        if data != nil {
+//                            print(" ---> Wemo basicevent: \(responseData)")
                         }
                     }
                 }
@@ -185,5 +184,6 @@ class TTModeWemoDevice: NSObject {
                 print(" ---> Wemo REST error: \(connectionError)")
             }
         }
+        task.resume()
     }
 }

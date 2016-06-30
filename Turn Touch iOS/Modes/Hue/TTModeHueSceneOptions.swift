@@ -71,6 +71,7 @@ class TTModeHueSceneOptions: TTOptionsDetailViewController, UITextFieldDelegate,
             self.action.changeActionOption(TTModeHueConstants.kDoubleTapHueScene, to: doubleSceneSelected!)
         }
         
+        scenes = []
         for (_, s) in cache.scenes {
             let scene = s as! PHScene
             scenes.append(["name": scene.name, "identifier": scene.identifier])
@@ -106,7 +107,10 @@ class TTModeHueSceneOptions: TTOptionsDetailViewController, UITextFieldDelegate,
     @IBAction func refreshScenes(sender: AnyObject) {
         spinner.forEach({ $0.hidden = false })
         refreshButton.forEach({ $0.hidden = true })
-        
+        spinner.forEach { (s) in
+            s.startAnimating()
+        }
+
         let bridgeSendApi = PHBridgeSendAPI()
         bridgeSendApi.getAllScenesWithCompletionHandler { (dictionary, errors) in
             self.drawScenes()

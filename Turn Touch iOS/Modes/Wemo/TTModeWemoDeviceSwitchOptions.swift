@@ -79,11 +79,18 @@ class TTModeWemoDeviceSwitchOptions: TTOptionsDetailViewController, UITextFieldD
     @IBAction func refreshDevices(sender: AnyObject) {
         spinner.forEach({ $0.hidden = false })
         refreshButton.forEach({ $0.hidden = true })
+        spinner.forEach { (s) in
+            s.startAnimating()
+        }
         
         self.modeWemo.beginConnectingToWemo()
     }
     
     func changeState(state: TTWemoState, mode: TTModeWemo) {
+        if state == .Connected {
+            spinner.forEach({ $0.hidden = false })
+            refreshButton.forEach({ $0.hidden = true })
+        }
         self.selectDevice()
     }
     
