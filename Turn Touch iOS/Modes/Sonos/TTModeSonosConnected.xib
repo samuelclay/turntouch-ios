@@ -26,10 +26,10 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iog-HM-7hP">
-                    <rect key="frame" x="554" y="22" width="24" height="24"/>
+                    <rect key="frame" x="558" y="22" width="20" height="20"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="24" id="8gs-3s-jIe"/>
-                        <constraint firstAttribute="height" constant="24" id="uSj-wo-Nbf"/>
+                        <constraint firstAttribute="width" constant="20" id="8gs-3s-jIe"/>
+                        <constraint firstAttribute="height" constant="20" id="uSj-wo-Nbf"/>
                     </constraints>
                     <state key="normal" image="refresh.png"/>
                     <connections>
@@ -37,7 +37,7 @@
                     </connections>
                 </button>
                 <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="QKb-ZA-FuH">
-                    <rect key="frame" x="556" y="24" width="20" height="20"/>
+                    <rect key="frame" x="556" y="22" width="20" height="20"/>
                 </activityIndicatorView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Speakers" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9BV-EW-maG">
                     <rect key="frame" x="22" y="22" width="52" height="35"/>
@@ -46,7 +46,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1tn-dT-3g7">
-                    <rect key="frame" x="96" y="24" width="436" height="30"/>
+                    <rect key="frame" x="96" y="24" width="440" height="30"/>
                     <fontDescription key="fontDescription" name="Effra-Regular" family="Effra" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                     <connections>

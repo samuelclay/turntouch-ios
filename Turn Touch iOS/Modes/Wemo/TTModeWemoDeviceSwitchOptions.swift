@@ -14,7 +14,6 @@ class TTModeWemoDeviceSwitchOptions: TTOptionsDetailViewController, UITextFieldD
     
     var pickerVC: TTPickerViewController!
     var popoverController: UIPopoverPresentationController?
-    var textField: UITextField!
     var presented = false
     
     @IBOutlet var spinner: [UIActivityIndicatorView]!
@@ -40,6 +39,8 @@ class TTModeWemoDeviceSwitchOptions: TTOptionsDetailViewController, UITextFieldD
     
     func selectDevice() {
         devices = []
+        pickerVC?.picker.reloadAllComponents()
+
         var deviceSelected = self.action.optionValue(TTModeWemoConstants.kWemoDeviceLocation,
                                                     direction: appDelegate().modeMap.inspectingModeDirection) as? String
 //        var doubleSceneSelected = self.action.optionValue(TTModeHueConstants.kDoubleTapHueScene,
@@ -47,10 +48,7 @@ class TTModeWemoDeviceSwitchOptions: TTOptionsDetailViewController, UITextFieldD
         
         for device in TTModeWemo.foundDevices {
             devices.append(["name": device.deviceName, "identifier": device.location()])
-            if deviceSelected == nil {
-                singlePicker.text = device.deviceName
-                deviceSelected = device.location()
-            } else if deviceSelected == device.location() {
+            if deviceSelected == device.location() {
                 singlePicker.text = device.deviceName
             }
         }
@@ -59,20 +57,18 @@ class TTModeWemoDeviceSwitchOptions: TTOptionsDetailViewController, UITextFieldD
             (a, b) -> Bool in
             return a["name"] < b["name"]
         }
+        
+        if deviceSelected == nil && devices.count > 0 {
+            singlePicker.text = devices[0]["name"]
+            deviceSelected = devices[0]["identifier"]
+        }
     }
     
     func pickerDismissed(row: Int, textField: UITextField) {
         presented = false
-        let device = devices[row]
-        
-        textField.text = device["name"]
-        
-        if let identifier = device["identifier"] {
-            if textField == singlePicker {
-                self.action.changeActionOption(TTModeWemoConstants.kWemoDeviceLocation, to: identifier)
-//            } else if textField == doublePicker {
-//                self.action.changeActionOption(TTModeHueConstants.kDoubleTapHueScene, to: identifier)
-            }
+
+        if row >= devices.count {
+            return
         }
     }
     
@@ -88,8 +84,8 @@ class TTModeWemoDeviceSwitchOptions: TTOptionsDetailViewController, UITextFieldD
     
     func changeState(state: TTWemoState, mode: TTModeWemo) {
         if state == .Connected {
-            spinner.forEach({ $0.hidden = false })
-            refreshButton.forEach({ $0.hidden = true })
+            spinner.forEach({ $0.hidden = true })
+            refreshButton.forEach({ $0.hidden = false })
         }
         self.selectDevice()
     }
@@ -164,6 +160,18 @@ class TTModeWemoDeviceSwitchOptions: TTOptionsDetailViewController, UITextFieldD
             self.action.changeActionOption(TTModeWemoConstants.kWemoDeviceLocation, to: devices[row]["identifier"]!)
 //        } else if pickerView == doublePicker {
 //            self.action.changeActionOption(TTModeHueConstants.kDoubleTapHueScene, to: scenes[row]["identifier"]!)
+        }
+        
+        let device = devices[row]
+        
+        singlePicker.text = device["name"]
+        
+        if let identifier = device["identifier"] {
+//            if textField == singlePicker {
+                self.action.changeActionOption(TTModeWemoConstants.kWemoDeviceLocation, to: identifier)
+                //            } else if textField == doublePicker {
+                //                self.action.changeActionOption(TTModeHueConstants.kDoubleTapHueScene, to: identifier)
+//            }
         }
     }
     

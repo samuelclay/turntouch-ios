@@ -41,6 +41,7 @@ class TTModeSonosConnected: TTOptionsDetailViewController, UITextFieldDelegate, 
     
     func selectDevice() {
         devices = []
+        pickerVC?.picker.reloadAllComponents()
         var deviceSelected = self.mode.modeOptionValue(TTModeSonosConstants.kSonosDeviceId,
                                                        modeDirection: appDelegate().modeMap.selectedModeDirection) as? String
         //        var doubleSceneSelected = self.action.optionValue(TTModeHueConstants.kDoubleTapHueScene,
@@ -49,10 +50,7 @@ class TTModeSonosConnected: TTOptionsDetailViewController, UITextFieldDelegate, 
         let sonosDevices = modeSonos.sonosManager.allDevices() as! [SonosController]
         for device in sonosDevices {
             devices.append(["name": device.name, "identifier": device.uuid])
-            if deviceSelected == nil {
-                singlePicker.text = device.name
-                deviceSelected = device.uuid
-            } else if deviceSelected == device.uuid {
+            if deviceSelected == device.uuid {
                 singlePicker.text = device.name
             }
         }
@@ -61,10 +59,19 @@ class TTModeSonosConnected: TTOptionsDetailViewController, UITextFieldDelegate, 
             (a, b) -> Bool in
             return a["name"] < b["name"]
         }
+        
+        if deviceSelected == nil && devices.count > 0 {
+            singlePicker.text = devices[0]["name"]
+            deviceSelected = devices[0]["identifier"]
+        }
     }
     
     func pickerDismissed(row: Int, textField: UITextField) {
         presented = false
+        if row >= devices.count {
+            return
+        }
+        
         let device = devices[row]
         
         textField.text = device["name"]
@@ -90,8 +97,8 @@ class TTModeSonosConnected: TTOptionsDetailViewController, UITextFieldDelegate, 
     
     func changeState(state: TTSonosState, mode: TTModeSonos) {
         if state == .Connected {
-            spinner.forEach({ $0.hidden = false })
-            refreshButton.forEach({ $0.hidden = true })
+            spinner.forEach({ $0.hidden = true })
+            refreshButton.forEach({ $0.hidden = false })
         }
         self.selectDevice()
     }

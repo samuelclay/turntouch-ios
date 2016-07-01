@@ -214,7 +214,7 @@ class TTModeMap: NSObject {
         prefs.synchronize()
         
         self.setupModes()
-        self.switchMode(direction)
+        self.activateModes()
     }
     
     func changeDirection(direction: TTModeDirection, toAction actionClassName: String) {
