@@ -128,7 +128,7 @@ class TTDeviceTitleView: UIView, TTTitleMenuDelegate {
     func selectMenuOption(row: Int) {
         switch row {
         case 2:
-            appDelegate().bluetoothMonitor.disconnectDevice(device)
+            appDelegate().bluetoothMonitor.forgetDevice(device)
         default:
             break
         }

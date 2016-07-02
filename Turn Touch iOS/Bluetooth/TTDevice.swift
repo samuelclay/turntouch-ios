@@ -19,7 +19,7 @@ enum TTDeviceState {
 class TTDevice: NSObject {
     
     var nickname: String?
-    var uuid: NSString!
+    var uuid: String!
     var peripheral: CBPeripheral!
     var buttonStatusChar: CBCharacteristic!
     var batteryPct: NSNumber!
@@ -41,7 +41,7 @@ class TTDevice: NSObject {
     override var description : String {
         let connected = state == .DEVICE_STATE_CONNECTED ? "connected" : "X"
         let paired = isPaired ? "PAIRED" : "unpaired"
-        let uuidSubstr = uuid.substringToIndex(8)
+        let uuidSubstr = NSString(string: uuid).substringToIndex(8)
         
         return "\(uuidSubstr) / \(nickname) (\(connected)-\(paired))"
     }

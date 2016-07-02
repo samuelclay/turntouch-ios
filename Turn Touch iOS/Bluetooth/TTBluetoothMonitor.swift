@@ -249,6 +249,22 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
 //        self.updateBluetoothState(true)
 //    }
     
+    func forgetDevice(device: TTDevice) {
+        var pairedDevicesArray: [String] = []
+        let prefs = NSUserDefaults.standardUserDefaults()
+        if let pairedDevices = prefs.arrayForKey("TT:devices:paired") as! [String]? {
+            for identifier: String in pairedDevices {
+                if identifier != device.uuid {
+                    pairedDevicesArray.append(identifier)
+                }
+            }
+        }
+        prefs.setObject(pairedDevicesArray, forKey: "TT:devices:paired")
+        prefs.synchronize()
+
+        self.disconnectDevice(device)
+    }
+    
     func disconnectDevice(device: TTDevice) {
         if let peripheral = foundDevices.peripheralForDevice(device) {
             manager.cancelPeripheralConnection(peripheral)
