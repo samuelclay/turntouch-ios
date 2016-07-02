@@ -249,6 +249,13 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
 //        self.updateBluetoothState(true)
 //    }
     
+    func disconnectDevice(device: TTDevice) {
+        if let peripheral = foundDevices.peripheralForDevice(device) {
+            manager.cancelPeripheralConnection(peripheral)
+            foundDevices.removeDevice(device)
+        }
+    }
+    
     func terminate() {
         let identifiers = foundDevices.connected().map { (device) -> NSUUID in
             device.peripheral.identifier

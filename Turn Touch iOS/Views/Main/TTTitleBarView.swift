@@ -11,7 +11,7 @@ import UIKit
 let CORNER_RADIUS: CGFloat = 8.0
 let SETTINGS_ICON_SIZE: CGFloat = 22.0
 
-class TTTitleBarView: UIView {
+class TTTitleBarView: UIView, TTTitleMenuDelegate {
     @IBInspectable var startColor: UIColor = UIColor.whiteColor()
     @IBInspectable var endColor: UIColor = UIColor(hex: 0xE7E7E7)
 
@@ -86,5 +86,26 @@ class TTTitleBarView: UIView {
     
     func pressSettings(sender: UIButton!) {
         appDelegate().mainViewController.toggleTitleMenu(sender)
+    }
+    
+    // MARK: Menu Delegate
+    
+    func menuOptions() -> [[String : String]] {
+        return [
+            ["title": "Add a new remote"],
+            ["title": "Settings"],
+            ["title": "How it works"],
+            ["title": "Contact support"],
+            ["title": "About Turn Touch"],
+        ]
+    }
+    
+    func selectMenuOption(row: Int) {
+        switch row {
+        case 0:
+            appDelegate().mainViewController.showPairingModal()
+        default:
+            break
+        }
     }
 }

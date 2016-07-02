@@ -38,6 +38,18 @@ class TTDeviceList: NSObject {
         return nil
     }
     
+    func peripheralForDevice(device: TTDevice) -> CBPeripheral? {
+        for foundDevice: TTDevice in devices {
+            if foundDevice.peripheral == nil {
+                continue
+            }
+            if foundDevice.uuid == device.uuid {
+                return foundDevice.peripheral
+            }
+        }
+        return nil
+    }
+    
     func objectAtIndex(index: Int) -> TTDevice {
         return devices[index]
     }
@@ -86,7 +98,7 @@ class TTDeviceList: NSObject {
         var removeDevice: TTDevice? = device
         var updatedDevices: [TTDevice] = []
         for foundDevice: TTDevice in devices {
-            if foundDevice != removeDevice {
+            if foundDevice.uuid != removeDevice?.uuid {
                 updatedDevices.append(foundDevice)
             } else {
                 foundDevice.peripheral.delegate = nil

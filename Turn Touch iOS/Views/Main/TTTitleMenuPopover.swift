@@ -8,17 +8,16 @@
 
 import UIKit
 
+protocol TTTitleMenuDelegate {
+    func menuOptions() -> [[String: String]]
+    func selectMenuOption(row: Int)
+}
+
 class TTTitleMenuPopover: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     let CellReuseIdentifier = "TTTitleMenuCell"
     let tableView = UITableView()
-    let menuOptions = [
-        "Add a new remote",
-        "Settings",
-        "How it works",
-        "Contact support",
-        "About Turn Touch"
-    ]
+    var delegate: TTTitleMenuDelegate!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,7 +45,7 @@ class TTTitleMenuPopover: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return menuOptions.count
+        return delegate.menuOptions().count
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -56,7 +55,7 @@ class TTTitleMenuPopover: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(CellReuseIdentifier, forIndexPath: indexPath) as! TTTitleMenuCell
 
-        cell.textLabel?.text = menuOptions[indexPath.row]
+        cell.textLabel?.text = delegate.menuOptions()[indexPath.row]["title"]
         
         cell.contentView.setNeedsLayout()
         cell.contentView.layoutIfNeeded()
@@ -67,11 +66,6 @@ class TTTitleMenuPopover: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
-        switch indexPath.row {
-        case 0:
-            appDelegate().mainViewController.showPairingModal()
-        default:
-            break
-        }
+        delegate.selectMenuOption(indexPath.row)
     }
 }

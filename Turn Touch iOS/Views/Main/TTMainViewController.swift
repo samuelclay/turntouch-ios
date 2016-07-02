@@ -34,6 +34,7 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
     var optionsConstraint: NSLayoutConstraint!
     
     let titleMenu = TTTitleMenuPopover()
+    let deviceMenu = TTTitleMenuPopover()
     let pairingViewController = TTPairingViewController(nibName: "TTPairingViewController", bundle: nil)
     var pairingNavController: UINavigationController!
     
@@ -313,9 +314,10 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
     }
     
     func toggleTitleMenu(sender: UIButton) {
+        titleMenu.delegate = titleBarView
         titleMenu.modalPresentationStyle = .Popover
         titleMenu.preferredContentSize = CGSize(width: 204,
-                                                height: 32 * titleMenu.menuOptions.count)
+                                                height: 32 * titleMenu.delegate.menuOptions().count)
         if let popoverViewController = titleMenu.popoverPresentationController {
             popoverViewController.permittedArrowDirections = .Up
             popoverViewController.delegate = self
@@ -327,18 +329,23 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
         self.presentViewController(titleMenu, animated: true, completion: nil)
     }
     
-    func toggleDeviceMenu(sender: UIButton, device: TTDevice) {
-        titleMenu.modalPresentationStyle = .Popover
-        titleMenu.preferredContentSize = CGSize(width: 204,
-                                                height: 32 * titleMenu.menuOptions.count)
-        let popoverViewController = titleMenu.popoverPresentationController
-        popoverViewController!.permittedArrowDirections = .Up
+    func toggleDeviceMenu(sender: UIButton, deviceTitleView: TTDeviceTitleView, device: TTDevice) {
+        deviceMenu.delegate = deviceTitleView
+        deviceMenu.modalPresentationStyle = .Popover
+        deviceMenu.preferredContentSize = CGSize(width: 204,
+                                                height: 32 * deviceMenu.delegate.menuOptions().count)
+        let popoverViewController = deviceMenu.popoverPresentationController
+        popoverViewController!.permittedArrowDirections = .Down
         popoverViewController!.delegate = self
         popoverViewController!.sourceView = sender
         popoverViewController!.sourceRect = CGRect(x: -8, y: 0,
                                                    width: CGRectGetWidth(sender.frame),
                                                    height: CGRectGetHeight(sender.frame))
-        self.presentViewController(titleMenu, animated: true, completion: nil)
+        self.presentViewController(deviceMenu, animated: true, completion: nil)
+    }
+    
+    func closeDeviceMenu() {
+        deviceMenu.dismissViewControllerAnimated(true, completion: nil)
     }
     
     func showPairingModal() {

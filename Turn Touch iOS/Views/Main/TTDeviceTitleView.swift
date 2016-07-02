@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TTDeviceTitleView: UIView {
+class TTDeviceTitleView: UIView, TTTitleMenuDelegate {
 
     var device: TTDevice!
     var titleLabel: UILabel = UILabel()
@@ -112,7 +112,26 @@ class TTDeviceTitleView: UIView {
     // MARK: Actions
     
     func pressSettings(sender: UIButton!) {
-        appDelegate().mainViewController.toggleDeviceMenu(sender, device: device)
+        appDelegate().mainViewController.toggleDeviceMenu(sender, deviceTitleView: self, device: device)
     }
-
+    
+    // MARK: Menu Delegate
+    
+    func menuOptions() -> [[String : String]] {
+        return [
+            ["title": "Battery: "],
+            ["title": "Rename remote"],
+            ["title": "Forget this remote"],
+        ]
+    }
+    
+    func selectMenuOption(row: Int) {
+        switch row {
+        case 2:
+            appDelegate().bluetoothMonitor.disconnectDevice(device)
+        default:
+            break
+        }
+        appDelegate().mainViewController.closeDeviceMenu()
+    }
 }

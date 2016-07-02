@@ -167,7 +167,7 @@ class TTModeSonos: TTMode {
         if let device = self.selectedDevice() {
             device.getVolume(NSTimeInterval(60*60), completion: { (volume, speakers, error) in
                 device.setVolume(volume + 6, mergeRequests: true, completion: { (speakers, error) in
-                    print(" ---> Turned volume: \(volume)+8 (\(error), \(speakers)")
+                    print(" ---> Turned volume: \(volume)+6 (\(error), \(speakers)")
                 })
             })
         } else {
@@ -179,7 +179,7 @@ class TTModeSonos: TTMode {
         if let device = self.selectedDevice() {
             device.getVolume(NSTimeInterval(60*60), completion: { (volume, speakers, error) in
                 device.setVolume(volume - 6, mergeRequests: true, completion: { (speakers, error) in
-                    print(" ---> Turned volume: \(volume)-8 (\(error), \(speakers)")
+                    print(" ---> Turned volume: \(volume)-6 (\(error), \(speakers)")
                 })
             })
         } else {
