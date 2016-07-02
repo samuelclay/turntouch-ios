@@ -47,17 +47,12 @@ class TTModeSonosConnected: TTOptionsDetailViewController, UITextFieldDelegate, 
         //        var doubleSceneSelected = self.action.optionValue(TTModeHueConstants.kDoubleTapHueScene,
         //                                                          direction: appDelegate().modeMap.inspectingModeDirection) as? String
         
-        let sonosDevices = modeSonos.sonosManager.allDevices() as! [SonosController]
+        let sonosDevices = modeSonos.foundDevices()
         for device in sonosDevices {
             devices.append(["name": device.name, "identifier": device.uuid])
             if deviceSelected == device.uuid {
                 singlePicker.text = device.name
             }
-        }
-        
-        devices = devices.sort {
-            (a, b) -> Bool in
-            return a["name"] < b["name"]
         }
         
         if deviceSelected == nil && devices.count > 0 {

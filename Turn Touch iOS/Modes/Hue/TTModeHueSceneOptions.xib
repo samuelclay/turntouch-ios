@@ -31,10 +31,10 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2WW-SN-3qX">
-                    <rect key="frame" x="555" y="21" width="24" height="24"/>
+                    <rect key="frame" x="560" y="28" width="18" height="18"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="24" id="mTf-yN-cmp"/>
-                        <constraint firstAttribute="height" constant="24" id="xbV-EN-Mdh"/>
+                        <constraint firstAttribute="width" constant="18" id="mTf-yN-cmp"/>
+                        <constraint firstAttribute="height" constant="18" id="xbV-EN-Mdh"/>
                     </constraints>
                     <state key="normal" image="refresh.png"/>
                     <connections>
@@ -42,7 +42,7 @@
                     </connections>
                 </button>
                 <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="zJ2-R2-mLi">
-                    <rect key="frame" x="557" y="23" width="20" height="20"/>
+                    <rect key="frame" x="559" y="27" width="20" height="20"/>
                 </activityIndicatorView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="single_tap.png" translatesAutoresizingMaskIntoConstraints="NO" id="LHz-wQ-pfb">
                     <rect key="frame" x="22" y="22" width="32" height="30"/>
@@ -58,15 +58,15 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AcK-qV-YAe">
-                    <rect key="frame" x="146" y="22" width="387" height="30"/>
+                    <rect key="frame" x="146" y="22" width="392" height="30"/>
                     <fontDescription key="fontDescription" name="Effra-Regular" family="Effra" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bpc-Sm-bgr">
-                    <rect key="frame" x="555" y="79" width="24" height="24"/>
+                    <rect key="frame" x="560" y="82" width="18" height="18"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="24" id="Jk8-0X-cC1"/>
-                        <constraint firstAttribute="height" constant="24" id="QnL-29-w7e"/>
+                        <constraint firstAttribute="width" constant="18" id="Jk8-0X-cC1"/>
+                        <constraint firstAttribute="height" constant="18" id="QnL-29-w7e"/>
                     </constraints>
                     <state key="normal" image="refresh.png"/>
                     <connections>
@@ -74,10 +74,10 @@
                     </connections>
                 </button>
                 <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="IFh-w4-INz">
-                    <rect key="frame" x="557" y="81" width="20" height="20"/>
+                    <rect key="frame" x="559" y="81" width="20" height="20"/>
                 </activityIndicatorView>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WhT-xH-XIz">
-                    <rect key="frame" x="146" y="76" width="387" height="30"/>
+                    <rect key="frame" x="146" y="76" width="392" height="30"/>
                     <fontDescription key="fontDescription" name="Effra-Regular" family="Effra" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
@@ -97,32 +97,46 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="2WW-SN-3qX" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="21" id="D54-F7-bHU"/>
+                <constraint firstItem="2WW-SN-3qX" firstAttribute="centerX" secondItem="zJ2-R2-mLi" secondAttribute="centerX" id="6Fi-iS-7ie"/>
                 <constraint firstAttribute="trailing" secondItem="zJ2-R2-mLi" secondAttribute="trailing" constant="23" id="FPO-OL-dmc"/>
+                <constraint firstAttribute="trailing" secondItem="2WW-SN-3qX" secondAttribute="trailing" constant="22" id="G3z-LD-Wv8"/>
                 <constraint firstItem="WhT-xH-XIz" firstAttribute="centerY" secondItem="BJi-uJ-ihJ" secondAttribute="centerY" id="KrP-5N-FpT"/>
+                <constraint firstItem="zJ2-R2-mLi" firstAttribute="centerX" secondItem="2WW-SN-3qX" secondAttribute="centerX" id="LTw-cD-Ugs"/>
                 <constraint firstItem="IFh-w4-INz" firstAttribute="trailing" secondItem="bpc-Sm-bgr" secondAttribute="trailing" constant="-2" id="LfY-Ql-fiJ"/>
                 <constraint firstItem="2WW-SN-3qX" firstAttribute="leading" secondItem="AcK-qV-YAe" secondAttribute="trailing" constant="22" id="O2W-G0-whA"/>
                 <constraint firstItem="LHz-wQ-pfb" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="22" id="Qlf-uR-rND"/>
+                <constraint firstItem="2WW-SN-3qX" firstAttribute="centerY" secondItem="zJ2-R2-mLi" secondAttribute="centerY" id="R3V-cz-Xon"/>
                 <constraint firstItem="0LA-9r-eSS" firstAttribute="top" secondItem="LHz-wQ-pfb" secondAttribute="bottom" constant="24" id="SRz-3L-2wh"/>
                 <constraint firstItem="zJ2-R2-mLi" firstAttribute="trailing" secondItem="2WW-SN-3qX" secondAttribute="trailing" constant="-2" id="Syp-Ip-0iX"/>
                 <constraint firstItem="bpc-Sm-bgr" firstAttribute="centerY" secondItem="WhT-xH-XIz" secondAttribute="centerY" id="Uta-Yc-WiM"/>
                 <constraint firstItem="2Eu-vA-Pmt" firstAttribute="leading" secondItem="LHz-wQ-pfb" secondAttribute="trailing" constant="8" id="X7E-37-Mo0"/>
                 <constraint firstItem="AcK-qV-YAe" firstAttribute="leading" secondItem="2Eu-vA-Pmt" secondAttribute="trailing" constant="22" id="ZDb-qo-tJE"/>
                 <constraint firstItem="BJi-uJ-ihJ" firstAttribute="width" secondItem="2Eu-vA-Pmt" secondAttribute="width" id="bnx-4y-RbQ"/>
+                <constraint firstItem="2WW-SN-3qX" firstAttribute="centerY" secondItem="AcK-qV-YAe" secondAttribute="centerY" id="cLU-0j-FNx"/>
                 <constraint firstItem="zJ2-R2-mLi" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="23" id="cZM-3H-qy1"/>
                 <constraint firstItem="IFh-w4-INz" firstAttribute="centerY" secondItem="bpc-Sm-bgr" secondAttribute="centerY" id="cca-h3-yqB"/>
                 <constraint firstItem="bpc-Sm-bgr" firstAttribute="leading" secondItem="WhT-xH-XIz" secondAttribute="trailing" constant="22" id="db6-93-Gam"/>
                 <constraint firstItem="WhT-xH-XIz" firstAttribute="leading" secondItem="BJi-uJ-ihJ" secondAttribute="trailing" constant="22" id="drg-r9-RwF"/>
                 <constraint firstItem="BJi-uJ-ihJ" firstAttribute="centerY" secondItem="0LA-9r-eSS" secondAttribute="centerY" id="e7g-kh-An4"/>
                 <constraint firstItem="AcK-qV-YAe" firstAttribute="centerY" secondItem="2Eu-vA-Pmt" secondAttribute="centerY" id="ge5-Lo-2ni"/>
-                <constraint firstAttribute="trailing" secondItem="bpc-Sm-bgr" secondAttribute="trailing" constant="21" id="h70-Zb-v13"/>
+                <constraint firstAttribute="trailing" secondItem="bpc-Sm-bgr" secondAttribute="trailing" constant="22" id="h70-Zb-v13"/>
                 <constraint firstAttribute="bottomMargin" secondItem="0LA-9r-eSS" secondAttribute="bottom" constant="22" id="i88-er-DRW"/>
+                <constraint firstItem="IFh-w4-INz" firstAttribute="centerX" secondItem="bpc-Sm-bgr" secondAttribute="centerX" id="kRC-Ru-Pwk"/>
                 <constraint firstItem="2Eu-vA-Pmt" firstAttribute="centerY" secondItem="LHz-wQ-pfb" secondAttribute="centerY" id="mEp-5i-Wc8"/>
                 <constraint firstItem="2Eu-vA-Pmt" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="22" id="qpH-1i-ds5"/>
                 <constraint firstItem="BJi-uJ-ihJ" firstAttribute="leading" secondItem="0LA-9r-eSS" secondAttribute="trailing" constant="8" id="sYC-R5-L70"/>
                 <constraint firstItem="0LA-9r-eSS" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="22" id="yxY-G7-CBt"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="FPO-OL-dmc"/>
+                    <exclude reference="Syp-Ip-0iX"/>
+                    <exclude reference="cZM-3H-qy1"/>
+                    <exclude reference="6Fi-iS-7ie"/>
+                    <exclude reference="LfY-Ql-fiJ"/>
+                </mask>
+            </variation>
             <point key="canvasLocation" x="347" y="278"/>
         </view>
     </objects>

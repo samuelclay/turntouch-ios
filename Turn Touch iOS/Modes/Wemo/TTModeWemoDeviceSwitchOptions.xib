@@ -26,10 +26,10 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Hd-ra-HFv">
-                    <rect key="frame" x="554" y="22" width="24" height="24"/>
+                    <rect key="frame" x="560" y="23.5" width="18" height="18"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="24" id="U0I-eX-kQG"/>
-                        <constraint firstAttribute="height" constant="24" id="c6P-ss-IOs"/>
+                        <constraint firstAttribute="width" constant="18" id="U0I-eX-kQG"/>
+                        <constraint firstAttribute="height" constant="18" id="c6P-ss-IOs"/>
                     </constraints>
                     <state key="normal" image="refresh.png"/>
                     <connections>
@@ -37,7 +37,7 @@
                     </connections>
                 </button>
                 <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="c6u-gn-l11">
-                    <rect key="frame" x="556" y="24" width="20" height="20"/>
+                    <rect key="frame" x="559" y="22.5" width="20" height="20"/>
                 </activityIndicatorView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Device" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xEe-HV-oGe">
                     <rect key="frame" x="22" y="22" width="39" height="20"/>
@@ -46,7 +46,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="c0u-Hh-2Ub">
-                    <rect key="frame" x="83" y="17.5" width="449" height="30"/>
+                    <rect key="frame" x="83" y="17.5" width="455" height="30"/>
                     <fontDescription key="fontDescription" name="Effra-Regular" family="Effra" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                     <connections>
@@ -57,17 +57,23 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="xEe-HV-oGe" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="22" id="2wG-EJ-Jsl"/>
-                <constraint firstItem="4Hd-ra-HFv" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="22" id="4F8-ex-2vx"/>
                 <constraint firstAttribute="trailing" secondItem="4Hd-ra-HFv" secondAttribute="trailing" constant="22" id="8L6-Cv-Lwk"/>
                 <constraint firstItem="xEe-HV-oGe" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="22" id="8is-YH-JYx"/>
                 <constraint firstItem="c6u-gn-l11" firstAttribute="centerY" secondItem="4Hd-ra-HFv" secondAttribute="centerY" id="Acn-A4-V3h"/>
                 <constraint firstItem="c6u-gn-l11" firstAttribute="trailing" secondItem="4Hd-ra-HFv" secondAttribute="trailing" constant="-2" id="DLw-Vb-q89"/>
                 <constraint firstItem="c0u-Hh-2Ub" firstAttribute="centerY" secondItem="xEe-HV-oGe" secondAttribute="centerY" id="KxA-QT-alN"/>
+                <constraint firstItem="4Hd-ra-HFv" firstAttribute="centerY" secondItem="c0u-Hh-2Ub" secondAttribute="centerY" id="VY6-uW-uh0"/>
                 <constraint firstItem="c0u-Hh-2Ub" firstAttribute="leading" secondItem="xEe-HV-oGe" secondAttribute="trailing" constant="22" id="XH5-Df-CvI"/>
                 <constraint firstAttribute="bottomMargin" secondItem="xEe-HV-oGe" secondAttribute="bottom" constant="22" id="YwM-Vz-R6b"/>
                 <constraint firstItem="4Hd-ra-HFv" firstAttribute="leading" secondItem="c0u-Hh-2Ub" secondAttribute="trailing" constant="22" id="l7k-YG-nHV"/>
+                <constraint firstItem="4Hd-ra-HFv" firstAttribute="centerX" secondItem="c6u-gn-l11" secondAttribute="centerX" id="n83-Dr-Bty"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="DLw-Vb-q89"/>
+                </mask>
+            </variation>
             <point key="canvasLocation" x="197" y="117"/>
         </view>
     </objects>

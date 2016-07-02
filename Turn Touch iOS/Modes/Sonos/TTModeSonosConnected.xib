@@ -26,7 +26,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iog-HM-7hP">
-                    <rect key="frame" x="558" y="22" width="20" height="20"/>
+                    <rect key="frame" x="558" y="29" width="20" height="20"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="20" id="8gs-3s-jIe"/>
                         <constraint firstAttribute="height" constant="20" id="uSj-wo-Nbf"/>
@@ -37,7 +37,7 @@
                     </connections>
                 </button>
                 <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="QKb-ZA-FuH">
-                    <rect key="frame" x="556" y="22" width="20" height="20"/>
+                    <rect key="frame" x="558" y="29" width="20" height="20"/>
                 </activityIndicatorView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Speakers" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9BV-EW-maG">
                     <rect key="frame" x="22" y="22" width="52" height="35"/>
@@ -56,18 +56,26 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="Iog-HM-7hP" firstAttribute="centerY" secondItem="1tn-dT-3g7" secondAttribute="centerY" id="DI6-6Z-5gB"/>
                 <constraint firstItem="1tn-dT-3g7" firstAttribute="leading" secondItem="9BV-EW-maG" secondAttribute="trailing" constant="22" id="H3o-JY-aC2"/>
+                <constraint firstItem="Iog-HM-7hP" firstAttribute="centerX" secondItem="QKb-ZA-FuH" secondAttribute="centerX" id="QM7-0f-3YM"/>
                 <constraint firstItem="Iog-HM-7hP" firstAttribute="leading" secondItem="1tn-dT-3g7" secondAttribute="trailing" constant="22" id="QvG-7w-xDG"/>
                 <constraint firstAttribute="trailing" secondItem="Iog-HM-7hP" secondAttribute="trailing" constant="22" id="RZd-3i-usn"/>
                 <constraint firstItem="QKb-ZA-FuH" firstAttribute="centerY" secondItem="Iog-HM-7hP" secondAttribute="centerY" id="eEi-7P-e7i"/>
                 <constraint firstAttribute="bottomMargin" secondItem="9BV-EW-maG" secondAttribute="bottom" constant="22" id="fJO-Bk-0Ou"/>
                 <constraint firstItem="9BV-EW-maG" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="22" id="gDz-cJ-Syq"/>
                 <constraint firstItem="QKb-ZA-FuH" firstAttribute="trailing" secondItem="Iog-HM-7hP" secondAttribute="trailing" constant="-2" id="gfv-uT-7Dd"/>
+                <constraint firstItem="Iog-HM-7hP" firstAttribute="centerY" secondItem="QKb-ZA-FuH" secondAttribute="centerY" id="jgb-Bu-BcP"/>
                 <constraint firstItem="1tn-dT-3g7" firstAttribute="centerY" secondItem="9BV-EW-maG" secondAttribute="centerY" id="nNl-32-4gr"/>
-                <constraint firstItem="Iog-HM-7hP" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="22" id="nhX-T7-BsR"/>
                 <constraint firstItem="9BV-EW-maG" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="22" id="pCB-on-pDE"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="eEi-7P-e7i"/>
+                    <exclude reference="gfv-uT-7Dd"/>
+                </mask>
+            </variation>
             <point key="canvasLocation" x="349" y="144.5"/>
         </view>
     </objects>

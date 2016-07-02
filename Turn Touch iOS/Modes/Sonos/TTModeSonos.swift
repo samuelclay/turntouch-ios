@@ -149,7 +149,7 @@ class TTModeSonos: TTMode {
     // MARK: Action methods
     
     override func activate() {
-        if sonosManager.allDevices().count == 0 {
+        if self.foundDevices().count == 0 {
             sonosState = .Connecting
             self.beginConnectingToSonos()
         } else {
@@ -165,62 +165,117 @@ class TTModeSonos: TTMode {
     
     func runTTModeSonosVolumeUp() {
         if let device = self.selectedDevice() {
-            device.getVolume({ (volume, speakers, error) in
-                device.setVolume(volume + 8, mergeRequests: true, completion: { (speakers, error) in
+            device.getVolume(NSTimeInterval(60*60), completion: { (volume, speakers, error) in
+                device.setVolume(volume + 6, mergeRequests: true, completion: { (speakers, error) in
                     print(" ---> Turned volume: \(volume)+8 (\(error), \(speakers)")
                 })
             })
+        } else {
+            self.beginConnectingToSonos()
         }
     }
     
     func runTTModeSonosVolumeDown() {
         if let device = self.selectedDevice() {
-            device.getVolume({ (volume, speakers, error) in
-                device.setVolume(volume - 8, mergeRequests: true, completion: { (speakers, error) in
+            device.getVolume(NSTimeInterval(60*60), completion: { (volume, speakers, error) in
+                device.setVolume(volume - 6, mergeRequests: true, completion: { (speakers, error) in
                     print(" ---> Turned volume: \(volume)-8 (\(error), \(speakers)")
                 })
             })
+        } else {
+            self.beginConnectingToSonos()
         }
     }
     
     func runTTModeSonosVolumeMute() {
-
+        if let device = self.selectedDevice() {
+            device.getMute({ (mute, speakers, error) in
+                device.setMute(!mute, completion: { (speakers, error) in
+                    print(" ---> Muted volume: \(mute) (\(error), \(speakers)")
+                })
+            })
+        } else {
+            self.beginConnectingToSonos()
+        }
     }
     
     func runTTModeSonosPlayPause() {
-
+        if let device = self.selectedDevice() {
+            device.togglePlayback({ (playing, speakers, error) in
+                print(" ---> Toggled sonos playback \(playing): \(speakers) \(error)")
+            })
+        } else {
+            self.beginConnectingToSonos()
+        }
     }
     
     func runTTModeSonosPlay() {
-
+        if let device = self.selectedDevice() {
+            device.playbackStatus({ (playing, body, error) in
+                if !playing {
+                    device.togglePlayback({ (playing, body, errors) in
+                        print(" ---> Paused sonos playback \(playing): \(body) \(error)")
+                    })
+                }
+            })
+        } else {
+            self.beginConnectingToSonos()
+        }
     }
     
     func runTTModeSonosPause() {
-
+        if let device = self.selectedDevice() {
+            device.playbackStatus({ (playing, body, error) in
+                if playing {
+                    device.togglePlayback({ (playing, body, errors) in
+                        print(" ---> Paused sonos playback \(playing): \(body) \(error)")
+                    })
+                }
+            })
+        } else {
+            self.beginConnectingToSonos()
+        }
     }
     
     func runTTModeSonosNextTrack() {
-
+        if let device = self.selectedDevice() {
+            device.next({ (body, error) in
+                print((" ---> Next track: \(body) \(error)"))
+            })
+        } else {
+            self.beginConnectingToSonos()
+        }
     }
     
     func runTTModeSonosPreviousTrack() {
-
-    }
-    
-    func runTTModeSonosDeviceOn(direction: NSNumber) {
-//        if let device = self.selectedDevice(TTModeDirection(rawValue: direction.integerValue)!) {
-//            device.changeDeviceState(.On)
-//        }
+        if let device = self.selectedDevice() {
+            device.previous({ (body, error) in
+                print((" ---> Previous track: \(body) \(error)"))
+            })
+        } else {
+            self.beginConnectingToSonos()
+        }
     }
     
     // MARK: Sonos devices
     
+    func foundDevices() -> [SonosController] {
+        var devices = sonosManager.allDevices() as! [SonosController]
+        
+        devices = devices.sort {
+            (a, b) -> Bool in
+            return a.name < b.name
+        }
+        
+        return devices
+    }
+    
     func selectedDevice() -> SonosController? {
-        if sonosManager.allDevices().count == 0 {
+        var devices = self.foundDevices()
+        if devices.count == 0 {
             return nil
         }
         
-        let devices = sonosManager.allDevices() as! [SonosController]
         if let deviceId = self.action.mode.modeOptionValue(TTModeSonosConstants.kSonosDeviceId, modeDirection: appDelegate().modeMap.selectedModeDirection) as! String? {
             for foundDevice: SonosController in devices {
                 if foundDevice.uuid == deviceId {
@@ -228,6 +283,7 @@ class TTModeSonos: TTMode {
                 }
             }
         }
+        
         
         return devices[0]
     }
@@ -238,7 +294,7 @@ class TTModeSonos: TTMode {
         
         sonosManager.discoverControllers {
             dispatch_async(dispatch_get_main_queue(), {
-                let devices = self.sonosManager.allDevices() as! [SonosController]
+                let devices = self.foundDevices()
                 for device in devices {
                     self.deviceReady(device)
                 }
