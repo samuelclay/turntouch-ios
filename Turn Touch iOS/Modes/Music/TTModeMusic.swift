@@ -14,6 +14,7 @@ class TTModeMusic: TTMode {
     let ITUNES_VOLUME_CHANGE: Float = 0.06
     var observing = false
     var lastVolume: Float!
+    let musicPlayer = MPMusicPlayerController.systemMusicPlayer()
     
     override class func title() -> String {
         return "Music"
@@ -112,15 +113,9 @@ class TTModeMusic: TTMode {
     
     override func activate() {
         if !observing {
-            do {
-                try AVAudioSession.sharedInstance().setActive(true)
-            } catch {
-                print(error)
-            }
-            AVAudioSession.sharedInstance().addObserver(self, forKeyPath: "outputVolume", options: .New, context: nil)
-            MPMusicPlayerController.systemMusicPlayer().addObserver(self, forKeyPath: "nowPlayingItem", options: .New, context: nil)
-            MPMusicPlayerController.applicationMusicPlayer().addObserver(self, forKeyPath: "nowPlayingItem", options: .New, context: nil)
-            MPMusicPlayerController.systemMusicPlayer().beginGeneratingPlaybackNotifications()
+            AVAudioSession.sharedInstance().addObserver(self, forKeyPath: "outputVolume", options: [], context: nil)
+            musicPlayer.addObserver(self, forKeyPath: "nowPlayingItem", options: [], context: nil)
+            musicPlayer.beginGeneratingPlaybackNotifications()
             observing = true
         }
     }
@@ -128,8 +123,7 @@ class TTModeMusic: TTMode {
     override func deactivate() {
         if observing {
             AVAudioSession.sharedInstance().removeObserver(self, forKeyPath: "outputVolume")
-            MPMusicPlayerController.systemMusicPlayer().removeObserver(self, forKeyPath: "nowPlayingItem")
-            MPMusicPlayerController.applicationMusicPlayer().removeObserver(self, forKeyPath: "nowPlayingItem")
+            musicPlayer.removeObserver(self, forKeyPath: "nowPlayingItem")
             observing = false
         }
     }
@@ -137,11 +131,11 @@ class TTModeMusic: TTMode {
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
         if keyPath == "outputVolume" {
 //            print(" Volume: \(AVAudioSession.sharedInstance().outputVolume) \(change!["new"]) \(object)")
-            if change!["new"] as! Float != lastVolume {
-                lastVolume = change!["new"] as! Float
+            if AVAudioSession.sharedInstance().outputVolume != lastVolume {
+                lastVolume = AVAudioSession.sharedInstance().outputVolume
             }
         } else if keyPath == "nowPlayingInfo" {
-            print(" Now playing info: \(MPMusicPlayerController.systemMusicPlayer().nowPlayingItem)")
+            print(" Now playing info: \(musicPlayer.nowPlayingItem)")
         }
     }
     
@@ -171,35 +165,35 @@ class TTModeMusic: TTMode {
     }
     
     func runTTModeMusicPlayPause() {
-        if MPMusicPlayerController.systemMusicPlayer().playbackState == .Playing {
-            MPMusicPlayerController.systemMusicPlayer().pause()
+        if musicPlayer.playbackState == .Playing {
+            musicPlayer.pause()
         } else {
-            MPMusicPlayerController.systemMusicPlayer().prepareToPlay()
-            MPMusicPlayerController.systemMusicPlayer().play()
+            musicPlayer.prepareToPlay()
+            musicPlayer.play()
         }
     }
     
     func runTTModeMusicPlay() {
-        MPMusicPlayerController.systemMusicPlayer().prepareToPlay()
-        MPMusicPlayerController.systemMusicPlayer().play()
+        musicPlayer.prepareToPlay()
+        musicPlayer.play()
     }
     
     func runTTModeMusicPause() {
-        MPMusicPlayerController.systemMusicPlayer().pause()
+        musicPlayer.pause()
     }
     
     func runTTModeMusicNextTrack() {
-        MPMusicPlayerController.systemMusicPlayer().skipToNextItem()
+        musicPlayer.skipToNextItem()
     }
     
     func doubleRunTTModeMusicNextTrack() {
-        let nowPlaying = MPMusicPlayerController.systemMusicPlayer().nowPlayingItem
+        let nowPlaying = musicPlayer.nowPlayingItem
         let originalAlbum = nowPlaying?.albumTitle
         var currentAlbum: String!
         
         for _ in 0..<30 {
-            MPMusicPlayerController.systemMusicPlayer().skipToNextItem()
-            currentAlbum = MPMusicPlayerController.systemMusicPlayer().nowPlayingItem?.albumTitle
+            musicPlayer.skipToNextItem()
+            currentAlbum = musicPlayer.nowPlayingItem?.albumTitle
             if currentAlbum != originalAlbum {
                 break
             }

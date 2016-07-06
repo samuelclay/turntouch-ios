@@ -212,6 +212,7 @@ class TTModeHue: TTMode {
     
     func runScene(sceneName: String, direction: TTModeDirection, doubleTap: Bool, defaultIdentifier: String) {
         if !phHueSdk.localConnected() {
+            self.searchForBridgeLocal()
             return
         }
         
@@ -293,6 +294,11 @@ class TTModeHue: TTMode {
     }
     
     func runTTModeHueSleep(direction: TTModeDirection, duration sceneDuration: Int) {
+        if !phHueSdk.localConnected() {
+            self.searchForBridgeLocal()
+            return
+        }
+
         //    NSLog(@"Running scene off... %d", direction);
         let cache = PHBridgeResourcesReader.readBridgeResourcesCache()
         let bridgeSendAPI = PHBridgeSendAPI()
@@ -328,6 +334,11 @@ class TTModeHue: TTMode {
     }
     
     func runTTModeHueRandom(direction: TTModeDirection, doubleTap: Bool) {
+        if !phHueSdk.localConnected() {
+            self.searchForBridgeLocal()
+            return
+        }
+
         //    NSLog(@"Running scene off... %d", direction);
         let cache: PHBridgeResourcesCache = PHBridgeResourcesReader.readBridgeResourcesCache()
         let bridgeSendAPI: PHBridgeSendAPI = PHBridgeSendAPI()
