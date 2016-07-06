@@ -173,6 +173,10 @@ class TTModeMusic: TTMode {
         }
     }
     
+    func doubleRunTTModeMusicPlayPause() {
+        musicPlayer.skipToPreviousItem()
+    }
+    
     func runTTModeMusicPlay() {
         musicPlayer.prepareToPlay()
         musicPlayer.play()

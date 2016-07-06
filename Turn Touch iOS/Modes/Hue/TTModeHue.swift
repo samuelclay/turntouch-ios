@@ -48,6 +48,8 @@ struct TTModeHueConstants {
     static let kDoubleTapHueScene: String = "doubleTapHueScene"
     static let kHueDuration: String = "hueDuration"
     static let kHueDoubleTapDuration: String = "hueDoubleTapDuration"
+    static let kHueBridgeId: String = "hueBridgeId"
+    static let kHueBridgeIp: String = "hueBridgeIp"
 }
 
 protocol TTModeHueDelegate {
@@ -468,6 +470,15 @@ class TTModeHue: TTMode {
         // Start search
         hueState = .Connecting
         self.delegate?.changeState(hueState, mode: self, message: "Searching for a Hue bridge...")
+        
+        let prefs = NSUserDefaults.standardUserDefaults()
+        
+        if let bridgeId = prefs.objectForKey(TTModeHueConstants.kHueBridgeId),
+            bridgeIp = prefs.objectForKey(TTModeHueConstants.kHueBridgeIp) {
+            self.bridgeSelectedWithIpAddress(bridgeIp as! String, andBridgeId: bridgeId as! String)
+            return
+        }
+        
         self.bridgeSearch = PHBridgeSearching(upnpSearch: true, andPortalSearch: true, andIpAdressSearch: true)
         self.bridgeSearch.startSearchWithCompletionHandler({(bridgesFound: [NSObject : AnyObject]!) -> Void in
             /***************************************************
@@ -489,6 +500,12 @@ class TTModeHue: TTMode {
     
     func bridgeSelectedWithIpAddress(ipAddress: String, andBridgeId bridgeId: String) {
         print(" ---> Selected bridge: \(ipAddress) - \(bridgeId)")
+        let prefs = NSUserDefaults.standardUserDefaults()
+        
+        prefs.setObject(bridgeId, forKey: TTModeHueConstants.kHueBridgeId)
+        prefs.setObject(ipAddress, forKey: TTModeHueConstants.kHueBridgeIp)
+        prefs.synchronize()
+        
         hueState = .Connecting
         self.delegate?.changeState(hueState, mode: self, message: "Connecting to Hue bridge...")
         //    NSString *macAddress = [[bridgesFound allKeys] objectAtIndex:1];
