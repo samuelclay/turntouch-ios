@@ -13,11 +13,13 @@ class TTAction: NSObject {
     var mode: TTMode!
     var actionName: String!
     var batchActionKey: String?
+    var direction: TTModeDirection?
     
-    init(actionName: String) {
+    init(actionName: String, direction: TTModeDirection?=nil) {
         super.init()
         mode = appDelegate().modeMap.selectedMode
         self.actionName = actionName
+        self.direction = direction
     }
     
     init(batchActionKey: String) {
@@ -43,7 +45,7 @@ class TTAction: NSObject {
     
     func changeActionOption(optionName: String, to optionValue: AnyObject) {
         if batchActionKey == nil {
-            mode.changeActionOption(optionName, to: optionValue)
+            mode.changeActionOption(optionName, to: optionValue, direction: direction)
         } else {
             mode.changeBatchActionOption(batchActionKey!, optionName: optionName, to: optionValue)
         }

@@ -58,7 +58,7 @@ class TTPairingViewController: UIViewController, TTBluetoothMonitorDelegate {
             appDelegate().bluetoothMonitor.delegate = self
             appDelegate().bluetoothMonitor.scanUnknown()
             self.changedDeviceCount()
-        } else if state == .Failure {
+        } else if state == .Failure && self.navigationController?.visibleViewController == self {
             let pairingInfoViewController = TTPairingInfoViewController(pairingState: .Failure)
             self.navigationController?.pushViewController(pairingInfoViewController, animated: true)
         } else if state == .Success {
@@ -68,15 +68,18 @@ class TTPairingViewController: UIViewController, TTBluetoothMonitorDelegate {
     }
     
     func changedDeviceCount() {
-        let found = appDelegate().bluetoothMonitor.unpairedDevicesCount?.integerValue > 0
-        let connected = appDelegate().bluetoothMonitor.nicknamedConnectedCount?.integerValue > 0
-        
-        if !found {
+        let connected = appDelegate().bluetoothMonitor.unpairedDevicesCount?.integerValue > 0
+        let connecting = appDelegate().bluetoothMonitor.unpairedConnectingCount?.integerValue > 0
+        countdownIndicator.setProgress(0, animated: false)
+
+        if !connected && !connecting {
             countdownIndicator.hidden = true
             spinnerScanning.hidden = false
             let runner = NSRunLoop.currentRunLoop()
             searchingTimer?.invalidate()
-            searchingTimer = NSTimer.scheduledTimerWithTimeInterval(5, target: self, selector: #selector(searchingFailure), userInfo: nil, repeats: false)
+            searchingTimer = NSTimer.scheduledTimerWithTimeInterval(10, target: self,
+                                                                    selector: #selector(searchingFailure),
+                                                                    userInfo: nil, repeats: false)
             runner.addTimer(searchingTimer!, forMode: NSRunLoopCommonModes)
             
             spinnerScanning.setNeedsDisplay()
@@ -84,13 +87,13 @@ class TTPairingViewController: UIViewController, TTBluetoothMonitorDelegate {
             subtitleLabel.text = "Searching for remotes..."
             countdownTimer?.invalidate()
             countdownTimer = nil
-        } else if found && !connected {
+        } else if connecting && !connected {
             countdownIndicator.hidden = true
             spinnerScanning.hidden = false
             titleLabel.text = "Pairing your Turn Touch"
             subtitleLabel.text = "Connecting..."
             searchingTimer?.invalidate()
-        } else if found && connected {
+        } else if connected {
             countdownIndicator.hidden = false
             countdownIndicator.progress = 0
             spinnerScanning.hidden = true
@@ -105,10 +108,12 @@ class TTPairingViewController: UIViewController, TTBluetoothMonitorDelegate {
     
     func updateCountdown() {
         let minusOneSecond = countdownIndicator.progress + 0.1
-        countdownIndicator.progress = minusOneSecond
+        UIView.animateWithDuration(1, animations: { () -> Void in
+            self.countdownIndicator.setProgress(minusOneSecond, animated: true)
+        })
         
         print(" ---> Countdown: \(countdownIndicator.progress)")
-        if minusOneSecond >= 1 {
+        if minusOneSecond > 1 {
             appDelegate().bluetoothMonitor.disconnectUnpairedDevices()
             self.changePairingState(.Failure)
             countdownTimer?.invalidate()
@@ -116,7 +121,9 @@ class TTPairingViewController: UIViewController, TTBluetoothMonitorDelegate {
         } else {
             let runner = NSRunLoop.currentRunLoop()
             countdownTimer?.invalidate()
-            countdownTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(updateCountdown), userInfo: nil, repeats: false)
+            countdownTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self,
+                                                                    selector: #selector(updateCountdown),
+                                                                    userInfo: nil, repeats: false)
             runner.addTimer(countdownTimer!, forMode: NSRunLoopCommonModes)
         }
     }

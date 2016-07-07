@@ -117,7 +117,7 @@ class TTMode : NSObject, TTModeProtocol {
         var success = false
         print(" ---> Running \(direction): \(funcAction)\(actionName)")
         if self.action == nil || self.action.batchActionKey == nil {
-            self.action = TTAction(actionName: actionName)
+            self.action = TTAction(actionName: actionName, direction: direction)
         }
         
         // runAction:direction
@@ -378,13 +378,13 @@ class TTMode : NSObject, TTModeProtocol {
     
     // MARK: Setting action options
     
-    func changeActionOption(optionName: String, to optionValue: AnyObject) {
+    func changeActionOption(optionName: String, to optionValue: AnyObject, direction: TTModeDirection?=nil) {
         if optionName == "" {
             print(" ---> BUSTED: \(optionValue)")
             return
         }
         let prefs = NSUserDefaults.standardUserDefaults()
-        let inspectingModeDirection = appDelegate().modeMap.inspectingModeDirection
+        let inspectingModeDirection = direction ?? appDelegate().modeMap.inspectingModeDirection
         let modeDirectionName = appDelegate().modeMap.directionName(modeDirection)
         let actionDirectionName = appDelegate().modeMap.directionName(inspectingModeDirection)
         let actionName = self.actionNameInDirection(inspectingModeDirection)

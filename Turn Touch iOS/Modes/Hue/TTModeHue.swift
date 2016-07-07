@@ -231,7 +231,7 @@ class TTModeHue: TTMode {
             scenes.append(["name": scene.name, "identifier": scene.identifier])
         }
         
-        scenes = scenes.sort { $0["name"] > $1["name"] }
+        scenes = scenes.sort { $0["name"] < $1["name"] }
         
         if sceneIdentifier == nil || sceneIdentifier!.characters.count == 0 {
             if let _defaultScene = defaultScene {
@@ -476,7 +476,7 @@ class TTModeHue: TTMode {
         if let bridgeId = prefs.objectForKey(TTModeHueConstants.kHueBridgeId),
             bridgeIp = prefs.objectForKey(TTModeHueConstants.kHueBridgeIp) {
             self.bridgeSelectedWithIpAddress(bridgeIp as! String, andBridgeId: bridgeId as! String)
-            return
+//            return
         }
         
         self.bridgeSearch = PHBridgeSearching(upnpSearch: true, andPortalSearch: true, andIpAdressSearch: true)

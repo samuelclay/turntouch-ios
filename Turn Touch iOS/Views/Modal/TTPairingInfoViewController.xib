@@ -35,6 +35,7 @@
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="modal_remote_hero.png" translatesAutoresizingMaskIntoConstraints="NO" id="aEt-jd-Sqv">
                     <rect key="frame" x="180" y="104" width="240" height="240"/>
                     <constraints>
+                        <constraint firstAttribute="width" constant="240" id="Eq4-Bz-V9v"/>
                         <constraint firstAttribute="width" secondItem="aEt-jd-Sqv" secondAttribute="height" multiplier="1:1" id="IId-Ry-wjU"/>
                     </constraints>
                 </imageView>
@@ -42,8 +43,6 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="eZF-s1-Zb8" firstAttribute="top" secondItem="62h-DM-WNF" secondAttribute="bottom" constant="16" id="P1U-6N-fUY"/>
-                <constraint firstAttribute="trailing" secondItem="aEt-jd-Sqv" secondAttribute="trailing" constant="180" id="Znb-Ps-BOP"/>
-                <constraint firstItem="aEt-jd-Sqv" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="180" id="gRo-wq-EyI"/>
                 <constraint firstItem="62h-DM-WNF" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="hYg-zQ-0pT"/>
                 <constraint firstItem="eZF-s1-Zb8" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="lm9-B9-hM2"/>
                 <constraint firstItem="aEt-jd-Sqv" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="peR-RQ-Ajk"/>

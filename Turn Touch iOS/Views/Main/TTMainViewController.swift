@@ -55,7 +55,7 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         
-        self.view.userInteractionEnabled = true
+//        self.view.userInteractionEnabled = true
         self.view.backgroundColor = UIColor.whiteColor()
         
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -63,7 +63,7 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
         stackView.distribution = .Fill
         stackView.alignment = .Fill
         stackView.spacing = 0
-        stackView.contentMode = .ScaleToFill
+//        stackView.contentMode = .ScaleToFill
         self.view.addSubview(stackView)
         self.view.addConstraint(NSLayoutConstraint(item: stackView, attribute: .Width,
             relatedBy: .Equal, toItem: self.view, attribute: .Width, multiplier: 1.0, constant: 0.0))
@@ -71,10 +71,10 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
             relatedBy: .Equal, toItem: self.topLayoutGuide, attribute: .Bottom, multiplier: 1.0, constant: 0.0))
         self.view.addConstraint(NSLayoutConstraint(item: stackView, attribute: .Bottom,
             relatedBy: .Equal, toItem: self.view, attribute: .Bottom, multiplier: 1.0, constant: 0.0))
-        self.view.addConstraint(NSLayoutConstraint(item: stackView, attribute: .Leading,
-            relatedBy: .Equal, toItem: self.view, attribute: .Leading, multiplier: 1.0, constant: 0.0))
-        self.view.addConstraint(NSLayoutConstraint(item: stackView, attribute: .Trailing,
-            relatedBy: .Equal, toItem: self.view, attribute: .Trailing, multiplier: 1.0, constant: 0.0))
+        self.view.addConstraint(NSLayoutConstraint(item: stackView, attribute: .Left,
+            relatedBy: .Equal, toItem: self.view, attribute: .Left, multiplier: 1.0, constant: 0.0))
+        self.view.addConstraint(NSLayoutConstraint(item: stackView, attribute: .Right,
+            relatedBy: .Equal, toItem: self.view, attribute: .Right, multiplier: 1.0, constant: 0.0))
         
         
         stackView.addArrangedSubview(titleBarView)
@@ -116,7 +116,7 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
         scrollStackView.distribution = .Fill
         scrollStackView.alignment = .Fill
         scrollStackView.spacing = 0
-        scrollStackView.contentMode = .ScaleToFill
+//        scrollStackView.contentMode = .ScaleToFill
         scrollStackView.addArrangedSubview(actionDiamondView)
         actionDiamondConstraint = NSLayoutConstraint(item: actionDiamondView, attribute: .Height, relatedBy: .Equal,
                                                      toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 270)
@@ -375,6 +375,11 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
     }
     
     func showPairingModal() {
+        if pairingNavController != nil {
+            print(" ---> Don't show pairing modal, already showing it")
+            return
+        }
+        
         titleMenu.dismissViewControllerAnimated(true , completion: nil)
         pairingViewController = TTPairingViewController(pairingState: .Searching)
         pairingInfoViewController = TTPairingInfoViewController(pairingState: .Intro)
@@ -388,8 +393,8 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
     func switchPairingModal(pairingState: TTPairingState) {
         if pairingState == .Searching && pairingNavController.visibleViewController == pairingViewController {
             pairingViewController?.changedDeviceCount()
-        } else if pairingState != .Searching && pairingNavController.visibleViewController == pairingInfoViewController {
-            pairingInfoViewController?.pairingState = pairingState
+        } else if pairingState == .Searching && pairingViewController?.pairingState == .Failure {
+            pairingNavController.popViewControllerAnimated(true)
         } else {
             pairingNavController.pushViewController(pairingState == .Searching ? pairingViewController! : pairingInfoViewController!, animated: true)
         }
@@ -397,5 +402,6 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
     
     func closePairingModal() {
         pairingNavController.dismissViewControllerAnimated(true, completion: nil)
+        pairingNavController = nil
     }
 }

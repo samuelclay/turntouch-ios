@@ -43,6 +43,7 @@ class TTModeWemoDeviceSwitchOptions: TTOptionsDetailViewController, UITextFieldD
 
         var deviceSelected = self.action.optionValue(TTModeWemoConstants.kWemoDeviceLocation,
                                                     direction: appDelegate().modeMap.inspectingModeDirection) as? String
+        
 //        var doubleSceneSelected = self.action.optionValue(TTModeHueConstants.kDoubleTapHueScene,
 //                                                          direction: appDelegate().modeMap.inspectingModeDirection) as? String
         
@@ -53,14 +54,12 @@ class TTModeWemoDeviceSwitchOptions: TTOptionsDetailViewController, UITextFieldD
             }
         }
         
-        devices = devices.sort {
-            (a, b) -> Bool in
-            return a["name"] < b["name"]
-        }
-        
         if deviceSelected == nil && devices.count > 0 {
             singlePicker.text = devices[0]["name"]
             deviceSelected = devices[0]["identifier"]
+            
+            // Store the chosen wemo device so that it is used consistently
+            self.action.changeActionOption(TTModeWemoConstants.kWemoDeviceLocation, to: deviceSelected!)
         }
     }
     

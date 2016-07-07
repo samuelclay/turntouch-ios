@@ -48,6 +48,7 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
     dynamic var nicknamedConnectedCount: NSNumber?
     dynamic var pairedDevicesCount: NSNumber?
     dynamic var unpairedDevicesCount: NSNumber?
+    dynamic var unpairedConnectingCount: NSNumber?
     
     override init() {
         super.init()
@@ -308,6 +309,8 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
         self.didChangeValueForKey("nicknamedConnectedCount")
         unpairedDevicesCount = foundDevices.unpairedConnected().count
         self.didChangeValueForKey("unpairedDevicesCount")
+        unpairedConnectingCount = foundDevices.unpairedConnecting().count
+        self.didChangeValueForKey("unpairedConnectingCount")
         
         if delegate != nil {
             dispatch_async(dispatch_get_main_queue(), {
@@ -683,7 +686,13 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
     }
     
     func disconnectUnpairedDevices() {
+        for device in foundDevices.devices {
+            if !device.isPaired {
+                manager.cancelPeripheralConnection(device.peripheral)
+            }
+        }
         
+        self.stopScan()
     }
     
     func characteristicInPeripheral(peripheral: CBPeripheral, serviceUUID: String, characteristicUUID: String) -> CBCharacteristic? {

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreFoundation
 
 struct TTModeWemoConstants {
     static let kWemoDeviceLocation = "wemoDeviceLocation"
@@ -157,7 +158,12 @@ class TTModeWemo: TTMode, TTModeWemoMulticastDelegate, TTModeWemoDeviceDelegate 
             }
         }
         
-        return TTModeWemo.foundDevices[0]
+        let wemoDevice = TTModeWemo.foundDevices[0]
+        
+        // Store the chosen wemo device so that it is used consistently
+        self.action.changeActionOption(TTModeWemoConstants.kWemoDeviceLocation, to: wemoDevice.location())
+        
+        return wemoDevice
     }
     
     func beginConnectingToWemo() {
@@ -192,13 +198,18 @@ class TTModeWemo: TTMode, TTModeWemoMulticastDelegate, TTModeWemoDeviceDelegate 
         }
         
         TTModeWemo.foundDevices.append(newDevice)
-        
+
         newDevice.requestDeviceInfo()
     }
     
     // MARK: Device delegate
     
     func deviceReady(device: TTModeWemoDevice) {
+        TTModeWemo.foundDevices = TTModeWemo.foundDevices.sort {
+            (a, b) -> Bool in
+            return a.deviceName?.lowercaseString < b.deviceName?.lowercaseString
+        }
+        
         wemoState = .Connected
         delegate.changeState(wemoState, mode: self)
     }
