@@ -31,10 +31,33 @@ class TTDiamondView: UIView {
     var diamondType: TTDiamondType = .DIAMOND_TYPE_MODE
     var overrideSelectedDirection: TTModeDirection = .NO_DIRECTION
     var overrideActiveDirection: TTModeDirection = .NO_DIRECTION
-    var ignoreSelectedMode = false
+    @IBInspectable var ignoreSelectedMode: Bool = false
     var ignoreActiveMode = false
     var showOutline = false
     var connected = false
+    
+    @IBInspectable var diamondTypeAdapter: Int {
+        get {
+            return self.diamondType.rawValue
+        }
+        set (diamondTypeIndex) {
+            self.diamondType = TTDiamondType(rawValue: diamondTypeIndex) ?? .DIAMOND_TYPE_HUD
+        }
+    }
+    @IBInspectable var overrideSelectedDirectionAdapter: Int {
+        get {
+            return self.overrideSelectedDirection.rawValue
+        }
+        set (index) {
+            self.overrideSelectedDirection = TTModeDirection(rawValue: index) ?? .NO_DIRECTION
+        }
+    }
+    
+    override func awakeFromNib() {
+        self.registerAsObserver()
+        
+        self.contentMode = .Redraw
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -70,7 +93,13 @@ class TTDiamondView: UIView {
         } else if keyPath == "inspectingModeDirection" {
             self.setNeedsDisplay()
         } else if keyPath == "activeModeDirection" {
-            self.setNeedsDisplay()
+            if diamondType == .DIAMOND_TYPE_PAIRING {
+                dispatch_async(dispatch_get_main_queue(), { 
+                    self.setNeedsDisplay()
+                })
+            } else {
+                self.setNeedsDisplay()
+            }
         }
     }
     

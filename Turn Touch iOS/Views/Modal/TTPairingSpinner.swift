@@ -30,7 +30,7 @@ class TTPairingSpinner: UIView {
 
             let anim: CAKeyframeAnimation = CAKeyframeAnimation(keyPath: "transform")
             anim.removedOnCompletion = false
-            anim.repeatCount = 100
+            anim.repeatCount = 10000
             anim.duration = 2.0
             anim.beginTime = spinnerBeginTime - (1.0 * Double(i))
             anim.keyTimes = [0.0, 0.5, 1.0]

@@ -204,4 +204,10 @@ class TTDeviceList: NSObject {
         }
     }
     
+    func unpairedConnected() -> [TTDevice] {
+        return devices.filter({ (device) -> Bool in
+            device.peripheral != nil && !self.isPeripheralPaired(device.peripheral) && device.state == .DEVICE_STATE_CONNECTED
+        })
+    }
+    
 }

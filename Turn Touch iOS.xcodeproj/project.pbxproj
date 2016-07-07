@@ -214,6 +214,9 @@
 		FFB41B841CF5342100CD5F09 /* TTModeMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB41B831CF5342100CD5F09 /* TTModeMap.swift */; };
 		FFB41B861CF536AC00CD5F09 /* TTAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB41B851CF536AC00CD5F09 /* TTAction.swift */; };
 		FFB41B881CF536BB00CD5F09 /* TTActionMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB41B871CF536BB00CD5F09 /* TTActionMap.swift */; };
+		FFC4B0F01D2DBF3E00A97C81 /* TTPairingInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC4B0EE1D2DBF3E00A97C81 /* TTPairingInfoViewController.swift */; };
+		FFC4B0F11D2DBF3E00A97C81 /* TTPairingInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFC4B0EF1D2DBF3E00A97C81 /* TTPairingInfoViewController.xib */; };
+		FFC4B0F31D2DC38C00A97C81 /* TTModalButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC4B0F21D2DC38C00A97C81 /* TTModalButton.swift */; };
 		FFC9FE951D021A0400038817 /* TTActionDiamondView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC9FE941D021A0400038817 /* TTActionDiamondView.swift */; };
 		FFC9FE991D02520300038817 /* NSObject+Class.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC9FE981D02520300038817 /* NSObject+Class.swift */; };
 		FFF270941CEE88E500E46575 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF270931CEE88E500E46575 /* AppDelegate.swift */; };
@@ -471,6 +474,10 @@
 		FFB41B831CF5342100CD5F09 /* TTModeMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeMap.swift; path = Models/TTModeMap.swift; sourceTree = "<group>"; };
 		FFB41B851CF536AC00CD5F09 /* TTAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTAction.swift; path = Models/TTAction.swift; sourceTree = "<group>"; };
 		FFB41B871CF536BB00CD5F09 /* TTActionMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTActionMap.swift; path = Models/TTActionMap.swift; sourceTree = "<group>"; };
+		FFC4B0EC1D2C911E00A97C81 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		FFC4B0EE1D2DBF3E00A97C81 /* TTPairingInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTPairingInfoViewController.swift; path = Views/Modal/TTPairingInfoViewController.swift; sourceTree = "<group>"; };
+		FFC4B0EF1D2DBF3E00A97C81 /* TTPairingInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TTPairingInfoViewController.xib; path = Views/Modal/TTPairingInfoViewController.xib; sourceTree = "<group>"; };
+		FFC4B0F21D2DC38C00A97C81 /* TTModalButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModalButton.swift; path = Views/Modal/TTModalButton.swift; sourceTree = "<group>"; };
 		FFC9FE941D021A0400038817 /* TTActionDiamondView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTActionDiamondView.swift; path = "Views/Action diamond/TTActionDiamondView.swift"; sourceTree = "<group>"; };
 		FFC9FE981D02520300038817 /* NSObject+Class.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSObject+Class.swift"; path = "Categories/NSObject+Class.swift"; sourceTree = "<group>"; };
 		FFF270901CEE88E500E46575 /* Turn Touch iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Turn Touch iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -539,6 +546,7 @@
 		0F31B8744850402114AE49F7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FFC4B0EC1D2C911E00A97C81 /* AudioToolbox.framework */,
 				FF4AF7AD1D2475780009C777 /* libxml2.2.tbd */,
 				FF4AF7AB1D2475630009C777 /* libxml2.tbd */,
 				ACFD869DD1D0B508AA8C9258 /* Pods_Turn_Touch_iOS.framework */,
@@ -733,6 +741,9 @@
 			children = (
 				FF4487651D08CE7900ED8099 /* TTPairingViewController.swift */,
 				FF4487681D08D0C600ED8099 /* TTPairingViewController.xib */,
+				FFC4B0EE1D2DBF3E00A97C81 /* TTPairingInfoViewController.swift */,
+				FFC4B0EF1D2DBF3E00A97C81 /* TTPairingInfoViewController.xib */,
+				FFC4B0F21D2DC38C00A97C81 /* TTModalButton.swift */,
 				FF44876A1D08E1D600ED8099 /* TTPairingSpinner.swift */,
 			);
 			name = Modal;
@@ -1294,6 +1305,7 @@
 				FFB41B5A1CEE9A3000CD5F09 /* logo - 1024.png in Resources */,
 				FFB41B561CEE9A3000CD5F09 /* itunes_playlist_icon.png in Resources */,
 				FFB41B1E1CEE9A3000CD5F09 /* music_rewind.png in Resources */,
+				FFC4B0F11D2DBF3E00A97C81 /* TTPairingInfoViewController.xib in Resources */,
 				FF2023311D02147A005129E5 /* Icon-40@3x.png in Resources */,
 				FF4AF7EA1D24F9E70009C777 /* TTModeSonosConnected.xib in Resources */,
 				FFB41B491CEE9A3000CD5F09 /* remote_graphic.png in Resources */,
@@ -1450,6 +1462,7 @@
 				FF4487781D09367000ED8099 /* TTButtonState.swift in Sources */,
 				FF0F10D01CF63F6100CC1F29 /* TTModeAlarmClock.swift in Sources */,
 				FFB41B881CF536BB00CD5F09 /* TTActionMap.swift in Sources */,
+				FFC4B0F31D2DC38C00A97C81 /* TTModalButton.swift in Sources */,
 				FF0F10EB1CFFB4A800CC1F29 /* TTModeMenuCollectionView.swift in Sources */,
 				FF4AF7B21D2486F90009C777 /* TTModeWemoOptions.swift in Sources */,
 				FF4AF7DC1D24F9370009C777 /* TTModeSonos.swift in Sources */,
@@ -1509,6 +1522,7 @@
 				FF0F10DC1CF669BE00CC1F29 /* TTDiamondLabel.swift in Sources */,
 				FF4AF7D61D24ECF60009C777 /* SonosDiscover.m in Sources */,
 				FF4AF7C91D248AD00009C777 /* TTModeWemoDeviceOffOptions.swift in Sources */,
+				FFC4B0F01D2DBF3E00A97C81 /* TTPairingInfoViewController.swift in Sources */,
 				FF4AF7E71D24F9E70009C777 /* TTModeSonosConnect.swift in Sources */,
 				FFF270C51CEE97AF00E46575 /* TTMainViewController.swift in Sources */,
 				FFB41B861CF536AC00CD5F09 /* TTAction.swift in Sources */,

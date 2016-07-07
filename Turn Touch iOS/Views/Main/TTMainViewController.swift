@@ -8,6 +8,15 @@
 
 import UIKit
 
+enum TTModalState {
+    case App
+    case FTUX
+    case Pairing
+    case Devices
+    case About
+    case Support
+}
+
 class TTMainViewController: UIViewController, UIPopoverPresentationControllerDelegate {
     
     var stackView = UIStackView()
@@ -35,8 +44,12 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
     
     let titleMenu = TTTitleMenuPopover()
     let deviceMenu = TTTitleMenuPopover()
-    let pairingViewController = TTPairingViewController(nibName: "TTPairingViewController", bundle: nil)
+
+    var modal: TTModalState?
+    var pairingViewController: TTPairingViewController?
+    var pairingInfoViewController: TTPairingInfoViewController?
     var pairingNavController: UINavigationController!
+    
     
 
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
@@ -348,12 +361,27 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
         deviceMenu.dismissViewControllerAnimated(true, completion: nil)
     }
     
+    
+    // MARK: Modals
+    
+    func switchModal(modal: TTModalState) {
+        self.modal = modal
+        switch modal {
+        case .Pairing:
+            self.showPairingModal()
+        default:
+            break
+        }
+    }
+    
     func showPairingModal() {
         titleMenu.dismissViewControllerAnimated(true , completion: nil)
+        pairingViewController = TTPairingViewController(pairingState: .Searching)
+        pairingInfoViewController = TTPairingInfoViewController(pairingState: .Intro)
         
-        pairingNavController = UINavigationController(rootViewController: pairingViewController)
-        pairingNavController.modalPresentationStyle = .OverFullScreen
-        
+        let anyPaired = appDelegate().bluetoothMonitor.foundDevices.totalPairedCount() > 0
+        pairingNavController = UINavigationController(rootViewController: anyPaired ? pairingViewController! : pairingInfoViewController!)
+        pairingNavController.modalPresentationStyle = .FullScreen
         self.presentViewController(pairingNavController, animated: true, completion: nil)
     }
     

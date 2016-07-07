@@ -3,14 +3,16 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TTPairingViewController" customModule="Turn_Touch_iOS" customModuleProvider="target">
             <connections>
                 <outlet property="countdownIndicator" destination="Z5U-8b-OEm" id="37v-YV-not"/>
                 <outlet property="diamondView" destination="Wdc-e5-1UP" id="6tU-hV-AxK"/>
-                <outlet property="labelScanning" destination="mmc-cH-6oo" id="ks5-Oz-h2r"/>
                 <outlet property="spinnerScanning" destination="OBG-Ce-ya7" id="tsx-sp-dZQ"/>
+                <outlet property="subtitleLabel" destination="ZTX-d8-wqR" id="tmM-Kx-OlD"/>
+                <outlet property="titleLabel" destination="lJr-fU-0wG" id="t2B-Np-M65"/>
                 <outlet property="view" destination="iN0-l3-epB" id="i3L-qp-Rfx"/>
             </connections>
         </placeholder>
@@ -19,55 +21,65 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wdc-e5-1UP" customClass="TTDiamondView" customModule="Turn_Touch_iOS" customModuleProvider="target">
-                    <rect key="frame" x="164" y="96" width="272" height="200"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="272" id="hT1-HE-mrK"/>
-                        <constraint firstAttribute="height" constant="200" id="puG-m6-LWb"/>
-                    </constraints>
-                </view>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mmc-cH-6oo">
-                    <rect key="frame" x="279" y="383" width="42" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
                 <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Z5U-8b-OEm">
-                    <rect key="frame" x="225" y="500" width="150" height="2"/>
+                    <rect key="frame" x="225" y="484.5" width="150" height="2"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="2" id="4Vd-XV-dTF"/>
                         <constraint firstAttribute="width" constant="150" id="FNV-5d-Yv6"/>
                     </constraints>
                 </progressView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OBG-Ce-ya7" customClass="TTPairingSpinner" customModule="Turn_Touch_iOS" customModuleProvider="target">
-                    <rect key="frame" x="282.5" y="483" width="36" height="36"/>
+                    <rect key="frame" x="282.5" y="467.5" width="36" height="36"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="36" id="6Xt-M9-goS"/>
                         <constraint firstAttribute="height" constant="36" id="fSM-hj-O5W"/>
                     </constraints>
                 </view>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eLU-kC-wZb">
-                    <rect key="frame" x="279" y="318" width="42" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pairing your Turn Touch" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lJr-fU-0wG">
+                    <rect key="frame" x="180.5" y="330.5" width="240.5" height="28"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                    <color key="textColor" red="0.23795303249999999" green="0.236803501" blue="0.2391025641" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Searching for remotes..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZTX-d8-wqR">
+                    <rect key="frame" x="208" y="374.5" width="184" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.65098039220000004" green="0.68235294120000001" blue="0.70196078429999997" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wdc-e5-1UP" customClass="TTDiamondView" customModule="Turn_Touch_iOS" customModuleProvider="target">
+                    <rect key="frame" x="180" y="96" width="240" height="176.5"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="Wdc-e5-1UP" secondAttribute="height" multiplier="34:25" id="qCb-vE-9e8"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="diamondTypeAdapter">
+                            <integer key="value" value="3"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="overrideSelectedDirectionAdapter">
+                            <integer key="value" value="0"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="ignoreSelectedMode" value="YES"/>
+                    </userDefinedRuntimeAttributes>
+                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="mmc-cH-6oo" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="0b0-dL-4b0"/>
                 <constraint firstItem="OBG-Ce-ya7" firstAttribute="centerY" secondItem="Z5U-8b-OEm" secondAttribute="centerY" id="0z3-A6-OnW"/>
                 <constraint firstItem="OBG-Ce-ya7" firstAttribute="centerY" secondItem="Z5U-8b-OEm" secondAttribute="centerY" id="AEs-XO-T2M"/>
+                <constraint firstAttribute="trailing" secondItem="Wdc-e5-1UP" secondAttribute="trailing" constant="180" id="Ab7-Wb-7Hg"/>
                 <constraint firstItem="OBG-Ce-ya7" firstAttribute="centerX" secondItem="Z5U-8b-OEm" secondAttribute="centerX" id="GHM-ML-Bi6"/>
                 <constraint firstItem="Wdc-e5-1UP" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="96" id="Qdq-fB-E0K"/>
-                <constraint firstItem="eLU-kC-wZb" firstAttribute="top" secondItem="Wdc-e5-1UP" secondAttribute="bottom" constant="22" id="Tic-bA-S9D"/>
+                <constraint firstItem="ZTX-d8-wqR" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Scr-bA-V1j"/>
                 <constraint firstItem="Z5U-8b-OEm" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="YRS-zD-9Af"/>
-                <constraint firstItem="mmc-cH-6oo" firstAttribute="top" secondItem="eLU-kC-wZb" secondAttribute="bottom" constant="44" id="YRr-AZ-RTs"/>
-                <constraint firstItem="eLU-kC-wZb" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="apR-4O-CE1"/>
                 <constraint firstItem="Wdc-e5-1UP" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="bx4-1a-HSC"/>
-                <constraint firstItem="Z5U-8b-OEm" firstAttribute="top" secondItem="mmc-cH-6oo" secondAttribute="bottom" constant="96" id="oV8-KI-Nc2"/>
+                <constraint firstItem="OBG-Ce-ya7" firstAttribute="top" secondItem="ZTX-d8-wqR" secondAttribute="bottom" constant="72" id="cuF-dr-LZT"/>
+                <constraint firstItem="lJr-fU-0wG" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="iiq-B1-tCV"/>
+                <constraint firstItem="lJr-fU-0wG" firstAttribute="top" secondItem="Wdc-e5-1UP" secondAttribute="bottom" constant="58" id="r0O-f0-Oel"/>
+                <constraint firstItem="ZTX-d8-wqR" firstAttribute="top" secondItem="lJr-fU-0wG" secondAttribute="bottom" constant="16" id="tFD-Jk-Qkc"/>
+                <constraint firstItem="Wdc-e5-1UP" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="180" id="wTL-bh-8EY"/>
                 <constraint firstItem="OBG-Ce-ya7" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="x6T-ds-WEX"/>
             </constraints>
             <variation key="default">

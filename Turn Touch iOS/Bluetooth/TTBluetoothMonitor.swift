@@ -21,6 +21,10 @@ enum TTBluetoothState {
     case BT_STATE_CHAR_NOTIFICATION
 }
 
+protocol TTBluetoothMonitorDelegate {
+    func changedDeviceCount()
+}
+
 class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
     
     // Firmware rev. 20+ = v2
@@ -38,6 +42,7 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
     var bluetoothState = TTBluetoothState.BT_STATE_IDLE
     var onceUnknownToken: dispatch_once_t = 0
     var onceKnownToken: dispatch_once_t = 0
+    var delegate: TTBluetoothMonitorDelegate?
     
     dynamic var nicknamedConnectedCount: NSNumber?
     dynamic var pairedDevicesCount: NSNumber?
@@ -51,6 +56,7 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
                                     CBConnectPeripheralOptionNotifyOnDisconnectionKey: NSNumber(bool: true),
                                     CBConnectPeripheralOptionNotifyOnConnectionKey: NSNumber(bool: true),
                                     CBConnectPeripheralOptionNotifyOnNotificationKey: NSNumber(bool: true)])
+        buttonTimer.resetPairingState()
     }
     
     // MARK: Bluetooth status
@@ -298,6 +304,14 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
         self.didChangeValueForKey("pairedDevicesCount")
         nicknamedConnectedCount = foundDevices.nicknamedConnected().count
         self.didChangeValueForKey("nicknamedConnectedCount")
+        unpairedDevicesCount = foundDevices.unpairedConnected().count
+        self.didChangeValueForKey("unpairedDevicesCount")
+        
+        if delegate != nil {
+            dispatch_async(dispatch_get_main_queue(), {
+                self.delegate?.changedDeviceCount()
+            })
+        }
     }
     
     func centralManager(central: CBCentralManager, didDiscoverPeripheral peripheral: CBPeripheral,
@@ -379,12 +393,12 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
             device!.state = TTDeviceState.DEVICE_STATE_CONNECTING
             device!.needsReconnection = false
             
-             buttonTimer.resetPairingState()
+            buttonTimer.resetPairingState()
             self.countDevices()
             
             let noPairedDevices = foundDevices.totalPairedCount() == 0
             if noPairedDevices {
-                // appDelegate().mainViewController.switchPanelModalPairing(.MODAL_PAIRING_INTRO)
+                 appDelegate().mainViewController.showPairingModal()
             }
         }
 
