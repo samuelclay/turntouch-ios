@@ -23,6 +23,7 @@ enum TTBluetoothState {
 
 protocol TTBluetoothMonitorDelegate {
     func changedDeviceCount()
+    func pairingSuccess()
 }
 
 class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
@@ -275,6 +276,7 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
         if let peripheral = foundDevices.peripheralForDevice(device) {
             manager.cancelPeripheralConnection(peripheral)
             foundDevices.removeDevice(device)
+            self.countDevices()
         }
     }
     
@@ -398,7 +400,9 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
             
             let noPairedDevices = foundDevices.totalPairedCount() == 0
             if noPairedDevices {
-                 appDelegate().mainViewController.showPairingModal()
+                dispatch_async(dispatch_get_main_queue(), { 
+                    appDelegate().mainViewController.showPairingModal()
+                })
             }
         }
 
@@ -671,7 +675,11 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
         buttonTimer.resetPairingState()
         self.countDevices()
         appDelegate().modeMap.activeModeDirection = .NO_DIRECTION
-        // appDelegate().mainViewController.switchPanelModalPairing(.MODAL_PAIRING_SUCCESS)
+        if delegate != nil {
+            dispatch_async(dispatch_get_main_queue()) {
+                self.delegate?.pairingSuccess()
+            }
+        }
     }
     
     func disconnectUnpairedDevices() {

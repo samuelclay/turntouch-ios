@@ -30,6 +30,7 @@ class TTPairingViewController: UIViewController, TTBluetoothMonitorDelegate {
     init(pairingState: TTPairingState) {
         super.init(nibName: "TTPairingViewController", bundle: nil)
         self.pairingState = pairingState
+//        self.view.translatesAutoresizingMaskIntoConstraints = false
         
         let closeButton = UIBarButtonItem(barButtonSystemItem: .Cancel,
                                           target: self, action: #selector(self.close))
@@ -107,7 +108,7 @@ class TTPairingViewController: UIViewController, TTBluetoothMonitorDelegate {
         countdownIndicator.progress = minusOneSecond
         
         print(" ---> Countdown: \(countdownIndicator.progress)")
-        if minusOneSecond >= 1.0 {
+        if minusOneSecond >= 1 {
             appDelegate().bluetoothMonitor.disconnectUnpairedDevices()
             self.changePairingState(.Failure)
             countdownTimer?.invalidate()
@@ -123,5 +124,9 @@ class TTPairingViewController: UIViewController, TTBluetoothMonitorDelegate {
     func searchingFailure() {
         searchingTimer?.invalidate()
         self.changePairingState(.Failure)
+    }
+    
+    func pairingSuccess() {
+        self.changePairingState(.Success)
     }
 }

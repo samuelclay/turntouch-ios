@@ -10,48 +10,37 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TTPairingInfoViewController" customModule="Turn_Touch_iOS" customModuleProvider="target">
             <connections>
                 <outlet property="heroImage" destination="aEt-jd-Sqv" id="edy-mn-qX7"/>
-                <outlet property="nextButton" destination="3e6-bF-g2g" id="oP3-3S-ZQz"/>
                 <outlet property="subtitleLabel" destination="eZF-s1-Zb8" id="ISt-rx-dEe"/>
                 <outlet property="titleLabel" destination="62h-DM-WNF" id="ns2-4R-VRw"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="664" height="673"/>
+        <view contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to Turn Touch" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="62h-DM-WNF">
-                    <rect key="frame" x="211.5" y="446" width="241.5" height="27.5"/>
+                    <rect key="frame" x="179" y="382" width="241.5" height="27.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="23"/>
                     <color key="textColor" red="0.23795303249999999" green="0.236803501" blue="0.2391025641" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Four buttons of beautiful control" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eZF-s1-Zb8">
-                    <rect key="frame" x="208.5" y="489.5" width="247" height="21"/>
+                    <rect key="frame" x="176" y="425" width="247" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" red="0.65098039220000004" green="0.68235294120000001" blue="0.70196078429999997" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3e6-bF-g2g" customClass="TTModalButton" customModule="Turn_Touch_iOS" customModuleProvider="target">
-                    <rect key="frame" x="8" y="545" width="648" height="120"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="120" id="mxj-kW-f1F"/>
-                    </constraints>
-                </view>
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="modal_remote_hero.png" translatesAutoresizingMaskIntoConstraints="NO" id="aEt-jd-Sqv">
-                    <rect key="frame" x="180" y="104" width="304" height="304"/>
+                    <rect key="frame" x="180" y="104" width="240" height="240"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="aEt-jd-Sqv" secondAttribute="height" multiplier="1:1" id="IId-Ry-wjU"/>
                     </constraints>
                 </imageView>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="3e6-bF-g2g" firstAttribute="trailing" secondItem="i5M-Pr-FkT" secondAttribute="trailingMargin" id="JQv-Wg-PAC"/>
-                <constraint firstItem="3e6-bF-g2g" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leadingMargin" id="Jj7-2s-ttC"/>
-                <constraint firstItem="3e6-bF-g2g" firstAttribute="bottom" secondItem="i5M-Pr-FkT" secondAttribute="bottomMargin" id="LiU-TX-66n"/>
                 <constraint firstItem="eZF-s1-Zb8" firstAttribute="top" secondItem="62h-DM-WNF" secondAttribute="bottom" constant="16" id="P1U-6N-fUY"/>
                 <constraint firstAttribute="trailing" secondItem="aEt-jd-Sqv" secondAttribute="trailing" constant="180" id="Znb-Ps-BOP"/>
                 <constraint firstItem="aEt-jd-Sqv" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="180" id="gRo-wq-EyI"/>
@@ -61,8 +50,7 @@
                 <constraint firstItem="62h-DM-WNF" firstAttribute="top" secondItem="aEt-jd-Sqv" secondAttribute="bottom" constant="38" id="q7k-sg-S3M"/>
                 <constraint firstItem="aEt-jd-Sqv" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="topMargin" constant="96" id="yAF-AB-7Yw"/>
             </constraints>
-            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="368" y="358.5"/>
+            <point key="canvasLocation" x="368" y="287.25"/>
         </view>
     </objects>
     <resources>

@@ -217,6 +217,8 @@
 		FFC4B0F01D2DBF3E00A97C81 /* TTPairingInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC4B0EE1D2DBF3E00A97C81 /* TTPairingInfoViewController.swift */; };
 		FFC4B0F11D2DBF3E00A97C81 /* TTPairingInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFC4B0EF1D2DBF3E00A97C81 /* TTPairingInfoViewController.xib */; };
 		FFC4B0F31D2DC38C00A97C81 /* TTModalButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC4B0F21D2DC38C00A97C81 /* TTModalButton.swift */; };
+		FFC4B0F51D2DD82200A97C81 /* TTModalButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFC4B0F41D2DD82200A97C81 /* TTModalButton.xib */; };
+		FFC4B0F71D2DE3DB00A97C81 /* UIView+nib.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC4B0F61D2DE3DB00A97C81 /* UIView+nib.swift */; };
 		FFC9FE951D021A0400038817 /* TTActionDiamondView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC9FE941D021A0400038817 /* TTActionDiamondView.swift */; };
 		FFC9FE991D02520300038817 /* NSObject+Class.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC9FE981D02520300038817 /* NSObject+Class.swift */; };
 		FFF270941CEE88E500E46575 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF270931CEE88E500E46575 /* AppDelegate.swift */; };
@@ -478,6 +480,8 @@
 		FFC4B0EE1D2DBF3E00A97C81 /* TTPairingInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTPairingInfoViewController.swift; path = Views/Modal/TTPairingInfoViewController.swift; sourceTree = "<group>"; };
 		FFC4B0EF1D2DBF3E00A97C81 /* TTPairingInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TTPairingInfoViewController.xib; path = Views/Modal/TTPairingInfoViewController.xib; sourceTree = "<group>"; };
 		FFC4B0F21D2DC38C00A97C81 /* TTModalButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModalButton.swift; path = Views/Modal/TTModalButton.swift; sourceTree = "<group>"; };
+		FFC4B0F41D2DD82200A97C81 /* TTModalButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TTModalButton.xib; path = Views/Modal/TTModalButton.xib; sourceTree = "<group>"; };
+		FFC4B0F61D2DE3DB00A97C81 /* UIView+nib.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIView+nib.swift"; path = "Categories/UIView+nib.swift"; sourceTree = "<group>"; };
 		FFC9FE941D021A0400038817 /* TTActionDiamondView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTActionDiamondView.swift; path = "Views/Action diamond/TTActionDiamondView.swift"; sourceTree = "<group>"; };
 		FFC9FE981D02520300038817 /* NSObject+Class.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSObject+Class.swift"; path = "Categories/NSObject+Class.swift"; sourceTree = "<group>"; };
 		FFF270901CEE88E500E46575 /* Turn Touch iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Turn Touch iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -569,6 +573,7 @@
 				FF0F10BD1CF55A9000CC1F29 /* UIColor+hex.swift */,
 				FFC9FE981D02520300038817 /* NSObject+Class.swift */,
 				FF4487731D09300B00ED8099 /* NSData+Hex.swift */,
+				FFC4B0F61D2DE3DB00A97C81 /* UIView+nib.swift */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -744,6 +749,7 @@
 				FFC4B0EE1D2DBF3E00A97C81 /* TTPairingInfoViewController.swift */,
 				FFC4B0EF1D2DBF3E00A97C81 /* TTPairingInfoViewController.xib */,
 				FFC4B0F21D2DC38C00A97C81 /* TTModalButton.swift */,
+				FFC4B0F41D2DD82200A97C81 /* TTModalButton.xib */,
 				FF44876A1D08E1D600ED8099 /* TTPairingSpinner.swift */,
 			);
 			name = Modal;
@@ -1342,6 +1348,7 @@
 				FFB41B2D1CEE9A3000CD5F09 /* filmstrip-3.png in Resources */,
 				FFB41B381CEE9A3000CD5F09 /* mode_hue.png in Resources */,
 				FFB41B221CEE9A3000CD5F09 /* music_volume_up.png in Resources */,
+				FFC4B0F51D2DD82200A97C81 /* TTModalButton.xib in Resources */,
 				FF2023431D0216AF005129E5 /* Icon-83.5.png in Resources */,
 				FFB41B391CEE9A3000CD5F09 /* mode_mac.png in Resources */,
 				FFB41B331CEE9A3000CD5F09 /* macbookpro.png in Resources */,
@@ -1456,6 +1463,7 @@
 				FF4487661D08CE7900ED8099 /* TTPairingViewController.swift in Sources */,
 				FFF46BEE1D10E6A300158751 /* TTOptionsView.swift in Sources */,
 				FF4AF7E91D24F9E70009C777 /* TTModeSonosConnected.swift in Sources */,
+				FFC4B0F71D2DE3DB00A97C81 /* UIView+nib.swift in Sources */,
 				FFF46BDC1D10941500158751 /* DDASLLogger.m in Sources */,
 				FF4AF7D51D24ECF60009C777 /* SonosController.m in Sources */,
 				FF0F10D71CF6697A00CC1F29 /* TTDiamondView.swift in Sources */,

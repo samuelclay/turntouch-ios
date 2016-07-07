@@ -14,18 +14,25 @@ class TTPairingInfoViewController: UIViewController {
     @IBOutlet var titleLabel: UILabel?
     @IBOutlet var subtitleLabel: UILabel?
     @IBOutlet var heroImage: UIImageView?
-    @IBOutlet var nextButton: TTModalButton?
+    var nextButton: TTModalButton!
     
     init(pairingState: TTPairingState) {
         self.pairingState = pairingState
         super.init(nibName: "TTPairingInfoViewController", bundle: nil)
+                
+        nextButton = TTModalButton(pairingState: pairingState)
+        self.view.addSubview(nextButton.view)
+        self.view.addConstraint(NSLayoutConstraint(item: nextButton.view, attribute: .Left, relatedBy: .Equal, toItem: self.view, attribute: .Left, multiplier: 1.0, constant: 0))
+        self.view.addConstraint(NSLayoutConstraint(item: nextButton.view, attribute: .Bottom, relatedBy: .Equal, toItem: self.view, attribute: .Bottom, multiplier: 1.0, constant: 0))
+        self.view.addConstraint(NSLayoutConstraint(item: nextButton.view, attribute: .Right, relatedBy: .Equal, toItem: self.view, attribute: .Right, multiplier: 1.0, constant: 0))
+        self.view.addConstraint(NSLayoutConstraint(item: nextButton.view, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 120))
         
+
         if pairingState == .Success || pairingState == .Failure {
             let closeButton = UIBarButtonItem(barButtonSystemItem: .Done,
                                               target: self, action: #selector(self.close))
             self.navigationItem.rightBarButtonItem = closeButton
         }
-        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -59,5 +66,7 @@ class TTPairingInfoViewController: UIViewController {
         default:
             break
         }
+        
+        self.nextButton?.setPairingState(pairingState)
     }
 }

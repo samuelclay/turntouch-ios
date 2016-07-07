@@ -385,6 +385,16 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
         self.presentViewController(pairingNavController, animated: true, completion: nil)
     }
     
+    func switchPairingModal(pairingState: TTPairingState) {
+        if pairingState == .Searching && pairingNavController.visibleViewController == pairingViewController {
+            pairingViewController?.changedDeviceCount()
+        } else if pairingState != .Searching && pairingNavController.visibleViewController == pairingInfoViewController {
+            pairingInfoViewController?.pairingState = pairingState
+        } else {
+            pairingNavController.pushViewController(pairingState == .Searching ? pairingViewController! : pairingInfoViewController!, animated: true)
+        }
+    }
+    
     func closePairingModal() {
         pairingNavController.dismissViewControllerAnimated(true, completion: nil)
     }
