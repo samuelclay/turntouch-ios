@@ -112,7 +112,7 @@ class TTModeWemo: TTMode, TTModeWemoMulticastDelegate, TTModeWemoDeviceDelegate 
         } else {
             wemoState = .Connected
         }
-        delegate.changeState(wemoState, mode: self)
+        delegate?.changeState(wemoState, mode: self)
     }
     
     override func deactivate() {
@@ -168,14 +168,14 @@ class TTModeWemo: TTMode, TTModeWemoMulticastDelegate, TTModeWemoDeviceDelegate 
     
     func beginConnectingToWemo() {
         wemoState = .Connecting
-        delegate.changeState(wemoState, mode: self)
+        delegate?.changeState(wemoState, mode: self)
         
         TTModeWemo.multicastServer.beginBroadcast()
     }
     
     func cancelConnectingToWemo() {
         wemoState = .Disconnected
-        delegate.changeState(wemoState, mode: self)
+        delegate?.changeState(wemoState, mode: self)
     }
     
     // MARK: Multicast delegate
@@ -211,6 +211,6 @@ class TTModeWemo: TTMode, TTModeWemoMulticastDelegate, TTModeWemoDeviceDelegate 
         }
         
         wemoState = .Connected
-        delegate.changeState(wemoState, mode: self)
+        delegate?.changeState(wemoState, mode: self)
     }
 }

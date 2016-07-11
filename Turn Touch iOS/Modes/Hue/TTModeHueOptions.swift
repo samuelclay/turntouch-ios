@@ -24,8 +24,8 @@ class TTModeHueOptions: TTOptionsDetailViewController, TTModeHueDelegate {
         self.modeHue.delegate = self
         self.view.clipsToBounds = true
 
-        if self.modeHue.hueState == .Connecting {
-            self.modeHue.hueState = .NotConnected
+        if self.modeHue.hueState == .NotConnected {
+            self.modeHue.hueState = .Connecting
         }
         self.changeState(self.modeHue.hueState, mode: self.modeHue, message: nil)
     }

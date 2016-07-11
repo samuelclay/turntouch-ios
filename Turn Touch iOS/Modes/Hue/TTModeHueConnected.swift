@@ -21,8 +21,8 @@ class TTModeHueConnected: TTOptionsDetailViewController {
 
     @IBAction func selectOtherBridge(sender: UIButton) {
         let prefs = NSUserDefaults.standardUserDefaults()
-        prefs.removeObjectForKey(TTModeHueConstants.kHueBridgeIp)
-        prefs.removeObjectForKey(TTModeHueConstants.kHueBridgeId)
+        prefs.removeObjectForKey(TTModeHueConstants.kHueRecentBridgeIp)
+        prefs.removeObjectForKey(TTModeHueConstants.kHueRecentBridgeId)
         prefs.synchronize()
         
         self.modeHue.searchForBridgeLocal()

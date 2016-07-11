@@ -48,8 +48,9 @@ struct TTModeHueConstants {
     static let kDoubleTapHueScene: String = "doubleTapHueScene"
     static let kHueDuration: String = "hueDuration"
     static let kHueDoubleTapDuration: String = "hueDoubleTapDuration"
-    static let kHueBridgeId: String = "hueBridgeId"
-    static let kHueBridgeIp: String = "hueBridgeIp"
+    static let kHueRecentBridgeId: String = "hueRecentBridgeId"
+    static let kHueRecentBridgeIp: String = "hueRecentBridgeIp"
+    static let kHueFoundBridges: String = "hueFoundBridges"
 }
 
 protocol TTModeHueDelegate {
@@ -63,6 +64,8 @@ class TTModeHue: TTMode {
     var bridgeSearch: PHBridgeSearching!
     var delegate: TTModeHueDelegate?
     var foundBridges: [String: String] = [:]
+    var bridgeToken: dispatch_once_t = 0
+    var bridgesTried: [String] = []
 
     required init() {
         super.init()
@@ -80,6 +83,8 @@ class TTModeHue: TTMode {
         phHueSdk = PHHueSDK()
         phHueSdk.startUpSDK()
         phHueSdk.enableLogging(false)
+        
+        bridgesTried = []
         
         let notificationManager = PHNotificationManager.defaultManager()
         
@@ -420,12 +425,14 @@ class TTModeHue: TTMode {
      */
     func checkConnectionState() {
         if !phHueSdk.localConnected() {
-            self.showNoConnectionDialog()
+//            self.showNoConnectionDialog()
+            self.searchForBridgeLocal()
         } else {
             // One of the connections is made, remove popups and loading views
             if hueState != .Connected {
                 hueState = .Connected
                 self.delegate?.changeState(hueState, mode: self, message: nil)
+                self.saveBridge()
                 self.ensureScenes()
             }
         }
@@ -444,6 +451,7 @@ class TTModeHue: TTMode {
      */
     
     func showNoBridgesFoundDialog() {
+        // Insert retry logic here
         NSLog("Could not find bridge!")
         hueState = .NotConnected
         self.delegate?.changeState(hueState, mode: self, message: "Could not find any Hue bridges")
@@ -471,51 +479,93 @@ class TTModeHue: TTMode {
         hueState = .Connecting
         self.delegate?.changeState(hueState, mode: self, message: "Searching for a Hue bridge...")
         
+        // Add dispatch_once token
         let prefs = NSUserDefaults.standardUserDefaults()
-        
-        if let bridgeId = prefs.objectForKey(TTModeHueConstants.kHueBridgeId),
-            bridgeIp = prefs.objectForKey(TTModeHueConstants.kHueBridgeIp) {
-            self.bridgeSelectedWithIpAddress(bridgeIp as! String, andBridgeId: bridgeId as! String)
-//            return
+        if let recentBridgeId = prefs.objectForKey(TTModeHueConstants.kHueRecentBridgeId),
+            recentBridgeIp = prefs.objectForKey(TTModeHueConstants.kHueRecentBridgeIp) {
+            if bridgesTried.contains(recentBridgeIp as! String) {
+                // If can't connect to a specific bridge, take it off recent prefs.
+                prefs.removeObjectForKey(TTModeHueConstants.kHueRecentBridgeId)
+                prefs.removeObjectForKey(TTModeHueConstants.kHueRecentBridgeIp)
+                prefs.synchronize()
+
+                if let foundBridges = prefs.arrayForKey(TTModeHueConstants.kHueFoundBridges) as? [[String: String]] {
+                    for foundBridge: [String: String] in foundBridges {
+                        if !bridgesTried.contains(foundBridge["ipAddress"]!) {
+                            self.bridgeSelectedWithIpAddress(foundBridge["ipAddress"]!, andBridgeId: foundBridge["bridgeId"]!)
+                            return
+                        }
+                    }
+                }
+            } else {
+                self.bridgeSelectedWithIpAddress(recentBridgeIp as! String, andBridgeId: recentBridgeId as! String)
+                return
+            }
         }
         
-        self.bridgeSearch = PHBridgeSearching(upnpSearch: true, andPortalSearch: true, andIpAdressSearch: true)
-        self.bridgeSearch.startSearchWithCompletionHandler({(bridgesFound: [NSObject : AnyObject]!) -> Void in
-            /***************************************************
-             The search is complete, check whether we found a bridge
-             *****************************************************/
-            // Check for results
-            if bridgesFound.count > 0 {
-                self.hueState = .BridgeSelect
-                self.delegate?.changeState(self.hueState, mode: self, message: bridgesFound)
-            } else {
+        dispatch_once(&self.bridgeToken) {
+            self.bridgeSearch = PHBridgeSearching(upnpSearch: true, andPortalSearch: true, andIpAdressSearch: false)
+            self.bridgeSearch.startSearchWithCompletionHandler({(bridgesFound: [NSObject : AnyObject]!) -> Void in
                 /***************************************************
-                 No bridge was found was found. Tell the user and offer to retry..
+                 The search is complete, check whether we found a bridge
                  *****************************************************/
-                // No bridges were found, show this to the user
-                self.showNoBridgesFoundDialog()
-            }
-        })
+                // Check for results
+                if bridgesFound.count > 0 {
+                    self.hueState = .BridgeSelect
+                    self.delegate?.changeState(self.hueState, mode: self, message: bridgesFound)
+                } else {
+                    /***************************************************
+                     No bridge was found was found. Tell the user and offer to retry..
+                     *****************************************************/
+                    // No bridges were found, show this to the user
+                    self.showNoBridgesFoundDialog()
+                }
+                
+                self.bridgeToken = 0
+            })
+        }
     }
     
     func bridgeSelectedWithIpAddress(ipAddress: String, andBridgeId bridgeId: String) {
         print(" ---> Selected bridge: \(ipAddress) - \(bridgeId)")
         let prefs = NSUserDefaults.standardUserDefaults()
         
-        prefs.setObject(bridgeId, forKey: TTModeHueConstants.kHueBridgeId)
-        prefs.setObject(ipAddress, forKey: TTModeHueConstants.kHueBridgeIp)
+        prefs.setObject(bridgeId, forKey: TTModeHueConstants.kHueRecentBridgeId)
+        prefs.setObject(ipAddress, forKey: TTModeHueConstants.kHueRecentBridgeIp)
         prefs.synchronize()
+        
+        bridgesTried.append(ipAddress)
         
         hueState = .Connecting
         self.delegate?.changeState(hueState, mode: self, message: "Connecting to Hue bridge...")
-        //    NSString *macAddress = [[bridgesFound allKeys] objectAtIndex:1];
-        //    NSString *ipAddress = [bridgesFound objectForKey:macAddress];
         phHueSdk.setBridgeToUseWithId(bridgeId, ipAddress: ipAddress)
+        
         let delay = 1 * Double(NSEC_PER_SEC)
         let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
         dispatch_after(time, dispatch_get_main_queue()) {
             self.enableLocalHeartbeat()
         }
+    }
+    
+    func saveBridge() {
+        bridgesTried = []
+        
+        let prefs = NSUserDefaults.standardUserDefaults()
+        if let recentBridgeId = prefs.objectForKey(TTModeHueConstants.kHueRecentBridgeId),
+            recentBridgeIp = prefs.objectForKey(TTModeHueConstants.kHueRecentBridgeIp) {
+            if var foundBridges = prefs.arrayForKey(TTModeHueConstants.kHueFoundBridges) as? [[String: String]] {
+                let saved = foundBridges.contains({ (foundBridge) -> Bool in
+                    foundBridge["ipAddress"] == recentBridgeIp as? String
+                })
+                if !saved {
+                    foundBridges.append(["ipAddress": recentBridgeIp as! String, "bridgeId": recentBridgeId as! String])
+                    print(" ---> Saving new bridge: \(foundBridges)")
+                    prefs.setObject(foundBridges, forKey: TTModeHueConstants.kHueFoundBridges)
+                    prefs.synchronize()
+                }
+            }
+        }
+
     }
     
     /**
@@ -604,6 +654,7 @@ class TTModeHue: TTMode {
 //        PHNotificationManager.defaultManager().deregisterObjectForAllNotifications(self)
         hueState = .Connected
         self.delegate?.changeState(hueState, mode: self, message: nil)
+        self.saveBridge()
         self.disableLocalHeartbeat()
         // Start local heartbeat
         self.performSelector(#selector(self.enableLocalHeartbeat), withObject: nil, afterDelay: 1)
@@ -625,6 +676,7 @@ class TTModeHue: TTMode {
      */
     
     func noLocalBridge() {
+        print(" No local bridge!!")
         // Deregister for all notifications
 //        PHNotificationManager.defaultManager().deregisterObjectForAllNotifications(self)
         // Inform delegate
@@ -711,7 +763,7 @@ class TTModeHue: TTMode {
             scene.identifier = "TT-loop"
             scene.lightIdentifiers = cache.lights.map { (_, value) in (value as! PHLight).identifier }
             bridgeSendAPI.saveSceneWithCurrentLightStates(scene, completionHandler: {(errors) in
-                print("Hue:Loop scene: \(errors)")
+//                print("Hue:Loop scene: \(errors)")
                 for (_, value) in cache.lights {
                     let light = value as! PHLight
                     let lightState: PHLightState = PHLightState()
@@ -719,7 +771,7 @@ class TTModeHue: TTMode {
                     lightState.alert = PHLightAlertMode.init(0)
                     lightState.effect = EFFECT_COLORLOOP
                     bridgeSendAPI.saveLightState(lightState, forLightIdentifier: light.identifier, inSceneWithIdentifier: scene.identifier, completionHandler: {(errors) in
-                        print("Hue:Loop light: \(errors)")
+//                        print("Hue:Loop light: \(errors)")
                     })
                 }
             })
@@ -731,7 +783,7 @@ class TTModeHue: TTMode {
             scene.identifier = "TT-ee-1"
             scene.lightIdentifiers = cache.lights.map { (_, value) in (value as! PHLight).identifier }
             bridgeSendAPI.saveSceneWithCurrentLightStates(scene, completionHandler: {(errors) in
-                print("Hue:EE1 scene: \(errors)")
+//                print("Hue:EE1 scene: \(errors)")
                 for (_, value) in cache.lights {
                     let light = value as! PHLight
                     let lightState = PHLightState()
@@ -743,7 +795,7 @@ class TTModeHue: TTMode {
                     lightState.brightness = NSNumber(integer: Int(MAX_BRIGHTNESS))
                     lightState.saturation = NSNumber(integer: Int(MAX_BRIGHTNESS))
                     bridgeSendAPI.saveLightState(lightState, forLightIdentifier: light.identifier, inSceneWithIdentifier: scene.identifier, completionHandler: {(errors) in
-                        print("Hue:EE1 scene: \(errors)")
+//                        print("Hue:EE1 scene: \(errors)")
                     })
                 }
             })
@@ -755,7 +807,7 @@ class TTModeHue: TTMode {
             scene.identifier = "TT-ee-2"
             scene.lightIdentifiers = cache.lights.map { (_, value) in (value as! PHLight).identifier }
             bridgeSendAPI.saveSceneWithCurrentLightStates(scene, completionHandler: {(errors) in
-                print("Hue:EE2 scene: \(errors)")
+//                print("Hue:EE2 scene: \(errors)")
                 for (i, (_, value)) in cache.lights.enumerate() {
                     let light = value as! PHLight
                     let lightState = PHLightState()
@@ -770,7 +822,7 @@ class TTModeHue: TTMode {
                     lightState.brightness = NSNumber(int: 200)
                     lightState.saturation = NSNumber(integer: Int(MAX_BRIGHTNESS))
                     bridgeSendAPI.saveLightState(lightState, forLightIdentifier: light.identifier, inSceneWithIdentifier: scene.identifier, completionHandler: {(errors) in
-                        print("Hue:EE2 scene: \(errors)")
+//                        print("Hue:EE2 scene: \(errors)")
                     })
                 }
             })
@@ -782,7 +834,7 @@ class TTModeHue: TTMode {
             scene.identifier = "TT-le-1"
             scene.lightIdentifiers = cache.lights.map { (_, value) in (value as! PHLight).identifier }
             bridgeSendAPI.saveSceneWithCurrentLightStates(scene, completionHandler: {(errors) in
-                print("Hue:LE1 scene: \(errors)")
+//                print("Hue:LE1 scene: \(errors)")
                 for (_, value) in cache.lights {
                     let light = value as! PHLight
                     let lightState = PHLightState()
@@ -794,7 +846,7 @@ class TTModeHue: TTMode {
                     lightState.brightness = NSNumber(integer: Int(Double(MAX_BRIGHTNESS)*(6/10.0)))
                     lightState.saturation = NSNumber(integer: Int(MAX_BRIGHTNESS))
                     bridgeSendAPI.saveLightState(lightState, forLightIdentifier: light.identifier, inSceneWithIdentifier: scene.identifier, completionHandler: {(errors) in
-                        print("Hue:LE1 scene: \(errors)")
+//                        print("Hue:LE1 scene: \(errors)")
                     })
                 }
             })
@@ -806,7 +858,7 @@ class TTModeHue: TTMode {
             scene.identifier = "TT-le-2"
             scene.lightIdentifiers = cache.lights.map { (_, value) in (value as! PHLight).identifier }
             bridgeSendAPI.saveSceneWithCurrentLightStates(scene, completionHandler: {(errors) in
-                print("Hue:LE2 scene: \(errors)")
+//                print("Hue:LE2 scene: \(errors)")
                 for (i, (_, value)) in cache.lights.enumerate() {
                     let light = value as! PHLight
                     let lightState = PHLightState()
@@ -822,7 +874,7 @@ class TTModeHue: TTMode {
                     lightState.y = NSNumber(float: Float(point.y))
                     lightState.saturation = NSNumber(integer: Int(MAX_BRIGHTNESS))
                     bridgeSendAPI.saveLightState(lightState, forLightIdentifier: light.identifier, inSceneWithIdentifier: scene.identifier, completionHandler: {(errors) in
-                        print("Hue:LE2 scene: \(errors)")
+//                        print("Hue:LE2 scene: \(errors)")
                     })
                 }
             })
