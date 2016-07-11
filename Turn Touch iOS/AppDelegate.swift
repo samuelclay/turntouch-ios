@@ -38,12 +38,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0)) {
             self.beginLocationUpdates()
-//            self.bluetoothMonitor.updateBluetoothState(false)
+            self.bluetoothMonitor.updateBluetoothState(false)
         }
         
         dispatch_async(dispatch_get_main_queue()) { 
 //            appDelegate().mainViewController.showPairingModal()
         }
+        
+//        print(NSUserDefaults.standardUserDefaults().dictionaryRepresentation())
         
         return true
     }

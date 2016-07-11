@@ -553,16 +553,15 @@ class TTModeHue: TTMode {
         let prefs = NSUserDefaults.standardUserDefaults()
         if let recentBridgeId = prefs.objectForKey(TTModeHueConstants.kHueRecentBridgeId),
             recentBridgeIp = prefs.objectForKey(TTModeHueConstants.kHueRecentBridgeIp) {
-            if var foundBridges = prefs.arrayForKey(TTModeHueConstants.kHueFoundBridges) as? [[String: String]] {
-                let saved = foundBridges.contains({ (foundBridge) -> Bool in
-                    foundBridge["ipAddress"] == recentBridgeIp as? String
-                })
-                if !saved {
-                    foundBridges.append(["ipAddress": recentBridgeIp as! String, "bridgeId": recentBridgeId as! String])
-                    print(" ---> Saving new bridge: \(foundBridges)")
-                    prefs.setObject(foundBridges, forKey: TTModeHueConstants.kHueFoundBridges)
-                    prefs.synchronize()
-                }
+            var foundBridges = prefs.arrayForKey(TTModeHueConstants.kHueFoundBridges) as? [[String: String]] ?? []
+            let saved = foundBridges.contains({ (foundBridge) -> Bool in
+                foundBridge["ipAddress"] == recentBridgeIp as? String
+            })
+            if !saved {
+                foundBridges.append(["ipAddress": recentBridgeIp as! String, "bridgeId": recentBridgeId as! String])
+                print(" ---> Saving new bridge: \(foundBridges)")
+                prefs.setObject(foundBridges, forKey: TTModeHueConstants.kHueFoundBridges)
+                prefs.synchronize()
             }
         }
 
