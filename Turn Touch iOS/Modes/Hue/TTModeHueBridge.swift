@@ -24,7 +24,7 @@ class TTModeHueBridge: TTOptionsDetailViewController, UITableViewDelegate, UITab
         self.view.translatesAutoresizingMaskIntoConstraints = false
         self.tableView.allowsSelection = true
         
-        tableHeightConstraint.constant = CGFloat(self.bridgesFound.count * 44)
+        tableHeightConstraint.constant = CGFloat(self.bridgesFound.count * 44 * 4)
     }
 
     func setBridges(foundBridges: [String: String]?) {
@@ -37,7 +37,7 @@ class TTModeHueBridge: TTOptionsDetailViewController, UITableViewDelegate, UITab
         print(" ---> Found hue bridges: \(self.bridgesFound)")
         self.tableView.reloadData()
         
-        tableHeightConstraint.constant = CGFloat(self.bridgesFound.count * 44)
+        tableHeightConstraint.constant = CGFloat(self.bridgesFound.count * 44 * 4)
         self.view.layoutIfNeeded()
     }
     
@@ -49,7 +49,7 @@ class TTModeHueBridge: TTOptionsDetailViewController, UITableViewDelegate, UITab
     // MARK: Table view data source
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.bridgesFound.count
+        return self.bridgesFound.count * 4
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -59,8 +59,8 @@ class TTModeHueBridge: TTOptionsDetailViewController, UITableViewDelegate, UITab
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = TTTitleMenuCell(style: .Subtitle, reuseIdentifier: nil)
         
-        cell.textLabel?.text = self.sortedBridgeKeys[indexPath.row]
-        cell.detailTextLabel?.text = self.bridgesFound[self.sortedBridgeKeys[indexPath.row]]
+        cell.textLabel?.text = self.sortedBridgeKeys[indexPath.row%self.sortedBridgeKeys.count]
+        cell.detailTextLabel?.text = self.bridgesFound[self.sortedBridgeKeys[indexPath.row%self.sortedBridgeKeys.count]]
         
         cell.accessoryType = .DisclosureIndicator
         cell.selectionStyle = .Gray
@@ -72,7 +72,7 @@ class TTModeHueBridge: TTOptionsDetailViewController, UITableViewDelegate, UITab
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let bridgeId = self.sortedBridgeKeys[indexPath.row]
+        let bridgeId = self.sortedBridgeKeys[indexPath.row%self.sortedBridgeKeys.count]
         let ipAddress = self.bridgesFound[bridgeId]
         
         self.modeHue.bridgeSelectedWithIpAddress(ipAddress!, andBridgeId: bridgeId)

@@ -11,6 +11,7 @@ import CoreFoundation
 
 struct TTModeWemoConstants {
     static let kWemoDeviceLocation = "wemoDeviceLocation"
+    static let kWemoFoundDevices = "wemoFoundDevices"
 }
 
 enum TTWemoState {
@@ -34,6 +35,34 @@ class TTModeWemo: TTMode, TTModeWemoMulticastDelegate, TTModeWemoDeviceDelegate 
         super.init()
         
         TTModeWemo.multicastServer.delegate = self
+        
+        self.assembleFoundDevices()
+        
+        if TTModeWemo.foundDevices.count == 0 {
+            wemoState = .Connecting
+//            self.beginConnectingToWemo()
+        } else {
+            wemoState = .Connected
+        }
+        delegate?.changeState(wemoState, mode: self)
+    }
+    
+    func resetKnownDevices() {
+        let prefs = NSUserDefaults.standardUserDefaults()
+        prefs.removeObjectForKey(TTModeWemoConstants.kWemoFoundDevices)
+        prefs.synchronize()
+    }
+    
+    func assembleFoundDevices() {
+        let prefs = NSUserDefaults.standardUserDefaults()
+        TTModeWemo.foundDevices = []
+
+        if let foundDevices = prefs.arrayForKey(TTModeWemoConstants.kWemoFoundDevices) as? [[String: AnyObject]] {
+            for device in foundDevices {
+                let newDevice = self.foundDevice([:], host: device["ipaddress"] as! String, port: device["port"] as! Int, name: device["name"] as! String?, live: false)
+                print(" ---> Loading wemo: \(newDevice.deviceName) (\(newDevice.location()))")
+            }
+        }
     }
     
     override class func title() -> String {
@@ -106,12 +135,6 @@ class TTModeWemo: TTMode, TTModeWemoMulticastDelegate, TTModeWemoDeviceDelegate 
     // MARK: Action methods
     
     override func activate() {
-        if TTModeWemo.foundDevices.count == 0 {
-            wemoState = .Connecting
-            self.beginConnectingToWemo()
-        } else {
-            wemoState = .Connected
-        }
         delegate?.changeState(wemoState, mode: self)
     }
     
@@ -180,36 +203,44 @@ class TTModeWemo: TTMode, TTModeWemoMulticastDelegate, TTModeWemoDeviceDelegate 
     
     // MARK: Multicast delegate
     
-    func foundDevice(headers: NSDictionary, host ipAddress: String, port: Int) {
-        var alreadyFound = false
-        
+    func foundDevice(headers: [String: String], host ipAddress: String, port: Int, name: String?, live: Bool) -> TTModeWemoDevice {
         let newDevice = TTModeWemoDevice(ipAddress: ipAddress, port: port)
         newDevice.delegate = self
+        if name != nil {
+            newDevice.deviceName = name!
+        }
         
         for device in TTModeWemo.foundDevices {
             if device.isEqualToDevice(newDevice) {
-                alreadyFound = true
-                break
+                // Already found
+                return device
             }
-        }
-        
-        if alreadyFound {
-            return
         }
         
         TTModeWemo.foundDevices.append(newDevice)
 
         newDevice.requestDeviceInfo()
+        
+        return newDevice
     }
     
     // MARK: Device delegate
     
     func deviceReady(device: TTModeWemoDevice) {
+        let prefs = NSUserDefaults.standardUserDefaults()
+
         TTModeWemo.foundDevices = TTModeWemo.foundDevices.sort {
             (a, b) -> Bool in
             return a.deviceName?.lowercaseString < b.deviceName?.lowercaseString
         }
         
+        var foundDevices: [[String: AnyObject]] = []
+        for device in TTModeWemo.foundDevices {
+            foundDevices.append(["ipaddress": device.ipAddress, "port": device.port, "name": device.deviceName])
+        }
+        prefs.setObject(foundDevices, forKey: TTModeWemoConstants.kWemoFoundDevices)
+        prefs.synchronize()
+
         wemoState = .Connected
         delegate?.changeState(wemoState, mode: self)
     }

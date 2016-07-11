@@ -9,15 +9,15 @@
 import UIKit
 import CocoaAsyncSocket
 
-let MULTICASE_GROUP_IP = "239.255.255.250"
+let MULTICAST_GROUP_IP = "239.255.255.250"
 
 protocol TTModeWemoMulticastDelegate {
-    func foundDevice(headers: NSDictionary, host: String, port: Int)
+    func foundDevice(headers: [String: String], host: String, port: Int, name: String?, live: Bool) -> TTModeWemoDevice
 }
 
 class TTModeWemoMulticastServer: NSObject, GCDAsyncUdpSocketDelegate {
 
-    var delegate: TTModeWemoMulticastDelegate!
+    var delegate: TTModeWemoMulticastDelegate?
     var udpSocket: GCDAsyncUdpSocket!
     var attemptsLeft: Int = 0
 
@@ -27,8 +27,12 @@ class TTModeWemoMulticastServer: NSObject, GCDAsyncUdpSocketDelegate {
     }
     
     func deactivate() {
+        
+    }
+    
+    deinit {
         do {
-            try udpSocket.leaveMulticastGroup(MULTICASE_GROUP_IP)
+            try udpSocket.leaveMulticastGroup(MULTICAST_GROUP_IP)
         } catch let e {
             print(" ---> Multicast error: \(e)")
         }
@@ -49,7 +53,7 @@ class TTModeWemoMulticastServer: NSObject, GCDAsyncUdpSocketDelegate {
             }
             
             do {
-                try udpSocket.joinMulticastGroup(MULTICASE_GROUP_IP)
+                try udpSocket.joinMulticastGroup(MULTICAST_GROUP_IP)
             } catch let e {
                 print(" ---> Error joining multicast group: \(e)")
             }
@@ -69,7 +73,7 @@ class TTModeWemoMulticastServer: NSObject, GCDAsyncUdpSocketDelegate {
                        "USER-AGENT: Turn Touch iOS Wemo Finder",
                        "", ""].joinWithSeparator("\r\n")
         let data = message.dataUsingEncoding(NSUTF8StringEncoding)
-        udpSocket.sendData(data, toHost: MULTICASE_GROUP_IP, port: 1900, withTimeout: NSTimeInterval(5), tag: 0)
+        udpSocket.sendData(data, toHost: MULTICAST_GROUP_IP, port: 1900, withTimeout: NSTimeInterval(5), tag: 0)
         let tt = dispatch_time(DISPATCH_TIME_NOW, Int64(5 * Double(NSEC_PER_SEC)));
         dispatch_after(tt, dispatch_get_main_queue()) {
             if self.attemptsLeft == 0 || self.udpSocket == nil {
@@ -103,7 +107,7 @@ class TTModeWemoMulticastServer: NSObject, GCDAsyncUdpSocketDelegate {
                     let locationPort = setupXmlUrl?.port?.integerValue
                     
                     if locationHost != nil && locationPort != nil {
-                        delegate.foundDevice(headers, host: locationHost!, port: locationPort!)
+                        delegate?.foundDevice(headers, host: locationHost!, port: locationPort!, name: nil, live: true)
                     }
                 }
             }

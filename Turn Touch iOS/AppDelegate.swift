@@ -19,11 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     @IBOutlet var mainViewController: TTMainViewController!
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        let prefs = NSUserDefaults.standardUserDefaults()
-        let defaultPrefsFile = NSBundle.mainBundle().pathForResource("Preferences", ofType: "plist")
-        let defaultPrefs = NSDictionary(contentsOfFile: defaultPrefsFile!) as! [String: AnyObject]
-        prefs.registerDefaults(defaultPrefs)
-        prefs.synchronize()
+        self.loadPreferences()
         
         let centralManagerIdentifiers = launchOptions?[UIApplicationLaunchOptionsBluetoothCentralsKey]
         if centralManagerIdentifiers != nil {
@@ -79,7 +75,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     func applicationWillEnterForeground(application: UIApplication) {
         // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
         print("applicationWillEnterForeground")
-
     }
 
     func applicationDidBecomeActive(application: UIApplication) {
@@ -91,6 +86,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         bluetoothMonitor.terminate()
         let prefs = NSUserDefaults.standardUserDefaults()
+        prefs.synchronize()
+    }
+    
+    func loadPreferences() {
+        let prefs = NSUserDefaults.standardUserDefaults()
+        let defaultPrefsFile = NSBundle.mainBundle().pathForResource("Preferences", ofType: "plist")
+        let defaultPrefs = NSDictionary(contentsOfFile: defaultPrefsFile!) as! [String: AnyObject]
+        
+        prefs.registerDefaults(defaultPrefs)
         prefs.synchronize()
     }
     

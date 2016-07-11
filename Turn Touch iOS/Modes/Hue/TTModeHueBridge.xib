@@ -24,7 +24,7 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="280"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N1L-Zw-odV">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N1L-Zw-odV" userLabel="Refresh Button">
                     <rect key="frame" x="564" y="22" width="20" height="20"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="20" id="db2-EW-HPp"/>
@@ -61,7 +61,7 @@
                 <constraint firstItem="ZrH-Wt-oFd" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="16" id="IK4-i9-kxz"/>
                 <constraint firstItem="ZrH-Wt-oFd" firstAttribute="top" secondItem="N1L-Zw-odV" secondAttribute="bottom" constant="8" id="OSf-Nh-o4c"/>
                 <constraint firstAttribute="trailing" secondItem="N1L-Zw-odV" secondAttribute="trailing" constant="16" id="Xd5-Xh-H3b"/>
-                <constraint firstAttribute="bottomMargin" secondItem="ZrH-Wt-oFd" secondAttribute="bottom" constant="16" id="eA8-N9-duU"/>
+                <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="ZrH-Wt-oFd" secondAttribute="bottom" constant="16" id="fCP-hq-ijE"/>
                 <constraint firstAttribute="trailing" secondItem="ZrH-Wt-oFd" secondAttribute="trailing" constant="16" id="v3p-ff-V8l"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
