@@ -34,16 +34,27 @@ class TTDevice: NSObject {
     
     init(peripheral newPeripheral: CBPeripheral) {
         super.init()
+        
         peripheral = newPeripheral
         uuid = peripheral.identifier.UUIDString
+        
+        let prefs = NSUserDefaults.standardUserDefaults()
+        let nicknameKey = "TT:device:\(uuid):nickname"
+        nickname = prefs.stringForKey(nicknameKey)
     }
     
     override var description : String {
-        let connected = state == .DEVICE_STATE_CONNECTED ? "connected" : "X"
+        let connected = self.stateLabel()
         let paired = isPaired ? "PAIRED" : "unpaired"
         let uuidSubstr = NSString(string: uuid).substringToIndex(8)
         
         return "\(uuidSubstr) / \(nickname) (\(connected)-\(paired))"
+    }
+    
+    func stateLabel() -> String {
+        return state == .DEVICE_STATE_CONNECTED ? "connected" :
+            state == .DEVICE_STATE_SEARCHING ? "searching" :
+            state == .DEVICE_STATE_CONNECTING ? "connecting" : "X"
     }
     
     func setNicknameData(nicknameData: NSData) {
@@ -73,9 +84,9 @@ class TTDevice: NSObject {
         isFirmwareOld = firmwareVersion < latestVersion
     }
     
-    func conncted() -> Bool {
+    func connected() -> Bool {
         let bluetoothConnected = peripheral.state == CBPeripheralState.Connected
-        let connecting = state == .DEVICE_STATE_CONNECTED || state == .DEVICE_STATE_CONNECTING
+        let connecting = state == .DEVICE_STATE_CONNECTED //|| state == .DEVICE_STATE_CONNECTING
         
         return bluetoothConnected && connecting
     }

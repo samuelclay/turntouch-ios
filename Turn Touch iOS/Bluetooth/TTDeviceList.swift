@@ -84,7 +84,7 @@ class TTDeviceList: NSObject {
             print(" ---> Already added device and not adding again: \(addDevice)")
         }
         
-        addDevice.state = .DEVICE_STATE_SEARCHING
+        addDevice.state = .DEVICE_STATE_DISCONNECTED
     }
 
     func removePeripheral(peripheral: CBPeripheral) {
@@ -115,12 +115,12 @@ class TTDeviceList: NSObject {
         var updatedConnectedDevices: [TTDevice] = []
         
         for device: TTDevice in devices {
-            if device.conncted() {
-                updatedConnectedDevices.append(device)
-                device.isPaired = self.isDevicePaired(device)
-            } else {
+            if device.state == .DEVICE_STATE_CONNECTED && device.peripheral.state == .Disconnected {
                 device.peripheral.delegate = nil
                 device.peripheral = nil
+//                device.isPaired = self.isDevicePaired(device)
+            } else {
+                updatedConnectedDevices.append(device)
             }
         }
         
@@ -130,7 +130,7 @@ class TTDeviceList: NSObject {
     func connectedDeviceAtIndex(index: Int) -> TTDevice? {
         var i = 0
         for device: TTDevice in devices {
-            if device.conncted() {
+            if device.connected() {
                 if i == index {
                     return device
                 }
@@ -167,7 +167,7 @@ class TTDeviceList: NSObject {
     func connectedCount() -> Int {
         var count = 0
         for device: TTDevice in devices {
-            if device.conncted() {
+            if device.connected() {
                 count += 1
             }
         }

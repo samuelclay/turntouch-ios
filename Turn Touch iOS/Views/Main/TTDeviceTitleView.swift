@@ -12,6 +12,7 @@ class TTDeviceTitleView: UIView, TTTitleMenuDelegate {
 
     var device: TTDevice!
     var titleLabel: UILabel = UILabel()
+    var stateLabel: UILabel = UILabel()
     var deviceImageView: UIImageView = UIImageView()
     @IBOutlet var settingsButton = UIButton(type: UIButtonType.System) as UIButton!
 
@@ -59,6 +60,16 @@ class TTDeviceTitleView: UIView, TTTitleMenuDelegate {
         self.addConstraint(NSLayoutConstraint(item: settingsButton, attribute: NSLayoutAttribute.CenterY, relatedBy: .Equal,
             toItem: self, attribute: .CenterY, multiplier: 1.0, constant: 0))
         
+        stateLabel.font = UIFont(name: "Effra", size: 13)
+        stateLabel.textColor = UIColor(hex: 0x808AA0)
+        stateLabel.translatesAutoresizingMaskIntoConstraints = false
+        stateLabel.textAlignment = .Right
+        self.addSubview(stateLabel)
+        self.addConstraint(NSLayoutConstraint(item: stateLabel, attribute: .Right, relatedBy: .Equal,
+            toItem: settingsButton, attribute: .Left, multiplier: 1.0, constant: -12))
+        self.addConstraint(NSLayoutConstraint(item: stateLabel, attribute: .CenterY, relatedBy: .Equal,
+            toItem: self, attribute: .CenterY, multiplier: 1.0, constant: 0))
+
         self.registerAsObserver()
     }
     
@@ -92,6 +103,7 @@ class TTDeviceTitleView: UIView, TTTitleMenuDelegate {
     override func drawRect(rect: CGRect) {
         deviceImageView.image = UIImage(named:"remote_graphic")
         titleLabel.text = device.nickname
+        stateLabel.text = device.stateLabel()
         
         super.drawRect(rect)
         

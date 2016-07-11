@@ -35,6 +35,7 @@ class TTDeviceTitlesView: UIStackView {
         appDelegate().modeMap.addObserver(self, forKeyPath: "inspectingModeDirection", options: [], context: nil)
         appDelegate().bluetoothMonitor.addObserver(self, forKeyPath: "nicknamedConnectedCount", options: [], context: nil)
         appDelegate().bluetoothMonitor.addObserver(self, forKeyPath: "pairedDevicesCount", options: [], context: nil)
+        appDelegate().bluetoothMonitor.addObserver(self, forKeyPath: "knownDevicesCount", options: [], context: nil)
     }
     
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?,
@@ -43,6 +44,8 @@ class TTDeviceTitlesView: UIStackView {
             if keyPath == "nicknamedConnectedCount" {
                 self.assembleDeviceTitles()
             } else if keyPath == "pairedDevicesCount" {
+                self.assembleDeviceTitles()
+            } else if keyPath == "knownDevicesCount" {
                 self.assembleDeviceTitles()
             }
         }
@@ -55,6 +58,7 @@ class TTDeviceTitlesView: UIStackView {
         appDelegate().modeMap.removeObserver(self, forKeyPath: "inspectingModeDirection")
         appDelegate().bluetoothMonitor.removeObserver(self, forKeyPath: "nicknamedConnectedCount")
         appDelegate().bluetoothMonitor.removeObserver(self, forKeyPath: "pairedDevicesCount")
+        appDelegate().bluetoothMonitor.removeObserver(self, forKeyPath: "knownDevicesCount")
     }
     
     // MARK: Drawing
@@ -65,7 +69,7 @@ class TTDeviceTitlesView: UIStackView {
     
     func assembleDeviceTitles() {
         var deviceTitleConstraints: [NSLayoutConstraint] = []
-        let devices = appDelegate().bluetoothMonitor.foundDevices.nicknamedConnected()
+        let devices = appDelegate().bluetoothMonitor.foundDevices.devices
         
         self.removeConstraints(self.constraints)
         for subview in self.arrangedSubviews {

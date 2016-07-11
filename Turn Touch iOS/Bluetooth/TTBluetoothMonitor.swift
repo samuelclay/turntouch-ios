@@ -51,12 +51,13 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
     dynamic var pairedDevicesCount: NSNumber?
     dynamic var unpairedDevicesCount: NSNumber?
     dynamic var unpairedConnectingCount: NSNumber?
+    dynamic var knownDevicesCount: NSNumber?
     
     override init() {
         super.init()
         
         manager = CBCentralManager(delegate: self, queue: dispatch_get_global_queue(QOS_CLASS_BACKGROUND, 0),
-                                   options: [CBCentralManagerOptionRestoreIdentifierKey: "centralManagerIdentifier",
+                                   options: [CBCentralManagerOptionRestoreIdentifierKey: "TTcentralManageRestoreIdentifier",
                                     CBConnectPeripheralOptionNotifyOnDisconnectionKey: NSNumber(bool: true),
                                     CBConnectPeripheralOptionNotifyOnConnectionKey: NSNumber(bool: true),
                                     CBConnectPeripheralOptionNotifyOnNotificationKey: NSNumber(bool: true)])
@@ -134,17 +135,20 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
                     knownDevicesStillDisconnected = true
                 }
                 
-                bluetoothState = .BT_STATE_CONNECTING_KNOWN
-                if DEBUG_BLUETOOTH {
-                    print(" ---> (\(bluetoothState)) Attempting connect to known: \(foundDevice)")
+                if foundDevice!.state == .DEVICE_STATE_DISCONNECTED {
+                    bluetoothState = .BT_STATE_CONNECTING_KNOWN
+//                    if DEBUG_BLUETOOTH {
+                        print(" ---> (\(bluetoothState)) Attempting connect to known: \(foundDevice)")
+//                    }
+//
+//                    manager.cancelPeripheralConnection(peripheral)
+                    
+                    foundDevice!.state = .DEVICE_STATE_SEARCHING
+                    manager.connectPeripheral(peripheral, options: [CBCentralManagerOptionRestoreIdentifierKey: "TTcentralManageRestoreIdentifier",
+                        CBConnectPeripheralOptionNotifyOnDisconnectionKey: NSNumber(bool: true),
+                        CBConnectPeripheralOptionNotifyOnConnectionKey: NSNumber(bool: true),
+                        CBConnectPeripheralOptionNotifyOnNotificationKey: NSNumber(bool: true)])
                 }
-                
-    //            manager.cancelPeripheralConnection(peripheral)
-                
-                manager.connectPeripheral(peripheral, options: [CBCentralManagerOptionRestoreIdentifierKey: "centralManagerIdentifier",
-                    CBConnectPeripheralOptionNotifyOnDisconnectionKey: NSNumber(bool: true),
-                    CBConnectPeripheralOptionNotifyOnConnectionKey: NSNumber(bool: true),
-                    CBConnectPeripheralOptionNotifyOnNotificationKey: NSNumber(bool: true)])
             }
         }
         
@@ -162,24 +166,24 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
         
         // Search for unpaired devices or paired devices that aren't responding to `connectPeripheral`
         
-        dispatch_once(&onceUnknownToken) {
-            let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(5 * Double(NSEC_PER_SEC)))
-            dispatch_after(delayTime, dispatch_get_main_queue(), {
-                self.onceUnknownToken = 0
-                if self.bluetoothState != .BT_STATE_SCANNING_KNOWN && self.bluetoothState != .BT_STATE_CONNECTING_KNOWN {
-                    if DEBUG_BLUETOOTH {
-                        print(" ---> (\(self.bluetoothState)) Not scanning for unpaired, since not scanning known.")
-                    }
-                    return
-                }
-                
-                if DEBUG_BLUETOOTH {
-                    print(" ---> (\(self.bluetoothState)) Starting scan for unpaired...")
-                }
-                self.stopScan()
-                self.scanUnknown()
-            })
-        }
+//        dispatch_once(&onceUnknownToken) {
+//            let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(5 * Double(NSEC_PER_SEC)))
+//            dispatch_after(delayTime, dispatch_get_main_queue(), {
+//                self.onceUnknownToken = 0
+//                if self.bluetoothState != .BT_STATE_SCANNING_KNOWN && self.bluetoothState != .BT_STATE_CONNECTING_KNOWN {
+//                    if DEBUG_BLUETOOTH {
+//                        print(" ---> (\(self.bluetoothState)) Not scanning for unpaired, since not scanning known.")
+//                    }
+//                    return
+//                }
+//                
+//                if DEBUG_BLUETOOTH {
+//                    print(" ---> (\(self.bluetoothState)) Starting scan for unpaired...")
+//                }
+//                self.stopScan()
+//                self.scanUnknown()
+//            })
+//        }
     }
     
     func scanUnknown() {
@@ -228,12 +232,17 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
     func centralManager(central: CBCentralManager, willRestoreState dict: [String : AnyObject]) {
         manager = central
         let peripherals: [CBPeripheral] = dict[CBCentralManagerRestoredStatePeripheralsKey] as! [CBPeripheral]
-        if DEBUG_BLUETOOTH {
+//        if DEBUG_BLUETOOTH {
             print(" ---> Restoring state: \(peripherals)")
-        }
+//        }
         for peripheral in peripherals {
             peripheral.delegate = self
-            manager.connectPeripheral(peripheral, options: [CBCentralManagerOptionRestoreIdentifierKey: "centralManagerIdentifier",
+            var device = foundDevices.deviceForPeripheral(peripheral)
+            if device == nil {
+                device = foundDevices.addPeripheral(peripheral)
+            }
+            device?.state = .DEVICE_STATE_SEARCHING
+            manager.connectPeripheral(peripheral, options: [CBCentralManagerOptionRestoreIdentifierKey: "TTcentralManageRestoreIdentifier",
                 CBConnectPeripheralOptionNotifyOnDisconnectionKey: NSNumber(bool: true),
                 CBConnectPeripheralOptionNotifyOnConnectionKey: NSNumber(bool: true),
                 CBConnectPeripheralOptionNotifyOnNotificationKey: NSNumber(bool: true)])
@@ -307,6 +316,7 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
     
     func disconnectDevice(device: TTDevice) {
         if let peripheral = foundDevices.peripheralForDevice(device) {
+            print(" ---> Disconnect \(peripheral)")
             manager.cancelPeripheralConnection(peripheral)
             foundDevices.removeDevice(device)
             self.countDevices()
@@ -322,6 +332,7 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
             if peripheral.state != .Connected {
                 continue
             }
+            print(" ---> Terminating, canceling: \(peripheral)")
             manager.cancelPeripheralConnection(peripheral)
             let device = foundDevices.deviceForPeripheral(peripheral)
             if device != nil {
@@ -343,6 +354,8 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
         self.didChangeValueForKey("unpairedDevicesCount")
         unpairedConnectingCount = foundDevices.unpairedConnecting().count
         self.didChangeValueForKey("unpairedConnectingCount")
+        knownDevicesCount = foundDevices.count()
+        self.didChangeValueForKey("knownDevicesCount")
         
         if delegate != nil {
             dispatch_async(dispatch_get_main_queue(), {
@@ -379,33 +392,34 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
         }
         
         if isAlreadyConnecting {
+            print(" ---> Already connecting, not connecting again: \(peripheral)")
 //            manager.cancelPeripheralConnection(peripheral)
         } else {
-            manager.connectPeripheral(peripheral, options: [CBCentralManagerOptionRestoreIdentifierKey: "centralManagerIdentifier",
+            manager.connectPeripheral(peripheral, options: [CBCentralManagerOptionRestoreIdentifierKey: "TTcentralManageRestoreIdentifier",
                 CBConnectPeripheralOptionNotifyOnDisconnectionKey: NSNumber(bool: true),
                 CBConnectPeripheralOptionNotifyOnConnectionKey: NSNumber(bool: true),
                 CBConnectPeripheralOptionNotifyOnNotificationKey: NSNumber(bool: true)])
         }
         
         // In case still connecting 30 seconds from now, disconnect
-        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(30 * Double(NSEC_PER_SEC)))
-        dispatch_after(delayTime, dispatch_get_main_queue(), {
-            if self.bluetoothState != .BT_STATE_CONNECTING_UNKNOWN {
-                return
-            }
-            self.bluetoothState = .BT_STATE_IDLE
-            self.stopScan()
-            self.scanKnown()
-        })
+//        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(30 * Double(NSEC_PER_SEC)))
+//        dispatch_after(delayTime, dispatch_get_main_queue(), {
+//            if self.bluetoothState != .BT_STATE_CONNECTING_UNKNOWN {
+//                return
+//            }
+//            self.bluetoothState = .BT_STATE_IDLE
+//            self.stopScan()
+//            self.scanKnown()
+//        })
     }
     
     func centralManager(central: CBCentralManager, didConnectPeripheral peripheral: CBPeripheral) {
         let device = foundDevices.deviceForPeripheral(peripheral) as TTDevice?
         
         if device == nil {
-            if DEBUG_BLUETOOTH {
+//            if DEBUG_BLUETOOTH {
                 print(" ---> No device found for peripheral: \(peripheral)")
-            }
+//            }
             manager.cancelPeripheralConnection(peripheral)
             return
         }
@@ -415,16 +429,12 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
                 if DEBUG_BLUETOOTH {
                     print(" ---> (\(bluetoothState)) Connecting to another, canceling: \(foundDevice)/\(peripheral)")
                 }
-                manager.cancelPeripheralConnection(peripheral)
-                return
+//                manager.cancelPeripheralConnection(peripheral)
+//                return
             }
         }
         
         peripheral.delegate = self
-    
-        if DEBUG_BLUETOOTH {
-            print(" ---> (\(bluetoothState)) Connected: \(device)")
-        }
         
         if device!.isPaired {
             device!.state = TTDeviceState.DEVICE_STATE_CONNECTING
@@ -450,7 +460,11 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
                 })
             }
         }
-
+        
+        
+        //        if DEBUG_BLUETOOTH {
+        print(" ---> (\(bluetoothState)) Connected: \(device)")
+        //        }
         
         peripheral.discoverServices([CBUUID(string: DEVICE_V2_SERVICE_BUTTON_UUID),
             CBUUID(string: DEVICE_V2_SERVICE_BATTERY_UUID),
@@ -459,9 +473,9 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
     
     func centralManager(central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: NSError?) {
         let device = foundDevices.deviceForPeripheral(peripheral)
-        if DEBUG_BLUETOOTH {
+//        if DEBUG_BLUETOOTH {
             print(" ---> (\(bluetoothState)) Disconnected device: \(device)")
-        }
+//        }
         
         foundDevices.removePeripheral(peripheral)
         self.countDevices()
