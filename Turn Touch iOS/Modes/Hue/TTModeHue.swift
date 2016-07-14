@@ -494,14 +494,14 @@ class TTModeHue: TTMode {
                 if let foundBridges = prefs.arrayForKey(TTModeHueConstants.kHueFoundBridges) as? [[String: String]] {
                     for foundBridge: [String: String] in foundBridges {
                         if !bridgesTried.contains(foundBridge["ipAddress"]!) {
-                            print(" ---> Attempting conect to different Hue: \(recentBridgeIp)")
+                            print(" ---> Attempting connect to different Hue: \(recentBridgeIp)")
                             self.bridgeSelectedWithIpAddress(foundBridge["ipAddress"]!, andBridgeId: foundBridge["bridgeId"]!)
                             return
                         }
                     }
                 }
             } else {
-                print(" ---> Attempting conect to Hue: \(recentBridgeIp)")
+                print(" ---> Attempting connect to Hue: \(recentBridgeIp)")
                 self.bridgeSelectedWithIpAddress(recentBridgeIp as! String, andBridgeId: recentBridgeId as! String)
                 return
             }
@@ -509,7 +509,7 @@ class TTModeHue: TTMode {
         
         dispatch_once(&self.bridgeToken) {
             print(" ---> No Hue bridge found, searching for bridges...")
-            self.bridgeSearch = PHBridgeSearching(upnpSearch: true, andPortalSearch: false, andIpAdressSearch: false)
+            self.bridgeSearch = PHBridgeSearching(upnpSearch: true, andPortalSearch: true, andIpAdressSearch: true)
             self.bridgeSearch.startSearchWithCompletionHandler({(bridgesFound: [NSObject : AnyObject]!) -> Void in
                 /***************************************************
                  The search is complete, check whether we found a bridge

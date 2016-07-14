@@ -13,7 +13,8 @@ class TTModalButton: UIViewController {
     @IBOutlet var buttonLabel: UILabel!
     @IBOutlet var chevronImage: UIImageView!
     @IBOutlet var backgroundView: UIView!
-    var modalPairing: TTPairingState
+    var modalPairing: TTPairingState?
+    var ftuxPage: TTFTUXPage?
     
     init(pairingState: TTPairingState) {
         self.modalPairing = pairingState
@@ -21,7 +22,17 @@ class TTModalButton: UIViewController {
         
         self.view.translatesAutoresizingMaskIntoConstraints = false
         self.view.userInteractionEnabled = true
-
+        
+        self.updateModal()
+    }
+    
+    init(ftuxPage: TTFTUXPage) {
+        self.ftuxPage = ftuxPage
+        super.init(nibName: "TTModalButton", bundle: nil)
+        
+        self.view.translatesAutoresizingMaskIntoConstraints = false
+        self.view.userInteractionEnabled = true
+        
         self.updateModal()
     }
     
@@ -36,21 +47,41 @@ class TTModalButton: UIViewController {
     }
     
     func updateModal() {
-        switch modalPairing {
-        case .Intro:
-            buttonLabel.text = "Pair remote"
-            backgroundView.backgroundColor = UIColor(hex: 0x4383C0)
-        case .Searching:
-            buttonLabel.text = "Searching"
-            backgroundView.backgroundColor = UIColor(hex: 0xEFF1F3)
-        case .Success:
-            buttonLabel.text = "Show me how it works"
-            backgroundView.backgroundColor = UIColor(hex: 0x2FB789)
-        case .Failure:
-            buttonLabel.text = "Try again"
-            backgroundView.backgroundColor = UIColor(hex: 0xFFCA44)
-        default:
-            break
+        if modalPairing != nil {
+            switch modalPairing! {
+            case .Intro:
+                buttonLabel.text = "Pair remote"
+                backgroundView.backgroundColor = UIColor(hex: 0x4383C0)
+            case .Searching:
+                buttonLabel.text = "Searching"
+                backgroundView.backgroundColor = UIColor(hex: 0xEFF1F3)
+            case .Success:
+                buttonLabel.text = "Show me how it works"
+                backgroundView.backgroundColor = UIColor(hex: 0x2FB789)
+            case .Failure:
+                buttonLabel.text = "Try again"
+                backgroundView.backgroundColor = UIColor(hex: 0xFFCA44)
+            default:
+                break
+            }
+        } else if ftuxPage != nil {
+            switch ftuxPage! {
+            case .Intro:
+                buttonLabel.text = "Pair remote"
+                backgroundView.backgroundColor = UIColor(hex: 0x4383C0)
+            case .Actions:
+                buttonLabel.text = "Searching"
+                backgroundView.backgroundColor = UIColor(hex: 0xEFF1F3)
+            case .Modes:
+                buttonLabel.text = "Show me how it works"
+                backgroundView.backgroundColor = UIColor(hex: 0x2FB789)
+            case .BatchActions:
+                buttonLabel.text = "Try again"
+                backgroundView.backgroundColor = UIColor(hex: 0xFFCA44)
+            case .HUD:
+                buttonLabel.text = "Try again"
+                backgroundView.backgroundColor = UIColor(hex: 0xFFCA44)
+            }
         }
     }
     
