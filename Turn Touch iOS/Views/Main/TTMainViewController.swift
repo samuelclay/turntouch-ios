@@ -48,7 +48,8 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
     var modal: TTModalState?
     var pairingViewController: TTPairingViewController?
     var pairingInfoViewController: TTPairingInfoViewController?
-    var pairingNavController: UINavigationController!
+    var ftuxViewController: TTFTUXViewController?
+    var modalNavController: UINavigationController!
     
     
 
@@ -375,7 +376,7 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
     }
     
     func showPairingModal() {
-        if pairingNavController != nil {
+        if modalNavController != nil {
             print(" ---> Don't show pairing modal, already showing it")
             return
         }
@@ -385,23 +386,51 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
         pairingInfoViewController = TTPairingInfoViewController(pairingState: .Intro)
         
         let anyPaired = appDelegate().bluetoothMonitor.foundDevices.totalPairedCount() > 0
-        pairingNavController = UINavigationController(rootViewController: anyPaired ? pairingViewController! : pairingInfoViewController!)
-        pairingNavController.modalPresentationStyle = .FullScreen
-        self.presentViewController(pairingNavController, animated: true, completion: nil)
+        modalNavController = UINavigationController(rootViewController: anyPaired ? pairingViewController! : pairingInfoViewController!)
+        modalNavController.modalPresentationStyle = .FormSheet
+        self.presentViewController(modalNavController, animated: true, completion: nil)
     }
     
     func switchPairingModal(pairingState: TTPairingState) {
-        if pairingState == .Searching && pairingNavController.visibleViewController == pairingViewController {
+        if pairingState == .Searching && modalNavController.visibleViewController == pairingViewController {
             pairingViewController?.changedDeviceCount()
         } else if pairingState == .Searching && pairingViewController?.pairingState == .Failure {
-            pairingNavController.popViewControllerAnimated(true)
+            modalNavController.popViewControllerAnimated(true)
         } else {
-            pairingNavController.pushViewController(pairingState == .Searching ? pairingViewController! : pairingInfoViewController!, animated: true)
+            modalNavController.pushViewController(pairingState == .Searching ? pairingViewController! : pairingInfoViewController!, animated: true)
         }
     }
     
     func closePairingModal() {
-        pairingNavController.dismissViewControllerAnimated(true, completion: nil)
-        pairingNavController = nil
+        modalNavController.dismissViewControllerAnimated(true, completion: nil)
+        modalNavController = nil
     }
+    
+    func showFtuxModal() {
+        if modalNavController != nil {
+            print(" ---> Don't show FTUX, already showing modal")
+            return
+        }
+        
+        titleMenu.dismissViewControllerAnimated(true, completion: nil)
+        ftuxViewController = TTFTUXViewController()
+        modalNavController = UINavigationController(rootViewController: ftuxViewController!)
+        modalNavController.modalPresentationStyle = .FormSheet
+        self.presentViewController(modalNavController, animated: true, completion: nil)
+    }
+    
+    func switchFtuxModal(ftuxPage: TTFTUXPage) {
+        if modalNavController.visibleViewController != ftuxViewController {
+            ftuxViewController = TTFTUXViewController()
+            modalNavController.pushViewController(ftuxViewController!, animated: true)
+        } else {
+            ftuxViewController?.setPage(ftuxPage)
+        }
+    }
+    
+    func closeFtuxModal() {
+        modalNavController.dismissViewControllerAnimated(true, completion: nil)
+        modalNavController = nil
+    }
+
 }

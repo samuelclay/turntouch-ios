@@ -14,7 +14,11 @@ class TTModalButton: UIViewController {
     @IBOutlet var chevronImage: UIImageView!
     @IBOutlet var backgroundView: UIView!
     var modalPairing: TTPairingState?
-    var ftuxPage: TTFTUXPage?
+    var ftuxPage: TTFTUXPage? {
+        didSet {
+            self.updateModal()
+        }
+    }
     
     init(pairingState: TTPairingState) {
         self.modalPairing = pairingState
@@ -52,9 +56,6 @@ class TTModalButton: UIViewController {
             case .Intro:
                 buttonLabel.text = "Pair remote"
                 backgroundView.backgroundColor = UIColor(hex: 0x4383C0)
-            case .Searching:
-                buttonLabel.text = "Searching"
-                backgroundView.backgroundColor = UIColor(hex: 0xEFF1F3)
             case .Success:
                 buttonLabel.text = "Show me how it works"
                 backgroundView.backgroundColor = UIColor(hex: 0x2FB789)
@@ -66,21 +67,12 @@ class TTModalButton: UIViewController {
             }
         } else if ftuxPage != nil {
             switch ftuxPage! {
-            case .Intro:
-                buttonLabel.text = "Pair remote"
-                backgroundView.backgroundColor = UIColor(hex: 0x4383C0)
-            case .Actions:
-                buttonLabel.text = "Searching"
-                backgroundView.backgroundColor = UIColor(hex: 0xEFF1F3)
-            case .Modes:
-                buttonLabel.text = "Show me how it works"
-                backgroundView.backgroundColor = UIColor(hex: 0x2FB789)
-            case .BatchActions:
-                buttonLabel.text = "Try again"
-                backgroundView.backgroundColor = UIColor(hex: 0xFFCA44)
             case .HUD:
-                buttonLabel.text = "Try again"
-                backgroundView.backgroundColor = UIColor(hex: 0xFFCA44)
+                buttonLabel.text = "That's all there is to it"
+                backgroundView.backgroundColor = UIColor(hex: 0x434340)
+            default:
+                buttonLabel.text = "Continue"
+                backgroundView.backgroundColor = UIColor(hex: 0x4383C0)
             }
         }
     }
@@ -91,12 +83,24 @@ class TTModalButton: UIViewController {
         super.touchesBegan(touches, withEvent: event)
         
         if (touches.first != nil) {
-            if modalPairing == .Intro {
-                backgroundView.backgroundColor = UIColor(hex: 0x396C9A)
-            } else if modalPairing == .Success {
-                backgroundView.backgroundColor = UIColor(hex: 0x36A07A)
-            } else if modalPairing == .Failure {
-                backgroundView.backgroundColor = UIColor(hex: 0xE4B449)
+            if modalPairing != nil {
+                switch modalPairing! {
+                case .Intro:
+                    backgroundView.backgroundColor = UIColor(hex: 0x396C9A)
+                case .Success:
+                    backgroundView.backgroundColor = UIColor(hex: 0x36A07A)
+                case .Failure:
+                    backgroundView.backgroundColor = UIColor(hex: 0xE4B449)
+                default:
+                    break
+                }
+            } else if ftuxPage != nil {
+                switch ftuxPage! {
+                case .HUD:
+                    backgroundView.backgroundColor = UIColor(hex: 0x333330)
+                default:
+                    backgroundView.backgroundColor = UIColor(hex: 0x396C9A)
+                }
             }
         }
         
@@ -109,12 +113,30 @@ class TTModalButton: UIViewController {
         if (touches.first != nil) {
             self.updateModal()
             
-            if modalPairing == .Intro {
-                appDelegate().mainViewController.switchPairingModal(.Searching)
-            } else if modalPairing == .Success {
-                appDelegate().mainViewController.switchPairingModal(.Searching)
-            } else if modalPairing == .Failure {
-                appDelegate().mainViewController.switchPairingModal(.Searching)
+            if modalPairing != nil {
+                switch modalPairing! {
+                case .Intro:
+                    appDelegate().mainViewController.switchPairingModal(.Searching)
+                case .Success:
+                    appDelegate().mainViewController.switchFtuxModal(.Intro)
+                case .Failure:
+                    appDelegate().mainViewController.switchPairingModal(.Searching)
+                default:
+                    break
+                }
+            } else if ftuxPage != nil {
+                switch ftuxPage! {
+                case .Intro:
+                    appDelegate().mainViewController.switchFtuxModal(.Actions)
+                case .Actions:
+                    appDelegate().mainViewController.switchFtuxModal(.Modes)
+                case .Modes:
+                    appDelegate().mainViewController.switchFtuxModal(.BatchActions)
+                case .BatchActions:
+                    appDelegate().mainViewController.switchFtuxModal(.HUD)
+                case .HUD:
+                    appDelegate().mainViewController.closeFtuxModal()
+                }
             }
         }
         

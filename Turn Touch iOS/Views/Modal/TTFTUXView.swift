@@ -15,31 +15,53 @@ class TTFTUXView: UIView {
     var subtitleLabel = UILabel()
     var imageView = UIImageView()
     
-    init(frame: CGRect, ftuxPage: TTFTUXPage) {
-        super.init(frame: frame)
-        
+    init(ftuxPage: TTFTUXPage) {
         self.ftuxPage = ftuxPage
+        super.init(frame: CGRect.zero)
+        self.translatesAutoresizingMaskIntoConstraints = false
         
-        imageView.
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = .ScaleAspectFit
         self.addSubview(imageView)
         self.addConstraint(NSLayoutConstraint(item: imageView, attribute: .CenterX, relatedBy: .Equal,
             toItem: self, attribute: .CenterX, multiplier: 1.0, constant: 0))
-        self.addConstraint(NSLayoutConstraint(item: titleLabel, attribute: .Top, relatedBy: .Equal,
-            toItem: self, attribute: .Top, multiplier: 1.0, constant: 48))
-        self.addConstraint(NSLayoutConstraint(item: titleLabel, attribute: .Width, relatedBy: .Equal,
+        self.addConstraint(NSLayoutConstraint(item: imageView, attribute: .Top, relatedBy: .Equal,
+            toItem: self, attribute: .Top, multiplier: 1.0, constant: 64))
+        self.addConstraint(NSLayoutConstraint(item: imageView, attribute: .Width, relatedBy: .Equal,
             toItem: self, attribute: .Width, multiplier: 1.0, constant: 0))
-        self.addConstraint(NSLayoutConstraint(item: titleLabel, attribute: .Height, relatedBy: .Equal,
-            toItem: self, attribute: .Height, multiplier: 1.0, constant: 256))
+        self.addConstraint(NSLayoutConstraint(item: imageView, attribute: .Height, relatedBy: .Equal,
+            toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 256))
         
-        titleLabel.font = UIFont(name: "Effra", size: 13)
-        titleLabel.textColor = UIColor(hex: 0x404A60)
+        titleLabel.font = UIFont(name: "Effra", size: 22)
+        titleLabel.textColor = UIColor(hex: 0x7A797A)
+        titleLabel.textAlignment = .Center
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(titleLabel)
         self.addConstraint(NSLayoutConstraint(item: titleLabel, attribute: .Top, relatedBy: .Equal,
             toItem: imageView, attribute: .Bottom, multiplier: 1.0, constant: 24))
-        self.addConstraint(NSLayoutConstraint(item: titleLabel, attribute: .CenterY, relatedBy: .Equal,
-            toItem: self, attribute: .CenterY, multiplier: 1.0, constant: 0))
-
+        self.addConstraint(NSLayoutConstraint(item: titleLabel, attribute: .CenterX, relatedBy: .Equal,
+            toItem: self, attribute: .CenterX, multiplier: 1.0, constant: 0))
+        self.addConstraint(NSLayoutConstraint(item: titleLabel, attribute: .Width, relatedBy: .Equal,
+            toItem: self, attribute: .Width, multiplier: 0.8, constant: 0))
+        self.addConstraint(NSLayoutConstraint(item: titleLabel, attribute: .Height, relatedBy: .GreaterThanOrEqual,
+            toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 20))
+        
+        subtitleLabel.font = UIFont(name: "Effra", size: 16)
+        subtitleLabel.textColor = UIColor(hex: 0xB5BCC0)
+        subtitleLabel.textAlignment = .Center
+        subtitleLabel.translatesAutoresizingMaskIntoConstraints = false
+        subtitleLabel.numberOfLines = 3
+        self.addSubview(subtitleLabel)
+        self.addConstraint(NSLayoutConstraint(item: subtitleLabel, attribute: .Top, relatedBy: .Equal,
+            toItem: titleLabel, attribute: .Bottom, multiplier: 1.0, constant: 24))
+        self.addConstraint(NSLayoutConstraint(item: subtitleLabel, attribute: .CenterX, relatedBy: .Equal,
+            toItem: self, attribute: .CenterX, multiplier: 1.0, constant: 0))
+        self.addConstraint(NSLayoutConstraint(item: subtitleLabel, attribute: .Width, relatedBy: .Equal,
+            toItem: self, attribute: .Width, multiplier: 0.75, constant: 0))
+        self.addConstraint(NSLayoutConstraint(item: subtitleLabel, attribute: .Height, relatedBy: .GreaterThanOrEqual,
+            toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 20))
+        
+        self.assemble()
     }
     
     required init?(coder aDecoder: NSCoder) {

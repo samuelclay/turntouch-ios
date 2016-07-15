@@ -1,4 +1,4 @@
-//
+ //
 //  AppDelegate.swift
 //  Turn Touch iOS
 //
@@ -39,6 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         
         dispatch_async(dispatch_get_main_queue()) { 
 //            appDelegate().mainViewController.showPairingModal()
+            appDelegate().mainViewController.showFtuxModal()
         }
         
 //        print(NSUserDefaults.standardUserDefaults().dictionaryRepresentation())
