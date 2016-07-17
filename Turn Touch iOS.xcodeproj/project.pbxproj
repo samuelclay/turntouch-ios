@@ -223,6 +223,7 @@
 		FFC4B1081D3717D500A97C81 /* TTFTUXView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC4B1071D3717D500A97C81 /* TTFTUXView.swift */; };
 		FFC9FE951D021A0400038817 /* TTActionDiamondView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC9FE941D021A0400038817 /* TTActionDiamondView.swift */; };
 		FFC9FE991D02520300038817 /* NSObject+Class.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC9FE981D02520300038817 /* NSObject+Class.swift */; };
+		FFDA0F9E1D3C49E80019859F /* TTModeCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDA0F9D1D3C49E80019859F /* TTModeCamera.swift */; };
 		FFF270941CEE88E500E46575 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF270931CEE88E500E46575 /* AppDelegate.swift */; };
 		FFF2709D1CEE88E500E46575 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FFF2709C1CEE88E500E46575 /* Assets.xcassets */; };
 		FFF270A01CEE88E500E46575 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFF2709E1CEE88E500E46575 /* LaunchScreen.storyboard */; };
@@ -488,6 +489,7 @@
 		FFC4B1071D3717D500A97C81 /* TTFTUXView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTFTUXView.swift; path = Views/Modal/TTFTUXView.swift; sourceTree = "<group>"; };
 		FFC9FE941D021A0400038817 /* TTActionDiamondView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTActionDiamondView.swift; path = "Views/Action diamond/TTActionDiamondView.swift"; sourceTree = "<group>"; };
 		FFC9FE981D02520300038817 /* NSObject+Class.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSObject+Class.swift"; path = "Categories/NSObject+Class.swift"; sourceTree = "<group>"; };
+		FFDA0F9D1D3C49E80019859F /* TTModeCamera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeCamera.swift; path = Modes/Camera/TTModeCamera.swift; sourceTree = "<group>"; };
 		FFF270901CEE88E500E46575 /* Turn Touch iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Turn Touch iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFF270931CEE88E500E46575 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FFF2709C1CEE88E500E46575 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -591,6 +593,7 @@
 				FF0F10CB1CF63F3E00CC1F29 /* Phone */,
 				FF254F6C1D21C2D300E96378 /* Wemo */,
 				FF4AF7DD1D24F93B0009C777 /* Sonos */,
+				FFDA0F9F1D3C49F40019859F /* Camera */,
 			);
 			name = Modes;
 			sourceTree = "<group>";
@@ -1024,6 +1027,14 @@
 				FF0F10DB1CF669BE00CC1F29 /* TTDiamondLabel.swift */,
 			);
 			name = "Action Diamond";
+			sourceTree = "<group>";
+		};
+		FFDA0F9F1D3C49F40019859F /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				FFDA0F9D1D3C49E80019859F /* TTModeCamera.swift */,
+			);
+			name = Camera;
 			sourceTree = "<group>";
 		};
 		FFF270871CEE88E500E46575 = {
@@ -1490,6 +1501,7 @@
 				FF4AF7CB1D24C65A0009C777 /* TTPickerViewController.swift in Sources */,
 				FF37EDDB1D11178D0026F70D /* TTModeHueBridge.swift in Sources */,
 				FF4AF7D71D24ECF60009C777 /* SonosManager.m in Sources */,
+				FFDA0F9E1D3C49E80019859F /* TTModeCamera.swift in Sources */,
 				FF0F10CD1CF63F4D00CC1F29 /* TTModeHue.swift in Sources */,
 				FF254F6B1D21C2CF00E96378 /* TTModeWemo.swift in Sources */,
 				FF37EDE31D1117B20026F70D /* TTModeHueConnected.swift in Sources */,

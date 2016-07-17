@@ -20,25 +20,50 @@ class TTFTUXView: UIView {
         super.init(frame: CGRect.zero)
         self.translatesAutoresizingMaskIntoConstraints = false
         
+        let spacerTop = UIView()
+        spacerTop.hidden = true
+        spacerTop.translatesAutoresizingMaskIntoConstraints = false
+        self.addSubview(spacerTop)
+        self.addConstraint(NSLayoutConstraint(item: spacerTop, attribute: .CenterX, relatedBy: .Equal,
+            toItem: self, attribute: .CenterX, multiplier: 1.0, constant: 0))
+        self.addConstraint(NSLayoutConstraint(item: spacerTop, attribute: .Top, relatedBy: .LessThanOrEqual,
+            toItem: self, attribute: .Top, multiplier: 1.0, constant: 48))
+        self.addConstraint(NSLayoutConstraint(item: spacerTop, attribute: .Width, relatedBy: .Equal,
+            toItem: self, attribute: .Width, multiplier: 1.0, constant: 0))
+        
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .ScaleAspectFit
         self.addSubview(imageView)
         self.addConstraint(NSLayoutConstraint(item: imageView, attribute: .CenterX, relatedBy: .Equal,
             toItem: self, attribute: .CenterX, multiplier: 1.0, constant: 0))
         self.addConstraint(NSLayoutConstraint(item: imageView, attribute: .Top, relatedBy: .Equal,
-            toItem: self, attribute: .Top, multiplier: 1.0, constant: 64))
+            toItem: spacerTop, attribute: .Bottom, multiplier: 1.0, constant: 0))
         self.addConstraint(NSLayoutConstraint(item: imageView, attribute: .Width, relatedBy: .Equal,
             toItem: self, attribute: .Width, multiplier: 1.0, constant: 0))
         self.addConstraint(NSLayoutConstraint(item: imageView, attribute: .Height, relatedBy: .Equal,
             toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 256))
         
+        let spacerBottom = UIView()
+        spacerBottom.hidden = true
+        spacerBottom.translatesAutoresizingMaskIntoConstraints = false
+        self.addSubview(spacerBottom)
+        self.addConstraint(NSLayoutConstraint(item: spacerBottom, attribute: .Top, relatedBy: .LessThanOrEqual,
+            toItem: imageView, attribute: .Bottom, multiplier: 1.0, constant: 0))
+        self.addConstraint(NSLayoutConstraint(item: spacerBottom, attribute: .Width, relatedBy: .Equal,
+            toItem: self, attribute: .Width, multiplier: 1.0, constant: 0))
+        self.addConstraint(NSLayoutConstraint(item: spacerBottom, attribute: .Height, relatedBy: .Equal,
+            toItem: spacerBottom, attribute: .Height, multiplier: 1.0, constant: 0))
+        self.addConstraint(NSLayoutConstraint(item: spacerBottom, attribute: .Height, relatedBy: .LessThanOrEqual,
+            toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 48))
+
         titleLabel.font = UIFont(name: "Effra", size: 22)
         titleLabel.textColor = UIColor(hex: 0x7A797A)
         titleLabel.textAlignment = .Center
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        titleLabel.numberOfLines = 2
         self.addSubview(titleLabel)
-        self.addConstraint(NSLayoutConstraint(item: titleLabel, attribute: .Top, relatedBy: .Equal,
-            toItem: imageView, attribute: .Bottom, multiplier: 1.0, constant: 24))
+        self.addConstraint(NSLayoutConstraint(item: titleLabel, attribute: .Top, relatedBy: .LessThanOrEqual,
+            toItem: spacerBottom, attribute: .Bottom, multiplier: 1.0, constant: 0))
         self.addConstraint(NSLayoutConstraint(item: titleLabel, attribute: .CenterX, relatedBy: .Equal,
             toItem: self, attribute: .CenterX, multiplier: 1.0, constant: 0))
         self.addConstraint(NSLayoutConstraint(item: titleLabel, attribute: .Width, relatedBy: .Equal,
@@ -58,8 +83,10 @@ class TTFTUXView: UIView {
             toItem: self, attribute: .CenterX, multiplier: 1.0, constant: 0))
         self.addConstraint(NSLayoutConstraint(item: subtitleLabel, attribute: .Width, relatedBy: .Equal,
             toItem: self, attribute: .Width, multiplier: 0.75, constant: 0))
-        self.addConstraint(NSLayoutConstraint(item: subtitleLabel, attribute: .Height, relatedBy: .GreaterThanOrEqual,
-            toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 20))
+//        self.addConstraint(NSLayoutConstraint(item: subtitleLabel, attribute: .Height, relatedBy: .GreaterThanOrEqual,
+//            toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 20))
+        self.addConstraint(NSLayoutConstraint(item: subtitleLabel, attribute: .Bottom, relatedBy: .GreaterThanOrEqual,
+            toItem: self, attribute: .Bottom, multiplier: 1.0, constant: -84))
         
         self.assemble()
     }

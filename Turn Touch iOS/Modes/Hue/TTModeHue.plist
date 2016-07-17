@@ -25,7 +25,7 @@
 	<key>hueDuration</key>
 	<integer>0</integer>
 	<key>TTModeHueSleep:hueDoubleTapDuration</key>
-	<integer>5</integer>
+	<integer>2</integer>
 	<key>TTModeHueSleep:hueDuration</key>
 	<integer>30</integer>
 </dict>

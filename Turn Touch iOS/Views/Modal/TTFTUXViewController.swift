@@ -76,6 +76,8 @@ class TTFTUXViewController: UIViewController, UIScrollViewDelegate {
             let ftuxView = TTFTUXView(ftuxPage: TTFTUXPage(rawValue: index)!)
             scrollView.addSubview(ftuxView)
             
+            scrollView.addConstraint(NSLayoutConstraint(item: ftuxView, attribute: .Top, relatedBy: .Equal,
+                toItem: scrollView, attribute: .Top, multiplier: 1.0, constant: 0))
             scrollView.addConstraint(NSLayoutConstraint(item: ftuxView, attribute: .Width, relatedBy: .Equal,
                 toItem: scrollView, attribute: .Width, multiplier: 1.0, constant: 0))
             scrollView.addConstraint(NSLayoutConstraint(item: ftuxView, attribute: .Height, relatedBy: .Equal,
