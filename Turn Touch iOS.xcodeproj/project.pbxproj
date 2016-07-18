@@ -224,6 +224,18 @@
 		FFC9FE951D021A0400038817 /* TTActionDiamondView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC9FE941D021A0400038817 /* TTActionDiamondView.swift */; };
 		FFC9FE991D02520300038817 /* NSObject+Class.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC9FE981D02520300038817 /* NSObject+Class.swift */; };
 		FFDA0F9E1D3C49E80019859F /* TTModeCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDA0F9D1D3C49E80019859F /* TTModeCamera.swift */; };
+		FFDA0FA71D3C4F1C0019859F /* LLSimpleCamera+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = FFDA0FA21D3C4F1C0019859F /* LLSimpleCamera+Helper.m */; };
+		FFDA0FA81D3C4F1C0019859F /* LLSimpleCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = FFDA0FA41D3C4F1C0019859F /* LLSimpleCamera.m */; };
+		FFDA0FA91D3C4F1C0019859F /* UIImage+FixOrientation.m in Sources */ = {isa = PBXBuildFile; fileRef = FFDA0FA61D3C4F1C0019859F /* UIImage+FixOrientation.m */; };
+		FFDA0FB11D3C4FEE0019859F /* camera-flash.png in Resources */ = {isa = PBXBuildFile; fileRef = FFDA0FAA1D3C4FEE0019859F /* camera-flash.png */; };
+		FFDA0FB21D3C4FEE0019859F /* camera-flash@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FFDA0FAB1D3C4FEE0019859F /* camera-flash@2x.png */; };
+		FFDA0FB31D3C4FEE0019859F /* camera-switch.png in Resources */ = {isa = PBXBuildFile; fileRef = FFDA0FAC1D3C4FEE0019859F /* camera-switch.png */; };
+		FFDA0FB41D3C4FEE0019859F /* camera-switch@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FFDA0FAD1D3C4FEE0019859F /* camera-switch@2x.png */; };
+		FFDA0FB51D3C4FEE0019859F /* cancel.png in Resources */ = {isa = PBXBuildFile; fileRef = FFDA0FAE1D3C4FEE0019859F /* cancel.png */; };
+		FFDA0FB61D3C4FEE0019859F /* cancel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FFDA0FAF1D3C4FEE0019859F /* cancel@2x.png */; };
+		FFDA0FB71D3C4FEE0019859F /* cancel@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = FFDA0FB01D3C4FEE0019859F /* cancel@3x.png */; };
+		FFDA0FBA1D3C55930019859F /* TTModeCameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDA0FB81D3C55930019859F /* TTModeCameraViewController.swift */; };
+		FFDA0FBB1D3C55930019859F /* TTModeCameraViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFDA0FB91D3C55930019859F /* TTModeCameraViewController.xib */; };
 		FFF270941CEE88E500E46575 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF270931CEE88E500E46575 /* AppDelegate.swift */; };
 		FFF2709D1CEE88E500E46575 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FFF2709C1CEE88E500E46575 /* Assets.xcassets */; };
 		FFF270A01CEE88E500E46575 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFF2709E1CEE88E500E46575 /* LaunchScreen.storyboard */; };
@@ -490,6 +502,21 @@
 		FFC9FE941D021A0400038817 /* TTActionDiamondView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTActionDiamondView.swift; path = "Views/Action diamond/TTActionDiamondView.swift"; sourceTree = "<group>"; };
 		FFC9FE981D02520300038817 /* NSObject+Class.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSObject+Class.swift"; path = "Categories/NSObject+Class.swift"; sourceTree = "<group>"; };
 		FFDA0F9D1D3C49E80019859F /* TTModeCamera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeCamera.swift; path = Modes/Camera/TTModeCamera.swift; sourceTree = "<group>"; };
+		FFDA0FA11D3C4F1C0019859F /* LLSimpleCamera+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "LLSimpleCamera+Helper.h"; sourceTree = "<group>"; };
+		FFDA0FA21D3C4F1C0019859F /* LLSimpleCamera+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "LLSimpleCamera+Helper.m"; sourceTree = "<group>"; };
+		FFDA0FA31D3C4F1C0019859F /* LLSimpleCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLSimpleCamera.h; sourceTree = "<group>"; };
+		FFDA0FA41D3C4F1C0019859F /* LLSimpleCamera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLSimpleCamera.m; sourceTree = "<group>"; };
+		FFDA0FA51D3C4F1C0019859F /* UIImage+FixOrientation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+FixOrientation.h"; sourceTree = "<group>"; };
+		FFDA0FA61D3C4F1C0019859F /* UIImage+FixOrientation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+FixOrientation.m"; sourceTree = "<group>"; };
+		FFDA0FAA1D3C4FEE0019859F /* camera-flash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "camera-flash.png"; sourceTree = "<group>"; };
+		FFDA0FAB1D3C4FEE0019859F /* camera-flash@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "camera-flash@2x.png"; sourceTree = "<group>"; };
+		FFDA0FAC1D3C4FEE0019859F /* camera-switch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "camera-switch.png"; sourceTree = "<group>"; };
+		FFDA0FAD1D3C4FEE0019859F /* camera-switch@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "camera-switch@2x.png"; sourceTree = "<group>"; };
+		FFDA0FAE1D3C4FEE0019859F /* cancel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cancel.png; sourceTree = "<group>"; };
+		FFDA0FAF1D3C4FEE0019859F /* cancel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cancel@2x.png"; sourceTree = "<group>"; };
+		FFDA0FB01D3C4FEE0019859F /* cancel@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cancel@3x.png"; sourceTree = "<group>"; };
+		FFDA0FB81D3C55930019859F /* TTModeCameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeCameraViewController.swift; path = Modes/Camera/TTModeCameraViewController.swift; sourceTree = "<group>"; };
+		FFDA0FB91D3C55930019859F /* TTModeCameraViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TTModeCameraViewController.xib; path = Modes/Camera/TTModeCameraViewController.xib; sourceTree = "<group>"; };
 		FFF270901CEE88E500E46575 /* Turn Touch iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Turn Touch iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFF270931CEE88E500E46575 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FFF2709C1CEE88E500E46575 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -854,6 +881,13 @@
 				FFB41AC31CEE9A3000CD5F09 /* button_dash.png */,
 				FFB41AC41CEE9A3000CD5F09 /* button_plus.png */,
 				FFB41AC51CEE9A3000CD5F09 /* button_x.png */,
+				FFDA0FAA1D3C4FEE0019859F /* camera-flash.png */,
+				FFDA0FAB1D3C4FEE0019859F /* camera-flash@2x.png */,
+				FFDA0FAC1D3C4FEE0019859F /* camera-switch.png */,
+				FFDA0FAD1D3C4FEE0019859F /* camera-switch@2x.png */,
+				FFDA0FAE1D3C4FEE0019859F /* cancel.png */,
+				FFDA0FAF1D3C4FEE0019859F /* cancel@2x.png */,
+				FFDA0FB01D3C4FEE0019859F /* cancel@3x.png */,
 				FFB41AC61CEE9A3000CD5F09 /* clock b&w.png */,
 				FFB41AC71CEE9A3000CD5F09 /* clock.png */,
 				FFB41AC81CEE9A3000CD5F09 /* cog.png */,
@@ -1033,8 +1067,23 @@
 			isa = PBXGroup;
 			children = (
 				FFDA0F9D1D3C49E80019859F /* TTModeCamera.swift */,
+				FFDA0FB81D3C55930019859F /* TTModeCameraViewController.swift */,
+				FFDA0FB91D3C55930019859F /* TTModeCameraViewController.xib */,
 			);
 			name = Camera;
+			sourceTree = "<group>";
+		};
+		FFDA0FA01D3C4F1C0019859F /* LLSimpleCamera */ = {
+			isa = PBXGroup;
+			children = (
+				FFDA0FA11D3C4F1C0019859F /* LLSimpleCamera+Helper.h */,
+				FFDA0FA21D3C4F1C0019859F /* LLSimpleCamera+Helper.m */,
+				FFDA0FA31D3C4F1C0019859F /* LLSimpleCamera.h */,
+				FFDA0FA41D3C4F1C0019859F /* LLSimpleCamera.m */,
+				FFDA0FA51D3C4F1C0019859F /* UIImage+FixOrientation.h */,
+				FFDA0FA61D3C4F1C0019859F /* UIImage+FixOrientation.m */,
+			);
+			path = LLSimpleCamera;
 			sourceTree = "<group>";
 		};
 		FFF270871CEE88E500E46575 = {
@@ -1096,6 +1145,7 @@
 		FFF46BC81D10941500158751 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				FFDA0FA01D3C4F1C0019859F /* LLSimpleCamera */,
 				FF254FDB1D22F26500E96378 /* XPathQuery */,
 				FFF46BE61D1096DC00158751 /* HueSDK_iOS.framework */,
 				FFF46BCA1D10941500158751 /* Lumberjack */,
@@ -1264,16 +1314,20 @@
 				FF20232E1D02147A005129E5 /* Icon-29@3x.png in Resources */,
 				FFB41B521CEE9A3000CD5F09 /* itunes_itunesu_icon.png in Resources */,
 				FF4AF7C31D248A4D0009C777 /* TTModeWemoDeviceSwitchOptions.xib in Resources */,
+				FFDA0FB21D3C4FEE0019859F /* camera-flash@2x.png in Resources */,
 				FFB41B581CEE9A3000CD5F09 /* itunes_tv_icon.png in Resources */,
 				FFB41B591CEE9A3000CD5F09 /* originals.png in Resources */,
 				FFB41B3C1CEE9A3000CD5F09 /* mode_music.png in Resources */,
+				FFDA0FB61D3C4FEE0019859F /* cancel@2x.png in Resources */,
 				FF2023351D02147A005129E5 /* Icon-57@2x.png in Resources */,
 				FF20232D1D02147A005129E5 /* Icon-29@2x.png in Resources */,
 				FF20233C1D02147A005129E5 /* iTunesArtwork in Resources */,
 				FFB41B241CEE9A3000CD5F09 /* button_chevron.png in Resources */,
+				FFDA0FB31D3C4FEE0019859F /* camera-switch.png in Resources */,
 				FFB41B1C1CEE9A3000CD5F09 /* music_play.png in Resources */,
 				FF20232F1D02147A005129E5 /* Icon-40.png in Resources */,
 				FFB41B541CEE9A3000CD5F09 /* itunes_movies_icon.png in Resources */,
+				FFDA0FBB1D3C55930019859F /* TTModeCameraViewController.xib in Resources */,
 				FFB41B461CEE9A3000CD5F09 /* mode_wemo.png in Resources */,
 				FFB41B6A1CEE9A3000CD5F09 /* modal_ftux_doubletap.png in Resources */,
 				FFB41B251CEE9A3000CD5F09 /* button_dash.png in Resources */,
@@ -1318,6 +1372,7 @@
 				FF20233B1D02147A005129E5 /* Icon-76@2x.png in Resources */,
 				FFB41B231CEE9A3000CD5F09 /* app_music.png in Resources */,
 				FF20233A1D02147A005129E5 /* Icon-76.png in Resources */,
+				FFDA0FB51D3C4FEE0019859F /* cancel.png in Resources */,
 				FFB41B551CEE9A3000CD5F09 /* itunes_music_icon.png in Resources */,
 				FFB41B131CEE9A3000CD5F09 /* chevron_north.png in Resources */,
 				FFB41B4B1CEE9A3000CD5F09 /* settings@2x.png in Resources */,
@@ -1375,8 +1430,10 @@
 				FFB41B141CEE9A3000CD5F09 /* chevron_south.png in Resources */,
 				FF37EDE41D1117B20026F70D /* TTModeHueConnected.xib in Resources */,
 				FFB41B2A1CEE9A3000CD5F09 /* cog.png in Resources */,
+				FFDA0FB71D3C4FEE0019859F /* cancel@3x.png in Resources */,
 				FF37EDE01D11179E0026F70D /* TTModeHuePushlink.xib in Resources */,
 				FF0F10D51CF6430E00CC1F29 /* Effra_Rg.ttf in Resources */,
+				FFDA0FB41D3C4FEE0019859F /* camera-switch@2x.png in Resources */,
 				FFF2709D1CEE88E500E46575 /* Assets.xcassets in Resources */,
 				FFB41B441CEE9A3000CD5F09 /* mode_video.png in Resources */,
 				FFB41B311CEE9A3000CD5F09 /* icon_music.png in Resources */,
@@ -1396,6 +1453,7 @@
 				FFB41B531CEE9A3000CD5F09 /* itunes_library_icon.png in Resources */,
 				FFB41B6B1CEE9A3000CD5F09 /* modal_ftux_mode.png in Resources */,
 				FFB41B1D1CEE9A3000CD5F09 /* music_playlist.png in Resources */,
+				FFDA0FB11D3C4FEE0019859F /* camera-flash.png in Resources */,
 				FFB41B651CEE9A3000CD5F09 /* title@2x.png in Resources */,
 				FF4AF7B31D2486F90009C777 /* TTModeWemoOptions.xib in Resources */,
 			);
@@ -1473,6 +1531,7 @@
 				FF0F10E91CFFAD6100CC1F29 /* TTModeMenuCell.swift in Sources */,
 				FF4AF7B61D248A180009C777 /* TTModeWemoConnect.swift in Sources */,
 				FFF46BDD1D10941500158751 /* DDFileLogger.m in Sources */,
+				FFDA0FA81D3C4F1C0019859F /* LLSimpleCamera.m in Sources */,
 				FF4AF7EB1D24F9E70009C777 /* TTModeSonosConnecting.swift in Sources */,
 				FF0F10E51CFFAD1B00CC1F29 /* TTModeMenuBordersView.swift in Sources */,
 				FF0F10C71CF63F1600CC1F29 /* TTModeMusic.swift in Sources */,
@@ -1535,6 +1594,7 @@
 				FF37EDEE1D13823F0026F70D /* TTModeHueSceneEarlyEveningOptions.swift in Sources */,
 				FFF46BE01D10941500158751 /* ContextFilterLogFormatter.m in Sources */,
 				FF4AF7C71D248A860009C777 /* TTModeWemoDeviceOnOptions.swift in Sources */,
+				FFDA0FA91D3C4F1C0019859F /* UIImage+FixOrientation.m in Sources */,
 				FF4AF7BA1D248A290009C777 /* TTModeWemoConnecting.swift in Sources */,
 				FF4AF7EE1D24F9E70009C777 /* TTModeSonosOptions.swift in Sources */,
 				FF0F10C21CF60C3D00CC1F29 /* TTTitleBarView.swift in Sources */,
@@ -1551,7 +1611,9 @@
 				FF4AF7D61D24ECF60009C777 /* SonosDiscover.m in Sources */,
 				FF4AF7C91D248AD00009C777 /* TTModeWemoDeviceOffOptions.swift in Sources */,
 				FFC4B0F01D2DBF3E00A97C81 /* TTPairingInfoViewController.swift in Sources */,
+				FFDA0FBA1D3C55930019859F /* TTModeCameraViewController.swift in Sources */,
 				FF4AF7E71D24F9E70009C777 /* TTModeSonosConnect.swift in Sources */,
+				FFDA0FA71D3C4F1C0019859F /* LLSimpleCamera+Helper.m in Sources */,
 				FFF270C51CEE97AF00E46575 /* TTMainViewController.swift in Sources */,
 				FFB41B861CF536AC00CD5F09 /* TTAction.swift in Sources */,
 				FF44876D1D08E62200ED8099 /* TTBluetoothMonitor.swift in Sources */,

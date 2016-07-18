@@ -14,5 +14,6 @@
 #import <sonos-objc/SonosController.h>
 #import <sonos-objc/SonosManager.h>
 #import <sonos-objc/SonosDiscover.h>
+#import <LLSimpleCamera/LLSimpleCamera.h>
 
 #endif /* TTBridgingHeader_h */

@@ -10,6 +10,9 @@ import UIKit
 
 class TTModeCamera: TTMode {
     
+    var cameraActive = false
+    var cameraViewController = TTModeCameraViewController()
+    
     override class func title() -> String {
         return "Camera"
     }
@@ -79,7 +82,7 @@ class TTModeCamera: TTMode {
     }
     
     override func defaultWest() -> String {
-        return "TTModeCameraSwitchView"
+        return "TTModeCameraSwitchPhotoVideo"
     }
     
     override func defaultSouth() -> String {

@@ -73,6 +73,11 @@ class TTModeHue: TTMode {
         self.initializeHue()
     }
     
+    deinit {
+        self.disableLocalHeartbeat()
+        phHueSdk.stopSDK()
+    }
+    
     override func activate() {
         
     }

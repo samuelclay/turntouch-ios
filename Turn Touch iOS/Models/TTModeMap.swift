@@ -39,11 +39,12 @@ class TTModeMap: NSObject {
     override init() {
         self.availableModes = [
             "TTModePhone",
-            "TTModeAlarmClock",
+            "TTModeCamera",
             "TTModeMusic",
             "TTModeHue",
             "TTModeWemo",
             "TTModeSonos",
+            "TTModeAlarmClock",
         ]
         
         super.init()
