@@ -747,7 +747,11 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
         preferences.setObject(pairedDevices, forKey: "TT:devices:paired")
         preferences.synchronize()
         
+        if let device = foundDevices.deviceForPeripheral(peripheral) {
+            device.isPaired = foundDevices.isDevicePaired(device)
+        }
         buttonTimer.resetPairingState()
+
         self.countDevices()
         appDelegate().modeMap.activeModeDirection = .NO_DIRECTION
         if delegate != nil {
