@@ -12,6 +12,15 @@ class TTModeCamera: TTMode {
     
     var cameraActive = false
     var cameraViewController = TTModeCameraViewController()
+    var cameraNavController: UINavigationController!
+    
+    required init() {
+        super.init()
+        
+        cameraNavController = UINavigationController(rootViewController: cameraViewController)
+        cameraNavController.modalPresentationStyle = .FullScreen
+        cameraViewController.modeCamera = self
+    }
     
     override class func title() -> String {
         return "Camera"
@@ -92,12 +101,53 @@ class TTModeCamera: TTMode {
     // MARK: Action methods
     
     override func activate() {
-    
+
     }
     
     override func deactivate() {
-        
+        self.closeCamera()
     }
     
-
+    func closeCamera() {
+        appDelegate().mainViewController.dismissViewControllerAnimated(true) {
+            self.cameraActive = false
+        }
+    }
+    
+    func ensureCamera() -> Bool {
+        var cameraAlreadyShowing = true
+        
+        if !cameraActive {
+            cameraAlreadyShowing = false
+            appDelegate().mainViewController.presentViewController(cameraNavController, animated: true) {
+                self.cameraActive = true
+            }
+        }
+        
+        return cameraAlreadyShowing
+    }
+    
+    func runTTModeCameraShoot() {
+        if !self.ensureCamera() {
+            return
+        }
+        
+        cameraViewController.shoot()
+    }
+    
+    func runTTModeCameraSwitchView() {
+        if !self.ensureCamera() {
+            return
+        }
+        
+        cameraViewController.switchView()
+    }
+    
+    func runTTModeCameraSwitchPhotoVideo() {
+        if !self.ensureCamera() {
+            return
+        }
+        
+        cameraViewController.switchPhotoVideo()
+    }
 }

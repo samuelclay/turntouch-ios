@@ -235,7 +235,6 @@
 		FFDA0FB61D3C4FEE0019859F /* cancel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FFDA0FAF1D3C4FEE0019859F /* cancel@2x.png */; };
 		FFDA0FB71D3C4FEE0019859F /* cancel@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = FFDA0FB01D3C4FEE0019859F /* cancel@3x.png */; };
 		FFDA0FBA1D3C55930019859F /* TTModeCameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDA0FB81D3C55930019859F /* TTModeCameraViewController.swift */; };
-		FFDA0FBB1D3C55930019859F /* TTModeCameraViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFDA0FB91D3C55930019859F /* TTModeCameraViewController.xib */; };
 		FFF270941CEE88E500E46575 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF270931CEE88E500E46575 /* AppDelegate.swift */; };
 		FFF2709D1CEE88E500E46575 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FFF2709C1CEE88E500E46575 /* Assets.xcassets */; };
 		FFF270A01CEE88E500E46575 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFF2709E1CEE88E500E46575 /* LaunchScreen.storyboard */; };
@@ -516,7 +515,6 @@
 		FFDA0FAF1D3C4FEE0019859F /* cancel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cancel@2x.png"; sourceTree = "<group>"; };
 		FFDA0FB01D3C4FEE0019859F /* cancel@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cancel@3x.png"; sourceTree = "<group>"; };
 		FFDA0FB81D3C55930019859F /* TTModeCameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeCameraViewController.swift; path = Modes/Camera/TTModeCameraViewController.swift; sourceTree = "<group>"; };
-		FFDA0FB91D3C55930019859F /* TTModeCameraViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TTModeCameraViewController.xib; path = Modes/Camera/TTModeCameraViewController.xib; sourceTree = "<group>"; };
 		FFF270901CEE88E500E46575 /* Turn Touch iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Turn Touch iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFF270931CEE88E500E46575 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FFF2709C1CEE88E500E46575 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -1068,7 +1066,6 @@
 			children = (
 				FFDA0F9D1D3C49E80019859F /* TTModeCamera.swift */,
 				FFDA0FB81D3C55930019859F /* TTModeCameraViewController.swift */,
-				FFDA0FB91D3C55930019859F /* TTModeCameraViewController.xib */,
 			);
 			name = Camera;
 			sourceTree = "<group>";
@@ -1327,7 +1324,6 @@
 				FFB41B1C1CEE9A3000CD5F09 /* music_play.png in Resources */,
 				FF20232F1D02147A005129E5 /* Icon-40.png in Resources */,
 				FFB41B541CEE9A3000CD5F09 /* itunes_movies_icon.png in Resources */,
-				FFDA0FBB1D3C55930019859F /* TTModeCameraViewController.xib in Resources */,
 				FFB41B461CEE9A3000CD5F09 /* mode_wemo.png in Resources */,
 				FFB41B6A1CEE9A3000CD5F09 /* modal_ftux_doubletap.png in Resources */,
 				FFB41B251CEE9A3000CD5F09 /* button_dash.png in Resources */,
