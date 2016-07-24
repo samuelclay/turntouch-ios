@@ -50,6 +50,9 @@ class TTModeMenuCollectionView: UICollectionView, UICollectionViewDataSource, UI
         } else if menuType == .MENU_ACTION {
             cell.modeName = appDelegate().modeMap.availableActions[indexPath.row]
         }
+        
+        cell.setNeedsDisplay()
+        
         return cell;
     }
     

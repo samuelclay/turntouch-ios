@@ -31,7 +31,7 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
     var modeTitleConstraint = NSLayoutConstraint()
     var modeMenuView: TTModeMenuContainer = TTModeMenuContainer(menuType: TTMenuType.MENU_MODE)
     var modeMenuConstaint: NSLayoutConstraint!
-    var actionDiamondView = TTActionDiamondView()
+    var actionDiamondView = TTActionDiamondView(diamondType: .Interactive)
     var actionDiamondConstraint: NSLayoutConstraint!
     var actionMenuView: TTModeMenuContainer = TTModeMenuContainer(menuType: TTMenuType.MENU_ACTION)
     var actionMenuConstaint: NSLayoutConstraint!

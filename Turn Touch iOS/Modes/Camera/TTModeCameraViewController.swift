@@ -18,8 +18,8 @@ class TTModeCameraViewController: UIViewController {
     var switchButton: UIButton!
     var flashButton: UIButton!
     var segmentedControl: UISegmentedControl!
-    let snapButtonSize: CGFloat = 72
-    
+    let snapButtonSize: CGFloat = 272
+    var diamondView: TTActionDiamondView!
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
@@ -84,22 +84,12 @@ class TTModeCameraViewController: UIViewController {
             }
         }
         
-        snapButton = UIButton(type: .Custom)
-        snapButton.translatesAutoresizingMaskIntoConstraints = false
-        snapButton.clipsToBounds = true
-        snapButton.layer.cornerRadius = snapButtonSize/2
-        snapButton.layer.borderColor = UIColor.whiteColor().CGColor
-        snapButton.layer.borderWidth = 2
-        snapButton.layer.rasterizationScale = UIScreen.mainScreen().scale
-        snapButton.layer.shouldRasterize = true
-        snapButton.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.5)
-        snapButton.addTarget(self, action: #selector(self.snapButtonPressed(_:)), forControlEvents: .TouchUpInside)
-        self.view.addSubview(snapButton)
-        self.view.addConstraint(NSLayoutConstraint(item: snapButton, attribute: .CenterX, relatedBy: .Equal, toItem: self.view, attribute: .CenterX, multiplier: 1.0, constant: 0))
-        self.view.addConstraint(NSLayoutConstraint(item: snapButton, attribute: .Bottom, relatedBy: .Equal, toItem: self.bottomLayoutGuide, attribute: .Bottom, multiplier: 1.0, constant: 64))
-        self.view.addConstraint(NSLayoutConstraint(item: snapButton, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: snapButtonSize))
-        self.view.addConstraint(NSLayoutConstraint(item: snapButton, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: snapButtonSize))
-
+        diamondView = TTActionDiamondView(diamondType: .HUD)
+        self.view.addSubview(diamondView)
+        self.view.addConstraint(NSLayoutConstraint(item: diamondView, attribute: .CenterX, relatedBy: .Equal, toItem: self.view, attribute: .CenterX, multiplier: 1.0, constant: 0))
+        self.view.addConstraint(NSLayoutConstraint(item: diamondView, attribute: .Bottom, relatedBy: .Equal, toItem: self.bottomLayoutGuide, attribute: .Bottom, multiplier: 1.0, constant: 0))
+        self.view.addConstraint(NSLayoutConstraint(item: diamondView, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: snapButtonSize))
+        self.view.addConstraint(NSLayoutConstraint(item: diamondView, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 1.3*snapButtonSize))
         
         flashButton = UIButton(type: .System)
         flashButton.translatesAutoresizingMaskIntoConstraints = false
@@ -121,7 +111,7 @@ class TTModeCameraViewController: UIViewController {
         closeButton.imageEdgeInsets = UIEdgeInsetsMake(10, 10, 10, 10)
         closeButton.addTarget(self, action: #selector(closeButtonPressed(_:)), forControlEvents: .TouchUpInside)
         self.view.addSubview(closeButton)
-        self.view.addConstraint(NSLayoutConstraint(item: closeButton, attribute: .Right, relatedBy: .Equal, toItem: self.view, attribute: .Right, multiplier: 1.0, constant: 44 + 24))
+        self.view.addConstraint(NSLayoutConstraint(item: closeButton, attribute: .Right, relatedBy: .Equal, toItem: self.view, attribute: .Right, multiplier: 1.0, constant: -24))
         self.view.addConstraint(NSLayoutConstraint(item: closeButton, attribute: .Top, relatedBy: .Equal, toItem: self.topLayoutGuide, attribute: .Top, multiplier: 1.0, constant: 0))
         self.view.addConstraint(NSLayoutConstraint(item: closeButton, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 44))
         self.view.addConstraint(NSLayoutConstraint(item: closeButton, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 44))
@@ -147,13 +137,16 @@ class TTModeCameraViewController: UIViewController {
         segmentedControl.selectedSegmentIndex = 0
         segmentedControl.tintColor = UIColor.whiteColor()
         segmentedControl.addTarget(self, action: #selector(segmentedControlChanged(_:)), forControlEvents: .ValueChanged)
-        self.view.addSubview(segmentedControl)
-        self.view.addConstraint(NSLayoutConstraint(item: segmentedControl, attribute: .Left, relatedBy: .Equal, toItem: self.view, attribute: .Left, multiplier: 1.0, constant: 24))
-        self.view.addConstraint(NSLayoutConstraint(item: segmentedControl, attribute: .Bottom, relatedBy: .Equal, toItem: self.bottomLayoutGuide, attribute: .Bottom, multiplier: 1.0, constant: 35))
-        self.view.addConstraint(NSLayoutConstraint(item: segmentedControl, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 32))
-        self.view.addConstraint(NSLayoutConstraint(item: segmentedControl, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 120))
+//        self.view.addSubview(segmentedControl)
+//        self.view.addConstraint(NSLayoutConstraint(item: segmentedControl, attribute: .Left, relatedBy: .Equal, toItem: self.view, attribute: .Left, multiplier: 1.0, constant: 24))
+//        self.view.addConstraint(NSLayoutConstraint(item: segmentedControl, attribute: .Bottom, relatedBy: .Equal, toItem: self.bottomLayoutGuide, attribute: .Bottom, multiplier: 1.0, constant: -24))
+//        self.view.addConstraint(NSLayoutConstraint(item: segmentedControl, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 32))
+//        self.view.addConstraint(NSLayoutConstraint(item: segmentedControl, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 120))
+        
     }
 
+    // MARK: Camera controls
+    
     override func prefersStatusBarHidden() -> Bool {
         return true
     }
@@ -207,10 +200,6 @@ class TTModeCameraViewController: UIViewController {
     }
     
     func shoot() {
-        self.snapButtonPressed(snapButton)
-    }
-    
-    func snapButtonPressed(button: UIButton) {
         if segmentedControl.selectedSegmentIndex == 0 {
             camera.capture({ (cam: LLSimpleCamera!, image: UIImage!, metadata: [NSObject : AnyObject]!, error: NSError!) in
                 if error == nil {
@@ -225,8 +214,8 @@ class TTModeCameraViewController: UIViewController {
                 flashButton.hidden = true
                 switchButton.hidden = true
                 
-                snapButton.layer.borderColor = UIColor.redColor().CGColor
-                snapButton.backgroundColor = UIColor.redColor().colorWithAlphaComponent(0.5)
+//                snapButton.layer.borderColor = UIColor.redColor().CGColor
+//                snapButton.backgroundColor = UIColor.redColor().colorWithAlphaComponent(0.5)
                 
                 let outputURL = self.applicationDocumentsDirectory()?.URLByAppendingPathComponent("test1").URLByAppendingPathExtension("mov")
                 camera.startRecordingWithOutputUrl(outputURL, didRecord: { (cam: LLSimpleCamera!, outputFileUrl: NSURL!, error: NSError!) in
@@ -237,8 +226,8 @@ class TTModeCameraViewController: UIViewController {
                 flashButton.hidden = false
                 switchButton.hidden = false
                 
-                snapButton.layer.borderColor = UIColor.whiteColor().CGColor
-                snapButton.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.5)
+//                snapButton.layer.borderColor = UIColor.whiteColor().CGColor
+//                snapButton.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.5)
                 
                 camera.stopRecording()
             }

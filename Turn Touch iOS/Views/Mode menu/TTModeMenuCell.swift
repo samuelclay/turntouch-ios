@@ -22,6 +22,7 @@ class TTModeMenuCell: UICollectionViewCell {
         super.init(frame: frame)
         
         imageView.translatesAutoresizingMaskIntoConstraints = false
+//        imageView.layer.rasterizationScale = UIScreen.mainScreen().scale
         self.addSubview(imageView)
         self.addConstraint(NSLayoutConstraint(item: imageView, attribute: .Leading, relatedBy: .Equal,
             toItem: self, attribute: .Leading, multiplier: 1.0, constant: 24))

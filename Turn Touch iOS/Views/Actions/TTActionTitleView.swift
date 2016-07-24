@@ -33,8 +33,7 @@ class TTActionTitleView: UIView {
         self.addConstraint(NSLayoutConstraint(item: changeButton, attribute: .CenterY, relatedBy: .Equal,
             toItem: self, attribute: .CenterY, multiplier: 1.0, constant: 0))
         
-        diamondView = TTDiamondView()
-        diamondView.diamondType = TTDiamondType.DIAMOND_TYPE_MODE
+        diamondView = TTDiamondView(frame: CGRect.zero, diamondType: .Mode)
         diamondView.ignoreSelectedMode = true
         diamondView.ignoreActiveMode = true
         self.addSubview(diamondView)

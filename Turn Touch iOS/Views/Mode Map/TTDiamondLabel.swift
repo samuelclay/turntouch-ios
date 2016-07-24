@@ -11,23 +11,29 @@ import UIKit
 class TTDiamondLabel: UIView {
     
     var diamondMode: TTMode!
+    var diamondType: TTDiamondType!
     var labelDirection = TTModeDirection.NO_DIRECTION
     var titleLabel: UILabel!
 //    let iconView: UIImageView!
     
     
-    init(inDirection: TTModeDirection) {
+    init(inDirection: TTModeDirection, diamondType: TTDiamondType = .Interactive) {
         super.init(frame: CGRectZero)
         self.backgroundColor = UIColor.clearColor()
         self.translatesAutoresizingMaskIntoConstraints = false
         self.userInteractionEnabled = false
         
+        self.diamondType = diamondType
         labelDirection = inDirection
         diamondMode = appDelegate().modeMap.selectedMode
         
         titleLabel = UILabel()
         titleLabel.font = UIFont(name: "Effra", size: 13)
-        titleLabel.textColor = UIColor(hex: 0x404A60)
+        if diamondType == .Interactive {
+            titleLabel.textColor = UIColor(hex: 0x404A60)
+        } else if diamondType == .HUD {
+            titleLabel.textColor = UIColor(hex: 0xFFFFFF)
+        }
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.textAlignment = .Center
         self.addSubview(titleLabel)

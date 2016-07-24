@@ -39,15 +39,16 @@ class TTTitleBarView: UIView, TTTitleMenuDelegate {
         
         let settingsImage = UIImage(named: "settings")
         settingsButton.setImage(settingsImage, forState: UIControlState.Normal)
+        settingsButton.imageEdgeInsets = UIEdgeInsetsMake(10, 20, 10, 20)
         settingsButton.translatesAutoresizingMaskIntoConstraints = false
         settingsButton.addTarget(self, action: #selector(self.pressSettings(_:)), forControlEvents: .TouchUpInside)
         self.addSubview(settingsButton)
         self.addConstraint(NSLayoutConstraint(item: settingsButton, attribute: .Height, relatedBy: .Equal,
-            toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: SETTINGS_ICON_SIZE))
+            toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: SETTINGS_ICON_SIZE+20))
         self.addConstraint(NSLayoutConstraint(item: settingsButton, attribute: .Width, relatedBy: .Equal,
-            toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: SETTINGS_ICON_SIZE))
+            toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: SETTINGS_ICON_SIZE+40))
         self.addConstraint(NSLayoutConstraint(item: settingsButton, attribute: NSLayoutAttribute.Right, relatedBy: .Equal,
-            toItem: self, attribute: .Right, multiplier: 1.0, constant: -18))
+            toItem: self, attribute: .Right, multiplier: 1.0, constant: 0))
         self.addConstraint(NSLayoutConstraint(item: settingsButton, attribute: NSLayoutAttribute.CenterY, relatedBy: .Equal,
             toItem: self, attribute: .CenterY, multiplier: 1.0, constant: 0))
         

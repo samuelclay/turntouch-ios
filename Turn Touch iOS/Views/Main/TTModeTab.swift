@@ -20,7 +20,7 @@ class TTModeTab: UIView {
     var modeTitle: String = ""
     var highlighted: Bool = false
     var titleLabel: UILabel = UILabel()
-    var diamondView: TTDiamondView = TTDiamondView()
+    var diamondView = TTDiamondView(frame: CGRect.zero, diamondType: .Mode)
     
     init(modeDirection: TTModeDirection) {
         self.modeDirection = modeDirection
@@ -109,6 +109,7 @@ class TTModeTab: UIView {
         appDelegate().modeMap.removeObserver(self, forKeyPath: "selectedModeDirection")
         appDelegate().modeMap.removeObserver(self, forKeyPath: "activeModeDirection")
     }
+    
     // MARK: Drawing
 
     override func drawRect(rect: CGRect) {

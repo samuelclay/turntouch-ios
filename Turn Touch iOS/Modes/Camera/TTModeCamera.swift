@@ -101,7 +101,7 @@ class TTModeCamera: TTMode {
     // MARK: Action methods
     
     override func activate() {
-
+//        self.ensureCamera()
     }
     
     override func deactivate() {

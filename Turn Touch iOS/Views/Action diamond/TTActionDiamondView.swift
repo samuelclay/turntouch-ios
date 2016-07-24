@@ -12,27 +12,35 @@ class TTActionDiamondView: UIView {
     
     var diamondView: TTDiamondView!
     var diamondMode: TTMode!
-    let northLabel = TTDiamondLabel(inDirection: .NORTH)
-    let eastLabel = TTDiamondLabel(inDirection: .EAST)
-    let westLabel = TTDiamondLabel(inDirection: .WEST)
-    let southLabel = TTDiamondLabel(inDirection: .SOUTH)
+    var diamondType: TTDiamondType!
+    var northLabel: TTDiamondLabel!
+    var eastLabel: TTDiamondLabel!
+    var westLabel: TTDiamondLabel!
+    var southLabel: TTDiamondLabel!
     var widthRegularConstraint: NSLayoutConstraint!
     var widthCompactConstraint: NSLayoutConstraint!
     var heightRegularConstraint: NSLayoutConstraint!
     var heightCompactConstraint: NSLayoutConstraint!
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    init(diamondType: TTDiamondType) {
+        super.init(frame: CGRect.zero)
+        
         self.translatesAutoresizingMaskIntoConstraints = false
         self.backgroundColor = UIColor.clearColor()
         self.userInteractionEnabled = true
-
+        self.diamondType = diamondType
+        northLabel = TTDiamondLabel(inDirection: .NORTH, diamondType: diamondType)
+        eastLabel = TTDiamondLabel(inDirection: .EAST, diamondType: diamondType)
+        westLabel = TTDiamondLabel(inDirection: .WEST, diamondType: diamondType)
+        southLabel = TTDiamondLabel(inDirection: .SOUTH, diamondType: diamondType)
+        
         self.registerAsObserver()
         
-        diamondView = TTDiamondView(frame: frame)
-        diamondView.showOutline = true
-        diamondView.ignoreSelectedMode = true
-        diamondView.diamondType = TTDiamondType.DIAMOND_TYPE_INTERACTIVE
+        diamondView = TTDiamondView(frame: frame, diamondType: diamondType)
+        if diamondType == .Interactive {
+            diamondView.showOutline = true
+            diamondView.ignoreSelectedMode = true
+        }
         self.addSubview(diamondView)
         self.addConstraint(NSLayoutConstraint(item: diamondView, attribute: .CenterX, relatedBy: .Equal,
             toItem: self, attribute: .CenterX, multiplier: 1.0, constant: 0))

@@ -9,10 +9,10 @@
 import UIKit
 
 enum TTDiamondType: Int {
-    case DIAMOND_TYPE_INTERACTIVE
-    case DIAMOND_TYPE_MODE
-    case DIAMOND_TYPE_HUD
-    case DIAMOND_TYPE_PAIRING
+    case Interactive
+    case Mode
+    case HUD
+    case Pairing
 }
 
 let SPACING_PCT: CGFloat = 0.0175
@@ -28,7 +28,7 @@ class TTDiamondView: UIView {
     var southPathTop: UIBezierPath!
     var southPathBottom: UIBezierPath!
     
-    var diamondType: TTDiamondType = .DIAMOND_TYPE_MODE
+    var diamondType: TTDiamondType = .Mode
     var overrideSelectedDirection: TTModeDirection = .NO_DIRECTION
     var overrideActiveDirection: TTModeDirection = .NO_DIRECTION
     @IBInspectable var ignoreSelectedMode: Bool = false
@@ -41,7 +41,7 @@ class TTDiamondView: UIView {
             return self.diamondType.rawValue
         }
         set (diamondTypeIndex) {
-            self.diamondType = TTDiamondType(rawValue: diamondTypeIndex) ?? .DIAMOND_TYPE_HUD
+            self.diamondType = TTDiamondType(rawValue: diamondTypeIndex) ?? .HUD
         }
     }
     @IBInspectable var overrideSelectedDirectionAdapter: Int {
@@ -59,7 +59,8 @@ class TTDiamondView: UIView {
         self.contentMode = .Redraw
     }
     
-    override init(frame: CGRect) {
+    init(frame: CGRect, diamondType: TTDiamondType) {
+        self.diamondType = diamondType
         super.init(frame: frame)
         
         self.backgroundColor = UIColor.clearColor()
@@ -93,7 +94,7 @@ class TTDiamondView: UIView {
         } else if keyPath == "inspectingModeDirection" {
             self.setNeedsDisplay()
         } else if keyPath == "activeModeDirection" {
-            if diamondType == .DIAMOND_TYPE_PAIRING {
+            if diamondType == .Pairing {
                 dispatch_async(dispatch_get_main_queue(), { 
                     self.setNeedsDisplay()
                 })
@@ -109,9 +110,7 @@ class TTDiamondView: UIView {
         super.drawRect(rect)
         
         self.drawPaths()
-        if self.diamondType != .DIAMOND_TYPE_HUD {
-            self.colorPaths()
-        }
+        self.colorPaths()
     }
     
     func drawPaths() {
@@ -166,7 +165,7 @@ class TTDiamondView: UIView {
     
     func colorPaths() {
         let appD = appDelegate()
-        let activeModeDirection: TTModeDirection = (ignoreActiveMode || diamondType == .DIAMOND_TYPE_INTERACTIVE) ? overrideActiveDirection : appD.modeMap.activeModeDirection
+        let activeModeDirection: TTModeDirection = (ignoreActiveMode || diamondType == .Interactive) ? overrideActiveDirection : appD.modeMap.activeModeDirection
         let selectedModeDirection: TTModeDirection = ignoreSelectedMode ? overrideSelectedDirection : appD.modeMap.selectedModeDirection
         let inspectingModeDirection: TTModeDirection = appD.modeMap.inspectingModeDirection
         let hoverModeDirection: TTModeDirection = appD.modeMap.hoverModeDirection
@@ -190,19 +189,19 @@ class TTDiamondView: UIView {
             var isInspectingDirection: Bool = inspectingModeDirection == direction
             var isSelectedDirection: Bool = selectedModeDirection == direction
             let isActiveDirection: Bool = activeModeDirection == direction
-            if diamondType != .DIAMOND_TYPE_INTERACTIVE {
+            if diamondType != .Interactive {
                 isInspectingDirection = false
             }
-            if diamondType == .DIAMOND_TYPE_PAIRING {
+            if diamondType == .Pairing {
                 isSelectedDirection = appD.bluetoothMonitor.buttonTimer.isDirectionPaired(direction)
             }
             // Fill in the color as a stroke or fill
             var modeColor: UIColor?
-            if diamondType == .DIAMOND_TYPE_HUD {
-                let alpha: Double = 0.9
+            if diamondType == .HUD {
+                let alpha: Double = 0.5
                 modeColor = UIColor(hex: 0xFFFFFF, alpha: alpha)
             }
-            else if diamondType == .DIAMOND_TYPE_INTERACTIVE {
+            else if diamondType == .Interactive {
                 if isActiveDirection {
                     modeColor = UIColor(hex: 0x505AC0)
                 }
@@ -219,13 +218,13 @@ class TTDiamondView: UIView {
                     }
                 }
             }
-            else if diamondType == .DIAMOND_TYPE_MODE || diamondType == .DIAMOND_TYPE_PAIRING {
+            else if diamondType == .Mode || diamondType == .Pairing {
                 if isActiveDirection {
                     let alpha: Double = 0.5
                     modeColor = UIColor(hex: 0x303033, alpha: alpha)
                 }
                 else if isSelectedDirection {
-                    if diamondType == .DIAMOND_TYPE_PAIRING || appD.modeMap.selectedModeDirection == direction {
+                    if diamondType == .Pairing || appD.modeMap.selectedModeDirection == direction {
                         let alpha: Double = 0.8
                         modeColor = UIColor(hex: 0x1555D8, alpha: alpha)
                     }
@@ -265,7 +264,7 @@ class TTDiamondView: UIView {
                 combinedPath.stroke()
             }
             
-            if diamondType == .DIAMOND_TYPE_INTERACTIVE {
+            if diamondType == .Interactive {
                 if isActiveDirection {
                     UIColor(hex: 0xFFFFFF).set()
                 }
@@ -301,7 +300,7 @@ class TTDiamondView: UIView {
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         super.touchesBegan(touches, withEvent: event)
         
-        if diamondType != .DIAMOND_TYPE_INTERACTIVE {
+        if diamondType != .Interactive {
             return
         }
         
@@ -324,7 +323,7 @@ class TTDiamondView: UIView {
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
         super.touchesEnded(touches, withEvent: event)
         
-        if diamondType != .DIAMOND_TYPE_INTERACTIVE {
+        if diamondType != .Interactive {
             return
         }
         
