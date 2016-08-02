@@ -14,6 +14,11 @@ enum ActionLayout {
     case ACTION_LAYOUT_PROGRESSBAR
 }
 
+enum ModeChangeType {
+    case ModeTab
+    case RemoteButton
+}
+
 protocol TTModeProtocol {
     func deactivate()
     func activate()
@@ -31,6 +36,7 @@ func >!< (object1: AnyObject!, object2: AnyObject!) -> Bool {
 class TTMode : NSObject, TTModeProtocol {
     var modeDirection: TTModeDirection = .NO_DIRECTION
     var action: TTAction!
+    var modeChangeType: ModeChangeType = .RemoteButton
     
     required override init() {
         super.init()

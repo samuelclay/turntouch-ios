@@ -18,29 +18,41 @@ class TTModeCameraViewController: UIViewController {
     var switchButton: UIButton!
     var flashButton: UIButton!
     var segmentedControl: UISegmentedControl!
-    let snapButtonSize: CGFloat = 272
+    let diamondSize: CGFloat = 272
     var diamondView: TTActionDiamondView!
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
         camera.start()
+        self.modeCamera.cameraState = .CameraActive
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(true, animated: animated)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.translatesAutoresizingMaskIntoConstraints = false
-        self.navigationController?.setNavigationBarHidden(true, animated: false)
         
         camera = LLSimpleCamera(quality: AVCaptureSessionPresetHigh,
                                 position: LLCameraPositionRear,
                                 videoEnabled: false)
         camera.attachToViewController(self, withFrame: self.view.frame)
         camera.fixOrientationAfterCapture = true
-        self.view.addConstraint(NSLayoutConstraint(item: camera.view, attribute: .Width, relatedBy: .Equal, toItem: self.view, attribute: .Width, multiplier: 1.0, constant: 0))
-        self.view.addConstraint(NSLayoutConstraint(item: camera.view, attribute: .Height, relatedBy: .Equal, toItem: self.view, attribute: .Height, multiplier: 1.0, constant: 0))
-        self.view.addConstraint(NSLayoutConstraint(item: camera.view, attribute: .Top, relatedBy: .Equal, toItem: self.view, attribute: .Top, multiplier: 1.0, constant: 0))
-        self.view.addConstraint(NSLayoutConstraint(item: camera.view, attribute: .Left, relatedBy: .Equal, toItem: self.view, attribute: .Left, multiplier: 1.0, constant: 0))
+        self.view.addConstraint(NSLayoutConstraint(item: camera.view, attribute: .Width,
+            relatedBy: .Equal, toItem: self.view, attribute: .Width,
+            multiplier: 1.0, constant: 0))
+        self.view.addConstraint(NSLayoutConstraint(item: camera.view, attribute: .Height,
+            relatedBy: .Equal, toItem: self.view, attribute: .Height,
+            multiplier: 1.0, constant: 0))
+        self.view.addConstraint(NSLayoutConstraint(item: camera.view, attribute: .Top,
+            relatedBy: .Equal, toItem: self.view, attribute: .Top,
+            multiplier: 1.0, constant: 0))
+        self.view.addConstraint(NSLayoutConstraint(item: camera.view, attribute: .Left,
+            relatedBy: .Equal, toItem: self.view, attribute: .Left,
+            multiplier: 1.0, constant: 0))
         
         camera.onDeviceChange = {
             (cam: LLSimpleCamera!, device: AVCaptureDevice!) in
@@ -78,18 +90,30 @@ class TTModeCameraViewController: UIViewController {
                     label.textColor = UIColor.whiteColor()
                     label.textAlignment = .Center
                     self.view.addSubview(label)
-                    self.view.addConstraint(NSLayoutConstraint(item: label, attribute: .CenterX, relatedBy: .Equal, toItem: self.view, attribute: .CenterX, multiplier: 1.0, constant: 0))
-                    self.view.addConstraint(NSLayoutConstraint(item: label, attribute: .CenterY, relatedBy: .Equal, toItem: self.view, attribute: .CenterY, multiplier: 1.0, constant: 0))
+                    self.view.addConstraint(NSLayoutConstraint(item: label, attribute: .CenterX,
+                        relatedBy: .Equal, toItem: self.view, attribute: .CenterX,
+                        multiplier: 1.0, constant: 0))
+                    self.view.addConstraint(NSLayoutConstraint(item: label, attribute: .CenterY,
+                        relatedBy: .Equal, toItem: self.view, attribute: .CenterY,
+                        multiplier: 1.0, constant: 0))
                 }
             }
         }
         
         diamondView = TTActionDiamondView(diamondType: .HUD)
         self.view.addSubview(diamondView)
-        self.view.addConstraint(NSLayoutConstraint(item: diamondView, attribute: .CenterX, relatedBy: .Equal, toItem: self.view, attribute: .CenterX, multiplier: 1.0, constant: 0))
-        self.view.addConstraint(NSLayoutConstraint(item: diamondView, attribute: .Bottom, relatedBy: .Equal, toItem: self.bottomLayoutGuide, attribute: .Bottom, multiplier: 1.0, constant: 0))
-        self.view.addConstraint(NSLayoutConstraint(item: diamondView, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: snapButtonSize))
-        self.view.addConstraint(NSLayoutConstraint(item: diamondView, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 1.3*snapButtonSize))
+        self.view.addConstraint(NSLayoutConstraint(item: diamondView, attribute: .CenterX,
+            relatedBy: .Equal, toItem: self.view, attribute: .CenterX,
+            multiplier: 1.0, constant: 0))
+        self.view.addConstraint(NSLayoutConstraint(item: diamondView, attribute: .Bottom,
+            relatedBy: .Equal, toItem: self.bottomLayoutGuide, attribute: .Bottom,
+            multiplier: 1.0, constant: 0))
+        self.view.addConstraint(NSLayoutConstraint(item: diamondView, attribute: .Height,
+            relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute,
+            multiplier: 1.0, constant: diamondSize))
+        self.view.addConstraint(NSLayoutConstraint(item: diamondView, attribute: .Width,
+            relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute,
+            multiplier: 1.0, constant: 1.3*diamondSize))
         
         flashButton = UIButton(type: .System)
         flashButton.translatesAutoresizingMaskIntoConstraints = false
@@ -98,10 +122,18 @@ class TTModeCameraViewController: UIViewController {
         flashButton.imageEdgeInsets = UIEdgeInsetsMake(10, 10, 10, 10)
         flashButton.addTarget(self, action: #selector(flashButtonPressed(_:)), forControlEvents: .TouchUpInside)
         self.view.addSubview(flashButton)
-        self.view.addConstraint(NSLayoutConstraint(item: flashButton, attribute: .Left, relatedBy: .Equal, toItem: self.view, attribute: .Left, multiplier: 1.0, constant: 24))
-        self.view.addConstraint(NSLayoutConstraint(item: flashButton, attribute: .Top, relatedBy: .Equal, toItem: self.topLayoutGuide, attribute: .Top, multiplier: 1.0, constant: 0))
-        self.view.addConstraint(NSLayoutConstraint(item: flashButton, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 44))
-        self.view.addConstraint(NSLayoutConstraint(item: flashButton, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 46))
+        self.view.addConstraint(NSLayoutConstraint(item: flashButton, attribute: .Left,
+            relatedBy: .Equal, toItem: self.view, attribute: .Left,
+            multiplier: 1.0, constant: 24))
+        self.view.addConstraint(NSLayoutConstraint(item: flashButton, attribute: .Top,
+            relatedBy: .Equal, toItem: self.topLayoutGuide, attribute: .Top,
+            multiplier: 1.0, constant: 0))
+        self.view.addConstraint(NSLayoutConstraint(item: flashButton, attribute: .Height,
+            relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute,
+            multiplier: 1.0, constant: 44))
+        self.view.addConstraint(NSLayoutConstraint(item: flashButton, attribute: .Width,
+            relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute,
+            multiplier: 1.0, constant: 46))
         
         
         closeButton = UIButton(type: .System)
@@ -111,10 +143,18 @@ class TTModeCameraViewController: UIViewController {
         closeButton.imageEdgeInsets = UIEdgeInsetsMake(10, 10, 10, 10)
         closeButton.addTarget(self, action: #selector(closeButtonPressed(_:)), forControlEvents: .TouchUpInside)
         self.view.addSubview(closeButton)
-        self.view.addConstraint(NSLayoutConstraint(item: closeButton, attribute: .Right, relatedBy: .Equal, toItem: self.view, attribute: .Right, multiplier: 1.0, constant: -24))
-        self.view.addConstraint(NSLayoutConstraint(item: closeButton, attribute: .Top, relatedBy: .Equal, toItem: self.topLayoutGuide, attribute: .Top, multiplier: 1.0, constant: 0))
-        self.view.addConstraint(NSLayoutConstraint(item: closeButton, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 44))
-        self.view.addConstraint(NSLayoutConstraint(item: closeButton, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 44))
+        self.view.addConstraint(NSLayoutConstraint(item: closeButton, attribute: .Right,
+            relatedBy: .Equal, toItem: self.view, attribute: .Right,
+            multiplier: 1.0, constant: -24))
+        self.view.addConstraint(NSLayoutConstraint(item: closeButton, attribute: .Top,
+            relatedBy: .Equal, toItem: self.topLayoutGuide, attribute: .Top,
+            multiplier: 1.0, constant: 0))
+        self.view.addConstraint(NSLayoutConstraint(item: closeButton, attribute: .Height,
+            relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute,
+            multiplier: 1.0, constant: 44))
+        self.view.addConstraint(NSLayoutConstraint(item: closeButton, attribute: .Width,
+            relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute,
+            multiplier: 1.0, constant: 44))
         
         
         if LLSimpleCamera.isFrontCameraAvailable() && LLSimpleCamera.isRearCameraAvailable() {
@@ -126,10 +166,18 @@ class TTModeCameraViewController: UIViewController {
             
             switchButton.addTarget(self, action: #selector(switchButtonPressed(_:)), forControlEvents: .TouchUpInside)
             self.view.addSubview(switchButton)
-            self.view.addConstraint(NSLayoutConstraint(item: switchButton, attribute: .CenterX, relatedBy: .Equal, toItem: self.view, attribute: .CenterX, multiplier: 1.0, constant: 0))
-            self.view.addConstraint(NSLayoutConstraint(item: switchButton, attribute: .Top, relatedBy: .Equal, toItem: self.topLayoutGuide, attribute: .Top, multiplier: 1.0, constant: 0))
-            self.view.addConstraint(NSLayoutConstraint(item: switchButton, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 42))
-            self.view.addConstraint(NSLayoutConstraint(item: switchButton, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 49))
+            self.view.addConstraint(NSLayoutConstraint(item: switchButton, attribute: .CenterX,
+                relatedBy: .Equal, toItem: self.view, attribute: .CenterX,
+                multiplier: 1.0, constant: 0))
+            self.view.addConstraint(NSLayoutConstraint(item: switchButton, attribute: .Top,
+                relatedBy: .Equal, toItem: self.topLayoutGuide, attribute: .Top,
+                multiplier: 1.0, constant: 0))
+            self.view.addConstraint(NSLayoutConstraint(item: switchButton, attribute: .Height,
+                relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute,
+                multiplier: 1.0, constant: 42))
+            self.view.addConstraint(NSLayoutConstraint(item: switchButton, attribute: .Width,
+                relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, 
+                multiplier: 1.0, constant: 49))
         }
         
         segmentedControl = UISegmentedControl(items: ["Photo", "Video"])
@@ -204,6 +252,9 @@ class TTModeCameraViewController: UIViewController {
             camera.capture({ (cam: LLSimpleCamera!, image: UIImage!, metadata: [NSObject : AnyObject]!, error: NSError!) in
                 if error == nil {
                     print("image: \(image) - \(metadata)")
+                    self.modeCamera.cameraState = .ImageReview
+                    let reviewViewController = TTModeCameraReviewViewController(image: image)
+                    self.presentViewController(reviewViewController, animated: false, completion: nil)
                 } else {
                     print("capture error: \(error)")
                 }

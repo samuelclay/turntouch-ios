@@ -8,11 +8,19 @@
 
 import UIKit
 
+enum TTModeCameraState {
+    case CameraInactive
+    case CameraActive
+    case ImageReview
+    case VideoReview
+}
+
 class TTModeCamera: TTMode {
     
     var cameraActive = false
     var cameraViewController = TTModeCameraViewController()
     var cameraNavController: UINavigationController!
+    var cameraState: TTModeCameraState = .CameraInactive
     
     required init() {
         super.init()
@@ -47,15 +55,36 @@ class TTModeCamera: TTMode {
     // MARK: Action titles
     
     func titleTTModeCameraShoot() -> String {
-        return "Take photo"
+        switch cameraState {
+        case .CameraInactive, .CameraActive:
+            return "Take photo"
+        case .ImageReview:
+            return "Save photo"
+        case .VideoReview:
+            return "Save photo"
+        }
     }
     
     func titleTTModeCameraSwitchPhotoVideo() -> String {
-        return "Switch photo/video"
+        switch cameraState {
+        case .CameraInactive, .CameraActive:
+            return "Switch photo/video"
+        case .ImageReview:
+            return "Retake"
+        case .VideoReview:
+            return "Replay"
+        }
     }
     
     func titleTTModeCameraSwitchView() -> String {
-        return "Flip front/back"
+        switch cameraState {
+        case .CameraInactive, .CameraActive:
+            return "Flip front/back"
+        case .ImageReview:
+            return "Save photo"
+        case .VideoReview:
+            return "Save video"
+        }
     }
     
     func titleTTModeCameraSwitchFlash() -> String {
@@ -101,11 +130,14 @@ class TTModeCamera: TTMode {
     // MARK: Action methods
     
     override func activate() {
-//        self.ensureCamera()
+        if appDelegate().modeMap.selectedMode.modeChangeType == .RemoteButton || true {
+            self.ensureCamera()
+        }
     }
     
     override func deactivate() {
         self.closeCamera()
+        cameraState = .CameraInactive
     }
     
     func closeCamera() {
@@ -117,10 +149,11 @@ class TTModeCamera: TTMode {
     func ensureCamera() -> Bool {
         var cameraAlreadyShowing = true
         
-        if !cameraActive {
+        if cameraState == .CameraInactive {
             cameraAlreadyShowing = false
-            appDelegate().mainViewController.presentViewController(cameraNavController, animated: true) {
-                self.cameraActive = true
+            appDelegate().mainViewController.presentViewController(cameraNavController,
+                                                                   animated: true) {
+                self.cameraState = .CameraActive
             }
         }
         

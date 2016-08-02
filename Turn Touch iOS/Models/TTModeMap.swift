@@ -64,8 +64,6 @@ class TTModeMap: NSObject {
             let prefs = NSUserDefaults.standardUserDefaults()
             prefs.setInteger(self.selectedModeDirection.rawValue, forKey: "TT:selectedModeDirection")
             prefs.synchronize()
-            
-//            self.switchMode(self.selectedModeDirection)
         }
     }
     
@@ -101,9 +99,6 @@ class TTModeMap: NSObject {
                 }
             }
         }
-        
-//        self.selectedModeDirection = TTModeDirection(rawValue: prefs.integerForKey("TT:selectedModeDirection"))!
-//        self.switchMode(self.selectedModeDirection)
     }
     
     func activateModes() {
@@ -111,7 +106,6 @@ class TTModeMap: NSObject {
 
         let direction = TTModeDirection(rawValue: prefs.integerForKey("TT:selectedModeDirection"))!
         self.switchMode(direction)
-        self.selectedModeDirection = direction
     }
     
     func activateTimers() {
@@ -122,7 +116,9 @@ class TTModeMap: NSObject {
 //        }
     }
     
-    func switchMode(direction: TTModeDirection) {
+    func switchMode(direction: TTModeDirection, modeChangeType: ModeChangeType = .ModeTab) {
+        self.activeModeDirection = .NO_DIRECTION
+
         // batchActions.deactivate()
         self.selectedMode.deactivate()
         
@@ -135,11 +131,10 @@ class TTModeMap: NSObject {
         }
         
         self.availableActions = selectedMode.dynamicType.actions()
-        selectedMode.activate(direction)
+        self.selectedMode.modeChangeType = modeChangeType
+        self.selectedMode.activate(direction)
         self.reset()
-        //        if self.selectedModeDirection != direction {
-//        self.selectedModeDirection = direction
-        //        }
+        self.selectedModeDirection = direction
     }
     
     func runActiveButton() {

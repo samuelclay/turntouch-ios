@@ -226,9 +226,7 @@ class TTButtonTimer : NSObject {
     
     func activateMode(direction: TTModeDirection) {
         dispatch_async(dispatch_get_main_queue(), {
-            appDelegate().modeMap.activeModeDirection = .NO_DIRECTION
-            appDelegate().modeMap.switchMode(direction)
-            appDelegate().modeMap.selectedModeDirection = direction
+            appDelegate().modeMap.switchMode(direction, modeChangeType: .RemoteButton)
             AudioServicesPlayAlertSound(kSystemSoundID_Vibrate)
     //        appDelegate().hudController.holdToastActiveMode(true)
         })
