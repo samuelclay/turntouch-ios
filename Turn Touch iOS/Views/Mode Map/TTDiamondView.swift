@@ -80,12 +80,22 @@ class TTDiamondView: UIView {
         appDelegate().modeMap.addObserver(self, forKeyPath: "selectedModeDirection", options: [], context: nil)
         appDelegate().modeMap.addObserver(self, forKeyPath: "inspectingModeDirection", options: [], context: nil)
         appDelegate().modeMap.addObserver(self, forKeyPath: "activeModeDirection", options: [], context: nil)
+//         Throws an exception for "message sent to deallocated instance"
+//        if diamondType == .DIAMOND_TYPE_PAIRING {
+//            appDelegate().bluetoothMonitor.addObserver(self, forKeyPath: "pairedDevicesCount", options: [], context: nil)
+//            appDelegate().bluetoothMonitor.buttonTimer.addObserver(self, forKeyPath: "pairingActivatedCount", options: [], context: nil)
+//        }
     }
     
     deinit {
         appDelegate().modeMap.removeObserver(self, forKeyPath: "selectedModeDirection")
         appDelegate().modeMap.removeObserver(self, forKeyPath: "inspectingModeDirection")
         appDelegate().modeMap.removeObserver(self, forKeyPath: "activeModeDirection")
+//         Throws an exception for "message sent to deallocated instance"
+//        if diamondType == .DIAMOND_TYPE_PAIRING {
+//            appDelegate().bluetoothMonitor.removeObserver(self, forKeyPath: "pairedDevicesCount")
+//            appDelegate().bluetoothMonitor.buttonTimer.removeObserver(self, forKeyPath: "pairingActivatedCount")
+//        }
     }
     
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
@@ -101,7 +111,12 @@ class TTDiamondView: UIView {
             } else {
                 self.setNeedsDisplay()
             }
+        } else if keyPath == "pairedDevicesCount" {
+            self.setNeedsDisplay()
+        } else if keyPath == "pairingActivatedCount" {
+            self.setNeedsDisplay()
         }
+
     }
     
     // MARK: Drawing

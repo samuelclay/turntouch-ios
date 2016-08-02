@@ -11,6 +11,7 @@ import UIKit
 enum TTPairingState {
     case Intro
     case Searching
+    case Pairing
     case Success
     case Failure
     case FailureExplainer
@@ -18,6 +19,7 @@ enum TTPairingState {
 
 class TTPairingViewController: UIViewController, TTBluetoothMonitorDelegate {
     
+    let secondsToPair = 30
     @IBOutlet var diamondView: TTDiamondView!
     @IBOutlet var spinnerScanning: TTPairingSpinner!
     @IBOutlet var titleLabel: UILabel!
@@ -58,6 +60,8 @@ class TTPairingViewController: UIViewController, TTBluetoothMonitorDelegate {
             appDelegate().bluetoothMonitor.delegate = self
             appDelegate().bluetoothMonitor.scanUnknown()
             self.changedDeviceCount()
+        } else if state == .Pairing {
+            self.changedDeviceCount()
         } else if state == .Failure && self.navigationController?.visibleViewController == self {
             let pairingInfoViewController = TTPairingInfoViewController(pairingState: .Failure)
             self.navigationController?.pushViewController(pairingInfoViewController, animated: true)
@@ -77,7 +81,7 @@ class TTPairingViewController: UIViewController, TTBluetoothMonitorDelegate {
             spinnerScanning.hidden = false
             let runner = NSRunLoop.currentRunLoop()
             searchingTimer?.invalidate()
-            searchingTimer = NSTimer.scheduledTimerWithTimeInterval(10, target: self,
+            searchingTimer = NSTimer.scheduledTimerWithTimeInterval(20, target: self,
                                                                     selector: #selector(searchingFailure),
                                                                     userInfo: nil, repeats: false)
             runner.addTimer(searchingTimer!, forMode: NSRunLoopCommonModes)
@@ -107,7 +111,7 @@ class TTPairingViewController: UIViewController, TTBluetoothMonitorDelegate {
     // MARK: Countdown timer
     
     func updateCountdown() {
-        let minusOneSecond = countdownIndicator.progress + 0.1
+        let minusOneSecond = countdownIndicator.progress + 1/Float(secondsToPair)
         UIView.animateWithDuration(1, animations: { () -> Void in
             self.countdownIndicator.setProgress(minusOneSecond, animated: true)
         })

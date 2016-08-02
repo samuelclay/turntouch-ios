@@ -26,7 +26,7 @@ protocol TTBluetoothMonitorDelegate {
     func pairingSuccess()
 }
 
-let DEBUG_BLUETOOTH = false
+let DEBUG_BLUETOOTH = true
 
 class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
     
@@ -473,20 +473,29 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
     
     func centralManager(central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: NSError?) {
         let device = foundDevices.deviceForPeripheral(peripheral)
+        let paired = device?.isPaired
+        
 //        if DEBUG_BLUETOOTH {
             print(" ---> (\(bluetoothState)) Disconnected device: \(device)")
 //        }
         
         foundDevices.removePeripheral(peripheral)
         self.countDevices()
-        self.scanKnown()
         
-        dispatch_once(&onceKnownToken) {
-            let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(2 * Double(NSEC_PER_SEC)))
-            dispatch_after(delayTime, dispatch_get_main_queue(), {
-                self.onceKnownToken = 0
-                self.scanKnown()
-            })
+        if !paired! {
+            // Scan unknown since the device was unpaired, so we should find it again
+            self.stopScan()
+            self.scanUnknown()
+        } else {
+            self.scanKnown()
+        
+            dispatch_once(&onceKnownToken) {
+                let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(2 * Double(NSEC_PER_SEC)))
+                dispatch_after(delayTime, dispatch_get_main_queue(), {
+                    self.onceKnownToken = 0
+                    self.scanKnown()
+                })
+            }
         }
         
         // TODO: hudController release toast mode + action
