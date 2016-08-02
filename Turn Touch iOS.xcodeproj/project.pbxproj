@@ -113,6 +113,7 @@
 		FF4AF7EC1D24F9E70009C777 /* TTModeSonosConnecting.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF4AF7E31D24F9E70009C777 /* TTModeSonosConnecting.xib */; };
 		FF4AF7EE1D24F9E70009C777 /* TTModeSonosOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4AF7E51D24F9E70009C777 /* TTModeSonosOptions.swift */; };
 		FF4AF7EF1D24F9E70009C777 /* TTModeSonosOptions.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF4AF7E61D24F9E70009C777 /* TTModeSonosOptions.xib */; };
+		FF6434881D5130BF00F2FAE6 /* mode_camera.png in Resources */ = {isa = PBXBuildFile; fileRef = FF6434871D5130BF00F2FAE6 /* mode_camera.png */; };
 		FFB41B111CEE9A3000CD5F09 /* alarm_snooze.png in Resources */ = {isa = PBXBuildFile; fileRef = FFB41AAE1CEE9A3000CD5F09 /* alarm_snooze.png */; };
 		FFB41B121CEE9A3000CD5F09 /* chevron_east.png in Resources */ = {isa = PBXBuildFile; fileRef = FFB41AAF1CEE9A3000CD5F09 /* chevron_east.png */; };
 		FFB41B131CEE9A3000CD5F09 /* chevron_north.png in Resources */ = {isa = PBXBuildFile; fileRef = FFB41AB01CEE9A3000CD5F09 /* chevron_north.png */; };
@@ -389,6 +390,7 @@
 		FF4AF7E31D24F9E70009C777 /* TTModeSonosConnecting.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TTModeSonosConnecting.xib; path = Modes/Sonos/TTModeSonosConnecting.xib; sourceTree = "<group>"; };
 		FF4AF7E51D24F9E70009C777 /* TTModeSonosOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeSonosOptions.swift; path = Modes/Sonos/TTModeSonosOptions.swift; sourceTree = "<group>"; };
 		FF4AF7E61D24F9E70009C777 /* TTModeSonosOptions.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TTModeSonosOptions.xib; path = Modes/Sonos/TTModeSonosOptions.xib; sourceTree = "<group>"; };
+		FF6434871D5130BF00F2FAE6 /* mode_camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mode_camera.png; sourceTree = "<group>"; };
 		FFB41AAE1CEE9A3000CD5F09 /* alarm_snooze.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = alarm_snooze.png; sourceTree = "<group>"; };
 		FFB41AAF1CEE9A3000CD5F09 /* chevron_east.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chevron_east.png; sourceTree = "<group>"; };
 		FFB41AB01CEE9A3000CD5F09 /* chevron_north.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chevron_north.png; sourceTree = "<group>"; };
@@ -901,6 +903,7 @@
 				FFB41AD01CEE9A3000CD5F09 /* imac.png */,
 				FFB41AD11CEE9A3000CD5F09 /* macbookpro.png */,
 				FFB41AD21CEE9A3000CD5F09 /* mode_alarm.png */,
+				FF6434871D5130BF00F2FAE6 /* mode_camera.png */,
 				FFB41AD31CEE9A3000CD5F09 /* mode_electricobjects.png */,
 				FFB41AD41CEE9A3000CD5F09 /* mode_fitness.png */,
 				FFB41AD51CEE9A3000CD5F09 /* mode_home.png */,
@@ -1331,6 +1334,7 @@
 				FFB41B6A1CEE9A3000CD5F09 /* modal_ftux_doubletap.png in Resources */,
 				FFB41B251CEE9A3000CD5F09 /* button_dash.png in Resources */,
 				FFB41B281CEE9A3000CD5F09 /* clock b&w.png in Resources */,
+				FF6434881D5130BF00F2FAE6 /* mode_camera.png in Resources */,
 				FFB41B121CEE9A3000CD5F09 /* chevron_east.png in Resources */,
 				FFB41B631CEE9A3000CD5F09 /* logo_with_title.png in Resources */,
 				FF2023381D02147A005129E5 /* Icon-72.png in Resources */,

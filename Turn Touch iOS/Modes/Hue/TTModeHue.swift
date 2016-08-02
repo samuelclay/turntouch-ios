@@ -737,7 +737,7 @@ class TTModeHue: TTMode {
         let cache = PHBridgeResourcesReader.readBridgeResourcesCache()
         // Collect scene ids to check against
         
-        if cache.scenes == nil {
+        if cache.scenes == nil || cache.lights == nil {
             print(" ---> Scenes not ready yet")
             return
         }
