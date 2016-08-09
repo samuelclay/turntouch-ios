@@ -51,15 +51,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
         print("applicationWillResignActive")
-        var bgTask: UIBackgroundTaskIdentifier = 0
-        bgTask = UIApplication.sharedApplication().beginBackgroundTaskWithExpirationHandler {
-            print(" Background time: \(UIApplication.sharedApplication().backgroundTimeRemaining)")
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
-                self.bluetoothMonitor.scanKnown()
-                print(" ---> Done with background task")
-                UIApplication.sharedApplication().endBackgroundTask(bgTask)
-            }
-        }
+        
+        // Not using beginBackgroundTask since iOS should wake up the app on notification
+//        var bgTask: UIBackgroundTaskIdentifier = 0
+//        bgTask = UIApplication.sharedApplication().beginBackgroundTaskWithExpirationHandler {
+//            print(" Background time: \(UIApplication.sharedApplication().backgroundTimeRemaining)")
+//            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
+//                self.bluetoothMonitor.scanKnown()
+//                print(" ---> Done with background task")
+//                UIApplication.sharedApplication().endBackgroundTask(bgTask)
+//            }
+//        }
         
 //        self.bluetoothMonitor.scanKnown()
 //        print(" Background time remaining: \(UIApplication.sharedApplication().backgroundTimeRemaining)")

@@ -214,6 +214,7 @@ class TTButtonTimer : NSObject {
             }
             self.activateButton(.NO_DIRECTION)
             menuHysteresis = false
+            menuState = .Hidden
             holdToastStart = nil
         }
     }

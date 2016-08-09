@@ -441,6 +441,8 @@ class TTModeHue: TTMode {
                 self.delegate?.changeState(hueState, mode: self, message: nil)
                 self.saveBridge()
                 self.ensureScenes()
+            } else {
+                self.ensureScenes()
             }
         }
     }

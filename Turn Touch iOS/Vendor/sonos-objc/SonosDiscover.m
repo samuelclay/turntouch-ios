@@ -34,8 +34,8 @@ typedef void (^findDevicesBlock)(NSArray *ipAddresses);
             NSString *ipAddress = [ipAdresses objectAtIndex:0];
             //TODO: Shouldn't we process all ipAddresses here?!?
             NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@/status/topology", ipAddress]];
-            NSURLRequest *request = [[NSURLRequest alloc] initWithURL:url cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:5];
-            [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error){
+            NSURLSession *session = [NSURLSession sharedSession];
+            [[session dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
                 NSHTTPURLResponse *hResponse = (NSHTTPURLResponse*)response;
                 if (hResponse.statusCode != 200 || error){
                     completion(devices, error);
@@ -59,14 +59,14 @@ typedef void (^findDevicesBlock)(NSArray *ipAddresses);
                     NSString *ip = [[dictionary[@"location"] stringByReplacingOccurrencesOfString:@"http://" withString:@""] stringByReplacingOccurrencesOfString:@"/xml/device_description.xml" withString:@""];
                     NSArray *location = [ip componentsSeparatedByString:@":"];
                     SonosController *controllerObject = [[SonosController alloc] initWithIP:[location objectAtIndex:0] port:[[location objectAtIndex:1] intValue]];
-
+                    
                     [devices addObject:@{@"ip": [location objectAtIndex:0], @"port" : [location objectAtIndex:1], @"name": name, @"coordinator": [NSNumber numberWithBool:[coordinator isEqualToString:@"true"] ? YES : NO], @"uuid": uuid, @"group": group, @"controller": controllerObject}];
-
+                    
                 }
                 NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES];
                 [devices sortUsingDescriptors:[NSArray arrayWithObjects:sort, nil]];
                 completion(devices, nil);
-            }];
+            }] resume];
         }];
     });
 }

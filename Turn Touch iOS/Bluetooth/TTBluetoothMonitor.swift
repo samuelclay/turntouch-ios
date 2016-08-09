@@ -56,7 +56,7 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
     override init() {
         super.init()
         
-        manager = CBCentralManager(delegate: self, queue: dispatch_get_global_queue(QOS_CLASS_BACKGROUND, 0),
+        manager = CBCentralManager(delegate: self, queue: nil,
                                    options: [CBCentralManagerOptionRestoreIdentifierKey: "TTcentralManageRestoreIdentifier",
                                     CBConnectPeripheralOptionNotifyOnDisconnectionKey: NSNumber(bool: true),
                                     CBConnectPeripheralOptionNotifyOnConnectionKey: NSNumber(bool: true),
@@ -231,7 +231,7 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
     
     func centralManager(central: CBCentralManager, willRestoreState dict: [String : AnyObject]) {
         manager = central
-        let peripherals: [CBPeripheral] = dict[CBCentralManagerRestoredStatePeripheralsKey] as! [CBPeripheral]
+        let peripherals = dict[CBCentralManagerRestoredStatePeripheralsKey] as! [CBPeripheral]
 //        if DEBUG_BLUETOOTH {
             print(" ---> Restoring state: \(peripherals)")
 //        }
