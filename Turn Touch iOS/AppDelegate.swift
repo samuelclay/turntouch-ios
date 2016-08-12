@@ -14,18 +14,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 
     var window: UIWindow? = UIWindow(frame: UIScreen.mainScreen().bounds)
     var modeMap: TTModeMap = TTModeMap()
-    let bluetoothMonitor = TTBluetoothMonitor()
+    var bluetoothMonitor: TTBluetoothMonitor!
     let locationManager = CLLocationManager()
     @IBOutlet var mainViewController: TTMainViewController!
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         self.loadPreferences()
-        
+        print(" application didFinishLaunchingWithOptions");
         let centralManagerIdentifiers = launchOptions?[UIApplicationLaunchOptionsBluetoothCentralsKey]
         if centralManagerIdentifiers != nil {
             print(" ---> centralManagerIdentifiers: \(centralManagerIdentifiers)")
         }
         
+        bluetoothMonitor = TTBluetoothMonitor()
         modeMap.setupModes()
         mainViewController = TTMainViewController()
         window!.rootViewController = mainViewController
@@ -34,13 +35,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0)) {
             self.beginLocationUpdates()
-            self.bluetoothMonitor.updateBluetoothState(false)
+//            self.bluetoothMonitor.updateBluetoothState()
         }
         
-        dispatch_async(dispatch_get_main_queue()) { 
+//        dispatch_async(dispatch_get_main_queue()) { 
 //            appDelegate().mainViewController.showPairingModal()
 //            appDelegate().mainViewController.showFtuxModal()
-        }
+//        }
         
 //        print(NSUserDefaults.standardUserDefaults().dictionaryRepresentation())
         
@@ -51,21 +52,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
         print("applicationWillResignActive")
-        
-        // Not using beginBackgroundTask since iOS should wake up the app on notification
-//        var bgTask: UIBackgroundTaskIdentifier = 0
-//        bgTask = UIApplication.sharedApplication().beginBackgroundTaskWithExpirationHandler {
-//            print(" Background time: \(UIApplication.sharedApplication().backgroundTimeRemaining)")
-//            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
-//                self.bluetoothMonitor.scanKnown()
-//                print(" ---> Done with background task")
-//                UIApplication.sharedApplication().endBackgroundTask(bgTask)
-//            }
-//        }
-        
-//        self.bluetoothMonitor.scanKnown()
-//        print(" Background time remaining: \(UIApplication.sharedApplication().backgroundTimeRemaining)")
-//        UIApplication.sharedApplication().endBackgroundTask(bgTask)
     }
 
     func applicationDidEnterBackground(application: UIApplication) {
@@ -90,6 +76,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+        print("applicationWillTerminate");
         bluetoothMonitor.terminate()
         let prefs = NSUserDefaults.standardUserDefaults()
         prefs.synchronize()

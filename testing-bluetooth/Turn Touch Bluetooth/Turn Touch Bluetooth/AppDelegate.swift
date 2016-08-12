@@ -7,17 +7,19 @@
 //
 
 import UIKit
+import CoreLocation
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate {
 
     var window: UIWindow?
-    var bluetoothManager = TTBluetoothManager()
+    var bluetoothManager: TTBluetoothManager!
     let locationManager = CLLocationManager()
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         print("didFinishLaunchingWithOptions");
+        bluetoothManager = TTBluetoothManager()
         return true
     }
 
@@ -48,6 +50,57 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print("applicationWillTerminate");
     }
 
+    
+    func loadPreferences() {
+        let prefs = NSUserDefaults.standardUserDefaults()
+        let defaultPrefsFile = NSBundle.mainBundle().pathForResource("Preferences", ofType: "plist")
+        let defaultPrefs = NSDictionary(contentsOfFile: defaultPrefsFile!) as! [String: AnyObject]
+        
+        prefs.registerDefaults(defaultPrefs)
+        prefs.synchronize()
+    }
+    
+    func beginLocationUpdates() {
+        switch CLLocationManager.authorizationStatus() {
+        case .AuthorizedAlways:
+            self.startSignificantChangeUpdates()
+        case .NotDetermined:
+            locationManager.requestAlwaysAuthorization()
+        case .AuthorizedWhenInUse, .Restricted, .Denied:
+            let alertController = UIAlertController(
+                title: "Background Location Access Disabled",
+                message: "In order to have your remote automatically connect, please open this app's settings and set location access to 'Always'.",
+                preferredStyle: .Alert)
+            
+            let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+            alertController.addAction(cancelAction)
+            
+            let openAction = UIAlertAction(title: "Open Settings", style: .Default) { (action) in
+                if let url = NSURL(string:UIApplicationOpenSettingsURLString) {
+                    UIApplication.sharedApplication().openURL(url)
+                }
+            }
+            alertController.addAction(openAction)
+        }
+    }
+    
+    func startSignificantChangeUpdates() {
+        print(" ---> startSignificantChangeUpdates")
+        locationManager.delegate = self
+        locationManager.startMonitoringSignificantLocationChanges()
+    }
+    
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        print(" ---> didUpdateLocations")
+        bluetoothManager.centralManagerDidUpdateState(bluetoothManager.manager)
+    }
+    
+    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+        print(" ---> didChangeAuthorizationStatus")
+        if status == .AuthorizedAlways {
+            self.startSignificantChangeUpdates()
+        }
+    }
 }
 
 
