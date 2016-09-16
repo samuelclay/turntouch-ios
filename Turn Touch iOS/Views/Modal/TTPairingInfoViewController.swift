@@ -22,14 +22,14 @@ class TTPairingInfoViewController: UIViewController {
                 
         nextButton = TTModalButton(pairingState: pairingState)
         self.view.addSubview(nextButton.view)
-        self.view.addConstraint(NSLayoutConstraint(item: nextButton.view, attribute: .Left, relatedBy: .Equal, toItem: self.view, attribute: .Left, multiplier: 1.0, constant: 0))
-        self.view.addConstraint(NSLayoutConstraint(item: nextButton.view, attribute: .Bottom, relatedBy: .Equal, toItem: self.view, attribute: .Bottom, multiplier: 1.0, constant: 0))
-        self.view.addConstraint(NSLayoutConstraint(item: nextButton.view, attribute: .Right, relatedBy: .Equal, toItem: self.view, attribute: .Right, multiplier: 1.0, constant: 0))
-        self.view.addConstraint(NSLayoutConstraint(item: nextButton.view, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 100))
+        self.view.addConstraint(NSLayoutConstraint(item: nextButton.view, attribute: .left, relatedBy: .equal, toItem: self.view, attribute: .left, multiplier: 1.0, constant: 0))
+        self.view.addConstraint(NSLayoutConstraint(item: nextButton.view, attribute: .bottom, relatedBy: .equal, toItem: self.view, attribute: .bottom, multiplier: 1.0, constant: 0))
+        self.view.addConstraint(NSLayoutConstraint(item: nextButton.view, attribute: .right, relatedBy: .equal, toItem: self.view, attribute: .right, multiplier: 1.0, constant: 0))
+        self.view.addConstraint(NSLayoutConstraint(item: nextButton.view, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 100))
         
 
-        if pairingState == .Success || pairingState == .Failure {
-            let closeButton = UIBarButtonItem(barButtonSystemItem: .Done,
+        if pairingState == .success || pairingState == .failure {
+            let closeButton = UIBarButtonItem(barButtonSystemItem: .done,
                                               target: self, action: #selector(self.close))
             self.navigationItem.rightBarButtonItem = closeButton
         }
@@ -39,26 +39,26 @@ class TTPairingInfoViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func close(sender: UIBarButtonItem!) {
+    func close(_ sender: UIBarButtonItem!) {
         appDelegate().mainViewController.closePairingModal()
         appDelegate().bluetoothMonitor.delegate = nil
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         switch pairingState {
-        case .Intro:
+        case .intro:
             self.navigationItem.title = ""
             self.heroImage?.image = UIImage(named: "modal_remote_hero")
             self.titleLabel?.text = "Welcome to Turn Touch"
             self.subtitleLabel?.text = "Four buttons of beautiful control"
-        case .Success:
+        case .success:
 //            self.navigationItem.title = "Success!"
             self.heroImage?.image = UIImage(named: "modal_remote_paired")
             self.titleLabel?.text = "That worked perfectly"
             self.subtitleLabel?.text = "Your remote has been paired"
-        case .Failure:
+        case .failure:
 //            self.navigationItem.title = "Could not find any remotes..."
             self.heroImage?.image = UIImage(named: "modal_remote_failed")
             self.titleLabel?.text = "Uh Oh..."

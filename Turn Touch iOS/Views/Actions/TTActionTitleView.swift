@@ -10,7 +10,7 @@ import UIKit
 
 class TTActionTitleView: UIView {
     
-    @IBOutlet var changeButton = UIButton(type: UIButtonType.System) as UIButton!
+    @IBOutlet var changeButton = UIButton(type: UIButtonType.system) as UIButton!
     var modeImage: UIImage = UIImage()
     var modeTitle: String = ""
     var titleLabel: UILabel = UILabel()
@@ -21,40 +21,40 @@ class TTActionTitleView: UIView {
         self.translatesAutoresizingMaskIntoConstraints = false
 //        self.contentMode = UIViewContentMode.Redraw;
         
-        changeButton.translatesAutoresizingMaskIntoConstraints = false
-        changeButton.setTitle("Change", forState: UIControlState.Normal)
-        changeButton.titleLabel!.font = UIFont(name: "Effra", size: 13)
-        changeButton.titleLabel!.textColor = UIColor(hex: 0xA0A0A0)
-        changeButton.titleLabel!.lineBreakMode = NSLineBreakMode.ByClipping
-        changeButton.addTarget(self, action: #selector(self.pressChange), forControlEvents: .TouchUpInside)
-        self.addSubview(changeButton)
-        self.addConstraint(NSLayoutConstraint(item: changeButton, attribute: .Trailing, relatedBy: .Equal,
-            toItem: self, attribute: .Trailing, multiplier: 1.0, constant: -24))
-        self.addConstraint(NSLayoutConstraint(item: changeButton, attribute: .CenterY, relatedBy: .Equal,
-            toItem: self, attribute: .CenterY, multiplier: 1.0, constant: 0))
+        changeButton?.translatesAutoresizingMaskIntoConstraints = false
+        changeButton?.setTitle("Change", for: UIControlState())
+        changeButton?.titleLabel!.font = UIFont(name: "Effra", size: 13)
+        changeButton?.titleLabel!.textColor = UIColor(hex: 0xA0A0A0)
+        changeButton?.titleLabel!.lineBreakMode = NSLineBreakMode.byClipping
+        changeButton?.addTarget(self, action: #selector(self.pressChange), for: .touchUpInside)
+        self.addSubview(changeButton!)
+        self.addConstraint(NSLayoutConstraint(item: changeButton, attribute: .trailing, relatedBy: .equal,
+            toItem: self, attribute: .trailing, multiplier: 1.0, constant: -24))
+        self.addConstraint(NSLayoutConstraint(item: changeButton, attribute: .centerY, relatedBy: .equal,
+            toItem: self, attribute: .centerY, multiplier: 1.0, constant: 0))
         
-        diamondView = TTDiamondView(frame: CGRect.zero, diamondType: .Mode)
+        diamondView = TTDiamondView(frame: CGRect.zero, diamondType: .mode)
         diamondView.ignoreSelectedMode = true
         diamondView.ignoreActiveMode = true
         self.addSubview(diamondView)
-        self.addConstraint(NSLayoutConstraint(item: diamondView, attribute: .Leading, relatedBy: .Equal,
-            toItem: self, attribute: .Leading, multiplier: 1.0, constant: 24))
-        self.addConstraint(NSLayoutConstraint(item: diamondView, attribute: .CenterY, relatedBy: .Equal,
-            toItem: self, attribute: .CenterY, multiplier: 1.0, constant: 0))
-        diamondView.addConstraint(NSLayoutConstraint(item: diamondView, attribute: .Width, relatedBy: .Equal,
-            toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 1.3*24))
-        diamondView.addConstraint(NSLayoutConstraint(item: diamondView, attribute: .Height, relatedBy: .Equal,
-            toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 24))
+        self.addConstraint(NSLayoutConstraint(item: diamondView, attribute: .leading, relatedBy: .equal,
+            toItem: self, attribute: .leading, multiplier: 1.0, constant: 24))
+        self.addConstraint(NSLayoutConstraint(item: diamondView, attribute: .centerY, relatedBy: .equal,
+            toItem: self, attribute: .centerY, multiplier: 1.0, constant: 0))
+        diamondView.addConstraint(NSLayoutConstraint(item: diamondView, attribute: .width, relatedBy: .equal,
+            toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 1.3*24))
+        diamondView.addConstraint(NSLayoutConstraint(item: diamondView, attribute: .height, relatedBy: .equal,
+            toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 24))
         
         
         titleLabel.font = UIFont(name: "Effra", size: 13)
         titleLabel.textColor = UIColor(hex: 0x404A60)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(titleLabel)
-        self.addConstraint(NSLayoutConstraint(item: titleLabel, attribute: .Leading, relatedBy: .Equal,
-            toItem: diamondView, attribute: .Trailing, multiplier: 1.0, constant: 12))
-        self.addConstraint(NSLayoutConstraint(item: titleLabel, attribute: .CenterY, relatedBy: .Equal,
-            toItem: self, attribute: .CenterY, multiplier: 1.0, constant: 0))
+        self.addConstraint(NSLayoutConstraint(item: titleLabel, attribute: .leading, relatedBy: .equal,
+            toItem: diamondView, attribute: .trailing, multiplier: 1.0, constant: 12))
+        self.addConstraint(NSLayoutConstraint(item: titleLabel, attribute: .centerY, relatedBy: .equal,
+            toItem: self, attribute: .centerY, multiplier: 1.0, constant: 0))
         
         self.registerAsObserver()
     }
@@ -69,8 +69,8 @@ class TTActionTitleView: UIView {
         appDelegate().modeMap.addObserver(self, forKeyPath: "inspectingModeDirection", options: [], context: nil)
     }
     
-    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?,
-                                         change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?,
+                                         change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if keyPath == "inspectingModeDirection" {
             self.setNeedsDisplay()
         }
@@ -82,33 +82,33 @@ class TTActionTitleView: UIView {
     
     // MARK: Drawing
     
-    override func drawRect(rect: CGRect) {
+    override func draw(_ rect: CGRect) {
         if appDelegate().modeMap.openedActionChangeMenu {
-            changeButton.setTitle("Done", forState: .Normal)
+            changeButton?.setTitle("Done", for: UIControlState())
         } else {
-            changeButton.setTitle("Change", forState: .Normal)
+            changeButton?.setTitle("Change", for: UIControlState())
         }
         
         let direction = appDelegate().modeMap.inspectingModeDirection
-        if direction != .NO_DIRECTION {
-            titleLabel.text = appDelegate().modeMap.selectedMode.titleInDirection(direction, buttonMoment: .BUTTON_MOMENT_PRESSUP)
+        if direction != .no_DIRECTION {
+            titleLabel.text = appDelegate().modeMap.selectedMode.titleInDirection(direction, buttonMoment: .button_MOMENT_PRESSUP)
         }
         diamondView.overrideActiveDirection = appDelegate().modeMap.inspectingModeDirection
         diamondView.setNeedsDisplay()
         
-        super.drawRect(rect)
+        super.draw(rect)
         self.drawBackground()
     }
     
     func drawBackground() {
         let context = UIGraphicsGetCurrentContext()
         UIColor(hex: 0xFFFFFF).set()
-        CGContextFillRect(context, self.bounds);
+        context?.fill(self.bounds);
     }
     
     // MARK: Actions
     
-    func pressChange(sender: UIButton!) {
+    func pressChange(_ sender: UIButton!) {
         appDelegate().modeMap.openedActionChangeMenu = !appDelegate().modeMap.openedActionChangeMenu
         self.setNeedsDisplay()
     }

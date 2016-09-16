@@ -20,7 +20,7 @@ class TTButtonState : NSObject {
         return "N:\(north) E:\(east) W:\(west) S:\(south)"
     }
     
-    func state(i: Int) -> Bool {
+    func state(_ i: Int) -> Bool {
         switch i {
         case 0:
             return north
@@ -37,7 +37,7 @@ class TTButtonState : NSObject {
         return false
     }
     
-    func replaceState(i: Int, state: Bool) {
+    func replaceState(_ i: Int, state: Bool) {
         switch i {
         case 0:
             north = state

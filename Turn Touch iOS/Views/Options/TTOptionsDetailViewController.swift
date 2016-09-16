@@ -15,7 +15,7 @@ class TTOptionsDetailViewController: UIViewController {
     var menuType: TTMenuType!
     var tabView: TTTabView!
     
-    required override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+    required override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         
         // Don't touch self.view yet, since lots of instance variables need to be set first
@@ -30,7 +30,7 @@ class TTOptionsDetailViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.view.contentMode = .Top
+        self.view.contentMode = .top
     }
 
     

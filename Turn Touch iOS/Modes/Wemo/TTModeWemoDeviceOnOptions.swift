@@ -10,7 +10,7 @@ import UIKit
 
 class TTModeWemoDeviceOnOptions: TTModeWemoDeviceSwitchOptions {
 
-    required init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+    required init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: "TTModeWemoDeviceSwitchOptions", bundle: nibBundleOrNil)
     }
     

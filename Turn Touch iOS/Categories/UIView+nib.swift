@@ -9,16 +9,16 @@
 import Foundation
 
 public extension UIView {
-    public class func fromNib(nibNameOrNil: String? = nil) -> Self {
+    public class func fromNib(_ nibNameOrNil: String? = nil) -> Self {
         return fromNib(nibNameOrNil, type: self)
     }
     
-    public class func fromNib<T : UIView>(nibNameOrNil: String? = nil, type: T.Type) -> T {
+    public class func fromNib<T : UIView>(_ nibNameOrNil: String? = nil, type: T.Type) -> T {
         let v: T? = fromNib(nibNameOrNil, type: T.self)
         return v!
     }
     
-    public class func fromNib<T : UIView>(nibNameOrNil: String? = nil, type: T.Type) -> T? {
+    public class func fromNib<T : UIView>(_ nibNameOrNil: String? = nil, type: T.Type) -> T? {
         var view: T?
         let name: String
         if let nibName = nibNameOrNil {
@@ -27,8 +27,8 @@ public extension UIView {
             // Most nibs are demangled by practice, if not, just declare string explicitly
             name = nibName
         }
-        let nibViews = NSBundle.mainBundle().loadNibNamed(name, owner: nil, options: nil)
-        for v in nibViews {
+        let nibViews = Bundle.main.loadNibNamed(name, owner: nil, options: nil)
+        for v in nibViews! {
             if let tog = v as? T {
                 view = tog
             }
@@ -37,11 +37,11 @@ public extension UIView {
     }
     
     public class var nibName: String {
-        let name = "\(self)".componentsSeparatedByString(".").first ?? ""
+        let name = "\(self)".components(separatedBy: ".").first ?? ""
         return name
     }
     public class var nib: UINib? {
-        if let _ = NSBundle.mainBundle().pathForResource(nibName, ofType: "nib") {
+        if let _ = Bundle.main.path(forResource: nibName, ofType: "nib") {
             return UINib(nibName: nibName, bundle: nil)
         } else {
             return nil

@@ -128,7 +128,7 @@ class TTModeMusic: TTMode {
         }
     }
     
-    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if keyPath == "outputVolume" {
 //            print(" Volume: \(AVAudioSession.sharedInstance().outputVolume) \(change!["new"]) \(object)")
             if AVAudioSession.sharedInstance().outputVolume != lastVolume {
@@ -165,7 +165,7 @@ class TTModeMusic: TTMode {
     }
     
     func runTTModeMusicPlayPause() {
-        if musicPlayer.playbackState == .Playing {
+        if musicPlayer.playbackState == .playing {
             musicPlayer.pause()
         } else {
             musicPlayer.prepareToPlay()

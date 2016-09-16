@@ -13,58 +13,58 @@ class TTModeMenuBordersView: UIView {
     var BUTTON_MARGIN: CGFloat = 12
     var hideBorder = false
     var hideShadow = false
-    let borderStyle: TTMenuType = TTMenuType.MENU_MODE
+    let borderStyle: TTMenuType = TTMenuType.menu_MODE
 
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.translatesAutoresizingMaskIntoConstraints = false
-        self.backgroundColor = UIColor.clearColor()
-        self.userInteractionEnabled = false
+        self.backgroundColor = UIColor.clear
+        self.isUserInteractionEnabled = false
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
-    override func drawRect(rect: CGRect) {
-        super.drawRect(rect)
+    override func draw(_ rect: CGRect) {
+        super.draw(rect)
         
         if !hideBorder && !hideShadow {
             self.drawShadowTop(rect)
-            if CGRectGetHeight(rect) > 36 {
+            if rect.height > 36 {
                 self.drawShadowBottom(rect)
             }
         } else {
-            if borderStyle == TTMenuType.MENU_ADD_MODE || borderStyle == TTMenuType.MENU_ADD_ACTION {
+            if borderStyle == TTMenuType.menu_ADD_MODE || borderStyle == TTMenuType.menu_ADD_ACTION {
                 UIColor(hex: 0xFFFFFF).set()
             } else {
                 UIColor(hex: 0xF5F6F8).set()
             }
             let border = UIBezierPath()
-            border.moveToPoint(CGPointMake(CGRectGetMinX(rect), CGRectGetMinY(rect)))
-            border.addLineToPoint(CGPointMake(CGRectGetMaxX(rect), CGRectGetMinY(rect)))
+            border.move(to: CGPoint(x: rect.minX, y: rect.minY))
+            border.addLine(to: CGPoint(x: rect.maxX, y: rect.minY))
             border.lineWidth = 2.0
             border.stroke()
         }
         
-        if (borderStyle == .MENU_ADD_MODE || borderStyle == .MENU_ADD_ACTION) && !hideBorder {
+        if (borderStyle == .menu_ADD_MODE || borderStyle == .menu_ADD_ACTION) && !hideBorder {
             let border = UIBezierPath()
-            border.moveToPoint(CGPointMake(CGRectGetMinX(rect) + BUTTON_MARGIN, CGRectGetMinY(rect)))
-            border.addLineToPoint(CGPointMake(CGRectGetMaxX(rect) - BUTTON_MARGIN, CGRectGetMinY(rect)))
+            border.move(to: CGPoint(x: rect.minX + BUTTON_MARGIN, y: rect.minY))
+            border.addLine(to: CGPoint(x: rect.maxX - BUTTON_MARGIN, y: rect.minY))
             border.lineWidth = 2.0
             UIColor(hex: 0xC2CBCE).set()
             border.stroke()
         }
     }
     
-    func maskForRectBottom(rect: CGRect) -> CGImageRef {
+    func maskForRectBottom(_ rect: CGRect) -> CGImage {
         var maskRect = rect
-        maskRect.size.height = CGFloat(fminf(Float(CGRectGetHeight(rect)), 8))
-        maskRect.origin.y = CGRectGetHeight(rect) - 8
-        let colorSpace: CGColorSpaceRef = CGColorSpaceCreateDeviceRGB()!
-        let bitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.PremultipliedLast.rawValue)
-        let context = CGBitmapContextCreate(nil, Int(rect.size.width), Int(rect.size.height), 8, 0, colorSpace, bitmapInfo.rawValue)
-        CGContextClipToRect(context, maskRect)
+        maskRect.size.height = CGFloat(fminf(Float(rect.height), 8))
+        maskRect.origin.y = rect.height - 8
+        let colorSpace: CGColorSpace = CGColorSpaceCreateDeviceRGB()
+        let bitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.premultipliedLast.rawValue)
+        let context = CGContext(data: nil, width: Int(rect.size.width), height: Int(rect.size.height), bitsPerComponent: 8, bytesPerRow: 0, space: colorSpace, bitmapInfo: bitmapInfo.rawValue)
+        context?.clip(to: maskRect)
         let num_locations: size_t = 3
         let locations: [CGFloat] = [0.0, 0.5, 1.0]
         let components: [CGFloat] = [
@@ -72,49 +72,49 @@ class TTModeMenuBordersView: UIView {
             0.0, 0.0, 0.0, 1.0,  // Middle color
             1.0, 1.0, 1.0, 1.0,  // End color
         ]
-        let myGradient: CGGradientRef = CGGradientCreateWithColorComponents(colorSpace, components, locations, num_locations)!
-        let myStartPoint: CGPoint = CGPointMake(CGRectGetMinX(maskRect), CGRectGetMaxY(maskRect))
-        let myEndPoint: CGPoint = CGPointMake(CGRectGetMaxX(maskRect), CGRectGetMaxY(maskRect))
-        CGContextDrawLinearGradient(context, myGradient, myStartPoint, myEndPoint, CGGradientDrawingOptions(rawValue: 0))
-        let theImage: CGImageRef = CGBitmapContextCreateImage(context)!
-        let theMask: CGImageRef = CGImageMaskCreate(CGImageGetWidth(theImage), CGImageGetHeight(theImage), CGImageGetBitsPerComponent(theImage), CGImageGetBitsPerPixel(theImage), CGImageGetBytesPerRow(theImage), CGImageGetDataProvider(theImage), nil, true)!
+        let myGradient: CGGradient = CGGradient(colorSpace: colorSpace, colorComponents: components, locations: locations, count: num_locations)!
+        let myStartPoint: CGPoint = CGPoint(x: maskRect.minX, y: maskRect.maxY)
+        let myEndPoint: CGPoint = CGPoint(x: maskRect.maxX, y: maskRect.maxY)
+        context?.drawLinearGradient(myGradient, start: myStartPoint, end: myEndPoint, options: CGGradientDrawingOptions(rawValue: 0))
+        let theImage: CGImage = context!.makeImage()!
+        let theMask: CGImage = CGImage(maskWidth: theImage.width, height: theImage.height, bitsPerComponent: theImage.bitsPerComponent, bitsPerPixel: theImage.bitsPerPixel, bytesPerRow: theImage.bytesPerRow, provider: theImage.dataProvider!, decode: nil, shouldInterpolate: true)!
 
         return theMask
     }
     
-    func drawShadowBottom(originalRect: CGRect) {
+    func drawShadowBottom(_ originalRect: CGRect) {
         var rect = originalRect
         let context = UIGraphicsGetCurrentContext()
-        CGContextSaveGState(context)
-        let lineRect: CGRect = CGRectMake(rect.origin.x, CGRectGetHeight(rect) - 1, rect.size.width, 1.0)
+        context?.saveGState()
+        let lineRect: CGRect = CGRect(x: rect.origin.x, y: rect.height - 1, width: rect.size.width, height: 1.0)
         rect.origin.y = rect.size.height - 8
         rect.size.height = 8
-        let colorSpace: CGColorSpaceRef = CGColorSpaceCreateDeviceRGB()!
-        CGContextClipToRect(context, rect)
-        CGContextClipToMask(context, rect, self.maskForRectBottom(rect))
+        let colorSpace: CGColorSpace = CGColorSpaceCreateDeviceRGB()
+        context?.clip(to: rect)
+        context?.clip(to: rect, mask: self.maskForRectBottom(rect))
         let num_locations: size_t = 2
         let locations: [CGFloat] = [0.0, 1.0]
         let components: [CGFloat] = [
             0.315, 0.371, 0.450, 0.1,  // Bottom color
             0.315, 0.371, 0.450, 0.0  // Top color
         ]
-        let myGradient: CGGradientRef = CGGradientCreateWithColorComponents(colorSpace, components, locations, num_locations)!
-        let myStartPoint: CGPoint = CGPointMake(CGRectGetMinX(rect), CGRectGetMaxY(rect))
-        let myEndPoint: CGPoint = CGPointMake(CGRectGetMinX(rect), CGRectGetMinY(rect))
-        CGContextDrawLinearGradient(context, myGradient, myStartPoint, myEndPoint, CGGradientDrawingOptions(rawValue: 0))
-        CGContextSetRGBFillColor(context, 0.315, 0.371, 0.450, 0.2)
-        CGContextFillRect(context, lineRect)
-        CGContextRestoreGState(context)
+        let myGradient: CGGradient = CGGradient(colorSpace: colorSpace, colorComponents: components, locations: locations, count: num_locations)!
+        let myStartPoint: CGPoint = CGPoint(x: rect.minX, y: rect.maxY)
+        let myEndPoint: CGPoint = CGPoint(x: rect.minX, y: rect.minY)
+        context?.drawLinearGradient(myGradient, start: myStartPoint, end: myEndPoint, options: CGGradientDrawingOptions(rawValue: 0))
+        context?.setFillColor(red: 0.315, green: 0.371, blue: 0.450, alpha: 0.2)
+        context?.fill(lineRect)
+        context?.restoreGState()
     }
     
-    func maskForRectTop(rect: CGRect) -> CGImageRef {
+    func maskForRectTop(_ rect: CGRect) -> CGImage {
         var size: CGSize = rect.size
-        size.height = CGFloat(fminf(Float(CGRectGetHeight(rect)), 8))
-        let colorSpace: CGColorSpaceRef = CGColorSpaceCreateDeviceRGB()!
-        let bitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.PremultipliedLast.rawValue)
-        let context = CGBitmapContextCreate(nil, Int(rect.size.width), Int(rect.size.height), 8, 0, colorSpace, bitmapInfo.rawValue)
-        CGContextClipToRect(context, rect)
-        let maskRect: CGRect = CGRectMake(0.0, 0.0, size.width, size.height)
+        size.height = CGFloat(fminf(Float(rect.height), 8))
+        let colorSpace: CGColorSpace = CGColorSpaceCreateDeviceRGB()
+        let bitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.premultipliedLast.rawValue)
+        let context = CGContext(data: nil, width: Int(rect.size.width), height: Int(rect.size.height), bitsPerComponent: 8, bytesPerRow: 0, space: colorSpace, bitmapInfo: bitmapInfo.rawValue)
+        context?.clip(to: rect)
+        let maskRect: CGRect = CGRect(x: 0.0, y: 0.0, width: size.width, height: size.height)
         let num_locations: size_t = 3
         let locations: [CGFloat] = [0.0, 0.5, 1.0]
         let components: [CGFloat] = [
@@ -123,25 +123,25 @@ class TTModeMenuBordersView: UIView {
             1.0, 1.0, 1.0, 1.0,  // End color
         ]
         
-        let myGradient: CGGradientRef = CGGradientCreateWithColorComponents(colorSpace, components, locations, num_locations)!
-        let myStartPoint: CGPoint = CGPointMake(CGRectGetMinX(maskRect), CGRectGetMinY(maskRect))
-        let myEndPoint: CGPoint = CGPointMake(CGRectGetMaxX(maskRect), CGRectGetMinY(maskRect))
-        CGContextDrawLinearGradient(context, myGradient, myStartPoint, myEndPoint, CGGradientDrawingOptions(rawValue: 0))
-        let theImage: CGImageRef = CGBitmapContextCreateImage(context)!
-        let theMask: CGImageRef = CGImageMaskCreate(CGImageGetWidth(theImage), CGImageGetHeight(theImage), CGImageGetBitsPerComponent(theImage), CGImageGetBitsPerPixel(theImage), CGImageGetBytesPerRow(theImage), CGImageGetDataProvider(theImage), nil, true)!
+        let myGradient: CGGradient = CGGradient(colorSpace: colorSpace, colorComponents: components, locations: locations, count: num_locations)!
+        let myStartPoint: CGPoint = CGPoint(x: maskRect.minX, y: maskRect.minY)
+        let myEndPoint: CGPoint = CGPoint(x: maskRect.maxX, y: maskRect.minY)
+        context?.drawLinearGradient(myGradient, start: myStartPoint, end: myEndPoint, options: CGGradientDrawingOptions(rawValue: 0))
+        let theImage: CGImage = context!.makeImage()!
+        let theMask: CGImage = CGImage(maskWidth: theImage.width, height: theImage.height, bitsPerComponent: theImage.bitsPerComponent, bitsPerPixel: theImage.bitsPerPixel, bytesPerRow: theImage.bytesPerRow, provider: theImage.dataProvider!, decode: nil, shouldInterpolate: true)!
 
         return theMask
     }
     
-    func drawShadowTop(originalRect: CGRect) {
+    func drawShadowTop(_ originalRect: CGRect) {
         var rect = originalRect
         let context = UIGraphicsGetCurrentContext()
-        CGContextSaveGState(context)
+        context?.saveGState()
         rect.origin.y = 0
         rect.size.height = 8
-        let colorSpace: CGColorSpaceRef = CGColorSpaceCreateDeviceRGB()!
-        CGContextClipToRect(context, rect)
-        CGContextClipToMask(context, rect, self.maskForRectTop(rect))
+        let colorSpace: CGColorSpace = CGColorSpaceCreateDeviceRGB()
+        context?.clip(to: rect)
+        context?.clip(to: rect, mask: self.maskForRectTop(rect))
         let num_locations: size_t = 2
         let locations: [CGFloat] = [0.0, 1.0]
         let components: [CGFloat] = [
@@ -149,16 +149,16 @@ class TTModeMenuBordersView: UIView {
             0.315, 0.371, 0.450, 0.1  // Top color
         ]
         
-        let myGradient: CGGradientRef = CGGradientCreateWithColorComponents(colorSpace, components, locations, num_locations)!
-        let myStartPoint: CGPoint = CGPointMake(CGRectGetMinX(rect), CGRectGetMaxY(rect))
-        let myEndPoint: CGPoint = CGPointMake(CGRectGetMinX(rect), CGRectGetMinY(rect))
+        let myGradient: CGGradient = CGGradient(colorSpace: colorSpace, colorComponents: components, locations: locations, count: num_locations)!
+        let myStartPoint: CGPoint = CGPoint(x: rect.minX, y: rect.maxY)
+        let myEndPoint: CGPoint = CGPoint(x: rect.minX, y: rect.minY)
         //    if (height >= 8) {
-        CGContextDrawLinearGradient(context, myGradient, myStartPoint, myEndPoint, CGGradientDrawingOptions(rawValue: 0))
+        context?.drawLinearGradient(myGradient, start: myStartPoint, end: myEndPoint, options: CGGradientDrawingOptions(rawValue: 0))
         //    }
 
-        let lineRect: CGRect = CGRectMake(rect.origin.x, 0, rect.size.width, 1.0)
-        CGContextSetRGBFillColor(context, 0.315, 0.371, 0.450, 0.2)
-        CGContextFillRect(context, lineRect)
-        CGContextRestoreGState(context)
+        let lineRect: CGRect = CGRect(x: rect.origin.x, y: 0, width: rect.size.width, height: 1.0)
+        context?.setFillColor(red: 0.315, green: 0.371, blue: 0.450, alpha: 0.2)
+        context?.fill(lineRect)
+        context?.restoreGState()
     }
 }

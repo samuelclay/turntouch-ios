@@ -10,7 +10,7 @@ import UIKit
 
 
 protocol TTPickerViewControllerDelegate : class {
-    func pickerDismissed(row : Int, textField: UITextField)
+    func pickerDismissed(_ row : Int, textField: UITextField)
 }
 
 class TTPickerViewController: UIViewController {
@@ -20,16 +20,16 @@ class TTPickerViewController: UIViewController {
     var textField: UITextField!
     weak var delegate: TTPickerViewControllerDelegate?
         
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         
         picker = UIPickerView()
         picker.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(picker)
-        self.view.addConstraint(NSLayoutConstraint(item: picker, attribute: .Top, relatedBy: .Equal, toItem: self.view, attribute: .Top, multiplier: 1.0, constant: 0))
-        self.view.addConstraint(NSLayoutConstraint(item: picker, attribute: .Leading, relatedBy: .Equal, toItem: self.view, attribute: .Leading, multiplier: 1.0, constant: 0))
-        self.view.addConstraint(NSLayoutConstraint(item: picker, attribute: .Trailing, relatedBy: .Equal, toItem: self.view, attribute: .Trailing, multiplier: 1.0, constant: 0))
-        self.view.addConstraint(NSLayoutConstraint(item: picker, attribute: .Bottom, relatedBy: .Equal, toItem: self.view, attribute: .Bottom, multiplier: 1.0, constant: 0))
+        self.view.addConstraint(NSLayoutConstraint(item: picker, attribute: .top, relatedBy: .equal, toItem: self.view, attribute: .top, multiplier: 1.0, constant: 0))
+        self.view.addConstraint(NSLayoutConstraint(item: picker, attribute: .leading, relatedBy: .equal, toItem: self.view, attribute: .leading, multiplier: 1.0, constant: 0))
+        self.view.addConstraint(NSLayoutConstraint(item: picker, attribute: .trailing, relatedBy: .equal, toItem: self.view, attribute: .trailing, multiplier: 1.0, constant: 0))
+        self.view.addConstraint(NSLayoutConstraint(item: picker, attribute: .bottom, relatedBy: .equal, toItem: self.view, attribute: .bottom, multiplier: 1.0, constant: 0))
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -41,8 +41,8 @@ class TTPickerViewController: UIViewController {
         
     }
     
-    override func viewWillDisappear(animated: Bool) {
-        let selectedRow = picker.selectedRowInComponent(0)
+    override func viewWillDisappear(_ animated: Bool) {
+        let selectedRow = picker.selectedRow(inComponent: 0)
         
         self.delegate?.pickerDismissed(selectedRow, textField: textField)
     }

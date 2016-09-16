@@ -16,20 +16,20 @@ class TTPairingSpinner: UIView {
     override func awakeFromNib() {
         spinnerBeginTime = CACurrentMediaTime();
     }
-    override func drawRect(rect: CGRect) {
+    override func draw(_ rect: CGRect) {
         self.layer.sublayers = nil
         
         for i in 0 ..< 2 {
             let circle: CALayer = CALayer()
-            circle.frame = CGRectMake(0, 0, CGRectGetWidth(self.frame), CGRectGetHeight(self.frame))
-            circle.backgroundColor = UIColor(hex: 0x0000FF).CGColor
-            circle.anchorPoint = CGPointMake(0.5, 0.5)
+            circle.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height)
+            circle.backgroundColor = UIColor(hex: 0x0000FF).cgColor
+            circle.anchorPoint = CGPoint(x: 0.5, y: 0.5)
             circle.opacity = 0.6
-            circle.cornerRadius = CGRectGetHeight(circle.bounds) * 0.5
+            circle.cornerRadius = circle.bounds.height * 0.5
             circle.transform = CATransform3DMakeScale(0.0, 0.0, 0.0)
 
             let anim: CAKeyframeAnimation = CAKeyframeAnimation(keyPath: "transform")
-            anim.removedOnCompletion = false
+            anim.isRemovedOnCompletion = false
             anim.repeatCount = 10000
             anim.duration = 2.0
             anim.beginTime = spinnerBeginTime - (1.0 * Double(i))
@@ -37,11 +37,11 @@ class TTPairingSpinner: UIView {
             anim.timingFunctions = [CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut),
                                     CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut),
                                     CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)]
-            anim.values = [NSValue(CATransform3D: CATransform3DMakeScale(0.0, 0.0, 0.0)),
-                           NSValue(CATransform3D: CATransform3DMakeScale(1.0, 1.0, 0.0)),
-                           NSValue(CATransform3D: CATransform3DMakeScale(0.0, 0.0, 0.0))]
+            anim.values = [NSValue(caTransform3D: CATransform3DMakeScale(0.0, 0.0, 0.0)),
+                           NSValue(caTransform3D: CATransform3DMakeScale(1.0, 1.0, 0.0)),
+                           NSValue(caTransform3D: CATransform3DMakeScale(0.0, 0.0, 0.0))]
             self.layer.addSublayer(circle)
-            circle.addAnimation(anim, forKey: "transform")
+            circle.add(anim, forKey: "transform")
         }
     }
 

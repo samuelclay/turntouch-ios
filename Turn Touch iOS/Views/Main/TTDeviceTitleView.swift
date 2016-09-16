@@ -14,61 +14,61 @@ class TTDeviceTitleView: UIView, TTTitleMenuDelegate {
     var titleLabel: UILabel = UILabel()
     var stateLabel: UILabel = UILabel()
     var deviceImageView: UIImageView = UIImageView()
-    @IBOutlet var settingsButton = UIButton(type: UIButtonType.System) as UIButton!
+    @IBOutlet var settingsButton = UIButton(type: UIButtonType.system) as UIButton!
 
     init(device: TTDevice) {
         super.init(frame: CGRect.zero)
         
         self.device = device
         self.translatesAutoresizingMaskIntoConstraints = false
-        self.contentMode = UIViewContentMode.Redraw;
+        self.contentMode = UIViewContentMode.redraw;
         self.backgroundColor = UIColor(hex: 0xF5F6F8)
         
         deviceImageView.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(deviceImageView)
-        self.addConstraint(NSLayoutConstraint(item: deviceImageView, attribute: .Leading, relatedBy: .Equal,
-            toItem: self, attribute: .Leading, multiplier: 1.0, constant: 24))
-        self.addConstraint(NSLayoutConstraint(item: deviceImageView, attribute: .CenterY, relatedBy: .Equal,
-            toItem: self, attribute: .CenterY, multiplier: 1.0, constant: 0))
-        deviceImageView.addConstraint(NSLayoutConstraint(item: deviceImageView, attribute: .Width, relatedBy: .Equal,
-            toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 32))
-        deviceImageView.addConstraint(NSLayoutConstraint(item: deviceImageView, attribute: .Height, relatedBy: .Equal,
-            toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 32))
+        self.addConstraint(NSLayoutConstraint(item: deviceImageView, attribute: .leading, relatedBy: .equal,
+            toItem: self, attribute: .leading, multiplier: 1.0, constant: 24))
+        self.addConstraint(NSLayoutConstraint(item: deviceImageView, attribute: .centerY, relatedBy: .equal,
+            toItem: self, attribute: .centerY, multiplier: 1.0, constant: 0))
+        deviceImageView.addConstraint(NSLayoutConstraint(item: deviceImageView, attribute: .width, relatedBy: .equal,
+            toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 32))
+        deviceImageView.addConstraint(NSLayoutConstraint(item: deviceImageView, attribute: .height, relatedBy: .equal,
+            toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 32))
         
         
         titleLabel.font = UIFont(name: "Effra", size: 13)
         titleLabel.textColor = UIColor(hex: 0x404A60)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(titleLabel)
-        self.addConstraint(NSLayoutConstraint(item: titleLabel, attribute: .Leading, relatedBy: .Equal,
-            toItem: deviceImageView, attribute: .Trailing, multiplier: 1.0, constant: 12))
-        self.addConstraint(NSLayoutConstraint(item: titleLabel, attribute: .CenterY, relatedBy: .Equal,
-            toItem: self, attribute: .CenterY, multiplier: 1.0, constant: 0))
+        self.addConstraint(NSLayoutConstraint(item: titleLabel, attribute: .leading, relatedBy: .equal,
+            toItem: deviceImageView, attribute: .trailing, multiplier: 1.0, constant: 12))
+        self.addConstraint(NSLayoutConstraint(item: titleLabel, attribute: .centerY, relatedBy: .equal,
+            toItem: self, attribute: .centerY, multiplier: 1.0, constant: 0))
 
         
         let settingsImage = UIImage(named: "settings")
-        settingsButton.setImage(settingsImage, forState: UIControlState.Normal)
-        settingsButton.translatesAutoresizingMaskIntoConstraints = false
-        settingsButton.addTarget(self, action: #selector(self.pressSettings(_:)), forControlEvents: .TouchUpInside)
-        self.addSubview(settingsButton)
-        self.addConstraint(NSLayoutConstraint(item: settingsButton, attribute: .Height, relatedBy: .Equal,
-            toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: SETTINGS_ICON_SIZE))
-        self.addConstraint(NSLayoutConstraint(item: settingsButton, attribute: .Width, relatedBy: .Equal,
-            toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: SETTINGS_ICON_SIZE))
-        self.addConstraint(NSLayoutConstraint(item: settingsButton, attribute: NSLayoutAttribute.Right, relatedBy: .Equal,
-            toItem: self, attribute: .Right, multiplier: 1.0, constant: -18))
-        self.addConstraint(NSLayoutConstraint(item: settingsButton, attribute: NSLayoutAttribute.CenterY, relatedBy: .Equal,
-            toItem: self, attribute: .CenterY, multiplier: 1.0, constant: 0))
+        settingsButton?.setImage(settingsImage, for: UIControlState())
+        settingsButton?.translatesAutoresizingMaskIntoConstraints = false
+        settingsButton?.addTarget(self, action: #selector(self.pressSettings(_:)), for: .touchUpInside)
+        self.addSubview(settingsButton!)
+        self.addConstraint(NSLayoutConstraint(item: settingsButton, attribute: .height, relatedBy: .equal,
+            toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: SETTINGS_ICON_SIZE))
+        self.addConstraint(NSLayoutConstraint(item: settingsButton, attribute: .width, relatedBy: .equal,
+            toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: SETTINGS_ICON_SIZE))
+        self.addConstraint(NSLayoutConstraint(item: settingsButton, attribute: NSLayoutAttribute.right, relatedBy: .equal,
+            toItem: self, attribute: .right, multiplier: 1.0, constant: -18))
+        self.addConstraint(NSLayoutConstraint(item: settingsButton, attribute: NSLayoutAttribute.centerY, relatedBy: .equal,
+            toItem: self, attribute: .centerY, multiplier: 1.0, constant: 0))
         
         stateLabel.font = UIFont(name: "Effra", size: 13)
         stateLabel.textColor = UIColor(hex: 0x808AA0)
         stateLabel.translatesAutoresizingMaskIntoConstraints = false
-        stateLabel.textAlignment = .Right
+        stateLabel.textAlignment = .right
         self.addSubview(stateLabel)
-        self.addConstraint(NSLayoutConstraint(item: stateLabel, attribute: .Right, relatedBy: .Equal,
-            toItem: settingsButton, attribute: .Left, multiplier: 1.0, constant: -12))
-        self.addConstraint(NSLayoutConstraint(item: stateLabel, attribute: .CenterY, relatedBy: .Equal,
-            toItem: self, attribute: .CenterY, multiplier: 1.0, constant: 0))
+        self.addConstraint(NSLayoutConstraint(item: stateLabel, attribute: .right, relatedBy: .equal,
+            toItem: settingsButton, attribute: .left, multiplier: 1.0, constant: -12))
+        self.addConstraint(NSLayoutConstraint(item: stateLabel, attribute: .centerY, relatedBy: .equal,
+            toItem: self, attribute: .centerY, multiplier: 1.0, constant: 0))
 
         self.registerAsObserver()
     }
@@ -84,8 +84,8 @@ class TTDeviceTitleView: UIView, TTTitleMenuDelegate {
         appDelegate().modeMap.addObserver(self, forKeyPath: "openedModeChangeMenu", options: [], context: nil)
     }
     
-    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?,
-                                         change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?,
+                                         change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if keyPath == "selectedModeDirection" {
             self.setNeedsDisplay()
         } else if keyPath == "openedModeChangeMenu" {
@@ -100,12 +100,12 @@ class TTDeviceTitleView: UIView, TTTitleMenuDelegate {
 
     // MARK: Drawing
 
-    override func drawRect(rect: CGRect) {
+    override func draw(_ rect: CGRect) {
         deviceImageView.image = UIImage(named:"remote_graphic")
         titleLabel.text = device.nickname
         stateLabel.text = device.stateLabel()
         
-        super.drawRect(rect)
+        super.draw(rect)
         
         self.drawBorder()
     }
@@ -116,14 +116,14 @@ class TTDeviceTitleView: UIView, TTTitleMenuDelegate {
         UIColor(hex: 0xC2CBCE).set()
         
         // Top border
-        line.moveToPoint(CGPointMake(CGRectGetMinX(self.bounds), CGRectGetMinY(self.bounds)))
-        line.addLineToPoint(CGPointMake(CGRectGetMaxX(self.bounds), CGRectGetMinY(self.bounds)))
+        line.move(to: CGPoint(x: self.bounds.minX, y: self.bounds.minY))
+        line.addLine(to: CGPoint(x: self.bounds.maxX, y: self.bounds.minY))
         line.stroke()
     }
     
     // MARK: Actions
     
-    func pressSettings(sender: UIButton!) {
+    func pressSettings(_ sender: UIButton!) {
         appDelegate().mainViewController.toggleDeviceMenu(sender, deviceTitleView: self, device: device)
     }
     
@@ -137,7 +137,7 @@ class TTDeviceTitleView: UIView, TTTitleMenuDelegate {
         ]
     }
     
-    func selectMenuOption(row: Int) {
+    func selectMenuOption(_ row: Int) {
         switch row {
         case 2:
             appDelegate().bluetoothMonitor.forgetDevice(device)

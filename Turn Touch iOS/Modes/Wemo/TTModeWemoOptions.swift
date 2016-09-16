@@ -24,13 +24,13 @@ class TTModeWemoOptions: TTOptionsDetailViewController, TTModeWemoDelegate {
         self.changeState(self.modeWemo.wemoState, mode: self.modeWemo)
     }
     
-    func changeState(state: TTWemoState, mode: TTModeWemo) {
+    func changeState(_ state: TTWemoState, mode: TTModeWemo) {
         switch state {
-        case .Disconnected:
+        case .disconnected:
             self.drawConnectViewController()
-        case .Connecting:
+        case .connecting:
             self.drawConnectingViewController()
-        case .Connected:
+        case .connected:
             self.drawConnectedViewController()
         }
     }
@@ -52,13 +52,13 @@ class TTModeWemoOptions: TTOptionsDetailViewController, TTModeWemoDelegate {
         }
     }
     
-    func drawViewController(viewController: TTOptionsDetailViewController) {
+    func drawViewController(_ viewController: TTOptionsDetailViewController) {
         self.view.removeConstraints(self.view.constraints)
         self.view.addSubview(viewController.view)
-        self.view.addConstraint(NSLayoutConstraint(item: viewController.view, attribute: .Top, relatedBy: .Equal, toItem: self.view, attribute: .Top, multiplier: 1.0, constant: 0))
-        self.view.addConstraint(NSLayoutConstraint(item: viewController.view, attribute: .Bottom, relatedBy: .Equal, toItem: self.view, attribute: .Bottom, multiplier: 1.0, constant: 0))
-        self.view.addConstraint(NSLayoutConstraint(item: viewController.view, attribute: .Leading, relatedBy: .Equal, toItem: self.view, attribute: .Leading, multiplier: 1.0, constant: 0))
-        self.view.addConstraint(NSLayoutConstraint(item: viewController.view, attribute: .Trailing, relatedBy: .Equal, toItem: self.view, attribute: .Trailing, multiplier: 1.0, constant: 0))
+        self.view.addConstraint(NSLayoutConstraint(item: viewController.view, attribute: .top, relatedBy: .equal, toItem: self.view, attribute: .top, multiplier: 1.0, constant: 0))
+        self.view.addConstraint(NSLayoutConstraint(item: viewController.view, attribute: .bottom, relatedBy: .equal, toItem: self.view, attribute: .bottom, multiplier: 1.0, constant: 0))
+        self.view.addConstraint(NSLayoutConstraint(item: viewController.view, attribute: .leading, relatedBy: .equal, toItem: self.view, attribute: .leading, multiplier: 1.0, constant: 0))
+        self.view.addConstraint(NSLayoutConstraint(item: viewController.view, attribute: .trailing, relatedBy: .equal, toItem: self.view, attribute: .trailing, multiplier: 1.0, constant: 0))
         
         self.view.layoutIfNeeded()
 //        appDelegate().mainViewController.adjustOptionsHeight(nil)
@@ -66,21 +66,21 @@ class TTModeWemoOptions: TTOptionsDetailViewController, TTModeWemoDelegate {
     
     func drawConnectViewController() {
         self.clearViewConnectrollers()
-        self.connectViewController = TTModeWemoConnect(nibName: "TTModeWemoConnect", bundle: NSBundle.mainBundle())
+        self.connectViewController = TTModeWemoConnect(nibName: "TTModeWemoConnect", bundle: Bundle.main)
         self.connectViewController!.modeWemo = self.modeWemo
         self.drawViewController(self.connectViewController!)
     }
     
     func drawConnectingViewController() {
         self.clearViewConnectrollers()
-        self.connectingViewController = TTModeWemoConnecting(nibName: "TTModeWemoConnecting", bundle: NSBundle.mainBundle())
+        self.connectingViewController = TTModeWemoConnecting(nibName: "TTModeWemoConnecting", bundle: Bundle.main)
         self.connectingViewController!.modeWemo = self.modeWemo
         self.drawViewController(self.connectingViewController!)
     }
     
     func drawConnectedViewController() {
         self.clearViewConnectrollers()
-        self.connectedViewController = TTModeWemoConnected(nibName: "TTModeWemoConnected", bundle: NSBundle.mainBundle())
+        self.connectedViewController = TTModeWemoConnected(nibName: "TTModeWemoConnected", bundle: Bundle.main)
         self.connectedViewController!.modeWemo = self.modeWemo
         self.drawViewController(self.connectedViewController!)
     }

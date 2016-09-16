@@ -19,7 +19,7 @@ class TTModeWemoConnect: TTOptionsDetailViewController {
         self.view.translatesAutoresizingMaskIntoConstraints = false
     }
     
-    @IBAction func beginConnect(sender: UIButton) {
+    @IBAction func beginConnect(_ sender: UIButton) {
         self.modeWemo.beginConnectingToWemo()
     }
 

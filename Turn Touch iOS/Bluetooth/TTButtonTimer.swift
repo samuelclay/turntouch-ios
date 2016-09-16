@@ -10,57 +10,60 @@ import Foundation
 import AudioToolbox
 
 enum TTPressState: Int {
-    case Active = 0x01
-    case Toggle = 0x02
-    case Mode = 0x03
+    case active = 0x01
+    case toggle = 0x02
+    case mode = 0x03
 }
 
 enum TTHUDMenuState {
-    case Hidden
-    case Active
+    case hidden
+    case active
 }
 
 let DOUBLE_CLICK_ACTION_DURATION = 0.25
 
 class TTButtonTimer : NSObject {
     
-    var activeModeTimer: NSTimer!
+    var activeModeTimer: Timer!
     var previousButtonState = TTButtonState()
     var pairingButtonState: TTButtonState!
-    var lastButtonPressedDirection: TTModeDirection = .NO_DIRECTION
-    var lastButtonPressStart: NSDate!
-    var holdToastStart: NSDate!
+    var lastButtonPressedDirection: TTModeDirection = .no_DIRECTION
+    var lastButtonPressStart: Date!
+    var holdToastStart: Date!
     var menuHysteresis = false
     
     var pairingActivatedCount: NSNumber!
     var skipButtonActions = false
-    var menuState: TTHUDMenuState = .Hidden
+    var menuState: TTHUDMenuState = .hidden
     
-    func bytesFromData(data: NSData) -> [UInt8] {
-        let count = data.length / sizeof(UInt8)
-        var array = [UInt8](count: count, repeatedValue: 0)
-        data.getBytes(&array, length: count * sizeof(UInt8))
+    func bytesFromData(_ data: Data) -> [UInt8] {
+        let count = data.count / MemoryLayout<UInt8>.size
+        var array = [UInt8](repeating: 0, count: count)
+        (data as NSData).getBytes(&array, length: count * MemoryLayout<UInt8>.size)
         
         return array
     }
     
-    func buttonDownStateFromData(data: NSData) -> UInt8 {
-        let bytes = self.bytesFromData(data.subdataWithRange(NSRange(location: 0, length: 1)))
+    func buttonDownStateFromData(_ data: Data) -> UInt8 {
+        let range:Range<Int> = 0..<1
+        let bytes = self.bytesFromData(data.subdata(in: range))
         return UInt8(~(bytes[0]) & 0xF)
     }
     
-    func doubleStateFromData(data: NSData) -> UInt8 {
-        let bytes = self.bytesFromData(data.subdataWithRange(NSRange(location: 0, length: 1)))
+    func doubleStateFromData(_ data: Data) -> UInt8 {
+        let range:Range<Int> = 0..<1
+        let bytes = self.bytesFromData(data.subdata(in: range))
         let state = UInt8(~(bytes[0]) & 0xF0)
         return state >> 4
     }
     
-    func heldStateFromData(data: NSData) -> Bool {
-        let bytes = self.bytesFromData(data.subdataWithRange(NSRange(location: 1, length: 1)))
+    func heldStateFromData(_ data: Data) -> Bool {
+        let range:Range<Int> = 1..<2
+        let bytes = self.bytesFromData(data.subdata(in: range))
         return bytes[0] == 0xFF
     }
     
-    func readBluetoothData(data: NSData) {
+    func readBluetoothData(_ data: Data) {
         let state = self.buttonDownStateFromData(data)
         let doubleState = self.doubleStateFromData(data)
         let heldState = self.heldStateFromData(data)
@@ -95,60 +98,60 @@ class TTButtonTimer : NSObject {
             // Hold button down
             print(" ---> Hold button")
             previousButtonState = latestButtonState
-            menuState = .Hidden
+            menuState = .hidden
             
             if state == 0x01 {
                 // Don't fire action on button release
                 previousButtonState.north = false
-                self.activateMode(.NORTH)
+                self.activateMode(.north)
             } else if state == 0x02 {
                 previousButtonState.east = false
-                self.activateMode(.EAST)
+                self.activateMode(.east)
             } else if state == 0x04 {
                 previousButtonState.west = false
-                self.activateMode(.WEST)
+                self.activateMode(.west)
             } else if state == 0x08 {
                 previousButtonState.south = false
-                self.activateMode(.SOUTH)
+                self.activateMode(.south)
             }
-            self.activateButton(.NO_DIRECTION)
+            self.activateButton(.no_DIRECTION)
         } else if anyButtonPressed {
 //            print(" ---> Press down button \(previousButtonState.inMultitouch() ? "(multi-touch)" : "")")
             previousButtonState = latestButtonState
             
             if latestButtonState.inMultitouch() {
-                if holdToastStart == nil && !menuHysteresis && menuState == .Hidden {
-                    holdToastStart = NSDate()
+                if holdToastStart == nil && !menuHysteresis && menuState == .hidden {
+                    holdToastStart = Date()
                     menuHysteresis = true
-                    menuState = .Active
+                    menuState = .active
 //                    appDelegate().hudController.holdToastActiveMode(false)
-                } else if menuState == .Active && !menuHysteresis {
+                } else if menuState == .active && !menuHysteresis {
                     menuHysteresis = true
-                    menuState = .Hidden
+                    menuState = .hidden
                     self.releaseToastActiveMode()
                 }
-                self.activateButton(.NO_DIRECTION)
-            } else if menuState == .Active {
+                self.activateButton(.no_DIRECTION)
+            } else if menuState == .active {
                 if (state & 0x01) == 0x01 {
-                    self.fireMenuButton(.NORTH)
+                    self.fireMenuButton(.north)
                 } else if (state & 0x02) == 0x02 {
                     // Not on button down, wait for button up
                 } else if (state & 0x08) == 0x08 {
-                    self.fireMenuButton(.SOUTH)
+                    self.fireMenuButton(.south)
                 } else if state == 0x00 {
-                    self.activateButton(.NO_DIRECTION)
+                    self.activateButton(.no_DIRECTION)
                 }
             } else {
                 if (state & 0x01) == 0x01 {
-                    self.activateButton(.NORTH)
+                    self.activateButton(.north)
                 } else if (state & 0x02) == 0x02 {
-                    self.activateButton(.EAST)
+                    self.activateButton(.east)
                 } else if (state & 0x04) == 0x04 {
-                    self.activateButton(.WEST)
+                    self.activateButton(.west)
                 } else if (state & 0x08) == 0x08 {
-                    self.activateButton(.SOUTH)
+                    self.activateButton(.south)
                 } else if state == 0x00 {
-                    self.activateButton(.NO_DIRECTION)
+                    self.activateButton(.no_DIRECTION)
                 }
             }
         } else if anyButtonLifted {
@@ -157,50 +160,50 @@ class TTButtonTimer : NSObject {
             var buttonPressedDirection: TTModeDirection!
             switch buttonLifted {
             case 0:
-                buttonPressedDirection = .NORTH
+                buttonPressedDirection = .north
             case 1:
-                buttonPressedDirection = .EAST
+                buttonPressedDirection = .east
             case 2:
-                buttonPressedDirection = .WEST
+                buttonPressedDirection = .west
             case 3:
-                buttonPressedDirection = .SOUTH
+                buttonPressedDirection = .south
             default:
-                buttonPressedDirection = .NO_DIRECTION
+                buttonPressedDirection = .no_DIRECTION
             }
             
 //            print(" ---> Lift button\(previousButtonState.inMultitouch() ? " (multi-touch)" : ""): \(buttonPressedDirection)")
             
-            if menuState == .Active {
-                if buttonPressedDirection == .NORTH {
+            if menuState == .active {
+                if buttonPressedDirection == .north {
                     // Fired on button down
-                } else if buttonPressedDirection == .EAST {
-                    self.fireMenuButton(.EAST)
-                } else if buttonPressedDirection == .WEST {
-                    self.fireMenuButton(.WEST)
+                } else if buttonPressedDirection == .east {
+                    self.fireMenuButton(.east)
+                } else if buttonPressedDirection == .west {
+                    self.fireMenuButton(.west)
                 } else if state == 0x00 {
-                    self.activateButton(.NO_DIRECTION)
+                    self.activateButton(.no_DIRECTION)
                 }
             } else if (doubleState == 0xF &&
-                       lastButtonPressedDirection != .NO_DIRECTION &&
+                       lastButtonPressedDirection != .no_DIRECTION &&
                        buttonPressedDirection == lastButtonPressedDirection &&
-                       NSDate().timeIntervalSinceDate(lastButtonPressStart) < DOUBLE_CLICK_ACTION_DURATION) {
+                       Date().timeIntervalSince(lastButtonPressStart) < DOUBLE_CLICK_ACTION_DURATION) {
                 // Double click detected
                 self.fireDoubleButton(buttonPressedDirection)
-                lastButtonPressedDirection = .NO_DIRECTION
+                lastButtonPressedDirection = .no_DIRECTION
                 lastButtonPressStart = nil
             } else if doubleState != 0xF && doubleState != 0x0 {
                 // Firmware v3 has hardware support for double-click
                 self.fireDoubleButton(buttonPressedDirection)
             } else {
                 lastButtonPressedDirection = buttonPressedDirection
-                lastButtonPressStart = NSDate()
+                lastButtonPressStart = Date()
                 
                 self.fireButton(buttonPressedDirection)
                 
-                let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(DOUBLE_CLICK_ACTION_DURATION * Double(NSEC_PER_SEC)))
-                dispatch_after(delayTime, dispatch_get_main_queue(), {
+                let delayTime = DispatchTime.now() + Double(Int64(DOUBLE_CLICK_ACTION_DURATION * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
+                DispatchQueue.main.asyncAfter(deadline: delayTime, execute: {
                     self.lastButtonPressStart = nil
-                    self.lastButtonPressedDirection = .NO_DIRECTION
+                    self.lastButtonPressedDirection = .no_DIRECTION
                 })
             }
         } else if !latestButtonState.anyPressedDown() {
@@ -209,12 +212,12 @@ class TTButtonTimer : NSObject {
             
             if !inMultitouch && buttonLifted >= 0 && menuHysteresis {
                 self.releaseToastActiveMode()
-            } else if menuState == .Hidden {
+            } else if menuState == .hidden {
                 self.releaseToastActiveMode()
             }
-            self.activateButton(.NO_DIRECTION)
+            self.activateButton(.no_DIRECTION)
             menuHysteresis = false
-            menuState = .Hidden
+            menuState = .hidden
             holdToastStart = nil
         }
     }
@@ -225,49 +228,49 @@ class TTButtonTimer : NSObject {
         holdToastStart = nil
     }
     
-    func activateMode(direction: TTModeDirection) {
-        dispatch_async(dispatch_get_main_queue(), {
-            appDelegate().modeMap.switchMode(direction, modeChangeType: .RemoteButton)
+    func activateMode(_ direction: TTModeDirection) {
+        DispatchQueue.main.async(execute: {
+            appDelegate().modeMap.switchMode(direction, modeChangeType: .remoteButton)
             AudioServicesPlayAlertSound(kSystemSoundID_Vibrate)
     //        appDelegate().hudController.holdToastActiveMode(true)
         })
     }
     
-    func activateButton(direction: TTModeDirection) {
-        dispatch_async(dispatch_get_main_queue(), {
+    func activateButton(_ direction: TTModeDirection) {
+        DispatchQueue.main.async(execute: {
             appDelegate().modeMap.activeModeDirection = direction
             
     //        let actionnNme = appDelegate().modeMap.selectedMode.actionNameInDirection(direction)
     //        appDelegate().hudController.holdToastActiveAction(actionName, direction: direction)
             
-            if direction != .NO_DIRECTION {
+            if direction != .no_DIRECTION {
                 // Mac has a timer here that shows the HUD. May not be necessary on iOS
             }
         })
     }
     
-    func fireMenuButton(direction: TTModeDirection) {
-        dispatch_async(dispatch_get_main_queue(), {
+    func fireMenuButton(_ direction: TTModeDirection) {
+        DispatchQueue.main.async(execute: {
 //        appDelegate().hudController.modeHUDController.runDirection(direction)
         })
     }
     
-    func fireButton(direction: TTModeDirection) {
-        dispatch_async(dispatch_get_main_queue(), {
+    func fireButton(_ direction: TTModeDirection) {
+        DispatchQueue.main.async(execute: {
             appDelegate().modeMap.activeModeDirection = direction
             if !self.skipButtonActions {
                 appDelegate().modeMap.runActiveButton()
             }
-            appDelegate().modeMap.activeModeDirection = .NO_DIRECTION
+            appDelegate().modeMap.activeModeDirection = .no_DIRECTION
             
     //        let actionnNme = appDelegate().modeMap.selectedMode.actionNameInDirection(direction)
     //        appDelegate().hudController.toastActiveAction(actionName, direction: direction)
         })
     }
     
-    func fireDoubleButton(direction: TTModeDirection) {
-        dispatch_async(dispatch_get_main_queue(), {
-            if direction == .NO_DIRECTION {
+    func fireDoubleButton(_ direction: TTModeDirection) {
+        DispatchQueue.main.async(execute: {
+            if direction == .no_DIRECTION {
                 return
             }
             
@@ -275,7 +278,7 @@ class TTButtonTimer : NSObject {
                 appDelegate().modeMap.runDoubleButton(direction)
             }
             
-            appDelegate().modeMap.activeModeDirection = .NO_DIRECTION
+            appDelegate().modeMap.activeModeDirection = .no_DIRECTION
             
     //        let actionnNme = appDelegate().modeMap.selectedMode.actionNameInDirection(direction)
     //        appDelegate().hudController.toastActiveAction(actionName, direction: direction)
@@ -290,40 +293,40 @@ class TTButtonTimer : NSObject {
         pairingButtonState = TTButtonState()
     }
     
-    func readBluetoothDataDuringPairing(data: NSData) {
+    func readBluetoothDataDuringPairing(_ data: Data) {
         let state = self.buttonDownStateFromData(data)
         pairingButtonState.north = pairingButtonState.north || (state & (1 << 0)) != 0x0
         pairingButtonState.east  = pairingButtonState.east  || (state & (1 << 1)) != 0x0
         pairingButtonState.west  = pairingButtonState.west  || (state & (1 << 2)) != 0x0
         pairingButtonState.south = pairingButtonState.south || (state & (1 << 3)) != 0x0
-        pairingActivatedCount = NSNumber(integer: pairingButtonState.activatedCount())
+        pairingActivatedCount = NSNumber(value: pairingButtonState.activatedCount() as Int)
         
         if (state & (1 << 0)) == (1 << 0) {
-            appDelegate().modeMap.activeModeDirection = .NORTH
+            appDelegate().modeMap.activeModeDirection = .north
         } else if (state & (1 << 1)) == (1 << 1) {
-            appDelegate().modeMap.activeModeDirection = .EAST
+            appDelegate().modeMap.activeModeDirection = .east
         } else if (state & (1 << 2)) == (1 << 2) {
-            appDelegate().modeMap.activeModeDirection = .WEST
+            appDelegate().modeMap.activeModeDirection = .west
         } else if (state & (1 << 3)) == (1 << 3) {
-            appDelegate().modeMap.activeModeDirection = .SOUTH
+            appDelegate().modeMap.activeModeDirection = .south
         } else {
-            appDelegate().modeMap.activeModeDirection = .NO_DIRECTION
+            appDelegate().modeMap.activeModeDirection = .no_DIRECTION
         }
     }
     
     func isDevicePaired() -> Bool {
-        return pairingActivatedCount.integerValue == pairingButtonState.count
+        return pairingActivatedCount.intValue == pairingButtonState.count
     }
     
-    func isDirectionPaired(direction: TTModeDirection) -> Bool {
+    func isDirectionPaired(_ direction: TTModeDirection) -> Bool {
         switch direction {
-        case .NORTH:
+        case .north:
             return pairingButtonState.north
-        case .EAST:
+        case .east:
             return pairingButtonState.east
-        case .WEST:
+        case .west:
             return pairingButtonState.west
-        case .SOUTH:
+        case .south:
             return pairingButtonState.south
         default:
             return false

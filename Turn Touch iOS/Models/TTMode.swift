@@ -9,14 +9,14 @@
 import Foundation
 
 enum ActionLayout {
-    case ACTION_LAYOUT_TITLE
-    case ACTION_LAYOUT_IMAGE_TITLE
-    case ACTION_LAYOUT_PROGRESSBAR
+    case action_LAYOUT_TITLE
+    case action_LAYOUT_IMAGE_TITLE
+    case action_LAYOUT_PROGRESSBAR
 }
 
 enum ModeChangeType {
-    case ModeTab
-    case RemoteButton
+    case modeTab
+    case remoteButton
 }
 
 protocol TTModeProtocol {
@@ -28,15 +28,15 @@ protocol TTModeProtocol {
     static func actions() -> [String]
 }
 
-infix operator >!< {}
-func >!< (object1: AnyObject!, object2: AnyObject!) -> Bool {
+infix operator >!<
+func >!< (object1: Any!, object2: Any!) -> Bool {
     return (object_getClassName(object1) == object_getClassName(object2))
 }
 
 class TTMode : NSObject, TTModeProtocol {
-    var modeDirection: TTModeDirection = .NO_DIRECTION
+    var modeDirection: TTModeDirection = .no_DIRECTION
     var action: TTAction!
-    var modeChangeType: ModeChangeType = .RemoteButton
+    var modeChangeType: ModeChangeType = .remoteButton
     
     required override init() {
         super.init()
@@ -47,7 +47,7 @@ class TTMode : NSObject, TTModeProtocol {
         
     }
     
-    func activate(direction: TTModeDirection) {
+    func activate(_ direction: TTModeDirection) {
         modeDirection = direction
         
         self.activate()
@@ -99,27 +99,27 @@ class TTMode : NSObject, TTModeProtocol {
     
     // MARK: Map directions to actions
     
-    func runDirection(direction: TTModeDirection) {
+    func runDirection(_ direction: TTModeDirection) {
         let actionName = self.actionNameInDirection(direction)
-        self.runAction(actionName, direction: direction, funcAction: "run")
+        _ = self.runAction(actionName, direction: direction, funcAction: "run")
     }
     
-    func runAction(actionName: String, direction: TTModeDirection) {
-        self.runAction(actionName, direction: direction, funcAction: "run")
+    func runAction(_ actionName: String, direction: TTModeDirection) {
+        _ = self.runAction(actionName, direction: direction, funcAction: "run")
     }
     
-    func runDoubleDirection(direction: TTModeDirection) {
+    func runDoubleDirection(_ direction: TTModeDirection) {
         if !self.runDirection(direction, funcAction: "doubleRun") {
             self.runDirection(direction)
         }
     }
     
-    func runDirection(direction: TTModeDirection, funcAction: String) -> Bool {
+    func runDirection(_ direction: TTModeDirection, funcAction: String) -> Bool {
         let actionName = self.actionNameInDirection(direction)
         return self.runAction(actionName, direction: direction, funcAction: funcAction)
     }
     
-    func runAction(actionName: String, direction: TTModeDirection, funcAction: String) -> Bool {
+    func runAction(_ actionName: String, direction: TTModeDirection, funcAction: String) -> Bool {
         var success = false
         print(" ---> Running \(direction): \(funcAction)\(actionName)")
         if self.action == nil || self.action.batchActionKey == nil {
@@ -128,14 +128,14 @@ class TTMode : NSObject, TTModeProtocol {
         
         // runAction:direction
         let titleSelector = NSSelectorFromString("\(funcAction)\(actionName):")
-        if self.respondsToSelector(titleSelector) {
-            self.performSelector(titleSelector, withObject: NSNumber(integer: direction.rawValue))
+        if self.responds(to: titleSelector) {
+            self.perform(titleSelector, with: NSNumber(value: direction.rawValue as Int))
             success = true
         } else {
             // runAction
             let titleSelector = NSSelectorFromString("\(funcAction)\(actionName)")
-            if self.respondsToSelector(titleSelector) {
-                self.performSelector(titleSelector)
+            if self.responds(to: titleSelector) {
+                self.perform(titleSelector)
                 success = true
             }
         }
@@ -147,7 +147,7 @@ class TTMode : NSObject, TTModeProtocol {
         return success
     }
     
-    func titleInDirection(direction: TTModeDirection, buttonMoment: TTButtonMoment) -> String {
+    func titleInDirection(_ direction: TTModeDirection, buttonMoment: TTButtonMoment) -> String {
         let actionName = self.actionNameInDirection(direction)
         
         if actionName == "" {
@@ -158,61 +158,61 @@ class TTMode : NSObject, TTModeProtocol {
         return self.titleForAction(actionName, buttonMoment:buttonMoment)
     }
     
-    func titleForAction(actionName: String, buttonMoment: TTButtonMoment) -> String {
+    func titleForAction(_ actionName: String, buttonMoment: TTButtonMoment) -> String {
         var runAction = "title"
-        if buttonMoment == .BUTTON_MOMENT_DOUBLE {
+        if buttonMoment == .button_MOMENT_DOUBLE {
             runAction = "doubleTitle"
         }
         
         let selector = NSSelectorFromString("\(runAction)\(actionName)")
-        if !self.respondsToSelector(selector) && buttonMoment != .BUTTON_MOMENT_PRESSUP {
+        if !self.responds(to: selector) && buttonMoment != .button_MOMENT_PRESSUP {
             print(" ---> No double click title: \(actionName)")
-            return self.titleForAction(actionName, buttonMoment: .BUTTON_MOMENT_PRESSUP)
+            return self.titleForAction(actionName, buttonMoment: .button_MOMENT_PRESSUP)
         }
         
-        if !self.respondsToSelector(selector) {
+        if !self.responds(to: selector) {
             print(" ---> Set title for \(selector)")
             return "Set \(selector)"
         }
         
-        let actionTitle = self.performSelector(selector, withObject: self).takeUnretainedValue() as! String
+        let actionTitle = self.perform(selector, with: self).takeUnretainedValue() as! String
         return actionTitle
     }
     
-    func actionTitleForAction(actionName: String, buttonMoment: TTButtonMoment) -> String? {
+    func actionTitleForAction(_ actionName: String, buttonMoment: TTButtonMoment) -> String? {
         var runAction = "actionTitle"
-        if buttonMoment == .BUTTON_MOMENT_DOUBLE {
+        if buttonMoment == .button_MOMENT_DOUBLE {
             runAction = "doubleActionTitle"
         }
         let titleSelector = NSSelectorFromString("\(runAction)\(actionName)")
-        if !self.respondsToSelector(titleSelector) {
+        if !self.responds(to: titleSelector) {
             return self.titleForAction(actionName, buttonMoment: buttonMoment)
         }
         
-        let actionTitle = self.performSelector(titleSelector, withObject: self).takeUnretainedValue() as! String
+        let actionTitle = self.perform(titleSelector, with: self).takeUnretainedValue() as! String
         return actionTitle
     }
     
-    func actionNameInDirection(direction: TTModeDirection) -> String {
-        let prefs = NSUserDefaults.standardUserDefaults()
+    func actionNameInDirection(_ direction: TTModeDirection) -> String {
+        let prefs = UserDefaults.standard
         
         let modeDirectionName = appDelegate().modeMap.directionName(modeDirection)
         let actionDirectionName = appDelegate().modeMap.directionName(direction)
         let prefKey = "TT:\(self.nameOfClass)-\(modeDirectionName):action:\(actionDirectionName)"
-        let prefDirectionAction = prefs.stringForKey(prefKey)
+        let prefDirectionAction = prefs.string(forKey: prefKey)
         var directionAction: String!
         
         if prefDirectionAction == nil {
             switch direction {
-            case .NORTH:
+            case .north:
                 directionAction = self.defaultNorth()
-            case .EAST:
+            case .east:
                 directionAction = self.defaultEast()
-            case .WEST:
+            case .west:
                 directionAction = self.defaultWest()
-            case .SOUTH:
+            case .south:
                 directionAction = self.defaultSouth()
-            case .INFO:
+            case .info:
                 directionAction = self.defaultInfo()
             default:
                 directionAction = ""
@@ -225,40 +225,40 @@ class TTMode : NSObject, TTModeProtocol {
         return directionAction
     }
     
-    func shouldIgnoreSingleBeforeDouble(direction: TTModeDirection) -> Bool {
+    func shouldIgnoreSingleBeforeDouble(_ direction: TTModeDirection) -> Bool {
         let actionName = self.actionNameInDirection(direction)
         let titleSelector = NSSelectorFromString("shouldIgnoreSingleBeforeDouble\(actionName)")
-        if !self.respondsToSelector(titleSelector) {
+        if !self.responds(to: titleSelector) {
             return false
         }
         
-        let ignore = self.performSelector(titleSelector).takeUnretainedValue() as! NSNumber
+        let ignore = self.perform(titleSelector).takeUnretainedValue() as! NSNumber
         return ignore.boolValue
     }
     
-    func shouldFireImmediateOnPress(direction: TTModeDirection) -> Bool {
+    func shouldFireImmediateOnPress(_ direction: TTModeDirection) -> Bool {
         let actionName = self.actionNameInDirection(direction)
         let titleSelector = NSSelectorFromString("shouldFireImmediate\(actionName)")
-        if !self.respondsToSelector(titleSelector) {
+        if !self.responds(to: titleSelector) {
             return false
         }
         
-        let immediate = self.performSelector(titleSelector).takeUnretainedValue() as! NSNumber
+        let immediate = self.perform(titleSelector).takeUnretainedValue() as! NSNumber
         return immediate.boolValue
     }
     
     // MARK: Mode options
     
-    func modeOptionValue(optionName: String, modeDirection: TTModeDirection) -> AnyObject? {
-        let prefs = NSUserDefaults.standardUserDefaults()
+    func modeOptionValue(_ optionName: String, modeDirection: TTModeDirection) -> Any? {
+        let prefs = UserDefaults.standard
         let modeDirectionName = appDelegate().modeMap.directionName(modeDirection)
         
-        if modeDirection == .NO_DIRECTION {
+        if modeDirection == .no_DIRECTION {
             // Rotate through directions looking for prefs
-            for direction: TTModeDirection in [.NORTH, .EAST, .WEST, .SOUTH] {
+            for direction: TTModeDirection in [.north, .east, .west, .south] {
                 let directionName = appDelegate().modeMap.directionName(direction)
                 let optionKey = "TT:mode:\(self.nameOfClass)-\(directionName):option:\(optionName)"
-                let pref = prefs.objectForKey(optionKey)
+                let pref = prefs.object(forKey: optionKey)
                 print(" -> Getting mode options (\(directionName)) \(optionKey): \(pref)")
                 if pref == nil {
                     continue
@@ -268,7 +268,7 @@ class TTMode : NSObject, TTModeProtocol {
         }
         
         let optionKey = "TT:mode:\(self.nameOfClass)-\(modeDirectionName):option:\(optionName)"
-        var pref = prefs.objectForKey(optionKey)
+        var pref = prefs.object(forKey: optionKey)
         print(" -> Getting mode options \(optionKey): \(pref)")
         if pref == nil {
             pref = self.defaultOption(optionName)
@@ -279,8 +279,8 @@ class TTMode : NSObject, TTModeProtocol {
 
     // MARK: Changing mode settings
     
-    func changeDirection(direction: TTModeDirection, toAction actionClassName: String) {
-        let prefs = NSUserDefaults.standardUserDefaults()
+    func changeDirection(_ direction: TTModeDirection, toAction actionClassName: String) {
+        let prefs = UserDefaults.standard
         
         let modeDirectionName = appDelegate().modeMap.directionName(modeDirection)
         let actionDirectionName = appDelegate().modeMap.directionName(direction)
@@ -289,38 +289,38 @@ class TTMode : NSObject, TTModeProtocol {
 //        let directionAction = prefs.stringForKey(prefKey)
 //        print("Direction action: \(prefKey) - \(directionAction) to \(actionClassName)")
         
-        prefs.setObject(actionClassName, forKey: prefKey)
+        prefs.set(actionClassName, forKey: prefKey)
         prefs.synchronize()
     }
     
-    func changeModeOption(optionName: String, to optionValue: AnyObject) {
+    func changeModeOption(_ optionName: String, to optionValue: Any) {
         if optionName == "" {
             print(" ---> BUSTED: \(optionValue)")
             return
         }
-        let prefs = NSUserDefaults.standardUserDefaults()
+        let prefs = UserDefaults.standard
         let modeDirectionName = appDelegate().modeMap.directionName(modeDirection)
         let optionKey = "TT:mode:\(self.nameOfClass)-\(modeDirectionName):option:\(optionName)"
-        let pref = prefs.objectForKey(optionKey)
+        let pref = prefs.object(forKey: optionKey)
         print(" -> Setting mode option \(optionKey) from (\(pref)) to (\(optionValue))")
         
-        prefs.setObject(optionValue, forKey: optionKey)
+        prefs.set(optionValue, forKey: optionKey)
         prefs.synchronize()
     }
     
     // MARK: Action options
     
-    func actionOptionValue(optionName: String, actionName: String, direction: TTModeDirection) -> AnyObject? {
-        let prefs = NSUserDefaults.standardUserDefaults()
+    func actionOptionValue(_ optionName: String, actionName: String, direction: TTModeDirection) -> Any? {
+        let prefs = UserDefaults.standard
         let modeDirectionName = appDelegate().modeMap.directionName(modeDirection)
         let actionDirectionName = appDelegate().modeMap.directionName(direction)
         
-        if direction == .NO_DIRECTION {
+        if direction == .no_DIRECTION {
             // Rotate through directions looking for prefs
-            for modeDirection: TTModeDirection in [.NORTH, .EAST, .WEST, .SOUTH] {
+            for modeDirection: TTModeDirection in [.north, .east, .west, .south] {
                 let modeActionDirectionName = appDelegate().modeMap.directionName(modeDirection)
                 let optionKey = "TT:mode:\(self.nameOfClass)-\(modeDirectionName):action:\(actionName)-\(modeActionDirectionName):option:\(optionName)"
-                let pref = prefs.objectForKey(optionKey)
+                let pref = prefs.object(forKey: optionKey)
                 print(" -> Getting action options (\(modeActionDirectionName)) \(optionKey): \(pref)")
                 if pref == nil {
                     continue
@@ -330,7 +330,7 @@ class TTMode : NSObject, TTModeProtocol {
         }
         
         let optionKey = "TT:mode:\(self.nameOfClass)-\(modeDirectionName):action:\(actionName)-\(actionDirectionName):option:\(optionName)"
-        var pref = prefs.objectForKey(optionKey)
+        var pref = prefs.object(forKey: optionKey)
         print(" -> Getting action options \(optionKey): \(pref)")
         if pref == nil {
             pref = self.defaultOption(actionName, optionName: optionName)
@@ -342,12 +342,12 @@ class TTMode : NSObject, TTModeProtocol {
         return pref
     }
     
-    func batchActionOptionValue(batchAction: TTAction, optionName: String, direction: TTModeDirection) -> AnyObject? {
-        let prefs = NSUserDefaults.standardUserDefaults()
+    func batchActionOptionValue(_ batchAction: TTAction, optionName: String, direction: TTModeDirection) -> Any? {
+        let prefs = UserDefaults.standard
         let modeDirectionName = appDelegate().modeMap.directionName(modeDirection)
         let actionDirectionName = appDelegate().modeMap.directionName(direction)
         let optionKey = "TT:mode:\(modeDirectionName):action:\(actionDirectionName):batchactions:\(action.batchActionKey):actionoption:\(optionName)"
-        var pref = prefs.objectForKey(optionKey)
+        var pref = prefs.object(forKey: optionKey)
         print(" -> Getting batch action options \(optionKey): \(pref)")
         if pref == nil {
             pref = self.defaultOption(action.actionName, optionName: optionName)
@@ -359,23 +359,23 @@ class TTMode : NSObject, TTModeProtocol {
         return pref
     }
     
-    func defaultOption(optionName: String) -> AnyObject? {
-        let defaultPrefsFile = NSBundle.mainBundle().pathForResource(self.nameOfClass, ofType: "plist")
+    func defaultOption(_ optionName: String) -> Any? {
+        let defaultPrefsFile = Bundle.main.path(forResource: self.nameOfClass, ofType: "plist")
         if defaultPrefsFile == nil {
             return nil
         }
-        let modeDefaults: Dictionary<String, AnyObject>? = NSDictionary(contentsOfFile: defaultPrefsFile!) as? Dictionary<String, AnyObject>
+        let modeDefaults: Dictionary<String, Any>? = NSDictionary(contentsOfFile: defaultPrefsFile!) as? Dictionary<String, Any>
         print(" -> Getting mode option default \(optionName): \(modeDefaults?[optionName])")
         
         return modeDefaults?[optionName]
     }
     
-    func defaultOption(actionName: String, optionName: String) -> AnyObject? {
-        let defaultPrefsFile = NSBundle.mainBundle().pathForResource(self.nameOfClass, ofType: "plist")
+    func defaultOption(_ actionName: String, optionName: String) -> Any? {
+        let defaultPrefsFile = Bundle.main.path(forResource: self.nameOfClass, ofType: "plist")
         if defaultPrefsFile == nil {
             return nil
         }
-        let modeDefaults: Dictionary<String, AnyObject>? = NSDictionary(contentsOfFile: defaultPrefsFile!) as? Dictionary<String, AnyObject>
+        let modeDefaults: Dictionary<String, Any>? = NSDictionary(contentsOfFile: defaultPrefsFile!) as? Dictionary<String, Any>
         let optionKey = "\(actionName):\(optionName)"
         print(" -> Getting mode action option default \(optionKey): \(modeDefaults?[optionKey])")
         
@@ -384,51 +384,51 @@ class TTMode : NSObject, TTModeProtocol {
     
     // MARK: Setting action options
     
-    func changeActionOption(optionName: String, to optionValue: AnyObject, direction: TTModeDirection?=nil) {
+    func changeActionOption(_ optionName: String, to optionValue: Any, direction: TTModeDirection?=nil) {
         if optionName == "" {
             print(" ---> BUSTED: \(optionValue)")
             return
         }
-        let prefs = NSUserDefaults.standardUserDefaults()
+        let prefs = UserDefaults.standard
         let inspectingModeDirection = direction ?? appDelegate().modeMap.inspectingModeDirection
         let modeDirectionName = appDelegate().modeMap.directionName(modeDirection)
         let actionDirectionName = appDelegate().modeMap.directionName(inspectingModeDirection)
         let actionName = self.actionNameInDirection(inspectingModeDirection)
         let optionKey = "TT:mode:\(self.nameOfClass)-\(modeDirectionName):action:\(actionName)-\(actionDirectionName):option:\(optionName)"
-        let pref = prefs.objectForKey(optionKey)
+        let pref = prefs.object(forKey: optionKey)
         print(" -> Setting action options \(optionKey) from (\(pref)) to (\(optionValue))")
         
-        prefs.setObject(optionValue, forKey: optionKey)
+        prefs.set(optionValue, forKey: optionKey)
         prefs.synchronize()
     }
     
-    func changeBatchActionOption(batchActionKey: String, optionName: String, to optionValue: AnyObject) {
-        let prefs = NSUserDefaults.standardUserDefaults()
+    func changeBatchActionOption(_ batchActionKey: String, optionName: String, to optionValue: Any) {
+        let prefs = UserDefaults.standard
         let inspectingModeDirection = appDelegate().modeMap.inspectingModeDirection
         let modeDirectionName = appDelegate().modeMap.directionName(modeDirection)
         let actionDirectionName = appDelegate().modeMap.directionName(inspectingModeDirection)
         let optionKey = "TT:mode:\(modeDirectionName):action:\(actionDirectionName):batchactions:\(batchActionKey):actionoption:\(optionName)"
-        let pref = prefs.objectForKey(optionKey)
+        let pref = prefs.object(forKey: optionKey)
         print(" -> Setting batch action options \(optionKey) from (\(pref)) to (\(optionValue))")
         
-        prefs.setObject(optionValue, forKey: optionKey)
+        prefs.set(optionValue, forKey: optionKey)
         prefs.synchronize()
     }
     
     // MARK: Images
     
-    func imageNameInDirection(direction: TTModeDirection) -> String? {
+    func imageNameInDirection(_ direction: TTModeDirection) -> String? {
         let actionName = self.actionNameInDirection(direction)
         return self.imageNameForAction(actionName)
     }
     
-    func imageNameForAction(actionName: String) -> String? {
+    func imageNameForAction(_ actionName: String) -> String? {
         let titleSelector = NSSelectorFromString("image\(actionName)")
-        if !self.respondsToSelector(titleSelector) {
+        if !self.responds(to: titleSelector) {
             return nil
         }
         
-        let actionImageName = self.performSelector(titleSelector, withObject: self).takeUnretainedValue() as! String
+        let actionImageName = self.perform(titleSelector, with: self).takeUnretainedValue() as! String
         return actionImageName
         
     }

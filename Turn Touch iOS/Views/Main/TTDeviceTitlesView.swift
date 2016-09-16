@@ -14,18 +14,18 @@ class TTDeviceTitlesView: UIStackView {
     init() {
         super.init(frame: CGRect.zero)
         self.translatesAutoresizingMaskIntoConstraints = false
-        self.axis = .Vertical
-        self.distribution = .FillEqually
-        self.alignment = .Fill
+        self.axis = .vertical
+        self.distribution = .fillEqually
+        self.alignment = .fill
         self.spacing = 0
         
         self.registerAsObserver()
     }
-
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+    
+    required init(coder: NSCoder) {
+        super.init(coder: coder)
     }
-
+    
     // MARK: KVO
     
     func registerAsObserver() {
@@ -38,9 +38,9 @@ class TTDeviceTitlesView: UIStackView {
         appDelegate().bluetoothMonitor.addObserver(self, forKeyPath: "knownDevicesCount", options: [], context: nil)
     }
     
-    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?,
-                                         change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
-        dispatch_async(dispatch_get_main_queue()) { 
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?,
+                                         change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        DispatchQueue.main.async { 
             if keyPath == "nicknamedConnectedCount" {
                 self.assembleDeviceTitles()
             } else if keyPath == "pairedDevicesCount" {
@@ -63,8 +63,8 @@ class TTDeviceTitlesView: UIStackView {
     
     // MARK: Drawing
     
-    override func drawRect(rect: CGRect) {
-        super.drawRect(rect)
+    override func draw(_ rect: CGRect) {
+        super.draw(rect)
     }
     
     func assembleDeviceTitles() {
@@ -79,12 +79,12 @@ class TTDeviceTitlesView: UIStackView {
         for device: TTDevice in devices {
             let deviceView = TTDeviceTitleView(device: device)
             self.addArrangedSubview(deviceView)
-            deviceTitleConstraints.append(NSLayoutConstraint(item: deviceView, attribute: .Height,
-                relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 44))
-            deviceTitleConstraints.append(NSLayoutConstraint(item: deviceView, attribute: .Width,
-                relatedBy: .Equal, toItem: self, attribute: .Width, multiplier: 1.0, constant: 0))
-            deviceTitleConstraints.append(NSLayoutConstraint(item: deviceView, attribute: .Leading,
-                relatedBy: .Equal, toItem: self, attribute: .Leading, multiplier: 1.0, constant: 0))
+            deviceTitleConstraints.append(NSLayoutConstraint(item: deviceView, attribute: .height,
+                relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 44))
+            deviceTitleConstraints.append(NSLayoutConstraint(item: deviceView, attribute: .width,
+                relatedBy: .equal, toItem: self, attribute: .width, multiplier: 1.0, constant: 0))
+            deviceTitleConstraints.append(NSLayoutConstraint(item: deviceView, attribute: .leading,
+                relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1.0, constant: 0))
         }
         
         self.addConstraints(deviceTitleConstraints)

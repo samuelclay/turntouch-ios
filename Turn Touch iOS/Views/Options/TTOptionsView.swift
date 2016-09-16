@@ -16,7 +16,7 @@ class TTOptionsView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.translatesAutoresizingMaskIntoConstraints = false
-        self.contentMode = UIViewContentMode.Top
+        self.contentMode = UIViewContentMode.top
         self.clipsToBounds = true
         self.clearOptionDetailViews()
         self.registerAsObserver()
@@ -40,7 +40,7 @@ class TTOptionsView: UIView {
 //        appDelegate().modeMap.removeObserver(self, forKeyPath: "activeModeDirection")
     }
     
-    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if keyPath == "selectedModeDirection" {
             self.drawModeOptions()
         } else if keyPath == "inspectingModeDirection" {
@@ -52,16 +52,16 @@ class TTOptionsView: UIView {
     
     // MARK: Drawing
     
-    override func drawRect(rect: CGRect) {
-        super.drawRect(rect)
+    override func draw(_ rect: CGRect) {
+        super.draw(rect)
         
         let context = UIGraphicsGetCurrentContext()
         UIColor(hex: 0xFFFFFF).set()
-        CGContextFillRect(context, self.bounds);
+        context?.fill(self.bounds);
     }
     
     func redrawOptions() {
-        if appDelegate().modeMap.inspectingModeDirection == .NO_DIRECTION {
+        if appDelegate().modeMap.inspectingModeDirection == .no_DIRECTION {
             self.drawModeOptions()
         } else {
             self.drawActionOptions()
@@ -97,18 +97,18 @@ class TTOptionsView: UIView {
         }
         
         modeOptionsViewController.mode = appDelegate().modeMap.selectedMode
-        modeOptionsViewController.menuType = TTMenuType.MENU_MODE
+        modeOptionsViewController.menuType = TTMenuType.menu_MODE
         modeOptionsViewController.view.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(modeOptionsViewController.view)
         
-        self.addConstraint(NSLayoutConstraint(item: modeOptionsViewController.view, attribute: .Top,
-            relatedBy: .Equal, toItem: self, attribute: .Top, multiplier: 1.0, constant: 0))
-        self.addConstraint(NSLayoutConstraint(item: modeOptionsViewController.view, attribute: .Leading,
-            relatedBy: .Equal, toItem: self, attribute: .Leading, multiplier: 1.0, constant: 0))
-        self.addConstraint(NSLayoutConstraint(item: modeOptionsViewController.view, attribute: .Width,
-            relatedBy: .Equal, toItem: self, attribute: .Width, multiplier: 1.0, constant: 0))
-        self.addConstraint(NSLayoutConstraint(item: self, attribute: .Height,
-            relatedBy: .Equal, toItem: modeOptionsViewController.view, attribute: .Height, multiplier: 1.0, constant: 0))
+        self.addConstraint(NSLayoutConstraint(item: modeOptionsViewController.view, attribute: .top,
+            relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1.0, constant: 0))
+        self.addConstraint(NSLayoutConstraint(item: modeOptionsViewController.view, attribute: .leading,
+            relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1.0, constant: 0))
+        self.addConstraint(NSLayoutConstraint(item: modeOptionsViewController.view, attribute: .width,
+            relatedBy: .equal, toItem: self, attribute: .width, multiplier: 1.0, constant: 0))
+        self.addConstraint(NSLayoutConstraint(item: self, attribute: .height,
+            relatedBy: .equal, toItem: modeOptionsViewController.view, attribute: .height, multiplier: 1.0, constant: 0))
         
         appDelegate().mainViewController.adjustOptionsHeight(modeOptionsViewController.view)
     }
@@ -123,10 +123,10 @@ class TTOptionsView: UIView {
             actionOptionsViewController = TTOptionsDetailViewController()
             actionOptionsViewController.view.translatesAutoresizingMaskIntoConstraints = false
         } else {
-            actionOptionsViewController = (actionOptionsClass as! TTOptionsDetailViewController.Type).init(nibName: actionOptionsViewControllerName, bundle: NSBundle.mainBundle())
+            actionOptionsViewController = (actionOptionsClass as! TTOptionsDetailViewController.Type).init(nibName: actionOptionsViewControllerName, bundle: Bundle.main)
         }
         
-        actionOptionsViewController.menuType = TTMenuType.MENU_ACTION
+        actionOptionsViewController.menuType = TTMenuType.menu_ACTION
         actionOptionsViewController.action = TTAction(actionName: actionName)
         actionOptionsViewController.mode = appDelegate().modeMap.selectedMode
         actionOptionsViewController.mode.action = actionOptionsViewController.action
@@ -134,14 +134,14 @@ class TTOptionsView: UIView {
         actionOptionsViewController.view.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(actionOptionsViewController.view)
         
-        self.addConstraint(NSLayoutConstraint(item: actionOptionsViewController.view, attribute: .Top,
-            relatedBy: .Equal, toItem: self, attribute: .Top, multiplier: 1.0, constant: 0))
-        self.addConstraint(NSLayoutConstraint(item: actionOptionsViewController.view, attribute: .Leading,
-            relatedBy: .Equal, toItem: self, attribute: .Leading, multiplier: 1.0, constant: 0))
-        self.addConstraint(NSLayoutConstraint(item: actionOptionsViewController.view, attribute: .Width,
-            relatedBy: .Equal, toItem: self, attribute: .Width, multiplier: 1.0, constant: 0))
-        self.addConstraint(NSLayoutConstraint(item: self, attribute: .Height,
-            relatedBy: .Equal, toItem: actionOptionsViewController.view, attribute: .Height, multiplier: 1.0, constant: 0))
+        self.addConstraint(NSLayoutConstraint(item: actionOptionsViewController.view, attribute: .top,
+            relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1.0, constant: 0))
+        self.addConstraint(NSLayoutConstraint(item: actionOptionsViewController.view, attribute: .leading,
+            relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1.0, constant: 0))
+        self.addConstraint(NSLayoutConstraint(item: actionOptionsViewController.view, attribute: .width,
+            relatedBy: .equal, toItem: self, attribute: .width, multiplier: 1.0, constant: 0))
+        self.addConstraint(NSLayoutConstraint(item: self, attribute: .height,
+            relatedBy: .equal, toItem: actionOptionsViewController.view, attribute: .height, multiplier: 1.0, constant: 0))
         
         appDelegate().mainViewController.adjustOptionsHeight(actionOptionsViewController.view)
     }

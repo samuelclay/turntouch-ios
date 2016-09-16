@@ -10,7 +10,7 @@ import UIKit
 
 protocol TTTitleMenuDelegate {
     func menuOptions() -> [[String: String]]
-    func selectMenuOption(row: Int)
+    func selectMenuOption(_ row: Int)
 }
 
 class TTTitleMenuPopover: UIViewController, UITableViewDelegate, UITableViewDataSource {
@@ -22,40 +22,40 @@ class TTTitleMenuPopover: UIViewController, UITableViewDelegate, UITableViewData
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.translatesAutoresizingMaskIntoConstraints = false
-        tableView.registerClass(TTTitleMenuCell.self, forCellReuseIdentifier: CellReuseIdentifier)
+        tableView.register(TTTitleMenuCell.self, forCellReuseIdentifier: CellReuseIdentifier)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.dataSource = self
         tableView.delegate = self
         
         self.view.addSubview(tableView)
-        self.view.addConstraint(NSLayoutConstraint(item: tableView, attribute: .Top,
-            relatedBy: .Equal, toItem: self.view, attribute: .Top, multiplier: 1.0, constant: 0))
-        self.view.addConstraint(NSLayoutConstraint(item: tableView, attribute: .Leading,
-            relatedBy: .Equal, toItem: self.view, attribute: .Leading, multiplier: 1.0, constant: 0))
-        self.view.addConstraint(NSLayoutConstraint(item: tableView, attribute: .Width,
-            relatedBy: .Equal, toItem: self.view, attribute: .Width, multiplier: 1.0, constant: 0))
-        self.view.addConstraint(NSLayoutConstraint(item: tableView, attribute: .Height,
-            relatedBy: .Equal, toItem: self.view, attribute: .Height, multiplier: 1.0, constant: 0))
+        self.view.addConstraint(NSLayoutConstraint(item: tableView, attribute: .top,
+            relatedBy: .equal, toItem: self.view, attribute: .top, multiplier: 1.0, constant: 0))
+        self.view.addConstraint(NSLayoutConstraint(item: tableView, attribute: .leading,
+            relatedBy: .equal, toItem: self.view, attribute: .leading, multiplier: 1.0, constant: 0))
+        self.view.addConstraint(NSLayoutConstraint(item: tableView, attribute: .width,
+            relatedBy: .equal, toItem: self.view, attribute: .width, multiplier: 1.0, constant: 0))
+        self.view.addConstraint(NSLayoutConstraint(item: tableView, attribute: .height,
+            relatedBy: .equal, toItem: self.view, attribute: .height, multiplier: 1.0, constant: 0))
     }
     
     // MARK: Table View Delegate
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return delegate.menuOptions().count
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 32
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(CellReuseIdentifier, forIndexPath: indexPath) as! TTTitleMenuCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: CellReuseIdentifier, for: indexPath) as! TTTitleMenuCell
 
-        cell.textLabel?.text = delegate.menuOptions()[indexPath.row]["title"]
+        cell.textLabel?.text = delegate.menuOptions()[(indexPath as NSIndexPath).row]["title"]
         
         cell.contentView.setNeedsLayout()
         cell.contentView.layoutIfNeeded()
@@ -63,9 +63,9 @@ class TTTitleMenuPopover: UIViewController, UITableViewDelegate, UITableViewData
         return cell
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         
-        delegate.selectMenuOption(indexPath.row)
+        delegate.selectMenuOption((indexPath as NSIndexPath).row)
     }
 }

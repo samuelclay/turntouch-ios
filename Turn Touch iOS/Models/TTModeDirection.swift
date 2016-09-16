@@ -10,18 +10,18 @@ import UIKit
 
 @objc
 enum TTModeDirection: Int {
-    case NO_DIRECTION = 0
-    case NORTH = 1
-    case EAST  = 2
-    case WEST = 3
-    case SOUTH = 4
-    case INFO = 5
+    case no_DIRECTION = 0
+    case north = 1
+    case east  = 2
+    case west = 3
+    case south = 4
+    case info = 5
 }
 
 enum TTButtonMoment: Int {
-    case BUTTON_MOMENT_OFF = 0
-    case BUTTON_MOMENT_PRESSDOWN = 1
-    case BUTTON_MOMENT_PRESSUP = 2
-    case BUTTON_MOMENT_HELD = 3
-    case BUTTON_MOMENT_DOUBLE = 4
+    case button_MOMENT_OFF = 0
+    case button_MOMENT_PRESSDOWN = 1
+    case button_MOMENT_PRESSUP = 2
+    case button_MOMENT_HELD = 3
+    case button_MOMENT_DOUBLE = 4
 }

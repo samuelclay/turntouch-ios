@@ -19,7 +19,7 @@ class TTModeSonosConnect: TTOptionsDetailViewController {
         self.view.translatesAutoresizingMaskIntoConstraints = false
     }
     
-    @IBAction func beginConnect(sender: UIButton) {
+    @IBAction func beginConnect(_ sender: UIButton) {
         self.modeSonos.beginConnectingToSonos()
     }
 

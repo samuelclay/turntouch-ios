@@ -7,25 +7,36 @@
 //
 
 import UIKit
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
 
 struct TTModeSonosConstants {
     static let kSonosDeviceId = "sonosDeviceUUID"
 }
 
 enum TTSonosState {
-    case Disconnected
-    case Connecting
-    case Connected
+    case disconnected
+    case connecting
+    case connected
 }
 
 protocol TTModeSonosDelegate {
-    func changeState(state: TTSonosState, mode: TTModeSonos)
+    func changeState(_ state: TTSonosState, mode: TTModeSonos)
 }
 
 class TTModeSonos: TTMode {
     
     var delegate: TTModeSonosDelegate!
-    var sonosState = TTSonosState.Disconnected
+    var sonosState = TTSonosState.disconnected
     var sonosManager = SonosManager.sharedInstance()
     
     required init() {
@@ -150,10 +161,10 @@ class TTModeSonos: TTMode {
     
     override func activate() {
         if self.foundDevices().count == 0 {
-            sonosState = .Connecting
+            sonosState = .connecting
             self.beginConnectingToSonos()
         } else {
-            sonosState = .Connected
+            sonosState = .connected
         }
         delegate.changeState(sonosState, mode: self)
     }
@@ -165,7 +176,7 @@ class TTModeSonos: TTMode {
     
     func runTTModeSonosVolumeUp() {
         if let device = self.selectedDevice() {
-            device.getVolume(NSTimeInterval(60*60), completion: { (volume, speakers, error) in
+            device.getVolume(TimeInterval(60*60), completion: { (volume, speakers, error) in
                 device.setVolume(volume + 6, mergeRequests: true, completion: { (speakers, error) in
                     print(" ---> Turned volume: \(volume)+6 (\(error), \(speakers)")
                 })
@@ -177,7 +188,7 @@ class TTModeSonos: TTMode {
     
     func runTTModeSonosVolumeDown() {
         if let device = self.selectedDevice() {
-            device.getVolume(NSTimeInterval(60*60), completion: { (volume, speakers, error) in
+            device.getVolume(TimeInterval(60*60), completion: { (volume, speakers, error) in
                 device.setVolume(volume - 6, mergeRequests: true, completion: { (speakers, error) in
                     print(" ---> Turned volume: \(volume)-6 (\(error), \(speakers)")
                 })
@@ -260,9 +271,9 @@ class TTModeSonos: TTMode {
     // MARK: Sonos devices
     
     func foundDevices() -> [SonosController] {
-        var devices = sonosManager.allDevices() as! [SonosController]
+        var devices = sonosManager?.allDevices() as! [SonosController]
         
-        devices = devices.sort {
+        devices = devices.sorted {
             (a, b) -> Bool in
             return a.name < b.name
         }
@@ -289,11 +300,11 @@ class TTModeSonos: TTMode {
     }
     
     func beginConnectingToSonos() {
-        sonosState = .Connecting
+        sonosState = .connecting
         delegate.changeState(sonosState, mode: self)
         
-        sonosManager.discoverControllers {
-            dispatch_async(dispatch_get_main_queue(), {
+        sonosManager?.discoverControllers {
+            DispatchQueue.main.async(execute: {
                 let devices = self.foundDevices()
                 for device in devices {
                     self.deviceReady(device)
@@ -306,14 +317,14 @@ class TTModeSonos: TTMode {
     }
     
     func cancelConnectingToSonos() {
-        sonosState = .Disconnected
+        sonosState = .disconnected
         delegate.changeState(sonosState, mode: self)
     }
     
     // MARK: Device delegate
     
-    func deviceReady(device: SonosController) {
-        sonosState = .Connected
+    func deviceReady(_ device: SonosController) {
+        sonosState = .connected
         delegate.changeState(sonosState, mode: self)
     }
 }

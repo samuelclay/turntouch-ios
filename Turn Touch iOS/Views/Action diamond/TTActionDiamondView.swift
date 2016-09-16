@@ -26,75 +26,75 @@ class TTActionDiamondView: UIView {
         super.init(frame: CGRect.zero)
         
         self.translatesAutoresizingMaskIntoConstraints = false
-        self.backgroundColor = UIColor.clearColor()
-        self.userInteractionEnabled = true
+        self.backgroundColor = UIColor.clear
+        self.isUserInteractionEnabled = true
         self.diamondType = diamondType
-        northLabel = TTDiamondLabel(inDirection: .NORTH, diamondType: diamondType)
-        eastLabel = TTDiamondLabel(inDirection: .EAST, diamondType: diamondType)
-        westLabel = TTDiamondLabel(inDirection: .WEST, diamondType: diamondType)
-        southLabel = TTDiamondLabel(inDirection: .SOUTH, diamondType: diamondType)
+        northLabel = TTDiamondLabel(inDirection: .north, diamondType: diamondType)
+        eastLabel = TTDiamondLabel(inDirection: .east, diamondType: diamondType)
+        westLabel = TTDiamondLabel(inDirection: .west, diamondType: diamondType)
+        southLabel = TTDiamondLabel(inDirection: .south, diamondType: diamondType)
         
         self.registerAsObserver()
         
         diamondView = TTDiamondView(frame: frame, diamondType: diamondType)
-        if diamondType == .Interactive {
+        if diamondType == .interactive {
             diamondView.showOutline = true
             diamondView.ignoreSelectedMode = true
         }
         self.addSubview(diamondView)
-        self.addConstraint(NSLayoutConstraint(item: diamondView, attribute: .CenterX, relatedBy: .Equal,
-            toItem: self, attribute: .CenterX, multiplier: 1.0, constant: 0))
-        self.addConstraint(NSLayoutConstraint(item: diamondView, attribute: .CenterY, relatedBy: .Equal,
-            toItem: self, attribute: .CenterY, multiplier: 1.0, constant: 0))
-        heightRegularConstraint = NSLayoutConstraint(item: diamondView, attribute: .Height, relatedBy: .Equal,
-                                                     toItem: self, attribute: .Height, multiplier: 0.8, constant: 0)
-        heightCompactConstraint = NSLayoutConstraint(item: diamondView, attribute: .Height, relatedBy: .Equal,
-                                                     toItem: self, attribute: .Height, multiplier: 0.9, constant: 0)
-        widthRegularConstraint = NSLayoutConstraint(item: diamondView, attribute: .Width, relatedBy: .Equal,
-                                                    toItem: nil, attribute: .NotAnAttribute,
+        self.addConstraint(NSLayoutConstraint(item: diamondView, attribute: .centerX, relatedBy: .equal,
+            toItem: self, attribute: .centerX, multiplier: 1.0, constant: 0))
+        self.addConstraint(NSLayoutConstraint(item: diamondView, attribute: .centerY, relatedBy: .equal,
+            toItem: self, attribute: .centerY, multiplier: 1.0, constant: 0))
+        heightRegularConstraint = NSLayoutConstraint(item: diamondView, attribute: .height, relatedBy: .equal,
+                                                     toItem: self, attribute: .height, multiplier: 0.8, constant: 0)
+        heightCompactConstraint = NSLayoutConstraint(item: diamondView, attribute: .height, relatedBy: .equal,
+                                                     toItem: self, attribute: .height, multiplier: 0.9, constant: 0)
+        widthRegularConstraint = NSLayoutConstraint(item: diamondView, attribute: .width, relatedBy: .equal,
+                                                    toItem: nil, attribute: .notAnAttribute,
                                                     multiplier: 1.0, constant: 525)
-        widthCompactConstraint = NSLayoutConstraint(item: diamondView, attribute: .Width, relatedBy: .Equal,
-                                                    toItem: self, attribute: .Width, multiplier: 0.8, constant: 0)
+        widthCompactConstraint = NSLayoutConstraint(item: diamondView, attribute: .width, relatedBy: .equal,
+                                                    toItem: self, attribute: .width, multiplier: 0.8, constant: 0)
         
         self.addSubview(northLabel)
-        self.addConstraint(NSLayoutConstraint(item: northLabel, attribute: .CenterX, relatedBy: .Equal,
-            toItem: diamondView, attribute: .CenterX, multiplier: 1.0, constant: 0))
-        self.addConstraint(NSLayoutConstraint(item: northLabel, attribute: .Top, relatedBy: .Equal,
-            toItem: diamondView, attribute: .Top, multiplier: 1.0, constant: 0))
-        self.addConstraint(NSLayoutConstraint(item: northLabel, attribute: .Height, relatedBy: .Equal,
-            toItem: diamondView, attribute: .Height, multiplier: 0.47, constant: 0))
-        self.addConstraint(NSLayoutConstraint(item: northLabel, attribute: .Width, relatedBy: .Equal,
-            toItem: diamondView, attribute: .Width, multiplier: 1.0, constant: 0))
+        self.addConstraint(NSLayoutConstraint(item: northLabel, attribute: .centerX, relatedBy: .equal,
+            toItem: diamondView, attribute: .centerX, multiplier: 1.0, constant: 0))
+        self.addConstraint(NSLayoutConstraint(item: northLabel, attribute: .top, relatedBy: .equal,
+            toItem: diamondView, attribute: .top, multiplier: 1.0, constant: 0))
+        self.addConstraint(NSLayoutConstraint(item: northLabel, attribute: .height, relatedBy: .equal,
+            toItem: diamondView, attribute: .height, multiplier: 0.47, constant: 0))
+        self.addConstraint(NSLayoutConstraint(item: northLabel, attribute: .width, relatedBy: .equal,
+            toItem: diamondView, attribute: .width, multiplier: 1.0, constant: 0))
         
         self.addSubview(eastLabel)
-        self.addConstraint(NSLayoutConstraint(item: eastLabel, attribute: .Right, relatedBy: .Equal,
-            toItem: diamondView, attribute: .Right, multiplier: 1.0, constant: 0))
-        self.addConstraint(NSLayoutConstraint(item: eastLabel, attribute: .CenterY, relatedBy: .Equal,
-            toItem: diamondView, attribute: .CenterY, multiplier: 1.0, constant: 0))
-        self.addConstraint(NSLayoutConstraint(item: eastLabel, attribute: .Height, relatedBy: .Equal,
-            toItem: diamondView, attribute: .Height, multiplier: 1.0, constant: 0))
-        self.addConstraint(NSLayoutConstraint(item: eastLabel, attribute: .Width, relatedBy: .Equal,
-            toItem: diamondView, attribute: .Width, multiplier: 0.47, constant: 0))
+        self.addConstraint(NSLayoutConstraint(item: eastLabel, attribute: .right, relatedBy: .equal,
+            toItem: diamondView, attribute: .right, multiplier: 1.0, constant: 0))
+        self.addConstraint(NSLayoutConstraint(item: eastLabel, attribute: .centerY, relatedBy: .equal,
+            toItem: diamondView, attribute: .centerY, multiplier: 1.0, constant: 0))
+        self.addConstraint(NSLayoutConstraint(item: eastLabel, attribute: .height, relatedBy: .equal,
+            toItem: diamondView, attribute: .height, multiplier: 1.0, constant: 0))
+        self.addConstraint(NSLayoutConstraint(item: eastLabel, attribute: .width, relatedBy: .equal,
+            toItem: diamondView, attribute: .width, multiplier: 0.47, constant: 0))
         
         self.addSubview(westLabel)
-        self.addConstraint(NSLayoutConstraint(item: westLabel, attribute: .Left, relatedBy: .Equal,
-            toItem: diamondView, attribute: .Left, multiplier: 1.0, constant: 0))
-        self.addConstraint(NSLayoutConstraint(item: westLabel, attribute: .CenterY, relatedBy: .Equal,
-            toItem: diamondView, attribute: .CenterY, multiplier: 1.0, constant: 0))
-        self.addConstraint(NSLayoutConstraint(item: westLabel, attribute: .Height, relatedBy: .Equal,
-            toItem: diamondView, attribute: .Height, multiplier: 1.0, constant: 0))
-        self.addConstraint(NSLayoutConstraint(item: westLabel, attribute: .Width, relatedBy: .Equal,
-            toItem: diamondView, attribute: .Width, multiplier: 0.47, constant: 0))
+        self.addConstraint(NSLayoutConstraint(item: westLabel, attribute: .left, relatedBy: .equal,
+            toItem: diamondView, attribute: .left, multiplier: 1.0, constant: 0))
+        self.addConstraint(NSLayoutConstraint(item: westLabel, attribute: .centerY, relatedBy: .equal,
+            toItem: diamondView, attribute: .centerY, multiplier: 1.0, constant: 0))
+        self.addConstraint(NSLayoutConstraint(item: westLabel, attribute: .height, relatedBy: .equal,
+            toItem: diamondView, attribute: .height, multiplier: 1.0, constant: 0))
+        self.addConstraint(NSLayoutConstraint(item: westLabel, attribute: .width, relatedBy: .equal,
+            toItem: diamondView, attribute: .width, multiplier: 0.47, constant: 0))
         
         self.addSubview(southLabel)
-        self.addConstraint(NSLayoutConstraint(item: southLabel, attribute: .CenterX, relatedBy: .Equal,
-            toItem: diamondView, attribute: .CenterX, multiplier: 1.0, constant: 0))
-        self.addConstraint(NSLayoutConstraint(item: southLabel, attribute: .Bottom, relatedBy: .Equal,
-            toItem: diamondView, attribute: .Bottom, multiplier: 1.0, constant: 0))
-        self.addConstraint(NSLayoutConstraint(item: southLabel, attribute: .Height, relatedBy: .Equal,
-            toItem: diamondView, attribute: .Height, multiplier: 0.47, constant: 0))
-        self.addConstraint(NSLayoutConstraint(item: southLabel, attribute: .Width, relatedBy: .Equal,
-            toItem: diamondView, attribute: .Width, multiplier: 1.0, constant: 0))
+        self.addConstraint(NSLayoutConstraint(item: southLabel, attribute: .centerX, relatedBy: .equal,
+            toItem: diamondView, attribute: .centerX, multiplier: 1.0, constant: 0))
+        self.addConstraint(NSLayoutConstraint(item: southLabel, attribute: .bottom, relatedBy: .equal,
+            toItem: diamondView, attribute: .bottom, multiplier: 1.0, constant: 0))
+        self.addConstraint(NSLayoutConstraint(item: southLabel, attribute: .height, relatedBy: .equal,
+            toItem: diamondView, attribute: .height, multiplier: 0.47, constant: 0))
+        self.addConstraint(NSLayoutConstraint(item: southLabel, attribute: .width, relatedBy: .equal,
+            toItem: diamondView, attribute: .width, multiplier: 1.0, constant: 0))
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -107,8 +107,8 @@ class TTActionDiamondView: UIView {
         appDelegate().modeMap.addObserver(self, forKeyPath: "selectedModeDirection", options: [], context: nil)
     }
     
-    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?,
-                                         change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?,
+                                         change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if keyPath == "selectedModeDirection" {
             self.setMode(appDelegate().modeMap.selectedMode)
             self.setNeedsLayout()
@@ -121,7 +121,7 @@ class TTActionDiamondView: UIView {
     
     // MARK: Drawing
 
-    func setMode(mode: TTMode) {
+    func setMode(_ mode: TTMode) {
         diamondMode = mode
         self.setNeedsLayout()
 
@@ -131,19 +131,19 @@ class TTActionDiamondView: UIView {
         southLabel.setMode(mode)
     }
     
-    override func drawRect(rect: CGRect) {
-        super.drawRect(rect)
+    override func draw(_ rect: CGRect) {
+        super.draw(rect)
     }
     
     func updateLayout() {
-        if self.traitCollection.horizontalSizeClass == .Compact {
+        if self.traitCollection.horizontalSizeClass == .compact {
             self.removeConstraint(widthRegularConstraint)
             self.addConstraint(widthCompactConstraint)
         } else {
             self.removeConstraint(widthCompactConstraint)
             self.addConstraint(widthRegularConstraint)
         }
-        if self.traitCollection.verticalSizeClass == .Compact {
+        if self.traitCollection.verticalSizeClass == .compact {
             self.removeConstraint(heightRegularConstraint)
             self.addConstraint(heightCompactConstraint)
         } else {
@@ -154,9 +154,9 @@ class TTActionDiamondView: UIView {
         self.layoutIfNeeded()
     }
     
-    override func traitCollectionDidChange(previousTraitCollection: UITraitCollection?) {
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
-        if self.traitCollection.verticalSizeClass == UIUserInterfaceSizeClass.Compact {
+        if self.traitCollection.verticalSizeClass == UIUserInterfaceSizeClass.compact {
             self.updateLayout()
         } else {
             self.updateLayout()

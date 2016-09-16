@@ -24,13 +24,13 @@ class TTModeSonosOptions: TTOptionsDetailViewController, TTModeSonosDelegate {
         self.changeState(self.modeSonos.sonosState, mode: self.modeSonos)
     }
     
-    func changeState(state: TTSonosState, mode: TTModeSonos) {
+    func changeState(_ state: TTSonosState, mode: TTModeSonos) {
         switch state {
-        case .Disconnected:
+        case .disconnected:
             self.drawConnectViewController()
-        case .Connecting:
+        case .connecting:
             self.drawConnectingViewController()
-        case .Connected:
+        case .connected:
             self.drawConnectedViewController()
         }
     }
@@ -52,13 +52,13 @@ class TTModeSonosOptions: TTOptionsDetailViewController, TTModeSonosDelegate {
         }
     }
     
-    func drawViewController(viewController: TTOptionsDetailViewController) {
+    func drawViewController(_ viewController: TTOptionsDetailViewController) {
         self.view.removeConstraints(self.view.constraints)
         self.view.addSubview(viewController.view)
-        self.view.addConstraint(NSLayoutConstraint(item: viewController.view, attribute: .Top, relatedBy: .Equal, toItem: self.view, attribute: .Top, multiplier: 1.0, constant: 0))
-        self.view.addConstraint(NSLayoutConstraint(item: viewController.view, attribute: .Bottom, relatedBy: .Equal, toItem: self.view, attribute: .Bottom, multiplier: 1.0, constant: 0))
-        self.view.addConstraint(NSLayoutConstraint(item: viewController.view, attribute: .Leading, relatedBy: .Equal, toItem: self.view, attribute: .Leading, multiplier: 1.0, constant: 0))
-        self.view.addConstraint(NSLayoutConstraint(item: viewController.view, attribute: .Trailing, relatedBy: .Equal, toItem: self.view, attribute: .Trailing, multiplier: 1.0, constant: 0))
+        self.view.addConstraint(NSLayoutConstraint(item: viewController.view, attribute: .top, relatedBy: .equal, toItem: self.view, attribute: .top, multiplier: 1.0, constant: 0))
+        self.view.addConstraint(NSLayoutConstraint(item: viewController.view, attribute: .bottom, relatedBy: .equal, toItem: self.view, attribute: .bottom, multiplier: 1.0, constant: 0))
+        self.view.addConstraint(NSLayoutConstraint(item: viewController.view, attribute: .leading, relatedBy: .equal, toItem: self.view, attribute: .leading, multiplier: 1.0, constant: 0))
+        self.view.addConstraint(NSLayoutConstraint(item: viewController.view, attribute: .trailing, relatedBy: .equal, toItem: self.view, attribute: .trailing, multiplier: 1.0, constant: 0))
         
         self.view.layoutIfNeeded()
 //        appDelegate().mainViewController.adjustOptionsHeight(nil)
@@ -66,7 +66,7 @@ class TTModeSonosOptions: TTOptionsDetailViewController, TTModeSonosDelegate {
     
     func drawConnectViewController() {
         self.clearViewConnectrollers()
-        self.connectViewController = TTModeSonosConnect(nibName: "TTModeSonosConnect", bundle: NSBundle.mainBundle())
+        self.connectViewController = TTModeSonosConnect(nibName: "TTModeSonosConnect", bundle: Bundle.main)
         self.connectViewController!.mode = self.mode
         self.connectViewController!.modeSonos = self.modeSonos
         self.drawViewController(self.connectViewController!)
@@ -74,7 +74,7 @@ class TTModeSonosOptions: TTOptionsDetailViewController, TTModeSonosDelegate {
     
     func drawConnectingViewController() {
         self.clearViewConnectrollers()
-        self.connectingViewController = TTModeSonosConnecting(nibName: "TTModeSonosConnecting", bundle: NSBundle.mainBundle())
+        self.connectingViewController = TTModeSonosConnecting(nibName: "TTModeSonosConnecting", bundle: Bundle.main)
         self.connectingViewController!.mode = self.mode
         self.connectingViewController!.modeSonos = self.modeSonos
         self.drawViewController(self.connectingViewController!)
@@ -82,7 +82,7 @@ class TTModeSonosOptions: TTOptionsDetailViewController, TTModeSonosDelegate {
     
     func drawConnectedViewController() {
         self.clearViewConnectrollers()
-        self.connectedViewController = TTModeSonosConnected(nibName: "TTModeSonosConnected", bundle: NSBundle.mainBundle())
+        self.connectedViewController = TTModeSonosConnected(nibName: "TTModeSonosConnected", bundle: Bundle.main)
         self.connectedViewController!.mode = self.mode
         self.connectedViewController!.modeSonos = self.modeSonos
         self.drawViewController(self.connectedViewController!)

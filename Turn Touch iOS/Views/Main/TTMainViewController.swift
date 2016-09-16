@@ -9,12 +9,12 @@
 import UIKit
 
 enum TTModalState {
-    case App
-    case FTUX
-    case Pairing
-    case Devices
-    case About
-    case Support
+    case app
+    case ftux
+    case pairing
+    case devices
+    case about
+    case support
 }
 
 class TTMainViewController: UIViewController, UIPopoverPresentationControllerDelegate {
@@ -29,11 +29,11 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
     var modeTabsConstraint: NSLayoutConstraint!
     var modeTitleView: TTModeTitleView = TTModeTitleView()
     var modeTitleConstraint = NSLayoutConstraint()
-    var modeMenuView: TTModeMenuContainer = TTModeMenuContainer(menuType: TTMenuType.MENU_MODE)
+    var modeMenuView: TTModeMenuContainer = TTModeMenuContainer(menuType: TTMenuType.menu_MODE)
     var modeMenuConstaint: NSLayoutConstraint!
-    var actionDiamondView = TTActionDiamondView(diamondType: .Interactive)
+    var actionDiamondView = TTActionDiamondView(diamondType: .interactive)
     var actionDiamondConstraint: NSLayoutConstraint!
-    var actionMenuView: TTModeMenuContainer = TTModeMenuContainer(menuType: TTMenuType.MENU_ACTION)
+    var actionMenuView: TTModeMenuContainer = TTModeMenuContainer(menuType: TTMenuType.menu_ACTION)
     var actionMenuConstaint: NSLayoutConstraint!
     var actionTitleView = TTActionTitleView()
     var actionTitleConstraint: NSLayoutConstraint!
@@ -45,7 +45,7 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
     let titleMenu = TTTitleMenuPopover()
     let deviceMenu = TTTitleMenuPopover()
 
-    var modal: TTModalState?
+    var modalState: TTModalState?
     var pairingViewController: TTPairingViewController?
     var pairingInfoViewController: TTPairingInfoViewController?
     var ftuxViewController: TTFTUXViewController?
@@ -53,114 +53,114 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
     
     
 
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         
 //        self.view.userInteractionEnabled = true
-        self.view.backgroundColor = UIColor.whiteColor()
+        self.view.backgroundColor = UIColor.white
         
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.axis = .Vertical
-        stackView.distribution = .Fill
-        stackView.alignment = .Fill
+        stackView.axis = .vertical
+        stackView.distribution = .fill
+        stackView.alignment = .fill
         stackView.spacing = 0
 //        stackView.contentMode = .ScaleToFill
         self.view.addSubview(stackView)
-        self.view.addConstraint(NSLayoutConstraint(item: stackView, attribute: .Width,
-            relatedBy: .Equal, toItem: self.view, attribute: .Width, multiplier: 1.0, constant: 0.0))
-        self.view.addConstraint(NSLayoutConstraint(item: stackView, attribute: .Top,
-            relatedBy: .Equal, toItem: self.topLayoutGuide, attribute: .Bottom, multiplier: 1.0, constant: 0.0))
-        self.view.addConstraint(NSLayoutConstraint(item: stackView, attribute: .Bottom,
-            relatedBy: .Equal, toItem: self.view, attribute: .Bottom, multiplier: 1.0, constant: 0.0))
-        self.view.addConstraint(NSLayoutConstraint(item: stackView, attribute: .Left,
-            relatedBy: .Equal, toItem: self.view, attribute: .Left, multiplier: 1.0, constant: 0.0))
-        self.view.addConstraint(NSLayoutConstraint(item: stackView, attribute: .Right,
-            relatedBy: .Equal, toItem: self.view, attribute: .Right, multiplier: 1.0, constant: 0.0))
+        self.view.addConstraint(NSLayoutConstraint(item: stackView, attribute: .width,
+            relatedBy: .equal, toItem: self.view, attribute: .width, multiplier: 1.0, constant: 0.0))
+        self.view.addConstraint(NSLayoutConstraint(item: stackView, attribute: .top,
+            relatedBy: .equal, toItem: self.topLayoutGuide, attribute: .bottom, multiplier: 1.0, constant: 0.0))
+        self.view.addConstraint(NSLayoutConstraint(item: stackView, attribute: .bottom,
+            relatedBy: .equal, toItem: self.view, attribute: .bottom, multiplier: 1.0, constant: 0.0))
+        self.view.addConstraint(NSLayoutConstraint(item: stackView, attribute: .left,
+            relatedBy: .equal, toItem: self.view, attribute: .left, multiplier: 1.0, constant: 0.0))
+        self.view.addConstraint(NSLayoutConstraint(item: stackView, attribute: .right,
+            relatedBy: .equal, toItem: self.view, attribute: .right, multiplier: 1.0, constant: 0.0))
         
         
         stackView.addArrangedSubview(titleBarView)
-        titleBarConstraint = NSLayoutConstraint(item: titleBarView, attribute: .Height,
-                                                relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute,
+        titleBarConstraint = NSLayoutConstraint(item: titleBarView, attribute: .height,
+                                                relatedBy: .equal, toItem: nil, attribute: .notAnAttribute,
                                                 multiplier: 1.0, constant: 44)
         stackView.addConstraint(titleBarConstraint)
         
         modeTabs = [
-            TTModeTab(modeDirection:.NORTH),
-            TTModeTab(modeDirection:.EAST),
-            TTModeTab(modeDirection:.WEST),
-            TTModeTab(modeDirection:.SOUTH),
+            TTModeTab(modeDirection:.north),
+            TTModeTab(modeDirection:.east),
+            TTModeTab(modeDirection:.west),
+            TTModeTab(modeDirection:.south),
         ]
         modeTabsView = UIStackView(arrangedSubviews: modeTabs)
-        modeTabsView.axis = .Horizontal
-        modeTabsView.distribution = .FillEqually
-        modeTabsView.alignment = .Fill
+        modeTabsView.axis = .horizontal
+        modeTabsView.distribution = .fillEqually
+        modeTabsView.alignment = .fill
         modeTabsView.spacing = 0
-        modeTabsView.contentMode = .ScaleToFill
+        modeTabsView.contentMode = .scaleToFill
         stackView.addArrangedSubview(modeTabsView);
         
-        modeTabsConstraint = NSLayoutConstraint(item: modeTabsView, attribute: .Height, relatedBy: .Equal,
-                                                toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 92.0)
+        modeTabsConstraint = NSLayoutConstraint(item: modeTabsView, attribute: .height, relatedBy: .equal,
+                                                toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 92.0)
         stackView.addConstraint(modeTabsConstraint)
         
         stackView.addArrangedSubview(modeTitleView)
-        modeTitleConstraint = NSLayoutConstraint(item: modeTitleView, attribute: .Height, relatedBy: .Equal,
-                                                 toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 64)
+        modeTitleConstraint = NSLayoutConstraint(item: modeTitleView, attribute: .height, relatedBy: .equal,
+                                                 toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 64)
         stackView.addConstraint(modeTitleConstraint)
         
         stackView.addArrangedSubview(modeMenuView)
-        modeMenuConstaint = NSLayoutConstraint(item: modeMenuView, attribute: .Height, relatedBy: .Equal,
-                                               toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 1.0)
+        modeMenuConstaint = NSLayoutConstraint(item: modeMenuView, attribute: .height, relatedBy: .equal,
+                                               toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 1.0)
         stackView.addConstraint(modeMenuConstaint)
 
         scrollStackView.translatesAutoresizingMaskIntoConstraints = false
-        scrollStackView.axis = .Vertical
-        scrollStackView.distribution = .Fill
-        scrollStackView.alignment = .Fill
+        scrollStackView.axis = .vertical
+        scrollStackView.distribution = .fill
+        scrollStackView.alignment = .fill
         scrollStackView.spacing = 0
 //        scrollStackView.contentMode = .ScaleToFill
         scrollStackView.addArrangedSubview(actionDiamondView)
-        actionDiamondConstraint = NSLayoutConstraint(item: actionDiamondView, attribute: .Height, relatedBy: .Equal,
-                                                     toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 270)
+        actionDiamondConstraint = NSLayoutConstraint(item: actionDiamondView, attribute: .height, relatedBy: .equal,
+                                                     toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 270)
         scrollStackView.addConstraint(actionDiamondConstraint)
 
         scrollStackView.addArrangedSubview(actionMenuView)
-        actionMenuConstaint = NSLayoutConstraint(item: actionMenuView, attribute: .Height, relatedBy: .Equal,
-                                                 toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 1.0)
+        actionMenuConstaint = NSLayoutConstraint(item: actionMenuView, attribute: .height, relatedBy: .equal,
+                                                 toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 1.0)
         scrollStackView.addConstraint(actionMenuConstaint)
 
         actionTitleView.alpha = 0
         scrollStackView.addArrangedSubview(actionTitleView)
-        actionTitleConstraint = NSLayoutConstraint(item: actionTitleView, attribute: .Height, relatedBy: .Equal,
-                                                   toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 0)
+        actionTitleConstraint = NSLayoutConstraint(item: actionTitleView, attribute: .height, relatedBy: .equal,
+                                                   toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 0)
         scrollStackView.addConstraint(actionTitleConstraint)
         
 //        actionDiamondView.layer.zPosition = 2.0
 //        actionTitleView.layer.zPosition = 1.0
         
-        optionsView.setContentCompressionResistancePriority(UILayoutPriorityDefaultHigh, forAxis: .Vertical)
+        optionsView.setContentCompressionResistancePriority(UILayoutPriorityDefaultHigh, for: .vertical)
         scrollStackView.addArrangedSubview(optionsView)
-        optionsConstraint = NSLayoutConstraint(item: optionsView, attribute: .Height, relatedBy: .Equal,
-                                               toItem: nil, attribute: .NotAnAttribute,
+        optionsConstraint = NSLayoutConstraint(item: optionsView, attribute: .height, relatedBy: .equal,
+                                               toItem: nil, attribute: .notAnAttribute,
                                                multiplier: 1.0, constant: 0)
 //        scrollStackView.addConstraint(optionsConstraint)
         
-        scrollView.setContentHuggingPriority(100, forAxis: UILayoutConstraintAxis.Vertical)
+        scrollView.setContentHuggingPriority(100, for: UILayoutConstraintAxis.vertical)
         scrollView.alwaysBounceVertical = true
-        scrollView.insertSubview(scrollStackView, atIndex: 0)
+        scrollView.insertSubview(scrollStackView, at: 0)
         scrollView.backgroundColor = UIColor(hex: 0xF5F6F8)
-        scrollView.addConstraint(NSLayoutConstraint(item: scrollStackView, attribute: .Top, relatedBy: .Equal, toItem: scrollView, attribute: .Top, multiplier: 1.0, constant: 0.0))
-        scrollView.addConstraint(NSLayoutConstraint(item: scrollStackView, attribute: .Leading, relatedBy: .Equal, toItem: scrollView, attribute: .Leading, multiplier: 1.0, constant: 0.0))
-        scrollView.addConstraint(NSLayoutConstraint(item: scrollStackView, attribute: .Trailing, relatedBy: .Equal, toItem: scrollView, attribute: .Trailing, multiplier: 1.0, constant: 0.0))
-        scrollView.addConstraint(NSLayoutConstraint(item: scrollStackView, attribute: .Width, relatedBy: .Equal, toItem: scrollView, attribute: .Width, multiplier: 1.0, constant: 0.0))
+        scrollView.addConstraint(NSLayoutConstraint(item: scrollStackView, attribute: .top, relatedBy: .equal, toItem: scrollView, attribute: .top, multiplier: 1.0, constant: 0.0))
+        scrollView.addConstraint(NSLayoutConstraint(item: scrollStackView, attribute: .leading, relatedBy: .equal, toItem: scrollView, attribute: .leading, multiplier: 1.0, constant: 0.0))
+        scrollView.addConstraint(NSLayoutConstraint(item: scrollStackView, attribute: .trailing, relatedBy: .equal, toItem: scrollView, attribute: .trailing, multiplier: 1.0, constant: 0.0))
+        scrollView.addConstraint(NSLayoutConstraint(item: scrollStackView, attribute: .width, relatedBy: .equal, toItem: scrollView, attribute: .width, multiplier: 1.0, constant: 0.0))
         stackView.addArrangedSubview(scrollView)
-        stackView.addConstraint(NSLayoutConstraint(item: scrollView, attribute: .Leading, relatedBy: .Equal, toItem: stackView, attribute: .Leading, multiplier: 1.0, constant: 0.0))
-        stackView.addConstraint(NSLayoutConstraint(item: scrollView, attribute: .Trailing, relatedBy: .Equal, toItem: stackView, attribute: .Trailing, multiplier: 1.0, constant: 0.0))
+        stackView.addConstraint(NSLayoutConstraint(item: scrollView, attribute: .leading, relatedBy: .equal, toItem: stackView, attribute: .leading, multiplier: 1.0, constant: 0.0))
+        stackView.addConstraint(NSLayoutConstraint(item: scrollView, attribute: .trailing, relatedBy: .equal, toItem: stackView, attribute: .trailing, multiplier: 1.0, constant: 0.0))
         scrollView.setNeedsLayout()
         scrollView.layoutIfNeeded()
         
         stackView.addArrangedSubview(deviceTitlesView)
-        deviceTitlesConstraint = NSLayoutConstraint(item: deviceTitlesView, attribute: .Height, relatedBy: .Equal,
-                                                    toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 0)
+        deviceTitlesConstraint = NSLayoutConstraint(item: deviceTitlesView, attribute: .height, relatedBy: .equal,
+                                                    toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 0)
 //        stackView.addConstraint(deviceTitlesConstraint)
 
         self.registerAsObserver()
@@ -175,9 +175,9 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
         scrollView.contentSize = scrollStackView.frame.size
     }
     
-    override func traitCollectionDidChange(previousTraitCollection: UITraitCollection?) {
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
-        if self.view.traitCollection.verticalSizeClass == UIUserInterfaceSizeClass.Compact {
+        if self.view.traitCollection.verticalSizeClass == UIUserInterfaceSizeClass.compact {
             titleBarConstraint.constant = 28
             modeTabsConstraint.constant = 70
             modeTitleConstraint.constant = 48
@@ -187,7 +187,7 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
             modeTitleConstraint.constant = 64
         }
         
-        if self.traitCollection.horizontalSizeClass == .Compact {
+        if self.traitCollection.horizontalSizeClass == .compact {
             actionDiamondConstraint.constant = 270
         } else {
             actionDiamondConstraint.constant = 420
@@ -205,8 +205,8 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
         appDelegate().bluetoothMonitor.addObserver(self, forKeyPath: "pairedDevicesCount", options: [], context: nil)
     }
     
-    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?,
-                                         change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?,
+                                         change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if keyPath == "openedModeChangeMenu" {
             self.toggleModeMenu()
         } else if keyPath == "openedActionChangeMenu" {
@@ -235,25 +235,25 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
     
     func toggleModeMenu() {
         self.modeMenuConstaint.constant = appDelegate().modeMap.openedModeChangeMenu ? modeMenuView.MENU_HEIGHT : 1
-        UIView.animateWithDuration(0.42) {
+        UIView.animate(withDuration: 0.42, animations: {
             self.view.layoutIfNeeded()
-        }
+        }) 
     }
     
     func toggleActionMenu() {
         self.actionMenuConstaint.constant = appDelegate().modeMap.openedActionChangeMenu ? modeMenuView.MENU_HEIGHT : 1
-        UIView.animateWithDuration(0.42) {
+        UIView.animate(withDuration: 0.42, animations: {
             self.view.layoutIfNeeded()
-        }
+        }) 
     }
     
     func toggleActionView() {
-        actionTitleConstraint.constant = appDelegate().modeMap.inspectingModeDirection == .NO_DIRECTION ? 0 : 48
+        actionTitleConstraint.constant = appDelegate().modeMap.inspectingModeDirection == .no_DIRECTION ? 0 : 48
         
-        UIView.animateWithDuration(0.24) {
+        UIView.animate(withDuration: 0.24, animations: {
             self.view.layoutIfNeeded()
-            self.actionTitleView.alpha = appDelegate().modeMap.inspectingModeDirection == .NO_DIRECTION ? 0 : 1
-        }
+            self.actionTitleView.alpha = appDelegate().modeMap.inspectingModeDirection == .no_DIRECTION ? 0 : 1
+        }) 
     }
     
     func adjustDeviceTitles() {
@@ -286,17 +286,17 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
     
     // MARK: Events
     
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        super.touchesBegan(touches, withEvent: event)
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
     }
 
-    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        super.touchesEnded(touches, withEvent: event)
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesEnded(touches, with: event)
     }
     
     // MARK: Options
     
-    func adjustOptionsHeight(optionsDetailView: UIView?) {
+    func adjustOptionsHeight(_ optionsDetailView: UIView?) {
         if optionsConstraint == nil {
             return
         }
@@ -305,70 +305,70 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
         
         
         if optionsDetailView == nil {
-            optionsConstraint = NSLayoutConstraint(item: optionsView, attribute: .Height, relatedBy: .Equal,
-                                                   toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 0)
+            optionsConstraint = NSLayoutConstraint(item: optionsView, attribute: .height, relatedBy: .equal,
+                                                   toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 0)
 //            stackView.addConstraint(optionsConstraint)
         } else {
-            optionsConstraint = NSLayoutConstraint(item: optionsView, attribute: .Height, relatedBy: .Equal,
-                                                   toItem: optionsDetailView, attribute: .Height, multiplier: 1.0, constant: 0)
+            optionsConstraint = NSLayoutConstraint(item: optionsView, attribute: .height, relatedBy: .equal,
+                                                   toItem: optionsDetailView, attribute: .height, multiplier: 1.0, constant: 0)
 //            stackView.addConstraint(optionsConstraint)
         }
-        UIView.animateWithDuration(0.42) {
+        UIView.animate(withDuration: 0.42, animations: {
             self.stackView.setNeedsUpdateConstraints()
             self.stackView.updateConstraintsIfNeeded()
             self.stackView.setNeedsLayout()
-        }
+        }) 
     }
     
     // MARK: Modals and menus
     
-    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController)
+    func adaptivePresentationStyle(for controller: UIPresentationController)
         -> UIModalPresentationStyle {
-        return .None
+        return .none
     }
     
-    func toggleTitleMenu(sender: UIButton) {
+    func toggleTitleMenu(_ sender: UIButton) {
         titleMenu.delegate = titleBarView
-        titleMenu.modalPresentationStyle = .Popover
+        titleMenu.modalPresentationStyle = .popover
         titleMenu.preferredContentSize = CGSize(width: 204,
                                                 height: 32 * titleMenu.delegate.menuOptions().count)
         if let popoverViewController = titleMenu.popoverPresentationController {
-            popoverViewController.permittedArrowDirections = .Up
+            popoverViewController.permittedArrowDirections = .up
             popoverViewController.delegate = self
             popoverViewController.sourceView = sender
             popoverViewController.sourceRect = CGRect(x: -8, y: 0,
-                                                      width: CGRectGetWidth(sender.frame),
-                                                      height: CGRectGetHeight(sender.frame))
+                                                      width: sender.frame.width,
+                                                      height: sender.frame.height)
         }
-        self.presentViewController(titleMenu, animated: true, completion: nil)
+        self.present(titleMenu, animated: true, completion: nil)
     }
     
-    func toggleDeviceMenu(sender: UIButton, deviceTitleView: TTDeviceTitleView, device: TTDevice) {
+    func toggleDeviceMenu(_ sender: UIButton, deviceTitleView: TTDeviceTitleView, device: TTDevice) {
         deviceMenu.delegate = deviceTitleView
-        deviceMenu.modalPresentationStyle = .Popover
+        deviceMenu.modalPresentationStyle = .popover
         deviceMenu.preferredContentSize = CGSize(width: 204,
                                                 height: 32 * deviceMenu.delegate.menuOptions().count)
         let popoverViewController = deviceMenu.popoverPresentationController
-        popoverViewController!.permittedArrowDirections = .Down
+        popoverViewController!.permittedArrowDirections = .down
         popoverViewController!.delegate = self
         popoverViewController!.sourceView = sender
         popoverViewController!.sourceRect = CGRect(x: -8, y: 0,
-                                                   width: CGRectGetWidth(sender.frame),
-                                                   height: CGRectGetHeight(sender.frame))
-        self.presentViewController(deviceMenu, animated: true, completion: nil)
+                                                   width: sender.frame.width,
+                                                   height: sender.frame.height)
+        self.present(deviceMenu, animated: true, completion: nil)
     }
     
     func closeDeviceMenu() {
-        deviceMenu.dismissViewControllerAnimated(true, completion: nil)
+        deviceMenu.dismiss(animated: true, completion: nil)
     }
     
     
     // MARK: Modals
     
-    func switchModal(modal: TTModalState) {
-        self.modal = modal
-        switch modal {
-        case .Pairing:
+    func switchModal(_ modalState: TTModalState) {
+        self.modalState = modalState
+        switch modalState {
+        case .pairing:
             self.showPairingModal()
         default:
             break
@@ -381,28 +381,28 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
             return
         }
         
-        titleMenu.dismissViewControllerAnimated(true , completion: nil)
-        pairingViewController = TTPairingViewController(pairingState: .Searching)
-        pairingInfoViewController = TTPairingInfoViewController(pairingState: .Intro)
+        titleMenu.dismiss(animated: true , completion: nil)
+        pairingViewController = TTPairingViewController(pairingState: .searching)
+        pairingInfoViewController = TTPairingInfoViewController(pairingState: .intro)
         
         let anyPaired = appDelegate().bluetoothMonitor.foundDevices.totalPairedCount() > 0
         modalNavController = UINavigationController(rootViewController: anyPaired ? pairingViewController! : pairingInfoViewController!)
-        modalNavController.modalPresentationStyle = .FormSheet
-        self.presentViewController(modalNavController, animated: true, completion: nil)
+        modalNavController.modalPresentationStyle = .formSheet
+        self.present(modalNavController, animated: true, completion: nil)
     }
     
-    func switchPairingModal(pairingState: TTPairingState) {
-        if pairingState == .Searching && modalNavController.visibleViewController == pairingViewController {
+    func switchPairingModal(_ pairingState: TTPairingState) {
+        if pairingState == .searching && modalNavController.visibleViewController == pairingViewController {
             pairingViewController?.changedDeviceCount()
-        } else if pairingState == .Searching && pairingViewController?.pairingState == .Failure {
-            modalNavController.popViewControllerAnimated(true)
+        } else if pairingState == .searching && pairingViewController?.pairingState == .failure {
+            modalNavController.popViewController(animated: true)
         } else {
-            modalNavController.pushViewController(pairingState == .Searching ? pairingViewController! : pairingInfoViewController!, animated: true)
+            modalNavController.pushViewController(pairingState == .searching ? pairingViewController! : pairingInfoViewController!, animated: true)
         }
     }
     
     func closePairingModal() {
-        modalNavController.dismissViewControllerAnimated(true, completion: nil)
+        modalNavController.dismiss(animated: true, completion: nil)
         modalNavController = nil
     }
     
@@ -412,14 +412,14 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
             return
         }
         
-        titleMenu.dismissViewControllerAnimated(true, completion: nil)
+        titleMenu.dismiss(animated: true, completion: nil)
         ftuxViewController = TTFTUXViewController()
         modalNavController = UINavigationController(rootViewController: ftuxViewController!)
-        modalNavController.modalPresentationStyle = .FormSheet
-        self.presentViewController(modalNavController, animated: true, completion: nil)
+        modalNavController.modalPresentationStyle = .formSheet
+        self.present(modalNavController, animated: true, completion: nil)
     }
     
-    func switchFtuxModal(ftuxPage: TTFTUXPage) {
+    func switchFtuxModal(_ ftuxPage: TTFTUXPage) {
         if modalNavController.visibleViewController != ftuxViewController {
             ftuxViewController = TTFTUXViewController()
             modalNavController.pushViewController(ftuxViewController!, animated: true)
@@ -429,7 +429,7 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
     }
     
     func closeFtuxModal() {
-        modalNavController.dismissViewControllerAnimated(true, completion: nil)
+        modalNavController.dismiss(animated: true, completion: nil)
         modalNavController = nil
     }
 

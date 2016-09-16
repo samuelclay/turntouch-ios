@@ -31,8 +31,8 @@ class TTModeWemoDeviceSwitchOptions: TTOptionsDetailViewController, UITextFieldD
         singlePicker.delegate = self
 //        doublePicker.delegate = self
         
-        spinner.forEach({ $0.hidden = true })
-        refreshButton.forEach({ $0.hidden = false })
+        spinner.forEach({ $0.isHidden = true })
+        refreshButton.forEach({ $0.isHidden = false })
         
         self.selectDevice()
     }
@@ -63,7 +63,7 @@ class TTModeWemoDeviceSwitchOptions: TTOptionsDetailViewController, UITextFieldD
         }
     }
     
-    func pickerDismissed(row: Int, textField: UITextField) {
+    func pickerDismissed(_ row: Int, textField: UITextField) {
         presented = false
 
         if row >= devices.count {
@@ -71,9 +71,9 @@ class TTModeWemoDeviceSwitchOptions: TTOptionsDetailViewController, UITextFieldD
         }
     }
     
-    @IBAction func refreshDevices(sender: AnyObject) {
-        spinner.forEach({ $0.hidden = false })
-        refreshButton.forEach({ $0.hidden = true })
+    @IBAction func refreshDevices(_ sender: AnyObject) {
+        spinner.forEach({ $0.isHidden = false })
+        refreshButton.forEach({ $0.isHidden = true })
         spinner.forEach { (s) in
             s.startAnimating()
         }
@@ -81,17 +81,17 @@ class TTModeWemoDeviceSwitchOptions: TTOptionsDetailViewController, UITextFieldD
         self.modeWemo.beginConnectingToWemo()
     }
     
-    func changeState(state: TTWemoState, mode: TTModeWemo) {
-        if state == .Connected {
-            spinner.forEach({ $0.hidden = true })
-            refreshButton.forEach({ $0.hidden = false })
+    func changeState(_ state: TTWemoState, mode: TTModeWemo) {
+        if state == .connected {
+            spinner.forEach({ $0.isHidden = true })
+            refreshButton.forEach({ $0.isHidden = false })
         }
         self.selectDevice()
     }
     
     // MARK: Text Field delegate
     
-    func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         
         if presented {
@@ -101,17 +101,17 @@ class TTModeWemoDeviceSwitchOptions: TTOptionsDetailViewController, UITextFieldD
         pickerVC = TTPickerViewController()
         pickerVC.delegate = self
         pickerVC.textField = textField
-        pickerVC.modalPresentationStyle = .Popover
+        pickerVC.modalPresentationStyle = .popover
         pickerVC.preferredContentSize = CGSize(width: 240, height: 180)
         pickerVC.picker.delegate = self
         
         popoverController = pickerVC.popoverPresentationController
         if let popover = popoverController {
             popover.sourceView = textField
-            popover.sourceRect = CGRect(origin: CGPoint(x: CGRectGetMidX(textField.bounds), y: -8), size: CGSize.zero)
+            popover.sourceRect = CGRect(origin: CGPoint(x: textField.bounds.midX, y: -8), size: CGSize.zero)
             popover.delegate = self
-            popover.permittedArrowDirections = [.Up, .Down]
-            self.presentViewController(pickerVC, animated: true, completion: nil)
+            popover.permittedArrowDirections = [.up, .down]
+            self.present(pickerVC, animated: true, completion: nil)
             presented = true
             
             var deviceSelected: String?
@@ -123,7 +123,7 @@ class TTModeWemoDeviceSwitchOptions: TTOptionsDetailViewController, UITextFieldD
 //                                                        direction: appDelegate().modeMap.inspectingModeDirection) as? String
             }
             var currentRow: Int = 0
-            for (i, device) in devices.enumerate() {
+            for (i, device) in devices.enumerated() {
                 if device["identifier"] == deviceSelected {
                     currentRow = i
                     break
@@ -137,24 +137,24 @@ class TTModeWemoDeviceSwitchOptions: TTOptionsDetailViewController, UITextFieldD
     
     // MARK: - Delegates and data sources
     
-    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController)
+    func adaptivePresentationStyle(for controller: UIPresentationController)
         -> UIModalPresentationStyle {
-            return .None
+            return .none
     }
     
-    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+    func numberOfComponentsInPickerView(_ pickerView: UIPickerView) -> Int {
         return 1
     }
     
-    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return devices.count
     }
     
-    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return devices[row]["name"]
     }
     
-    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if pickerView == singlePicker {
             self.action.changeActionOption(TTModeWemoConstants.kWemoDeviceLocation, to: devices[row]["identifier"]!)
 //        } else if pickerView == doublePicker {
@@ -174,30 +174,30 @@ class TTModeWemoDeviceSwitchOptions: TTOptionsDetailViewController, UITextFieldD
         }
     }
     
-    func pickerView(pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
+    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
         let titleData = devices[row]["name"]
-        let myTitle = NSAttributedString(string: titleData!, attributes: [NSFontAttributeName:UIFont(name: "Effra", size: 18.0)!,NSForegroundColorAttributeName:UIColor.blueColor()])
+        let myTitle = NSAttributedString(string: titleData!, attributes: [NSFontAttributeName:UIFont(name: "Effra", size: 18.0)!,NSForegroundColorAttributeName:UIColor.blue])
         return myTitle
     }
     
-    func pickerView(pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusingView view: UIView?) -> UIView {
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
         var pickerLabel = view as! UILabel!
         if view == nil {  //if no label there yet
             pickerLabel = UILabel()
             //color the label's background
             let hue = CGFloat(row)/CGFloat(devices.count)
-            pickerLabel.backgroundColor = UIColor(hue: hue, saturation: 1.0, brightness: 1.0, alpha: 1.0)
+            pickerLabel?.backgroundColor = UIColor(hue: hue, saturation: 1.0, brightness: 1.0, alpha: 1.0)
         }
         let titleData = devices[row]["name"]
-        let myTitle = NSAttributedString(string: titleData!, attributes: [NSFontAttributeName:UIFont(name: "Effra", size: 18.0)!,NSForegroundColorAttributeName:UIColor.blackColor()])
+        let myTitle = NSAttributedString(string: titleData!, attributes: [NSFontAttributeName:UIFont(name: "Effra", size: 18.0)!,NSForegroundColorAttributeName:UIColor.black])
         pickerLabel!.attributedText = myTitle
-        pickerLabel!.textAlignment = .Center
+        pickerLabel!.textAlignment = .center
         
-        return pickerLabel
+        return pickerLabel!
         
     }
     
-    func pickerView(pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
+    func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
         return 36.0
     }
 

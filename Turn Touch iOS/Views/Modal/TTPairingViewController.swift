@@ -7,14 +7,34 @@
 //
 
 import UIKit
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l > r
+  default:
+    return rhs < lhs
+  }
+}
+
 
 enum TTPairingState {
-    case Intro
-    case Searching
-    case Pairing
-    case Success
-    case Failure
-    case FailureExplainer
+    case intro
+    case searching
+    case pairing
+    case success
+    case failure
+    case failureExplainer
 }
 
 class TTPairingViewController: UIViewController, TTBluetoothMonitorDelegate {
@@ -25,8 +45,8 @@ class TTPairingViewController: UIViewController, TTBluetoothMonitorDelegate {
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var subtitleLabel: UILabel!
     @IBOutlet var countdownIndicator: UIProgressView!
-    var searchingTimer: NSTimer?
-    var countdownTimer: NSTimer?
+    var searchingTimer: Timer?
+    var countdownTimer: Timer?
     var pairingState: TTPairingState!
     
     init(pairingState: TTPairingState) {
@@ -34,7 +54,7 @@ class TTPairingViewController: UIViewController, TTBluetoothMonitorDelegate {
         self.pairingState = pairingState
 //        self.view.translatesAutoresizingMaskIntoConstraints = false
         
-        let closeButton = UIBarButtonItem(barButtonSystemItem: .Cancel,
+        let closeButton = UIBarButtonItem(barButtonSystemItem: .cancel,
                                           target: self, action: #selector(self.close))
         self.navigationItem.rightBarButtonItem = closeButton
         self.navigationItem.title = "Pairing a new remote"
@@ -44,47 +64,47 @@ class TTPairingViewController: UIViewController, TTBluetoothMonitorDelegate {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func close(sender: UIBarButtonItem!) {
+    func close(_ sender: UIBarButtonItem!) {
         appDelegate().mainViewController.closePairingModal()
         appDelegate().bluetoothMonitor.delegate = nil
     }
     
-    override func viewWillAppear(animated: Bool) {
-        self.changePairingState(.Searching)
+    override func viewWillAppear(_ animated: Bool) {
+        self.changePairingState(.searching)
     }
     
-    func changePairingState(state: TTPairingState) {
+    func changePairingState(_ state: TTPairingState) {
         pairingState = state
     
-        if state == .Searching {
+        if state == .searching {
             appDelegate().bluetoothMonitor.delegate = self
             appDelegate().bluetoothMonitor.scanUnknown()
             self.changedDeviceCount()
-        } else if state == .Pairing {
+        } else if state == .pairing {
             self.changedDeviceCount()
-        } else if state == .Failure && self.navigationController?.visibleViewController == self {
-            let pairingInfoViewController = TTPairingInfoViewController(pairingState: .Failure)
+        } else if state == .failure && self.navigationController?.visibleViewController == self {
+            let pairingInfoViewController = TTPairingInfoViewController(pairingState: .failure)
             self.navigationController?.pushViewController(pairingInfoViewController, animated: true)
-        } else if state == .Success {
-            let pairingInfoViewController = TTPairingInfoViewController(pairingState: .Success)
+        } else if state == .success {
+            let pairingInfoViewController = TTPairingInfoViewController(pairingState: .success)
             self.navigationController?.pushViewController(pairingInfoViewController, animated: true)
         }
     }
     
     func changedDeviceCount() {
-        let connected = appDelegate().bluetoothMonitor.unpairedDevicesCount?.integerValue > 0
-        let connecting = appDelegate().bluetoothMonitor.unpairedConnectingCount?.integerValue > 0
+        let connected = appDelegate().bluetoothMonitor.unpairedDevicesCount?.intValue > 0
+        let connecting = appDelegate().bluetoothMonitor.unpairedConnectingCount?.intValue > 0
         countdownIndicator.setProgress(0, animated: false)
 
         if !connected && !connecting {
-            countdownIndicator.hidden = true
-            spinnerScanning.hidden = false
-            let runner = NSRunLoop.currentRunLoop()
+            countdownIndicator.isHidden = true
+            spinnerScanning.isHidden = false
+            let runner = RunLoop.current
             searchingTimer?.invalidate()
-            searchingTimer = NSTimer.scheduledTimerWithTimeInterval(20, target: self,
+            searchingTimer = Timer.scheduledTimer(timeInterval: 20, target: self,
                                                                     selector: #selector(searchingFailure),
                                                                     userInfo: nil, repeats: false)
-            runner.addTimer(searchingTimer!, forMode: NSRunLoopCommonModes)
+            runner.add(searchingTimer!, forMode: RunLoopMode.commonModes)
             
             spinnerScanning.setNeedsDisplay()
             titleLabel.text = "Pairing your Turn Touch"
@@ -92,15 +112,15 @@ class TTPairingViewController: UIViewController, TTBluetoothMonitorDelegate {
             countdownTimer?.invalidate()
             countdownTimer = nil
         } else if connecting && !connected {
-            countdownIndicator.hidden = true
-            spinnerScanning.hidden = false
+            countdownIndicator.isHidden = true
+            spinnerScanning.isHidden = false
             titleLabel.text = "Pairing your Turn Touch"
             subtitleLabel.text = "Connecting..."
             searchingTimer?.invalidate()
         } else if connected {
-            countdownIndicator.hidden = false
+            countdownIndicator.isHidden = false
             countdownIndicator.progress = 0
-            spinnerScanning.hidden = true
+            spinnerScanning.isHidden = true
             titleLabel.text = "Pairing your Turn Touch"
             subtitleLabel.text = "Press all four buttons to connect"
             searchingTimer?.invalidate()
@@ -112,32 +132,32 @@ class TTPairingViewController: UIViewController, TTBluetoothMonitorDelegate {
     
     func updateCountdown() {
         let minusOneSecond = countdownIndicator.progress + 1/Float(secondsToPair)
-        UIView.animateWithDuration(1, animations: { () -> Void in
+        UIView.animate(withDuration: 1, animations: { () -> Void in
             self.countdownIndicator.setProgress(minusOneSecond, animated: true)
         })
         
         print(" ---> Countdown: \(countdownIndicator.progress)")
         if minusOneSecond > 1 {
             appDelegate().bluetoothMonitor.disconnectUnpairedDevices()
-            self.changePairingState(.Failure)
+            self.changePairingState(.failure)
             countdownTimer?.invalidate()
             countdownTimer = nil
         } else {
-            let runner = NSRunLoop.currentRunLoop()
+            let runner = RunLoop.current
             countdownTimer?.invalidate()
-            countdownTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self,
+            countdownTimer = Timer.scheduledTimer(timeInterval: 1, target: self,
                                                                     selector: #selector(updateCountdown),
                                                                     userInfo: nil, repeats: false)
-            runner.addTimer(countdownTimer!, forMode: NSRunLoopCommonModes)
+            runner.add(countdownTimer!, forMode: RunLoopMode.commonModes)
         }
     }
     
     func searchingFailure() {
         searchingTimer?.invalidate()
-        self.changePairingState(.Failure)
+        self.changePairingState(.failure)
     }
     
     func pairingSuccess() {
-        self.changePairingState(.Success)
+        self.changePairingState(.success)
     }
 }

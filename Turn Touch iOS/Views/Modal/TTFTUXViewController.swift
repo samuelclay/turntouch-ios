@@ -10,11 +10,11 @@ import UIKit
 
 
 enum TTFTUXPage: Int {
-    case Intro
-    case Actions
-    case Modes
-    case BatchActions
-    case HUD
+    case intro
+    case actions
+    case modes
+    case batchActions
+    case hud
 }
 
 class TTFTUXViewController: UIViewController, UIScrollViewDelegate {
@@ -27,47 +27,47 @@ class TTFTUXViewController: UIViewController, UIScrollViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 //        self.view.translatesAutoresizingMaskIntoConstraints = false
-        self.view.backgroundColor = UIColor.whiteColor()
+        self.view.backgroundColor = UIColor.white
 
-        let closeButton = UIBarButtonItem(barButtonSystemItem: .Cancel,
+        let closeButton = UIBarButtonItem(barButtonSystemItem: .cancel,
                                           target: self, action: #selector(self.close))
         self.navigationItem.rightBarButtonItem = closeButton
         self.navigationItem.title = "How it works"
 
-        nextButton = TTModalButton(ftuxPage: .Intro)
+        nextButton = TTModalButton(ftuxPage: .intro)
         self.view.addSubview(nextButton.view)
-        self.view.addConstraint(NSLayoutConstraint(item: nextButton.view, attribute: .Left, relatedBy: .Equal,
-            toItem: self.view, attribute: .Left, multiplier: 1.0, constant: 0))
-        self.view.addConstraint(NSLayoutConstraint(item: nextButton.view, attribute: .Bottom, relatedBy: .Equal,
-            toItem: self.view, attribute: .Bottom, multiplier: 1.0, constant: 0))
-        self.view.addConstraint(NSLayoutConstraint(item: nextButton.view, attribute: .Width, relatedBy: .Equal,
-            toItem: self.view, attribute: .Width, multiplier: 1.0, constant: 0))
-        self.view.addConstraint(NSLayoutConstraint(item: nextButton.view, attribute: .Height, relatedBy: .Equal,
-            toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 100))
+        self.view.addConstraint(NSLayoutConstraint(item: nextButton.view, attribute: .left, relatedBy: .equal,
+            toItem: self.view, attribute: .left, multiplier: 1.0, constant: 0))
+        self.view.addConstraint(NSLayoutConstraint(item: nextButton.view, attribute: .bottom, relatedBy: .equal,
+            toItem: self.view, attribute: .bottom, multiplier: 1.0, constant: 0))
+        self.view.addConstraint(NSLayoutConstraint(item: nextButton.view, attribute: .width, relatedBy: .equal,
+            toItem: self.view, attribute: .width, multiplier: 1.0, constant: 0))
+        self.view.addConstraint(NSLayoutConstraint(item: nextButton.view, attribute: .height, relatedBy: .equal,
+            toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 100))
         
         scrollView.delegate = self
         scrollView.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.pagingEnabled = true
+        scrollView.isPagingEnabled = true
         scrollView.showsHorizontalScrollIndicator = false
         self.view.addSubview(scrollView)
-        self.view.addConstraint(NSLayoutConstraint(item: scrollView, attribute: .Top, relatedBy: .Equal,
-            toItem: self.topLayoutGuide, attribute: .Bottom, multiplier: 1.0, constant: 0))
-        self.view.addConstraint(NSLayoutConstraint(item: scrollView, attribute: .Left, relatedBy: .Equal,
-            toItem: self.view, attribute: .Left, multiplier: 1.0, constant: 0))
-        self.view.addConstraint(NSLayoutConstraint(item: scrollView, attribute: .Width, relatedBy: .Equal,
-            toItem: self.view, attribute: .Width, multiplier: 1.0, constant: 0))
-        self.view.addConstraint(NSLayoutConstraint(item: scrollView, attribute: .Bottom, relatedBy: .Equal,
-            toItem: self.view, attribute: .Bottom, multiplier: 1.0, constant: -100))
+        self.view.addConstraint(NSLayoutConstraint(item: scrollView, attribute: .top, relatedBy: .equal,
+            toItem: self.topLayoutGuide, attribute: .bottom, multiplier: 1.0, constant: 0))
+        self.view.addConstraint(NSLayoutConstraint(item: scrollView, attribute: .left, relatedBy: .equal,
+            toItem: self.view, attribute: .left, multiplier: 1.0, constant: 0))
+        self.view.addConstraint(NSLayoutConstraint(item: scrollView, attribute: .width, relatedBy: .equal,
+            toItem: self.view, attribute: .width, multiplier: 1.0, constant: 0))
+        self.view.addConstraint(NSLayoutConstraint(item: scrollView, attribute: .bottom, relatedBy: .equal,
+            toItem: self.view, attribute: .bottom, multiplier: 1.0, constant: -100))
         
         pageControl.numberOfPages = pages
         pageControl.translatesAutoresizingMaskIntoConstraints = false
         pageControl.pageIndicatorTintColor = UIColor(hex: 0xE0E0E0)
         pageControl.currentPageIndicatorTintColor = UIColor(hex: 0xA06060)
         self.view.addSubview(pageControl)
-        self.view.addConstraint(NSLayoutConstraint(item: pageControl, attribute: .Bottom, relatedBy: .Equal,
-            toItem: nextButton.view, attribute: .Top, multiplier: 1.0, constant: -24))
-        self.view.addConstraint(NSLayoutConstraint(item: pageControl, attribute: .CenterX, relatedBy: .Equal,
-            toItem: self.view, attribute: .CenterX, multiplier: 1.0, constant: 0))
+        self.view.addConstraint(NSLayoutConstraint(item: pageControl, attribute: .bottom, relatedBy: .equal,
+            toItem: nextButton.view, attribute: .top, multiplier: 1.0, constant: -24))
+        self.view.addConstraint(NSLayoutConstraint(item: pageControl, attribute: .centerX, relatedBy: .equal,
+            toItem: self.view, attribute: .centerX, multiplier: 1.0, constant: 0))
         
         var previousFtuxView: TTFTUXView?
         for index in 0..<pages {
@@ -76,47 +76,47 @@ class TTFTUXViewController: UIViewController, UIScrollViewDelegate {
             let ftuxView = TTFTUXView(ftuxPage: TTFTUXPage(rawValue: index)!)
             scrollView.addSubview(ftuxView)
             
-            scrollView.addConstraint(NSLayoutConstraint(item: ftuxView, attribute: .Top, relatedBy: .Equal,
-                toItem: scrollView, attribute: .Top, multiplier: 1.0, constant: 0))
-            scrollView.addConstraint(NSLayoutConstraint(item: ftuxView, attribute: .Width, relatedBy: .Equal,
-                toItem: scrollView, attribute: .Width, multiplier: 1.0, constant: 0))
-            scrollView.addConstraint(NSLayoutConstraint(item: ftuxView, attribute: .Height, relatedBy: .Equal,
-                toItem: scrollView, attribute: .Height, multiplier: 1.0, constant: 0))
-            scrollView.addConstraint(NSLayoutConstraint(item: ftuxView, attribute: .Left, relatedBy: .Equal,
-                toItem: previousFtuxView ?? scrollView, attribute: previousFtuxView != nil ? .Right : .Left, multiplier: 1.0, constant: 0))
+            scrollView.addConstraint(NSLayoutConstraint(item: ftuxView, attribute: .top, relatedBy: .equal,
+                toItem: scrollView, attribute: .top, multiplier: 1.0, constant: 0))
+            scrollView.addConstraint(NSLayoutConstraint(item: ftuxView, attribute: .width, relatedBy: .equal,
+                toItem: scrollView, attribute: .width, multiplier: 1.0, constant: 0))
+            scrollView.addConstraint(NSLayoutConstraint(item: ftuxView, attribute: .height, relatedBy: .equal,
+                toItem: scrollView, attribute: .height, multiplier: 1.0, constant: 0))
+            scrollView.addConstraint(NSLayoutConstraint(item: ftuxView, attribute: .left, relatedBy: .equal,
+                toItem: previousFtuxView ?? scrollView, attribute: previousFtuxView != nil ? .right : .left, multiplier: 1.0, constant: 0))
             if index == pages - 1 {
-                scrollView.addConstraint(NSLayoutConstraint(item: ftuxView, attribute: .Right, relatedBy: .Equal,
-                    toItem: scrollView, attribute: .Right, multiplier: 1.0, constant: 0))
+                scrollView.addConstraint(NSLayoutConstraint(item: ftuxView, attribute: .right, relatedBy: .equal,
+                    toItem: scrollView, attribute: .right, multiplier: 1.0, constant: 0))
             }
             previousFtuxView = ftuxView
         }
         
     }
     
-    func close(sender: UIBarButtonItem!) {
+    func close(_ sender: UIBarButtonItem!) {
         appDelegate().mainViewController.closeFtuxModal()
     }
     
-    override func viewWillAppear(animated: Bool) {
-        scrollView.contentSize = CGSize(width: CGFloat(pages)*CGRectGetWidth(scrollView.frame), height: CGRectGetHeight(scrollView.frame))
+    override func viewWillAppear(_ animated: Bool) {
+        scrollView.contentSize = CGSize(width: CGFloat(pages)*scrollView.frame.width, height: scrollView.frame.height)
 
-        self.setPage(.Intro)
+        self.setPage(.intro)
     }
     
-    func setPage(ftuxPage: TTFTUXPage) {
+    func setPage(_ ftuxPage: TTFTUXPage) {
 //        pageControl.currentPage = ftuxPage.hashValue // handled in scrollViewDidScroll
-        scrollView.setContentOffset(CGPointMake(CGFloat(ftuxPage.rawValue) * CGRectGetWidth(scrollView.frame), 0),
+        scrollView.setContentOffset(CGPoint(x: CGFloat(ftuxPage.rawValue) * scrollView.frame.width, y: 0),
                                     animated: true)
         nextButton.ftuxPage = ftuxPage
     }
     
-    func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
-        pageControl.currentPage = Int(round(scrollView.contentOffset.x / CGRectGetWidth(scrollView.frame)))
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        pageControl.currentPage = Int(round(scrollView.contentOffset.x / scrollView.frame.width))
         nextButton.ftuxPage = TTFTUXPage(rawValue: pageControl.currentPage)
     }
     
-    func scrollViewDidScroll(scrollView: UIScrollView) {
-        pageControl.currentPage = Int(round(scrollView.contentOffset.x / CGRectGetWidth(scrollView.frame)))
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        pageControl.currentPage = Int(round(scrollView.contentOffset.x / scrollView.frame.width))
         nextButton.ftuxPage = TTFTUXPage(rawValue: pageControl.currentPage)
     }
 }

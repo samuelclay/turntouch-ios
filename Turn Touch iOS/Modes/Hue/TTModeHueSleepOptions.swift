@@ -15,7 +15,7 @@ class TTModeHueSleepOptions: TTOptionsDetailViewController {
     @IBOutlet var durationSlider: UISlider!
     @IBOutlet var doubleDurationSlider: UISlider!
     
-    required init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+    required init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: "TTModeHueSleepOptions", bundle: nibBundleOrNil)
     }
     
@@ -39,17 +39,17 @@ class TTModeHueSleepOptions: TTOptionsDetailViewController {
         self.updateSliderLabel(true)
     }
     
-    @IBAction func changeDuration(sender: UISlider) {
+    @IBAction func changeDuration(_ sender: UISlider) {
         let duration = Int(durationSlider.value)
-        self.action.mode.changeActionOption(TTModeHueConstants.kHueDuration, to: NSNumber(integer: duration))
+        self.action.mode.changeActionOption(TTModeHueConstants.kHueDuration, to: NSNumber(value: duration as Int))
         self.updateSliderLabel(false)
         
         let doubleDuration = Int(doubleDurationSlider.value)
-        self.action.mode.changeActionOption(TTModeHueConstants.kHueDoubleTapDuration, to: NSNumber(integer: doubleDuration))
+        self.action.mode.changeActionOption(TTModeHueConstants.kHueDoubleTapDuration, to: NSNumber(value: doubleDuration as Int))
         self.updateSliderLabel(true)
     }
     
-    func updateSliderLabel(doubleTap: Bool) {
+    func updateSliderLabel(_ doubleTap: Bool) {
         let duration = Int(doubleTap ? doubleDurationSlider.value : durationSlider.value)
         
         var durationString: String!

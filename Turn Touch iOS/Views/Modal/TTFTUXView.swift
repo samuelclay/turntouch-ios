@@ -21,72 +21,72 @@ class TTFTUXView: UIView {
         self.translatesAutoresizingMaskIntoConstraints = false
         
         let spacerTop = UIView()
-        spacerTop.hidden = true
+        spacerTop.isHidden = true
         spacerTop.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(spacerTop)
-        self.addConstraint(NSLayoutConstraint(item: spacerTop, attribute: .CenterX, relatedBy: .Equal,
-            toItem: self, attribute: .CenterX, multiplier: 1.0, constant: 0))
-        self.addConstraint(NSLayoutConstraint(item: spacerTop, attribute: .Top, relatedBy: .LessThanOrEqual,
-            toItem: self, attribute: .Top, multiplier: 1.0, constant: 48))
-        self.addConstraint(NSLayoutConstraint(item: spacerTop, attribute: .Width, relatedBy: .Equal,
-            toItem: self, attribute: .Width, multiplier: 1.0, constant: 0))
+        self.addConstraint(NSLayoutConstraint(item: spacerTop, attribute: .centerX, relatedBy: .equal,
+            toItem: self, attribute: .centerX, multiplier: 1.0, constant: 0))
+        self.addConstraint(NSLayoutConstraint(item: spacerTop, attribute: .top, relatedBy: .lessThanOrEqual,
+            toItem: self, attribute: .top, multiplier: 1.0, constant: 48))
+        self.addConstraint(NSLayoutConstraint(item: spacerTop, attribute: .width, relatedBy: .equal,
+            toItem: self, attribute: .width, multiplier: 1.0, constant: 0))
         
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.contentMode = .ScaleAspectFit
+        imageView.contentMode = .scaleAspectFit
         self.addSubview(imageView)
-        self.addConstraint(NSLayoutConstraint(item: imageView, attribute: .CenterX, relatedBy: .Equal,
-            toItem: self, attribute: .CenterX, multiplier: 1.0, constant: 0))
-        self.addConstraint(NSLayoutConstraint(item: imageView, attribute: .Top, relatedBy: .Equal,
-            toItem: spacerTop, attribute: .Bottom, multiplier: 1.0, constant: 0))
-        self.addConstraint(NSLayoutConstraint(item: imageView, attribute: .Width, relatedBy: .Equal,
-            toItem: self, attribute: .Width, multiplier: 1.0, constant: 0))
-        self.addConstraint(NSLayoutConstraint(item: imageView, attribute: .Height, relatedBy: .Equal,
-            toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 256))
+        self.addConstraint(NSLayoutConstraint(item: imageView, attribute: .centerX, relatedBy: .equal,
+            toItem: self, attribute: .centerX, multiplier: 1.0, constant: 0))
+        self.addConstraint(NSLayoutConstraint(item: imageView, attribute: .top, relatedBy: .equal,
+            toItem: spacerTop, attribute: .bottom, multiplier: 1.0, constant: 0))
+        self.addConstraint(NSLayoutConstraint(item: imageView, attribute: .width, relatedBy: .equal,
+            toItem: self, attribute: .width, multiplier: 1.0, constant: 0))
+        self.addConstraint(NSLayoutConstraint(item: imageView, attribute: .height, relatedBy: .equal,
+            toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 256))
         
         let spacerBottom = UIView()
-        spacerBottom.hidden = true
+        spacerBottom.isHidden = true
         spacerBottom.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(spacerBottom)
-        self.addConstraint(NSLayoutConstraint(item: spacerBottom, attribute: .Top, relatedBy: .LessThanOrEqual,
-            toItem: imageView, attribute: .Bottom, multiplier: 1.0, constant: 0))
-        self.addConstraint(NSLayoutConstraint(item: spacerBottom, attribute: .Width, relatedBy: .Equal,
-            toItem: self, attribute: .Width, multiplier: 1.0, constant: 0))
-        self.addConstraint(NSLayoutConstraint(item: spacerBottom, attribute: .Height, relatedBy: .Equal,
-            toItem: spacerBottom, attribute: .Height, multiplier: 1.0, constant: 0))
-        self.addConstraint(NSLayoutConstraint(item: spacerBottom, attribute: .Height, relatedBy: .LessThanOrEqual,
-            toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 48))
+        self.addConstraint(NSLayoutConstraint(item: spacerBottom, attribute: .top, relatedBy: .lessThanOrEqual,
+            toItem: imageView, attribute: .bottom, multiplier: 1.0, constant: 0))
+        self.addConstraint(NSLayoutConstraint(item: spacerBottom, attribute: .width, relatedBy: .equal,
+            toItem: self, attribute: .width, multiplier: 1.0, constant: 0))
+        self.addConstraint(NSLayoutConstraint(item: spacerBottom, attribute: .height, relatedBy: .equal,
+            toItem: spacerBottom, attribute: .height, multiplier: 1.0, constant: 0))
+        self.addConstraint(NSLayoutConstraint(item: spacerBottom, attribute: .height, relatedBy: .lessThanOrEqual,
+            toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 48))
 
         titleLabel.font = UIFont(name: "Effra", size: 22)
         titleLabel.textColor = UIColor(hex: 0x7A797A)
-        titleLabel.textAlignment = .Center
+        titleLabel.textAlignment = .center
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.numberOfLines = 2
         self.addSubview(titleLabel)
-        self.addConstraint(NSLayoutConstraint(item: titleLabel, attribute: .Top, relatedBy: .LessThanOrEqual,
-            toItem: spacerBottom, attribute: .Bottom, multiplier: 1.0, constant: 0))
-        self.addConstraint(NSLayoutConstraint(item: titleLabel, attribute: .CenterX, relatedBy: .Equal,
-            toItem: self, attribute: .CenterX, multiplier: 1.0, constant: 0))
-        self.addConstraint(NSLayoutConstraint(item: titleLabel, attribute: .Width, relatedBy: .Equal,
-            toItem: self, attribute: .Width, multiplier: 0.8, constant: 0))
-        self.addConstraint(NSLayoutConstraint(item: titleLabel, attribute: .Height, relatedBy: .GreaterThanOrEqual,
-            toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 20))
+        self.addConstraint(NSLayoutConstraint(item: titleLabel, attribute: .top, relatedBy: .lessThanOrEqual,
+            toItem: spacerBottom, attribute: .bottom, multiplier: 1.0, constant: 0))
+        self.addConstraint(NSLayoutConstraint(item: titleLabel, attribute: .centerX, relatedBy: .equal,
+            toItem: self, attribute: .centerX, multiplier: 1.0, constant: 0))
+        self.addConstraint(NSLayoutConstraint(item: titleLabel, attribute: .width, relatedBy: .equal,
+            toItem: self, attribute: .width, multiplier: 0.8, constant: 0))
+        self.addConstraint(NSLayoutConstraint(item: titleLabel, attribute: .height, relatedBy: .greaterThanOrEqual,
+            toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 20))
         
         subtitleLabel.font = UIFont(name: "Effra", size: 16)
         subtitleLabel.textColor = UIColor(hex: 0xB5BCC0)
-        subtitleLabel.textAlignment = .Center
+        subtitleLabel.textAlignment = .center
         subtitleLabel.translatesAutoresizingMaskIntoConstraints = false
         subtitleLabel.numberOfLines = 3
         self.addSubview(subtitleLabel)
-        self.addConstraint(NSLayoutConstraint(item: subtitleLabel, attribute: .Top, relatedBy: .Equal,
-            toItem: titleLabel, attribute: .Bottom, multiplier: 1.0, constant: 24))
-        self.addConstraint(NSLayoutConstraint(item: subtitleLabel, attribute: .CenterX, relatedBy: .Equal,
-            toItem: self, attribute: .CenterX, multiplier: 1.0, constant: 0))
-        self.addConstraint(NSLayoutConstraint(item: subtitleLabel, attribute: .Width, relatedBy: .Equal,
-            toItem: self, attribute: .Width, multiplier: 0.75, constant: 0))
+        self.addConstraint(NSLayoutConstraint(item: subtitleLabel, attribute: .top, relatedBy: .equal,
+            toItem: titleLabel, attribute: .bottom, multiplier: 1.0, constant: 24))
+        self.addConstraint(NSLayoutConstraint(item: subtitleLabel, attribute: .centerX, relatedBy: .equal,
+            toItem: self, attribute: .centerX, multiplier: 1.0, constant: 0))
+        self.addConstraint(NSLayoutConstraint(item: subtitleLabel, attribute: .width, relatedBy: .equal,
+            toItem: self, attribute: .width, multiplier: 0.75, constant: 0))
 //        self.addConstraint(NSLayoutConstraint(item: subtitleLabel, attribute: .Height, relatedBy: .GreaterThanOrEqual,
 //            toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 20))
-        self.addConstraint(NSLayoutConstraint(item: subtitleLabel, attribute: .Bottom, relatedBy: .GreaterThanOrEqual,
-            toItem: self, attribute: .Bottom, multiplier: 1.0, constant: -84))
+        self.addConstraint(NSLayoutConstraint(item: subtitleLabel, attribute: .bottom, relatedBy: .greaterThanOrEqual,
+            toItem: self, attribute: .bottom, multiplier: 1.0, constant: -84))
         
         self.assemble()
     }
@@ -97,23 +97,23 @@ class TTFTUXView: UIView {
     
     func assemble() {
         switch ftuxPage {
-        case .Intro:
+        case .intro:
             imageView.image = UIImage(named: "modal_ftux_action")
             titleLabel.text = "Here's how it works"
             subtitleLabel.text = "Your remote has four buttons"
-        case .Actions:
+        case .actions:
             imageView.image = UIImage(named: "modal_ftux_doubletap")
             titleLabel.text = "Each button performs an action"
             subtitleLabel.text = "Like changing the lights, playing music, or turning up the volume"
-        case .Modes:
+        case .modes:
             imageView.image = UIImage(named: "modal_ftux_mode")
             titleLabel.text = "Press and hold to change apps"
             subtitleLabel.text = "Four apps × four buttons per app\n= sixteen different actions"
-        case .BatchActions:
+        case .batchActions:
             imageView.image = UIImage(named: "modal_ftux_change_action")
             titleLabel.text = "Each button can do multiple actions"
             subtitleLabel.text = "There are batch actions and double-tap actions, all configurable in this app"
-        case .HUD:
+        case .hud:
             imageView.image = UIImage(named: "modal_ftux_change_mode")
             titleLabel.text = "Press all four buttons for the HUD"
             subtitleLabel.text = "The Heads-Up Display (HUD) shows what each button does and gives you access to even more actions and apps"

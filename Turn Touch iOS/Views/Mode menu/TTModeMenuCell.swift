@@ -12,7 +12,7 @@ class TTModeMenuCell: UICollectionViewCell {
     
     var titleLabel = UILabel()
     var imageView = UIImageView()
-    var menuType = TTMenuType.MENU_MODE
+    var menuType = TTMenuType.menu_MODE
     var modeName = ""
     var modeClass: TTMode.Type!
     var actionName = ""
@@ -24,25 +24,25 @@ class TTModeMenuCell: UICollectionViewCell {
         imageView.translatesAutoresizingMaskIntoConstraints = false
 //        imageView.layer.rasterizationScale = UIScreen.mainScreen().scale
         self.addSubview(imageView)
-        self.addConstraint(NSLayoutConstraint(item: imageView, attribute: .Leading, relatedBy: .Equal,
-            toItem: self, attribute: .Leading, multiplier: 1.0, constant: 24))
-        self.addConstraint(NSLayoutConstraint(item: imageView, attribute: .CenterY, relatedBy: .Equal,
-            toItem: self, attribute: .CenterY, multiplier: 1.0, constant: 0))
-        self.addConstraint(NSLayoutConstraint(item: imageView, attribute: .Height, relatedBy: .Equal,
-            toItem: self, attribute: .Height, multiplier: 0.5, constant: 0))
-        self.addConstraint(NSLayoutConstraint(item: imageView, attribute: .Width, relatedBy: .Equal,
-            toItem: self, attribute: .Height, multiplier: 0.5, constant: 0))
+        self.addConstraint(NSLayoutConstraint(item: imageView, attribute: .leading, relatedBy: .equal,
+            toItem: self, attribute: .leading, multiplier: 1.0, constant: 24))
+        self.addConstraint(NSLayoutConstraint(item: imageView, attribute: .centerY, relatedBy: .equal,
+            toItem: self, attribute: .centerY, multiplier: 1.0, constant: 0))
+        self.addConstraint(NSLayoutConstraint(item: imageView, attribute: .height, relatedBy: .equal,
+            toItem: self, attribute: .height, multiplier: 0.5, constant: 0))
+        self.addConstraint(NSLayoutConstraint(item: imageView, attribute: .width, relatedBy: .equal,
+            toItem: self, attribute: .height, multiplier: 0.5, constant: 0))
         
         titleLabel.font = UIFont(name: "Effra", size: 13)
         titleLabel.textColor = UIColor(hex: 0x808388)
-        titleLabel.shadowOffset = CGSizeMake(0, 0.5)
-        titleLabel.shadowColor = UIColor.whiteColor()
+        titleLabel.shadowOffset = CGSize(width: 0, height: 0.5)
+        titleLabel.shadowColor = UIColor.white
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(titleLabel)
-        self.addConstraint(NSLayoutConstraint(item: titleLabel, attribute: .Leading, relatedBy: .Equal,
-            toItem: imageView, attribute: .Trailing, multiplier: 1.0, constant: 12))
-        self.addConstraint(NSLayoutConstraint(item: titleLabel, attribute: .CenterY, relatedBy: .Equal,
-            toItem: self, attribute: .CenterY, multiplier: 1.0, constant: 0))
+        self.addConstraint(NSLayoutConstraint(item: titleLabel, attribute: .leading, relatedBy: .equal,
+            toItem: imageView, attribute: .trailing, multiplier: 1.0, constant: 12))
+        self.addConstraint(NSLayoutConstraint(item: titleLabel, attribute: .centerY, relatedBy: .equal,
+            toItem: self, attribute: .centerY, multiplier: 1.0, constant: 0))
         
         self.registerAsObserver()
     }
@@ -58,8 +58,8 @@ class TTModeMenuCell: UICollectionViewCell {
         appDelegate().modeMap.addObserver(self, forKeyPath: "inspectingModeDirection", options: [], context: nil)
     }
     
-    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?,
-                                         change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?,
+                                         change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if keyPath == "selectedModeDirection" {
             activeMode = nil
             self.setNeedsDisplay()
@@ -76,85 +76,85 @@ class TTModeMenuCell: UICollectionViewCell {
     // MARK: Drawing
     
     override func prepareForReuse() {
-        if menuType == .MENU_MODE {
+        if menuType == .menu_MODE {
             let className = "Turn_Touch_iOS.\(modeName)"
             modeClass = NSClassFromString(className) as! TTMode.Type
-        } else if menuType == .MENU_ACTION {
+        } else if menuType == .menu_ACTION {
             activeMode = appDelegate().modeMap.selectedMode
-        } else if menuType == .MENU_ADD_MODE {
+        } else if menuType == .menu_ADD_MODE {
 //            activeMode = NSClassFromString(modeName)
-        } else if menuType == .MENU_ADD_ACTION {
+        } else if menuType == .menu_ADD_ACTION {
             activeMode = appDelegate().modeMap.tempMode
         }
     }
 
-    override func drawRect(rect: CGRect) {
-        super.drawRect(rect)
+    override func draw(_ rect: CGRect) {
+        super.draw(rect)
         if activeMode == nil {
             self.prepareForReuse()
         }
         
-        if menuType == .MENU_MODE {
-            selected = activeMode >!< appDelegate().modeMap.selectedMode
-            titleLabel.text = modeClass.title().uppercaseString
+        if menuType == .menu_MODE {
+            isSelected = activeMode >!< appDelegate().modeMap.selectedMode
+            titleLabel.text = modeClass.title().uppercased()
             let imageName = modeClass.imageName()
             if imageName != "" {
                 imageView.image = UIImage(named:imageName)
             }
-        } else if menuType == .MENU_ACTION {
-            selected = activeMode.actionNameInDirection(appDelegate().modeMap.inspectingModeDirection) == modeName
+        } else if menuType == .menu_ACTION {
+            isSelected = activeMode.actionNameInDirection(appDelegate().modeMap.inspectingModeDirection) == modeName
             let imageName = activeMode.imageNameForAction(modeName)
             if imageName != nil {
                 imageView.image = UIImage(named:imageName!)
             }
-            titleLabel.text = activeMode.titleForAction(modeName, buttonMoment: .BUTTON_MOMENT_PRESSUP).uppercaseString
+            titleLabel.text = activeMode.titleForAction(modeName, buttonMoment: .button_MOMENT_PRESSUP).uppercased()
         }
 
-        titleLabel.textColor = highlighted || selected ? UIColor(hex: 0x404A60) : UIColor(hex: 0x808388)
+        titleLabel.textColor = isHighlighted || isSelected ? UIColor(hex: 0x404A60) : UIColor(hex: 0x808388)
         self.drawBackground()
     }
     
     func drawBackground() {
         let context = UIGraphicsGetCurrentContext()
-        if selected {
+        if isSelected {
             UIColor(hex: 0xE3EDF6).set()
-        } else if highlighted {
+        } else if isHighlighted {
             UIColor(hex: 0xF6F6F9).set()
         } else {
             UIColor(hex: 0xFBFBFD).set()
         }
-        CGContextFillRect(context, self.bounds);
+        context?.fill(self.bounds);
     }
     
     // MARK: Touches
     
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        highlighted = true
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        isHighlighted = true
         self.setNeedsDisplay()
     }
     
-    override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         if touches.first != nil {
-            highlighted = false
+            isHighlighted = false
             self.setNeedsDisplay()
         }
     }
     
-    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        highlighted = false
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        isHighlighted = false
         if let touch = touches.first {
-            if CGRectContainsPoint(self.bounds, touch.locationInView(self)) {
-                if menuType == .MENU_MODE {
+            if self.bounds.contains(touch.location(in: self)) {
+                if menuType == .menu_MODE {
                     appDelegate().modeMap.changeDirection(appDelegate().modeMap.selectedModeDirection, toMode:modeName)
-                } else if menuType == .MENU_ACTION {
+                } else if menuType == .menu_ACTION {
                     appDelegate().modeMap.changeDirection(appDelegate().modeMap.inspectingModeDirection, toAction:modeName)
                     // Update the mode menu
                     appDelegate().modeMap.inspectingModeDirection = appDelegate().modeMap.inspectingModeDirection
                     // Update the action diamond
                     appDelegate().modeMap.selectedModeDirection = appDelegate().modeMap.selectedModeDirection
-                } else if menuType == .MENU_ADD_MODE {
+                } else if menuType == .menu_ADD_MODE {
                     
-                } else if menuType == .MENU_ADD_ACTION {
+                } else if menuType == .menu_ADD_ACTION {
                     
                 }
             }

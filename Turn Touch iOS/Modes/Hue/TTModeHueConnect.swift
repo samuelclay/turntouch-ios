@@ -19,7 +19,7 @@ class TTModeHueConnect: TTOptionsDetailViewController {
         self.view.translatesAutoresizingMaskIntoConstraints = false
     }
     
-    func setStoppedWithMessage(message: String?) {
+    func setStoppedWithMessage(_ message: String?) {
         var m = message
         if message == nil {
             m = "Connect to Hue..."
@@ -27,11 +27,11 @@ class TTModeHueConnect: TTOptionsDetailViewController {
         self.progressMessage.text = m
     }
     
-    func setLoadingWithMessage(message: String?) {
+    func setLoadingWithMessage(_ message: String?) {
         self.progressMessage.text = message
     }
     
-    @IBAction func searchForBridge(sender: UIButton) {
+    @IBAction func searchForBridge(_ sender: UIButton) {
         self.setLoadingWithMessage("Searching for Hue...")
         self.modeHue.searchForBridgeLocal()
     }

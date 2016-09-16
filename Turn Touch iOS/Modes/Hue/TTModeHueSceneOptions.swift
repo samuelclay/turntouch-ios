@@ -7,6 +7,17 @@
 //
 
 import UIKit
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
 
 class TTModeHueSceneOptions: TTOptionsDetailViewController, UITextFieldDelegate, UIPopoverPresentationControllerDelegate, UIPickerViewDelegate, TTPickerViewControllerDelegate {
 
@@ -34,8 +45,8 @@ class TTModeHueSceneOptions: TTOptionsDetailViewController, UITextFieldDelegate,
         singlePicker.delegate = self
         doublePicker.delegate = self
         
-        spinner.forEach({ $0.hidden = true })
-        refreshButton.forEach({ $0.hidden = false })
+        spinner.forEach({ $0.isHidden = true })
+        refreshButton.forEach({ $0.isHidden = false })
         
         var sceneSelected = self.action.optionValue(TTModeHueConstants.kHueScene,
                                                     direction: appDelegate().modeMap.inspectingModeDirection) as? String
@@ -44,7 +55,7 @@ class TTModeHueSceneOptions: TTOptionsDetailViewController, UITextFieldDelegate,
 
         let cache = PHBridgeResourcesReader.readBridgeResourcesCache()
         
-        if cache.scenes == nil {
+        if cache?.scenes == nil {
             return
         }
         
@@ -72,7 +83,7 @@ class TTModeHueSceneOptions: TTOptionsDetailViewController, UITextFieldDelegate,
         }
         
         scenes = []
-        for (_, s) in cache.scenes {
+        for (_, s) in (cache?.scenes)! {
             let scene = s as! PHScene
             scenes.append(["name": scene.name, "identifier": scene.identifier])
             if sceneSelected == scene.identifier {
@@ -83,13 +94,13 @@ class TTModeHueSceneOptions: TTOptionsDetailViewController, UITextFieldDelegate,
             }
         }
         
-        scenes = scenes.sort {
+        scenes = scenes.sorted {
             (a, b) -> Bool in
             return a["name"] < b["name"]
         }
     }
     
-    func pickerDismissed(row: Int, textField: UITextField) {
+    func pickerDismissed(_ row: Int, textField: UITextField) {
         presented = false
         let scene = scenes[row]
         
@@ -104,22 +115,22 @@ class TTModeHueSceneOptions: TTOptionsDetailViewController, UITextFieldDelegate,
         }
     }
     
-    @IBAction func refreshScenes(sender: AnyObject) {
-        spinner.forEach({ $0.hidden = false })
-        refreshButton.forEach({ $0.hidden = true })
+    @IBAction func refreshScenes(_ sender: AnyObject) {
+        spinner.forEach({ $0.isHidden = false })
+        refreshButton.forEach({ $0.isHidden = true })
         spinner.forEach { (s) in
             s.startAnimating()
         }
 
         let bridgeSendApi = PHBridgeSendAPI()
-        bridgeSendApi.getAllScenesWithCompletionHandler { (dictionary, errors) in
+        bridgeSendApi.getAllScenes { (dictionary, errors) in
             self.drawScenes()
         }
     }
     
     // MARK: Text Field delegate
     
-    func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
 
         if presented {
@@ -129,17 +140,17 @@ class TTModeHueSceneOptions: TTOptionsDetailViewController, UITextFieldDelegate,
         pickerVC = TTPickerViewController()
         pickerVC.delegate = self
         pickerVC.textField = textField
-        pickerVC.modalPresentationStyle = .Popover
+        pickerVC.modalPresentationStyle = .popover
         pickerVC.preferredContentSize = CGSize(width: 240, height: 180)
         pickerVC.picker.delegate = self
         
         popoverController = pickerVC.popoverPresentationController
         if let popover = popoverController {
             popover.sourceView = textField
-            popover.sourceRect = CGRect(origin: CGPoint(x: CGRectGetMidX(textField.bounds), y: -8), size: CGSize.zero)
+            popover.sourceRect = CGRect(origin: CGPoint(x: textField.bounds.midX, y: -8), size: CGSize.zero)
             popover.delegate = self
-            popover.permittedArrowDirections = [.Up, .Down]
-            self.presentViewController(pickerVC, animated: true, completion: nil)
+            popover.permittedArrowDirections = [.up, .down]
+            self.present(pickerVC, animated: true, completion: nil)
             presented = true
             
             var sceneSelected: String?
@@ -151,7 +162,7 @@ class TTModeHueSceneOptions: TTOptionsDetailViewController, UITextFieldDelegate,
                                                         direction: appDelegate().modeMap.inspectingModeDirection) as? String
             }
             var currentRow: Int = 0
-            for (i, scene) in scenes.enumerate() {
+            for (i, scene) in scenes.enumerated() {
                 if scene["identifier"] == sceneSelected {
                     currentRow = i
                     break
@@ -165,24 +176,24 @@ class TTModeHueSceneOptions: TTOptionsDetailViewController, UITextFieldDelegate,
     
     // MARK: - Delegates and data sources
     
-    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController)
+    func adaptivePresentationStyle(for controller: UIPresentationController)
         -> UIModalPresentationStyle {
-            return .None
+            return .none
     }
     
-    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+    func numberOfComponentsInPickerView(_ pickerView: UIPickerView) -> Int {
         return 1
     }
     
-    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return scenes.count
     }
     
-    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return scenes[row]["name"]
     }
     
-    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if pickerView == singlePicker {
             self.action.changeActionOption(TTModeHueConstants.kHueScene, to: scenes[row]["identifier"]!)
         } else if pickerView == doublePicker {
@@ -190,30 +201,30 @@ class TTModeHueSceneOptions: TTOptionsDetailViewController, UITextFieldDelegate,
         }
     }
     
-    func pickerView(pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
+    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
         let titleData = scenes[row]["name"]
-        let myTitle = NSAttributedString(string: titleData!, attributes: [NSFontAttributeName:UIFont(name: "Effra", size: 18.0)!,NSForegroundColorAttributeName:UIColor.blueColor()])
+        let myTitle = NSAttributedString(string: titleData!, attributes: [NSFontAttributeName:UIFont(name: "Effra", size: 18.0)!,NSForegroundColorAttributeName:UIColor.blue])
         return myTitle
     }
 
-    func pickerView(pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusingView view: UIView?) -> UIView {
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
         var pickerLabel = view as! UILabel!
         if view == nil {  //if no label there yet
             pickerLabel = UILabel()
             //color the label's background
             let hue = CGFloat(row)/CGFloat(scenes.count)
-            pickerLabel.backgroundColor = UIColor(hue: hue, saturation: 1.0, brightness: 1.0, alpha: 1.0)
+            pickerLabel?.backgroundColor = UIColor(hue: hue, saturation: 1.0, brightness: 1.0, alpha: 1.0)
         }
         let titleData = scenes[row]["name"]
-        let myTitle = NSAttributedString(string: titleData!, attributes: [NSFontAttributeName:UIFont(name: "Effra", size: 18.0)!,NSForegroundColorAttributeName:UIColor.blackColor()])
+        let myTitle = NSAttributedString(string: titleData!, attributes: [NSFontAttributeName:UIFont(name: "Effra", size: 18.0)!,NSForegroundColorAttributeName:UIColor.black])
         pickerLabel!.attributedText = myTitle
-        pickerLabel!.textAlignment = .Center
+        pickerLabel!.textAlignment = .center
         
-        return pickerLabel
+        return pickerLabel!
         
     }
     
-    func pickerView(pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
+    func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
         return 36.0
     }
     

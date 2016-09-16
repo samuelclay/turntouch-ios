@@ -28,50 +28,50 @@ class TTModeCameraReviewViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.view.backgroundColor = UIColor.clearColor()
+        self.view.backgroundColor = UIColor.clear
         self.view.translatesAutoresizingMaskIntoConstraints = false
         self.navigationController?.setNavigationBarHidden(true, animated: false)
 
         imageView = UIImageView(image: image)
-        imageView.contentMode = .ScaleAspectFit
+        imageView.contentMode = .scaleAspectFit
         self.view.addSubview(imageView)
-        self.view.addConstraint(NSLayoutConstraint(item: imageView, attribute: .CenterX,
-            relatedBy: .Equal, toItem: self.view, attribute: .CenterX,
+        self.view.addConstraint(NSLayoutConstraint(item: imageView, attribute: .centerX,
+            relatedBy: .equal, toItem: self.view, attribute: .centerX,
             multiplier: 1.0, constant: 0))
-        self.view.addConstraint(NSLayoutConstraint(item: imageView, attribute: .CenterY,
-            relatedBy: .Equal, toItem: self.view, attribute: .CenterY,
+        self.view.addConstraint(NSLayoutConstraint(item: imageView, attribute: .centerY,
+            relatedBy: .equal, toItem: self.view, attribute: .centerY,
             multiplier: 1.0, constant: 0))
-        self.view.addConstraint(NSLayoutConstraint(item: imageView, attribute: .Height,
-            relatedBy: .Equal, toItem: self.view, attribute: .Height,
+        self.view.addConstraint(NSLayoutConstraint(item: imageView, attribute: .height,
+            relatedBy: .equal, toItem: self.view, attribute: .height,
             multiplier: 1.0, constant: 0))
-        self.view.addConstraint(NSLayoutConstraint(item: imageView, attribute: .Width,
-            relatedBy: .Equal, toItem: self.view, attribute: .Width,
+        self.view.addConstraint(NSLayoutConstraint(item: imageView, attribute: .width,
+            relatedBy: .equal, toItem: self.view, attribute: .width,
             multiplier: 1.0, constant: 0))
         
-        diamondView = TTActionDiamondView(diamondType: .HUD)
+        diamondView = TTActionDiamondView(diamondType: .hud)
         self.view.addSubview(diamondView)
-        self.view.addConstraint(NSLayoutConstraint(item: diamondView, attribute: .CenterX,
-            relatedBy: .Equal, toItem: self.view, attribute: .CenterX,
+        self.view.addConstraint(NSLayoutConstraint(item: diamondView, attribute: .centerX,
+            relatedBy: .equal, toItem: self.view, attribute: .centerX,
             multiplier: 1.0, constant: 0))
-        self.view.addConstraint(NSLayoutConstraint(item: diamondView, attribute: .Bottom,
-            relatedBy: .Equal, toItem: self.bottomLayoutGuide, attribute: .Bottom,
+        self.view.addConstraint(NSLayoutConstraint(item: diamondView, attribute: .bottom,
+            relatedBy: .equal, toItem: self.bottomLayoutGuide, attribute: .bottom,
             multiplier: 1.0, constant: 0))
-        self.view.addConstraint(NSLayoutConstraint(item: diamondView, attribute: .Height,
-            relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute,
+        self.view.addConstraint(NSLayoutConstraint(item: diamondView, attribute: .height,
+            relatedBy: .equal, toItem: nil, attribute: .notAnAttribute,
             multiplier: 1.0, constant: diamondSize))
-        self.view.addConstraint(NSLayoutConstraint(item: diamondView, attribute: .Width,
-            relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute,
+        self.view.addConstraint(NSLayoutConstraint(item: diamondView, attribute: .width,
+            relatedBy: .equal, toItem: nil, attribute: .notAnAttribute,
             multiplier: 1.0, constant: 1.3*diamondSize))
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(imageTapped))
         self.view.addGestureRecognizer(tapGesture)
     }
     
-    func imageTapped(gesture: UITapGestureRecognizer) {
-        self.dismissViewControllerAnimated(false, completion: nil)
+    func imageTapped(_ gesture: UITapGestureRecognizer) {
+        self.dismiss(animated: false, completion: nil)
     }
     
-    override func prefersStatusBarHidden() -> Bool {
+    override var prefersStatusBarHidden : Bool {
         return true
     }
 }

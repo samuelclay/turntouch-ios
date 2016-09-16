@@ -17,7 +17,7 @@ class TTModeHueRandomOptions: TTOptionsDetailViewController {
     @IBOutlet var doubleSegRandomBrightness: UISegmentedControl!
     @IBOutlet var doubleSegRandomSaturation: UISegmentedControl!
     
-    required init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+    required init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: "TTModeHueRandomOptions", bundle: nibBundleOrNil)
     }
     
@@ -39,24 +39,24 @@ class TTModeHueRandomOptions: TTOptionsDetailViewController {
         doubleSegRandomSaturation.selectedSegmentIndex = self.action.optionValue(TTModeHueConstants.kDoubleTapRandomSaturation, direction: inspectingDirection) as! Int
     }
     
-    @IBAction func changeRandomColors(sender: UISegmentedControl) {
+    @IBAction func changeRandomColors(_ sender: UISegmentedControl) {
         self.action.changeActionOption(TTModeHueConstants.kRandomColors,
-                                       to: NSNumber(integer: segRandomColors.selectedSegmentIndex))
+                                       to: NSNumber(value: segRandomColors.selectedSegmentIndex as Int))
         self.action.changeActionOption(TTModeHueConstants.kDoubleTapRandomColors,
-                                       to: NSNumber(integer: doubleSegRandomColors.selectedSegmentIndex))
+                                       to: NSNumber(value: doubleSegRandomColors.selectedSegmentIndex as Int))
     }
     
-    @IBAction func changeRandomBrightness(sender: UISegmentedControl) {
+    @IBAction func changeRandomBrightness(_ sender: UISegmentedControl) {
         self.action.changeActionOption(TTModeHueConstants.kRandomBrightness,
-                                       to: NSNumber(integer: segRandomBrightness.selectedSegmentIndex))
+                                       to: NSNumber(value: segRandomBrightness.selectedSegmentIndex as Int))
         self.action.changeActionOption(TTModeHueConstants.kDoubleTapRandomBrightness,
-                                       to: NSNumber(integer: doubleSegRandomBrightness.selectedSegmentIndex))
+                                       to: NSNumber(value: doubleSegRandomBrightness.selectedSegmentIndex as Int))
     }
     
-    @IBAction func changeRandomSaturation(sender: UISegmentedControl) {
+    @IBAction func changeRandomSaturation(_ sender: UISegmentedControl) {
         self.action.changeActionOption(TTModeHueConstants.kRandomSaturation,
-                                       to: NSNumber(integer: segRandomSaturation.selectedSegmentIndex))
+                                       to: NSNumber(value: segRandomSaturation.selectedSegmentIndex as Int))
         self.action.changeActionOption(TTModeHueConstants.kDoubleTapRandomSaturation,
-                                       to: NSNumber(integer: doubleSegRandomSaturation.selectedSegmentIndex))
+                                       to: NSNumber(value: doubleSegRandomSaturation.selectedSegmentIndex as Int))
     }
 }

@@ -9,12 +9,12 @@
 import UIKit
 
 enum TTModeWemoDeviceState {
-    case On
-    case Off
+    case on
+    case off
 }
 
 protocol TTModeWemoDeviceDelegate {
-    func deviceReady(device: TTModeWemoDevice)
+    func deviceReady(_ device: TTModeWemoDevice)
 }
 
 class TTModeWemoDevice: NSObject {
@@ -29,7 +29,7 @@ class TTModeWemoDevice: NSObject {
         self.port = port
     }
     
-    func isEqualToDevice(device: TTModeWemoDevice) -> Bool {
+    func isEqualToDevice(_ device: TTModeWemoDevice) -> Bool {
         let sameAddress = ipAddress == device.ipAddress
         let samePort = port == device.port
         
@@ -40,20 +40,20 @@ class TTModeWemoDevice: NSObject {
         return "\(ipAddress):\(port)"
     }
     
-    func requestDeviceInfo(attemptsLeft: Int = 5) {
+    func requestDeviceInfo(_ attemptsLeft: Int = 5) {
         if attemptsLeft == 0 {
             print(" ---> Error, could not find wemo setup.xml: \(self.location())")
         }
         
         let attemptsLeft = attemptsLeft - 1
-        let url = NSURL(string: "http://\(self.location())/setup.xml")
-        let request = NSMutableURLRequest(URL: url!)
-        let session = NSURLSession.sharedSession()
-        request.HTTPMethod = "GET"
+        let url = URL(string: "http://\(self.location())/setup.xml")
+        var request = URLRequest(url: url!)
+        let session = URLSession.shared
+        request.httpMethod = "GET"
         
-        let task = session.dataTaskWithRequest(request) { (data, response, connectionError) in
+        let task = session.dataTask(with: request) { (data, response, connectionError) in
             if connectionError == nil {
-                if let httpResponse = response as? NSHTTPURLResponse {
+                if let httpResponse = response as? HTTPURLResponse {
                     if httpResponse.statusCode == 200 {
                         if let responseData = data {
                             self.parseSetupXml(responseData)
@@ -70,54 +70,54 @@ class TTModeWemoDevice: NSObject {
         task.resume()
     }
     
-    func parseSetupXml(data: NSData) {
+    func parseSetupXml(_ data: Data) {
         let results = PerformXMLXPathQuery(data, "/wemo:root/wemo:device/wemo:friendlyName",
-                                           UnsafeMutablePointer<Int8>("wemo".cStringUsingEncoding(NSUTF8StringEncoding)),
-                                           UnsafeMutablePointer<Int8>("urn:Belkin:device-1-0".cStringUsingEncoding(NSUTF8StringEncoding)))
-        if results.count == 0 {
+                                           UnsafeMutablePointer<Int8>(mutating: "wemo".cString(using: String.Encoding.utf8)),
+                                           UnsafeMutablePointer<Int8>(mutating: "urn:Belkin:device-1-0".cString(using: String.Encoding.utf8)))
+        if results?.count == 0 {
             print(" ---> Error: could not find friendlyName for Wemo")
             deviceName = "Wemo device (\(self.location()))"
         } else {
-            let device: [String: String] = results[0] as! [String: String]
+            let device: [String: String] = results![0] as! [String: String]
             deviceName = device["nodeContent"]
 //            deviceName = results[0]["nodeContent"] // kills syntax highlighting
             print(" ---> Found wemo: \(deviceName) (\(self.location()))")
         }
         
-        dispatch_async(dispatch_get_main_queue()) {
+        DispatchQueue.main.async {
             self.delegate.deviceReady(self)
         }
     }
     
-    func requestDeviceState(callback: () -> Void) {
+    func requestDeviceState(_ callback: @escaping () -> Void) {
         self.requestDeviceState(5, callback)
     }
     
-    func requestDeviceState(attemptsLeft: Int, _ callback: () -> Void) {
+    func requestDeviceState(_ attemptsLeft: Int, _ callback: @escaping () -> Void) {
         if attemptsLeft == 0 {
             print(" ---> Error: could not find wemo state: \(self.location())")
             return
         }
         
         let attemptsLeft = attemptsLeft - 1
-        let url = NSURL(string: "http://\(self.location())/upnp/control/basicevent1")
+        let url = URL(string: "http://\(self.location())/upnp/control/basicevent1")
         let body = ["<?xml version=\"1.0\" encoding=\"utf-8\"?>",
                     "<s:Envelope xmlns:s=\"http://schemas.xmlsoap.org/soap/envelope/\" s:encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\">",
                     "<s:Body>",
                     "<u:GetBinaryState xmlns:u=\"urn:Belkin:service:basicevent:1\">",
                     "</u:GetBinaryState>",
                     "</s:Body>",
-                    "</s:Envelope>"].joinWithSeparator("\r\n").dataUsingEncoding(NSUTF8StringEncoding)
-        let request = NSMutableURLRequest(URL: url!)
-        let session = NSURLSession.sharedSession()
-        request.HTTPMethod = "POST"
+                    "</s:Envelope>"].joined(separator: "\r\n").data(using: String.Encoding.utf8)
+        var request = URLRequest(url: url!)
+        let session = URLSession.shared
+        request.httpMethod = "POST"
         request.setValue("\"urn:Belkin:service:basicevent:1#GetBinaryState\"", forHTTPHeaderField: "SOAPACTION")
         request.setValue("text/xml", forHTTPHeaderField: "Content-Type")
-        request.HTTPBody = body
+        request.httpBody = body
         
-        let task = session.dataTaskWithRequest(request) { (data, response, connectionError) in
+        let task = session.dataTask(with: request) { (data, response, connectionError) in
             if connectionError == nil {
-                if let httpResponse = response as? NSHTTPURLResponse {
+                if let httpResponse = response as? HTTPURLResponse {
                     if httpResponse.statusCode == 200 {
                         if let responseData = data {
                             self.parseBasicEventXml(responseData, callback)
@@ -134,46 +134,46 @@ class TTModeWemoDevice: NSObject {
         task.resume()
     }
     
-    func parseBasicEventXml(data: NSData, _ callback: () -> Void) {
+    func parseBasicEventXml(_ data: Data, _ callback: () -> Void) {
         let results = PerformXMLXPathQuery(data, "/*/*/u:GetBinaryStateResponse/BinaryState",
-                                           UnsafeMutablePointer<Int8>("u".cStringUsingEncoding(NSUTF8StringEncoding)),
-                                           UnsafeMutablePointer<Int8>("urn:Belkin:service:basicevent:1".cStringUsingEncoding(NSUTF8StringEncoding)))
-        if results.count == 0 {
+                                           UnsafeMutablePointer<Int8>(mutating: "u".cString(using: String.Encoding.utf8)),
+                                           UnsafeMutablePointer<Int8>(mutating: "urn:Belkin:service:basicevent:1".cString(using: String.Encoding.utf8)))
+        if results?.count == 0 {
             print(" ---> Error: could get binary state for wemo")
             deviceName = "Wemo device (\(self.location()))"
         } else {
-            let device: [String: String] = results[0] as! [String: String]
+            let device: [String: String] = results![0] as! [String: String]
             let state = device["nodeContent"]
             if state == "1" || state == "8" {
-                deviceState = .On
+                deviceState = .on
             } else if state == "0" {
-                deviceState = .Off
+                deviceState = .off
             }
             print(" ---> Wemo state: \(deviceName) \(state)/\(deviceState)")
             callback()
         }
     }
     
-    func changeDeviceState(state: TTModeWemoDeviceState) {
-        let url = NSURL(string: "http://\(self.location())/upnp/control/basicevent1")
+    func changeDeviceState(_ state: TTModeWemoDeviceState) {
+        let url = URL(string: "http://\(self.location())/upnp/control/basicevent1")
         let body = ["<?xml version=\"1.0\" encoding=\"utf-8\"?>",
             "<s:Envelope xmlns:s=\"http://schemas.xmlsoap.org/soap/envelope/\" s:encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\">",
             "<s:Body>",
             "<u:SetBinaryState xmlns:u=\"urn:Belkin:service:basicevent:1\">",
-            "<BinaryState>\(state == .Off ? "0" : "1")</BinaryState>",
+            "<BinaryState>\(state == .off ? "0" : "1")</BinaryState>",
             "</u:SetBinaryState>",
             "</s:Body>",
-            "</s:Envelope>"].joinWithSeparator("\r\n").dataUsingEncoding(NSUTF8StringEncoding)
-        let request = NSMutableURLRequest(URL: url!)
-        let session = NSURLSession.sharedSession()
-        request.HTTPMethod = "POST"
+            "</s:Envelope>"].joined(separator: "\r\n").data(using: String.Encoding.utf8)
+        var request = URLRequest(url: url!)
+        let session = URLSession.shared
+        request.httpMethod = "POST"
         request.setValue("\"urn:Belkin:service:basicevent:1#SetBinaryState\"", forHTTPHeaderField: "SOAPACTION")
         request.setValue("text/xml", forHTTPHeaderField: "Content-Type")
-        request.HTTPBody = body
+        request.httpBody = body
         
-        let task = session.dataTaskWithRequest(request) { (data, response, connectionError) in
+        let task = session.dataTask(with: request) { (data, response, connectionError) in
             if connectionError == nil {
-                if let httpResponse = response as? NSHTTPURLResponse {
+                if let httpResponse = response as? HTTPURLResponse {
                     if httpResponse.statusCode == 200 {
                         if data != nil {
 //                            print(" ---> Wemo basicevent: \(responseData)")

@@ -10,10 +10,10 @@ import Foundation
 import CoreBluetooth
 
 enum TTDeviceState {
-    case DEVICE_STATE_DISCONNECTED
-    case DEVICE_STATE_SEARCHING
-    case DEVICE_STATE_CONNECTING
-    case DEVICE_STATE_CONNECTED
+    case device_STATE_DISCONNECTED
+    case device_STATE_SEARCHING
+    case device_STATE_CONNECTING
+    case device_STATE_CONNECTED
 }
 
 class TTDevice: NSObject {
@@ -23,70 +23,70 @@ class TTDevice: NSObject {
     var peripheral: CBPeripheral!
     var buttonStatusChar: CBCharacteristic!
     var batteryPct: NSNumber!
-    var lastActionDate: NSDate!
+    var lastActionDate: Date!
     var isPaired = false
     var isNotified = false
     var needsReconnection = false
     var inDFU = false
     var firmwareVersion: Int!
     var isFirmwareOld = false
-    var state: TTDeviceState = .DEVICE_STATE_DISCONNECTED
+    var state: TTDeviceState = .device_STATE_DISCONNECTED
     
     init(peripheral newPeripheral: CBPeripheral) {
         super.init()
         
         peripheral = newPeripheral
-        uuid = peripheral.identifier.UUIDString
+        uuid = peripheral.identifier.uuidString
         
-        let prefs = NSUserDefaults.standardUserDefaults()
+        let prefs = UserDefaults.standard
         let nicknameKey = "TT:device:\(uuid):nickname"
-        nickname = prefs.stringForKey(nicknameKey)
+        nickname = prefs.string(forKey: nicknameKey)
     }
     
     override var description : String {
         let connected = self.stateLabel()
         let paired = isPaired ? "PAIRED" : "unpaired"
-        let uuidSubstr = NSString(string: uuid).substringToIndex(8)
+        let uuidSubstr = NSString(string: uuid).substring(to: 8)
         
         return "\(uuidSubstr) / \(nickname) (\(connected)-\(paired))"
     }
     
     func stateLabel() -> String {
-        return state == .DEVICE_STATE_CONNECTED ? "connected" :
-            state == .DEVICE_STATE_SEARCHING ? "searching" :
-            state == .DEVICE_STATE_CONNECTING ? "connecting" : "X"
+        return state == .device_STATE_CONNECTED ? "connected" :
+            state == .device_STATE_SEARCHING ? "searching" :
+            state == .device_STATE_CONNECTING ? "connecting" : "X"
     }
     
-    func setNicknameData(nicknameData: NSData) {
+    func setNicknameData(_ nicknameData: Data) {
         let fixedNickname = NSMutableData()
         
-        let bytes = Array(UnsafeBufferPointer(start: UnsafePointer<UInt8>(nicknameData.bytes), count: nicknameData.length))
+        let bytes = Array(UnsafeBufferPointer(start: (nicknameData as NSData).bytes.bindMemory(to: UInt8.self, capacity: nicknameData.count), count: nicknameData.count))
         var dataLength = 0
         
-        for i in 0..<nicknameData.length {
+        for i in 0..<nicknameData.count {
             if bytes[i] != 0x00 {
                 dataLength += 1
             } else {
                 break
             }
         }
-        fixedNickname.appendBytes(bytes, length: dataLength)
+        fixedNickname.append(bytes, length: dataLength)
         
-        nickname = String(data: fixedNickname, encoding: NSUTF8StringEncoding)
+        nickname = String(data: fixedNickname as Data, encoding: String.Encoding.utf8)
     }
     
     func setFirmwareVersion(firmwareVersion version: Int) {
         firmwareVersion = version
         
-        let prefs = NSUserDefaults.standardUserDefaults()
-        let latestVersion = prefs.integerForKey("TT:firmware:version")
+        let prefs = UserDefaults.standard
+        let latestVersion = prefs.integer(forKey: "TT:firmware:version")
         
         isFirmwareOld = firmwareVersion < latestVersion
     }
     
     func connected() -> Bool {
-        let bluetoothConnected = peripheral.state == CBPeripheralState.Connected
-        let connecting = state == .DEVICE_STATE_CONNECTED //|| state == .DEVICE_STATE_CONNECTING
+        let bluetoothConnected = peripheral.state == CBPeripheralState.connected
+        let connecting = state == .device_STATE_CONNECTED //|| state == .DEVICE_STATE_CONNECTING
         
         return bluetoothConnected && connecting
     }

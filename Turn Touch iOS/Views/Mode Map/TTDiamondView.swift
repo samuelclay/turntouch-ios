@@ -9,10 +9,10 @@
 import UIKit
 
 enum TTDiamondType: Int {
-    case Interactive
-    case Mode
-    case HUD
-    case Pairing
+    case interactive
+    case mode
+    case hud
+    case pairing
 }
 
 let SPACING_PCT: CGFloat = 0.0175
@@ -28,9 +28,9 @@ class TTDiamondView: UIView {
     var southPathTop: UIBezierPath!
     var southPathBottom: UIBezierPath!
     
-    var diamondType: TTDiamondType = .Mode
-    var overrideSelectedDirection: TTModeDirection = .NO_DIRECTION
-    var overrideActiveDirection: TTModeDirection = .NO_DIRECTION
+    var diamondType: TTDiamondType = .mode
+    var overrideSelectedDirection: TTModeDirection = .no_DIRECTION
+    var overrideActiveDirection: TTModeDirection = .no_DIRECTION
     @IBInspectable var ignoreSelectedMode: Bool = false
     var ignoreActiveMode = false
     var showOutline = false
@@ -41,7 +41,7 @@ class TTDiamondView: UIView {
             return self.diamondType.rawValue
         }
         set (diamondTypeIndex) {
-            self.diamondType = TTDiamondType(rawValue: diamondTypeIndex) ?? .HUD
+            self.diamondType = TTDiamondType(rawValue: diamondTypeIndex) ?? .hud
         }
     }
     @IBInspectable var overrideSelectedDirectionAdapter: Int {
@@ -49,23 +49,23 @@ class TTDiamondView: UIView {
             return self.overrideSelectedDirection.rawValue
         }
         set (index) {
-            self.overrideSelectedDirection = TTModeDirection(rawValue: index) ?? .NO_DIRECTION
+            self.overrideSelectedDirection = TTModeDirection(rawValue: index) ?? .no_DIRECTION
         }
     }
     
     override func awakeFromNib() {
         self.registerAsObserver()
         
-        self.contentMode = .Redraw
+        self.contentMode = .redraw
     }
     
     init(frame: CGRect, diamondType: TTDiamondType) {
         self.diamondType = diamondType
         super.init(frame: frame)
         
-        self.backgroundColor = UIColor.clearColor()
+        self.backgroundColor = UIColor.clear
         self.translatesAutoresizingMaskIntoConstraints = false
-        self.userInteractionEnabled = true
+        self.isUserInteractionEnabled = true
         
         self.registerAsObserver()
     }
@@ -98,14 +98,14 @@ class TTDiamondView: UIView {
 //        }
     }
     
-    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if keyPath == "selectedModeDirection" {
             self.setNeedsDisplay()
         } else if keyPath == "inspectingModeDirection" {
             self.setNeedsDisplay()
         } else if keyPath == "activeModeDirection" {
-            if diamondType == .Pairing {
-                dispatch_async(dispatch_get_main_queue(), { 
+            if diamondType == .pairing {
+                DispatchQueue.main.async(execute: { 
                     self.setNeedsDisplay()
                 })
             } else {
@@ -121,16 +121,16 @@ class TTDiamondView: UIView {
     
     // MARK: Drawing
     
-    override func drawRect(rect: CGRect) {
-        super.drawRect(rect)
+    override func draw(_ rect: CGRect) {
+        super.draw(rect)
         
         self.drawPaths()
         self.colorPaths()
     }
     
     func drawPaths() {
-        let width: CGFloat = CGRectGetWidth(self.bounds)
-        let height: CGFloat = CGRectGetHeight(self.bounds)
+        let width: CGFloat = self.bounds.width
+        let height: CGFloat = self.bounds.height
         let spacing: CGFloat = SPACING_PCT * height
         northPathTop = UIBezierPath()
         northPathBottom = UIBezierPath()
@@ -141,82 +141,82 @@ class TTDiamondView: UIView {
         southPathTop = UIBezierPath()
         southPathBottom = UIBezierPath()
         
-        northPathTop.lineJoinStyle = CGLineJoin.Miter
-        northPathBottom.lineJoinStyle = CGLineJoin.Miter
-        northPathBottom.moveToPoint(CGPointMake(width * 3 / 4 - 1.3 * spacing, height * 1 / 4 - spacing))
-        northPathBottom.addLineToPoint(CGPointMake(width * 1 / 2, height * 1 / 2 - spacing * 2))
-        northPathBottom.addLineToPoint(CGPointMake(width * 1 / 4 + 1.3 * spacing, height * 1 / 4 - spacing))
-        northPathTop.moveToPoint(CGPointMake(width * 1 / 4 + 1.3 * spacing, height * 1 / 4 - spacing))
-        northPathTop.addLineToPoint(CGPointMake(width * 1 / 2, 0))
-        northPathTop.addLineToPoint(CGPointMake(width * 3 / 4 - 1.3 * spacing, height * 1 / 4 - spacing))
+        northPathTop.lineJoinStyle = CGLineJoin.miter
+        northPathBottom.lineJoinStyle = CGLineJoin.miter
+        northPathBottom.move(to: CGPoint(x: width * 3 / 4 - 1.3 * spacing, y: height * 1 / 4 - spacing))
+        northPathBottom.addLine(to: CGPoint(x: width * 1 / 2, y: height * 1 / 2 - spacing * 2))
+        northPathBottom.addLine(to: CGPoint(x: width * 1 / 4 + 1.3 * spacing, y: height * 1 / 4 - spacing))
+        northPathTop.move(to: CGPoint(x: width * 1 / 4 + 1.3 * spacing, y: height * 1 / 4 - spacing))
+        northPathTop.addLine(to: CGPoint(x: width * 1 / 2, y: 0))
+        northPathTop.addLine(to: CGPoint(x: width * 3 / 4 - 1.3 * spacing, y: height * 1 / 4 - spacing))
 
-        eastPathTop.lineJoinStyle = CGLineJoin.Miter
-        eastPathBottom.lineJoinStyle = CGLineJoin.Miter
-        eastPathBottom.moveToPoint(CGPointMake(width * 1 / 2 + 1.3 * spacing * 2, height * 1 / 2))
-        eastPathBottom.addLineToPoint(CGPointMake(width * 3 / 4 + 1.3 * spacing, height * 3 / 4 - spacing))
-        eastPathBottom.addLineToPoint(CGPointMake(width, height * 1 / 2))
-        eastPathTop.moveToPoint(CGPointMake(width, height * 1 / 2))
-        eastPathTop.addLineToPoint(CGPointMake(width * 3 / 4 + 1.3 * spacing, height * 1 / 4 + spacing))
-        eastPathTop.addLineToPoint(CGPointMake(width * 1 / 2 + 1.3 * spacing * 2, height * 1 / 2))
+        eastPathTop.lineJoinStyle = CGLineJoin.miter
+        eastPathBottom.lineJoinStyle = CGLineJoin.miter
+        eastPathBottom.move(to: CGPoint(x: width * 1 / 2 + 1.3 * spacing * 2, y: height * 1 / 2))
+        eastPathBottom.addLine(to: CGPoint(x: width * 3 / 4 + 1.3 * spacing, y: height * 3 / 4 - spacing))
+        eastPathBottom.addLine(to: CGPoint(x: width, y: height * 1 / 2))
+        eastPathTop.move(to: CGPoint(x: width, y: height * 1 / 2))
+        eastPathTop.addLine(to: CGPoint(x: width * 3 / 4 + 1.3 * spacing, y: height * 1 / 4 + spacing))
+        eastPathTop.addLine(to: CGPoint(x: width * 1 / 2 + 1.3 * spacing * 2, y: height * 1 / 2))
         
-        westPathTop.lineJoinStyle = CGLineJoin.Miter
-        westPathBottom.lineJoinStyle = CGLineJoin.Miter
-        westPathBottom.moveToPoint(CGPointMake(width * 1 / 2 - 1.3 * spacing * 2, height * 1 / 2))
-        westPathBottom.addLineToPoint(CGPointMake(width * 1 / 4 - 1.3 * spacing, height * 3 / 4 - spacing))
-        westPathBottom.addLineToPoint(CGPointMake(0, height * 1 / 2))
-        westPathTop.moveToPoint(CGPointMake(0, height * 1 / 2))
-        westPathTop.addLineToPoint(CGPointMake(width * 1 / 4 - 1.3 * spacing, height * 1 / 4 + spacing))
-        westPathTop.addLineToPoint(CGPointMake(width * 1 / 2 - 1.3 * spacing * 2, height * 1 / 2))
+        westPathTop.lineJoinStyle = CGLineJoin.miter
+        westPathBottom.lineJoinStyle = CGLineJoin.miter
+        westPathBottom.move(to: CGPoint(x: width * 1 / 2 - 1.3 * spacing * 2, y: height * 1 / 2))
+        westPathBottom.addLine(to: CGPoint(x: width * 1 / 4 - 1.3 * spacing, y: height * 3 / 4 - spacing))
+        westPathBottom.addLine(to: CGPoint(x: 0, y: height * 1 / 2))
+        westPathTop.move(to: CGPoint(x: 0, y: height * 1 / 2))
+        westPathTop.addLine(to: CGPoint(x: width * 1 / 4 - 1.3 * spacing, y: height * 1 / 4 + spacing))
+        westPathTop.addLine(to: CGPoint(x: width * 1 / 2 - 1.3 * spacing * 2, y: height * 1 / 2))
         
-        southPathTop.lineJoinStyle = CGLineJoin.Miter
-        southPathBottom.lineJoinStyle = CGLineJoin.Miter
-        southPathBottom.moveToPoint(CGPointMake(width * 1 / 4 + 1.3 * spacing, height * 3 / 4 + spacing))
-        southPathBottom.addLineToPoint(CGPointMake(width / 2, height))
-        southPathBottom.addLineToPoint(CGPointMake(width * 3 / 4 - 1.3 * spacing, height * 3 / 4 + spacing))
-        southPathTop.moveToPoint(CGPointMake(width * 3 / 4 - 1.3 * spacing, height * 3 / 4 + spacing))
-        southPathTop.addLineToPoint(CGPointMake(width / 2, height / 2 + spacing * 2))
-        southPathTop.addLineToPoint(CGPointMake(width * 1 / 4 + 1.3 * spacing, height * 3 / 4 + spacing))
+        southPathTop.lineJoinStyle = CGLineJoin.miter
+        southPathBottom.lineJoinStyle = CGLineJoin.miter
+        southPathBottom.move(to: CGPoint(x: width * 1 / 4 + 1.3 * spacing, y: height * 3 / 4 + spacing))
+        southPathBottom.addLine(to: CGPoint(x: width / 2, y: height))
+        southPathBottom.addLine(to: CGPoint(x: width * 3 / 4 - 1.3 * spacing, y: height * 3 / 4 + spacing))
+        southPathTop.move(to: CGPoint(x: width * 3 / 4 - 1.3 * spacing, y: height * 3 / 4 + spacing))
+        southPathTop.addLine(to: CGPoint(x: width / 2, y: height / 2 + spacing * 2))
+        southPathTop.addLine(to: CGPoint(x: width * 1 / 4 + 1.3 * spacing, y: height * 3 / 4 + spacing))
     }
     
     func colorPaths() {
         let appD = appDelegate()
-        let activeModeDirection: TTModeDirection = (ignoreActiveMode || diamondType == .Interactive) ? overrideActiveDirection : appD.modeMap.activeModeDirection
+        let activeModeDirection: TTModeDirection = (ignoreActiveMode || diamondType == .interactive) ? overrideActiveDirection : appD.modeMap.activeModeDirection
         let selectedModeDirection: TTModeDirection = ignoreSelectedMode ? overrideSelectedDirection : appD.modeMap.selectedModeDirection
         let inspectingModeDirection: TTModeDirection = appD.modeMap.inspectingModeDirection
         let hoverModeDirection: TTModeDirection = appD.modeMap.hoverModeDirection
         for path: UIBezierPath in [northPathTop, northPathBottom, eastPathTop, eastPathBottom, westPathTop, westPathBottom, southPathTop, southPathBottom] {
-            var direction: TTModeDirection = .NO_DIRECTION
-            let bottomHalf: Bool = [northPathBottom, eastPathBottom, westPathBottom, southPathBottom].containsObject(path)
+            var direction: TTModeDirection = .no_DIRECTION
+            let bottomHalf: Bool = [northPathBottom, eastPathBottom, westPathBottom, southPathBottom].contains(path)
             if path.isEqual(northPathTop) || path.isEqual(northPathBottom) {
-                direction = .NORTH
+                direction = .north
             }
             else if path.isEqual(eastPathTop) || path.isEqual(eastPathBottom) {
-                direction = .EAST
+                direction = .east
             }
             else if path.isEqual(westPathTop) || path.isEqual(westPathBottom) {
-                direction = .WEST
+                direction = .west
             }
             else if path.isEqual(southPathTop) || path.isEqual(southPathBottom) {
-                direction = .SOUTH
+                direction = .south
             }
             
             let isHoveringDirection: Bool = hoverModeDirection == direction
             var isInspectingDirection: Bool = inspectingModeDirection == direction
             var isSelectedDirection: Bool = selectedModeDirection == direction
             let isActiveDirection: Bool = activeModeDirection == direction
-            if diamondType != .Interactive {
+            if diamondType != .interactive {
                 isInspectingDirection = false
             }
-            if diamondType == .Pairing {
+            if diamondType == .pairing {
                 isSelectedDirection = appD.bluetoothMonitor.buttonTimer.isDirectionPaired(direction)
             }
             // Fill in the color as a stroke or fill
             var modeColor: UIColor?
-            if diamondType == .HUD {
+            if diamondType == .hud {
                 let alpha: Double = 0.5
                 modeColor = UIColor(hex: 0xFFFFFF, alpha: alpha)
             }
-            else if diamondType == .Interactive {
+            else if diamondType == .interactive {
                 if isActiveDirection {
                     modeColor = UIColor(hex: 0x505AC0)
                 }
@@ -233,13 +233,13 @@ class TTDiamondView: UIView {
                     }
                 }
             }
-            else if diamondType == .Mode || diamondType == .Pairing {
+            else if diamondType == .mode || diamondType == .pairing {
                 if isActiveDirection {
                     let alpha: Double = 0.5
                     modeColor = UIColor(hex: 0x303033, alpha: alpha)
                 }
                 else if isSelectedDirection {
-                    if diamondType == .Pairing || appD.modeMap.selectedModeDirection == direction {
+                    if diamondType == .pairing || appD.modeMap.selectedModeDirection == direction {
                         let alpha: Double = 0.8
                         modeColor = UIColor(hex: 0x1555D8, alpha: alpha)
                     }
@@ -255,18 +255,18 @@ class TTDiamondView: UIView {
             }
             
             let combinedPath = UIBezierPath()
-            combinedPath.appendPath(path)
+            combinedPath.append(path)
             if path == northPathTop {
-                combinedPath.appendPath(northPathBottom)
+                combinedPath.append(northPathBottom)
             }
             if path == eastPathTop {
-                combinedPath.appendPath(eastPathBottom)
+                combinedPath.append(eastPathBottom)
             }
             if path == westPathTop {
-                combinedPath.appendPath(westPathBottom)
+                combinedPath.append(westPathBottom)
             }
             if path == southPathTop {
-                combinedPath.appendPath(southPathBottom)
+                combinedPath.append(southPathBottom)
             }
             if !showOutline {
                 modeColor!.setFill()
@@ -279,7 +279,7 @@ class TTDiamondView: UIView {
                 combinedPath.stroke()
             }
             
-            if diamondType == .Interactive {
+            if diamondType == .interactive {
                 if isActiveDirection {
                     UIColor(hex: 0xFFFFFF).set()
                 }
@@ -297,9 +297,9 @@ class TTDiamondView: UIView {
         }
     }
     
-    override func traitCollectionDidChange(previousTraitCollection: UITraitCollection?) {
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
-        if self.traitCollection.verticalSizeClass == UIUserInterfaceSizeClass.Compact {
+        if self.traitCollection.verticalSizeClass == UIUserInterfaceSizeClass.compact {
             self.setNeedsDisplay()
         } else {
             self.setNeedsDisplay()
@@ -312,48 +312,48 @@ class TTDiamondView: UIView {
     // NOTE: None of these work for some reason. The tap area is tiny and in the center of the diamond.
     //       You can find this functionality in TTActionDiamondView.
     
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        super.touchesBegan(touches, withEvent: event)
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
         
-        if diamondType != .Interactive {
+        if diamondType != .interactive {
             return
         }
         
         if let touch = touches.first {
-            let location = touch.locationInView(self)
-            if northPathTop.containsPoint(location) || northPathBottom.containsPoint(location) {
-                overrideActiveDirection = .NORTH
-            } else if eastPathTop.containsPoint(location) || eastPathBottom.containsPoint(location) {
-                overrideActiveDirection = .EAST
-            } else if westPathTop.containsPoint(location) || westPathBottom.containsPoint(location) {
-                overrideActiveDirection = .WEST
-            } else if southPathTop.containsPoint(location) || southPathBottom.containsPoint(location) {
-                overrideActiveDirection = .SOUTH
+            let location = touch.location(in: self)
+            if northPathTop.contains(location) || northPathBottom.contains(location) {
+                overrideActiveDirection = .north
+            } else if eastPathTop.contains(location) || eastPathBottom.contains(location) {
+                overrideActiveDirection = .east
+            } else if westPathTop.contains(location) || westPathBottom.contains(location) {
+                overrideActiveDirection = .west
+            } else if southPathTop.contains(location) || southPathBottom.contains(location) {
+                overrideActiveDirection = .south
             }
         }
         
         self.setNeedsDisplay()
     }
     
-    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        super.touchesEnded(touches, withEvent: event)
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesEnded(touches, with: event)
         
-        if diamondType != .Interactive {
+        if diamondType != .interactive {
             return
         }
         
         if let touch = touches.first {
-            let location = touch.locationInView(self)
-            if northPathTop.containsPoint(location) || northPathBottom.containsPoint(location) {
-                appDelegate().modeMap.toggleInspectingModeDirection(.NORTH)
-            } else if eastPathTop.containsPoint(location) || eastPathBottom.containsPoint(location) {
-                appDelegate().modeMap.toggleInspectingModeDirection(.EAST)
-            } else if westPathTop.containsPoint(location) || westPathBottom.containsPoint(location) {
-                appDelegate().modeMap.toggleInspectingModeDirection(.WEST)
-            } else if southPathTop.containsPoint(location) || southPathBottom.containsPoint(location) {
-                appDelegate().modeMap.toggleInspectingModeDirection(.SOUTH)
+            let location = touch.location(in: self)
+            if northPathTop.contains(location) || northPathBottom.contains(location) {
+                appDelegate().modeMap.toggleInspectingModeDirection(.north)
+            } else if eastPathTop.contains(location) || eastPathBottom.contains(location) {
+                appDelegate().modeMap.toggleInspectingModeDirection(.east)
+            } else if westPathTop.contains(location) || westPathBottom.contains(location) {
+                appDelegate().modeMap.toggleInspectingModeDirection(.west)
+            } else if southPathTop.contains(location) || southPathBottom.contains(location) {
+                appDelegate().modeMap.toggleInspectingModeDirection(.south)
             }
-            overrideActiveDirection = .NO_DIRECTION
+            overrideActiveDirection = .no_DIRECTION
         }
         
         self.setNeedsDisplay()

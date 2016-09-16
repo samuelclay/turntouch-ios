@@ -9,61 +9,61 @@
 import UIKit
 
 enum TTMenuType {
-    case MENU_MODE
-    case MENU_ACTION
-    case MENU_ADD_MODE
-    case MENU_ADD_ACTION
+    case menu_MODE
+    case menu_ACTION
+    case menu_ADD_MODE
+    case menu_ADD_ACTION
 }
 
 class TTModeMenuContainer: UIView {
     @IBInspectable var MENU_HEIGHT: CGFloat = 100
     @IBInspectable var MENU_WIDTH: CGFloat = 176
     
-    var menuType: TTMenuType = .MENU_MODE
+    var menuType: TTMenuType = .menu_MODE
     var bordersView = TTModeMenuBordersView()
     var collectionView: TTModeMenuCollectionView!
     let flowLayout = UICollectionViewFlowLayout()
     
     init(menuType: TTMenuType) {
-        super.init(frame: CGRectZero)
+        super.init(frame: CGRect.zero)
         translatesAutoresizingMaskIntoConstraints = false
         self.menuType = menuType
         
-        self.backgroundColor = UIColor.clearColor()
+        self.backgroundColor = UIColor.clear
         self.clipsToBounds = true
         
-        if menuType == .MENU_MODE || menuType == .MENU_ADD_MODE {
-            flowLayout.itemSize = CGSizeMake(MENU_WIDTH, MENU_HEIGHT/2)
-        } else if menuType == .MENU_ACTION || menuType == .MENU_ADD_ACTION {
-            flowLayout.itemSize = CGSizeMake(MENU_WIDTH*1.2, MENU_HEIGHT/2)
+        if menuType == .menu_MODE || menuType == .menu_ADD_MODE {
+            flowLayout.itemSize = CGSize(width: MENU_WIDTH, height: MENU_HEIGHT/2)
+        } else if menuType == .menu_ACTION || menuType == .menu_ADD_ACTION {
+            flowLayout.itemSize = CGSize(width: MENU_WIDTH*1.2, height: MENU_HEIGHT/2)
         }
         flowLayout.minimumInteritemSpacing = 0
         flowLayout.minimumLineSpacing = 0
-        flowLayout.scrollDirection = UICollectionViewScrollDirection.Horizontal
+        flowLayout.scrollDirection = UICollectionViewScrollDirection.horizontal
         
-        collectionView = TTModeMenuCollectionView(frame: CGRectZero, collectionViewLayout: flowLayout)
+        collectionView = TTModeMenuCollectionView(frame: CGRect.zero, collectionViewLayout: flowLayout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.alpha = 0
         collectionView.menuType = menuType
         self.addSubview(collectionView)
-        self.addConstraint(NSLayoutConstraint(item: collectionView, attribute: .Height,
-            relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: MENU_HEIGHT))
-        self.addConstraint(NSLayoutConstraint(item: collectionView, attribute: .Width,
-            relatedBy: .Equal, toItem: self, attribute: .Width, multiplier: 1.0, constant: 0))
-        self.addConstraint(NSLayoutConstraint(item: collectionView, attribute: .Top,
-            relatedBy: .Equal, toItem: self, attribute: .Top, multiplier: 1.0, constant: 0))
-        self.addConstraint(NSLayoutConstraint(item: collectionView, attribute: .Left,
-            relatedBy: .Equal, toItem: self, attribute: .Left, multiplier: 1.0, constant: 0))
+        self.addConstraint(NSLayoutConstraint(item: collectionView, attribute: .height,
+            relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: MENU_HEIGHT))
+        self.addConstraint(NSLayoutConstraint(item: collectionView, attribute: .width,
+            relatedBy: .equal, toItem: self, attribute: .width, multiplier: 1.0, constant: 0))
+        self.addConstraint(NSLayoutConstraint(item: collectionView, attribute: .top,
+            relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1.0, constant: 0))
+        self.addConstraint(NSLayoutConstraint(item: collectionView, attribute: .left,
+            relatedBy: .equal, toItem: self, attribute: .left, multiplier: 1.0, constant: 0))
 
         self.addSubview(bordersView)
-        self.addConstraint(NSLayoutConstraint(item: bordersView, attribute: .Height,
-            relatedBy: .Equal, toItem: self, attribute: .Height, multiplier: 1.0, constant: 0))
-        self.addConstraint(NSLayoutConstraint(item: bordersView, attribute: .Width,
-            relatedBy: .Equal, toItem: self, attribute: .Width, multiplier: 1.0, constant: 0))
-        self.addConstraint(NSLayoutConstraint(item: bordersView, attribute: .Top,
-            relatedBy: .Equal, toItem: self, attribute: .Top, multiplier: 1.0, constant: 0))
-        self.addConstraint(NSLayoutConstraint(item: bordersView, attribute: .Left,
-            relatedBy: .Equal, toItem: self, attribute: .Left, multiplier: 1.0, constant: 0))
+        self.addConstraint(NSLayoutConstraint(item: bordersView, attribute: .height,
+            relatedBy: .equal, toItem: self, attribute: .height, multiplier: 1.0, constant: 0))
+        self.addConstraint(NSLayoutConstraint(item: bordersView, attribute: .width,
+            relatedBy: .equal, toItem: self, attribute: .width, multiplier: 1.0, constant: 0))
+        self.addConstraint(NSLayoutConstraint(item: bordersView, attribute: .top,
+            relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1.0, constant: 0))
+        self.addConstraint(NSLayoutConstraint(item: bordersView, attribute: .left,
+            relatedBy: .equal, toItem: self, attribute: .left, multiplier: 1.0, constant: 0))
         
         self.registerAsObserver()
     }
@@ -81,8 +81,8 @@ class TTModeMenuContainer: UIView {
         appDelegate().modeMap.addObserver(self, forKeyPath: "inspectingModeDirection", options: [], context: nil)
     }
     
-    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?,
-                                         change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?,
+                                         change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if keyPath == "openedModeChangeMenu" {
             self.toggleModeMenu()
         } else if keyPath == "openedActionChangeMenu" {
@@ -90,7 +90,7 @@ class TTModeMenuContainer: UIView {
         } else if keyPath == "availableActions" {
             collectionView.reloadData()
         } else if keyPath == "inspectingModeDirection" {
-            if menuType == .MENU_MODE && appDelegate().modeMap.inspectingModeDirection != .NO_DIRECTION {
+            if menuType == .menu_MODE && appDelegate().modeMap.inspectingModeDirection != .no_DIRECTION {
                 if appDelegate().modeMap.openedModeChangeMenu {
                     appDelegate().modeMap.openedModeChangeMenu = false
                 }
@@ -107,13 +107,13 @@ class TTModeMenuContainer: UIView {
 
     // MARK: Drawing
     
-    override func drawRect(rect: CGRect) {
-        super.drawRect(rect)
+    override func draw(_ rect: CGRect) {
+        super.draw(rect)
     }
     
     func toggleModeMenu() {
-        if menuType == .MENU_MODE {
-            UIView.animateWithDuration(0.5, animations: {
+        if menuType == .menu_MODE {
+            UIView.animate(withDuration: 0.5, animations: {
                 self.collectionView.flashScrollIndicators()
                 let openedModeChangeMenu: Bool = appDelegate().modeMap.openedModeChangeMenu
                 if openedModeChangeMenu {
@@ -128,8 +128,8 @@ class TTModeMenuContainer: UIView {
                         self.bordersView.setNeedsDisplay()
                     }
             })
-        } else if menuType == .MENU_ACTION {
-            UIView.animateWithDuration(0.5, animations:
+        } else if menuType == .menu_ACTION {
+            UIView.animate(withDuration: 0.5, animations:
                 {
                     self.collectionView.flashScrollIndicators()
                     let openedActionChangeMenu: Bool = appDelegate().modeMap.openedActionChangeMenu

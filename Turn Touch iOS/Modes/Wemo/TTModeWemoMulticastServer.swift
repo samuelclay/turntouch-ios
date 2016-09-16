@@ -12,7 +12,7 @@ import CocoaAsyncSocket
 let MULTICAST_GROUP_IP = "239.255.255.250"
 
 protocol TTModeWemoMulticastDelegate {
-    func foundDevice(headers: [String: String], host: String, port: Int, name: String?, live: Bool) -> TTModeWemoDevice
+    func foundDevice(_ headers: [String: String], host: String, port: Int, name: String?, live: Bool) -> TTModeWemoDevice
 }
 
 class TTModeWemoMulticastServer: NSObject, GCDAsyncUdpSocketDelegate {
@@ -44,10 +44,10 @@ class TTModeWemoMulticastServer: NSObject, GCDAsyncUdpSocketDelegate {
     
     func createMulticastReceiver() {
         if udpSocket == nil {
-            udpSocket = GCDAsyncUdpSocket(delegate: self, delegateQueue: dispatch_get_main_queue())
+            udpSocket = GCDAsyncUdpSocket(delegate: self, delegateQueue: DispatchQueue.main)
             
             do {
-                try udpSocket.bindToPort(7700)
+                try udpSocket.bind(toPort: 7700)
             } catch let e {
                 print(" ---> Error binding to port: \(e)")
             }
@@ -71,11 +71,11 @@ class TTModeWemoMulticastServer: NSObject, GCDAsyncUdpSocketDelegate {
                        "MX:2",
                        "MAN:\"ssdp:discover\"",
                        "USER-AGENT: Turn Touch iOS Wemo Finder",
-                       "", ""].joinWithSeparator("\r\n")
-        let data = message.dataUsingEncoding(NSUTF8StringEncoding)
-        udpSocket.sendData(data, toHost: MULTICAST_GROUP_IP, port: 1900, withTimeout: NSTimeInterval(5), tag: 0)
-        let tt = dispatch_time(DISPATCH_TIME_NOW, Int64(5 * Double(NSEC_PER_SEC)));
-        dispatch_after(tt, dispatch_get_main_queue()) {
+                       "", ""].joined(separator: "\r\n")
+        let data = message.data(using: String.Encoding.utf8)
+        udpSocket.send(data, toHost: MULTICAST_GROUP_IP, port: 1900, withTimeout: TimeInterval(5), tag: 0)
+        let tt = DispatchTime.now() + Double(Int64(5 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC);
+        DispatchQueue.main.asyncAfter(deadline: tt) {
             if self.attemptsLeft == 0 || self.udpSocket == nil {
                 return
             }
@@ -87,27 +87,27 @@ class TTModeWemoMulticastServer: NSObject, GCDAsyncUdpSocketDelegate {
     
     // MARK: Match Belkin
     
-    func checkDevice(data: NSString, host: String, port: UInt16) {
+    func checkDevice(_ data: NSString, host: String, port: UInt16) {
         var headers: [String: String] = [:]
         
-        for line: String in data.componentsSeparatedByString("\r\n") {
-            if let match = line.rangeOfString(":") {
-                let key = line.substringToIndex(match.startIndex).lowercaseString
-                let value = line.substringFromIndex(match.startIndex.advancedBy(1)).stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+        for line: String in data.components(separatedBy: "\r\n") {
+            if let match = line.range(of: ":") {
+                let key = line.substring(to: match.lowerBound).lowercased()
+                let value = line.substring(from: line.index(match.lowerBound, offsetBy: 2)).trimmingCharacters(in: CharacterSet.whitespaces)
                 headers[key] = value
             }
         }
         
         if let userAgent = headers["x-user-agent"] {
-            if userAgent.containsString("redsonic") {
+            if userAgent.contains("redsonic") {
                 // redsonic = belkin
                 if let setupXmlLocation = headers["location"] {
-                    let setupXmlUrl = NSURL(string: setupXmlLocation)
+                    let setupXmlUrl = URL(string: setupXmlLocation)
                     let locationHost = setupXmlUrl?.host
-                    let locationPort = setupXmlUrl?.port?.integerValue
+                    let locationPort = (setupXmlUrl as NSURL?)?.port?.intValue
                     
                     if locationHost != nil && locationPort != nil {
-                        delegate?.foundDevice(headers, host: locationHost!, port: locationPort!, name: nil, live: true)
+                        _ = delegate?.foundDevice(headers, host: locationHost!, port: locationPort!, name: nil, live: true)
                     }
                 }
             }
@@ -116,13 +116,13 @@ class TTModeWemoMulticastServer: NSObject, GCDAsyncUdpSocketDelegate {
     
     // MARK: Async delegate
     
-    func udpSocket(sock: GCDAsyncUdpSocket!, didReceiveData data: NSData!, fromAddress address: NSData!, withFilterContext filterContext: AnyObject!) {
-        self.checkDevice(NSString(data: data, encoding: NSUTF8StringEncoding)!,
-                         host: GCDAsyncUdpSocket.hostFromAddress(address),
-                         port: GCDAsyncUdpSocket.portFromAddress(address))
+    func udpSocket(_ sock: GCDAsyncUdpSocket!, didReceive data: Data!, fromAddress address: Data!, withFilterContext filterContext: Any!) {
+        self.checkDevice(NSString(data: data, encoding: String.Encoding.utf8.rawValue)!,
+                         host: GCDAsyncUdpSocket.host(fromAddress: address),
+                         port: GCDAsyncUdpSocket.port(fromAddress: address))
     }
     
-    func udpSocketDidClose(sock: GCDAsyncUdpSocket!, withError error: NSError!) {
+    func udpSocketDidClose(_ sock: GCDAsyncUdpSocket!, withError error: Error!) {
         print(" ---> Closing UDP socket. \(error)")
     }
 }

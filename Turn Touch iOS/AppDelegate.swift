@@ -12,16 +12,16 @@ import CoreLocation
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate {
 
-    var window: UIWindow? = UIWindow(frame: UIScreen.mainScreen().bounds)
+    var window: UIWindow? = UIWindow(frame: UIScreen.main.bounds)
     var modeMap: TTModeMap = TTModeMap()
     var bluetoothMonitor: TTBluetoothMonitor!
     let locationManager = CLLocationManager()
     @IBOutlet var mainViewController: TTMainViewController!
     
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         self.loadPreferences()
         print(" application didFinishLaunchingWithOptions");
-        let centralManagerIdentifiers = launchOptions?[UIApplicationLaunchOptionsBluetoothCentralsKey]
+        let centralManagerIdentifiers = launchOptions?[UIApplicationLaunchOptionsKey.bluetoothCentrals]
         if centralManagerIdentifiers != nil {
             print(" ---> centralManagerIdentifiers: \(centralManagerIdentifiers)")
         }
@@ -33,7 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         window!.makeKeyAndVisible()
         modeMap.activateModes()
 
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0)) {
+        DispatchQueue.global().async {
             self.beginLocationUpdates()
 //            self.bluetoothMonitor.updateBluetoothState()
         }
@@ -43,77 +43,77 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 //            appDelegate().mainViewController.showFtuxModal()
 //        }
         
-//        print(NSUserDefaults.standardUserDefaults().dictionaryRepresentation())
+//        print(UserDefaults.standardUserDefaults().dictionaryRepresentation())
         
         return true
     }
 
-    func applicationWillResignActive(application: UIApplication) {
+    func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
         print("applicationWillResignActive")
     }
 
-    func applicationDidEnterBackground(application: UIApplication) {
+    func applicationDidEnterBackground(_ application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
         print("applicationDidEnterBackground")
-//        let prefs = NSUserDefaults.standardUserDefaults()
+//        let prefs = UserDefaults.standardUserDefaults()
 //        prefs.synchronize()
     }
 
-    func applicationWillEnterForeground(application: UIApplication) {
+    func applicationWillEnterForeground(_ application: UIApplication) {
         // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
         print("applicationWillEnterForeground")
     }
 
-    func applicationDidBecomeActive(application: UIApplication) {
+    func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
         print("applicationDidBecomeActive")
         
         bluetoothMonitor.countDevices()
     }
 
-    func applicationWillTerminate(application: UIApplication) {
+    func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         print("applicationWillTerminate");
         bluetoothMonitor.terminate()
-        let prefs = NSUserDefaults.standardUserDefaults()
+        let prefs = UserDefaults.standard
         prefs.synchronize()
     }
     
     func loadPreferences() {
-        let prefs = NSUserDefaults.standardUserDefaults()
-        let defaultPrefsFile = NSBundle.mainBundle().pathForResource("Preferences", ofType: "plist")
+        let prefs = UserDefaults.standard
+        let defaultPrefsFile = Bundle.main.path(forResource: "Preferences", ofType: "plist")
         let defaultPrefs = NSDictionary(contentsOfFile: defaultPrefsFile!) as! [String: AnyObject]
         
-        prefs.registerDefaults(defaultPrefs)
+        prefs.register(defaults: defaultPrefs)
         prefs.synchronize()
     }
     
     func beginLocationUpdates() {
         switch CLLocationManager.authorizationStatus() {
-        case .AuthorizedAlways:
+        case .authorizedAlways:
             self.startSignificantChangeUpdates()
-        case .NotDetermined:
+        case .notDetermined:
             locationManager.requestAlwaysAuthorization()
-        case .AuthorizedWhenInUse, .Restricted, .Denied:
+        case .authorizedWhenInUse, .restricted, .denied:
             let alertController = UIAlertController(
                 title: "Background Location Access Disabled",
                 message: "In order to have your remote automatically connect, please open this app's settings and set location access to 'Always'.",
-                preferredStyle: .Alert)
+                preferredStyle: .alert)
             
-            let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
             alertController.addAction(cancelAction)
             
-            let openAction = UIAlertAction(title: "Open Settings", style: .Default) { (action) in
-                if let url = NSURL(string:UIApplicationOpenSettingsURLString) {
-                    UIApplication.sharedApplication().openURL(url)
+            let openAction = UIAlertAction(title: "Open Settings", style: .default) { (action) in
+                if let url = URL(string:UIApplicationOpenSettingsURLString) {
+                    UIApplication.shared.openURL(url)
                 }
             }
             alertController.addAction(openAction)
             
-            self.mainViewController.presentViewController(alertController, animated: true, completion: nil)
+            self.mainViewController.present(alertController, animated: true, completion: nil)
         }
     }
     
@@ -122,17 +122,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         locationManager.startMonitoringSignificantLocationChanges()
     }
 
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         bluetoothMonitor.scanKnown()
     }
     
-    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
-        if status == .AuthorizedAlways {
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        if status == .authorizedAlways {
             self.startSignificantChangeUpdates()
         }
     }
 }
 
 func appDelegate () -> AppDelegate {
-    return UIApplication.sharedApplication().delegate as! AppDelegate
+    return UIApplication.shared.delegate as! AppDelegate
 }

@@ -28,14 +28,14 @@ class TTAction: NSObject {
     }
     
     func deactivate() {
-        if mode.respondsToSelector(NSSelectorFromString("activate")) {
+        if mode.responds(to: NSSelectorFromString("activate")) {
             mode.deactivate()
         }
     }
     
     // MARK: Options
     
-    func optionValue(optionName: String, direction: TTModeDirection) -> AnyObject? {
+    func optionValue(_ optionName: String, direction: TTModeDirection) -> Any? {
         if batchActionKey == nil {
             return mode.actionOptionValue(optionName, actionName: actionName, direction: direction)
         } else {
@@ -43,7 +43,7 @@ class TTAction: NSObject {
         }
     }
     
-    func changeActionOption(optionName: String, to optionValue: AnyObject) {
+    func changeActionOption(_ optionName: String, to optionValue: Any) {
         if batchActionKey == nil {
             mode.changeActionOption(optionName, to: optionValue, direction: direction)
         } else {

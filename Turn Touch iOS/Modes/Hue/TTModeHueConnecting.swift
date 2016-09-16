@@ -22,7 +22,7 @@ class TTModeHueConnecting: TTOptionsDetailViewController {
         // Do any additional setup after loading the view.
     }
 
-    func setConnectingWithMessage(message: String?) {
+    func setConnectingWithMessage(_ message: String?) {
         var m = message
         if message == nil {
             m = "Connecting to Hue..."

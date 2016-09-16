@@ -9,10 +9,10 @@
 import UIKit
 
 enum TTModeCameraState {
-    case CameraInactive
-    case CameraActive
-    case ImageReview
-    case VideoReview
+    case cameraInactive
+    case cameraActive
+    case imageReview
+    case videoReview
 }
 
 class TTModeCamera: TTMode {
@@ -20,13 +20,13 @@ class TTModeCamera: TTMode {
     var cameraActive = false
     var cameraViewController = TTModeCameraViewController()
     var cameraNavController: UINavigationController!
-    var cameraState: TTModeCameraState = .CameraInactive
+    var cameraState: TTModeCameraState = .cameraInactive
     
     required init() {
         super.init()
         
         cameraNavController = UINavigationController(rootViewController: cameraViewController)
-        cameraNavController.modalPresentationStyle = .FullScreen
+        cameraNavController.modalPresentationStyle = .fullScreen
         cameraViewController.modeCamera = self
     }
     
@@ -56,33 +56,33 @@ class TTModeCamera: TTMode {
     
     func titleTTModeCameraShoot() -> String {
         switch cameraState {
-        case .CameraInactive, .CameraActive:
+        case .cameraInactive, .cameraActive:
             return "Take photo"
-        case .ImageReview:
+        case .imageReview:
             return "Save photo"
-        case .VideoReview:
+        case .videoReview:
             return "Save photo"
         }
     }
     
     func titleTTModeCameraSwitchPhotoVideo() -> String {
         switch cameraState {
-        case .CameraInactive, .CameraActive:
+        case .cameraInactive, .cameraActive:
             return "Switch photo/video"
-        case .ImageReview:
+        case .imageReview:
             return "Retake"
-        case .VideoReview:
+        case .videoReview:
             return "Replay"
         }
     }
     
     func titleTTModeCameraSwitchView() -> String {
         switch cameraState {
-        case .CameraInactive, .CameraActive:
+        case .cameraInactive, .cameraActive:
             return "Flip front/back"
-        case .ImageReview:
+        case .imageReview:
             return "Save photo"
-        case .VideoReview:
+        case .videoReview:
             return "Save video"
         }
     }
@@ -130,18 +130,18 @@ class TTModeCamera: TTMode {
     // MARK: Action methods
     
     override func activate() {
-        if appDelegate().modeMap.selectedMode.modeChangeType == .RemoteButton || true {
+        if appDelegate().modeMap.selectedMode.modeChangeType == .remoteButton || true {
             self.ensureCamera()
         }
     }
     
     override func deactivate() {
         self.closeCamera()
-        cameraState = .CameraInactive
+        cameraState = .cameraInactive
     }
     
     func closeCamera() {
-        appDelegate().mainViewController.dismissViewControllerAnimated(true) {
+        appDelegate().mainViewController.dismiss(animated: true) {
             self.cameraActive = false
         }
     }
@@ -149,11 +149,11 @@ class TTModeCamera: TTMode {
     func ensureCamera() -> Bool {
         var cameraAlreadyShowing = true
         
-        if cameraState == .CameraInactive {
+        if cameraState == .cameraInactive {
             cameraAlreadyShowing = false
-            appDelegate().mainViewController.presentViewController(cameraNavController,
+            appDelegate().mainViewController.present(cameraNavController,
                                                                    animated: true) {
-                self.cameraState = .CameraActive
+                self.cameraState = .cameraActive
             }
         }
         

@@ -20,7 +20,7 @@ class TTModeHuePushlink: TTOptionsDetailViewController {
         // Do any additional setup after loading the view.
     }
     
-    func setProgress(progressPercentage: Int?) {
+    func setProgress(_ progressPercentage: Int?) {
         if progressPercentage != nil {
             self.progressView.setProgress(Float(progressPercentage!)/100, animated: false)
         }

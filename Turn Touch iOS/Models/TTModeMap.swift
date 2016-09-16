@@ -10,10 +10,10 @@ import Foundation
 
 class TTModeMap: NSObject {
     
-    dynamic var activeModeDirection: TTModeDirection = .NO_DIRECTION
-    dynamic var selectedModeDirection: TTModeDirection = .NO_DIRECTION
-    dynamic var inspectingModeDirection: TTModeDirection = .NO_DIRECTION
-    dynamic var hoverModeDirection: TTModeDirection = .NO_DIRECTION
+    dynamic var activeModeDirection: TTModeDirection = .no_DIRECTION
+    dynamic var selectedModeDirection: TTModeDirection = .no_DIRECTION
+    dynamic var inspectingModeDirection: TTModeDirection = .no_DIRECTION
+    dynamic var hoverModeDirection: TTModeDirection = .no_DIRECTION
     
     var tempModeName: String = ""
     dynamic var openedModeChangeMenu: Bool = false
@@ -58,11 +58,11 @@ class TTModeMap: NSObject {
     
     // MARK: KVO
     
-    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?,
-                                         change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+    func observeValue(forKeyPath keyPath: String?, of object: Any?,
+                                         change: [NSKeyValueChangeKey : AnyObject]?, context: UnsafeMutableRawPointer) {
         if keyPath == "selectedModeDirection" {
-            let prefs = NSUserDefaults.standardUserDefaults()
-            prefs.setInteger(self.selectedModeDirection.rawValue, forKey: "TT:selectedModeDirection")
+            let prefs = UserDefaults.standard
+            prefs.set(self.selectedModeDirection.rawValue, forKey: "TT:selectedModeDirection")
             prefs.synchronize()
         }
     }
@@ -70,30 +70,30 @@ class TTModeMap: NSObject {
     // MARK: Actions
     
     func reset() {
-        inspectingModeDirection = .NO_DIRECTION
-        hoverModeDirection = .NO_DIRECTION
+        inspectingModeDirection = .no_DIRECTION
+        hoverModeDirection = .no_DIRECTION
     }
 
     func setupModes() {
-        let prefs = NSUserDefaults.standardUserDefaults()
+        let prefs = UserDefaults.standard
 
         for direction: String in ["north", "east", "west", "south"] {
-            if let directionModeName = prefs.stringForKey("TT:mode:\(direction)") {
+            if let directionModeName = prefs.string(forKey: "TT:mode:\(direction)") {
                 let className = "Turn_Touch_iOS.\(directionModeName)"
                 let modeClass = NSClassFromString(className) as! TTMode.Type
                 switch (direction) {
                 case "north":
                     northMode = modeClass.init()
-                    northMode.modeDirection = .NORTH
+                    northMode.modeDirection = .north
                 case "east":
                     eastMode = modeClass.init()
-                    eastMode.modeDirection = .EAST
+                    eastMode.modeDirection = .east
                 case "west":
                     westMode = modeClass.init()
-                    westMode.modeDirection = .WEST
+                    westMode.modeDirection = .west
                 case "south":
                     southMode = modeClass.init()
-                    southMode.modeDirection = .SOUTH
+                    southMode.modeDirection = .south
                 default:
                     break
                 }
@@ -102,9 +102,9 @@ class TTModeMap: NSObject {
     }
     
     func activateModes() {
-        let prefs = NSUserDefaults.standardUserDefaults()
+        let prefs = UserDefaults.standard
 
-        let direction = TTModeDirection(rawValue: prefs.integerForKey("TT:selectedModeDirection"))!
+        let direction = TTModeDirection(rawValue: prefs.integer(forKey: "TT:selectedModeDirection"))!
         self.switchMode(direction)
     }
     
@@ -116,13 +116,13 @@ class TTModeMap: NSObject {
 //        }
     }
     
-    func switchMode(direction: TTModeDirection, modeChangeType: ModeChangeType = .ModeTab) {
-        self.activeModeDirection = .NO_DIRECTION
+    func switchMode(_ direction: TTModeDirection, modeChangeType: ModeChangeType = .modeTab) {
+        self.activeModeDirection = .no_DIRECTION
 
         // batchActions.deactivate()
         self.selectedMode.deactivate()
         
-        if direction != .NO_DIRECTION {
+        if direction != .no_DIRECTION {
             self.selectedMode = self.modeInDirection(direction)
         } else {
 //            let className = "Turn_Touch_iOS.\(modeName)"
@@ -130,7 +130,7 @@ class TTModeMap: NSObject {
             print(" ---> Can't switch into non-direciton mode. Easy fix right here...")
         }
         
-        self.availableActions = selectedMode.dynamicType.actions()
+        self.availableActions = type(of: selectedMode).actions()
         self.selectedMode.modeChangeType = modeChangeType
         self.selectedMode.activate(direction)
         self.reset()
@@ -139,12 +139,12 @@ class TTModeMap: NSObject {
     
     func runActiveButton() {
         let direction = activeModeDirection
-        activeModeDirection = .NO_DIRECTION
+        activeModeDirection = .no_DIRECTION
         
         if selectedMode.shouldIgnoreSingleBeforeDouble(direction) {
             waitingForDoubleClick = true
-            let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(DOUBLE_CLICK_ACTION_DURATION * Double(NSEC_PER_SEC)))
-            dispatch_after(delayTime, dispatch_get_main_queue(), {
+            let delayTime = DispatchTime.now() + Double(Int64(DOUBLE_CLICK_ACTION_DURATION * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
+            DispatchQueue.main.asyncAfter(deadline: delayTime, execute: {
                 if self.waitingForDoubleClick {
                     self.runDirection(direction)
                 }
@@ -153,10 +153,10 @@ class TTModeMap: NSObject {
             self.runDirection(direction)
         }
         
-        activeModeDirection = .NO_DIRECTION
+        activeModeDirection = .no_DIRECTION
     }
     
-    func runDirection(direction: TTModeDirection) {
+    func runDirection(_ direction: TTModeDirection) {
         if !selectedMode.shouldFireImmediateOnPress(direction) {
             selectedMode.action = TTAction(actionName: selectedMode.actionNameInDirection(direction), direction: direction)
             selectedMode.runDirection(direction)
@@ -169,9 +169,9 @@ class TTModeMap: NSObject {
 //        }
     }
     
-    func runDoubleButton(direction: TTModeDirection) {
+    func runDoubleButton(_ direction: TTModeDirection) {
         waitingForDoubleClick = false
-        activeModeDirection = .NO_DIRECTION
+        activeModeDirection = .no_DIRECTION
         if selectedMode.shouldFireImmediateOnPress(direction) {
             return
         }
@@ -187,70 +187,70 @@ class TTModeMap: NSObject {
     
     // MARK: Batch actions
     
-    func selectedModeBatchActions(direction: TTModeDirection) {
+    func selectedModeBatchActions(_ direction: TTModeDirection) {
         
     }
     
-    func addBatchAction(actionName: String) {
+    func addBatchAction(_ actionName: String) {
         
     }
     
-    func removeBatchAction(batchActionKey: String) {
+    func removeBatchAction(_ batchActionKey: String) {
         
     }
     
     // MARK: Changing modes, actions, batch actions
     
-    func changeDirection(direction: TTModeDirection, toMode modeClassName: String) {
-        let prefs = NSUserDefaults.standardUserDefaults()
+    func changeDirection(_ direction: TTModeDirection, toMode modeClassName: String) {
+        let prefs = UserDefaults.standard
         let directionName = self.directionName(direction)
         let prefKey = "TT:mode:\(directionName)"
         
-        prefs.setObject(modeClassName, forKey: prefKey)
+        prefs.set(modeClassName, forKey: prefKey)
         prefs.synchronize()
         
         self.setupModes()
         self.activateModes()
     }
     
-    func changeDirection(direction: TTModeDirection, toAction actionClassName: String) {
+    func changeDirection(_ direction: TTModeDirection, toAction actionClassName: String) {
         selectedMode.changeDirection(direction, toAction:actionClassName)
     }
     
     // MARK: Direction helpers
     
     
-    func modeInDirection(direction: TTModeDirection) -> (TTMode) {
+    func modeInDirection(_ direction: TTModeDirection) -> (TTMode) {
         switch direction {
-        case .NORTH:
+        case .north:
             return self.northMode
-        case .EAST:
+        case .east:
             return self.eastMode
-        case .WEST:
+        case .west:
             return self.westMode
-        case .SOUTH:
+        case .south:
             return self.southMode
         default:
             return self.northMode
         }
     }
     
-    func directionName(direction: TTModeDirection) -> String {
+    func directionName(_ direction: TTModeDirection) -> String {
         switch direction {
-        case .NORTH:
+        case .north:
             return "north"
-        case .EAST:
+        case .east:
             return "east"
-        case .WEST:
+        case .west:
             return "west"
-        case .SOUTH:
+        case .south:
             return "south"
         default:
             return ""
         }
     }
     
-    func toggleInspectingModeDirection(direction: TTModeDirection) {
+    func toggleInspectingModeDirection(_ direction: TTModeDirection) {
         if self.inspectingModeDirection == direction {
             if self.openedModeChangeMenu {
                 self.openedModeChangeMenu = false
@@ -261,7 +261,7 @@ class TTModeMap: NSObject {
             if self.openedAddActionChangeMenu {
                 self.openedAddActionChangeMenu = false
             }
-            self.inspectingModeDirection = .NO_DIRECTION
+            self.inspectingModeDirection = .no_DIRECTION
         } else {
             self.inspectingModeDirection = direction
         }

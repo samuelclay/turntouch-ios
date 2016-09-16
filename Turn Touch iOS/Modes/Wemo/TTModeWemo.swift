@@ -8,6 +8,17 @@
 
 import UIKit
 import CoreFoundation
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
 
 struct TTModeWemoConstants {
     static let kWemoDeviceLocation = "wemoDeviceLocation"
@@ -15,19 +26,19 @@ struct TTModeWemoConstants {
 }
 
 enum TTWemoState {
-    case Disconnected
-    case Connecting
-    case Connected
+    case disconnected
+    case connecting
+    case connected
 }
 
 protocol TTModeWemoDelegate {
-    func changeState(state: TTWemoState, mode: TTModeWemo)
+    func changeState(_ state: TTWemoState, mode: TTModeWemo)
 }
 
 class TTModeWemo: TTMode, TTModeWemoMulticastDelegate, TTModeWemoDeviceDelegate {
     
     var delegate: TTModeWemoDelegate!
-    var wemoState = TTWemoState.Disconnected
+    var wemoState = TTWemoState.disconnected
     static var multicastServer = TTModeWemoMulticastServer()
     static var foundDevices: [TTModeWemoDevice] = []
     
@@ -39,25 +50,25 @@ class TTModeWemo: TTMode, TTModeWemoMulticastDelegate, TTModeWemoDeviceDelegate 
         self.assembleFoundDevices()
         
         if TTModeWemo.foundDevices.count == 0 {
-            wemoState = .Connecting
+            wemoState = .connecting
 //            self.beginConnectingToWemo()
         } else {
-            wemoState = .Connected
+            wemoState = .connected
         }
         delegate?.changeState(wemoState, mode: self)
     }
     
     func resetKnownDevices() {
-        let prefs = NSUserDefaults.standardUserDefaults()
-        prefs.removeObjectForKey(TTModeWemoConstants.kWemoFoundDevices)
+        let prefs = UserDefaults.standard
+        prefs.removeObject(forKey: TTModeWemoConstants.kWemoFoundDevices)
         prefs.synchronize()
     }
     
     func assembleFoundDevices() {
-        let prefs = NSUserDefaults.standardUserDefaults()
+        let prefs = UserDefaults.standard
         TTModeWemo.foundDevices = []
 
-        if let foundDevices = prefs.arrayForKey(TTModeWemoConstants.kWemoFoundDevices) as? [[String: AnyObject]] {
+        if let foundDevices = prefs.array(forKey: TTModeWemoConstants.kWemoFoundDevices) as? [[String: AnyObject]] {
             for device in foundDevices {
                 let newDevice = self.foundDevice([:], host: device["ipaddress"] as! String, port: device["port"] as! Int, name: device["name"] as! String?, live: false)
                 print(" ---> Loading wemo: \(newDevice.deviceName) (\(newDevice.location()))")
@@ -142,25 +153,25 @@ class TTModeWemo: TTMode, TTModeWemoMulticastDelegate, TTModeWemoDeviceDelegate 
         TTModeWemo.multicastServer.deactivate()
     }
     
-    func runTTModeWemoDeviceOn(direction: NSNumber) {
-        if let device = self.selectedDevice(TTModeDirection(rawValue: direction.integerValue)!) {
-            device.changeDeviceState(.On)
+    func runTTModeWemoDeviceOn(_ direction: NSNumber) {
+        if let device = self.selectedDevice(TTModeDirection(rawValue: direction.intValue)!) {
+            device.changeDeviceState(.on)
         }
     }
     
-    func runTTModeWemoDeviceOff(direction: NSNumber) {
-        if let device = self.selectedDevice(TTModeDirection(rawValue: direction.integerValue)!) {
-            device.changeDeviceState(.Off)
+    func runTTModeWemoDeviceOff(_ direction: NSNumber) {
+        if let device = self.selectedDevice(TTModeDirection(rawValue: direction.intValue)!) {
+            device.changeDeviceState(.off)
         }
     }
     
-    func runTTModeWemoDeviceToggle(direction: NSNumber) {
-        if let device = self.selectedDevice(TTModeDirection(rawValue: direction.integerValue)!) {
+    func runTTModeWemoDeviceToggle(_ direction: NSNumber) {
+        if let device = self.selectedDevice(TTModeDirection(rawValue: direction.intValue)!) {
             device.requestDeviceState {
-                if device.deviceState == TTModeWemoDeviceState.On {
-                    device.changeDeviceState(.Off)
+                if device.deviceState == TTModeWemoDeviceState.on {
+                    device.changeDeviceState(.off)
                 } else {
-                    device.changeDeviceState(.On)
+                    device.changeDeviceState(.on)
                 }
             }
         }
@@ -168,7 +179,7 @@ class TTModeWemo: TTMode, TTModeWemoMulticastDelegate, TTModeWemoDeviceDelegate 
     
     // MARK: Wemo devices
     
-    func selectedDevice(direction: TTModeDirection) -> TTModeWemoDevice? {
+    func selectedDevice(_ direction: TTModeDirection) -> TTModeWemoDevice? {
         if TTModeWemo.foundDevices.count == 0 {
             return nil
         }
@@ -190,20 +201,20 @@ class TTModeWemo: TTMode, TTModeWemoMulticastDelegate, TTModeWemoDeviceDelegate 
     }
     
     func beginConnectingToWemo() {
-        wemoState = .Connecting
+        wemoState = .connecting
         delegate?.changeState(wemoState, mode: self)
         
         TTModeWemo.multicastServer.beginBroadcast()
     }
     
     func cancelConnectingToWemo() {
-        wemoState = .Disconnected
+        wemoState = .disconnected
         delegate?.changeState(wemoState, mode: self)
     }
     
     // MARK: Multicast delegate
     
-    func foundDevice(headers: [String: String], host ipAddress: String, port: Int, name: String?, live: Bool) -> TTModeWemoDevice {
+    func foundDevice(_ headers: [String: String], host ipAddress: String, port: Int, name: String?, live: Bool) -> TTModeWemoDevice {
         let newDevice = TTModeWemoDevice(ipAddress: ipAddress, port: port)
         newDevice.delegate = self
         if name != nil {
@@ -226,22 +237,22 @@ class TTModeWemo: TTMode, TTModeWemoMulticastDelegate, TTModeWemoDeviceDelegate 
     
     // MARK: Device delegate
     
-    func deviceReady(device: TTModeWemoDevice) {
-        let prefs = NSUserDefaults.standardUserDefaults()
+    func deviceReady(_ device: TTModeWemoDevice) {
+        let prefs = UserDefaults.standard
 
-        TTModeWemo.foundDevices = TTModeWemo.foundDevices.sort {
+        TTModeWemo.foundDevices = TTModeWemo.foundDevices.sorted {
             (a, b) -> Bool in
-            return a.deviceName?.lowercaseString < b.deviceName?.lowercaseString
+            return a.deviceName?.lowercased() < b.deviceName?.lowercased()
         }
         
         var foundDevices: [[String: AnyObject]] = []
         for device in TTModeWemo.foundDevices {
-            foundDevices.append(["ipaddress": device.ipAddress, "port": device.port, "name": device.deviceName])
+            foundDevices.append(["ipaddress": device.ipAddress as AnyObject, "port": device.port as AnyObject, "name": device.deviceName as AnyObject])
         }
-        prefs.setObject(foundDevices, forKey: TTModeWemoConstants.kWemoFoundDevices)
+        prefs.set(foundDevices, forKey: TTModeWemoConstants.kWemoFoundDevices)
         prefs.synchronize()
 
-        wemoState = .Connected
+        wemoState = .connected
         delegate?.changeState(wemoState, mode: self)
     }
 }

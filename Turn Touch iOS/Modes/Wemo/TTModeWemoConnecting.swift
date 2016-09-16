@@ -21,7 +21,7 @@ class TTModeWemoConnecting: TTOptionsDetailViewController {
         self.view.clipsToBounds = true
     }
     
-    func setConnectingWithMessage(message: String?) {
+    func setConnectingWithMessage(_ message: String?) {
         var m = message
         if message == nil {
             m = "Connecting to Wemo..."
@@ -30,7 +30,7 @@ class TTModeWemoConnecting: TTOptionsDetailViewController {
         self.progressMessage.text = m
     }
 
-    @IBAction func cancelConnect(sender: UIButton) {
+    @IBAction func cancelConnect(_ sender: UIButton) {
         self.modeWemo.cancelConnectingToWemo()
     }
 
