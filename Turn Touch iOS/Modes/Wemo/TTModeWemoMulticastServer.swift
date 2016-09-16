@@ -27,17 +27,21 @@ class TTModeWemoMulticastServer: NSObject, GCDAsyncUdpSocketDelegate {
     }
     
     func deactivate() {
-        
+        if udpSocket != nil {
+            do {
+                udpSocket.pauseReceiving()
+                try udpSocket.leaveMulticastGroup(MULTICAST_GROUP_IP)
+            } catch let e {
+                print(" ---> Multicast error: \(e)")
+            }
+            udpSocket.close()
+            udpSocket = nil
+        }
+        attemptsLeft = 0
     }
     
     deinit {
-        do {
-            try udpSocket.leaveMulticastGroup(MULTICAST_GROUP_IP)
-        } catch let e {
-            print(" ---> Multicast error: \(e)")
-        }
-        udpSocket.close()
-        attemptsLeft = 0
+        self.deactivate()
     }
     
     // MARK: Multicast Receive

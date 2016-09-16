@@ -210,6 +210,8 @@ class TTModeWemo: TTMode, TTModeWemoMulticastDelegate, TTModeWemoDeviceDelegate 
     func cancelConnectingToWemo() {
         wemoState = .disconnected
         delegate?.changeState(wemoState, mode: self)
+        
+        TTModeWemo.multicastServer.deactivate()
     }
     
     // MARK: Multicast delegate

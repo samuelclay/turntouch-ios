@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         self.loadPreferences()
-        print(" application didFinishLaunchingWithOptions");
+
         let centralManagerIdentifiers = launchOptions?[UIApplicationLaunchOptionsKey.bluetoothCentrals]
         if centralManagerIdentifiers != nil {
             print(" ---> centralManagerIdentifiers: \(centralManagerIdentifiers)")
