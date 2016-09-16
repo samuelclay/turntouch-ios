@@ -10,7 +10,7 @@ import UIKit
 
 class TTActionTitleView: UIView {
     
-    @IBOutlet var changeButton = UIButton(type: UIButtonType.system) as UIButton!
+    @IBOutlet var changeButton: UIButton! = UIButton(type: UIButtonType.system)
     var modeImage: UIImage = UIImage()
     var modeTitle: String = ""
     var titleLabel: UILabel = UILabel()
@@ -21,13 +21,13 @@ class TTActionTitleView: UIView {
         self.translatesAutoresizingMaskIntoConstraints = false
 //        self.contentMode = UIViewContentMode.Redraw;
         
-        changeButton?.translatesAutoresizingMaskIntoConstraints = false
-        changeButton?.setTitle("Change", for: UIControlState())
-        changeButton?.titleLabel!.font = UIFont(name: "Effra", size: 13)
-        changeButton?.titleLabel!.textColor = UIColor(hex: 0xA0A0A0)
-        changeButton?.titleLabel!.lineBreakMode = NSLineBreakMode.byClipping
-        changeButton?.addTarget(self, action: #selector(self.pressChange), for: .touchUpInside)
-        self.addSubview(changeButton!)
+        changeButton.translatesAutoresizingMaskIntoConstraints = false
+        changeButton.setTitle("Change", for: UIControlState())
+        changeButton.titleLabel!.font = UIFont(name: "Effra", size: 13)
+        changeButton.titleLabel!.textColor = UIColor(hex: 0xA0A0A0)
+        changeButton.titleLabel!.lineBreakMode = NSLineBreakMode.byClipping
+        changeButton.addTarget(self, action: #selector(self.pressChange), for: .touchUpInside)
+        self.addSubview(changeButton)
         self.addConstraint(NSLayoutConstraint(item: changeButton, attribute: .trailing, relatedBy: .equal,
             toItem: self, attribute: .trailing, multiplier: 1.0, constant: -24))
         self.addConstraint(NSLayoutConstraint(item: changeButton, attribute: .centerY, relatedBy: .equal,
@@ -84,9 +84,9 @@ class TTActionTitleView: UIView {
     
     override func draw(_ rect: CGRect) {
         if appDelegate().modeMap.openedActionChangeMenu {
-            changeButton?.setTitle("Done", for: UIControlState())
+            changeButton.setTitle("Done", for: UIControlState())
         } else {
-            changeButton?.setTitle("Change", for: UIControlState())
+            changeButton.setTitle("Change", for: UIControlState())
         }
         
         let direction = appDelegate().modeMap.inspectingModeDirection

@@ -130,8 +130,8 @@ class TTModeCamera: TTMode {
     // MARK: Action methods
     
     override func activate() {
-        if appDelegate().modeMap.selectedMode.modeChangeType == .remoteButton || true {
-            self.ensureCamera()
+        if appDelegate().modeMap.selectedMode.modeChangeType == .remoteButton {
+            _ = self.ensureCamera()
         }
     }
     

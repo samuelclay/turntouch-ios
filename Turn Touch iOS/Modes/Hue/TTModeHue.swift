@@ -821,22 +821,24 @@ class TTModeHue: TTMode {
             scene.lightIdentifiers = cache?.lights.map { (_, value) in (value as! PHLight).identifier }
             bridgeSendAPI.saveScene(withCurrentLightStates: scene, completionHandler: {(errors) in
 //                print("Hue:EE2 scene: \(errors)")
-                for (i, (_, value)) in (cache?.lights.enumerated())! {
-                    let light = value as! PHLight
-                    let lightState = PHLightState()
-                    lightState.on = NSNumber(bool: true)
-                    lightState.alert = PHLightAlertMode.init(0)
-                    var point = PHUtilities.calculateXY(UIColor(red: 245/255.0, green: 176/255.0, blue: 116/255.0, alpha: 1), forModel: light.modelNumber)
-                    if i % 3 == 2 {
-                        point = PHUtilities.calculateXY(UIColor(red: 44/255.0, green: 56/255.0, blue: 225/255.0, alpha: 1), forModel: light.modelNumber)
+                if let lights = cache?.lights {
+                    for (i, (key: _, value: value)) in lights.enumerated() {
+                        let light = value as! PHLight
+                        let lightState = PHLightState()
+                        lightState.on = NSNumber(booleanLiteral: true)
+                        lightState.alert = PHLightAlertMode.init(0)
+                        var point = PHUtilities.calculateXY(UIColor(red: 245/255.0, green: 176/255.0, blue: 116/255.0, alpha: 1), forModel: light.modelNumber)
+                        if i % 3 == 2 {
+                            point = PHUtilities.calculateXY(UIColor(red: 44/255.0, green: 56/255.0, blue: 225/255.0, alpha: 1), forModel: light.modelNumber)
+                        }
+                        lightState.x = NSNumber(value: Float(point.x))
+                        lightState.y = NSNumber(value: Float(point.y))
+                        lightState.brightness = NSNumber(value: 200)
+                        lightState.saturation = NSNumber(value: Int(MAX_BRIGHTNESS))
+                        bridgeSendAPI.save(lightState, forLightIdentifier: light.identifier, inSceneWithIdentifier: scene.identifier, completionHandler: {(errors) in
+    //                        print("Hue:EE2 scene: \(errors)")
+                        })
                     }
-                    lightState.x = NSNumber(float: Float(point.x))
-                    lightState.y = NSNumber(float: Float(point.y))
-                    lightState.brightness = NSNumber(int: 200)
-                    lightState.saturation = NSNumber(integer: Int(MAX_BRIGHTNESS))
-                    bridgeSendAPI.saveLightState(lightState, forLightIdentifier: light.identifier, inSceneWithIdentifier: scene.identifier, completionHandler: {(errors) in
-//                        print("Hue:EE2 scene: \(errors)")
-                    })
                 }
             })
         }
@@ -848,19 +850,21 @@ class TTModeHue: TTMode {
             scene.lightIdentifiers = cache?.lights.map { (_, value) in (value as! PHLight).identifier }
             bridgeSendAPI.saveScene(withCurrentLightStates: scene, completionHandler: {(errors) in
 //                print("Hue:LE1 scene: \(errors)")
-                for (_, value) in (cache?.lights)! {
-                    let light = value as! PHLight
-                    let lightState = PHLightState()
-                    lightState.on = NSNumber(booleanLiteral: true)
-                    lightState.alert = PHLightAlertMode.init(0)
-                    let point = PHUtilities.calculateXY(UIColor(red: 95/255.0, green: 76/255.0, blue: 36/255.0, alpha: 1), forModel: light.modelNumber)
-                    lightState.x = NSNumber(value: Float(point.x))
-                    lightState.y = NSNumber(value: Float(point.y))
-                    lightState.brightness = NSNumber(value: Int(Double(MAX_BRIGHTNESS)*(6/10.0)))
-                    lightState.saturation = NSNumber(value: Int(MAX_BRIGHTNESS))
-                    bridgeSendAPI.save(lightState, forLightIdentifier: light.identifier, inSceneWithIdentifier: scene.identifier, completionHandler: {(errors) in
-//                        print("Hue:LE1 scene: \(errors)")
-                    })
+                if let lights = cache?.lights {
+                    for (_, value) in lights {
+                        let light = value as! PHLight
+                        let lightState = PHLightState()
+                        lightState.on = NSNumber(booleanLiteral: true)
+                        lightState.alert = PHLightAlertMode.init(0)
+                        let point = PHUtilities.calculateXY(UIColor(red: 95/255.0, green: 76/255.0, blue: 36/255.0, alpha: 1), forModel: light.modelNumber)
+                        lightState.x = NSNumber(value: Float(point.x))
+                        lightState.y = NSNumber(value: Float(point.y))
+                        lightState.brightness = NSNumber(value: Int(Double(MAX_BRIGHTNESS)*(6/10.0)))
+                        lightState.saturation = NSNumber(value: Int(MAX_BRIGHTNESS))
+                        bridgeSendAPI.save(lightState, forLightIdentifier: light.identifier, inSceneWithIdentifier: scene.identifier, completionHandler: {(errors) in
+    //                        print("Hue:LE1 scene: \(errors)")
+                        })
+                    }
                 }
             })
         }
@@ -872,23 +876,25 @@ class TTModeHue: TTMode {
             scene.lightIdentifiers = cache?.lights.map { (_, value) in (value as! PHLight).identifier }
             bridgeSendAPI.saveScene(withCurrentLightStates: scene, completionHandler: {(errors) in
 //                print("Hue:LE2 scene: \(errors)")
-                for (i, (_, value)) in (cache?.lights.enumerated())! {
-                    let light = value as! PHLight
-                    let lightState = PHLightState()
-                    lightState.on = NSNumber(bool: true)
-                    lightState.alert = PHLightAlertMode.init(0)
-                    var point = PHUtilities.calculateXY(UIColor(red: 145/255.0, green: 76/255.0, blue: 16/255.0, alpha: 1), forModel: light.modelNumber)
-                    lightState.brightness = NSNumber(integer: Int(Double(MAX_BRIGHTNESS)*(6/10.0)))
-                    if i % 3 == 2 {
-                        point = PHUtilities.calculateXY(UIColor(red: 134/255.0, green: 56/255.0, blue: 205/255.0, alpha: 1), forModel: light.modelNumber)
-                        lightState.brightness = NSNumber(integer: Int(Double(MAX_BRIGHTNESS)*(8/10.0)))
+                if let lights = cache?.lights {
+                    for (i, (key: _, value: value)) in lights.enumerated() {
+                        let light = value as! PHLight
+                        let lightState = PHLightState()
+                        lightState.on = NSNumber(value: true)
+                        lightState.alert = PHLightAlertMode.init(0)
+                        var point = PHUtilities.calculateXY(UIColor(red: 145/255.0, green: 76/255.0, blue: 16/255.0, alpha: 1), forModel: light.modelNumber)
+                        lightState.brightness = NSNumber(value: Int(Double(MAX_BRIGHTNESS)*(6/10.0)))
+                        if i % 3 == 2 {
+                            point = PHUtilities.calculateXY(UIColor(red: 134/255.0, green: 56/255.0, blue: 205/255.0, alpha: 1), forModel: light.modelNumber)
+                            lightState.brightness = NSNumber(value: Int(Double(MAX_BRIGHTNESS)*(8/10.0)))
+                        }
+                        lightState.x = NSNumber(value: Float(point.x))
+                        lightState.y = NSNumber(value: Float(point.y))
+                        lightState.saturation = NSNumber(value: Int(MAX_BRIGHTNESS))
+                        bridgeSendAPI.save(lightState, forLightIdentifier: light.identifier, inSceneWithIdentifier: scene.identifier, completionHandler: {(errors) in
+    //                        print("Hue:LE2 scene: \(errors)")
+                        })
                     }
-                    lightState.x = NSNumber(float: Float(point.x))
-                    lightState.y = NSNumber(float: Float(point.y))
-                    lightState.saturation = NSNumber(integer: Int(MAX_BRIGHTNESS))
-                    bridgeSendAPI.saveLightState(lightState, forLightIdentifier: light.identifier, inSceneWithIdentifier: scene.identifier, completionHandler: {(errors) in
-//                        print("Hue:LE2 scene: \(errors)")
-                    })
                 }
             })
         }

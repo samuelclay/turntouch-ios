@@ -10,7 +10,7 @@ import UIKit
 
 class TTModeTitleView: UIView {
 
-    @IBOutlet var changeButton = UIButton(type: UIButtonType.system) as UIButton!
+    @IBOutlet var changeButton: UIButton! = UIButton(type: UIButtonType.system)
     var modeImage: UIImage = UIImage()
     var modeTitle: String = ""
     var titleLabel: UILabel = UILabel()
@@ -22,13 +22,13 @@ class TTModeTitleView: UIView {
         self.contentMode = UIViewContentMode.redraw;
         self.backgroundColor = UIColor.clear
         
-        changeButton?.translatesAutoresizingMaskIntoConstraints = false
-        changeButton?.setTitle("Change", for: UIControlState.normal)
-        changeButton?.titleLabel!.font = UIFont(name: "Effra", size: 13)
-        changeButton?.titleLabel!.textColor = UIColor(hex: 0xA0A0A0)
-        changeButton?.titleLabel!.lineBreakMode = NSLineBreakMode.byClipping
-        changeButton?.addTarget(self, action: #selector(self.pressChange), for: .touchUpInside)
-        self.addSubview(changeButton!)
+        changeButton.translatesAutoresizingMaskIntoConstraints = false
+        changeButton.setTitle("Change", for: UIControlState.normal)
+        changeButton.titleLabel!.font = UIFont(name: "Effra", size: 13)
+        changeButton.titleLabel!.textColor = UIColor(hex: 0xA0A0A0)
+        changeButton.titleLabel!.lineBreakMode = NSLineBreakMode.byClipping
+        changeButton.addTarget(self, action: #selector(self.pressChange), for: .touchUpInside)
+        self.addSubview(changeButton)
         self.addConstraint(NSLayoutConstraint(item: changeButton, attribute: .trailing, relatedBy: .equal,
             toItem: self, attribute: .trailing, multiplier: 1.0, constant: -24))
         self.addConstraint(NSLayoutConstraint(item: changeButton, attribute: .centerY, relatedBy: .equal,
@@ -87,9 +87,9 @@ class TTModeTitleView: UIView {
     
     override func draw(_ rect: CGRect) {
         if appDelegate().modeMap.openedModeChangeMenu {
-            changeButton?.setTitle("Done", for: .normal)
+            changeButton.setTitle("Done", for: .normal)
         } else {
-            changeButton?.setTitle("Change", for: .normal)
+            changeButton.setTitle("Change", for: .normal)
         }
         
         titleLabel.text = type(of: appDelegate().modeMap.selectedMode).subtitle()

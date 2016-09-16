@@ -70,32 +70,33 @@ class TTModeCameraViewController: UIViewController {
             }
         }
         
-        camera.onError = {
-            (cam: LLSimpleCamera?, error: NSError?) in
+        camera.onError = { (cam: LLSimpleCamera?, error: Error?) in
             print(" camera error: \(error)")
             
-            if error.domain == LLSimpleCameraErrorDomain {
-                if error.code == Int(LLSimpleCameraErrorCodeCameraPermission.rawValue) ||
-                    error.code == Int(LLSimpleCameraErrorCodeMicrophonePermission.rawValue) {
-                    if self.errorLabel != nil {
-                        self.errorLabel.removeFromSuperview()
+            if let camError = error as? NSError {
+                if camError.domain == LLSimpleCameraErrorDomain {
+                    if camError.code == Int(LLSimpleCameraErrorCodeCameraPermission.rawValue) ||
+                        camError.code == Int(LLSimpleCameraErrorCodeMicrophonePermission.rawValue) {
+                        if self.errorLabel != nil {
+                            self.errorLabel.removeFromSuperview()
+                        }
+                        
+                        let label = UILabel()
+                        label.translatesAutoresizingMaskIntoConstraints = false
+                        label.text = "Please give Turn Touch permission to use the camera. Go to Settings > Camera"
+                        label.numberOfLines = 2
+                        label.lineBreakMode = NSLineBreakMode.byWordWrapping
+                        label.font = UIFont(name: "Effra", size: 13)
+                        label.textColor = UIColor.white
+                        label.textAlignment = .center
+                        self.view.addSubview(label)
+                        self.view.addConstraint(NSLayoutConstraint(item: label, attribute: .centerX,
+                            relatedBy: .equal, toItem: self.view, attribute: .centerX,
+                            multiplier: 1.0, constant: 0))
+                        self.view.addConstraint(NSLayoutConstraint(item: label, attribute: .centerY,
+                            relatedBy: .equal, toItem: self.view, attribute: .centerY,
+                            multiplier: 1.0, constant: 0))
                     }
-                    
-                    let label = UILabel()
-                    label.translatesAutoresizingMaskIntoConstraints = false
-                    label.text = "Please give Turn Touch permission to use the camera. Go to Settings > Camera"
-                    label.numberOfLines = 2
-                    label.lineBreakMode = NSLineBreakMode.byWordWrapping
-                    label.font = UIFont(name: "Effra", size: 13)
-                    label.textColor = UIColor.white
-                    label.textAlignment = .center
-                    self.view.addSubview(label)
-                    self.view.addConstraint(NSLayoutConstraint(item: label, attribute: .centerX,
-                        relatedBy: .equal, toItem: self.view, attribute: .centerX,
-                        multiplier: 1.0, constant: 0))
-                    self.view.addConstraint(NSLayoutConstraint(item: label, attribute: .centerY,
-                        relatedBy: .equal, toItem: self.view, attribute: .centerY,
-                        multiplier: 1.0, constant: 0))
                 }
             }
         }
@@ -249,11 +250,11 @@ class TTModeCameraViewController: UIViewController {
     
     func shoot() {
         if segmentedControl.selectedSegmentIndex == 0 {
-            camera.capture({ (cam: LLSimpleCamera!, image: UIImage!, metadata: [AnyHashable: Any]!, error: NSError!) in
+            camera.capture({ (cam: LLSimpleCamera?, image: UIImage?, metadata: [AnyHashable: Any]?, error: Error?) in
                 if error == nil {
                     print("image: \(image) - \(metadata)")
                     self.modeCamera.cameraState = .imageReview
-                    let reviewViewController = TTModeCameraReviewViewController(image: image)
+                    let reviewViewController = TTModeCameraReviewViewController(image: image!)
                     self.present(reviewViewController, animated: false, completion: nil)
                 } else {
                     print("capture error: \(error)")
@@ -268,8 +269,8 @@ class TTModeCameraViewController: UIViewController {
 //                snapButton.layer.borderColor = UIColor.redColor().CGColor
 //                snapButton.backgroundColor = UIColor.redColor().colorWithAlphaComponent(0.5)
                 
-                let outputURL = self.applicationDocumentsDirectory()?.URLByAppendingPathComponent("test1").URLByAppendingPathExtension("mov")
-                camera.startRecordingWithOutputUrl(outputURL, didRecord: { (cam: LLSimpleCamera!, outputFileUrl: URL!, error: NSError!) in
+                let outputURL = self.applicationDocumentsDirectory()?.appendingPathComponent("test1").appendingPathExtension("mov")
+                camera.startRecording(withOutputUrl: outputURL, didRecord: { (cam: LLSimpleCamera?, outputFileUrl: URL?, error: Error?) in
                     print("recorded video: \(outputFileUrl)")
                 })
             } else {

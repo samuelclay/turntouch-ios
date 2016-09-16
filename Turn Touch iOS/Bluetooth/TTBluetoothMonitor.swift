@@ -640,11 +640,11 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
     }
     
     func writeNicknameToDevice(_ device: TTDevice, nickname: String) {
-        var data = NSData(data: nickname.data(using: String.Encoding.utf8)!) as Data
+        var data = NSMutableData(data: nickname.data(using: String.Encoding.utf8)!)
         let prefs = UserDefaults.standard
 
-        if data.count > 32 {
-            var dataString = String(data: data, encoding: String.Encoding.utf8)
+        if data.length > 32 {
+            var dataString = String(data: data as Data, encoding: String.Encoding.utf8)
             dataString = dataString?.substring(to: dataString!.characters.index(dataString!.startIndex, offsetBy: 32))
             var maxLength = min(32, dataString!.characters.count)
             
@@ -659,7 +659,7 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
             }
             
 //            dataString?.substringToIndex(dataString!.startIndex.advancedBy(maxLength))
-            data = NSData(data: dataString!.data(using: String.Encoding.utf8)!) as Data
+            data = NSMutableData(data: dataString!.data(using: String.Encoding.utf8)!)
         } else {
             data.increaseLength(by: 32-data.length)
         }
@@ -670,9 +670,9 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
         if DEBUG_BLUETOOTH {
             print(" ---> New nickname: \(nickname) (\(data))")
         }
-        device.peripheral.writeValue(data, for: characteristic!, type: .withResponse)
+        device.peripheral.writeValue(data as Data, for: characteristic!, type: .withResponse)
         
-        device.setNicknameData(data)
+        device.setNicknameData(data as Data)
         prefs.set(nickname, forKey: "TT:device:\(device.uuid):nickname")
         prefs.synchronize()
         
@@ -701,7 +701,7 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
         if pairedDevices == nil {
             pairedDevices = []
         }
-        pairedDevices?.append(peripheral.identifier.UUIDString)
+        pairedDevices?.append(peripheral.identifier.uuidString)
         preferences.set(pairedDevices, forKey: "TT:devices:paired")
         preferences.synchronize()
         

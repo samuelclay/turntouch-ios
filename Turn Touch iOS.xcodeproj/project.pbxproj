@@ -240,7 +240,6 @@
 		FFF270941CEE88E500E46575 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF270931CEE88E500E46575 /* AppDelegate.swift */; };
 		FFF2709D1CEE88E500E46575 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FFF2709C1CEE88E500E46575 /* Assets.xcassets */; };
 		FFF270A01CEE88E500E46575 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFF2709E1CEE88E500E46575 /* LaunchScreen.storyboard */; };
-		FFF270AB1CEE88E500E46575 /* Turn_Touch_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF270AA1CEE88E500E46575 /* Turn_Touch_iOSTests.swift */; };
 		FFF270B61CEE88E500E46575 /* Turn_Touch_iOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF270B51CEE88E500E46575 /* Turn_Touch_iOSUITests.swift */; };
 		FFF270C51CEE97AF00E46575 /* TTMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF270C31CEE97AF00E46575 /* TTMainViewController.swift */; };
 		FFF46BC51D0E58C000158751 /* TTDeviceTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF46BC41D0E58C000158751 /* TTDeviceTitleView.swift */; };
@@ -525,8 +524,6 @@
 		FFF2709F1CEE88E500E46575 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FFF270A11CEE88E500E46575 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FFF270A61CEE88E500E46575 /* Turn Touch iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Turn Touch iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		FFF270AA1CEE88E500E46575 /* Turn_Touch_iOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Turn_Touch_iOSTests.swift; sourceTree = "<group>"; };
-		FFF270AC1CEE88E500E46575 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FFF270B11CEE88E500E46575 /* Turn Touch iOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Turn Touch iOSUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFF270B51CEE88E500E46575 /* Turn_Touch_iOSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Turn_Touch_iOSUITests.swift; sourceTree = "<group>"; };
 		FFF270B71CEE88E500E46575 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -1095,7 +1092,6 @@
 				FFF270921CEE88E500E46575 /* Turn Touch iOS */,
 				FFB41B7D1CF52E5700CD5F09 /* Supporting Files */,
 				FFF46BC81D10941500158751 /* Vendor */,
-				FFF270A91CEE88E500E46575 /* Turn Touch iOSTests */,
 				FFF270B41CEE88E500E46575 /* Turn Touch iOSUITests */,
 				FFF270911CEE88E500E46575 /* Products */,
 				2052B86C8110B5F324537385 /* Pods */,
@@ -1125,15 +1121,6 @@
 				FF44876E1D08E62700ED8099 /* Bluetooth */,
 			);
 			path = "Turn Touch iOS";
-			sourceTree = "<group>";
-		};
-		FFF270A91CEE88E500E46575 /* Turn Touch iOSTests */ = {
-			isa = PBXGroup;
-			children = (
-				FFF270AA1CEE88E500E46575 /* Turn_Touch_iOSTests.swift */,
-				FFF270AC1CEE88E500E46575 /* Info.plist */,
-			);
-			path = "Turn Touch iOSTests";
 			sourceTree = "<group>";
 		};
 		FFF270B41CEE88E500E46575 /* Turn Touch iOSUITests */ = {
@@ -1633,7 +1620,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FFF270AB1CEE88E500E46575 /* Turn_Touch_iOSTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
