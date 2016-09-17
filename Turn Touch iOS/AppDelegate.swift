@@ -25,6 +25,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         if centralManagerIdentifiers != nil {
             print(" ---> centralManagerIdentifiers: \(centralManagerIdentifiers)")
         }
+
+//        print(UserDefaults.standardUserDefaults().dictionaryRepresentation())
+//        erasePreferences()
         
         bluetoothMonitor = TTBluetoothMonitor()
         modeMap.setupModes()
@@ -35,15 +38,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 
         DispatchQueue.global().async {
             self.beginLocationUpdates()
-//            self.bluetoothMonitor.updateBluetoothState()
         }
         
-//        dispatch_async(dispatch_get_main_queue()) { 
+        DispatchQueue.main.async {
 //            appDelegate().mainViewController.showPairingModal()
 //            appDelegate().mainViewController.showFtuxModal()
-//        }
-        
-//        print(UserDefaults.standardUserDefaults().dictionaryRepresentation())
+        }
         
         return true
     }
@@ -130,6 +130,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         if status == .authorizedAlways {
             self.startSignificantChangeUpdates()
         }
+    }
+    
+    func erasePreferences() {
+        for pref in UserDefaults.standard.dictionaryRepresentation().keys {
+            UserDefaults.standard.removeObject(forKey: pref)
+        }
+        UserDefaults.standard.synchronize()
     }
 }
 

@@ -14,7 +14,7 @@ class TTDeviceTitleView: UIView, TTTitleMenuDelegate {
     var titleLabel: UILabel = UILabel()
     var stateLabel: UILabel = UILabel()
     var deviceImageView: UIImageView = UIImageView()
-    @IBOutlet var settingsButton = UIButton(type: UIButtonType.system) as UIButton!
+    @IBOutlet var settingsButton: UIButton! = UIButton(type: UIButtonType.system)
 
     init(device: TTDevice) {
         super.init(frame: CGRect.zero)
@@ -47,10 +47,10 @@ class TTDeviceTitleView: UIView, TTTitleMenuDelegate {
 
         
         let settingsImage = UIImage(named: "settings")
-        settingsButton?.setImage(settingsImage, for: UIControlState())
-        settingsButton?.translatesAutoresizingMaskIntoConstraints = false
-        settingsButton?.addTarget(self, action: #selector(self.pressSettings(_:)), for: .touchUpInside)
-        self.addSubview(settingsButton!)
+        settingsButton.setImage(settingsImage, for: UIControlState())
+        settingsButton.translatesAutoresizingMaskIntoConstraints = false
+        settingsButton.addTarget(self, action: #selector(self.pressSettings(_:)), for: .touchUpInside)
+        self.addSubview(settingsButton)
         self.addConstraint(NSLayoutConstraint(item: settingsButton, attribute: .height, relatedBy: .equal,
             toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: SETTINGS_ICON_SIZE))
         self.addConstraint(NSLayoutConstraint(item: settingsButton, attribute: .width, relatedBy: .equal,

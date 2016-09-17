@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SWXMLHash
 
 enum TTModeWemoDeviceState {
     case on
@@ -70,18 +71,14 @@ class TTModeWemoDevice: NSObject {
         task.resume()
     }
     
-    func parseSetupXml(_ data: Data) {
-        let results = PerformXMLXPathQuery(data, "/wemo:root/wemo:device/wemo:friendlyName",
-                                           UnsafeMutablePointer<Int8>(mutating: "wemo".cString(using: String.Encoding.utf8)),
-                                           UnsafeMutablePointer<Int8>(mutating: "urn:Belkin:device-1-0".cString(using: String.Encoding.utf8)))
-        if results?.count == 0 {
+    func parseSetupXml(_ xmlData: Data) {
+        let doc = SWXMLHash.parse(xmlData)
+        deviceName = doc["root"]["device"]["friendlyName"].element?.text
+        if deviceName != nil {
+            print(" ---> Found wemo: \(deviceName) (\(self.location()))")
+        } else {
             print(" ---> Error: could not find friendlyName for Wemo")
             deviceName = "Wemo device (\(self.location()))"
-        } else {
-            let device: [String: String] = results![0] as! [String: String]
-            deviceName = device["nodeContent"]
-//            deviceName = results[0]["nodeContent"] // kills syntax highlighting
-            print(" ---> Found wemo: \(deviceName) (\(self.location()))")
         }
         
         DispatchQueue.main.async {

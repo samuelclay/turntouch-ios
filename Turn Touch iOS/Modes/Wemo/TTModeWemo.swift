@@ -51,7 +51,7 @@ class TTModeWemo: TTMode, TTModeWemoMulticastDelegate, TTModeWemoDeviceDelegate 
         
         if TTModeWemo.foundDevices.count == 0 {
             wemoState = .connecting
-//            self.beginConnectingToWemo()
+            self.beginConnectingToWemo()
         } else {
             wemoState = .connected
         }

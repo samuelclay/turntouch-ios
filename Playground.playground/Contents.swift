@@ -20,14 +20,19 @@ String(bytes[0], radix:2)
 
 // Range
 
-var headers: [String: String] = [:]
-let line = "Host: 129.0.0.1"
-
-let nomatch = line.range(of: "%")
-if let match = line.range(of: ":") {
-    let key = line.substring(to: match.lowerBound).lowercased()
-    let value = line.substring(from: line.index(match.lowerBound, offsetBy: 2)).trimmingCharacters(in: CharacterSet.whitespaces)
-    headers[key] = value
+func splitHeaders(_ line: String) -> [String: String] {
+    var headers: [String: String] = [:]
+    if let match = line.range(of: ":") {
+        let key = line.substring(to: match.lowerBound).lowercased()
+        if line.characters.count > line.distance(from: line.startIndex, to: match.lowerBound) + 2 {
+            let value = line.substring(from: line.index(match.lowerBound, offsetBy: 2)).trimmingCharacters(in: CharacterSet.whitespaces)
+            headers[key] = value
+        }
+    }
+    
+    return headers
 }
 
-headers
+splitHeaders("Host: 129.0.0.1")
+splitHeaders("Ex:")
+

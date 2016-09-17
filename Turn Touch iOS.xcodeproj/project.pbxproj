@@ -240,7 +240,6 @@
 		FFF270941CEE88E500E46575 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF270931CEE88E500E46575 /* AppDelegate.swift */; };
 		FFF2709D1CEE88E500E46575 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FFF2709C1CEE88E500E46575 /* Assets.xcassets */; };
 		FFF270A01CEE88E500E46575 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFF2709E1CEE88E500E46575 /* LaunchScreen.storyboard */; };
-		FFF270B61CEE88E500E46575 /* Turn_Touch_iOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF270B51CEE88E500E46575 /* Turn_Touch_iOSUITests.swift */; };
 		FFF270C51CEE97AF00E46575 /* TTMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF270C31CEE97AF00E46575 /* TTMainViewController.swift */; };
 		FFF46BC51D0E58C000158751 /* TTDeviceTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF46BC41D0E58C000158751 /* TTDeviceTitleView.swift */; };
 		FFF46BC71D0E5C8400158751 /* TTDeviceTitlesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF46BC61D0E5C8400158751 /* TTDeviceTitlesView.swift */; };
@@ -256,23 +255,6 @@
 		FFF46BEE1D10E6A300158751 /* TTOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF46BED1D10E6A300158751 /* TTOptionsView.swift */; };
 		FFF46BF01D10E6D400158751 /* TTOptionsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF46BEF1D10E6D400158751 /* TTOptionsDetailViewController.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		FFF270A71CEE88E500E46575 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = FFF270881CEE88E500E46575 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = FFF2708F1CEE88E500E46575;
-			remoteInfo = "Turn Touch iOS";
-		};
-		FFF270B21CEE88E500E46575 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = FFF270881CEE88E500E46575 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = FFF2708F1CEE88E500E46575;
-			remoteInfo = "Turn Touch iOS";
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		552AD10F15F394A44BF4BD6D /* Pods-Turn Touch iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Turn Touch iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Turn Touch iOS/Pods-Turn Touch iOS.debug.xcconfig"; sourceTree = "<group>"; };
@@ -523,10 +505,6 @@
 		FFF2709C1CEE88E500E46575 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FFF2709F1CEE88E500E46575 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FFF270A11CEE88E500E46575 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FFF270A61CEE88E500E46575 /* Turn Touch iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Turn Touch iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		FFF270B11CEE88E500E46575 /* Turn Touch iOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Turn Touch iOSUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		FFF270B51CEE88E500E46575 /* Turn_Touch_iOSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Turn_Touch_iOSUITests.swift; sourceTree = "<group>"; };
-		FFF270B71CEE88E500E46575 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FFF270C31CEE97AF00E46575 /* TTMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTMainViewController.swift; path = Views/Main/TTMainViewController.swift; sourceTree = "<group>"; };
 		FFF46BC41D0E58C000158751 /* TTDeviceTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTDeviceTitleView.swift; path = Views/Main/TTDeviceTitleView.swift; sourceTree = "<group>"; };
 		FFF46BC61D0E5C8400158751 /* TTDeviceTitlesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTDeviceTitlesView.swift; path = Views/Main/TTDeviceTitlesView.swift; sourceTree = "<group>"; };
@@ -559,20 +537,6 @@
 				FF4AF7AF1D2475B50009C777 /* libxml2.tbd in Frameworks */,
 				FFF46BE71D1096DC00158751 /* HueSDK_iOS.framework in Frameworks */,
 				85D8B548CD81B8F0353F6C06 /* Pods_Turn_Touch_iOS.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		FFF270A31CEE88E500E46575 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		FFF270AE1CEE88E500E46575 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1092,7 +1056,6 @@
 				FFF270921CEE88E500E46575 /* Turn Touch iOS */,
 				FFB41B7D1CF52E5700CD5F09 /* Supporting Files */,
 				FFF46BC81D10941500158751 /* Vendor */,
-				FFF270B41CEE88E500E46575 /* Turn Touch iOSUITests */,
 				FFF270911CEE88E500E46575 /* Products */,
 				2052B86C8110B5F324537385 /* Pods */,
 				0F31B8744850402114AE49F7 /* Frameworks */,
@@ -1103,8 +1066,6 @@
 			isa = PBXGroup;
 			children = (
 				FFF270901CEE88E500E46575 /* Turn Touch iOS.app */,
-				FFF270A61CEE88E500E46575 /* Turn Touch iOSTests.xctest */,
-				FFF270B11CEE88E500E46575 /* Turn Touch iOSUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1121,15 +1082,6 @@
 				FF44876E1D08E62700ED8099 /* Bluetooth */,
 			);
 			path = "Turn Touch iOS";
-			sourceTree = "<group>";
-		};
-		FFF270B41CEE88E500E46575 /* Turn Touch iOSUITests */ = {
-			isa = PBXGroup;
-			children = (
-				FFF270B51CEE88E500E46575 /* Turn_Touch_iOSUITests.swift */,
-				FFF270B71CEE88E500E46575 /* Info.plist */,
-			);
-			path = "Turn Touch iOSUITests";
 			sourceTree = "<group>";
 		};
 		FFF46BC81D10941500158751 /* Vendor */ = {
@@ -1208,42 +1160,6 @@
 			productReference = FFF270901CEE88E500E46575 /* Turn Touch iOS.app */;
 			productType = "com.apple.product-type.application";
 		};
-		FFF270A51CEE88E500E46575 /* Turn Touch iOSTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = FFF270BD1CEE88E500E46575 /* Build configuration list for PBXNativeTarget "Turn Touch iOSTests" */;
-			buildPhases = (
-				FFF270A21CEE88E500E46575 /* Sources */,
-				FFF270A31CEE88E500E46575 /* Frameworks */,
-				FFF270A41CEE88E500E46575 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				FFF270A81CEE88E500E46575 /* PBXTargetDependency */,
-			);
-			name = "Turn Touch iOSTests";
-			productName = "Turn Touch iOSTests";
-			productReference = FFF270A61CEE88E500E46575 /* Turn Touch iOSTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		FFF270B01CEE88E500E46575 /* Turn Touch iOSUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = FFF270C01CEE88E500E46575 /* Build configuration list for PBXNativeTarget "Turn Touch iOSUITests" */;
-			buildPhases = (
-				FFF270AD1CEE88E500E46575 /* Sources */,
-				FFF270AE1CEE88E500E46575 /* Frameworks */,
-				FFF270AF1CEE88E500E46575 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				FFF270B31CEE88E500E46575 /* PBXTargetDependency */,
-			);
-			name = "Turn Touch iOSUITests";
-			productName = "Turn Touch iOSUITests";
-			productReference = FFF270B11CEE88E500E46575 /* Turn Touch iOSUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -1259,16 +1175,6 @@
 						DevelopmentTeam = 6W5HRS3393;
 						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
-					};
-					FFF270A51CEE88E500E46575 = {
-						CreatedOnToolsVersion = 7.3.1;
-						LastSwiftMigration = 0800;
-						TestTargetID = FFF2708F1CEE88E500E46575;
-					};
-					FFF270B01CEE88E500E46575 = {
-						CreatedOnToolsVersion = 7.3.1;
-						LastSwiftMigration = 0800;
-						TestTargetID = FFF2708F1CEE88E500E46575;
 					};
 				};
 			};
@@ -1286,8 +1192,6 @@
 			projectRoot = "";
 			targets = (
 				FFF2708F1CEE88E500E46575 /* Turn Touch iOS */,
-				FFF270A51CEE88E500E46575 /* Turn Touch iOSTests */,
-				FFF270B01CEE88E500E46575 /* Turn Touch iOSUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -1454,20 +1358,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		FFF270A41CEE88E500E46575 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		FFF270AF1CEE88E500E46575 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
@@ -1513,7 +1403,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1616,35 +1506,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		FFF270A21CEE88E500E46575 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		FFF270AD1CEE88E500E46575 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				FFF270B61CEE88E500E46575 /* Turn_Touch_iOSUITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		FFF270A81CEE88E500E46575 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = FFF2708F1CEE88E500E46575 /* Turn Touch iOS */;
-			targetProxy = FFF270A71CEE88E500E46575 /* PBXContainerItemProxy */;
-		};
-		FFF270B31CEE88E500E46575 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = FFF2708F1CEE88E500E46575 /* Turn Touch iOS */;
-			targetProxy = FFF270B21CEE88E500E46575 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		FFF2709E1CEE88E500E46575 /* LaunchScreen.storyboard */ = {
@@ -1752,6 +1614,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 552AD10F15F394A44BF4BD6D /* Pods-Turn Touch iOS.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1763,6 +1626,9 @@
 				HEADER_SEARCH_PATHS = (
 					"$(SDKROOT)/usr/include/libxml2",
 					"$(PROJECT_DIR)/Turn\\ Touch\\ iOS/Vendor",
+					"$(inherited)",
+					"\"${PODS_ROOT}/BuildHeaders\"",
+					"\"$(SRCROOT)/Pods/Headers/\"",
 				);
 				INFOPLIST_FILE = "Turn Touch iOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1785,6 +1651,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 87558F01A91A74C470B9149B /* Pods-Turn Touch iOS.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1796,6 +1663,9 @@
 				HEADER_SEARCH_PATHS = (
 					"$(SDKROOT)/usr/include/libxml2",
 					"$(PROJECT_DIR)/Turn\\ Touch\\ iOS/Vendor",
+					"$(inherited)",
+					"\"${PODS_ROOT}/BuildHeaders\"",
+					"\"$(SRCROOT)/Pods/Headers/\"",
 				);
 				INFOPLIST_FILE = "Turn Touch iOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1811,58 +1681,6 @@
 				SWIFT_INCLUDE_PATHS = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Turn Touch iOS/Vendor/Turn_Touch_iOS-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
-			};
-			name = Release;
-		};
-		FFF270BE1CEE88E500E46575 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = "Turn Touch iOSTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.turntouch.Turn-Touch-iOSTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Turn Touch iOS.app/Turn Touch iOS";
-			};
-			name = Debug;
-		};
-		FFF270BF1CEE88E500E46575 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = "Turn Touch iOSTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.turntouch.Turn-Touch-iOSTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Turn Touch iOS.app/Turn Touch iOS";
-			};
-			name = Release;
-		};
-		FFF270C11CEE88E500E46575 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				INFOPLIST_FILE = "Turn Touch iOSUITests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.turntouch.Turn-Touch-iOSUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-				TEST_TARGET_NAME = "Turn Touch iOS";
-			};
-			name = Debug;
-		};
-		FFF270C21CEE88E500E46575 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				INFOPLIST_FILE = "Turn Touch iOSUITests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.turntouch.Turn-Touch-iOSUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-				TEST_TARGET_NAME = "Turn Touch iOS";
 			};
 			name = Release;
 		};
@@ -1883,24 +1701,6 @@
 			buildConfigurations = (
 				FFF270BB1CEE88E500E46575 /* Debug */,
 				FFF270BC1CEE88E500E46575 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		FFF270BD1CEE88E500E46575 /* Build configuration list for PBXNativeTarget "Turn Touch iOSTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				FFF270BE1CEE88E500E46575 /* Debug */,
-				FFF270BF1CEE88E500E46575 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		FFF270C01CEE88E500E46575 /* Build configuration list for PBXNativeTarget "Turn Touch iOSUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				FFF270C11CEE88E500E46575 /* Debug */,
-				FFF270C21CEE88E500E46575 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

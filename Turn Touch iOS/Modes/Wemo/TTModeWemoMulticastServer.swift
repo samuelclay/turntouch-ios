@@ -76,8 +76,9 @@ class TTModeWemoMulticastServer: NSObject, GCDAsyncUdpSocketDelegate {
                        "MAN:\"ssdp:discover\"",
                        "USER-AGENT: Turn Touch iOS Wemo Finder",
                        "", ""].joined(separator: "\r\n")
-        let data = message.data(using: String.Encoding.utf8)
-        udpSocket.send(data, toHost: MULTICAST_GROUP_IP, port: 1900, withTimeout: TimeInterval(5), tag: 0)
+        if let data = message.data(using: String.Encoding.utf8) {
+            udpSocket.send(data, toHost: MULTICAST_GROUP_IP, port: 1900, withTimeout: TimeInterval(5), tag: 0)
+        }
         let tt = DispatchTime.now() + Double(Int64(5 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC);
         DispatchQueue.main.asyncAfter(deadline: tt) {
             if self.attemptsLeft == 0 || self.udpSocket == nil {
@@ -96,9 +97,11 @@ class TTModeWemoMulticastServer: NSObject, GCDAsyncUdpSocketDelegate {
         
         for line: String in data.components(separatedBy: "\r\n") {
             if let match = line.range(of: ":") {
-                let key = line.substring(to: match.lowerBound).lowercased()
-                let value = line.substring(from: line.index(match.lowerBound, offsetBy: 2)).trimmingCharacters(in: CharacterSet.whitespaces)
-                headers[key] = value
+                if line.characters.count > line.distance(from: line.startIndex, to: match.lowerBound) + 2 {
+                    let key = line.substring(to: match.lowerBound).lowercased()
+                    let value = line.substring(from: line.index(match.lowerBound, offsetBy: 2)).trimmingCharacters(in: CharacterSet.whitespaces)
+                    headers[key] = value
+                }
             }
         }
         
@@ -120,13 +123,16 @@ class TTModeWemoMulticastServer: NSObject, GCDAsyncUdpSocketDelegate {
     
     // MARK: Async delegate
     
-    func udpSocket(_ sock: GCDAsyncUdpSocket!, didReceive data: Data!, fromAddress address: Data!, withFilterContext filterContext: Any!) {
-        self.checkDevice(NSString(data: data, encoding: String.Encoding.utf8.rawValue)!,
-                         host: GCDAsyncUdpSocket.host(fromAddress: address),
-                         port: GCDAsyncUdpSocket.port(fromAddress: address))
+    func udpSocket(_ sock: GCDAsyncUdpSocket, didReceive data: Data, fromAddress address: Data, withFilterContext filterContext: Any?) {
+        if let host = GCDAsyncUdpSocket.host(fromAddress: address) {
+            let port = GCDAsyncUdpSocket.port(fromAddress: address)
+            self.checkDevice(NSString(data: data, encoding: String.Encoding.utf8.rawValue)!,
+                             host: host,
+                             port: port)
+        }
     }
     
-    func udpSocketDidClose(_ sock: GCDAsyncUdpSocket!, withError error: Error!) {
-        print(" ---> Closing UDP socket. \(error)")
+    func udpSocketDidClose(_ sock: GCDAsyncUdpSocket, withError error: Error) {
+        print(" ---> Closing UDP socket.")
     }
 }
