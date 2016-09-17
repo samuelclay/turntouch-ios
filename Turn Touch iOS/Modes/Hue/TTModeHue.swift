@@ -441,7 +441,7 @@ class TTModeHue: TTMode {
                 hueState = .connected
                 self.delegate?.changeState(hueState, mode: self, message: nil)
                 self.saveBridge()
-                self.ensureScenes()
+                self.ensureScenes(force: true)
             } else {
                 self.ensureScenes()
             }
@@ -734,7 +734,7 @@ class TTModeHue: TTMode {
         }
     }
     
-    func ensureScenes() {
+    func ensureScenes(force: Bool = false) {
         let bridgeSendAPI = PHBridgeSendAPI()
         let cache = PHBridgeResourcesReader.readBridgeResourcesCache()
         // Collect scene ids to check against
@@ -755,7 +755,7 @@ class TTModeHue: TTMode {
             let scene: PHScene = PHScene()
             scene.name = "All Lights Off"
             scene.identifier = "TT-all-off"
-            scene.lightIdentifiers = cache?.lights.map { (_, value) in (value as! PHLight).identifier }
+            scene.lightIdentifiers = cache?.lights.map { (_, value) in (value as! PHLight).identifier! }
             bridgeSendAPI.saveScene(withCurrentLightStates: scene, completionHandler: {(errors) in
                 print("Hue:SceneOff scene: \(errors)")
                 for (_, value) in (cache?.lights)! {
@@ -770,11 +770,11 @@ class TTModeHue: TTMode {
             })
         }
         
-        if !foundScenes.contains("TT-loop") || true {
+        if !foundScenes.contains("TT-loop") || force {
             let scene: PHScene = PHScene()
             scene.name = "Color loop"
             scene.identifier = "TT-loop"
-            scene.lightIdentifiers = cache?.lights.map { (_, value) in (value as! PHLight).identifier }
+            scene.lightIdentifiers = cache?.lights.map { (_, value) in (value as! PHLight).identifier! }
             bridgeSendAPI.saveScene(withCurrentLightStates: scene, completionHandler: {(errors) in
 //                print("Hue:Loop scene: \(errors)")
                 for (_, value) in (cache?.lights)! {
@@ -790,11 +790,11 @@ class TTModeHue: TTMode {
             })
         }
         
-        if !foundScenes.contains("TT-ee-1") || true {
+        if !foundScenes.contains("TT-ee-1") || force {
             let scene: PHScene = PHScene()
             scene.name = "Early Evening"
             scene.identifier = "TT-ee-1"
-            scene.lightIdentifiers = cache?.lights.map { (_, value) in (value as! PHLight).identifier }
+            scene.lightIdentifiers = cache?.lights.map { (_, value) in (value as! PHLight).identifier! }
             bridgeSendAPI.saveScene(withCurrentLightStates: scene, completionHandler: {(errors) in
 //                print("Hue:EE1 scene: \(errors)")
                 for (_, value) in (cache?.lights)! {
@@ -814,11 +814,11 @@ class TTModeHue: TTMode {
             })
         }
         
-        if !foundScenes.contains("TT-ee-2") || true {
+        if !foundScenes.contains("TT-ee-2") || force {
             let scene: PHScene = PHScene()
             scene.name = "Early Evening 2"
             scene.identifier = "TT-ee-2"
-            scene.lightIdentifiers = cache?.lights.map { (_, value) in (value as! PHLight).identifier }
+            scene.lightIdentifiers = cache?.lights.map { (_, value) in (value as! PHLight).identifier! }
             bridgeSendAPI.saveScene(withCurrentLightStates: scene, completionHandler: {(errors) in
 //                print("Hue:EE2 scene: \(errors)")
                 if let lights = cache?.lights {
@@ -843,11 +843,11 @@ class TTModeHue: TTMode {
             })
         }
         
-        if !foundScenes.contains("TT-le-1") || true {
+        if !foundScenes.contains("TT-le-1") || force {
             let scene: PHScene = PHScene()
             scene.name = "Late Evening"
             scene.identifier = "TT-le-1"
-            scene.lightIdentifiers = cache?.lights.map { (_, value) in (value as! PHLight).identifier }
+            scene.lightIdentifiers = cache?.lights.map { (_, value) in (value as! PHLight).identifier! }
             bridgeSendAPI.saveScene(withCurrentLightStates: scene, completionHandler: {(errors) in
 //                print("Hue:LE1 scene: \(errors)")
                 if let lights = cache?.lights {
@@ -869,11 +869,11 @@ class TTModeHue: TTMode {
             })
         }
         
-        if !foundScenes.contains("TT-le-2") || true {
+        if !foundScenes.contains("TT-le-2") || force {
             let scene: PHScene = PHScene()
             scene.name = "Late Evening 2"
             scene.identifier = "TT-le-2"
-            scene.lightIdentifiers = cache?.lights.map { (_, value) in (value as! PHLight).identifier }
+            scene.lightIdentifiers = cache?.lights.map { (_, value) in (value as! PHLight).identifier! }
             bridgeSendAPI.saveScene(withCurrentLightStates: scene, completionHandler: {(errors) in
 //                print("Hue:LE2 scene: \(errors)")
                 if let lights = cache?.lights {
