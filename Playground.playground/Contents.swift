@@ -36,3 +36,37 @@ func splitHeaders(_ line: String) -> [String: String] {
 splitHeaders("Host: 129.0.0.1")
 splitHeaders("Ex:")
 
+// Selectors
+
+    class Parent : NSObject {
+
+        func parentSelector(_ arg: String) {
+            print(" ---> Selected: \(arg)")
+        }
+        
+        func test(_ selectorString: String, _ printString: String) {
+            let selector : Selector = Selector(selectorString)
+    //        if self.responds(to: selector) {
+                self.perform(selector, with: printString)
+    //        }
+        }
+        
+    }
+
+
+    class Child : Parent {
+        func childSelector(_ arg: String) {
+            print(" ---> Child selected: \(arg)")
+        }
+        func namedChildSelector(arg: String) {
+            print(" ---> Child selected: \(arg)")
+        }
+    }
+
+    let parent = Parent()
+    parent.test("parentSelector:", "apple")
+
+    let child = Child()
+    child.test("parentSelector:", "banana")
+    child.test("childSelector:", "coffee")
+    child.test("namedChildSelector(arg:)", "daffodil")

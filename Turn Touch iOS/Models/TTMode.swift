@@ -122,14 +122,14 @@ class TTMode : NSObject, TTModeProtocol {
     func runAction(_ actionName: String, direction: TTModeDirection, funcAction: String) -> Bool {
         var success = false
         print(" ---> Running \(direction): \(funcAction)\(actionName)")
-        if self.action == nil || self.action.batchActionKey == nil {
+        if self.action == nil { //|| self.action.batchActionKey == nil {
             self.action = TTAction(actionName: actionName, direction: direction)
         }
         
         // runAction:direction
         let titleSelector = NSSelectorFromString("\(funcAction)\(actionName):")
         if self.responds(to: titleSelector) {
-            self.perform(titleSelector, with: NSNumber(value: direction.rawValue as Int))
+            self.perform(titleSelector, with: NSNumber(value: direction.rawValue))
             success = true
         } else {
             // runAction
