@@ -132,22 +132,19 @@ class TTModeWemoDevice: NSObject {
     }
     
     func parseBasicEventXml(_ data: Data, _ callback: () -> Void) {
-        let results = PerformXMLXPathQuery(data, "/*/*/u:GetBinaryStateResponse/BinaryState",
-                                           UnsafeMutablePointer<Int8>(mutating: "u".cString(using: String.Encoding.utf8)),
-                                           UnsafeMutablePointer<Int8>(mutating: "urn:Belkin:service:basicevent:1".cString(using: String.Encoding.utf8)))
-        if results?.count == 0 {
-            print(" ---> Error: could get binary state for wemo")
-            deviceName = "Wemo device (\(self.location()))"
-        } else {
-            let device: [String: String] = results![0] as! [String: String]
-            let state = device["nodeContent"]
-            if state == "1" || state == "8" {
+        let doc = SWXMLHash.parse(data)
+//        let results = doc["root"]["device"]["friendlyName"].element?.text
+        if let stateString = doc["s:Envelope"]["s:Body"]["u:GetBinaryStateResponse"]["BinaryState"].element?.text {
+            if stateString == "1" || stateString == "8" {
                 deviceState = .on
-            } else if state == "0" {
+            } else if stateString == "0" {
                 deviceState = .off
             }
-            print(" ---> Wemo state: \(deviceName) \(state)/\(deviceState)")
+            print(" ---> Wemo state: \(deviceName) \(stateString)/\(deviceState)")
             callback()
+        } else {
+            print(" ---> Error: could not get binary state for wemo")
+            deviceName = "Wemo device (\(self.location()))"
         }
     }
     

@@ -127,7 +127,7 @@ class TTMode : NSObject, TTModeProtocol {
         }
         
         // runAction:direction
-        let titleSelector = NSSelectorFromString("\(funcAction)\(actionName):")
+        let titleSelector = NSSelectorFromString("\(funcAction)\(actionName)WithDirection:") // Swift 3
         if self.responds(to: titleSelector) {
             self.perform(titleSelector, with: NSNumber(value: direction.rawValue))
             success = true
@@ -144,6 +144,9 @@ class TTMode : NSObject, TTModeProtocol {
             self.action = nil
         }
         
+        if !success {
+            print(" ---> Error: could not find `\(titleSelector)` method in \(self)")
+        }
         return success
     }
     
