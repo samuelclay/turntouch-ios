@@ -216,6 +216,25 @@
 		FFB41B841CF5342100CD5F09 /* TTModeMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB41B831CF5342100CD5F09 /* TTModeMap.swift */; };
 		FFB41B861CF536AC00CD5F09 /* TTAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB41B851CF536AC00CD5F09 /* TTAction.swift */; };
 		FFB41B881CF536BB00CD5F09 /* TTActionMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB41B871CF536BB00CD5F09 /* TTActionMap.swift */; };
+		FFB84B2A1D90BCBF0037872C /* TTModeYoga.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB84B291D90BCBF0037872C /* TTModeYoga.swift */; };
+		FFB84B2D1D90CE0A0037872C /* TTModeYogaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB84B2C1D90CE0A0037872C /* TTModeYogaViewController.swift */; };
+		FFB84B3F1D90D4240037872C /* yoga_background.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FFB84B2E1D90D4240037872C /* yoga_background.jpg */; };
+		FFB84B401D90D4240037872C /* yoga_position_1.png in Resources */ = {isa = PBXBuildFile; fileRef = FFB84B2F1D90D4240037872C /* yoga_position_1.png */; };
+		FFB84B411D90D4240037872C /* yoga_position_2.png in Resources */ = {isa = PBXBuildFile; fileRef = FFB84B301D90D4240037872C /* yoga_position_2.png */; };
+		FFB84B421D90D4240037872C /* yoga_position_3.png in Resources */ = {isa = PBXBuildFile; fileRef = FFB84B311D90D4240037872C /* yoga_position_3.png */; };
+		FFB84B431D90D4240037872C /* yoga_position_4.png in Resources */ = {isa = PBXBuildFile; fileRef = FFB84B321D90D4240037872C /* yoga_position_4.png */; };
+		FFB84B441D90D4240037872C /* yoga_position_5.png in Resources */ = {isa = PBXBuildFile; fileRef = FFB84B331D90D4240037872C /* yoga_position_5.png */; };
+		FFB84B451D90D4240037872C /* yoga_position_6.png in Resources */ = {isa = PBXBuildFile; fileRef = FFB84B341D90D4240037872C /* yoga_position_6.png */; };
+		FFB84B461D90D4240037872C /* yoga_position_7.png in Resources */ = {isa = PBXBuildFile; fileRef = FFB84B351D90D4240037872C /* yoga_position_7.png */; };
+		FFB84B471D90D4240037872C /* yoga_position_8.png in Resources */ = {isa = PBXBuildFile; fileRef = FFB84B361D90D4240037872C /* yoga_position_8.png */; };
+		FFB84B481D90D4240037872C /* yoga_position_9.png in Resources */ = {isa = PBXBuildFile; fileRef = FFB84B371D90D4240037872C /* yoga_position_9.png */; };
+		FFB84B491D90D4240037872C /* yoga_position_10.png in Resources */ = {isa = PBXBuildFile; fileRef = FFB84B381D90D4240037872C /* yoga_position_10.png */; };
+		FFB84B4A1D90D4240037872C /* yoga_position_11.png in Resources */ = {isa = PBXBuildFile; fileRef = FFB84B391D90D4240037872C /* yoga_position_11.png */; };
+		FFB84B4B1D90D4240037872C /* yoga_position_12.png in Resources */ = {isa = PBXBuildFile; fileRef = FFB84B3A1D90D4240037872C /* yoga_position_12.png */; };
+		FFB84B4C1D90D4240037872C /* yoga_position_13.png in Resources */ = {isa = PBXBuildFile; fileRef = FFB84B3B1D90D4240037872C /* yoga_position_13.png */; };
+		FFB84B4D1D90D4240037872C /* yoga_position_14.png in Resources */ = {isa = PBXBuildFile; fileRef = FFB84B3C1D90D4240037872C /* yoga_position_14.png */; };
+		FFB84B4E1D90D4240037872C /* yoga_position_15.png in Resources */ = {isa = PBXBuildFile; fileRef = FFB84B3D1D90D4240037872C /* yoga_position_15.png */; };
+		FFB84B4F1D90D4240037872C /* yoga_position_16.png in Resources */ = {isa = PBXBuildFile; fileRef = FFB84B3E1D90D4240037872C /* yoga_position_16.png */; };
 		FFC4B0F01D2DBF3E00A97C81 /* TTPairingInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC4B0EE1D2DBF3E00A97C81 /* TTPairingInfoViewController.swift */; };
 		FFC4B0F11D2DBF3E00A97C81 /* TTPairingInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFC4B0EF1D2DBF3E00A97C81 /* TTPairingInfoViewController.xib */; };
 		FFC4B0F31D2DC38C00A97C81 /* TTModalButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC4B0F21D2DC38C00A97C81 /* TTModalButton.swift */; };
@@ -475,6 +494,25 @@
 		FFB41B831CF5342100CD5F09 /* TTModeMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeMap.swift; path = Models/TTModeMap.swift; sourceTree = "<group>"; };
 		FFB41B851CF536AC00CD5F09 /* TTAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTAction.swift; path = Models/TTAction.swift; sourceTree = "<group>"; };
 		FFB41B871CF536BB00CD5F09 /* TTActionMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTActionMap.swift; path = Models/TTActionMap.swift; sourceTree = "<group>"; };
+		FFB84B291D90BCBF0037872C /* TTModeYoga.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeYoga.swift; path = Modes/Yoga/TTModeYoga.swift; sourceTree = "<group>"; };
+		FFB84B2C1D90CE0A0037872C /* TTModeYogaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeYogaViewController.swift; path = Modes/Yoga/TTModeYogaViewController.swift; sourceTree = "<group>"; };
+		FFB84B2E1D90D4240037872C /* yoga_background.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = yoga_background.jpg; path = Modes/Yoga/yoga_background.jpg; sourceTree = "<group>"; };
+		FFB84B2F1D90D4240037872C /* yoga_position_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = yoga_position_1.png; path = Modes/Yoga/yoga_position_1.png; sourceTree = "<group>"; };
+		FFB84B301D90D4240037872C /* yoga_position_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = yoga_position_2.png; path = Modes/Yoga/yoga_position_2.png; sourceTree = "<group>"; };
+		FFB84B311D90D4240037872C /* yoga_position_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = yoga_position_3.png; path = Modes/Yoga/yoga_position_3.png; sourceTree = "<group>"; };
+		FFB84B321D90D4240037872C /* yoga_position_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = yoga_position_4.png; path = Modes/Yoga/yoga_position_4.png; sourceTree = "<group>"; };
+		FFB84B331D90D4240037872C /* yoga_position_5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = yoga_position_5.png; path = Modes/Yoga/yoga_position_5.png; sourceTree = "<group>"; };
+		FFB84B341D90D4240037872C /* yoga_position_6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = yoga_position_6.png; path = Modes/Yoga/yoga_position_6.png; sourceTree = "<group>"; };
+		FFB84B351D90D4240037872C /* yoga_position_7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = yoga_position_7.png; path = Modes/Yoga/yoga_position_7.png; sourceTree = "<group>"; };
+		FFB84B361D90D4240037872C /* yoga_position_8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = yoga_position_8.png; path = Modes/Yoga/yoga_position_8.png; sourceTree = "<group>"; };
+		FFB84B371D90D4240037872C /* yoga_position_9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = yoga_position_9.png; path = Modes/Yoga/yoga_position_9.png; sourceTree = "<group>"; };
+		FFB84B381D90D4240037872C /* yoga_position_10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = yoga_position_10.png; path = Modes/Yoga/yoga_position_10.png; sourceTree = "<group>"; };
+		FFB84B391D90D4240037872C /* yoga_position_11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = yoga_position_11.png; path = Modes/Yoga/yoga_position_11.png; sourceTree = "<group>"; };
+		FFB84B3A1D90D4240037872C /* yoga_position_12.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = yoga_position_12.png; path = Modes/Yoga/yoga_position_12.png; sourceTree = "<group>"; };
+		FFB84B3B1D90D4240037872C /* yoga_position_13.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = yoga_position_13.png; path = Modes/Yoga/yoga_position_13.png; sourceTree = "<group>"; };
+		FFB84B3C1D90D4240037872C /* yoga_position_14.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = yoga_position_14.png; path = Modes/Yoga/yoga_position_14.png; sourceTree = "<group>"; };
+		FFB84B3D1D90D4240037872C /* yoga_position_15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = yoga_position_15.png; path = Modes/Yoga/yoga_position_15.png; sourceTree = "<group>"; };
+		FFB84B3E1D90D4240037872C /* yoga_position_16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = yoga_position_16.png; path = Modes/Yoga/yoga_position_16.png; sourceTree = "<group>"; };
 		FFC4B0EC1D2C911E00A97C81 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		FFC4B0EE1D2DBF3E00A97C81 /* TTPairingInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTPairingInfoViewController.swift; path = Views/Modal/TTPairingInfoViewController.swift; sourceTree = "<group>"; };
 		FFC4B0EF1D2DBF3E00A97C81 /* TTPairingInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TTPairingInfoViewController.xib; path = Views/Modal/TTPairingInfoViewController.xib; sourceTree = "<group>"; };
@@ -584,6 +622,7 @@
 				FF254F6C1D21C2D300E96378 /* Wemo */,
 				FF4AF7DD1D24F93B0009C777 /* Sonos */,
 				FFDA0F9F1D3C49F40019859F /* Camera */,
+				FFB84B2B1D90CD6A0037872C /* Yoga */,
 			);
 			name = Modes;
 			sourceTree = "<group>";
@@ -1018,6 +1057,32 @@
 			name = Fonts;
 			sourceTree = "<group>";
 		};
+		FFB84B2B1D90CD6A0037872C /* Yoga */ = {
+			isa = PBXGroup;
+			children = (
+				FFB84B291D90BCBF0037872C /* TTModeYoga.swift */,
+				FFB84B2C1D90CE0A0037872C /* TTModeYogaViewController.swift */,
+				FFB84B2E1D90D4240037872C /* yoga_background.jpg */,
+				FFB84B2F1D90D4240037872C /* yoga_position_1.png */,
+				FFB84B301D90D4240037872C /* yoga_position_2.png */,
+				FFB84B311D90D4240037872C /* yoga_position_3.png */,
+				FFB84B321D90D4240037872C /* yoga_position_4.png */,
+				FFB84B331D90D4240037872C /* yoga_position_5.png */,
+				FFB84B341D90D4240037872C /* yoga_position_6.png */,
+				FFB84B351D90D4240037872C /* yoga_position_7.png */,
+				FFB84B361D90D4240037872C /* yoga_position_8.png */,
+				FFB84B371D90D4240037872C /* yoga_position_9.png */,
+				FFB84B381D90D4240037872C /* yoga_position_10.png */,
+				FFB84B391D90D4240037872C /* yoga_position_11.png */,
+				FFB84B3A1D90D4240037872C /* yoga_position_12.png */,
+				FFB84B3B1D90D4240037872C /* yoga_position_13.png */,
+				FFB84B3C1D90D4240037872C /* yoga_position_14.png */,
+				FFB84B3D1D90D4240037872C /* yoga_position_15.png */,
+				FFB84B3E1D90D4240037872C /* yoga_position_16.png */,
+			);
+			name = Yoga;
+			sourceTree = "<group>";
+		};
 		FFC9FE961D021A0800038817 /* Action Diamond */ = {
 			isa = PBXGroup;
 			children = (
@@ -1205,8 +1270,10 @@
 				FFB41B2C1CEE9A3000CD5F09 /* equalizer-1.png in Resources */,
 				FFB41B411CEE9A3000CD5F09 /* mode_smartlock.png in Resources */,
 				FFB41B5D1CEE9A3000CD5F09 /* logo_256.png in Resources */,
+				FFB84B4D1D90D4240037872C /* yoga_position_14.png in Resources */,
 				FFB41B3B1CEE9A3000CD5F09 /* mode_morning.png in Resources */,
 				FFB41B611CEE9A3000CD5F09 /* logo_white.png in Resources */,
+				FFB84B4C1D90D4240037872C /* yoga_position_13.png in Resources */,
 				FFB41B571CEE9A3000CD5F09 /* itunes_podcast_icon.png in Resources */,
 				FFB41B2B1CEE9A3000CD5F09 /* double_tap.png in Resources */,
 				FFB41B1B1CEE9A3000CD5F09 /* music_pause.png in Resources */,
@@ -1217,6 +1284,7 @@
 				FFB41B581CEE9A3000CD5F09 /* itunes_tv_icon.png in Resources */,
 				FFB41B591CEE9A3000CD5F09 /* originals.png in Resources */,
 				FFB41B3C1CEE9A3000CD5F09 /* mode_music.png in Resources */,
+				FFB84B411D90D4240037872C /* yoga_position_2.png in Resources */,
 				FFDA0FB61D3C4FEE0019859F /* cancel@2x.png in Resources */,
 				FF2023351D02147A005129E5 /* Icon-57@2x.png in Resources */,
 				FF20232D1D02147A005129E5 /* Icon-29@2x.png in Resources */,
@@ -1224,6 +1292,7 @@
 				FFB41B241CEE9A3000CD5F09 /* button_chevron.png in Resources */,
 				FFDA0FB31D3C4FEE0019859F /* camera-switch.png in Resources */,
 				FFB41B1C1CEE9A3000CD5F09 /* music_play.png in Resources */,
+				FFB84B451D90D4240037872C /* yoga_position_6.png in Resources */,
 				FF20232F1D02147A005129E5 /* Icon-40.png in Resources */,
 				FFB41B541CEE9A3000CD5F09 /* itunes_movies_icon.png in Resources */,
 				FFB41B461CEE9A3000CD5F09 /* mode_wemo.png in Resources */,
@@ -1236,17 +1305,21 @@
 				FF2023381D02147A005129E5 /* Icon-72.png in Resources */,
 				FFB41B6F1CEE9A3000CD5F09 /* modal_success.png in Resources */,
 				FFB41B4D1CEE9A3000CD5F09 /* sun.png in Resources */,
+				FFB84B4B1D90D4240037872C /* yoga_position_12.png in Resources */,
 				FF37EDD81D1117670026F70D /* TTModeHueConnecting.xib in Resources */,
 				FFB41B3A1CEE9A3000CD5F09 /* mode_meditation.png in Resources */,
 				FFB41B291CEE9A3000CD5F09 /* clock.png in Resources */,
 				FFB41B1F1CEE9A3000CD5F09 /* music_volume.png in Resources */,
 				FFB41B671CEE9A3000CD5F09 /* modal_ftux_action.png in Resources */,
+				FFB84B461D90D4240037872C /* yoga_position_7.png in Resources */,
 				FF37EDD41D11174C0026F70D /* TTModeHueConnect.xib in Resources */,
 				FFB41B4A1CEE9A3000CD5F09 /* settings.png in Resources */,
 				FFB41B351CEE9A3000CD5F09 /* mode_electricobjects.png in Resources */,
 				FF4AF7DA1D24F8D40009C777 /* mode_sonos.png in Resources */,
+				FFB84B4E1D90D4240037872C /* yoga_position_15.png in Resources */,
 				FFB41B6E1CEE9A3000CD5F09 /* modal_remote_paired.png in Resources */,
 				FFB41B271CEE9A3000CD5F09 /* button_x.png in Resources */,
+				FFB84B471D90D4240037872C /* yoga_position_8.png in Resources */,
 				FF254F651D1B2C6B00E96378 /* TTModeHueSleepOptions.xib in Resources */,
 				FFB41B601CEE9A3000CD5F09 /* logo_64.png in Resources */,
 				FFB41B161CEE9A3000CD5F09 /* hue_evening.png in Resources */,
@@ -1277,6 +1350,7 @@
 				FFB41B4B1CEE9A3000CD5F09 /* settings@2x.png in Resources */,
 				FFB41B201CEE9A3000CD5F09 /* music_volume_down.png in Resources */,
 				FF20233D1D02147A005129E5 /* iTunesArtwork@2x in Resources */,
+				FFB84B4F1D90D4240037872C /* yoga_position_16.png in Resources */,
 				FFB41B361CEE9A3000CD5F09 /* mode_fitness.png in Resources */,
 				FFB41B321CEE9A3000CD5F09 /* imac.png in Resources */,
 				FFB41B5A1CEE9A3000CD5F09 /* logo - 1024.png in Resources */,
@@ -1294,6 +1368,7 @@
 				FFB41B401CEE9A3000CD5F09 /* mode_presentation.png in Resources */,
 				FFF46BE91D10DB2D00158751 /* TTModeHue.plist in Resources */,
 				FFB41B421CEE9A3000CD5F09 /* mode_spotify.png in Resources */,
+				FFB84B441D90D4240037872C /* yoga_position_5.png in Resources */,
 				FFB41B6D1CEE9A3000CD5F09 /* modal_remote_hero.png in Resources */,
 				FFB41B451CEE9A3000CD5F09 /* mode_web.png in Resources */,
 				FFB41B191CEE9A3000CD5F09 /* hue_sunset.png in Resources */,
@@ -1305,6 +1380,7 @@
 				FFB41B661CEE9A3000CD5F09 /* modal_bar_button_chevron.png in Resources */,
 				FFB41B4C1CEE9A3000CD5F09 /* speaker.png in Resources */,
 				FF37EDE81D13610B0026F70D /* press_smartbridge.png in Resources */,
+				FFB84B431D90D4240037872C /* yoga_position_4.png in Resources */,
 				FFB41B371CEE9A3000CD5F09 /* mode_home.png in Resources */,
 				FF254F641D1B2C6B00E96378 /* TTModeHueRandomOptions.xib in Resources */,
 				FF2023301D02147A005129E5 /* Icon-40@2x.png in Resources */,
@@ -1328,9 +1404,12 @@
 				FFB41B341CEE9A3000CD5F09 /* mode_alarm.png in Resources */,
 				FFB41B141CEE9A3000CD5F09 /* chevron_south.png in Resources */,
 				FF37EDE41D1117B20026F70D /* TTModeHueConnected.xib in Resources */,
+				FFB84B421D90D4240037872C /* yoga_position_3.png in Resources */,
 				FFB41B2A1CEE9A3000CD5F09 /* cog.png in Resources */,
+				FFB84B491D90D4240037872C /* yoga_position_10.png in Resources */,
 				FFDA0FB71D3C4FEE0019859F /* cancel@3x.png in Resources */,
 				FF37EDE01D11179E0026F70D /* TTModeHuePushlink.xib in Resources */,
+				FFB84B3F1D90D4240037872C /* yoga_background.jpg in Resources */,
 				FF0F10D51CF6430E00CC1F29 /* Effra_Rg.ttf in Resources */,
 				FFDA0FB41D3C4FEE0019859F /* camera-switch@2x.png in Resources */,
 				FFF2709D1CEE88E500E46575 /* Assets.xcassets in Resources */,
@@ -1339,6 +1418,7 @@
 				FF4AF7BF1D248A3A0009C777 /* TTModeWemoConnected.xib in Resources */,
 				FF20232B1D02147A005129E5 /* Icon-120.png in Resources */,
 				FFB41B2E1CEE9A3000CD5F09 /* finger.png in Resources */,
+				FFB84B481D90D4240037872C /* yoga_position_9.png in Resources */,
 				FFB41B5E1CEE9A3000CD5F09 /* logo_32.png in Resources */,
 				FFB41B3E1CEE9A3000CD5F09 /* mode_news.png in Resources */,
 				FF2023321D02147A005129E5 /* Icon-50.png in Resources */,
@@ -1349,7 +1429,9 @@
 				FFB41B4F1CEE9A3000CD5F09 /* vinyl.png in Resources */,
 				FFB41B501CEE9A3000CD5F09 /* itunes_audiobook_icon.png in Resources */,
 				FF0F10C01CF5638D00CC1F29 /* Preferences.plist in Resources */,
+				FFB84B4A1D90D4240037872C /* yoga_position_11.png in Resources */,
 				FFB41B531CEE9A3000CD5F09 /* itunes_library_icon.png in Resources */,
+				FFB84B401D90D4240037872C /* yoga_position_1.png in Resources */,
 				FFB41B6B1CEE9A3000CD5F09 /* modal_ftux_mode.png in Resources */,
 				FFB41B1D1CEE9A3000CD5F09 /* music_playlist.png in Resources */,
 				FFDA0FB11D3C4FEE0019859F /* camera-flash.png in Resources */,
@@ -1486,6 +1568,7 @@
 				FF0F10C21CF60C3D00CC1F29 /* TTTitleBarView.swift in Sources */,
 				FF0F10CA1CF63F3B00CC1F29 /* TTModePhone.swift in Sources */,
 				FF4487741D09300B00ED8099 /* NSData+Hex.swift in Sources */,
+				FFB84B2D1D90CE0A0037872C /* TTModeYogaViewController.swift in Sources */,
 				FF4487641D08AA8800ED8099 /* TTTitleMenuCell.swift in Sources */,
 				FFB41B791CEEA8E500CD5F09 /* TTModeTab.swift in Sources */,
 				FF0F10BE1CF55A9000CC1F29 /* UIColor+hex.swift in Sources */,
@@ -1499,6 +1582,7 @@
 				FFC4B0F01D2DBF3E00A97C81 /* TTPairingInfoViewController.swift in Sources */,
 				FFDA0FBA1D3C55930019859F /* TTModeCameraViewController.swift in Sources */,
 				FF4AF7E71D24F9E70009C777 /* TTModeSonosConnect.swift in Sources */,
+				FFB84B2A1D90BCBF0037872C /* TTModeYoga.swift in Sources */,
 				FFDA0FA71D3C4F1C0019859F /* LLSimpleCamera+Helper.m in Sources */,
 				FFF270C51CEE97AF00E46575 /* TTMainViewController.swift in Sources */,
 				FFB41B861CF536AC00CD5F09 /* TTAction.swift in Sources */,
