@@ -12,10 +12,10 @@ import CoreLocation
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate {
 
-    var window: UIWindow? = UIWindow(frame: UIScreen.main.bounds)
-    var modeMap: TTModeMap = TTModeMap()
+    var window: UIWindow?
+    var modeMap: TTModeMap!
     var bluetoothMonitor: TTBluetoothMonitor!
-    let locationManager = CLLocationManager()
+    var locationManager: CLLocationManager!
     @IBOutlet var mainViewController: TTMainViewController!
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -30,10 +30,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 //        erasePreferences()
         
         bluetoothMonitor = TTBluetoothMonitor()
+        modeMap = TTModeMap()
         modeMap.setupModes()
+        locationManager = CLLocationManager()
         mainViewController = TTMainViewController()
-        window!.rootViewController = mainViewController
-        window!.makeKeyAndVisible()
+        window = UIWindow(frame: UIScreen.main.bounds)
+        window?.rootViewController = mainViewController
+        window?.makeKeyAndVisible()
         modeMap.activateModes()
 
         DispatchQueue.global().async {

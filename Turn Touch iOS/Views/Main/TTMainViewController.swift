@@ -56,7 +56,6 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         
-//        self.view.userInteractionEnabled = true
         self.view.backgroundColor = UIColor.white
         
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -177,7 +176,7 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
-        if self.view.traitCollection.verticalSizeClass == UIUserInterfaceSizeClass.compact {
+        if self.traitCollection.verticalSizeClass == UIUserInterfaceSizeClass.compact {
             titleBarConstraint.constant = 28
             modeTabsConstraint.constant = 70
             modeTitleConstraint.constant = 48
@@ -267,18 +266,19 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
     }
     
     func resetPosition() {
-        let modeMap = appDelegate().modeMap
+        if let modeMap = appDelegate().modeMap {
         
-        modeMap.reset()
-        
-        if modeMap.openedModeChangeMenu {
-            modeMap.openedModeChangeMenu = false
-        }
-        if modeMap.openedActionChangeMenu {
-            modeMap.openedActionChangeMenu = false
-        }
-        if modeMap.openedAddActionChangeMenu {
-            modeMap.openedAddActionChangeMenu = false
+            modeMap.reset()
+                      
+            if modeMap.openedModeChangeMenu {
+                modeMap.openedModeChangeMenu = false
+            }
+            if modeMap.openedActionChangeMenu {
+                modeMap.openedActionChangeMenu = false
+            }
+            if modeMap.openedAddActionChangeMenu {
+                modeMap.openedAddActionChangeMenu = false
+            }
         }
         
         modeTabsView.setNeedsDisplay()
