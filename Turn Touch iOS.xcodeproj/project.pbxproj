@@ -235,6 +235,9 @@
 		FFB84B4D1D90D4240037872C /* yoga_position_14.png in Resources */ = {isa = PBXBuildFile; fileRef = FFB84B3C1D90D4240037872C /* yoga_position_14.png */; };
 		FFB84B4E1D90D4240037872C /* yoga_position_15.png in Resources */ = {isa = PBXBuildFile; fileRef = FFB84B3D1D90D4240037872C /* yoga_position_15.png */; };
 		FFB84B4F1D90D4240037872C /* yoga_position_16.png in Resources */ = {isa = PBXBuildFile; fileRef = FFB84B3E1D90D4240037872C /* yoga_position_16.png */; };
+		FFB84B511D91FDC40037872C /* TTModeYogaViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFB84B501D91FDC40037872C /* TTModeYogaViewController.xib */; };
+		FFB84B541D9202CB0037872C /* Dalton Maag - Effra Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FFB84B521D91FEED0037872C /* Dalton Maag - Effra Light.ttf */; };
+		FFB84B551D9202CB0037872C /* Dalton Maag - Effra Std Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FFB84B531D91FEED0037872C /* Dalton Maag - Effra Std Bold.ttf */; };
 		FFC4B0F01D2DBF3E00A97C81 /* TTPairingInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC4B0EE1D2DBF3E00A97C81 /* TTPairingInfoViewController.swift */; };
 		FFC4B0F11D2DBF3E00A97C81 /* TTPairingInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFC4B0EF1D2DBF3E00A97C81 /* TTPairingInfoViewController.xib */; };
 		FFC4B0F31D2DC38C00A97C81 /* TTModalButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC4B0F21D2DC38C00A97C81 /* TTModalButton.swift */; };
@@ -513,6 +516,9 @@
 		FFB84B3C1D90D4240037872C /* yoga_position_14.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = yoga_position_14.png; path = Modes/Yoga/yoga_position_14.png; sourceTree = "<group>"; };
 		FFB84B3D1D90D4240037872C /* yoga_position_15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = yoga_position_15.png; path = Modes/Yoga/yoga_position_15.png; sourceTree = "<group>"; };
 		FFB84B3E1D90D4240037872C /* yoga_position_16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = yoga_position_16.png; path = Modes/Yoga/yoga_position_16.png; sourceTree = "<group>"; };
+		FFB84B501D91FDC40037872C /* TTModeYogaViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TTModeYogaViewController.xib; path = Modes/Yoga/TTModeYogaViewController.xib; sourceTree = "<group>"; };
+		FFB84B521D91FEED0037872C /* Dalton Maag - Effra Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Dalton Maag - Effra Light.ttf"; path = "Fonts/Dalton Maag - Effra Light.ttf"; sourceTree = "<group>"; };
+		FFB84B531D91FEED0037872C /* Dalton Maag - Effra Std Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Dalton Maag - Effra Std Bold.ttf"; path = "Fonts/Dalton Maag - Effra Std Bold.ttf"; sourceTree = "<group>"; };
 		FFC4B0EC1D2C911E00A97C81 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		FFC4B0EE1D2DBF3E00A97C81 /* TTPairingInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTPairingInfoViewController.swift; path = Views/Modal/TTPairingInfoViewController.swift; sourceTree = "<group>"; };
 		FFC4B0EF1D2DBF3E00A97C81 /* TTPairingInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TTPairingInfoViewController.xib; path = Views/Modal/TTPairingInfoViewController.xib; sourceTree = "<group>"; };
@@ -1052,6 +1058,8 @@
 		FFB41B7E1CF52E6200CD5F09 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				FFB84B521D91FEED0037872C /* Dalton Maag - Effra Light.ttf */,
+				FFB84B531D91FEED0037872C /* Dalton Maag - Effra Std Bold.ttf */,
 				FF0F10D41CF6430E00CC1F29 /* Effra_Rg.ttf */,
 			);
 			name = Fonts;
@@ -1062,6 +1070,7 @@
 			children = (
 				FFB84B291D90BCBF0037872C /* TTModeYoga.swift */,
 				FFB84B2C1D90CE0A0037872C /* TTModeYogaViewController.swift */,
+				FFB84B501D91FDC40037872C /* TTModeYogaViewController.xib */,
 				FFB84B2E1D90D4240037872C /* yoga_background.jpg */,
 				FFB84B2F1D90D4240037872C /* yoga_position_1.png */,
 				FFB84B301D90D4240037872C /* yoga_position_2.png */,
@@ -1266,6 +1275,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FFB84B541D9202CB0037872C /* Dalton Maag - Effra Light.ttf in Resources */,
+				FFB84B551D9202CB0037872C /* Dalton Maag - Effra Std Bold.ttf in Resources */,
 				FF2023411D021605005129E5 /* Icon-60@3x.png in Resources */,
 				FFB41B2C1CEE9A3000CD5F09 /* equalizer-1.png in Resources */,
 				FFB41B411CEE9A3000CD5F09 /* mode_smartlock.png in Resources */,
@@ -1307,6 +1318,7 @@
 				FFB41B4D1CEE9A3000CD5F09 /* sun.png in Resources */,
 				FFB84B4B1D90D4240037872C /* yoga_position_12.png in Resources */,
 				FF37EDD81D1117670026F70D /* TTModeHueConnecting.xib in Resources */,
+				FFB84B511D91FDC40037872C /* TTModeYogaViewController.xib in Resources */,
 				FFB41B3A1CEE9A3000CD5F09 /* mode_meditation.png in Resources */,
 				FFB41B291CEE9A3000CD5F09 /* clock.png in Resources */,
 				FFB41B1F1CEE9A3000CD5F09 /* music_volume.png in Resources */,
