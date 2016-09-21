@@ -103,6 +103,7 @@ class TTDeviceTitleView: UIView, TTTitleMenuDelegate {
     override func draw(_ rect: CGRect) {
         deviceImageView.image = UIImage(named:"remote_graphic")
         titleLabel.text = device.nickname
+        titleLabel.sizeToFit()
         stateLabel.text = device.stateLabel()
         
         super.draw(rect)
@@ -139,11 +140,39 @@ class TTDeviceTitleView: UIView, TTTitleMenuDelegate {
     
     func selectMenuOption(_ row: Int) {
         switch row {
+        case 1:
+            showRenameDevice()
         case 2:
             appDelegate().bluetoothMonitor.forgetDevice(device)
         default:
             break
         }
         appDelegate().mainViewController.closeDeviceMenu()
+    }
+    
+    func showRenameDevice() {
+        
+        let renameAlert = UIAlertController(title: "Rename remote", message: nil, preferredStyle: .alert)
+        let renameAction = UIAlertAction(title: "Rename", style: .default, handler: { (action) in
+            let newNickname = renameAlert.textFields![0].text!
+            print(" ---> New nickname: \(newNickname)")
+            
+            appDelegate().bluetoothMonitor.writeNicknameToDevice(self.device, nickname: newNickname)
+        })
+
+        renameAlert.addTextField { (textfield) in
+            if let nickname = self.device.nickname {
+                textfield.text = "\(nickname)"
+            }
+            NotificationCenter.default.addObserver(forName: NSNotification.Name.UITextFieldTextDidChange, object: textfield, queue: OperationQueue.main) { (notification) in
+                renameAction.isEnabled = textfield.text != ""
+            }
+        }
+        renameAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action) in
+            
+        }))
+        renameAlert.addAction(renameAction)
+        appDelegate().mainViewController.closeDeviceMenu()
+        appDelegate().mainViewController.present(renameAlert, animated: true, completion: nil)
     }
 }

@@ -37,7 +37,7 @@ protocol TTModeWemoDelegate {
 
 class TTModeWemo: TTMode, TTModeWemoMulticastDelegate, TTModeWemoDeviceDelegate {
     
-    var delegate: TTModeWemoDelegate!
+    var delegate: TTModeWemoDelegate?
     var wemoState = TTWemoState.disconnected
     static var multicastServer = TTModeWemoMulticastServer()
     static var foundDevices: [TTModeWemoDevice] = []
@@ -91,14 +91,14 @@ class TTModeWemo: TTMode, TTModeWemoMulticastDelegate, TTModeWemoDeviceDelegate 
     // MARK: Actions
     
     override class func actions() -> [String] {
-        return ["TTModeWemoDeviceOn",
+        return ["TTModeWemoDeviceRunning",
                 "TTModeWemoDeviceOff",
                 "TTModeWemoDeviceToggle"]
     }
     
     // MARK: Action titles
     
-    func titleTTModeWemoDeviceOn() -> String {
+    func titleTTModeWemoDeviceRunning() -> String {
         return "Turn on"
     }
     
@@ -112,7 +112,7 @@ class TTModeWemo: TTMode, TTModeWemoMulticastDelegate, TTModeWemoDeviceDelegate 
     
     // MARK: Action images
     
-    func imageTTModeWemoDeviceOn() -> String {
+    func imageTTModeWemoDeviceRunning() -> String {
         return "next_story.png"
     }
     
@@ -128,7 +128,7 @@ class TTModeWemo: TTMode, TTModeWemoMulticastDelegate, TTModeWemoDeviceDelegate 
     // MARK: Defaults
     
     override func defaultNorth() -> String {
-        return "TTModeWemoDeviceOn"
+        return "TTModeWemoDeviceRunning"
     }
     
     override func defaultEast() -> String {
@@ -153,19 +153,19 @@ class TTModeWemo: TTMode, TTModeWemoMulticastDelegate, TTModeWemoDeviceDelegate 
         TTModeWemo.multicastServer.deactivate()
     }
     
-    func runTTModeWemoDeviceOn(_ direction: NSNumber) {
+    func runTTModeWemoDeviceRunning(direction: NSNumber) {
         if let device = self.selectedDevice(TTModeDirection(rawValue: direction.intValue)!) {
             device.changeDeviceState(.on)
         }
     }
     
-    func runTTModeWemoDeviceOff(_ direction: NSNumber) {
+    func runTTModeWemoDeviceOff(direction: NSNumber) {
         if let device = self.selectedDevice(TTModeDirection(rawValue: direction.intValue)!) {
             device.changeDeviceState(.off)
         }
     }
     
-    func runTTModeWemoDeviceToggle(_ direction: NSNumber) {
+    func runTTModeWemoDeviceToggle(direction: NSNumber) {
         if let device = self.selectedDevice(TTModeDirection(rawValue: direction.intValue)!) {
             device.requestDeviceState {
                 if device.deviceState == TTModeWemoDeviceState.on {
@@ -247,9 +247,9 @@ class TTModeWemo: TTMode, TTModeWemoMulticastDelegate, TTModeWemoDeviceDelegate 
             return a.deviceName?.lowercased() < b.deviceName?.lowercased()
         }
         
-        var foundDevices: [[String: AnyObject]] = []
+        var foundDevices: [[String: Any]] = []
         for device in TTModeWemo.foundDevices {
-            foundDevices.append(["ipaddress": device.ipAddress as AnyObject, "port": device.port as AnyObject, "name": device.deviceName as AnyObject])
+            foundDevices.append(["ipaddress": device.ipAddress, "port": device.port, "name": device.deviceName])
         }
         prefs.set(foundDevices, forKey: TTModeWemoConstants.kWemoFoundDevices)
         prefs.synchronize()

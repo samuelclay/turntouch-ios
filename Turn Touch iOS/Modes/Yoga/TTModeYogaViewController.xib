@@ -35,9 +35,9 @@
                 <view clipsSubviews="YES" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="3uv-gY-HPa" customClass="UIImageView">
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </view>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="254" verticalHuggingPriority="254" text="Low lunge pose" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MI3-F5-jip">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="254" verticalHuggingPriority="254" verticalCompressionResistancePriority="751" text="Low lunge pose with two lines in title" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MI3-F5-jip">
                     <constraints>
-                        <constraint firstAttribute="height" constant="48" id="aIT-2b-5hc"/>
+                        <constraint firstAttribute="height" constant="88" id="3Rz-3c-prb"/>
                     </constraints>
                     <fontDescription key="fontDescription" name="Effra-Light" family="Effra" pointSize="36"/>
                     <nil key="textColor"/>

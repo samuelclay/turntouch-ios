@@ -19,6 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     @IBOutlet var mainViewController: TTMainViewController!
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        self.erasePreferences()
         self.loadPreferences()
 
         let centralManagerIdentifiers = launchOptions?[UIApplicationLaunchOptionsKey.bluetoothCentrals]
@@ -27,7 +28,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         }
 
 //        print(UserDefaults.standardUserDefaults().dictionaryRepresentation())
-//        erasePreferences()
         
         bluetoothMonitor = TTBluetoothMonitor()
         modeMap = TTModeMap()
@@ -85,6 +85,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         prefs.synchronize()
     }
     
+    func erasePreferences() {
+        let prefs = UserDefaults.standard
+        for pref in prefs.dictionaryRepresentation().keys {
+            prefs.removeObject(forKey: pref)
+        }
+        prefs.synchronize()
+    }
+
     func loadPreferences() {
         let prefs = UserDefaults.standard
         let defaultPrefsFile = Bundle.main.path(forResource: "Preferences", ofType: "plist")
@@ -135,13 +143,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         }
     }
     
-    func erasePreferences() {
-        for pref in UserDefaults.standard.dictionaryRepresentation().keys {
-            UserDefaults.standard.removeObject(forKey: pref)
-        }
-        UserDefaults.standard.synchronize()
-    }
-}
+ }
 
 func appDelegate () -> AppDelegate {
     return UIApplication.shared.delegate as! AppDelegate

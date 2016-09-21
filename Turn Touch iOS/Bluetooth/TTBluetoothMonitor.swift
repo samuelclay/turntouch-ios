@@ -664,6 +664,12 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
             data.increaseLength(by: 32-data.length)
         }
         
+        if device.peripheral == nil {
+            print(" ---> Error! Peripheral not connected")
+            self.countDevices()
+            return
+        }
+        
         let characteristic = self.characteristicInPeripheral(device.peripheral, serviceUUID: DEVICE_V2_SERVICE_BUTTON_UUID,
                                                              characteristicUUID: DEVICE_V2_CHARACTERISTIC_NICKNAME_UUID)
         

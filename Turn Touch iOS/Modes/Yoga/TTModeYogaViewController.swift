@@ -46,19 +46,19 @@ class TTModeYogaViewController: UIViewController {
         yogaLang.layer.removeAllAnimations()
 
         UIView.transition(with: self.yogaPoseImage, duration: duration,
-                          options: [.transitionCrossDissolve, .beginFromCurrentState, .curveEaseIn],
+                          options: [.transitionCrossDissolve, .beginFromCurrentState, .curveEaseOut],
                           animations: {
             self.yogaPoseImage.image = UIImage(named: poseFilename)!
         })
         
-        UIView.animate(withDuration: TimeInterval(duration/2.0), delay: 0, options: .beginFromCurrentState, animations: {
+        UIView.animate(withDuration: TimeInterval(duration/3.0), delay: 0, options: [.curveEaseOut, .beginFromCurrentState], animations: {
             self.yogaName.alpha = 0
             self.yogaLang.alpha = 0
         }) { (finished) in
             if !finished { return }
             self.yogaName.text = pose["name"]
             self.yogaLang.text = pose["lang"]
-            UIView.animate(withDuration: TimeInterval(duration/2.0), animations: {
+            UIView.animate(withDuration: TimeInterval(duration/3.0), delay: 0, options: [.curveEaseIn, .beginFromCurrentState], animations: {
                 self.yogaName.alpha = 1
                 self.yogaLang.alpha = 1
             })
