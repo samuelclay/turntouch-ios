@@ -431,7 +431,7 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
         foundDevices.removePeripheral(peripheral)
         self.countDevices()
         
-        if !paired! {
+        if paired != nil && !paired! {
             // Scan unknown since the device was unpaired, so we should find it again
 //            self.stopScan()
             self.scanUnknown()

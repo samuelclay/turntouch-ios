@@ -36,7 +36,7 @@ class TTDeviceTitleView: UIView, TTTitleMenuDelegate {
             toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 32))
         
         
-        titleLabel.font = UIFont(name: "Effra", size: 13)
+        titleLabel.font = UIFont(name: "Effra", size: 15)
         titleLabel.textColor = UIColor(hex: 0x404A60)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(titleLabel)
@@ -60,7 +60,7 @@ class TTDeviceTitleView: UIView, TTTitleMenuDelegate {
         self.addConstraint(NSLayoutConstraint(item: settingsButton, attribute: NSLayoutAttribute.centerY, relatedBy: .equal,
             toItem: self, attribute: .centerY, multiplier: 1.0, constant: 0))
         
-        stateLabel.font = UIFont(name: "Effra", size: 13)
+        stateLabel.font = UIFont(name: "Effra", size: 15)
         stateLabel.textColor = UIColor(hex: 0x808AA0)
         stateLabel.translatesAutoresizingMaskIntoConstraints = false
         stateLabel.textAlignment = .right

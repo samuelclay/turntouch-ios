@@ -249,6 +249,9 @@ class TTModeWemo: TTMode, TTModeWemoMulticastDelegate, TTModeWemoDeviceDelegate 
         
         var foundDevices: [[String: Any]] = []
         for device in TTModeWemo.foundDevices {
+            if device.deviceName == nil {
+                continue
+            }
             foundDevices.append(["ipaddress": device.ipAddress, "port": device.port, "name": device.deviceName])
         }
         prefs.set(foundDevices, forKey: TTModeWemoConstants.kWemoFoundDevices)
