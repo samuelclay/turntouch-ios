@@ -25,6 +25,10 @@ class TTModeYogaViewController: UIViewController {
 //        self.view.translatesAutoresizingMaskIntoConstraints = false
         self.view.backgroundColor = UIColor.blue
 //        self.view.clipsToBounds = true
+        let pose = self.modeYoga.poses[0]
+        yogaPoseImage.image = UIImage(named: "\(pose["file"]!).png")
+        yogaName.text = pose["name"]
+        yogaLang.text = pose["lang"]
     }
 
     override var prefersStatusBarHidden : Bool {
@@ -33,7 +37,36 @@ class TTModeYogaViewController: UIViewController {
 
     // MARK: Actions
     
-    func advance(to position: Int) {
+    func advance(to position: Int, pose: [String:String]!, direction: Int) {
+        let duration: TimeInterval = 1.0
+        let poseFilename = "\(pose["file"]!).png"
+
+        yogaPoseImage.layer.removeAllAnimations()
+        yogaName.layer.removeAllAnimations()
+        yogaLang.layer.removeAllAnimations()
+
+        UIView.transition(with: self.yogaPoseImage, duration: duration,
+                          options: [.transitionCrossDissolve, .beginFromCurrentState, .curveEaseIn],
+                          animations: {
+            self.yogaPoseImage.image = UIImage(named: poseFilename)!
+        })
         
+        UIView.animate(withDuration: TimeInterval(duration/2.0), delay: 0, options: .beginFromCurrentState, animations: {
+            self.yogaName.alpha = 0
+            self.yogaLang.alpha = 0
+        }) { (finished) in
+            if !finished { return }
+            self.yogaName.text = pose["name"]
+            self.yogaLang.text = pose["lang"]
+            UIView.animate(withDuration: TimeInterval(duration/2.0), animations: {
+                self.yogaName.alpha = 1
+                self.yogaLang.alpha = 1
+            })
+        }
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        yogaPoseImage.layoutIfNeeded()
     }
 }

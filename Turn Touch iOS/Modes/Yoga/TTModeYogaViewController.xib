@@ -16,7 +16,7 @@
                 <outlet property="view" destination="iN0-l3-epB" id="4D5-oV-qLR"/>
                 <outlet property="yogaLang" destination="qvN-xB-Jfr" id="nzC-k5-evW"/>
                 <outlet property="yogaName" destination="MI3-F5-jip" id="jEc-Jr-7Rs"/>
-                <outlet property="yogaPoseImage" destination="93K-J2-hXQ" id="DaV-Wb-Ra4"/>
+                <outlet property="yogaPoseImage" destination="3uv-gY-HPa" id="ort-2T-0ZX"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -32,13 +32,21 @@
                     </view>
                     <blurEffect style="light"/>
                 </visualEffectView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="infinite" image="yoga_position_1.png" translatesAutoresizingMaskIntoConstraints="NO" id="93K-J2-hXQ"/>
+                <view clipsSubviews="YES" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="3uv-gY-HPa" customClass="UIImageView">
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="254" verticalHuggingPriority="254" text="Low lunge pose" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MI3-F5-jip">
+                    <constraints>
+                        <constraint firstAttribute="height" constant="48" id="aIT-2b-5hc"/>
+                    </constraints>
                     <fontDescription key="fontDescription" name="Effra-Light" family="Effra" pointSize="36"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="253" verticalHuggingPriority="253" text="Ashva Sanchalanasana" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qvN-xB-Jfr">
+                    <constraints>
+                        <constraint firstAttribute="height" constant="36" id="jZi-XJ-Znt"/>
+                    </constraints>
                     <fontDescription key="fontDescription" name="Effra-Light" family="Effra" pointSize="24"/>
                     <color key="textColor" red="0.23795303249999999" green="0.236803501" blue="0.2391025641" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
@@ -46,24 +54,32 @@
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="3uv-gY-HPa" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="2hf-tb-Ge1"/>
                 <constraint firstAttribute="trailing" secondItem="qvN-xB-Jfr" secondAttribute="trailing" constant="24" id="7GN-8z-ex3"/>
                 <constraint firstItem="qvN-xB-Jfr" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="24" id="9Fo-Oe-tol"/>
-                <constraint firstItem="93K-J2-hXQ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="24" id="BL0-lx-1YO"/>
                 <constraint firstAttribute="bottom" secondItem="qvN-xB-Jfr" secondAttribute="bottom" constant="24" id="Gfb-be-gNx"/>
                 <constraint firstAttribute="bottom" secondItem="hJW-CD-Aa8" secondAttribute="bottom" id="Hzc-Oq-9Tz"/>
+                <constraint firstItem="3uv-gY-HPa" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="24" id="Imx-Bn-P5r">
+                    <variation key="widthClass=regular" constant="128"/>
+                </constraint>
                 <constraint firstItem="MI3-F5-jip" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="24" id="Lmb-nY-9i4"/>
                 <constraint firstAttribute="trailing" secondItem="yD7-oU-07Y" secondAttribute="trailing" id="Sdm-8P-Kpc"/>
                 <constraint firstAttribute="trailing" secondItem="MI3-F5-jip" secondAttribute="trailing" constant="24" id="Tcn-Xb-lCH"/>
                 <constraint firstAttribute="trailing" secondItem="hJW-CD-Aa8" secondAttribute="trailing" id="UgC-60-8DY"/>
+                <constraint firstAttribute="trailing" secondItem="3uv-gY-HPa" secondAttribute="trailing" constant="24" id="WIK-9u-BJI">
+                    <variation key="widthClass=regular" constant="128"/>
+                </constraint>
                 <constraint firstAttribute="bottom" secondItem="yD7-oU-07Y" secondAttribute="bottom" id="Y2R-fq-yhd"/>
-                <constraint firstItem="MI3-F5-jip" firstAttribute="top" secondItem="93K-J2-hXQ" secondAttribute="bottom" constant="18" id="YQz-LM-SbJ"/>
                 <constraint firstItem="qvN-xB-Jfr" firstAttribute="top" secondItem="MI3-F5-jip" secondAttribute="bottom" constant="12" id="ZZi-gz-QeS"/>
+                <constraint firstItem="MI3-F5-jip" firstAttribute="top" secondItem="3uv-gY-HPa" secondAttribute="bottom" constant="18" id="dNf-lj-u2c">
+                    <variation key="heightClass=regular" constant="64"/>
+                </constraint>
                 <constraint firstItem="hJW-CD-Aa8" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="ebT-qZ-cum"/>
-                <constraint firstAttribute="trailing" secondItem="93K-J2-hXQ" secondAttribute="trailing" constant="24" id="fGY-o3-1be"/>
-                <constraint firstItem="93K-J2-hXQ" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="iCp-oe-Tq0"/>
                 <constraint firstItem="yD7-oU-07Y" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="kLh-iS-v4X"/>
-                <constraint firstItem="93K-J2-hXQ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="24" id="liq-B5-fJu"/>
                 <constraint firstItem="yD7-oU-07Y" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="oPd-0D-rLW"/>
+                <constraint firstItem="3uv-gY-HPa" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="24" id="ugm-qc-7Lb">
+                    <variation key="heightClass=regular" constant="64"/>
+                </constraint>
                 <constraint firstItem="hJW-CD-Aa8" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="z3B-Sq-hOe"/>
             </constraints>
             <point key="canvasLocation" x="312" y="133"/>
@@ -71,6 +87,5 @@
     </objects>
     <resources>
         <image name="yoga_background.jpg" width="5000" height="3333"/>
-        <image name="yoga_position_1.png" width="512" height="512"/>
     </resources>
 </document>

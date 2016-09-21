@@ -15,8 +15,6 @@ class TTModeYoga: TTMode {
     var yogaNavController: UINavigationController!
 //    var yogaState: TTModeCameraState = .cameraInactive
     var yogaPosition = 0
-    let MAX_YOGA_POSITIONS = 20
-    
     let poses = [
         ["name": "Extended triangle pose",
          "file": "yoga_position_1",
@@ -234,12 +232,12 @@ class TTModeYoga: TTMode {
         
         yogaPosition += increment
         if yogaPosition < 0 {
-            yogaPosition = MAX_YOGA_POSITIONS-1
-        } else if yogaPosition >= MAX_YOGA_POSITIONS {
+            yogaPosition = poses.count-1
+        } else if yogaPosition >= poses.count {
             yogaPosition = 0
         }
         
-        yogaViewController.advance(to: yogaPosition)
+        yogaViewController.advance(to: yogaPosition, pose: poses[yogaPosition], direction: increment)
     }
     
 
