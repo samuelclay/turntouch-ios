@@ -17,7 +17,7 @@ class TTModeYogaViewController: UIViewController {
     @IBOutlet var yogaLang: UILabel!
     
     override func viewWillAppear(_ animated: Bool) {
-//        self.navigationController?.setNavigationBarHidden(true, animated: false)
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
     }
 
     override func viewDidLoad() {

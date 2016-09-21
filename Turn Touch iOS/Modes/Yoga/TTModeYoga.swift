@@ -89,13 +89,13 @@ class TTModeYoga: TTMode {
     required init() {
         super.init()
         
-//        yogaNavController = UINavigationController(rootViewController: yogaViewController)
-//        yogaNavController.modalPresentationStyle = .fullScreen
         yogaViewController = TTModeYogaViewController(nibName: "TTModeYogaViewController", bundle: nil)
-        yogaViewController.view.translatesAutoresizingMaskIntoConstraints = false
-        yogaViewController.modalTransitionStyle = .crossDissolve
-        yogaViewController.modalPresentationStyle = .fullScreen
+//        yogaViewController.modalTransitionStyle = .crossDissolve
+//        yogaViewController.modalPresentationStyle = .fullScreen
         yogaViewController.modeYoga = self
+        yogaNavController = UINavigationController(rootViewController: yogaViewController)
+        yogaNavController.modalTransitionStyle = .crossDissolve
+        yogaNavController.modalPresentationStyle = .fullScreen
     }
     
     override class func title() -> String {
@@ -197,7 +197,7 @@ class TTModeYoga: TTMode {
         if !TTModeYoga.yogaActive {
             yogaAlreadyShowing = false
             TTModeYoga.yogaActive = true
-            appDelegate().mainViewController.present(yogaViewController,
+            appDelegate().mainViewController.present(yogaNavController,
                                                      animated: true) {
             }
         }
