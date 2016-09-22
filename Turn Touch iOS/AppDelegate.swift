@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     @IBOutlet var mainViewController: TTMainViewController!
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        self.erasePreferences()
+//        self.erasePreferences()
         self.loadPreferences()
 
         let centralManagerIdentifiers = launchOptions?[UIApplicationLaunchOptionsKey.bluetoothCentrals]
@@ -47,6 +47,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             if self.bluetoothMonitor.noKnownDevices() {
                 appDelegate().mainViewController.showPairingModal()
             }
+        }
+        
+        DispatchQueue.main.async {
 //            appDelegate().mainViewController.showPairingModal()
 //            appDelegate().mainViewController.showFtuxModal()
         }

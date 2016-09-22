@@ -52,7 +52,7 @@ class TTDevice: NSObject {
     }
     
     func stateLabel() -> String {
-        return state == .device_STATE_CONNECTED ? "connected" :
+        return state == .device_STATE_CONNECTED ? (self.isPaired ? "connected" : "pairing") :
             state == .device_STATE_SEARCHING ? "searching" :
             state == .device_STATE_CONNECTING ? "connecting" : "X"
     }

@@ -34,8 +34,6 @@ class TTModeHueOptions: TTOptionsDetailViewController, TTModeHueDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
 
     func changeState(_ hueState: TTHueState, mode: TTModeHue, message: Any?) {
         print(" ---> Changing hue state: \(hueState) - \(message)")
@@ -51,6 +49,13 @@ class TTModeHueOptions: TTOptionsDetailViewController, TTModeHueDelegate {
             if message != nil {
                 self.modeHue.foundBridges = message as! [String: String]
             }
+            
+            if self.modeHue.foundBridges.count == 0 {
+                self.modeHue.hueState = .notConnected
+                self.changeState(self.modeHue.hueState, mode: self.modeHue, message: nil)
+                return
+            }
+            
             self.bridgeViewController?.setBridges(self.modeHue.foundBridges)
         case .pushlink:
             self.drawPushlinkViewController()

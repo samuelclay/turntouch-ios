@@ -345,7 +345,6 @@ class TTDiamondView: UIView {
         
         if let touch = touches.first {
             let location = touch.location(in: self)
-            print(" --> Touches: \(location)")
             if northPathTop.contains(location) || northPathBottom.contains(location) {
                 overrideActiveDirection = .north
             } else if eastPathTop.contains(location) || eastPathBottom.contains(location) {
@@ -379,6 +378,8 @@ class TTDiamondView: UIView {
                 appDelegate().modeMap.toggleInspectingModeDirection(.west)
             } else if southPathTop.contains(location) || southPathBottom.contains(location) {
                 appDelegate().modeMap.toggleInspectingModeDirection(.south)
+            } else if appDelegate().modeMap.inspectingModeDirection != .no_DIRECTION {
+                appDelegate().modeMap.toggleInspectingModeDirection(appDelegate().modeMap.inspectingModeDirection)
             }
             overrideActiveDirection = .no_DIRECTION
         }

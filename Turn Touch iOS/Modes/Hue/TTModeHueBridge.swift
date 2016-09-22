@@ -24,7 +24,7 @@ class TTModeHueBridge: TTOptionsDetailViewController, UITableViewDelegate, UITab
         self.view.translatesAutoresizingMaskIntoConstraints = false
         self.tableView.allowsSelection = true
         
-        tableHeightConstraint.constant = CGFloat(self.bridgesFound.count * 44 * 4)
+        tableHeightConstraint.constant = CGFloat(self.bridgesFound.count * 44)
     }
 
     func setBridges(_ foundBridges: [String: String]?) {
@@ -32,12 +32,13 @@ class TTModeHueBridge: TTOptionsDetailViewController, UITableViewDelegate, UITab
             self.bridgesFound = foundBridges!
             self.sortedBridgeKeys = self.bridgesFound.keys.sorted()
         }
+        
         self.label.text = "Please select a Hue bridge"
         
         print(" ---> Found hue bridges: \(self.bridgesFound)")
         self.tableView.reloadData()
         
-        tableHeightConstraint.constant = CGFloat(self.bridgesFound.count * 44 * 4)
+        tableHeightConstraint.constant = CGFloat(self.bridgesFound.count * 44)
         appDelegate().mainViewController.scrollView.layoutSubviews()
     }
     
@@ -49,7 +50,7 @@ class TTModeHueBridge: TTOptionsDetailViewController, UITableViewDelegate, UITab
     // MARK: Table view data source
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.bridgesFound.count * 4
+        return self.bridgesFound.count
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

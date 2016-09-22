@@ -11,12 +11,15 @@ import UIKit
 class TTModeHueConnected: TTOptionsDetailViewController {
     
     var modeHue: TTModeHue!
+    @IBOutlet var lightsLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.translatesAutoresizingMaskIntoConstraints = false
         
-        // Do any additional setup after loading the view.
+        DispatchQueue.main.async {
+            self.countLights()
+        }
     }
 
     @IBAction func selectOtherBridge(_ sender: UIButton) {
@@ -26,6 +29,22 @@ class TTModeHueConnected: TTOptionsDetailViewController {
         prefs.synchronize()
         
         self.modeHue.searchForBridgeLocal()
+    }
+    
+    @IBAction func reloadScenes(_ sender: UIButton) {
+        self.modeHue.ensureScenes(force: true)
+    }
+    
+    func countLights() {
+        let cache = PHBridgeResourcesReader.readBridgeResourcesCache()
+        if let scenes = cache?.scenes,
+            let lights = cache?.lights {
+            let lightsStr = lights.count == 1 ? "1 light" : "\(lights.count) lights"
+            let sceneStr = scenes.count == 1 ? "1 scene" : "\(scenes.count) scenes"
+            lightsLabel.text = "\(lightsStr), \(sceneStr)"
+        } else {
+            lightsLabel.text = "Loading scenes..."
+        }
     }
 
 }

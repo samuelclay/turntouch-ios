@@ -737,12 +737,13 @@ class TTModeHue: TTMode {
     func ensureScenes(force: Bool = false) {
         let bridgeSendAPI = PHBridgeSendAPI()
         let cache = PHBridgeResourcesReader.readBridgeResourcesCache()
-        // Collect scene ids to check against
         
         if cache?.scenes == nil || cache?.lights == nil {
             print(" ---> Scenes not ready yet")
             return
         }
+        
+        // Collect scene ids to check against
         let scenes: [NSObject : AnyObject] = cache!.scenes as [NSObject : AnyObject]
         var foundScenes: [String] = []
         for value in scenes.values {
@@ -751,7 +752,7 @@ class TTModeHue: TTMode {
         }
         
         // Scene: All Lights Off
-        if !foundScenes.contains("TT-all-off") {
+        if !foundScenes.contains("TT-all-off") || force {
             let scene: PHScene = PHScene()
             scene.name = "All Lights Off"
             scene.identifier = "TT-all-off"
@@ -765,6 +766,7 @@ class TTModeHue: TTMode {
                     lightState.alert = PHLightAlertMode.init(0)
                     bridgeSendAPI.save(lightState, forLightIdentifier: light.identifier, inSceneWithIdentifier: scene.identifier, completionHandler: {(errors) in
                         print("Hue:SceneOff light: \(errors)")
+                        self.delegate?.changeState(self.hueState, mode: self, message: nil)
                     })
                 }
             })
@@ -785,6 +787,7 @@ class TTModeHue: TTMode {
                     lightState.effect = EFFECT_COLORLOOP
                     bridgeSendAPI.save(lightState, forLightIdentifier: light.identifier, inSceneWithIdentifier: scene.identifier, completionHandler: {(errors) in
 //                        print("Hue:Loop light: \(errors)")
+                        self.delegate?.changeState(self.hueState, mode: self, message: nil)
                     })
                 }
             })
@@ -809,6 +812,7 @@ class TTModeHue: TTMode {
                     lightState.saturation = NSNumber(value: Int(MAX_BRIGHTNESS))
                     bridgeSendAPI.save(lightState, forLightIdentifier: light.identifier, inSceneWithIdentifier: scene.identifier, completionHandler: {(errors) in
 //                        print("Hue:EE1 scene: \(errors)")
+                        self.delegate?.changeState(self.hueState, mode: self, message: nil)
                     })
                 }
             })
@@ -837,6 +841,7 @@ class TTModeHue: TTMode {
                         lightState.saturation = NSNumber(value: Int(MAX_BRIGHTNESS))
                         bridgeSendAPI.save(lightState, forLightIdentifier: light.identifier, inSceneWithIdentifier: scene.identifier, completionHandler: {(errors) in
     //                        print("Hue:EE2 scene: \(errors)")
+                            self.delegate?.changeState(self.hueState, mode: self, message: nil)
                         })
                     }
                 }
@@ -863,6 +868,7 @@ class TTModeHue: TTMode {
                         lightState.saturation = NSNumber(value: Int(MAX_BRIGHTNESS))
                         bridgeSendAPI.save(lightState, forLightIdentifier: light.identifier, inSceneWithIdentifier: scene.identifier, completionHandler: {(errors) in
     //                        print("Hue:LE1 scene: \(errors)")
+                            self.delegate?.changeState(self.hueState, mode: self, message: nil)
                         })
                     }
                 }
@@ -893,6 +899,7 @@ class TTModeHue: TTMode {
                         lightState.saturation = NSNumber(value: Int(MAX_BRIGHTNESS))
                         bridgeSendAPI.save(lightState, forLightIdentifier: light.identifier, inSceneWithIdentifier: scene.identifier, completionHandler: {(errors) in
     //                        print("Hue:LE2 scene: \(errors)")
+                            self.delegate?.changeState(self.hueState, mode: self, message: nil)
                         })
                     }
                 }
