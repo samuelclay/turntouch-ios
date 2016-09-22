@@ -123,6 +123,10 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
         return identifiers
     }
     
+    func noKnownDevices() -> Bool {
+        return self.knownPeripheralIdentifiers().count == 0
+    }
+    
     // MARK: Scanning
     
     func scanKnown()  {

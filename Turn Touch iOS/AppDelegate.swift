@@ -44,6 +44,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         }
         
         DispatchQueue.main.async {
+            if self.bluetoothMonitor.noKnownDevices() {
+                appDelegate().mainViewController.showPairingModal()
+            }
 //            appDelegate().mainViewController.showPairingModal()
 //            appDelegate().mainViewController.showFtuxModal()
         }
@@ -86,11 +89,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     }
     
     func erasePreferences() {
-        let prefs = UserDefaults.standard
-        for pref in prefs.dictionaryRepresentation().keys {
-            prefs.removeObject(forKey: pref)
-        }
-        prefs.synchronize()
+        UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
     }
 
     func loadPreferences() {

@@ -52,7 +52,7 @@ class TTPairingInfoViewController: UIViewController {
             self.navigationItem.title = ""
             self.heroImage?.image = UIImage(named: "modal_remote_hero")
             self.titleLabel?.text = "Welcome to Turn Touch"
-            self.subtitleLabel?.text = "Four buttons of beautiful control"
+            self.subtitleLabel?.text = "Beautiful control"
         case .success:
 //            self.navigationItem.title = "Success!"
             self.heroImage?.image = UIImage(named: "modal_remote_paired")

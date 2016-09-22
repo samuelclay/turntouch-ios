@@ -332,6 +332,33 @@ class TTDiamondView: UIView {
             }
         }
         
+        appDelegate().mainViewController.scrollView.isScrollEnabled = false
+        self.setNeedsDisplay()
+    }
+    
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesMoved(touches, with: event)
+        
+        if diamondType != .interactive {
+            return
+        }
+        
+        if let touch = touches.first {
+            let location = touch.location(in: self)
+            print(" --> Touches: \(location)")
+            if northPathTop.contains(location) || northPathBottom.contains(location) {
+                overrideActiveDirection = .north
+            } else if eastPathTop.contains(location) || eastPathBottom.contains(location) {
+                overrideActiveDirection = .east
+            } else if westPathTop.contains(location) || westPathBottom.contains(location) {
+                overrideActiveDirection = .west
+            } else if southPathTop.contains(location) || southPathBottom.contains(location) {
+                overrideActiveDirection = .south
+            } else {
+                overrideActiveDirection = .no_DIRECTION
+            }
+        }
+        
         self.setNeedsDisplay()
     }
     
@@ -357,6 +384,8 @@ class TTDiamondView: UIView {
         }
         
         self.setNeedsDisplay()
+        
+        appDelegate().mainViewController.scrollView.isScrollEnabled = true
     }
     
 }

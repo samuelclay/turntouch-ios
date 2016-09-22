@@ -147,19 +147,35 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
         scrollView.alwaysBounceVertical = true
         scrollView.insertSubview(scrollStackView, at: 0)
         scrollView.backgroundColor = UIColor(hex: 0xF5F6F8)
-        scrollView.addConstraint(NSLayoutConstraint(item: scrollStackView, attribute: .top, relatedBy: .equal, toItem: scrollView, attribute: .top, multiplier: 1.0, constant: 0.0))
-        scrollView.addConstraint(NSLayoutConstraint(item: scrollStackView, attribute: .leading, relatedBy: .equal, toItem: scrollView, attribute: .leading, multiplier: 1.0, constant: 0.0))
-        scrollView.addConstraint(NSLayoutConstraint(item: scrollStackView, attribute: .trailing, relatedBy: .equal, toItem: scrollView, attribute: .trailing, multiplier: 1.0, constant: 0.0))
-        scrollView.addConstraint(NSLayoutConstraint(item: scrollStackView, attribute: .width, relatedBy: .equal, toItem: scrollView, attribute: .width, multiplier: 1.0, constant: 0.0))
+        scrollView.addConstraint(NSLayoutConstraint(item: scrollStackView, attribute: .top,
+                                                    relatedBy: .equal, toItem: scrollView, attribute: .top,
+                                                    multiplier: 1.0, constant: 0.0))
+        scrollView.addConstraint(NSLayoutConstraint(item: scrollStackView, attribute: .leading,
+                                                    relatedBy: .equal, toItem: scrollView, attribute: .leading,
+                                                    multiplier: 1.0, constant: 0.0))
+        scrollView.addConstraint(NSLayoutConstraint(item: scrollStackView, attribute: .trailing,
+                                                    relatedBy: .equal, toItem: scrollView, attribute: .trailing,
+                                                    multiplier: 1.0, constant: 0.0))
+        scrollView.addConstraint(NSLayoutConstraint(item: scrollStackView, attribute: .width,
+                                                    relatedBy: .equal, toItem: scrollView, attribute: .width,
+                                                    multiplier: 1.0, constant: 0.0))
+        scrollView.addConstraint(NSLayoutConstraint(item: scrollStackView, attribute: .bottom,
+                                                    relatedBy: .equal, toItem: scrollView, attribute: .bottom,
+                                                    multiplier: 1.0, constant: 0.0))
         stackView.addArrangedSubview(scrollView)
-        stackView.addConstraint(NSLayoutConstraint(item: scrollView, attribute: .leading, relatedBy: .equal, toItem: stackView, attribute: .leading, multiplier: 1.0, constant: 0.0))
-        stackView.addConstraint(NSLayoutConstraint(item: scrollView, attribute: .trailing, relatedBy: .equal, toItem: stackView, attribute: .trailing, multiplier: 1.0, constant: 0.0))
+        stackView.addConstraint(NSLayoutConstraint(item: scrollView, attribute: .leading,
+                                                   relatedBy: .equal, toItem: stackView, attribute: .leading,
+                                                   multiplier: 1.0, constant: 0.0))
+        stackView.addConstraint(NSLayoutConstraint(item: scrollView, attribute: .trailing,
+                                                   relatedBy: .equal, toItem: stackView, attribute: .trailing,
+                                                   multiplier: 1.0, constant: 0.0))
         scrollView.setNeedsLayout()
         scrollView.layoutIfNeeded()
         
         stackView.addArrangedSubview(deviceTitlesView)
-        deviceTitlesConstraint = NSLayoutConstraint(item: deviceTitlesView, attribute: .height, relatedBy: .equal,
-                                                    toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 0)
+        deviceTitlesConstraint = NSLayoutConstraint(item: deviceTitlesView, attribute: .height,
+                                                    relatedBy: .equal, toItem: nil, attribute: .notAnAttribute,
+                                                    multiplier: 1.0, constant: 0)
 //        stackView.addConstraint(deviceTitlesConstraint)
 
         self.registerAsObserver()
@@ -167,11 +183,6 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        scrollView.contentSize = scrollStackView.frame.size
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
@@ -305,12 +316,14 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
         
         
         if optionsDetailView == nil {
-            optionsConstraint = NSLayoutConstraint(item: optionsView, attribute: .height, relatedBy: .equal,
-                                                   toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 0)
+            optionsConstraint = NSLayoutConstraint(item: optionsView, attribute: .height,
+                                                   relatedBy: .equal, toItem: nil, attribute: .notAnAttribute,
+                                                   multiplier: 1.0, constant: 0)
 //            stackView.addConstraint(optionsConstraint)
         } else {
-            optionsConstraint = NSLayoutConstraint(item: optionsView, attribute: .height, relatedBy: .equal,
-                                                   toItem: optionsDetailView, attribute: .height, multiplier: 1.0, constant: 0)
+            optionsConstraint = NSLayoutConstraint(item: optionsView, attribute: .height,
+                                                   relatedBy: .equal, toItem: optionsDetailView, attribute: .height,
+                                                   multiplier: 1.0, constant: 0)
 //            stackView.addConstraint(optionsConstraint)
         }
         UIView.animate(withDuration: 0.42, animations: {

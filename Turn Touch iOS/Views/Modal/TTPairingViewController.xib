@@ -6,6 +6,11 @@
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Effra_Rg.ttf">
+            <string>Effra-Regular</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TTPairingViewController" customModule="Turn_Touch_iOS" customModuleProvider="target">
             <connections>
@@ -36,10 +41,7 @@
                     </constraints>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="Pairing your Turn Touch" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lJr-fU-0wG">
-                    <constraints>
-                        <constraint firstAttribute="height" constant="48" id="5N9-OH-Wpy"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                    <fontDescription key="fontDescription" name="Effra-Regular" family="Effra" pointSize="24"/>
                     <color key="textColor" red="0.23795303249999999" green="0.236803501" blue="0.2391025641" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -47,44 +49,51 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="24" id="79W-Op-39W"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <fontDescription key="fontDescription" name="Effra-Regular" family="Effra" pointSize="17"/>
                     <color key="textColor" red="0.65098039220000004" green="0.68235294120000001" blue="0.70196078429999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wdc-e5-1UP" customClass="TTDiamondView" customModule="Turn_Touch_iOS" customModuleProvider="target">
-                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O0w-fy-7GZ">
+                    <subviews>
+                        <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wdc-e5-1UP" customClass="TTDiamondView" customModule="Turn_Touch_iOS" customModuleProvider="target">
+                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="380" id="Uay-sX-USe">
+                                    <variation key="widthClass=compact" constant="280"/>
+                                </constraint>
+                                <constraint firstAttribute="width" secondItem="Wdc-e5-1UP" secondAttribute="height" multiplier="34:25" id="qCb-vE-9e8"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="diamondTypeAdapter">
+                                    <integer key="value" value="3"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="number" keyPath="overrideSelectedDirectionAdapter">
+                                    <integer key="value" value="0"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="ignoreSelectedMode" value="YES"/>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="width" secondItem="Wdc-e5-1UP" secondAttribute="height" multiplier="34:25" id="qCb-vE-9e8"/>
+                        <constraint firstItem="Wdc-e5-1UP" firstAttribute="centerX" secondItem="O0w-fy-7GZ" secondAttribute="centerX" id="EpX-7a-Elm"/>
+                        <constraint firstItem="Wdc-e5-1UP" firstAttribute="centerY" secondItem="O0w-fy-7GZ" secondAttribute="centerY" id="x3M-5i-XaN"/>
                     </constraints>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="number" keyPath="diamondTypeAdapter">
-                            <integer key="value" value="3"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="number" keyPath="overrideSelectedDirectionAdapter">
-                            <integer key="value" value="0"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="boolean" keyPath="ignoreSelectedMode" value="YES"/>
-                    </userDefinedRuntimeAttributes>
                 </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="OBG-Ce-ya7" firstAttribute="centerY" secondItem="Z5U-8b-OEm" secondAttribute="centerY" id="0z3-A6-OnW"/>
-                <constraint firstItem="Wdc-e5-1UP" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="48" id="9C0-6M-NV3">
-                    <variation key="widthClass=regular" constant="128"/>
-                </constraint>
-                <constraint firstAttribute="trailing" secondItem="Wdc-e5-1UP" secondAttribute="trailing" constant="48" id="9gB-Ar-5oO">
-                    <variation key="widthClass=regular" constant="128"/>
-                </constraint>
                 <constraint firstItem="OBG-Ce-ya7" firstAttribute="centerY" secondItem="Z5U-8b-OEm" secondAttribute="centerY" id="AEs-XO-T2M"/>
                 <constraint firstItem="OBG-Ce-ya7" firstAttribute="centerX" secondItem="Z5U-8b-OEm" secondAttribute="centerX" id="GHM-ML-Bi6"/>
-                <constraint firstItem="Wdc-e5-1UP" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="96" id="Qdq-fB-E0K"/>
                 <constraint firstItem="ZTX-d8-wqR" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Scr-bA-V1j"/>
+                <constraint firstItem="O0w-fy-7GZ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="48" id="V0g-rK-TDh"/>
+                <constraint firstItem="lJr-fU-0wG" firstAttribute="top" secondItem="O0w-fy-7GZ" secondAttribute="bottom" constant="48" id="VHk-hY-sH5"/>
                 <constraint firstItem="Z5U-8b-OEm" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="YRS-zD-9Af"/>
-                <constraint firstItem="Wdc-e5-1UP" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="bx4-1a-HSC"/>
-                <constraint firstItem="OBG-Ce-ya7" firstAttribute="top" secondItem="ZTX-d8-wqR" secondAttribute="bottom" constant="72" id="cuF-dr-LZT"/>
+                <constraint firstAttribute="trailing" secondItem="O0w-fy-7GZ" secondAttribute="trailing" constant="48" id="bjw-Je-UTx"/>
+                <constraint firstItem="OBG-Ce-ya7" firstAttribute="top" secondItem="ZTX-d8-wqR" secondAttribute="bottom" constant="24" id="cuF-dr-LZT"/>
                 <constraint firstItem="lJr-fU-0wG" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="iiq-B1-tCV"/>
-                <constraint firstItem="lJr-fU-0wG" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Wdc-e5-1UP" secondAttribute="bottom" constant="24" id="r0O-f0-Oel"/>
+                <constraint firstItem="O0w-fy-7GZ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="48" id="oJ2-g6-zhj"/>
                 <constraint firstAttribute="bottom" secondItem="OBG-Ce-ya7" secondAttribute="bottom" constant="24" id="sgI-Y0-tuY"/>
                 <constraint firstItem="ZTX-d8-wqR" firstAttribute="top" secondItem="lJr-fU-0wG" secondAttribute="bottom" constant="16" id="tFD-Jk-Qkc"/>
                 <constraint firstItem="OBG-Ce-ya7" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="x6T-ds-WEX"/>
@@ -95,7 +104,7 @@
                     <exclude reference="GHM-ML-Bi6"/>
                 </mask>
             </variation>
-            <point key="canvasLocation" x="22.5" y="8.5"/>
+            <point key="canvasLocation" x="22" y="8"/>
         </view>
     </objects>
 </document>

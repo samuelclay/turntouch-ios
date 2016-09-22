@@ -38,7 +38,7 @@ class TTModeHueBridge: TTOptionsDetailViewController, UITableViewDelegate, UITab
         self.tableView.reloadData()
         
         tableHeightConstraint.constant = CGFloat(self.bridgesFound.count * 44 * 4)
-        self.view.layoutIfNeeded()
+        appDelegate().mainViewController.scrollView.layoutSubviews()
     }
     
     @IBAction func performRefresh(_ sender: UIButton?) {

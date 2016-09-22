@@ -7,6 +7,14 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Dalton Maag - Effra Light.ttf">
+            <string>Effra-Light</string>
+        </array>
+        <array key="Effra_Rg.ttf">
+            <string>Effra-Regular</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TTPairingInfoViewController" customModule="Turn_Touch_iOS" customModuleProvider="target">
             <connections>
@@ -22,13 +30,13 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to Turn Touch" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="62h-DM-WNF">
-                    <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                    <fontDescription key="fontDescription" name="Effra-Regular" family="Effra" pointSize="24"/>
                     <color key="textColor" red="0.23795303249999999" green="0.236803501" blue="0.2391025641" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Four buttons of beautiful control" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eZF-s1-Zb8">
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" red="0.65098039220000004" green="0.68235294120000001" blue="0.70196078429999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Beautiful Control" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eZF-s1-Zb8">
+                    <fontDescription key="fontDescription" name="Effra-Light" family="Effra" pointSize="18"/>
+                    <color key="textColor" red="0.23795303249999999" green="0.236803501" blue="0.2391025641" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="modal_remote_hero.png" translatesAutoresizingMaskIntoConstraints="NO" id="aEt-jd-Sqv">
