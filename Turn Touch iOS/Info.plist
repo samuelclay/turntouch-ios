@@ -2,8 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>ITSAppUsesNonExemptEncryption</key>
-	<false/>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
@@ -19,11 +17,13 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>0.2</string>
+	<string>0.3</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>2</string>
+	<string>5</string>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -31,8 +31,16 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>Turn Touch uses Bluetooth to connect to your remotes</string>
+	<key>NSCameraUsageDescription</key>
+	<string>The Turn Touch camera app uses the camera to take photos</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>Location is sparingly used to keep your remote always connected</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>The Turn Touch camera app uses the microphone when recording video</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>The Turn Touch camera app saves photos to your photo library</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Effra_Rg.ttf</string>

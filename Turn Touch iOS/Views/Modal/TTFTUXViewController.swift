@@ -56,8 +56,6 @@ class TTFTUXViewController: UIViewController, UIScrollViewDelegate {
             toItem: self.view, attribute: .left, multiplier: 1.0, constant: 0))
         self.view.addConstraint(NSLayoutConstraint(item: scrollView, attribute: .width, relatedBy: .equal,
             toItem: self.view, attribute: .width, multiplier: 1.0, constant: 0))
-        self.view.addConstraint(NSLayoutConstraint(item: scrollView, attribute: .bottom, relatedBy: .equal,
-            toItem: self.view, attribute: .bottom, multiplier: 1.0, constant: -100))
         
         pageControl.numberOfPages = pages
         pageControl.translatesAutoresizingMaskIntoConstraints = false
@@ -68,6 +66,8 @@ class TTFTUXViewController: UIViewController, UIScrollViewDelegate {
             toItem: nextButton.view, attribute: .top, multiplier: 1.0, constant: -24))
         self.view.addConstraint(NSLayoutConstraint(item: pageControl, attribute: .centerX, relatedBy: .equal,
             toItem: self.view, attribute: .centerX, multiplier: 1.0, constant: 0))
+        self.view.addConstraint(NSLayoutConstraint(item: scrollView, attribute: .bottom, relatedBy: .equal,
+                                                   toItem: pageControl, attribute: .top, multiplier: 1.0, constant: -24))
         
         var previousFtuxView: TTFTUXView?
         for index in 0..<pages {

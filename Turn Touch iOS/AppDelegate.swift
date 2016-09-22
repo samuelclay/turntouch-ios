@@ -45,13 +45,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         
         DispatchQueue.main.async {
             if self.bluetoothMonitor.noKnownDevices() {
-                appDelegate().mainViewController.showPairingModal()
+//                appDelegate().mainViewController.showPairingModal()
             }
         }
         
         DispatchQueue.main.async {
 //            appDelegate().mainViewController.showPairingModal()
-//            appDelegate().mainViewController.showFtuxModal()
+            appDelegate().mainViewController.showFtuxModal()
         }
         
         return true
