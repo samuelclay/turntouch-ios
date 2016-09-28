@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ReachabilitySwift
 
 enum TTHueState: Int {
     case notConnected
@@ -66,11 +67,13 @@ class TTModeHue: TTMode {
     var foundBridges: [String: String] = [:]
     var bridgeToken: Int = 0
     var bridgesTried: [String] = []
+    let reachability = Reachability()!
 
     required init() {
         super.init()
         
         self.initializeHue()
+        self.watchReachability()
     }
     
     deinit {
@@ -121,6 +124,28 @@ class TTModeHue: TTMode {
         
         // The local heartbeat is a regular timer event in the SDK. Once enabled the SDK regular collects the current state of resources managed by the bridge into the Bridge Resources Cache
         self.enableLocalHeartbeat()
+    }
+    
+    func watchReachability() {
+        reachability.whenReachable = { reachability in
+            print(" ---> Reachable")
+            DispatchQueue.main.async {
+                if self.hueState != .connected {
+                    self.bridgesTried = []
+                    self.searchForBridgeLocal()
+                }
+            }
+        }
+        
+        reachability.whenUnreachable = { reachability in
+            print(" ---> Unreachable")
+        }
+        
+        do {
+            try reachability.startNotifier()
+        } catch {
+            print("Unable to start notifier")
+        }
     }
     
     // MARK: Mode
@@ -293,11 +318,11 @@ class TTModeHue: TTMode {
     }
     
     func shouldIgnoreSingleBeforeDoubleTTModeHueSceneEarlyEvening() -> NSNumber {
-        return NSNumber(value: true)
+        return NSNumber(value: false)
     }
     
     func shouldIgnoreSingleBeforeDoubleTTModeHueSceneLateEvening() -> NSNumber {
-        return NSNumber(value: true)
+        return NSNumber(value: false)
     }
     
     func shouldIgnoreSingleBeforeDoubleTTModeHueSleep() -> NSNumber {
@@ -305,7 +330,7 @@ class TTModeHue: TTMode {
     }
     
     func shouldIgnoreSingleBeforeDoubleTTModeHueRandom() -> NSNumber {
-        return NSNumber(value: true)
+        return NSNumber(value: false)
     }
     
     func runTTModeHueSleep(direction: TTModeDirection, duration sceneDuration: Int) {
@@ -440,7 +465,7 @@ class TTModeHue: TTMode {
             if hueState != .connected {
                 hueState = .connected
                 self.delegate?.changeState(hueState, mode: self, message: nil)
-                self.saveBridge()
+                self.saveRecentBridge()
                 self.ensureScenes(force: true)
             } else {
                 self.ensureScenes()
@@ -479,7 +504,7 @@ class TTModeHue: TTMode {
      Search for bridges using UPnP and portal discovery, shows results to user or gives error when none found.
      */
     
-    func searchForBridgeLocal() {
+    func searchForBridgeLocal(reset: Bool = false) {
         // In case if in pushlink loop
         phHueSdk.cancelPushLinkAuthentication()
 
@@ -491,26 +516,32 @@ class TTModeHue: TTMode {
         
         // Add dispatch_once token
         let prefs = UserDefaults.standard
-        if let recentBridgeId = prefs.object(forKey: TTModeHueConstants.kHueRecentBridgeId),
-            let recentBridgeIp = prefs.object(forKey: TTModeHueConstants.kHueRecentBridgeIp) {
-            if bridgesTried.contains(recentBridgeIp as! String) {
-                // If can't connect to a specific bridge, take it off recent prefs.
-                prefs.removeObject(forKey: TTModeHueConstants.kHueRecentBridgeId)
-                prefs.removeObject(forKey: TTModeHueConstants.kHueRecentBridgeIp)
-                prefs.synchronize()
+        var recentBridgeId = prefs.string(forKey: TTModeHueConstants.kHueRecentBridgeId)
+        var recentBridgeIp = prefs.string(forKey: TTModeHueConstants.kHueRecentBridgeIp)
+        if recentBridgeIp == nil {
+            let cache = PHBridgeResourcesReader.readBridgeResourcesCache()
+            recentBridgeIp = cache?.bridgeConfiguration?.ipaddress
+            recentBridgeId = cache?.bridgeConfiguration?.bridgeId
+        }
+        if (reset || recentBridgeIp != nil) {
+            if recentBridgeIp == nil || bridgesTried.contains(recentBridgeIp!) {
+//                // If can't connect to a specific bridge, take it off recent prefs.
+//                prefs.removeObject(forKey: TTModeHueConstants.kHueRecentBridgeId)
+//                prefs.removeObject(forKey: TTModeHueConstants.kHueRecentBridgeIp)
+//                prefs.synchronize()
 
                 if let foundBridges = prefs.array(forKey: TTModeHueConstants.kHueFoundBridges) as? [[String: String]] {
                     for foundBridge: [String: String] in foundBridges {
                         if !bridgesTried.contains(foundBridge["ipAddress"]!) {
-                            print(" ---> Attempting connect to different Hue: \(recentBridgeIp)")
+                            print(" ---> Attempting connect to different Hue: \(foundBridge["ipAddress"]!)")
                             self.bridgeSelectedWithIpAddress(ipAddress: foundBridge["ipAddress"]!, andBridgeId: foundBridge["bridgeId"]!)
                             return
                         }
                     }
                 }
             } else {
-                print(" ---> Attempting connect to Hue: \(recentBridgeIp)")
-                self.bridgeSelectedWithIpAddress(ipAddress: recentBridgeIp as! String, andBridgeId: recentBridgeId as! String)
+                print(" ---> Attempting connect to Hue: \(recentBridgeIp!)")
+                self.bridgeSelectedWithIpAddress(ipAddress: recentBridgeIp!, andBridgeId: recentBridgeId!)
                 return
             }
         }
@@ -535,9 +566,24 @@ class TTModeHue: TTMode {
                      *****************************************************/
                     // No bridges were found, show this to the user
                     self.showNoBridgesFoundDialog()
+                    self.delayReconnectToFoundBridges()
                 }
                 
                 self.bridgeToken = 0
+            })
+        }
+    }
+    
+    func delayReconnectToFoundBridges() {
+        let prefs = UserDefaults.standard
+        let foundBridges = prefs.array(forKey: TTModeHueConstants.kHueFoundBridges) as? [[String: String]]
+        
+        if let bridgeCount = foundBridges?.count, bridgeCount > 0 {
+            // Try again if bridges known
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(10), execute: {
+                if self.hueState != .connected {
+                    self.searchForBridgeLocal()
+                }
             })
         }
     }
@@ -561,7 +607,7 @@ class TTModeHue: TTMode {
         }
     }
     
-    func saveBridge() {
+    func saveRecentBridge() {
         bridgesTried = []
         
         let prefs = UserDefaults.standard
@@ -667,7 +713,7 @@ class TTModeHue: TTMode {
 //        PHNotificationManager.defaultManager().deregisterObjectForAllNotifications(self)
         hueState = .connected
         self.delegate?.changeState(hueState, mode: self, message: nil)
-        self.saveBridge()
+        self.saveRecentBridge()
         self.disableLocalHeartbeat()
         // Start local heartbeat
         self.perform(#selector(self.enableLocalHeartbeat), with: nil, afterDelay: 1)

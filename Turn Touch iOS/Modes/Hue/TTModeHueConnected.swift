@@ -17,18 +17,11 @@ class TTModeHueConnected: TTOptionsDetailViewController {
         super.viewDidLoad()
         self.view.translatesAutoresizingMaskIntoConstraints = false
         
-        DispatchQueue.main.async {
-            self.countLights()
-        }
+        self.countLights()
     }
 
-    @IBAction func selectOtherBridge(_ sender: UIButton) {
-        let prefs = UserDefaults.standard
-        prefs.removeObject(forKey: TTModeHueConstants.kHueRecentBridgeIp)
-        prefs.removeObject(forKey: TTModeHueConstants.kHueRecentBridgeId)
-        prefs.synchronize()
-        
-        self.modeHue.searchForBridgeLocal()
+    @IBAction func selectOtherBridge(_ sender: UIButton) {        
+        self.modeHue.searchForBridgeLocal(reset: true)
     }
     
     @IBAction func reloadScenes(_ sender: UIButton) {
