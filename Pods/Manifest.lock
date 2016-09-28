@@ -17,18 +17,21 @@ PODS:
   - CocoaAsyncSocket (7.5.0):
     - CocoaAsyncSocket/GCD (= 7.5.0)
   - CocoaAsyncSocket/GCD (7.5.0)
+  - ReachabilitySwift (3)
   - SWXMLHash (3.0.2)
 
 DEPENDENCIES:
   - AFNetworking (~> 3.0)
   - CocoaAsyncSocket
+  - ReachabilitySwift (~> 3)
   - SWXMLHash (~> 3.0.0)
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   CocoaAsyncSocket: 3baeb1ddd969f81cf9fca81053ae49ef2d1cbbfa
+  ReachabilitySwift: f5b9bb30a0777fac8f09ce8b067e32faeb29bb64
   SWXMLHash: e0f6935971f01b06fb228cf435510d998ecde647
 
-PODFILE CHECKSUM: d725b6d056e8ad16bbb59edc29a9138401779bca
+PODFILE CHECKSUM: 9b3227eab39565fe8427b7e61ed71fdb79c4decd
 
 COCOAPODS: 1.1.0.rc.2

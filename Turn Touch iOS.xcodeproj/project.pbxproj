@@ -1710,7 +1710,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 552AD10F15F394A44BF4BD6D /* Pods-Turn Touch iOS.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1747,7 +1746,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 87558F01A91A74C470B9149B /* Pods-Turn Touch iOS.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
