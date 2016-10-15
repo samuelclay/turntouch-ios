@@ -30,10 +30,12 @@ class TTModeHueSceneOptions: TTOptionsDetailViewController, UITextFieldDelegate,
 
     @IBOutlet var spinner: [UIActivityIndicatorView]!
     @IBOutlet var refreshButton: [UIButton]!
+    @IBOutlet var roomPicker: UITextField!
     @IBOutlet var singlePicker: UITextField!
     @IBOutlet var doublePicker: UITextField!
     
     var scenes: [[String: String]] = []
+    var rooms: [[String: String]] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,12 +44,15 @@ class TTModeHueSceneOptions: TTOptionsDetailViewController, UITextFieldDelegate,
     }
     
     func drawScenes() {
+        roomPicker.delegate = self
         singlePicker.delegate = self
         doublePicker.delegate = self
         
         spinner.forEach({ $0.isHidden = true })
         refreshButton.forEach({ $0.isHidden = false })
         
+        let roomSelected = self.action.optionValue(TTModeHueConstants.kHueRoom,
+                                                   direction: appDelegate().modeMap.inspectingModeDirection) as? String
         var sceneSelected = self.action.optionValue(TTModeHueConstants.kHueScene,
                                                     direction: appDelegate().modeMap.inspectingModeDirection) as? String
         var doubleSceneSelected = self.action.optionValue(TTModeHueConstants.kDoubleTapHueScene,
@@ -55,10 +60,15 @@ class TTModeHueSceneOptions: TTOptionsDetailViewController, UITextFieldDelegate,
 
         let cache = PHBridgeResourcesReader.readBridgeResourcesCache()
         
-        if cache?.scenes == nil {
+        if cache?.scenes == nil || cache?.groups == nil {
+            print(" ---> Hue options not ready yet, no scenes or groups: \(cache?.scenes) / \(cache?.groups)")
             return
         }
-        
+
+//        if roomSelected == nil {
+//            self.action.changeActionOption(TTModeHueConstants.kHueRoom, to: roomSelected!)
+//        }
+
         if sceneSelected == nil {
             switch self.action.actionName {
             case "TTModeHueSceneEarlyEvening":
@@ -82,9 +92,38 @@ class TTModeHueSceneOptions: TTOptionsDetailViewController, UITextFieldDelegate,
             self.action.changeActionOption(TTModeHueConstants.kDoubleTapHueScene, to: doubleSceneSelected!)
         }
         
+        var roomLights: [String] = []
+        rooms = []
+        for (_, r) in (cache?.groups)! {
+            let room = r as! PHGroup
+            rooms.append(["name": room.name, "identifier": room.identifier])
+            if roomSelected == room.identifier {
+                roomPicker.text = room.name
+                roomLights = room.lightIdentifiers as! [String]
+            }
+        }
+        
+        rooms = rooms.sorted {
+            (a, b) -> Bool in
+            return a["name"] < b["name"]
+        }
+        
         scenes = []
         for (_, s) in (cache?.scenes)! {
             let scene = s as! PHScene
+            // Check if any light in scene in is room
+            var sceneInRoom = false
+            for sceneLight in scene.lightIdentifiers {
+                if roomLights.contains(sceneLight as! String) {
+                    sceneInRoom = true
+                    break
+                }
+            }
+            
+            if !sceneInRoom {
+                continue
+            }
+            
             scenes.append(["name": scene.name, "identifier": scene.identifier])
             if sceneSelected == scene.identifier {
                 singlePicker.text = scene.name
@@ -98,21 +137,35 @@ class TTModeHueSceneOptions: TTOptionsDetailViewController, UITextFieldDelegate,
             (a, b) -> Bool in
             return a["name"] < b["name"]
         }
+
     }
     
     func pickerDismissed(_ row: Int, textField: UITextField) {
         presented = false
-        let scene = scenes[row]
         
-        textField.text = scene["name"]
-        
-        if let identifier = scene["identifier"] {
-            if textField == singlePicker {
-                self.action.changeActionOption(TTModeHueConstants.kHueScene, to: identifier)
-            } else if textField == doublePicker {
-                self.action.changeActionOption(TTModeHueConstants.kDoubleTapHueScene, to: identifier)
+        if textField == roomPicker {
+            let room = rooms[row]
+            
+            textField.text = room["name"]
+            
+            if let identifier = room["identifier"] {
+                self.action.changeActionOption(TTModeHueConstants.kHueRoom, to: identifier)
+            }
+        } else {
+            let scene = scenes[row]
+            
+            textField.text = scene["name"]
+            
+            if let identifier = scene["identifier"] {
+                if textField == singlePicker {
+                    self.action.changeActionOption(TTModeHueConstants.kHueScene, to: identifier)
+                } else if textField == doublePicker {
+                    self.action.changeActionOption(TTModeHueConstants.kDoubleTapHueScene, to: identifier)
+                }
             }
         }
+        
+        self.drawScenes()
     }
     
     @IBAction func refreshScenes(_ sender: AnyObject) {
@@ -153,21 +206,35 @@ class TTModeHueSceneOptions: TTOptionsDetailViewController, UITextFieldDelegate,
             self.present(pickerVC, animated: true, completion: nil)
             presented = true
             
-            var sceneSelected: String?
-            if textField == singlePicker {
-                sceneSelected = self.action.optionValue(TTModeHueConstants.kHueScene,
-                                                        direction: appDelegate().modeMap.inspectingModeDirection) as? String
-            } else if textField == doublePicker {
-                sceneSelected = self.action.optionValue(TTModeHueConstants.kDoubleTapHueScene,
-                                                        direction: appDelegate().modeMap.inspectingModeDirection) as? String
-            }
             var currentRow: Int = 0
-            for (i, scene) in scenes.enumerated() {
-                if scene["identifier"] == sceneSelected {
-                    currentRow = i
-                    break
+            var sceneSelected: String?
+            var roomSelected: String?
+
+            if textField == roomPicker {
+                roomSelected = self.action.optionValue(TTModeHueConstants.kHueRoom,
+                                                        direction: appDelegate().modeMap.inspectingModeDirection) as? String
+                for (i, room) in rooms.enumerated() {
+                    if room["identifier"] == roomSelected {
+                        currentRow = i
+                        break
+                    }
+                }
+            } else {
+                if textField == singlePicker {
+                        sceneSelected = self.action.optionValue(TTModeHueConstants.kHueScene,
+                                                                direction: appDelegate().modeMap.inspectingModeDirection) as? String
+                } else if textField == doublePicker {
+                    sceneSelected = self.action.optionValue(TTModeHueConstants.kDoubleTapHueScene,
+                                                            direction: appDelegate().modeMap.inspectingModeDirection) as? String
+                }
+                for (i, scene) in scenes.enumerated() {
+                    if scene["identifier"] == sceneSelected {
+                        currentRow = i
+                        break
+                    }
                 }
             }
+            
             pickerVC.picker.selectRow(currentRow, inComponent: 0, animated: true)
         }
 
@@ -186,23 +253,35 @@ class TTModeHueSceneOptions: TTOptionsDetailViewController, UITextFieldDelegate,
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return scenes.count
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return scenes[row]["name"]
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        if pickerView == singlePicker {
-            self.action.changeActionOption(TTModeHueConstants.kHueScene, to: scenes[row]["identifier"]!)
-        } else if pickerView == doublePicker {
-            self.action.changeActionOption(TTModeHueConstants.kDoubleTapHueScene, to: scenes[row]["identifier"]!)
+        if pickerVC.textField == roomPicker {
+            return rooms.count
+        } else {
+            return scenes.count
         }
     }
     
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        if pickerVC.textField == roomPicker {
+            return rooms[row]["name"]
+        } else {
+            return scenes[row]["name"]
+        }
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        if pickerVC.textField == roomPicker {
+            self.action.changeActionOption(TTModeHueConstants.kHueRoom, to: rooms[row]["identifier"]!)
+        } else if pickerVC.textField == singlePicker {
+            self.action.changeActionOption(TTModeHueConstants.kHueScene, to: scenes[row]["identifier"]!)
+        } else if pickerVC.textField == doublePicker {
+            self.action.changeActionOption(TTModeHueConstants.kDoubleTapHueScene, to: scenes[row]["identifier"]!)
+        }
+        
+        self.drawScenes()
+    }
+    
     func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
-        let titleData = scenes[row]["name"]
+        let titleData = pickerVC.textField == roomPicker ? rooms[row]["name"] : scenes[row]["name"]
         let myTitle = NSAttributedString(string: titleData!, attributes: [NSFontAttributeName:UIFont(name: "Effra", size: 18.0)!,NSForegroundColorAttributeName:UIColor.blue])
         return myTitle
     }
@@ -212,10 +291,12 @@ class TTModeHueSceneOptions: TTOptionsDetailViewController, UITextFieldDelegate,
         if view == nil {  //if no label there yet
             pickerLabel = UILabel()
             //color the label's background
-            let hue = CGFloat(row)/CGFloat(scenes.count)
-            pickerLabel?.backgroundColor = UIColor(hue: hue, saturation: 1.0, brightness: 1.0, alpha: 1.0)
+            if pickerVC.textField == singlePicker || pickerVC.textField == doublePicker {
+                let hue = CGFloat(row)/CGFloat(scenes.count)
+                pickerLabel?.backgroundColor = UIColor(hue: hue, saturation: 1.0, brightness: 1.0, alpha: 1.0)
+            }
         }
-        let titleData = scenes[row]["name"]
+        let titleData = pickerVC.textField == roomPicker ? rooms[row]["name"] : scenes[row]["name"]
         let myTitle = NSAttributedString(string: titleData!, attributes: [NSFontAttributeName:UIFont(name: "Effra", size: 18.0)!,NSForegroundColorAttributeName:UIColor.black])
         pickerLabel!.attributedText = myTitle
         pickerLabel!.textAlignment = .center

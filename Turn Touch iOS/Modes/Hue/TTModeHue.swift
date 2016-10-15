@@ -46,6 +46,7 @@ struct TTModeHueConstants {
     static let kDoubleTapRandomBrightness: String = "doubleTapRandomBrightness"
     static let kDoubleTapRandomSaturation: String = "doubleTapRandomSaturation"
     static let kHueScene: String = "hueScene"
+    static let kHueRoom: String = "hueRoom"
     static let kDoubleTapHueScene: String = "doubleTapHueScene"
     static let kHueDuration: String = "hueDuration"
     static let kHueDoubleTapDuration: String = "hueDoubleTapDuration"
@@ -466,9 +467,8 @@ class TTModeHue: TTMode {
                 hueState = .connected
                 self.delegate?.changeState(hueState, mode: self, message: nil)
                 self.saveRecentBridge()
-                self.ensureScenes(force: true)
-            } else {
                 self.ensureScenes()
+                self.readRooms()
             }
         }
     }
@@ -953,4 +953,12 @@ class TTModeHue: TTMode {
         }
         
     }
+    
+    func readRooms() {
+//        let bridgeSendAPI = PHBridgeSendAPI()
+        let cache = PHBridgeResourcesReader.readBridgeResourcesCache()
+        
+        print(" ---> Groups: \(cache?.groups)")
+    }
+    
 }
