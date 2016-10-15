@@ -73,6 +73,10 @@ class TTPairingViewController: UIViewController, TTBluetoothMonitorDelegate {
         self.changePairingState(.searching)
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        appDelegate().bluetoothMonitor.disconnectUnpairedDevices()
+    }
+    
     func changePairingState(_ state: TTPairingState) {
         pairingState = state
     

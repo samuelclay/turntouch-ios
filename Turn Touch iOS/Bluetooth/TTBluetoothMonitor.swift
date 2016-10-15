@@ -366,9 +366,9 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
         bluetoothState = .bt_STATE_CONNECTING_UNKNOWN
         let localName = advertisementData[CBAdvertisementDataLocalNameKey] as! String
         if DEBUG_BLUETOOTH {
-            print(" ---> (\(bluetoothState)) Found bluetooth peripheral, connecting: \(localName)/\(device) (\(RSSI))")
+            print(" ---> (\(bluetoothState)) Found bluetooth peripheral, connecting: \(localName)/\(device!) (\(RSSI))")
         }
-        manager.connect(peripheral,
+        manager.connect(device!.peripheral,
                                   options: [
                                     CBCentralManagerOptionRestoreIdentifierKey: "TTcentralManageRestoreIdentifier",
                                     CBConnectPeripheralOptionNotifyOnDisconnectionKey: true,
@@ -432,6 +432,9 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
             print(" ---> (\(bluetoothState)) Disconnected device: \(device)")
 //        }
         
+        if bluetoothState == .bt_STATE_CONNECTING_UNKNOWN {
+            bluetoothState = .bt_STATE_IDLE
+        }
         foundDevices.removePeripheral(peripheral)
         self.countDevices()
         
