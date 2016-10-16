@@ -41,6 +41,11 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
     var deviceTitlesConstraint: NSLayoutConstraint!
     var optionsView = TTOptionsView()
     var optionsConstraint: NSLayoutConstraint!
+    var batchActionsStackView = TTBatchActionStackView()
+    var addActionMenu = TTModeMenuContainer(menuType: TTMenuType.menu_ADD_MODE)
+    var addActionButtonView = TTAddActionButtonView()
+    var addActionMenuConstraint: NSLayoutConstraint!
+    var addActionButtonConstraint: NSLayoutConstraint!
     
     let titleMenu = TTTitleMenuPopover()
     let deviceMenu = TTTitleMenuPopover()
@@ -116,7 +121,6 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
         scrollStackView.distribution = .fill
         scrollStackView.alignment = .fill
         scrollStackView.spacing = 0
-//        scrollStackView.contentMode = .ScaleToFill
         scrollStackView.addArrangedSubview(actionDiamondView)
         actionDiamondConstraint = NSLayoutConstraint(item: actionDiamondView, attribute: .height, relatedBy: .equal,
                                                      toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 270)
@@ -133,15 +137,27 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
                                                    toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 0)
         scrollStackView.addConstraint(actionTitleConstraint)
         
-//        actionDiamondView.layer.zPosition = 2.0
-//        actionTitleView.layer.zPosition = 1.0
-        
         optionsView.setContentCompressionResistancePriority(UILayoutPriorityDefaultHigh, for: .vertical)
         scrollStackView.addArrangedSubview(optionsView)
         optionsConstraint = NSLayoutConstraint(item: optionsView, attribute: .height, relatedBy: .equal,
                                                toItem: nil, attribute: .notAnAttribute,
                                                multiplier: 1.0, constant: 0)
 //        scrollStackView.addConstraint(optionsConstraint)
+        
+        batchActionsStackView.setContentCompressionResistancePriority(UILayoutPriorityDefaultHigh, for: .vertical)
+        scrollStackView.addArrangedSubview(batchActionsStackView)
+        
+        addActionMenuConstraint = NSLayoutConstraint(item: addActionMenu, attribute: .height, relatedBy: .equal,
+                                                     toItem: nil, attribute: .notAnAttribute,
+                                                     multiplier: 1.0, constant: 0)
+        scrollStackView.addArrangedSubview(addActionMenu)
+        scrollStackView.addConstraint(addActionMenuConstraint)
+        
+        addActionButtonConstraint = NSLayoutConstraint(item: addActionButtonView, attribute: .height, relatedBy: .equal,
+                                                       toItem: nil, attribute: .notAnAttribute,
+                                                       multiplier: 1.0, constant: 0)
+        scrollStackView.addArrangedSubview(addActionButtonView)
+        scrollStackView.addConstraint(addActionButtonConstraint)
         
         scrollView.setContentHuggingPriority(100, for: UILayoutConstraintAxis.vertical)
         scrollView.alwaysBounceVertical = true
@@ -209,8 +225,10 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
     func registerAsObserver() {
         appDelegate().modeMap.addObserver(self, forKeyPath: "openedModeChangeMenu", options: [], context: nil)
         appDelegate().modeMap.addObserver(self, forKeyPath: "openedActionChangeMenu", options: [], context: nil)
+        appDelegate().modeMap.addObserver(self, forKeyPath: "openedAddActionChangeMenu", options: [], context: nil)
         appDelegate().modeMap.addObserver(self, forKeyPath: "selectedMode", options: [], context: nil)
         appDelegate().modeMap.addObserver(self, forKeyPath: "inspectingModeDirection", options: [], context: nil)
+        appDelegate().modeMap.addObserver(self, forKeyPath: "tempMode", options: [], context: nil)
         appDelegate().bluetoothMonitor.addObserver(self, forKeyPath: "nicknamedConnectedCount", options: [], context: nil)
         appDelegate().bluetoothMonitor.addObserver(self, forKeyPath: "pairedDevicesCount", options: [], context: nil)
     }
@@ -221,22 +239,31 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
             self.toggleModeMenu()
         } else if keyPath == "openedActionChangeMenu" {
             self.toggleActionMenu()
+        } else if keyPath == "openedAddActionChangeMenu" {
+            self.toggleAddActionMenu()
         } else if keyPath == "selectedMode" {
             self.resetPosition()
         } else if keyPath == "inspectingModeDirection" {
             self.toggleActionView()
+            self.toggleAddActionMenu()
+            self.toggleAddActionButtonView()
+            self.adjustBatchActions()
         } else if keyPath == "nicknamedConnectedCount" {
             self.adjustDeviceTitles()
         } else if keyPath == "pairedDevicesCount" {
             self.adjustDeviceTitles()
+        } else if keyPath == "tempMode" {
+            self.adjustBatchActions()
         }
     }
     
     deinit {
         appDelegate().modeMap.removeObserver(self, forKeyPath: "openedModeChangeMenu")
         appDelegate().modeMap.removeObserver(self, forKeyPath: "openedActionChangeMenu")
+        appDelegate().modeMap.removeObserver(self, forKeyPath: "openedAddActionChangeMenu")
         appDelegate().modeMap.removeObserver(self, forKeyPath: "selectedMode")
         appDelegate().modeMap.removeObserver(self, forKeyPath: "inspectingModeDirection")
+        appDelegate().modeMap.removeObserver(self, forKeyPath: "tempMode")
         appDelegate().bluetoothMonitor.removeObserver(self, forKeyPath: "nicknamedConnectedCount")
         appDelegate().bluetoothMonitor.removeObserver(self, forKeyPath: "pairedDevicesCount")
     }
@@ -254,7 +281,22 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
         self.actionMenuConstaint.constant = appDelegate().modeMap.openedActionChangeMenu ? modeMenuView.MENU_HEIGHT : 1
         UIView.animate(withDuration: 0.42, animations: {
             self.view.layoutIfNeeded()
-        }) 
+        })
+    }
+    
+    func toggleAddActionMenu() {
+        self.addActionMenuConstraint.constant = appDelegate().modeMap.openedAddActionChangeMenu ? modeMenuView.MENU_HEIGHT : 1
+        UIView.animate(withDuration: 0.42, animations: {
+            self.view.layoutIfNeeded()
+        })
+    }
+    
+    func toggleAddActionButtonView() {
+        if appDelegate().modeMap.inspectingModeDirection != .no_DIRECTION {
+            addActionButtonConstraint.constant = 48;
+        } else {
+            addActionButtonConstraint.constant = 0;
+        }
     }
     
     func toggleActionView() {
@@ -274,6 +316,10 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
 //                self.deviceTitlesConstraint.constant = CGFloat(40 * devices.count)
 //            }
 //        }
+    }
+    
+    func adjustBatchActions() {
+        batchActionsStackView.assemble()
     }
     
     func resetPosition() {

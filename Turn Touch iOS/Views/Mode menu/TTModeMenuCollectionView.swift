@@ -32,10 +32,12 @@ class TTModeMenuCollectionView: UICollectionView, UICollectionViewDataSource, UI
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if menuType == .menu_MODE {
+        if menuType == .menu_MODE || menuType == .menu_ADD_MODE {
             return appDelegate().modeMap.availableModes.count
         } else if menuType == .menu_ACTION {
             return appDelegate().modeMap.availableActions.count
+        } else if menuType == .menu_ADD_ACTION {
+            return appDelegate().modeMap.availableAddActions.count
         }
         return 1
     }
@@ -45,10 +47,12 @@ class TTModeMenuCollectionView: UICollectionView, UICollectionViewDataSource, UI
         cell.backgroundColor = UIColor.clear
         cell.menuType = menuType
         cell.activeMode = nil
-        if menuType == .menu_MODE {
+        if menuType == .menu_MODE || menuType == .menu_ADD_MODE {
             cell.modeName = appDelegate().modeMap.availableModes[(indexPath as NSIndexPath).row]
         } else if menuType == .menu_ACTION {
             cell.modeName = appDelegate().modeMap.availableActions[(indexPath as NSIndexPath).row]
+        } else if menuType == .menu_ADD_ACTION {
+            cell.modeName = appDelegate().modeMap.availableAddActions[(indexPath as NSIndexPath).row]["id"] as! String
         }
         
         cell.setNeedsDisplay()

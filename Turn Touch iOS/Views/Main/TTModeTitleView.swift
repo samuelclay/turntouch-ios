@@ -105,6 +105,9 @@ class TTModeTitleView: UIView {
         if appDelegate().modeMap.openedActionChangeMenu {
             appDelegate().modeMap.openedActionChangeMenu = false
         }
+        if appDelegate().modeMap.openedAddActionChangeMenu {
+            appDelegate().modeMap.openedAddActionChangeMenu = false
+        }
         appDelegate().modeMap.inspectingModeDirection = .no_DIRECTION
 
         self.setNeedsDisplay()

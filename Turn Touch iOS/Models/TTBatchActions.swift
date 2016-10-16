@@ -16,7 +16,10 @@ class TTBatchActions: NSObject {
     var southActions: [TTAction] = []
     
     func assemble() {
-        
+        northActions = self.assembleBatchAction(in: .north)
+        eastActions = self.assembleBatchAction(in: .east)
+        westActions = self.assembleBatchAction(in: .west)
+        southActions = self.assembleBatchAction(in: .south)
     }
     
     func assembleBatchAction(in direction: TTModeDirection) -> [TTAction] {

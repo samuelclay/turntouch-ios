@@ -15,7 +15,7 @@ class TTModeMap: NSObject {
     dynamic var inspectingModeDirection: TTModeDirection = .no_DIRECTION
     dynamic var hoverModeDirection: TTModeDirection = .no_DIRECTION
     
-    var tempModeName: String! = ""
+    dynamic var tempModeName: String?
     dynamic var openedModeChangeMenu: Bool = false
     dynamic var openedActionChangeMenu: Bool = false
     dynamic var openedAddActionChangeMenu: Bool = false
@@ -31,8 +31,8 @@ class TTModeMap: NSObject {
     
     dynamic var availableModes: [String] = []
     dynamic var availableActions: [String] = []
-    dynamic var availableAddModes: [String] = []
-    dynamic var availableAddActions: [String] = []
+    dynamic var availableAddModes: [[String: Any]] = []
+    dynamic var availableAddActions: [[String: Any]] = []
     
     var waitingForDoubleClick = false
     
@@ -189,7 +189,27 @@ class TTModeMap: NSObject {
     
     // MARK: Batch actions
     
+    func provisionTempMode(name: String) {
+        tempModeName = name
+        let className = "Turn_Touch_iOS.\(name)"
+        let modeClass = NSClassFromString(className) as! TTMode.Type
+        tempMode = modeClass.init()
+        
+        var availableAddActions: [[String: Any]] = []
+        for action in modeClass.actions() {
+            availableAddActions.append(["id": action, "type": TTMenuType.menu_ADD_ACTION])
+        }
+        
+        self.availableAddActions = availableAddActions
+    }
     
+    func provisionAvailableAddModes() {
+        var availableAddModes: [[String: Any]] = []
+        for mode in self.availableModes {
+            availableAddModes.append(["id": mode, "type": TTMenuType.menu_ADD_MODE])
+        }
+        self.availableAddModes = availableAddModes
+    }
     
     func selectedModeBatchActions(in direction: TTModeDirection) -> [TTAction] {
         return batchActions.batchActions(in: direction)

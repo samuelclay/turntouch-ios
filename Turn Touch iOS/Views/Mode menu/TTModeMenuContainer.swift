@@ -77,8 +77,10 @@ class TTModeMenuContainer: UIView {
     func registerAsObserver() {
         appDelegate().modeMap.addObserver(self, forKeyPath: "openedModeChangeMenu", options: [], context: nil)
         appDelegate().modeMap.addObserver(self, forKeyPath: "openedActionChangeMenu", options: [], context: nil)
+        appDelegate().modeMap.addObserver(self, forKeyPath: "openedAddActionChangeMenu", options: [], context: nil)
         appDelegate().modeMap.addObserver(self, forKeyPath: "availableActions", options: [], context: nil)
         appDelegate().modeMap.addObserver(self, forKeyPath: "inspectingModeDirection", options: [], context: nil)
+        appDelegate().modeMap.addObserver(self, forKeyPath: "tempModeName", options: [], context: nil)
     }
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?,
@@ -86,6 +88,10 @@ class TTModeMenuContainer: UIView {
         if keyPath == "openedModeChangeMenu" {
             self.toggleModeMenu()
         } else if keyPath == "openedActionChangeMenu" {
+            self.toggleModeMenu()
+        } else if keyPath == "openedAddActionChangeMenu" {
+            self.toggleModeMenu()
+        } else if keyPath == "tempModeName" {
             self.toggleModeMenu()
         } else if keyPath == "availableActions" {
             collectionView.reloadData()
@@ -101,8 +107,10 @@ class TTModeMenuContainer: UIView {
     deinit {
         appDelegate().modeMap.removeObserver(self, forKeyPath: "openedModeChangeMenu")
         appDelegate().modeMap.removeObserver(self, forKeyPath: "openedActionChangeMenu")
+        appDelegate().modeMap.removeObserver(self, forKeyPath: "openedAddActionChangeMenu")
         appDelegate().modeMap.removeObserver(self, forKeyPath: "availableActions")
         appDelegate().modeMap.removeObserver(self, forKeyPath: "inspectingModeDirection")
+        appDelegate().modeMap.removeObserver(self, forKeyPath: "tempModeName")
     }
 
     // MARK: Drawing
@@ -145,6 +153,32 @@ class TTModeMenuContainer: UIView {
                         self.bordersView.setNeedsDisplay()
                     }
                 })
+        } else if menuType == .menu_ADD_MODE || menuType == .menu_ADD_ACTION {
+            if menuType == .menu_ADD_MODE && appDelegate().modeMap.tempModeName != nil {
+                menuType = .menu_ADD_ACTION
+                collectionView.menuType = menuType
+                self.collectionView.reloadData()
+            } else if menuType == .menu_ADD_ACTION && appDelegate().modeMap.tempModeName == nil {
+                menuType = .menu_ADD_MODE
+                collectionView.menuType = menuType
+                self.collectionView.reloadData()
+            }
+            
+            UIView.animate(withDuration: 0.5, animations: {
+                self.collectionView.flashScrollIndicators()
+                let openedModeChangeMenu: Bool = appDelegate().modeMap.openedAddActionChangeMenu
+                if openedModeChangeMenu {
+                    self.bordersView.setNeedsDisplay()
+                }
+                
+                self.collectionView.alpha = openedModeChangeMenu ? 1.0 : 0
+                self.setNeedsLayout()
+                }, completion: { (done) in
+                    let openedModeChangeMenu: Bool = appDelegate().modeMap.openedModeChangeMenu
+                    if !openedModeChangeMenu {
+                        self.bordersView.setNeedsDisplay()
+                    }
+            })
         }
     }
     

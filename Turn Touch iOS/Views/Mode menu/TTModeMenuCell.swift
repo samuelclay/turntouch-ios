@@ -76,13 +76,11 @@ class TTModeMenuCell: UICollectionViewCell {
     // MARK: Drawing
     
     override func prepareForReuse() {
-        if menuType == .menu_MODE {
+        if menuType == .menu_MODE || menuType == .menu_ADD_MODE {
             let className = "Turn_Touch_iOS.\(modeName)"
             modeClass = NSClassFromString(className) as! TTMode.Type
         } else if menuType == .menu_ACTION {
             activeMode = appDelegate().modeMap.selectedMode
-        } else if menuType == .menu_ADD_MODE {
-//            activeMode = NSClassFromString(modeName)
         } else if menuType == .menu_ADD_ACTION {
             activeMode = appDelegate().modeMap.tempMode
         }
@@ -94,15 +92,19 @@ class TTModeMenuCell: UICollectionViewCell {
             self.prepareForReuse()
         }
         
-        if menuType == .menu_MODE {
-            isSelected = activeMode >!< appDelegate().modeMap.selectedMode
+        if menuType == .menu_MODE || menuType == .menu_ADD_MODE {
+            if menuType == .menu_MODE {
+                isSelected = activeMode >!< appDelegate().modeMap.selectedMode
+            }
             titleLabel.text = modeClass.title().uppercased()
             let imageName = modeClass.imageName()
             if imageName != "" {
                 imageView.image = UIImage(named:imageName)
             }
-        } else if menuType == .menu_ACTION {
-            isSelected = activeMode.actionNameInDirection(appDelegate().modeMap.inspectingModeDirection) == modeName
+        } else if menuType == .menu_ACTION || menuType == .menu_ADD_ACTION {
+            if menuType == .menu_ACTION {
+                isSelected = activeMode.actionNameInDirection(appDelegate().modeMap.inspectingModeDirection) == modeName
+            }
             let imageName = activeMode.imageNameForAction(modeName)
             if imageName != nil {
                 imageView.image = UIImage(named:imageName!)
@@ -153,9 +155,10 @@ class TTModeMenuCell: UICollectionViewCell {
                     // Update the action diamond
                     appDelegate().modeMap.selectedModeDirection = appDelegate().modeMap.selectedModeDirection
                 } else if menuType == .menu_ADD_MODE {
-                    
+                    appDelegate().modeMap.provisionTempMode(name: modeName)
                 } else if menuType == .menu_ADD_ACTION {
-                    
+                    appDelegate().modeMap.addBatchAction(for: modeName)
+                    appDelegate().mainViewController.addActionButtonView.hideAddActionMenu(nil)
                 }
             }
         }

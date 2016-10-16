@@ -115,6 +115,9 @@
 		FF7C144F1DB2F2AB009CBA28 /* TTBatchActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7C144E1DB2F2AB009CBA28 /* TTBatchActions.swift */; };
 		FF7C14521DB2F2DD009CBA28 /* TTDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7C14501DB2F2DD009CBA28 /* TTDevice.swift */; };
 		FF7C14531DB2F2DD009CBA28 /* TTDeviceList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7C14511DB2F2DD009CBA28 /* TTDeviceList.swift */; };
+		FF7C14551DB30836009CBA28 /* TTBatchActionStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7C14541DB30836009CBA28 /* TTBatchActionStackView.swift */; };
+		FF7C14581DB3085E009CBA28 /* TTBatchActionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7C14571DB3085E009CBA28 /* TTBatchActionHeaderView.swift */; };
+		FF7C145A1DB3088B009CBA28 /* TTAddActionButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7C14591DB3088B009CBA28 /* TTAddActionButtonView.swift */; };
 		FFB41B111CEE9A3000CD5F09 /* alarm_snooze.png in Resources */ = {isa = PBXBuildFile; fileRef = FFB41AAE1CEE9A3000CD5F09 /* alarm_snooze.png */; };
 		FFB41B121CEE9A3000CD5F09 /* chevron_east.png in Resources */ = {isa = PBXBuildFile; fileRef = FFB41AAF1CEE9A3000CD5F09 /* chevron_east.png */; };
 		FFB41B131CEE9A3000CD5F09 /* chevron_north.png in Resources */ = {isa = PBXBuildFile; fileRef = FFB41AB01CEE9A3000CD5F09 /* chevron_north.png */; };
@@ -396,6 +399,9 @@
 		FF7C144E1DB2F2AB009CBA28 /* TTBatchActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTBatchActions.swift; path = Models/TTBatchActions.swift; sourceTree = "<group>"; };
 		FF7C14501DB2F2DD009CBA28 /* TTDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTDevice.swift; path = Models/TTDevice.swift; sourceTree = "<group>"; };
 		FF7C14511DB2F2DD009CBA28 /* TTDeviceList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTDeviceList.swift; path = Models/TTDeviceList.swift; sourceTree = "<group>"; };
+		FF7C14541DB30836009CBA28 /* TTBatchActionStackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTBatchActionStackView.swift; path = "Views/Batch actions/TTBatchActionStackView.swift"; sourceTree = "<group>"; };
+		FF7C14571DB3085E009CBA28 /* TTBatchActionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTBatchActionHeaderView.swift; path = "Views/Batch actions/TTBatchActionHeaderView.swift"; sourceTree = "<group>"; };
+		FF7C14591DB3088B009CBA28 /* TTAddActionButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTAddActionButtonView.swift; path = "Views/Batch actions/TTAddActionButtonView.swift"; sourceTree = "<group>"; };
 		FFB41AAE1CEE9A3000CD5F09 /* alarm_snooze.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = alarm_snooze.png; sourceTree = "<group>"; };
 		FFB41AAF1CEE9A3000CD5F09 /* chevron_east.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chevron_east.png; sourceTree = "<group>"; };
 		FFB41AB01CEE9A3000CD5F09 /* chevron_north.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chevron_north.png; sourceTree = "<group>"; };
@@ -843,6 +849,16 @@
 			name = Sonos;
 			sourceTree = "<group>";
 		};
+		FF7C14561DB3083A009CBA28 /* Batch actions */ = {
+			isa = PBXGroup;
+			children = (
+				FF7C14541DB30836009CBA28 /* TTBatchActionStackView.swift */,
+				FF7C14571DB3085E009CBA28 /* TTBatchActionHeaderView.swift */,
+				FF7C14591DB3088B009CBA28 /* TTAddActionButtonView.swift */,
+			);
+			name = "Batch actions";
+			sourceTree = "<group>";
+		};
 		FFB41AAC1CEE9A3000CD5F09 /* Images */ = {
 			isa = PBXGroup;
 			children = (
@@ -1011,6 +1027,7 @@
 				FFF46BEC1D10E6A300158751 /* Options */,
 				FF37EDCC1D1102660026F70D /* Controls */,
 				FF4487671D08CE7D00ED8099 /* Modal */,
+				FF7C14561DB3083A009CBA28 /* Batch actions */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -1537,6 +1554,7 @@
 				FF7C144F1DB2F2AB009CBA28 /* TTBatchActions.swift in Sources */,
 				FF4AF7DC1D24F9370009C777 /* TTModeSonos.swift in Sources */,
 				FFB41B7B1CEEA9E300CD5F09 /* TTModeDirection.swift in Sources */,
+				FF7C14581DB3085E009CBA28 /* TTBatchActionHeaderView.swift in Sources */,
 				FFF270941CEE88E500E46575 /* AppDelegate.swift in Sources */,
 				FF44876B1D08E1D600ED8099 /* TTPairingSpinner.swift in Sources */,
 				FFF46BDB1D10941500158751 /* DDAbstractDatabaseLogger.m in Sources */,
@@ -1569,6 +1587,7 @@
 				FF37EDFD1D1B23B70026F70D /* TTModeHueRandomOptions.swift in Sources */,
 				FFC9FE951D021A0400038817 /* TTActionDiamondView.swift in Sources */,
 				FF44875F1D078FAC00ED8099 /* TTActionTitleView.swift in Sources */,
+				FF7C145A1DB3088B009CBA28 /* TTAddActionButtonView.swift in Sources */,
 				FF37EDD71D1117670026F70D /* TTModeHueConnecting.swift in Sources */,
 				FF37EDF61D1B1A310026F70D /* TTModeHueSceneLateEveningOptions.swift in Sources */,
 				FFF46BE11D10941500158751 /* DispatchQueueLogFormatter.m in Sources */,
@@ -1580,6 +1599,7 @@
 				FFF46BE01D10941500158751 /* ContextFilterLogFormatter.m in Sources */,
 				FF4AF7C71D248A860009C777 /* TTModeWemoDeviceOnOptions.swift in Sources */,
 				FFDA0FA91D3C4F1C0019859F /* UIImage+FixOrientation.m in Sources */,
+				FF7C14551DB30836009CBA28 /* TTBatchActionStackView.swift in Sources */,
 				FF4AF7BA1D248A290009C777 /* TTModeWemoConnecting.swift in Sources */,
 				FF4AF7EE1D24F9E70009C777 /* TTModeSonosOptions.swift in Sources */,
 				FF0F10C21CF60C3D00CC1F29 /* TTTitleBarView.swift in Sources */,
