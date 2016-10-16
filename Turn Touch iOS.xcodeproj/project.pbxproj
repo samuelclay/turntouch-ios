@@ -79,8 +79,6 @@
 		FF4487691D08D0C600ED8099 /* TTPairingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF4487681D08D0C600ED8099 /* TTPairingViewController.xib */; };
 		FF44876B1D08E1D600ED8099 /* TTPairingSpinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF44876A1D08E1D600ED8099 /* TTPairingSpinner.swift */; };
 		FF44876D1D08E62200ED8099 /* TTBluetoothMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF44876C1D08E62200ED8099 /* TTBluetoothMonitor.swift */; };
-		FF4487701D08EF6400ED8099 /* TTDeviceList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF44876F1D08EF6400ED8099 /* TTDeviceList.swift */; };
-		FF4487721D08F01000ED8099 /* TTDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4487711D08F01000ED8099 /* TTDevice.swift */; };
 		FF4487741D09300B00ED8099 /* NSData+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4487731D09300B00ED8099 /* NSData+Hex.swift */; };
 		FF4487761D09365200ED8099 /* TTButtonTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4487751D09365200ED8099 /* TTButtonTimer.swift */; };
 		FF4487781D09367000ED8099 /* TTButtonState.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4487771D09367000ED8099 /* TTButtonState.swift */; };
@@ -114,6 +112,9 @@
 		FF4AF7EE1D24F9E70009C777 /* TTModeSonosOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4AF7E51D24F9E70009C777 /* TTModeSonosOptions.swift */; };
 		FF4AF7EF1D24F9E70009C777 /* TTModeSonosOptions.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF4AF7E61D24F9E70009C777 /* TTModeSonosOptions.xib */; };
 		FF6434881D5130BF00F2FAE6 /* mode_camera.png in Resources */ = {isa = PBXBuildFile; fileRef = FF6434871D5130BF00F2FAE6 /* mode_camera.png */; };
+		FF7C144F1DB2F2AB009CBA28 /* TTBatchActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7C144E1DB2F2AB009CBA28 /* TTBatchActions.swift */; };
+		FF7C14521DB2F2DD009CBA28 /* TTDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7C14501DB2F2DD009CBA28 /* TTDevice.swift */; };
+		FF7C14531DB2F2DD009CBA28 /* TTDeviceList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7C14511DB2F2DD009CBA28 /* TTDeviceList.swift */; };
 		FFB41B111CEE9A3000CD5F09 /* alarm_snooze.png in Resources */ = {isa = PBXBuildFile; fileRef = FFB41AAE1CEE9A3000CD5F09 /* alarm_snooze.png */; };
 		FFB41B121CEE9A3000CD5F09 /* chevron_east.png in Resources */ = {isa = PBXBuildFile; fileRef = FFB41AAF1CEE9A3000CD5F09 /* chevron_east.png */; };
 		FFB41B131CEE9A3000CD5F09 /* chevron_north.png in Resources */ = {isa = PBXBuildFile; fileRef = FFB41AB01CEE9A3000CD5F09 /* chevron_north.png */; };
@@ -354,8 +355,6 @@
 		FF4487681D08D0C600ED8099 /* TTPairingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TTPairingViewController.xib; path = Views/Modal/TTPairingViewController.xib; sourceTree = "<group>"; };
 		FF44876A1D08E1D600ED8099 /* TTPairingSpinner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTPairingSpinner.swift; path = Views/Modal/TTPairingSpinner.swift; sourceTree = "<group>"; };
 		FF44876C1D08E62200ED8099 /* TTBluetoothMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTBluetoothMonitor.swift; path = Bluetooth/TTBluetoothMonitor.swift; sourceTree = "<group>"; };
-		FF44876F1D08EF6400ED8099 /* TTDeviceList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTDeviceList.swift; path = Bluetooth/TTDeviceList.swift; sourceTree = "<group>"; };
-		FF4487711D08F01000ED8099 /* TTDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTDevice.swift; path = Bluetooth/TTDevice.swift; sourceTree = "<group>"; };
 		FF4487731D09300B00ED8099 /* NSData+Hex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSData+Hex.swift"; path = "Categories/NSData+Hex.swift"; sourceTree = "<group>"; };
 		FF4487751D09365200ED8099 /* TTButtonTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTButtonTimer.swift; path = Bluetooth/TTButtonTimer.swift; sourceTree = "<group>"; };
 		FF4487771D09367000ED8099 /* TTButtonState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTButtonState.swift; path = Bluetooth/TTButtonState.swift; sourceTree = "<group>"; };
@@ -394,6 +393,9 @@
 		FF4AF7E51D24F9E70009C777 /* TTModeSonosOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeSonosOptions.swift; path = Modes/Sonos/TTModeSonosOptions.swift; sourceTree = "<group>"; };
 		FF4AF7E61D24F9E70009C777 /* TTModeSonosOptions.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TTModeSonosOptions.xib; path = Modes/Sonos/TTModeSonosOptions.xib; sourceTree = "<group>"; };
 		FF6434871D5130BF00F2FAE6 /* mode_camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mode_camera.png; sourceTree = "<group>"; };
+		FF7C144E1DB2F2AB009CBA28 /* TTBatchActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTBatchActions.swift; path = Models/TTBatchActions.swift; sourceTree = "<group>"; };
+		FF7C14501DB2F2DD009CBA28 /* TTDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTDevice.swift; path = Models/TTDevice.swift; sourceTree = "<group>"; };
+		FF7C14511DB2F2DD009CBA28 /* TTDeviceList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTDeviceList.swift; path = Models/TTDeviceList.swift; sourceTree = "<group>"; };
 		FFB41AAE1CEE9A3000CD5F09 /* alarm_snooze.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = alarm_snooze.png; sourceTree = "<group>"; };
 		FFB41AAF1CEE9A3000CD5F09 /* chevron_east.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chevron_east.png; sourceTree = "<group>"; };
 		FFB41AB01CEE9A3000CD5F09 /* chevron_north.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chevron_north.png; sourceTree = "<group>"; };
@@ -803,8 +805,6 @@
 			isa = PBXGroup;
 			children = (
 				FF44876C1D08E62200ED8099 /* TTBluetoothMonitor.swift */,
-				FF4487711D08F01000ED8099 /* TTDevice.swift */,
-				FF44876F1D08EF6400ED8099 /* TTDeviceList.swift */,
 				FF4487751D09365200ED8099 /* TTButtonTimer.swift */,
 				FF4487771D09367000ED8099 /* TTButtonState.swift */,
 			);
@@ -1039,6 +1039,9 @@
 				FFB41B811CF5341700CD5F09 /* TTMode.swift */,
 				FFB41B851CF536AC00CD5F09 /* TTAction.swift */,
 				FFB41B871CF536BB00CD5F09 /* TTActionMap.swift */,
+				FF7C14501DB2F2DD009CBA28 /* TTDevice.swift */,
+				FF7C14511DB2F2DD009CBA28 /* TTDeviceList.swift */,
+				FF7C144E1DB2F2AB009CBA28 /* TTBatchActions.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -1527,9 +1530,11 @@
 				FFB41B881CF536BB00CD5F09 /* TTActionMap.swift in Sources */,
 				FFC4B0F91D2F5E3B00A97C81 /* TTFTUXViewController.swift in Sources */,
 				FFC4B0F31D2DC38C00A97C81 /* TTModalButton.swift in Sources */,
+				FF7C14531DB2F2DD009CBA28 /* TTDeviceList.swift in Sources */,
 				FF0F10EB1CFFB4A800CC1F29 /* TTModeMenuCollectionView.swift in Sources */,
 				FF4AF7B21D2486F90009C777 /* TTModeWemoOptions.swift in Sources */,
 				FF08A2331D501ABD00D433A5 /* TTModeCameraReviewViewController.swift in Sources */,
+				FF7C144F1DB2F2AB009CBA28 /* TTBatchActions.swift in Sources */,
 				FF4AF7DC1D24F9370009C777 /* TTModeSonos.swift in Sources */,
 				FFB41B7B1CEEA9E300CD5F09 /* TTModeDirection.swift in Sources */,
 				FFF270941CEE88E500E46575 /* AppDelegate.swift in Sources */,
@@ -1551,6 +1556,7 @@
 				FFF46BF01D10E6D400158751 /* TTOptionsDetailViewController.swift in Sources */,
 				FF4AF7BE1D248A3A0009C777 /* TTModeWemoConnected.swift in Sources */,
 				FF4AF7D81D24ECF60009C777 /* XMLReader.m in Sources */,
+				FF7C14521DB2F2DD009CBA28 /* TTDevice.swift in Sources */,
 				FFC4B1081D3717D500A97C81 /* TTFTUXView.swift in Sources */,
 				FF4487761D09365200ED8099 /* TTButtonTimer.swift in Sources */,
 				FFF46BDE1D10941500158751 /* DDLog.m in Sources */,
@@ -1558,7 +1564,6 @@
 				FFF46BDF1D10941500158751 /* DDTTYLogger.m in Sources */,
 				FF37EDCB1D1102620026F70D /* TTTabView.swift in Sources */,
 				FF4487621D08986200ED8099 /* TTTitleMenuPopover.swift in Sources */,
-				FF4487701D08EF6400ED8099 /* TTDeviceList.swift in Sources */,
 				FFF46BC51D0E58C000158751 /* TTDeviceTitleView.swift in Sources */,
 				FF4AF7C21D248A4D0009C777 /* TTModeWemoDeviceSwitchOptions.swift in Sources */,
 				FF37EDFD1D1B23B70026F70D /* TTModeHueRandomOptions.swift in Sources */,
@@ -1584,7 +1589,6 @@
 				FF4487641D08AA8800ED8099 /* TTTitleMenuCell.swift in Sources */,
 				FFB41B791CEEA8E500CD5F09 /* TTModeTab.swift in Sources */,
 				FF0F10BE1CF55A9000CC1F29 /* UIColor+hex.swift in Sources */,
-				FF4487721D08F01000ED8099 /* TTDevice.swift in Sources */,
 				FF37EDD31D11174C0026F70D /* TTModeHueConnect.swift in Sources */,
 				FF0F10DE1CF6763400CC1F29 /* TTModeTitleView.swift in Sources */,
 				FF37EDEB1D137A210026F70D /* TTModeHueSceneOptions.swift in Sources */,
