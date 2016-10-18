@@ -349,7 +349,7 @@ class TTMode : NSObject, TTModeProtocol {
         let prefs = UserDefaults.standard
         let modeDirectionName = appDelegate().modeMap.directionName(modeDirection)
         let actionDirectionName = appDelegate().modeMap.directionName(direction)
-        let optionKey = "TT:mode:\(modeDirectionName):action:\(actionDirectionName):batchactions:\(action.batchActionKey):actionoption:\(optionName)"
+        let optionKey = "TT:mode:\(modeDirectionName):action:\(actionDirectionName):batchactions:\(action.batchActionKey!):actionoption:\(optionName)"
         var pref = prefs.object(forKey: optionKey)
         print(" -> Getting batch action options \(optionKey): \(pref)")
         if pref == nil {

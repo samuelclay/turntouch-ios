@@ -151,7 +151,7 @@ class TTModeHueSceneOptions: TTOptionsDetailViewController, UITextFieldDelegate,
             if let identifier = room["identifier"] {
                 self.action.changeActionOption(TTModeHueConstants.kHueRoom, to: identifier)
             }
-        } else {
+        } else if scenes.count > row {
             let scene = scenes[row]
             
             textField.text = scene["name"]

@@ -11,7 +11,8 @@ import UIKit
 class TTBatchActionStackView: UIStackView {
     
     var tempHeaderConstraint: NSLayoutConstraint!
-    var actionOptionsViewControllers: [String: [UIView]] = [:]
+    var actionOptionsViewControllers: [TTOptionsDetailViewController] = []
+    var actionViews: [String: [UIView]] = [:]
     var actionConstraints: [String: NSLayoutConstraint] = [:]
     
     override init(frame: CGRect) {
@@ -34,7 +35,8 @@ class TTBatchActionStackView: UIStackView {
             subview.removeFromSuperview()
         }
         actionOptionsViewControllers.removeAll()
-        actionOptionsViewControllers = [:]
+        actionOptionsViewControllers = []
+        actionViews = [:]
         actionConstraints = [:]
         let batchActions = appDelegate().modeMap.selectedModeBatchActions(in: appDelegate().modeMap.inspectingModeDirection)
         
@@ -62,9 +64,9 @@ class TTBatchActionStackView: UIStackView {
             actionOptionsViewController.action = batchAction
             actionOptionsViewController.mode = batchAction.mode
             self.addArrangedSubview(actionOptionsViewController.view)
-
-            actionOptionsViewControllers[batchAction.batchActionKey!] = [batchActionHeaderView,
-                                                                         actionOptionsViewController.view]
+            actionOptionsViewControllers.append(actionOptionsViewController) // Cache so it doesn't lose reference in xib
+            actionViews[batchAction.batchActionKey!] = [batchActionHeaderView,
+                                                        actionOptionsViewController.view]
             
         }
         
@@ -80,7 +82,7 @@ class TTBatchActionStackView: UIStackView {
     }
     
     func hideBatchAction(batchActionKey: String) {
-        for (key, views) in actionOptionsViewControllers {
+        for (key, views) in actionViews {
             if key == batchActionKey {
                 UIView.animate(withDuration: 0.42, animations: {
                     for view in views {

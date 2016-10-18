@@ -956,9 +956,9 @@ class TTModeHue: TTMode {
     
     func readRooms() {
 //        let bridgeSendAPI = PHBridgeSendAPI()
-        let cache = PHBridgeResourcesReader.readBridgeResourcesCache()
+//        let cache = PHBridgeResourcesReader.readBridgeResourcesCache()
         
-        print(" ---> Groups: \(cache?.groups)")
+//        print(" ---> Groups: \(cache?.groups)")
     }
     
 }
