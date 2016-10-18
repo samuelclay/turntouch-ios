@@ -28,15 +28,13 @@ class TTModeHueRandomOptions: TTOptionsDetailViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let inspectingDirection = appDelegate().modeMap.inspectingModeDirection
+        segRandomColors.selectedSegmentIndex = self.action.optionValue(TTModeHueConstants.kRandomColors) as! Int
+        segRandomBrightness.selectedSegmentIndex = self.action.optionValue(TTModeHueConstants.kRandomBrightness) as! Int
+        segRandomSaturation.selectedSegmentIndex = self.action.optionValue(TTModeHueConstants.kRandomSaturation) as! Int
         
-        segRandomColors.selectedSegmentIndex = self.action.optionValue(TTModeHueConstants.kRandomColors, direction: inspectingDirection) as! Int
-        segRandomBrightness.selectedSegmentIndex = self.action.optionValue(TTModeHueConstants.kRandomBrightness, direction: inspectingDirection) as! Int
-        segRandomSaturation.selectedSegmentIndex = self.action.optionValue(TTModeHueConstants.kRandomSaturation, direction: inspectingDirection) as! Int
-        
-        doubleSegRandomColors.selectedSegmentIndex = self.action.optionValue(TTModeHueConstants.kDoubleTapRandomColors, direction: inspectingDirection) as! Int
-        doubleSegRandomBrightness.selectedSegmentIndex = self.action.optionValue(TTModeHueConstants.kDoubleTapRandomBrightness, direction: inspectingDirection) as! Int
-        doubleSegRandomSaturation.selectedSegmentIndex = self.action.optionValue(TTModeHueConstants.kDoubleTapRandomSaturation, direction: inspectingDirection) as! Int
+        doubleSegRandomColors.selectedSegmentIndex = self.action.optionValue(TTModeHueConstants.kDoubleTapRandomColors) as! Int
+        doubleSegRandomBrightness.selectedSegmentIndex = self.action.optionValue(TTModeHueConstants.kDoubleTapRandomBrightness) as! Int
+        doubleSegRandomSaturation.selectedSegmentIndex = self.action.optionValue(TTModeHueConstants.kDoubleTapRandomSaturation) as! Int
     }
     
     @IBAction func changeRandomColors(_ sender: UISegmentedControl) {

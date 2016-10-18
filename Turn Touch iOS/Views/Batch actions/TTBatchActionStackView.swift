@@ -92,13 +92,13 @@ class TTBatchActionStackView: UIStackView {
                 })
             }
         }
-        for (key, constraint) in actionConstraints {
-            if key == batchActionKey {
-                UIView.animate(withDuration: 0.42, animations: {
+//        for (key, constraint) in actionConstraints {
+//            if key == batchActionKey {
+//                UIView.animate(withDuration: 0.42, animations: {
 //                    constraint.constant = 0
-                })
-            }
-        }
+//                })
+//            }
+//        }
     }
     
 }

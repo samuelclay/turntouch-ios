@@ -184,7 +184,7 @@ class TTModeWemo: TTMode, TTModeWemoMulticastDelegate, TTModeWemoDeviceDelegate 
             return nil
         }
         
-        if let deviceLocation = self.action.optionValue(TTModeWemoConstants.kWemoDeviceLocation, direction: direction) as! String? {
+        if let deviceLocation = self.action.optionValue(TTModeWemoConstants.kWemoDeviceLocation) as! String? {
             for foundDevice in TTModeWemo.foundDevices {
                 if foundDevice.location() == deviceLocation {
                     return foundDevice

@@ -41,8 +41,7 @@ class TTModeWemoDeviceSwitchOptions: TTOptionsDetailViewController, UITextFieldD
         devices = []
         pickerVC?.picker.reloadAllComponents()
 
-        var deviceSelected = self.action.optionValue(TTModeWemoConstants.kWemoDeviceLocation,
-                                                    direction: appDelegate().modeMap.inspectingModeDirection) as? String
+        var deviceSelected = self.action.optionValue(TTModeWemoConstants.kWemoDeviceLocation) as? String
         
 //        var doubleSceneSelected = self.action.optionValue(TTModeHueConstants.kDoubleTapHueScene,
 //                                                          direction: appDelegate().modeMap.inspectingModeDirection) as? String
@@ -116,8 +115,7 @@ class TTModeWemoDeviceSwitchOptions: TTOptionsDetailViewController, UITextFieldD
             
             var deviceSelected: String?
             if textField == singlePicker {
-                deviceSelected = self.action.optionValue(TTModeWemoConstants.kWemoDeviceLocation,
-                                                        direction: appDelegate().modeMap.inspectingModeDirection) as? String
+                deviceSelected = self.action.optionValue(TTModeWemoConstants.kWemoDeviceLocation) as? String
 //            } else if textField == doublePicker {
 //                sceneSelected = self.action.optionValue(TTModeHueConstants.kDoubleTapHueScene,
 //                                                        direction: appDelegate().modeMap.inspectingModeDirection) as? String

@@ -251,7 +251,7 @@ class TTModeHue: TTMode {
     
     // MARK: Action methods
     
-    func runScene(sceneName: String, direction: TTModeDirection, doubleTap: Bool, defaultIdentifier: String) {
+    func runScene(sceneName: String, doubleTap: Bool, defaultIdentifier: String) {
         if !phHueSdk.localConnected() {
             self.searchForBridgeLocal()
             return
@@ -260,7 +260,7 @@ class TTModeHue: TTMode {
         let bridgeSendAPI = PHBridgeSendAPI()
         let cache = PHBridgeResourcesReader.readBridgeResourcesCache()
         var defaultScene: PHScene?
-        var sceneIdentifier: String? = self.action.optionValue(doubleTap ? TTModeHueConstants.kDoubleTapHueScene : TTModeHueConstants.kHueScene, direction: direction) as? String
+        var sceneIdentifier: String? = self.action.optionValue(doubleTap ? TTModeHueConstants.kDoubleTapHueScene : TTModeHueConstants.kHueScene) as? String
         var scenes: Array<Dictionary<String, String>> = []
         for (_, value) in (cache?.scenes)! {
             let scene = value as! PHScene
@@ -285,37 +285,36 @@ class TTModeHue: TTMode {
         }
     }
     
-    func runTTModeHueSceneEarlyEvening(direction: TTModeDirection) {
-        self.runScene(sceneName: "TTModeHueSceneEarlyEvening", direction: direction, doubleTap: false, defaultIdentifier: "TT-ee-1")
+    func runTTModeHueSceneEarlyEvening() {
+        self.runScene(sceneName: "TTModeHueSceneEarlyEvening", doubleTap: false, defaultIdentifier: "TT-ee-1")
     }
     
-    func doubleRunTTModeHueSceneEarlyEvening(direction: TTModeDirection) {
-        self.runScene(sceneName: "TTModeHueSceneEarlyEvening", direction: direction, doubleTap: true, defaultIdentifier: "TT-ee-2")
+    func doubleRunTTModeHueSceneEarlyEvening() {
+        self.runScene(sceneName: "TTModeHueSceneEarlyEvening", doubleTap: true, defaultIdentifier: "TT-ee-2")
     }
     
-    func runTTModeHueSceneLateEvening(direction: TTModeDirection) {
-        self.runScene(sceneName: "TTModeHueSceneLateEvening", direction: direction, doubleTap: false, defaultIdentifier: "TT-le-1")
+    func runTTModeHueSceneLateEvening() {
+        self.runScene(sceneName: "TTModeHueSceneLateEvening", doubleTap: false, defaultIdentifier: "TT-le-1")
     }
     
-    func doubleRunTTModeHueSceneLateEvening(direction: TTModeDirection) {
-        self.runScene(sceneName: "TTModeHueSceneLateEvening", direction: direction, doubleTap: true, defaultIdentifier: "TT-le-2")
+    func doubleRunTTModeHueSceneLateEvening() {
+        self.runScene(sceneName: "TTModeHueSceneLateEvening", doubleTap: true, defaultIdentifier: "TT-le-2")
     }
     
-    func runTTModeHueOff(direction: TTModeDirection) {
+    func runTTModeHueOff() {
         //    NSLog(@"Running scene off... %d", direction);
-        self.runTTModeHueSleep(direction: direction, duration: 1)
+        self.runTTModeHueSleep(duration: 1)
     }
     
-    func runTTModeHueSleep(directionNumber: NSNumber) {
-        let direction = TTModeDirection(rawValue: directionNumber.intValue)
-        let sceneDuration: Int = self.action.mode.actionOptionValue(TTModeHueConstants.kHueDuration, actionName: "TTModeHueSleep", direction: direction!) as! Int
-        self.runTTModeHueSleep(direction: direction!, duration: sceneDuration)
+    func runTTModeHueSleep() {
+        let sceneDuration: Int = self.action.mode.actionOptionValue(TTModeHueConstants.kHueDuration, actionName: "TTModeHueSleep", direction: self.action.direction) as! Int
+        self.runTTModeHueSleep(duration: sceneDuration)
     }
     
-    func doubleRunTTModeHueSleep(direction: TTModeDirection) {
+    func doubleRunTTModeHueSleep() {
         //    NSLog(@"Running scene off... %d", direction);
-        let sceneDuration: Int = self.action.mode.actionOptionValue(TTModeHueConstants.kHueDoubleTapDuration, actionName: "TTModeHueSleep", direction: direction) as! Int
-        self.runTTModeHueSleep(direction: direction, duration: sceneDuration)
+        let sceneDuration: Int = self.action.mode.actionOptionValue(TTModeHueConstants.kHueDoubleTapDuration, actionName: "TTModeHueSleep", direction: self.action.direction) as! Int
+        self.runTTModeHueSleep(duration: sceneDuration)
     }
     
     func shouldIgnoreSingleBeforeDoubleTTModeHueSceneEarlyEvening() -> NSNumber {
@@ -334,7 +333,7 @@ class TTModeHue: TTMode {
         return NSNumber(value: false)
     }
     
-    func runTTModeHueSleep(direction: TTModeDirection, duration sceneDuration: Int) {
+    func runTTModeHueSleep(duration sceneDuration: Int) {
         if !phHueSdk.localConnected() {
             self.searchForBridgeLocal()
             return
@@ -366,15 +365,15 @@ class TTModeHue: TTMode {
         }
     }
     
-    func runTTModeHueRandom(direction: TTModeDirection) {
-        self.runTTModeHueRandom(direction: direction, doubleTap: false)
+    func runTTModeHueRandom() {
+        self.runTTModeHueRandom(doubleTap: false)
     }
     
-    func doubleRunTTModeHueRandom(direction: TTModeDirection) {
-        self.runTTModeHueRandom(direction: direction, doubleTap: true)
+    func doubleRunTTModeHueRandom() {
+        self.runTTModeHueRandom(doubleTap: true)
     }
     
-    func runTTModeHueRandom(direction: TTModeDirection, doubleTap: Bool) {
+    func runTTModeHueRandom(doubleTap: Bool) {
         if !phHueSdk.localConnected() {
             self.searchForBridgeLocal()
             return
@@ -384,11 +383,11 @@ class TTModeHue: TTMode {
         let cache: PHBridgeResourcesCache = PHBridgeResourcesReader.readBridgeResourcesCache()
         let bridgeSendAPI: PHBridgeSendAPI = PHBridgeSendAPI()
         let randomColors = TTHueRandomColors(rawValue: (self.action.optionValue((doubleTap ?
-            TTModeHueConstants.kDoubleTapRandomColors : TTModeHueConstants.kRandomColors), direction: direction) as! Int))
+            TTModeHueConstants.kDoubleTapRandomColors : TTModeHueConstants.kRandomColors)) as! Int))
         let randomBrightnesses = TTHueRandomBrightness(rawValue: (self.action.optionValue((doubleTap ?
-            TTModeHueConstants.kDoubleTapRandomBrightness : TTModeHueConstants.kRandomBrightness), direction: direction) as! Int))
+            TTModeHueConstants.kDoubleTapRandomBrightness : TTModeHueConstants.kRandomBrightness)) as! Int))
         let randomSaturation = TTHueRandomSaturation(rawValue: (self.action.optionValue((doubleTap ?
-            TTModeHueConstants.kDoubleTapRandomSaturation : TTModeHueConstants.kRandomSaturation), direction: direction) as! Int))
+            TTModeHueConstants.kDoubleTapRandomSaturation : TTModeHueConstants.kRandomSaturation)) as! Int))
         let randomColor: Int = Int(arc4random_uniform(MAX_HUE))
         
         if cache.lights == nil {

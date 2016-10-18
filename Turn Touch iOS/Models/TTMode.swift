@@ -127,7 +127,8 @@ class TTMode : NSObject, TTModeProtocol {
         }
         
         // runAction:direction
-        let titleSelector = NSSelectorFromString("\(funcAction)\(actionName)WithDirection:") // Swift 3
+//        let titleSelector = NSSelectorFromString("\(funcAction)\(actionName)WithDirection:") // Swift 3
+        let titleSelector = Selector("\(funcAction)\(actionName)WithDirection:")
         if self.responds(to: titleSelector) {
             self.perform(titleSelector, with: NSNumber(value: direction.rawValue))
             success = true
@@ -197,6 +198,10 @@ class TTMode : NSObject, TTModeProtocol {
     }
     
     func actionNameInDirection(_ direction: TTModeDirection) -> String {
+        if action?.batchActionKey != nil {
+            return action.actionName
+        }
+        
         let prefs = UserDefaults.standard
         
         let modeDirectionName = appDelegate().modeMap.directionName(modeDirection)
@@ -348,7 +353,7 @@ class TTMode : NSObject, TTModeProtocol {
     func batchActionOptionValue(_ batchAction: TTAction, optionName: String, direction: TTModeDirection) -> Any? {
         let prefs = UserDefaults.standard
         let modeDirectionName = appDelegate().modeMap.directionName(modeDirection)
-        let actionDirectionName = appDelegate().modeMap.directionName(direction)
+        let actionDirectionName = appDelegate().modeMap.directionName(action.direction)
         let optionKey = "TT:mode:\(modeDirectionName):action:\(actionDirectionName):batchactions:\(action.batchActionKey!):actionoption:\(optionName)"
         var pref = prefs.object(forKey: optionKey)
         print(" -> Getting batch action options \(optionKey): \(pref)")

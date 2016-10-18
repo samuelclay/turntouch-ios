@@ -51,12 +51,9 @@ class TTModeHueSceneOptions: TTOptionsDetailViewController, UITextFieldDelegate,
         spinner.forEach({ $0.isHidden = true })
         refreshButton.forEach({ $0.isHidden = false })
         
-        let roomSelected = self.action.optionValue(TTModeHueConstants.kHueRoom,
-                                                   direction: appDelegate().modeMap.inspectingModeDirection) as? String
-        var sceneSelected = self.action.optionValue(TTModeHueConstants.kHueScene,
-                                                    direction: appDelegate().modeMap.inspectingModeDirection) as? String
-        var doubleSceneSelected = self.action.optionValue(TTModeHueConstants.kDoubleTapHueScene,
-                                                          direction: appDelegate().modeMap.inspectingModeDirection) as? String
+        let roomSelected = self.action.optionValue(TTModeHueConstants.kHueRoom) as? String
+        var sceneSelected = self.action.optionValue(TTModeHueConstants.kHueScene) as? String
+        var doubleSceneSelected = self.action.optionValue(TTModeHueConstants.kDoubleTapHueScene) as? String
 
         let cache = PHBridgeResourcesReader.readBridgeResourcesCache()
         
@@ -211,8 +208,7 @@ class TTModeHueSceneOptions: TTOptionsDetailViewController, UITextFieldDelegate,
             var roomSelected: String?
 
             if textField == roomPicker {
-                roomSelected = self.action.optionValue(TTModeHueConstants.kHueRoom,
-                                                        direction: appDelegate().modeMap.inspectingModeDirection) as? String
+                roomSelected = self.action.optionValue(TTModeHueConstants.kHueRoom) as? String
                 for (i, room) in rooms.enumerated() {
                     if room["identifier"] == roomSelected {
                         currentRow = i
@@ -221,11 +217,9 @@ class TTModeHueSceneOptions: TTOptionsDetailViewController, UITextFieldDelegate,
                 }
             } else {
                 if textField == singlePicker {
-                        sceneSelected = self.action.optionValue(TTModeHueConstants.kHueScene,
-                                                                direction: appDelegate().modeMap.inspectingModeDirection) as? String
+                        sceneSelected = self.action.optionValue(TTModeHueConstants.kHueScene) as? String
                 } else if textField == doublePicker {
-                    sceneSelected = self.action.optionValue(TTModeHueConstants.kDoubleTapHueScene,
-                                                            direction: appDelegate().modeMap.inspectingModeDirection) as? String
+                    sceneSelected = self.action.optionValue(TTModeHueConstants.kDoubleTapHueScene) as? String
                 }
                 for (i, scene) in scenes.enumerated() {
                     if scene["identifier"] == sceneSelected {

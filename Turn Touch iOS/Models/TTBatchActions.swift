@@ -29,7 +29,7 @@ class TTBatchActions: NSObject {
         
         if let keys = batchActionKeys {
             for batchActionKey in keys {
-                let batchAction = TTAction(batchActionKey: batchActionKey)
+                let batchAction = TTAction(batchActionKey: batchActionKey, direction: direction)
                 batchActions.append(batchAction)
             }
         }
