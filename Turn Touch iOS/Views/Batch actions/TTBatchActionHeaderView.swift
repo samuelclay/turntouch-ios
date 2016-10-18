@@ -44,6 +44,7 @@ class TTBatchActionHeaderView: UIView {
         self.translatesAutoresizingMaskIntoConstraints = false
         self.contentMode = UIViewContentMode.redraw;
         self.backgroundColor = UIColor(hex: 0xFCFCFC)
+        self.clipsToBounds = true
         
         deleteButton.translatesAutoresizingMaskIntoConstraints = false
         deleteButton.setTitle("Delete", for: UIControlState.normal)
@@ -140,6 +141,7 @@ class TTBatchActionHeaderView: UIView {
     func pressDelete(_ sender: UIButton!) {
         if let action = batchAction {
             appDelegate().modeMap.removeBatchAction(for: action.batchActionKey!)
+            appDelegate().mainViewController.batchActionsStackView.hideBatchAction(batchActionKey: action.batchActionKey!)
         }
     }
 }

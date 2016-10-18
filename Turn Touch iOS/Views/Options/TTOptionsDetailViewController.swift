@@ -17,7 +17,7 @@ class TTOptionsDetailViewController: UIViewController {
     
     required override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-        
+
         // Don't touch self.view yet, since lots of instance variables need to be set first
 //        self.view.translatesAutoresizingMaskIntoConstraints = false
     }
@@ -31,6 +31,7 @@ class TTOptionsDetailViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         self.view.contentMode = .top
+        self.view.clipsToBounds = true
     }
 
     

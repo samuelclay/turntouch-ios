@@ -156,9 +156,11 @@ class TTModeMenuCell: UICollectionViewCell {
                     appDelegate().modeMap.selectedModeDirection = appDelegate().modeMap.selectedModeDirection
                 } else if menuType == .menu_ADD_MODE {
                     appDelegate().modeMap.provisionTempMode(name: modeName)
+                    appDelegate().mainViewController.scrollToBottom()
                 } else if menuType == .menu_ADD_ACTION {
                     appDelegate().modeMap.addBatchAction(for: modeName)
                     appDelegate().mainViewController.addActionButtonView.hideAddActionMenu(nil)
+                    appDelegate().mainViewController.scrollToBottom()
                 }
             }
         }

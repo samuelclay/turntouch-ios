@@ -166,7 +166,7 @@ class TTModeSonos: TTMode {
         } else {
             sonosState = .connected
         }
-        delegate.changeState(sonosState, mode: self)
+        delegate?.changeState(sonosState, mode: self)
     }
     
     override func deactivate() {
@@ -301,7 +301,7 @@ class TTModeSonos: TTMode {
     
     func beginConnectingToSonos() {
         sonosState = .connecting
-        delegate.changeState(sonosState, mode: self)
+        delegate?.changeState(sonosState, mode: self)
         
         sonosManager?.discoverControllers {
             DispatchQueue.main.async(execute: {
@@ -318,13 +318,13 @@ class TTModeSonos: TTMode {
     
     func cancelConnectingToSonos() {
         sonosState = .disconnected
-        delegate.changeState(sonosState, mode: self)
+        delegate?.changeState(sonosState, mode: self)
     }
     
     // MARK: Device delegate
     
     func deviceReady(_ device: SonosController) {
         sonosState = .connected
-        delegate.changeState(sonosState, mode: self)
+        delegate?.changeState(sonosState, mode: self)
     }
 }

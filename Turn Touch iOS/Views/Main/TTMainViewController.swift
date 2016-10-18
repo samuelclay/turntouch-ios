@@ -153,11 +153,8 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
         scrollStackView.addArrangedSubview(addActionMenu)
         scrollStackView.addConstraint(addActionMenuConstraint)
         
-        addActionButtonConstraint = NSLayoutConstraint(item: addActionButtonView, attribute: .height, relatedBy: .equal,
-                                                       toItem: nil, attribute: .notAnAttribute,
-                                                       multiplier: 1.0, constant: 0)
+        addActionButtonView.isHidden = true
         scrollStackView.addArrangedSubview(addActionButtonView)
-        scrollStackView.addConstraint(addActionButtonConstraint)
         
         scrollView.setContentHuggingPriority(100, for: UILayoutConstraintAxis.vertical)
         scrollView.alwaysBounceVertical = true
@@ -291,17 +288,15 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
         })
         
         if appDelegate().modeMap.openedAddActionChangeMenu {
-            self.scrollView.setContentOffset(CGPoint(x: 0, y: self.scrollView.contentSize.height - self.scrollView.bounds.size.height), animated: true)
+            self.scrollToBottom()
         }
     }
     
     func toggleAddActionButtonView() {
         if appDelegate().modeMap.inspectingModeDirection != .no_DIRECTION {
-            scrollStackView.removeConstraint(addActionButtonConstraint)
-            addActionButtonConstraint.constant = 48;
+            addActionButtonView.isHidden = false
         } else {
-            addActionButtonConstraint.constant = 0;
-            scrollStackView.addConstraint(addActionButtonConstraint)
+            addActionButtonView.isHidden = true
         }
     }
     
@@ -312,6 +307,10 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
             self.view.layoutIfNeeded()
             self.actionTitleView.alpha = appDelegate().modeMap.inspectingModeDirection == .no_DIRECTION ? 0 : 1
         }) 
+    }
+    
+    func scrollToBottom() {
+        self.scrollView.setContentOffset(CGPoint(x: 0, y: self.scrollView.contentSize.height - self.scrollView.bounds.size.height), animated: true)
     }
     
     func adjustDeviceTitles() {

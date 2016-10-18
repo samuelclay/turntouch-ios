@@ -11,7 +11,8 @@ import UIKit
 class TTBatchActionStackView: UIStackView {
     
     var tempHeaderConstraint: NSLayoutConstraint!
-    var actionOptionsViewControllers: [UIViewController] = []
+    var actionOptionsViewControllers: [String: [UIView]] = [:]
+    var actionConstraints: [String: NSLayoutConstraint] = [:]
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -19,6 +20,7 @@ class TTBatchActionStackView: UIStackView {
         self.translatesAutoresizingMaskIntoConstraints = false
         self.axis = .vertical
         self.spacing = 0
+        self.clipsToBounds = true
     }
     
     required init(coder: NSCoder) {
@@ -32,16 +34,19 @@ class TTBatchActionStackView: UIStackView {
             subview.removeFromSuperview()
         }
         actionOptionsViewControllers.removeAll()
-        actionOptionsViewControllers = []
+        actionOptionsViewControllers = [:]
+        actionConstraints = [:]
         let batchActions = appDelegate().modeMap.selectedModeBatchActions(in: appDelegate().modeMap.inspectingModeDirection)
         
         for batchAction in batchActions {
             let batchActionHeaderView = TTBatchActionHeaderView(batchAction: batchAction)
             self.addArrangedSubview(batchActionHeaderView)
-            
-            self.addConstraint(NSLayoutConstraint(item: batchActionHeaderView, attribute: .height,
-                                                  relatedBy: .equal, toItem: nil, attribute: .notAnAttribute,
-                                                  multiplier: 1.0, constant: 44))
+
+            let constraint = NSLayoutConstraint(item: batchActionHeaderView, attribute: .height,
+                                                relatedBy: .equal, toItem: nil, attribute: .notAnAttribute,
+                                                multiplier: 1.0, constant: 44)
+            self.addConstraint(constraint)
+            actionConstraints[batchAction.batchActionKey!] = constraint
             
             let actionOptionsViewControllerName = "Turn_Touch_iOS.\(batchAction.actionName!)Options"
             let actionOptionsClass: AnyClass? = NSClassFromString(actionOptionsViewControllerName)
@@ -56,9 +61,11 @@ class TTBatchActionStackView: UIStackView {
             actionOptionsViewController.menuType = TTMenuType.menu_ACTION
             actionOptionsViewController.action = batchAction
             actionOptionsViewController.mode = batchAction.mode
-//            actionOptionsViewController.view.translatesAutoresizingMaskIntoConstraints = false
             self.addArrangedSubview(actionOptionsViewController.view)
-            actionOptionsViewControllers.append(actionOptionsViewController)
+
+            actionOptionsViewControllers[batchAction.batchActionKey!] = [batchActionHeaderView,
+                                                                         actionOptionsViewController.view]
+            
         }
         
         // tempMode on bottom
@@ -70,7 +77,26 @@ class TTBatchActionStackView: UIStackView {
                                                   toItem: nil, attribute: .notAnAttribute,
                                                   multiplier: 1.0, constant: 44))
         }
-        
-        
     }
+    
+    func hideBatchAction(batchActionKey: String) {
+        for (key, views) in actionOptionsViewControllers {
+            if key == batchActionKey {
+                UIView.animate(withDuration: 0.42, animations: {
+                    for view in views {
+                        view.alpha = 0
+                        view.isHidden = true
+                    }
+                })
+            }
+        }
+        for (key, constraint) in actionConstraints {
+            if key == batchActionKey {
+                UIView.animate(withDuration: 0.42, animations: {
+//                    constraint.constant = 0
+                })
+            }
+        }
+    }
+    
 }

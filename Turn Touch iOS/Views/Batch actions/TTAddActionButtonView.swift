@@ -35,9 +35,9 @@ class TTAddActionButtonView: UIView {
         addButton.setContentHuggingPriority(UILayoutPriorityDefaultHigh, for: .horizontal)
         self.addSubview(addButton)
         self.addConstraint(NSLayoutConstraint(item: addButton, attribute: .top, relatedBy: .equal,
-                                              toItem: self, attribute: .top, multiplier: 1.0, constant: 24))
+                                              toItem: self.layoutMarginsGuide, attribute: .top, multiplier: 1.0, constant: 24))
         self.addConstraint(NSLayoutConstraint(item: addButton, attribute: .bottom, relatedBy: .equal,
-                                              toItem: self, attribute: .bottom, multiplier: 1.0, constant: -24))
+                                              toItem: self.layoutMarginsGuide, attribute: .bottom, multiplier: 1.0, constant: -24))
         self.addConstraint(NSLayoutConstraint(item: addButton, attribute: .centerX, relatedBy: .equal,
                                               toItem: self, attribute: .centerX, multiplier: 1.0, constant: 0))
         self.addConstraint(NSLayoutConstraint(item: addButton, attribute: .height, relatedBy: .equal,
@@ -102,7 +102,13 @@ class TTAddActionButtonView: UIView {
         addButton.removeTarget(self, action: #selector(self.hideAddActionMenu(_:)), for: .touchUpInside)
         addButton.addTarget(self, action: #selector(self.showAddActionMenu(_:)), for: .touchUpInside)
         
-        appDelegate().modeMap.openedAddActionChangeMenu = false
+        if appDelegate().modeMap.tempModeName != nil {
+            appDelegate().modeMap.tempModeName = nil
+            appDelegate().modeMap.tempMode = nil
+        }
+        if appDelegate().modeMap.openedAddActionChangeMenu {
+            appDelegate().modeMap.openedAddActionChangeMenu = false
+        }
     }
 
 }
