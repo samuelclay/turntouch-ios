@@ -11,6 +11,7 @@ import UIKit
 class TTAddActionButtonView: UIView {
 
     @IBOutlet var addButton: UIButton! = UIButton(type: UIButtonType.system)
+    var image: UIImage!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -19,20 +20,28 @@ class TTAddActionButtonView: UIView {
         self.backgroundColor = UIColor.white
         self.clipsToBounds = true
         
+        image = UIImage(named: "button_plus")
         addButton.translatesAutoresizingMaskIntoConstraints = false
-        addButton.setImage(UIImage(named: "button_plus"), for: .normal)
+        addButton.setImage(image, for: .normal)
+        addButton.imageView?.contentMode = .scaleAspectFit
         addButton.setTitle("Add new action", for: UIControlState.normal)
+        addButton.imageView!.setContentHuggingPriority(UILayoutPriorityDefaultHigh, for: .horizontal)
         addButton.titleLabel!.font = UIFont(name: "Effra", size: 13)
         addButton.titleLabel!.textColor = UIColor(hex: 0xA0A0A0)
         addButton.titleLabel!.lineBreakMode = NSLineBreakMode.byClipping
-        addButton.addTarget(self, action: #selector(self.showAddActionMenu), for: .touchUpInside)
+        addButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: -128, bottom: 0, right: -128)
+        addButton.titleEdgeInsets = UIEdgeInsets(top: 0, left: -212, bottom: 0, right: 0)
+        addButton.addTarget(self, action: #selector(self.showAddActionMenu(_:)), for: .touchUpInside)
+        addButton.setContentHuggingPriority(UILayoutPriorityDefaultHigh, for: .horizontal)
         self.addSubview(addButton)
         self.addConstraint(NSLayoutConstraint(item: addButton, attribute: .top, relatedBy: .equal,
                                               toItem: self, attribute: .top, multiplier: 1.0, constant: 24))
         self.addConstraint(NSLayoutConstraint(item: addButton, attribute: .bottom, relatedBy: .equal,
-                                              toItem: self, attribute: .bottom, multiplier: 1.0, constant: 24))
+                                              toItem: self, attribute: .bottom, multiplier: 1.0, constant: -24))
         self.addConstraint(NSLayoutConstraint(item: addButton, attribute: .centerX, relatedBy: .equal,
                                               toItem: self, attribute: .centerX, multiplier: 1.0, constant: 0))
+        self.addConstraint(NSLayoutConstraint(item: addButton, attribute: .height, relatedBy: .equal,
+                                              toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 20))
         
         self.registerAsObserver()
     }
@@ -68,8 +77,8 @@ class TTAddActionButtonView: UIView {
         UIColor(hex: 0xC2CBCE).set()
                 
         // Top border
-        line.move(to: CGPoint(x: self.bounds.minX + 24, y: self.bounds.minY))
-        line.addLine(to: CGPoint(x: self.bounds.maxX - 24, y: self.bounds.minY))
+        line.move(to: CGPoint(x: self.bounds.minX + 24, y: self.bounds.minY - 0.5))
+        line.addLine(to: CGPoint(x: self.bounds.maxX - 24, y: self.bounds.minY - 0.5))
         line.stroke()
 
         // Bottom border

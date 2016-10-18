@@ -43,7 +43,7 @@ class TTBatchActionHeaderView: UIView {
     func setupLabels() {
         self.translatesAutoresizingMaskIntoConstraints = false
         self.contentMode = UIViewContentMode.redraw;
-        self.backgroundColor = UIColor.clear
+        self.backgroundColor = UIColor(hex: 0xFCFCFC)
         
         deleteButton.translatesAutoresizingMaskIntoConstraints = false
         deleteButton.setTitle("Delete", for: UIControlState.normal)
@@ -117,6 +117,20 @@ class TTBatchActionHeaderView: UIView {
         diamondView.setNeedsDisplay()
 
         super.draw(rect)
+        
+        let line = UIBezierPath()
+        line.lineWidth = 0.5
+        UIColor(hex: 0xC2CBCE).set()
+        
+        // Top border
+        line.move(to: CGPoint(x: self.bounds.minX, y: self.bounds.minY))
+        line.addLine(to: CGPoint(x: self.bounds.maxX, y: self.bounds.minY))
+        line.stroke()
+        
+        // Bottom border
+        line.move(to: CGPoint(x: self.bounds.minX, y: self.bounds.maxY))
+        line.addLine(to: CGPoint(x: self.bounds.maxX, y: self.bounds.maxY))
+        line.stroke()
     }
     
     

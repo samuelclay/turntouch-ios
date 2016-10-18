@@ -289,13 +289,19 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
         UIView.animate(withDuration: 0.42, animations: {
             self.view.layoutIfNeeded()
         })
+        
+        if appDelegate().modeMap.openedAddActionChangeMenu {
+            self.scrollView.setContentOffset(CGPoint(x: 0, y: self.scrollView.contentSize.height - self.scrollView.bounds.size.height), animated: true)
+        }
     }
     
     func toggleAddActionButtonView() {
         if appDelegate().modeMap.inspectingModeDirection != .no_DIRECTION {
+            scrollStackView.removeConstraint(addActionButtonConstraint)
             addActionButtonConstraint.constant = 48;
         } else {
             addActionButtonConstraint.constant = 0;
+            scrollStackView.addConstraint(addActionButtonConstraint)
         }
     }
     
