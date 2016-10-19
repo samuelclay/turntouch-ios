@@ -61,7 +61,7 @@ protocol TTModeHueDelegate {
 
 class TTModeHue: TTMode {
     
-    var phHueSdk: PHHueSDK!
+    static var phHueSdk: PHHueSDK!
     var hueState: TTHueState = TTHueState.notConnected
     var bridgeSearch: PHBridgeSearching!
     var delegate: TTModeHueDelegate?
@@ -79,7 +79,7 @@ class TTModeHue: TTMode {
     
     deinit {
         self.disableLocalHeartbeat()
-        phHueSdk.stop()
+        TTModeHue.phHueSdk.stop()
     }
     
     override func activate() {
@@ -87,13 +87,13 @@ class TTModeHue: TTMode {
     }
     
     func initializeHue(_ force: Bool = false) {
-        if phHueSdk != nil && !force {
+        if TTModeHue.phHueSdk != nil && !force {
             return;
         }
         
-        phHueSdk = PHHueSDK()
-        phHueSdk.startUp()
-        phHueSdk.enableLogging(false)
+        TTModeHue.phHueSdk = PHHueSDK()
+        TTModeHue.phHueSdk.startUp()
+        TTModeHue.phHueSdk.enableLogging(false)
         
         bridgesTried = []
         
@@ -167,10 +167,13 @@ class TTModeHue: TTMode {
     
     override class func actions() -> [String] {
         return ["TTModeHueSceneEarlyEvening",
-        "TTModeHueSceneLateEvening",
-        "TTModeHueSleep",
-        "TTModeHueOff",
-        "TTModeHueRandom"]
+                "TTModeHueSceneLateEvening",
+                "TTModeHueSceneMorning",
+                "TTModeHueSceneNightLight",
+                "TTModeHueSceneCustom",
+                "TTModeHueSleep",
+                "TTModeHueOff",
+                "TTModeHueRandom"]
     }
     
     func titleTTModeHueSceneEarlyEvening() -> String {
@@ -187,6 +190,30 @@ class TTModeHue: TTMode {
     
     func doubleTitleTTModeHueSceneLateEvening() -> String {
         return "Late evening 2"
+    }
+    
+    func titleTTModeHueSceneMorning() -> String {
+        return "Morning"
+    }
+    
+    func doubleTitleTTModeHueSceneMorning() -> String {
+        return "Morning 2"
+    }
+    
+    func titleTTModeHueSceneNightLight() -> String {
+        return "Night light"
+    }
+    
+    func doubleTitleTTModeHueSceneNightLight() -> String {
+        return "Night light 2"
+    }
+    
+    func titleTTModeHueSceneCustom() -> String {
+        return "Custom scene"
+    }
+    
+    func doubleTitleTTModeHueSceneCustom() -> String {
+        return "Custom scene 2"
     }
     
     func titleTTModeHueSleep() -> String {
@@ -216,6 +243,18 @@ class TTModeHue: TTMode {
     }
     
     func imageTTModeHueSceneLateEvening() -> String {
+        return "hue_evening.png"
+    }
+    
+    func imageTTModeHueSceneMorning() -> String {
+        return "hue_evening.png"
+    }
+    
+    func imageTTModeHueSceneNightLight() -> String {
+        return "hue_evening.png"
+    }
+    
+    func imageTTModeHueSceneCustom() -> String {
         return "hue_evening.png"
     }
     
@@ -252,7 +291,7 @@ class TTModeHue: TTMode {
     // MARK: Action methods
     
     func runScene(sceneName: String, doubleTap: Bool, defaultIdentifier: String) {
-        if !phHueSdk.localConnected() {
+        if !TTModeHue.phHueSdk.localConnected() {
             self.searchForBridgeLocal()
             return
         }
@@ -301,6 +340,30 @@ class TTModeHue: TTMode {
         self.runScene(sceneName: "TTModeHueSceneLateEvening", doubleTap: true, defaultIdentifier: "TT-le-2")
     }
     
+    func runTTModeHueSceneMorning() {
+        self.runScene(sceneName: "TTModeHueSceneMorning", doubleTap: false, defaultIdentifier: "TT-mo-1")
+    }
+    
+    func doubleRunTTModeHueSceneMorning() {
+        self.runScene(sceneName: "TTModeHueSceneMorning", doubleTap: true, defaultIdentifier: "TT-mo-2")
+    }
+    
+    func runTTModeHueSceneNightLight() {
+        self.runScene(sceneName: "TTModeHueSceneNightLight", doubleTap: false, defaultIdentifier: "TT-nl-1")
+    }
+    
+    func doubleRunTTModeHueSceneNightLight() {
+        self.runScene(sceneName: "TTModeHueSceneNightLight", doubleTap: true, defaultIdentifier: "TT-nl-2")
+    }
+    
+    func runTTModeHueSceneCustom() {
+        self.runScene(sceneName: "TTModeHueSceneCustom", doubleTap: false, defaultIdentifier: "TT-ee-1")
+    }
+    
+    func doubleRunTTModeHueSceneCustom() {
+        self.runScene(sceneName: "TTModeHueSceneCustom", doubleTap: true, defaultIdentifier: "TT-le-2")
+    }
+    
     func runTTModeHueOff() {
         //    NSLog(@"Running scene off... %d", direction);
         self.runTTModeHueSleep(duration: 1)
@@ -334,7 +397,7 @@ class TTModeHue: TTMode {
     }
     
     func runTTModeHueSleep(duration sceneDuration: Int) {
-        if !phHueSdk.localConnected() {
+        if !TTModeHue.phHueSdk.localConnected() {
             self.searchForBridgeLocal()
             return
         }
@@ -374,7 +437,7 @@ class TTModeHue: TTMode {
     }
     
     func runTTModeHueRandom(doubleTap: Bool) {
-        if !phHueSdk.localConnected() {
+        if !TTModeHue.phHueSdk.localConnected() {
             self.searchForBridgeLocal()
             return
         }
@@ -457,7 +520,7 @@ class TTModeHue: TTMode {
      Checks if we are currently connected to the bridge locally and if not, it will show an error when the error is not already shown.
      */
     func checkConnectionState() {
-        if !phHueSdk.localConnected() {
+        if !TTModeHue.phHueSdk.localConnected() {
 //            self.showNoConnectionDialog()
             self.searchForBridgeLocal()
         } else {
@@ -505,7 +568,7 @@ class TTModeHue: TTMode {
     
     func searchForBridgeLocal(reset: Bool = false) {
         // In case if in pushlink loop
-        phHueSdk.cancelPushLinkAuthentication()
+        TTModeHue.phHueSdk.cancelPushLinkAuthentication()
 
         // Stop heartbeats
         self.disableLocalHeartbeat()
@@ -599,7 +662,7 @@ class TTModeHue: TTMode {
         
         hueState = .connecting
         self.delegate?.changeState(hueState, mode: self, message: "Connecting to Hue bridge...")
-        phHueSdk.setBridgeToUseWithId(bridgeId, ipAddress: ipAddress)
+        TTModeHue.phHueSdk.setBridgeToUseWithId(bridgeId, ipAddress: ipAddress)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             self.enableLocalHeartbeat()
@@ -637,7 +700,7 @@ class TTModeHue: TTMode {
         let cache = PHBridgeResourcesReader.readBridgeResourcesCache()
         if cache?.bridgeConfiguration?.ipaddress != nil {
             // Enable heartbeat with interval of 10 seconds
-            phHueSdk.enableLocalConnection()
+            TTModeHue.phHueSdk.enableLocalConnection()
         } else {
             // Automaticly start searching for bridges
             self.searchForBridgeLocal()
@@ -648,7 +711,7 @@ class TTModeHue: TTMode {
      Stops the local heartbeat
      */
     func disableLocalHeartbeat() {
-        phHueSdk.disableLocalConnection()
+        TTModeHue.phHueSdk.disableLocalConnection()
     }
     
     /**
@@ -695,7 +758,7 @@ class TTModeHue: TTMode {
          The notifications sent by the SDK will confirm success
          or failure of push linking
          *****************************************************/
-        phHueSdk.startPushlinkAuthentication()
+        TTModeHue.phHueSdk.startPushlinkAuthentication()
     }
     /**
      Notification receiver which is called when the pushlinking was successful
@@ -760,7 +823,7 @@ class TTModeHue: TTMode {
      */
     
     func pushlinkFailed(error: PHError) {
-        phHueSdk.cancelPushLinkAuthentication()
+        TTModeHue.phHueSdk.cancelPushLinkAuthentication()
         // Check which error occured
         if error.code == Int(PUSHLINK_NO_CONNECTION.rawValue) {
             // No local connection to bridge

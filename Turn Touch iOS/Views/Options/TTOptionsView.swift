@@ -127,7 +127,7 @@ class TTOptionsView: UIView {
         }
         
         actionOptionsViewController.menuType = TTMenuType.menu_ACTION
-        actionOptionsViewController.action = TTAction(actionName: actionName, direction: .no_DIRECTION)
+        actionOptionsViewController.action = TTAction(actionName: actionName, direction: appDelegate().modeMap.inspectingModeDirection)
         actionOptionsViewController.mode = appDelegate().modeMap.selectedMode
         actionOptionsViewController.mode.action = actionOptionsViewController.action
         actionOptionsViewController.action.mode = appDelegate().modeMap.selectedMode // To parallel batch actions

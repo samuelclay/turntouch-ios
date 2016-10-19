@@ -150,10 +150,10 @@ class TTModeMenuCell: UICollectionViewCell {
                     appDelegate().modeMap.changeDirection(appDelegate().modeMap.selectedModeDirection, toMode:modeName)
                 } else if menuType == .menu_ACTION {
                     appDelegate().modeMap.changeDirection(appDelegate().modeMap.inspectingModeDirection, toAction:modeName)
-                    // Update the mode menu
-                    appDelegate().modeMap.inspectingModeDirection = appDelegate().modeMap.inspectingModeDirection
                     // Update the action diamond
                     appDelegate().modeMap.selectedModeDirection = appDelegate().modeMap.selectedModeDirection
+                    // Update the mode menu
+                    appDelegate().modeMap.inspectingModeDirection = appDelegate().modeMap.inspectingModeDirection
                 } else if menuType == .menu_ADD_MODE {
                     appDelegate().modeMap.provisionTempMode(name: modeName)
                     appDelegate().mainViewController.scrollToBottom()

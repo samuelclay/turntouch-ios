@@ -310,7 +310,12 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
     }
     
     func scrollToBottom() {
-        self.scrollView.setContentOffset(CGPoint(x: 0, y: self.scrollView.contentSize.height - self.scrollView.bounds.size.height), animated: true)
+        let contentHeight = self.scrollView.contentSize.height
+        let scrollHeight = self.scrollView.bounds.size.height
+        
+        if contentHeight > scrollHeight {
+            self.scrollView.setContentOffset(CGPoint(x: 0, y: contentHeight - scrollHeight), animated: true)
+        }
     }
     
     func adjustDeviceTitles() {

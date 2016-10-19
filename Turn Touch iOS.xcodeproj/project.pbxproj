@@ -50,6 +50,9 @@
 		FF254F8E1D21CAF100E96378 /* TTModeWemoMulticastServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF254F8D1D21CAF100E96378 /* TTModeWemoMulticastServer.swift */; };
 		FF254FDA1D21EF1200E96378 /* TTModeWemoDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF254FD91D21EF1200E96378 /* TTModeWemoDevice.swift */; };
 		FF254FDE1D22F26500E96378 /* XPathQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = FF254FDD1D22F26500E96378 /* XPathQuery.m */; };
+		FF3032BD1DB8286E00728920 /* TTModeHueSceneCustomOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3032BC1DB8286E00728920 /* TTModeHueSceneCustomOptions.swift */; };
+		FF3032BF1DB8289600728920 /* TTModeHueSceneNightLightOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3032BE1DB8289600728920 /* TTModeHueSceneNightLightOptions.swift */; };
+		FF3032C11DB828B100728920 /* TTModeHueSceneMorningOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3032C01DB828B100728920 /* TTModeHueSceneMorningOptions.swift */; };
 		FF37EDCB1D1102620026F70D /* TTTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF37EDCA1D1102620026F70D /* TTTabView.swift */; };
 		FF37EDCF1D1113C10026F70D /* TTModeHueOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF37EDCD1D1113C10026F70D /* TTModeHueOptions.swift */; };
 		FF37EDD01D1113C10026F70D /* TTModeHueOptions.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF37EDCE1D1113C10026F70D /* TTModeHueOptions.xib */; };
@@ -329,6 +332,9 @@
 		FF254FD91D21EF1200E96378 /* TTModeWemoDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeWemoDevice.swift; path = Modes/Wemo/TTModeWemoDevice.swift; sourceTree = "<group>"; };
 		FF254FDC1D22F26500E96378 /* XPathQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPathQuery.h; sourceTree = "<group>"; };
 		FF254FDD1D22F26500E96378 /* XPathQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPathQuery.m; sourceTree = "<group>"; };
+		FF3032BC1DB8286E00728920 /* TTModeHueSceneCustomOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeHueSceneCustomOptions.swift; path = Modes/Hue/TTModeHueSceneCustomOptions.swift; sourceTree = "<group>"; };
+		FF3032BE1DB8289600728920 /* TTModeHueSceneNightLightOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeHueSceneNightLightOptions.swift; path = Modes/Hue/TTModeHueSceneNightLightOptions.swift; sourceTree = "<group>"; };
+		FF3032C01DB828B100728920 /* TTModeHueSceneMorningOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeHueSceneMorningOptions.swift; path = Modes/Hue/TTModeHueSceneMorningOptions.swift; sourceTree = "<group>"; };
 		FF37EDCA1D1102620026F70D /* TTTabView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTTabView.swift; path = "Turn Touch iOS/Views/Controls/TTTabView.swift"; sourceTree = SOURCE_ROOT; };
 		FF37EDCD1D1113C10026F70D /* TTModeHueOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeHueOptions.swift; path = Modes/Hue/TTModeHueOptions.swift; sourceTree = "<group>"; };
 		FF37EDCE1D1113C10026F70D /* TTModeHueOptions.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TTModeHueOptions.xib; path = Modes/Hue/TTModeHueOptions.xib; sourceTree = "<group>"; };
@@ -678,6 +684,9 @@
 				FF37EDEA1D137A210026F70D /* TTModeHueSceneOptions.xib */,
 				FF37EDED1D13823F0026F70D /* TTModeHueSceneEarlyEveningOptions.swift */,
 				FF37EDF51D1B1A310026F70D /* TTModeHueSceneLateEveningOptions.swift */,
+				FF3032BC1DB8286E00728920 /* TTModeHueSceneCustomOptions.swift */,
+				FF3032BE1DB8289600728920 /* TTModeHueSceneNightLightOptions.swift */,
+				FF3032C01DB828B100728920 /* TTModeHueSceneMorningOptions.swift */,
 				FF37EDF71D1B23750026F70D /* TTModeHueSleepOptions.swift */,
 				FF254F631D1B2C6B00E96378 /* TTModeHueSleepOptions.xib */,
 				FF37EDFB1D1B23B70026F70D /* TTModeHueRandomOptions.swift */,
@@ -1532,6 +1541,7 @@
 				FFF46BDD1D10941500158751 /* DDFileLogger.m in Sources */,
 				FFDA0FA81D3C4F1C0019859F /* LLSimpleCamera.m in Sources */,
 				FF4AF7EB1D24F9E70009C777 /* TTModeSonosConnecting.swift in Sources */,
+				FF3032C11DB828B100728920 /* TTModeHueSceneMorningOptions.swift in Sources */,
 				FF0F10E51CFFAD1B00CC1F29 /* TTModeMenuBordersView.swift in Sources */,
 				FF0F10C71CF63F1600CC1F29 /* TTModeMusic.swift in Sources */,
 				FF37EDDF1D11179E0026F70D /* TTModeHuePushlink.swift in Sources */,
@@ -1558,6 +1568,7 @@
 				FFF270941CEE88E500E46575 /* AppDelegate.swift in Sources */,
 				FF44876B1D08E1D600ED8099 /* TTPairingSpinner.swift in Sources */,
 				FFF46BDB1D10941500158751 /* DDAbstractDatabaseLogger.m in Sources */,
+				FF3032BF1DB8289600728920 /* TTModeHueSceneNightLightOptions.swift in Sources */,
 				FFC9FE991D02520300038817 /* NSObject+Class.swift in Sources */,
 				FFB41B821CF5341700CD5F09 /* TTMode.swift in Sources */,
 				FF4AF7CB1D24C65A0009C777 /* TTPickerViewController.swift in Sources */,
@@ -1619,6 +1630,7 @@
 				FFDA0FBA1D3C55930019859F /* TTModeCameraViewController.swift in Sources */,
 				FF4AF7E71D24F9E70009C777 /* TTModeSonosConnect.swift in Sources */,
 				FFB84B2A1D90BCBF0037872C /* TTModeYoga.swift in Sources */,
+				FF3032BD1DB8286E00728920 /* TTModeHueSceneCustomOptions.swift in Sources */,
 				FFDA0FA71D3C4F1C0019859F /* LLSimpleCamera+Helper.m in Sources */,
 				FFF270C51CEE97AF00E46575 /* TTMainViewController.swift in Sources */,
 				FFB41B861CF536AC00CD5F09 /* TTAction.swift in Sources */,
