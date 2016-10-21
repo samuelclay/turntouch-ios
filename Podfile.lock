@@ -14,24 +14,37 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
-  - CocoaAsyncSocket (7.5.0):
-    - CocoaAsyncSocket/GCD (= 7.5.0)
-  - CocoaAsyncSocket/GCD (7.5.0)
+  - Alamofire (4.0.1)
+  - CocoaAsyncSocket (7.4.3):
+    - CocoaAsyncSocket/All (= 7.4.3)
+  - CocoaAsyncSocket/All (7.4.3):
+    - CocoaAsyncSocket/GCD
+    - CocoaAsyncSocket/RunLoop
+  - CocoaAsyncSocket/GCD (7.4.3)
+  - CocoaAsyncSocket/RunLoop (7.4.3)
+  - Gloss (1.0.0)
+  - Log (1.0)
   - ReachabilitySwift (3)
   - SWXMLHash (3.0.2)
 
 DEPENDENCIES:
   - AFNetworking (~> 3.0)
-  - CocoaAsyncSocket
+  - Alamofire (~> 4.0)
+  - CocoaAsyncSocket (~> 7.4.3)
+  - Gloss (~> 1.0)
+  - Log (~> 1.0)
   - ReachabilitySwift (~> 3)
   - SWXMLHash (~> 3.0.0)
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
-  CocoaAsyncSocket: 3baeb1ddd969f81cf9fca81053ae49ef2d1cbbfa
+  Alamofire: 7682d43245de14874acd142ec137b144aa1dd335
+  CocoaAsyncSocket: a18c75dca4b08723628a0bacca6e94803d90be91
+  Gloss: 014789e9e69ca18f127eacca999f4c9b0bff6d58
+  Log: 5e368c9528db07517d18d2d04ff5fe2b6f5a1e21
   ReachabilitySwift: f5b9bb30a0777fac8f09ce8b067e32faeb29bb64
   SWXMLHash: e0f6935971f01b06fb228cf435510d998ecde647
 
-PODFILE CHECKSUM: 9b3227eab39565fe8427b7e61ed71fdb79c4decd
+PODFILE CHECKSUM: b0cd8e13747f7742a6c30861c13c526fee134b98
 
-COCOAPODS: 1.1.0.rc.2
+COCOAPODS: 1.1.0
