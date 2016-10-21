@@ -53,6 +53,7 @@
 		FF3032BD1DB8286E00728920 /* TTModeHueSceneCustomOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3032BC1DB8286E00728920 /* TTModeHueSceneCustomOptions.swift */; };
 		FF3032BF1DB8289600728920 /* TTModeHueSceneNightLightOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3032BE1DB8289600728920 /* TTModeHueSceneNightLightOptions.swift */; };
 		FF3032C11DB828B100728920 /* TTModeHueSceneMorningOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3032C01DB828B100728920 /* TTModeHueSceneMorningOptions.swift */; };
+		FF3036591DB9BF0900728920 /* press_smartbridgeV2.png in Resources */ = {isa = PBXBuildFile; fileRef = FF3036581DB9BF0900728920 /* press_smartbridgeV2.png */; };
 		FF37EDCB1D1102620026F70D /* TTTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF37EDCA1D1102620026F70D /* TTTabView.swift */; };
 		FF37EDCF1D1113C10026F70D /* TTModeHueOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF37EDCD1D1113C10026F70D /* TTModeHueOptions.swift */; };
 		FF37EDD01D1113C10026F70D /* TTModeHueOptions.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF37EDCE1D1113C10026F70D /* TTModeHueOptions.xib */; };
@@ -335,6 +336,7 @@
 		FF3032BC1DB8286E00728920 /* TTModeHueSceneCustomOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeHueSceneCustomOptions.swift; path = Modes/Hue/TTModeHueSceneCustomOptions.swift; sourceTree = "<group>"; };
 		FF3032BE1DB8289600728920 /* TTModeHueSceneNightLightOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeHueSceneNightLightOptions.swift; path = Modes/Hue/TTModeHueSceneNightLightOptions.swift; sourceTree = "<group>"; };
 		FF3032C01DB828B100728920 /* TTModeHueSceneMorningOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeHueSceneMorningOptions.swift; path = Modes/Hue/TTModeHueSceneMorningOptions.swift; sourceTree = "<group>"; };
+		FF3036581DB9BF0900728920 /* press_smartbridgeV2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = press_smartbridgeV2.png; path = Modes/Hue/press_smartbridgeV2.png; sourceTree = "<group>"; };
 		FF37EDCA1D1102620026F70D /* TTTabView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTTabView.swift; path = "Turn Touch iOS/Views/Controls/TTTabView.swift"; sourceTree = SOURCE_ROOT; };
 		FF37EDCD1D1113C10026F70D /* TTModeHueOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeHueOptions.swift; path = Modes/Hue/TTModeHueOptions.swift; sourceTree = "<group>"; };
 		FF37EDCE1D1113C10026F70D /* TTModeHueOptions.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TTModeHueOptions.xib; path = Modes/Hue/TTModeHueOptions.xib; sourceTree = "<group>"; };
@@ -691,6 +693,7 @@
 				FF254F631D1B2C6B00E96378 /* TTModeHueSleepOptions.xib */,
 				FF37EDFB1D1B23B70026F70D /* TTModeHueRandomOptions.swift */,
 				FF254F621D1B2C6B00E96378 /* TTModeHueRandomOptions.xib */,
+				FF3036581DB9BF0900728920 /* press_smartbridgeV2.png */,
 			);
 			name = Hue;
 			sourceTree = "<group>";
@@ -1387,6 +1390,7 @@
 				FF20233A1D02147A005129E5 /* Icon-76.png in Resources */,
 				FFDA0FB51D3C4FEE0019859F /* cancel.png in Resources */,
 				FFB41B551CEE9A3000CD5F09 /* itunes_music_icon.png in Resources */,
+				FF3036591DB9BF0900728920 /* press_smartbridgeV2.png in Resources */,
 				FFB41B131CEE9A3000CD5F09 /* chevron_north.png in Resources */,
 				FFB41B4B1CEE9A3000CD5F09 /* settings@2x.png in Resources */,
 				FFB41B201CEE9A3000CD5F09 /* music_volume_down.png in Resources */,

@@ -321,7 +321,7 @@ class TTModeHue: TTMode {
         }
         
         bridgeSendAPI.activateScene(withIdentifier: sceneIdentifier, onGroup: "0") { (errors: [Any]?) in
-            print(" Scene change: \(sceneIdentifier) (\(errors))")
+            print(" ---> Scene change: \(sceneIdentifier ?? "no identifier") (\(errors))")
         }
     }
     

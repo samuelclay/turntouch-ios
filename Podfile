@@ -8,8 +8,8 @@ target "Turn Touch iOS" do
     pod "ReachabilitySwift", "~> 3"
     
     # SwiftyHue
-    pod "Gloss", "~> 1.0"
-    pod "Alamofire", "~> 4.0"
-    pod "Log", "~> 1.0"
-#    pod "SwiftyHue", "~> 0.1.2"
+#    pod "Gloss", "~> 1.0"
+#    pod "Alamofire", "~> 4.0"
+#    pod "Log", "~> 1.0"
+    pod "SwiftyHue", :git => "https://github.com/samuelclay/SwiftyHue.git", :branch => "swift3"
 end

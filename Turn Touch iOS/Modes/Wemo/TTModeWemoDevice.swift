@@ -140,7 +140,7 @@ class TTModeWemoDevice: NSObject {
             } else if stateString == "0" {
                 deviceState = .off
             }
-            print(" ---> Wemo state: \(deviceName) \(stateString)/\(deviceState)")
+            print(" ---> Wemo state: \(deviceName!) \(stateString)/\(deviceState!)")
             callback()
         } else {
             print(" ---> Error: could not get binary state for wemo")

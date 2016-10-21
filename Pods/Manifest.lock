@@ -25,16 +25,36 @@ PODS:
   - Gloss (1.0.0)
   - Log (1.0)
   - ReachabilitySwift (3)
+  - SwiftyHue (0.1.17):
+    - SwiftyHue/Base (= 0.1.17)
+    - SwiftyHue/BridgeServices (= 0.1.17)
+  - SwiftyHue/Base (0.1.17):
+    - Alamofire (~> 4.0.1)
+    - Gloss (~> 1.0)
+    - Log (~> 1.0)
+  - SwiftyHue/BridgeServices (0.1.17):
+    - Alamofire (~> 4.0.1)
+    - CocoaAsyncSocket (~> 7.4.3)
+    - Gloss (~> 1.0)
+    - Log (~> 1.0)
   - SWXMLHash (3.0.2)
 
 DEPENDENCIES:
   - AFNetworking (~> 3.0)
-  - Alamofire (~> 4.0)
   - CocoaAsyncSocket (~> 7.4.3)
-  - Gloss (~> 1.0)
-  - Log (~> 1.0)
   - ReachabilitySwift (~> 3)
+  - SwiftyHue (from `https://github.com/samuelclay/SwiftyHue.git`, branch `swift3`)
   - SWXMLHash (~> 3.0.0)
+
+EXTERNAL SOURCES:
+  SwiftyHue:
+    :branch: swift3
+    :git: https://github.com/samuelclay/SwiftyHue.git
+
+CHECKOUT OPTIONS:
+  SwiftyHue:
+    :commit: d175edc9ad053c6c1a28dd680f2cfaa41b7487f4
+    :git: https://github.com/samuelclay/SwiftyHue.git
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
@@ -43,8 +63,9 @@ SPEC CHECKSUMS:
   Gloss: 014789e9e69ca18f127eacca999f4c9b0bff6d58
   Log: 5e368c9528db07517d18d2d04ff5fe2b6f5a1e21
   ReachabilitySwift: f5b9bb30a0777fac8f09ce8b067e32faeb29bb64
+  SwiftyHue: cf43027c5b55e344824d97cdb7f557bf9bc03070
   SWXMLHash: e0f6935971f01b06fb228cf435510d998ecde647
 
-PODFILE CHECKSUM: b0cd8e13747f7742a6c30861c13c526fee134b98
+PODFILE CHECKSUM: 421d725312d2d0fed72f1d8ba5530fbf09ddb0ef
 
 COCOAPODS: 1.1.0
