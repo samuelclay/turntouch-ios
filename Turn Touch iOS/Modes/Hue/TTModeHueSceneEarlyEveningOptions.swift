@@ -18,4 +18,10 @@ class TTModeHueSceneEarlyEveningOptions: TTModeHueSceneOptions {
         fatalError("init(coder:) has not been implemented")
     }
 
+    override func viewDidLoad() {
+        let modeHue = self.mode as! TTModeHue
+        modeHue.ensureRoomSelected(in: self.action.direction)
+        
+        super.viewDidLoad()
+    }
 }

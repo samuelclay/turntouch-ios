@@ -51,6 +51,9 @@ class TTModeHueSceneOptions: TTOptionsDetailViewController, UITextFieldDelegate,
         spinner.forEach({ $0.isHidden = true })
         refreshButton.forEach({ $0.isHidden = false })
         
+        let modeHue = self.mode as! TTModeHue
+        modeHue.ensureRoomSelected(in: self.action.direction)
+        
         let roomSelected = self.action.optionValue(TTModeHueConstants.kHueRoom) as? String
         var sceneSelected = self.action.optionValue(TTModeHueConstants.kHueScene) as? String
         var doubleSceneSelected = self.action.optionValue(TTModeHueConstants.kDoubleTapHueScene) as? String

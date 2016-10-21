@@ -75,6 +75,8 @@ class TTBatchActionHeaderView: UIView {
         self.addSubview(modeLabel)
         self.addConstraint(NSLayoutConstraint(item: modeLabel, attribute: .leading, relatedBy: .equal,
                                               toItem: modeImageView, attribute: .trailing, multiplier: 1.0, constant: 12))
+        self.addConstraint(NSLayoutConstraint(item: modeLabel, attribute: .width, relatedBy: .equal,
+                                              toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 72))
         self.addConstraint(NSLayoutConstraint(item: modeLabel, attribute: .centerY, relatedBy: .equal,
                                               toItem: self, attribute: .centerY, multiplier: 1.0, constant: 0))
         
@@ -82,8 +84,10 @@ class TTBatchActionHeaderView: UIView {
         diamondView.ignoreSelectedMode = true
         diamondView.ignoreActiveMode = true
         self.addSubview(diamondView)
-        self.addConstraint(NSLayoutConstraint(item: diamondView, attribute: .centerX, relatedBy: .equal,
-                                              toItem: self, attribute: .centerX, multiplier: 0.5, constant: 0))
+        let diamondLabelConstraint = NSLayoutConstraint(item: diamondView, attribute: .left, relatedBy: .greaterThanOrEqual,
+                                                        toItem: modeLabel, attribute: .right, multiplier: 1.0, constant: 12)
+        diamondLabelConstraint.priority = UILayoutPriorityDefaultHigh
+        self.addConstraint(diamondLabelConstraint)
         self.addConstraint(NSLayoutConstraint(item: diamondView, attribute: .centerY, relatedBy: .equal,
                                               toItem: self, attribute: .centerY, multiplier: 1.0, constant: 0))
         diamondView.addConstraint(NSLayoutConstraint(item: diamondView, attribute: .width, relatedBy: .equal,

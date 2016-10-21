@@ -53,6 +53,7 @@ struct TTModeHueConstants {
     static let kHueRecentBridgeId: String = "hueRecentBridgeId"
     static let kHueRecentBridgeIp: String = "hueRecentBridgeIp"
     static let kHueFoundBridges: String = "hueFoundBridges"
+    static let kHueSeenRooms: String = "hueSeenRooms"
 }
 
 protocol TTModeHueDelegate {
@@ -530,7 +531,7 @@ class TTModeHue: TTMode {
                 self.delegate?.changeState(hueState, mode: self, message: nil)
                 self.saveRecentBridge()
                 self.ensureScenes()
-                self.readRooms()
+                self.ensureRooms()
             }
         }
     }
@@ -611,7 +612,7 @@ class TTModeHue: TTMode {
         if self.bridgeToken == 0 {
             self.bridgeToken = 1
             print(" ---> No Hue bridge found, searching for bridges...")
-            self.bridgeSearch = PHBridgeSearching(upnpSearch: true, andPortalSearch: true, andIpAdressSearch: true)
+            self.bridgeSearch = PHBridgeSearching(upnpSearch: true, andPortalSearch: true, andIpAddressSearch: true)
             self.bridgeSearch.startSearch(completionHandler: { (bridgesFound: [AnyHashable : Any]?) in
                 /***************************************************
                  The search is complete, check whether we found a bridge
@@ -1016,11 +1017,53 @@ class TTModeHue: TTMode {
         
     }
     
-    func readRooms() {
-//        let bridgeSendAPI = PHBridgeSendAPI()
-//        let cache = PHBridgeResourcesReader.readBridgeResourcesCache()
+    func ensureRooms() {
+        for direction: TTModeDirection in [.north, .east, .west, .south] {
+            self.ensureRoomSelected(in: direction)
+        }
+    }
+    
+    func ensureRoomSelected(in direction: TTModeDirection) {
+        let cache = PHBridgeResourcesReader.readBridgeResourcesCache()
+        var seenRooms: [String]? = self.modeOptionValue(TTModeHueConstants.kHueSeenRooms, modeDirection: self.modeDirection) as? [String]
+        if seenRooms == nil {
+            seenRooms = []
+        }
         
-//        print(" ---> Groups: \(cache?.groups)")
+        // Cycle through action and batch actions, ensuring all have a room, single tap scene, and double tap, adding batch actions for rooms that aren't used
+        let actionName = self.actionNameInDirection(direction)
+        let actionRoom = self.actionOptionValue(TTModeHueConstants.kHueRoom, actionName: actionName, direction: direction)
+        let actionScene = self.actionOptionValue(TTModeHueConstants.kHueScene, actionName: actionName, direction: direction)
+        let actionDouble = self.actionOptionValue(TTModeHueConstants.kDoubleTapHueScene, actionName: actionName, direction: direction)
+
+        if actionRoom == nil {
+            if let groups = cache?.groups {
+                var unusedRoom: PHGroup?
+                for (_, group) in groups {
+                    if let room = group as? PHGroup {
+                        if !seenRooms!.contains(room.identifier) {
+                            unusedRoom = room
+                            seenRooms!.append(room.identifier)
+                            break
+                        }
+                    }
+                }
+                
+                if let unusedRoom = unusedRoom {
+                    print(" ---> Setting \(actionName) room to \(unusedRoom.name)/\(unusedRoom.identifier)")
+                    self.changeActionOption(actionName, to: unusedRoom.identifier, direction: direction)
+                    self.changeModeOption(TTModeHueConstants.kHueSeenRooms, to: seenRooms!)
+                }
+            }
+        }
+        
+        if actionScene == nil {
+            
+        }
+        
+        if actionDouble == nil {
+            
+        }
     }
     
 }

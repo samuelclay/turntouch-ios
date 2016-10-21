@@ -70,7 +70,7 @@ class TTModeCameraViewController: UIViewController {
             }
         }
         
-        camera.onError = { (cam: LLSimpleCamera?, error: Error?) in
+        camera.onError = { (cam, error) -> Void in
             print(" camera error: \(error)")
             
             if let camError = error as? NSError {
@@ -99,6 +99,8 @@ class TTModeCameraViewController: UIViewController {
                     }
                 }
             }
+            
+            return ()
         }
         
         diamondView = TTActionDiamondView(diamondType: .hud)
@@ -250,7 +252,7 @@ class TTModeCameraViewController: UIViewController {
     
     func shoot() {
         if segmentedControl.selectedSegmentIndex == 0 {
-            camera.capture({ (cam: LLSimpleCamera?, image: UIImage?, metadata: [AnyHashable: Any]?, error: Error?) in
+            camera.capture({ (cam, image, metadata, error) -> Void in
                 if error == nil {
                     print("image: \(image) - \(metadata)")
                     self.modeCamera.cameraState = .imageReview
@@ -259,6 +261,7 @@ class TTModeCameraViewController: UIViewController {
                 } else {
                     print("capture error: \(error)")
                 }
+                return ()
             }, exactSeenImage: true)
         } else {
             if !camera.isRecording {
@@ -270,8 +273,9 @@ class TTModeCameraViewController: UIViewController {
 //                snapButton.backgroundColor = UIColor.redColor().colorWithAlphaComponent(0.5)
                 
                 let outputURL = self.applicationDocumentsDirectory()?.appendingPathComponent("test1").appendingPathExtension("mov")
-                camera.startRecording(withOutputUrl: outputURL, didRecord: { (cam: LLSimpleCamera?, outputFileUrl: URL?, error: Error?) in
+                camera.startRecording(withOutputUrl: outputURL, didRecord: { (cam, outputFileUrl, error) -> Void in
                     print("recorded video: \(outputFileUrl)")
+                    return ()
                 })
             } else {
                 segmentedControl.isHidden = false
