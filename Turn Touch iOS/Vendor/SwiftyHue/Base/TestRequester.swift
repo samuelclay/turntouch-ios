@@ -252,22 +252,18 @@ public class TestRequester {
     
     class func convert(_ resourcesDict: NSMutableDictionary) -> [JSON] {
         
-        if let JSON = resourcesDict as? NSMutableDictionary {
+        var resourceJSONs = [[String: Any]]();
+        
+        for item in resourcesDict {
             
-            var resourceJSONs = [[String: Any]]();
+            var resourceJSON = item.value as! [String: Any];
+            resourceJSON["id"] = item.key;
             
-            for item in JSON {
-                
-                var resourceJSON = item.value as! [String: Any];
-                resourceJSON["id"] = item.key;
-                
-                resourceJSONs.append(resourceJSON)
-            }
-            
-            return resourceJSONs
-            
+            resourceJSONs.append(resourceJSON)
         }
         
+        return resourceJSONs
+
     }
     
 }

@@ -131,8 +131,8 @@ class TTModeWemoMulticastServer: NSObject, GCDAsyncUdpSocketDelegate {
                              port: port)
         }
     }
-    
-    func udpSocketDidClose(_ sock: GCDAsyncUdpSocket, withError error: Error) {
+
+    func udpSocketDidClose(_ sock: GCDAsyncUdpSocket!, withError error: Error!) {
         print(" ---> Closing UDP socket.")
     }
 }

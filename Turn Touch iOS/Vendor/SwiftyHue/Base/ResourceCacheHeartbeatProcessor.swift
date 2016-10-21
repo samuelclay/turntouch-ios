@@ -136,7 +136,7 @@ class ResourceCacheHeartbeatProcessor: HeartbeatProcessor {
                 
                 var dictConverted: [String: Sensor] = [:]
                 for (key, value) in dict {
-                    dictConverted[key as! String] = value as! Sensor
+                    dictConverted[key] = (value as! Sensor)
                 }
                 self.resourceCache.setSensors(dictConverted)
                 Log.info("Stored Native Sensors Dict In Cache")

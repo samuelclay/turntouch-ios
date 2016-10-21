@@ -461,7 +461,7 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
         // TODO: hudController release toast mode + action
     }
     
-    func centralManager(_ central: CBCentralManager, didFailToConnect peripheral: CBPeripheral, error: Error?) {
+    func centralManager(_ central: CBCentralManager!, didFailToConnect peripheral: CBPeripheral!, error: Error?) {
         let device = foundDevices.deviceForPeripheral(peripheral)
         if DEBUG_BLUETOOTH {
             print(" ---> (\(bluetoothState)) Failed connect to device: \(device)-\(peripheral): \(error?.localizedDescription)")
@@ -479,7 +479,7 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
     
     // MARK: CBPeripheral delegate
     
-    func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
+    func peripheral(_ peripheral: CBPeripheral!, didDiscoverServices error: Error?) {
         bluetoothState = .bt_STATE_DISCOVER_CHARACTERISTICS
         let device = foundDevices.deviceForPeripheral(peripheral)!
         if peripheral.services == nil {
@@ -507,7 +507,7 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
         }
     }
     
-    func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
+    func peripheral(_ peripheral: CBPeripheral!, didDiscoverCharacteristicsFor service: CBService!, error: Error?) {
         bluetoothState = .bt_STATE_CHAR_NOTIFICATION
 
         if service.characteristics == nil {
@@ -544,7 +544,7 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
 //        }
     }
     
-    func peripheral(_ peripheral: CBPeripheral, didUpdateNotificationStateFor characteristic: CBCharacteristic, error: Error?) {
+    func peripheral(_ peripheral: CBPeripheral!, didUpdateNotificationStateFor characteristic: CBCharacteristic!, error: Error?) {
         if characteristic.uuid.isEqual(CBUUID(string: DEVICE_V2_CHARACTERISTIC_BUTTON_STATUS_UUID)) {
             let device = foundDevices.deviceForPeripheral(peripheral)!
             if DEBUG_BLUETOOTH {
@@ -560,7 +560,7 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
         }
     }
     
-    func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
+    func peripheral(_ peripheral: CBPeripheral!, didUpdateValueFor characteristic: CBCharacteristic!, error: Error?) {
         let device = foundDevices.deviceForPeripheral(peripheral)!
         if DEBUG_BLUETOOTH {
 //        print(" ---> Value: \(characteristic.value)")
@@ -603,7 +603,7 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
 
     }
     
-    func peripheral(_ peripheral: CBPeripheral, didWriteValueFor characteristic: CBCharacteristic, error: Error?) {
+    func peripheral(_ peripheral: CBPeripheral!, didWriteValueFor characteristic: CBCharacteristic!, error: Error?) {
         if DEBUG_BLUETOOTH {
             print("peripheral did write: \(characteristic.value)")
         }
