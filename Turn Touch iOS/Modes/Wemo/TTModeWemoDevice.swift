@@ -75,7 +75,7 @@ class TTModeWemoDevice: NSObject {
         let doc = SWXMLHash.parse(xmlData)
         deviceName = doc["root"]["device"]["friendlyName"].element?.text
         if deviceName != nil {
-            print(" ---> Found wemo: \(deviceName) (\(self.location()))")
+            print(" ---> Found wemo: \(deviceName ?? "[no device name]") (\(self.location()))")
         } else {
             print(" ---> Error: could not find friendlyName for Wemo")
             deviceName = "Wemo device (\(self.location()))"

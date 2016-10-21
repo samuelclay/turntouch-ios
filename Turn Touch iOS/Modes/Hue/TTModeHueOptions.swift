@@ -36,7 +36,7 @@ class TTModeHueOptions: TTOptionsDetailViewController, TTModeHueDelegate {
     }
 
     func changeState(_ hueState: TTHueState, mode: TTModeHue, message: Any?) {
-        print(" ---> Changing hue state: \(hueState) - \(message)")
+        print(" ---> Changing hue state: \(hueState) - \(message ?? "nil")")
         switch hueState {
         case .notConnected:
             self.drawConnectViewController()

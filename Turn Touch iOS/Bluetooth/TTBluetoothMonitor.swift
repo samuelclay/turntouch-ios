@@ -46,7 +46,7 @@ protocol TTBluetoothMonitorDelegate {
     func pairingSuccess()
 }
 
-let DEBUG_BLUETOOTH = false
+let DEBUG_BLUETOOTH = true
 
 class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
     
@@ -78,9 +78,10 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
         
         manager = CBCentralManager(delegate: self, queue: DispatchQueue(label: "TT.bluetooth.queue", attributes: []),
                                    options: [CBCentralManagerOptionRestoreIdentifierKey: "TTcentralManageRestoreIdentifier",
-                                    CBConnectPeripheralOptionNotifyOnDisconnectionKey: true,
-                                    CBConnectPeripheralOptionNotifyOnConnectionKey: true,
-                                    CBConnectPeripheralOptionNotifyOnNotificationKey: true])
+                                             CBConnectPeripheralOptionNotifyOnDisconnectionKey: true,
+                                             CBConnectPeripheralOptionNotifyOnConnectionKey: true,
+                                             CBConnectPeripheralOptionNotifyOnNotificationKey: true])
+
         buttonTimer.resetPairingState()
     }
     
@@ -133,6 +134,11 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
         var knownDevicesStillDisconnected = false
         var isActivelyConnecting = false
         
+        if [.bt_STATE_SCANNING_KNOWN, .bt_STATE_DISCOVER_SERVICES, .bt_STATE_DISCOVER_CHARACTERISTICS].contains(bluetoothState) {
+            print(" ---> (\(bluetoothState)) NOT scanning known")
+//            return
+        }
+
         bluetoothState = .bt_STATE_SCANNING_KNOWN
         if DEBUG_BLUETOOTH {
             print(" ---> (\(bluetoothState)) Scanning known: \(self.knownPeripheralIdentifiers().count) remotes")
@@ -162,7 +168,7 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
                 if foundDevice!.state == .device_STATE_DISCONNECTED {
                     bluetoothState = .bt_STATE_CONNECTING_KNOWN
                     if DEBUG_BLUETOOTH {
-                        print(" ---> (\(bluetoothState)) Attempting connect to known: \(foundDevice)")
+                        print(" ---> (\(bluetoothState)) Attempting connect to known: \(foundDevice!)")
                     }
 //
 //                    manager.cancelPeripheralConnection(peripheral)
@@ -277,7 +283,7 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
     
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
         if DEBUG_BLUETOOTH {
-            print(" ---> (\(bluetoothState)) centralManagerDidUpdateState: \(central)/\(manager) - \(central.state) -> \(manager.state)")
+            print(" ---> (\(bluetoothState)) centralManagerDidUpdateState: \(central.state) -> \(manager.state)")
         }
         manager = central
         self.updateBluetoothState()
@@ -420,7 +426,7 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
         
         
         if DEBUG_BLUETOOTH {
-            print(" ---> (\(bluetoothState)) Connected: \(device)")
+            print(" ---> (\(bluetoothState)) Connected: \(device!)")
         }
         
         peripheral.discoverServices([CBUUID(string: DEVICE_V2_SERVICE_BUTTON_UUID),
@@ -461,7 +467,7 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
         // TODO: hudController release toast mode + action
     }
     
-    func centralManager(_ central: CBCentralManager!, didFailToConnect peripheral: CBPeripheral!, error: Error?) {
+    func centralManager(_ central: CBCentralManager, didFailToConnect peripheral: CBPeripheral, error: Error?) {
         let device = foundDevices.deviceForPeripheral(peripheral)
         if DEBUG_BLUETOOTH {
             print(" ---> (\(bluetoothState)) Failed connect to device: \(device)-\(peripheral): \(error?.localizedDescription)")
@@ -478,8 +484,7 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
     }
     
     // MARK: CBPeripheral delegate
-    
-    func peripheral(_ peripheral: CBPeripheral!, didDiscoverServices error: Error?) {
+    func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
         bluetoothState = .bt_STATE_DISCOVER_CHARACTERISTICS
         let device = foundDevices.deviceForPeripheral(peripheral)!
         if peripheral.services == nil {
@@ -487,13 +492,17 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
                 print("Nil services")
             }
             return
+        } else {
+            if DEBUG_BLUETOOTH {
+                print(" ---> (\(bluetoothState)) Discovered services: \(peripheral.services!)")
+            }
         }
         
         for service: CBService in peripheral.services! {
             if service.uuid.isEqual(CBUUID(string: DEVICE_V2_SERVICE_BUTTON_UUID)) {
                 device.firmwareVersion = 2
                 peripheral.discoverCharacteristics([CBUUID(string: DEVICE_V2_CHARACTERISTIC_BUTTON_STATUS_UUID),
-                    CBUUID(string: DEVICE_V2_CHARACTERISTIC_NICKNAME_UUID)], for: service)
+                                                    CBUUID(string: DEVICE_V2_CHARACTERISTIC_NICKNAME_UUID)], for: service)
             }
             if service.uuid.isEqual(CBUUID(string: DEVICE_V2_SERVICE_BATTERY_UUID)) {
                 device.firmwareVersion = 2
@@ -507,11 +516,18 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
         }
     }
     
-    func peripheral(_ peripheral: CBPeripheral!, didDiscoverCharacteristicsFor service: CBService!, error: Error?) {
+    func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
         bluetoothState = .bt_STATE_CHAR_NOTIFICATION
 
         if service.characteristics == nil {
+            if DEBUG_BLUETOOTH {
+                print(" ---> (\(bluetoothState)) NO characteristics")
+            }
             return
+        } else {
+            if DEBUG_BLUETOOTH {
+                print(" ---> (\(bluetoothState)) Discovered characteristics: \(service.characteristics!)")
+            }
         }
         
         if service.uuid.isEqual(CBUUID(string: DEVICE_V2_SERVICE_BUTTON_UUID)) {
@@ -544,7 +560,7 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
 //        }
     }
     
-    func peripheral(_ peripheral: CBPeripheral!, didUpdateNotificationStateFor characteristic: CBCharacteristic!, error: Error?) {
+    func peripheral(_ peripheral: CBPeripheral, didUpdateNotificationStateFor characteristic: CBCharacteristic, error: Error?) {
         if characteristic.uuid.isEqual(CBUUID(string: DEVICE_V2_CHARACTERISTIC_BUTTON_STATUS_UUID)) {
             let device = foundDevices.deviceForPeripheral(peripheral)!
             if DEBUG_BLUETOOTH {
@@ -560,7 +576,7 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
         }
     }
     
-    func peripheral(_ peripheral: CBPeripheral!, didUpdateValueFor characteristic: CBCharacteristic!, error: Error?) {
+    func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
         let device = foundDevices.deviceForPeripheral(peripheral)!
         if DEBUG_BLUETOOTH {
 //        print(" ---> Value: \(characteristic.value)")
@@ -603,7 +619,7 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
 
     }
     
-    func peripheral(_ peripheral: CBPeripheral!, didWriteValueFor characteristic: CBCharacteristic!, error: Error?) {
+    func peripheral(_ peripheral: CBPeripheral, didWriteValueFor characteristic: CBCharacteristic!, error: Error?) {
         if DEBUG_BLUETOOTH {
             print("peripheral did write: \(characteristic.value)")
         }

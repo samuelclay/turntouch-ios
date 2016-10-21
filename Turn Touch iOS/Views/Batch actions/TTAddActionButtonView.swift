@@ -34,14 +34,14 @@ class TTAddActionButtonView: UIView {
         addButton.addTarget(self, action: #selector(self.showAddActionMenu(_:)), for: .touchUpInside)
         addButton.setContentHuggingPriority(UILayoutPriorityDefaultHigh, for: .horizontal)
         self.addSubview(addButton)
-        self.addConstraint(NSLayoutConstraint(item: addButton, attribute: .top, relatedBy: .equal,
-                                              toItem: self.layoutMarginsGuide, attribute: .top, multiplier: 1.0, constant: 24))
-        self.addConstraint(NSLayoutConstraint(item: addButton, attribute: .bottom, relatedBy: .equal,
-                                              toItem: self.layoutMarginsGuide, attribute: .bottom, multiplier: 1.0, constant: -24))
+//        self.addConstraint(NSLayoutConstraint(item: addButton, attribute: .top, relatedBy: .equal,
+//                                              toItem: self.layoutMarginsGuide, attribute: .top, multiplier: 1.0, constant: 24))
+//        self.addConstraint(NSLayoutConstraint(item: addButton, attribute: .bottom, relatedBy: .equal,
+//                                              toItem: self.layoutMarginsGuide, attribute: .bottom, multiplier: 1.0, constant: -24))
         self.addConstraint(NSLayoutConstraint(item: addButton, attribute: .centerX, relatedBy: .equal,
                                               toItem: self, attribute: .centerX, multiplier: 1.0, constant: 0))
         self.addConstraint(NSLayoutConstraint(item: addButton, attribute: .height, relatedBy: .equal,
-                                              toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 20))
+                                              toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 64))
         
         self.registerAsObserver()
     }

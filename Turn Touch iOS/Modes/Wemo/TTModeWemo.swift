@@ -71,7 +71,7 @@ class TTModeWemo: TTMode, TTModeWemoMulticastDelegate, TTModeWemoDeviceDelegate 
         if let foundDevices = prefs.array(forKey: TTModeWemoConstants.kWemoFoundDevices) as? [[String: AnyObject]] {
             for device in foundDevices {
                 let newDevice = self.foundDevice([:], host: device["ipaddress"] as! String, port: device["port"] as! Int, name: device["name"] as! String?, live: false)
-                print(" ---> Loading wemo: \(newDevice.deviceName) (\(newDevice.location()))")
+                print(" ---> Loading wemo: \(newDevice.deviceName!) (\(newDevice.location()))")
             }
         }
     }
