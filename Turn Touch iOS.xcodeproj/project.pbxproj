@@ -53,76 +53,6 @@
 		FF3032BD1DB8286E00728920 /* TTModeHueSceneCustomOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3032BC1DB8286E00728920 /* TTModeHueSceneCustomOptions.swift */; };
 		FF3032BF1DB8289600728920 /* TTModeHueSceneNightLightOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3032BE1DB8289600728920 /* TTModeHueSceneNightLightOptions.swift */; };
 		FF3032C11DB828B100728920 /* TTModeHueSceneMorningOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3032C01DB828B100728920 /* TTModeHueSceneMorningOptions.swift */; };
-		FF3034941DB97F1B00728920 /* BridgeAccessConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3033F81DB97F1B00728920 /* BridgeAccessConfig.swift */; };
-		FF3034951DB97F1B00728920 /* AppData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3033FA1DB97F1B00728920 /* AppData.swift */; };
-		FF3034961DB97F1B00728920 /* Backup.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3033FB1DB97F1B00728920 /* Backup.swift */; };
-		FF3034971DB97F1B00728920 /* BridgeConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3033FC1DB97F1B00728920 /* BridgeConfiguration.swift */; };
-		FF3034981DB97F1B00728920 /* BridgeResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3033FD1DB97F1B00728920 /* BridgeResource.swift */; };
-		FF3034991DB97F1B00728920 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3033FE1DB97F1B00728920 /* Error.swift */; };
-		FF30349A1DB97F1B00728920 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3033FF1DB97F1B00728920 /* Group.swift */; };
-		FF30349B1DB97F1B00728920 /* Light.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3034001DB97F1B00728920 /* Light.swift */; };
-		FF30349C1DB97F1B00728920 /* LightState.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3034011DB97F1B00728920 /* LightState.swift */; };
-		FF30349D1DB97F1B00728920 /* PortalState.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3034021DB97F1B00728920 /* PortalState.swift */; };
-		FF30349E1DB97F1B00728920 /* Rule.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3034041DB97F1B00728920 /* Rule.swift */; };
-		FF30349F1DB97F1B00728920 /* RuleAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3034051DB97F1B00728920 /* RuleAction.swift */; };
-		FF3034A01DB97F1B00728920 /* RuleCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3034061DB97F1B00728920 /* RuleCondition.swift */; };
-		FF3034A11DB97F1B00728920 /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3034071DB97F1B00728920 /* Scene.swift */; };
-		FF3034A21DB97F1B00728920 /* Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3034091DB97F1B00728920 /* Schedule.swift */; };
-		FF3034A31DB97F1B00728920 /* ScheduleCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF30340A1DB97F1B00728920 /* ScheduleCommand.swift */; };
-		FF3034A41DB97F1B00728920 /* DaylightSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF30340D1DB97F1B00728920 /* DaylightSensor.swift */; };
-		FF3034A51DB97F1B00728920 /* DaylightSensorConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF30340E1DB97F1B00728920 /* DaylightSensorConfig.swift */; };
-		FF3034A61DB97F1B00728920 /* DaylightSensorState.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF30340F1DB97F1B00728920 /* DaylightSensorState.swift */; };
-		FF3034A71DB97F1B00728920 /* GenericFlagSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3034111DB97F1B00728920 /* GenericFlagSensor.swift */; };
-		FF3034A81DB97F1B00728920 /* GenericFlagSensorConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3034121DB97F1B00728920 /* GenericFlagSensorConfig.swift */; };
-		FF3034A91DB97F1B00728920 /* GenericFlagSensorState.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3034131DB97F1B00728920 /* GenericFlagSensorState.swift */; };
-		FF3034AA1DB97F1B00728920 /* GenericStatusSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3034151DB97F1B00728920 /* GenericStatusSensor.swift */; };
-		FF3034AB1DB97F1B00728920 /* GenericStatusSensorConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3034161DB97F1B00728920 /* GenericStatusSensorConfig.swift */; };
-		FF3034AC1DB97F1B00728920 /* GenericStatusSensorState.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3034171DB97F1B00728920 /* GenericStatusSensorState.swift */; };
-		FF3034AD1DB97F1B00728920 /* HumiditySensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3034191DB97F1B00728920 /* HumiditySensor.swift */; };
-		FF3034AE1DB97F1B00728920 /* HumiditySensorConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF30341A1DB97F1B00728920 /* HumiditySensorConfig.swift */; };
-		FF3034AF1DB97F1B00728920 /* HumiditySensorState.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF30341B1DB97F1B00728920 /* HumiditySensorState.swift */; };
-		FF3034B01DB97F1B00728920 /* OpenCloseSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF30341D1DB97F1B00728920 /* OpenCloseSensor.swift */; };
-		FF3034B11DB97F1B00728920 /* OpenCloseSensorConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF30341E1DB97F1B00728920 /* OpenCloseSensorConfig.swift */; };
-		FF3034B21DB97F1B00728920 /* OpenCloseSensorState.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF30341F1DB97F1B00728920 /* OpenCloseSensorState.swift */; };
-		FF3034B31DB97F1B00728920 /* PresenceSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3034211DB97F1B00728920 /* PresenceSensor.swift */; };
-		FF3034B41DB97F1B00728920 /* PresenceSensorConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3034221DB97F1B00728920 /* PresenceSensorConfig.swift */; };
-		FF3034B51DB97F1B00728920 /* PresenceSensorState.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3034231DB97F1B00728920 /* PresenceSensorState.swift */; };
-		FF3034B61DB97F1B00728920 /* Sensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3034241DB97F1B00728920 /* Sensor.swift */; };
-		FF3034B71DB97F1B00728920 /* SensorConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3034251DB97F1B00728920 /* SensorConfig.swift */; };
-		FF3034B81DB97F1B00728920 /* SensorState.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3034261DB97F1B00728920 /* SensorState.swift */; };
-		FF3034B91DB97F1B00728920 /* SwitchSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3034281DB97F1B00728920 /* SwitchSensor.swift */; };
-		FF3034BA1DB97F1B00728920 /* SwitchSensorConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3034291DB97F1B00728920 /* SwitchSensorConfig.swift */; };
-		FF3034BB1DB97F1B00728920 /* SwitchSensorState.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF30342A1DB97F1B00728920 /* SwitchSensorState.swift */; };
-		FF3034BC1DB97F1B00728920 /* TemperatureSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF30342C1DB97F1B00728920 /* TemperatureSensor.swift */; };
-		FF3034BD1DB97F1B00728920 /* TemperatureSensorConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF30342D1DB97F1B00728920 /* TemperatureSensorConfig.swift */; };
-		FF3034BE1DB97F1B00728920 /* TemperatureSensorState.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF30342E1DB97F1B00728920 /* TemperatureSensorState.swift */; };
-		FF3034BF1DB97F1B00728920 /* SoftwareUpdateStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF30342F1DB97F1B00728920 /* SoftwareUpdateStatus.swift */; };
-		FF3034C01DB97F1B00728920 /* SoftwareUpdateStatusDeviceTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3034301DB97F1B00728920 /* SoftwareUpdateStatusDeviceTypes.swift */; };
-		FF3034C11DB97F1B00728920 /* WhitelistEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3034311DB97F1B00728920 /* WhitelistEntry.swift */; };
-		FF3034C21DB97F1B00728920 /* BridgeResourcesCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3034321DB97F1B00728920 /* BridgeResourcesCache.swift */; };
-		FF3034C31DB97F1B00728920 /* BridgeSendAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3034331DB97F1B00728920 /* BridgeSendAPI.swift */; };
-		FF3034C41DB97F1B00728920 /* Dictionary+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3034341DB97F1B00728920 /* Dictionary+Extension.swift */; };
-		FF3034C51DB97F1B00728920 /* HeartbeatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3034351DB97F1B00728920 /* HeartbeatManager.swift */; };
-		FF3034C61DB97F1B00728920 /* LoggerConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3034371DB97F1B00728920 /* LoggerConfig.swift */; };
-		FF3034C71DB97F1B00728920 /* NSDateFormatter+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3034381DB97F1B00728920 /* NSDateFormatter+Extension.swift */; };
-		FF3034C81DB97F1B00728920 /* ReplaceMe.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3034391DB97F1B00728920 /* ReplaceMe.swift */; };
-		FF3034C91DB97F1B00728920 /* ResourceCacheHeartbeatProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF30343A1DB97F1B00728920 /* ResourceCacheHeartbeatProcessor.swift */; };
-		FF3034CA1DB97F1B00728920 /* SwiftyHue.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF30343B1DB97F1B00728920 /* SwiftyHue.swift */; };
-		FF3034CB1DB97F1B00728920 /* TestRequester.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF30343C1DB97F1B00728920 /* TestRequester.swift */; };
-		FF3034CC1DB97F1B00728920 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF30343D1DB97F1B00728920 /* Utilities.swift */; };
-		FF3034CD1DB97F1B00728920 /* BridgeAuthenticator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3034401DB97F1B00728920 /* BridgeAuthenticator.swift */; };
-		FF3034CE1DB97F1B00728920 /* BridgeAuthenticatorDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3034411DB97F1B00728920 /* BridgeAuthenticatorDelegate.swift */; };
-		FF3034CF1DB97F1B00728920 /* BridgeFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3034431DB97F1B00728920 /* BridgeFinder.swift */; };
-		FF3034D01DB97F1B00728920 /* BridgeFinderDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3034441DB97F1B00728920 /* BridgeFinderDelegate.swift */; };
-		FF3034D11DB97F1B00728920 /* HueBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3034451DB97F1B00728920 /* HueBridge.swift */; };
-		FF3034D21DB97F1B00728920 /* HueBridgeIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3034461DB97F1B00728920 /* HueBridgeIcon.swift */; };
-		FF3034D31DB97F1B00728920 /* IPScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3034481DB97F1B00728920 /* IPScanner.swift */; };
-		FF3034D41DB97F1B00728920 /* NUPNPScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3034491DB97F1B00728920 /* NUPNPScanner.swift */; };
-		FF3034D51DB97F1B00728920 /* Scanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF30344A1DB97F1B00728920 /* Scanner.swift */; };
-		FF3034D61DB97F1B00728920 /* ScannerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF30344B1DB97F1B00728920 /* ScannerDelegate.swift */; };
-		FF3034D71DB97F1B00728920 /* SSDPScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF30344C1DB97F1B00728920 /* SSDPScanner.swift */; };
-		FF3034D81DB97F1B00728920 /* BridgeResultParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF30344E1DB97F1B00728920 /* BridgeResultParser.swift */; };
-		FF3034D91DB97F1B00728920 /* BridgeValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF30344F1DB97F1B00728920 /* BridgeValidator.swift */; };
 		FF37EDCB1D1102620026F70D /* TTTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF37EDCA1D1102620026F70D /* TTTabView.swift */; };
 		FF37EDCF1D1113C10026F70D /* TTModeHueOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF37EDCD1D1113C10026F70D /* TTModeHueOptions.swift */; };
 		FF37EDD01D1113C10026F70D /* TTModeHueOptions.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF37EDCE1D1113C10026F70D /* TTModeHueOptions.xib */; };
@@ -405,77 +335,6 @@
 		FF3032BC1DB8286E00728920 /* TTModeHueSceneCustomOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeHueSceneCustomOptions.swift; path = Modes/Hue/TTModeHueSceneCustomOptions.swift; sourceTree = "<group>"; };
 		FF3032BE1DB8289600728920 /* TTModeHueSceneNightLightOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeHueSceneNightLightOptions.swift; path = Modes/Hue/TTModeHueSceneNightLightOptions.swift; sourceTree = "<group>"; };
 		FF3032C01DB828B100728920 /* TTModeHueSceneMorningOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeHueSceneMorningOptions.swift; path = Modes/Hue/TTModeHueSceneMorningOptions.swift; sourceTree = "<group>"; };
-		FF3033F81DB97F1B00728920 /* BridgeAccessConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BridgeAccessConfig.swift; sourceTree = "<group>"; };
-		FF3033FA1DB97F1B00728920 /* AppData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppData.swift; sourceTree = "<group>"; };
-		FF3033FB1DB97F1B00728920 /* Backup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Backup.swift; sourceTree = "<group>"; };
-		FF3033FC1DB97F1B00728920 /* BridgeConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BridgeConfiguration.swift; sourceTree = "<group>"; };
-		FF3033FD1DB97F1B00728920 /* BridgeResource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BridgeResource.swift; sourceTree = "<group>"; };
-		FF3033FE1DB97F1B00728920 /* Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
-		FF3033FF1DB97F1B00728920 /* Group.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
-		FF3034001DB97F1B00728920 /* Light.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Light.swift; sourceTree = "<group>"; };
-		FF3034011DB97F1B00728920 /* LightState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LightState.swift; sourceTree = "<group>"; };
-		FF3034021DB97F1B00728920 /* PortalState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PortalState.swift; sourceTree = "<group>"; };
-		FF3034041DB97F1B00728920 /* Rule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rule.swift; sourceTree = "<group>"; };
-		FF3034051DB97F1B00728920 /* RuleAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RuleAction.swift; sourceTree = "<group>"; };
-		FF3034061DB97F1B00728920 /* RuleCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RuleCondition.swift; sourceTree = "<group>"; };
-		FF3034071DB97F1B00728920 /* Scene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scene.swift; sourceTree = "<group>"; };
-		FF3034091DB97F1B00728920 /* Schedule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Schedule.swift; sourceTree = "<group>"; };
-		FF30340A1DB97F1B00728920 /* ScheduleCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleCommand.swift; sourceTree = "<group>"; };
-		FF30340D1DB97F1B00728920 /* DaylightSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DaylightSensor.swift; sourceTree = "<group>"; };
-		FF30340E1DB97F1B00728920 /* DaylightSensorConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DaylightSensorConfig.swift; sourceTree = "<group>"; };
-		FF30340F1DB97F1B00728920 /* DaylightSensorState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DaylightSensorState.swift; sourceTree = "<group>"; };
-		FF3034111DB97F1B00728920 /* GenericFlagSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericFlagSensor.swift; sourceTree = "<group>"; };
-		FF3034121DB97F1B00728920 /* GenericFlagSensorConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericFlagSensorConfig.swift; sourceTree = "<group>"; };
-		FF3034131DB97F1B00728920 /* GenericFlagSensorState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericFlagSensorState.swift; sourceTree = "<group>"; };
-		FF3034151DB97F1B00728920 /* GenericStatusSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericStatusSensor.swift; sourceTree = "<group>"; };
-		FF3034161DB97F1B00728920 /* GenericStatusSensorConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericStatusSensorConfig.swift; sourceTree = "<group>"; };
-		FF3034171DB97F1B00728920 /* GenericStatusSensorState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericStatusSensorState.swift; sourceTree = "<group>"; };
-		FF3034191DB97F1B00728920 /* HumiditySensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HumiditySensor.swift; sourceTree = "<group>"; };
-		FF30341A1DB97F1B00728920 /* HumiditySensorConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HumiditySensorConfig.swift; sourceTree = "<group>"; };
-		FF30341B1DB97F1B00728920 /* HumiditySensorState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HumiditySensorState.swift; sourceTree = "<group>"; };
-		FF30341D1DB97F1B00728920 /* OpenCloseSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenCloseSensor.swift; sourceTree = "<group>"; };
-		FF30341E1DB97F1B00728920 /* OpenCloseSensorConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenCloseSensorConfig.swift; sourceTree = "<group>"; };
-		FF30341F1DB97F1B00728920 /* OpenCloseSensorState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenCloseSensorState.swift; sourceTree = "<group>"; };
-		FF3034211DB97F1B00728920 /* PresenceSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresenceSensor.swift; sourceTree = "<group>"; };
-		FF3034221DB97F1B00728920 /* PresenceSensorConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresenceSensorConfig.swift; sourceTree = "<group>"; };
-		FF3034231DB97F1B00728920 /* PresenceSensorState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresenceSensorState.swift; sourceTree = "<group>"; };
-		FF3034241DB97F1B00728920 /* Sensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sensor.swift; sourceTree = "<group>"; };
-		FF3034251DB97F1B00728920 /* SensorConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SensorConfig.swift; sourceTree = "<group>"; };
-		FF3034261DB97F1B00728920 /* SensorState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SensorState.swift; sourceTree = "<group>"; };
-		FF3034281DB97F1B00728920 /* SwitchSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchSensor.swift; sourceTree = "<group>"; };
-		FF3034291DB97F1B00728920 /* SwitchSensorConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchSensorConfig.swift; sourceTree = "<group>"; };
-		FF30342A1DB97F1B00728920 /* SwitchSensorState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchSensorState.swift; sourceTree = "<group>"; };
-		FF30342C1DB97F1B00728920 /* TemperatureSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TemperatureSensor.swift; sourceTree = "<group>"; };
-		FF30342D1DB97F1B00728920 /* TemperatureSensorConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TemperatureSensorConfig.swift; sourceTree = "<group>"; };
-		FF30342E1DB97F1B00728920 /* TemperatureSensorState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TemperatureSensorState.swift; sourceTree = "<group>"; };
-		FF30342F1DB97F1B00728920 /* SoftwareUpdateStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoftwareUpdateStatus.swift; sourceTree = "<group>"; };
-		FF3034301DB97F1B00728920 /* SoftwareUpdateStatusDeviceTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoftwareUpdateStatusDeviceTypes.swift; sourceTree = "<group>"; };
-		FF3034311DB97F1B00728920 /* WhitelistEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WhitelistEntry.swift; sourceTree = "<group>"; };
-		FF3034321DB97F1B00728920 /* BridgeResourcesCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BridgeResourcesCache.swift; sourceTree = "<group>"; };
-		FF3034331DB97F1B00728920 /* BridgeSendAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BridgeSendAPI.swift; sourceTree = "<group>"; };
-		FF3034341DB97F1B00728920 /* Dictionary+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+Extension.swift"; sourceTree = "<group>"; };
-		FF3034351DB97F1B00728920 /* HeartbeatManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeartbeatManager.swift; sourceTree = "<group>"; };
-		FF3034371DB97F1B00728920 /* LoggerConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoggerConfig.swift; sourceTree = "<group>"; };
-		FF3034381DB97F1B00728920 /* NSDateFormatter+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDateFormatter+Extension.swift"; sourceTree = "<group>"; };
-		FF3034391DB97F1B00728920 /* ReplaceMe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReplaceMe.swift; sourceTree = "<group>"; };
-		FF30343A1DB97F1B00728920 /* ResourceCacheHeartbeatProcessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResourceCacheHeartbeatProcessor.swift; sourceTree = "<group>"; };
-		FF30343B1DB97F1B00728920 /* SwiftyHue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyHue.swift; sourceTree = "<group>"; };
-		FF30343C1DB97F1B00728920 /* TestRequester.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestRequester.swift; sourceTree = "<group>"; };
-		FF30343D1DB97F1B00728920 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
-		FF3034401DB97F1B00728920 /* BridgeAuthenticator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BridgeAuthenticator.swift; sourceTree = "<group>"; };
-		FF3034411DB97F1B00728920 /* BridgeAuthenticatorDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BridgeAuthenticatorDelegate.swift; sourceTree = "<group>"; };
-		FF3034431DB97F1B00728920 /* BridgeFinder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BridgeFinder.swift; sourceTree = "<group>"; };
-		FF3034441DB97F1B00728920 /* BridgeFinderDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BridgeFinderDelegate.swift; sourceTree = "<group>"; };
-		FF3034451DB97F1B00728920 /* HueBridge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HueBridge.swift; sourceTree = "<group>"; };
-		FF3034461DB97F1B00728920 /* HueBridgeIcon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HueBridgeIcon.swift; sourceTree = "<group>"; };
-		FF3034481DB97F1B00728920 /* IPScanner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IPScanner.swift; sourceTree = "<group>"; };
-		FF3034491DB97F1B00728920 /* NUPNPScanner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NUPNPScanner.swift; sourceTree = "<group>"; };
-		FF30344A1DB97F1B00728920 /* Scanner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scanner.swift; sourceTree = "<group>"; };
-		FF30344B1DB97F1B00728920 /* ScannerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScannerDelegate.swift; sourceTree = "<group>"; };
-		FF30344C1DB97F1B00728920 /* SSDPScanner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SSDPScanner.swift; sourceTree = "<group>"; };
-		FF30344E1DB97F1B00728920 /* BridgeResultParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BridgeResultParser.swift; sourceTree = "<group>"; };
-		FF30344F1DB97F1B00728920 /* BridgeValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BridgeValidator.swift; sourceTree = "<group>"; };
-		FF3034931DB97F1B00728920 /* SwiftyHue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwiftyHue.h; sourceTree = "<group>"; };
 		FF37EDCA1D1102620026F70D /* TTTabView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTTabView.swift; path = "Turn Touch iOS/Views/Controls/TTTabView.swift"; sourceTree = SOURCE_ROOT; };
 		FF37EDCD1D1113C10026F70D /* TTModeHueOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeHueOptions.swift; path = Modes/Hue/TTModeHueOptions.swift; sourceTree = "<group>"; };
 		FF37EDCE1D1113C10026F70D /* TTModeHueOptions.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TTModeHueOptions.xib; path = Modes/Hue/TTModeHueOptions.xib; sourceTree = "<group>"; };
@@ -923,236 +782,6 @@
 			path = XPathQuery;
 			sourceTree = "<group>";
 		};
-		FF3033F61DB97F1B00728920 /* SwiftyHue */ = {
-			isa = PBXGroup;
-			children = (
-				FF3033F71DB97F1B00728920 /* Base */,
-				FF30343E1DB97F1B00728920 /* BridgeServices */,
-				FF3034931DB97F1B00728920 /* SwiftyHue.h */,
-			);
-			path = SwiftyHue;
-			sourceTree = "<group>";
-		};
-		FF3033F71DB97F1B00728920 /* Base */ = {
-			isa = PBXGroup;
-			children = (
-				FF3033F81DB97F1B00728920 /* BridgeAccessConfig.swift */,
-				FF3033F91DB97F1B00728920 /* BridgeResourceModels */,
-				FF3034321DB97F1B00728920 /* BridgeResourcesCache.swift */,
-				FF3034331DB97F1B00728920 /* BridgeSendAPI.swift */,
-				FF3034341DB97F1B00728920 /* Dictionary+Extension.swift */,
-				FF3034351DB97F1B00728920 /* HeartbeatManager.swift */,
-				FF3034361DB97F1B00728920 /* Logger */,
-				FF3034381DB97F1B00728920 /* NSDateFormatter+Extension.swift */,
-				FF3034391DB97F1B00728920 /* ReplaceMe.swift */,
-				FF30343A1DB97F1B00728920 /* ResourceCacheHeartbeatProcessor.swift */,
-				FF30343B1DB97F1B00728920 /* SwiftyHue.swift */,
-				FF30343C1DB97F1B00728920 /* TestRequester.swift */,
-				FF30343D1DB97F1B00728920 /* Utilities.swift */,
-			);
-			path = Base;
-			sourceTree = "<group>";
-		};
-		FF3033F91DB97F1B00728920 /* BridgeResourceModels */ = {
-			isa = PBXGroup;
-			children = (
-				FF3033FA1DB97F1B00728920 /* AppData.swift */,
-				FF3033FB1DB97F1B00728920 /* Backup.swift */,
-				FF3033FC1DB97F1B00728920 /* BridgeConfiguration.swift */,
-				FF3033FD1DB97F1B00728920 /* BridgeResource.swift */,
-				FF3033FE1DB97F1B00728920 /* Error.swift */,
-				FF3033FF1DB97F1B00728920 /* Group.swift */,
-				FF3034001DB97F1B00728920 /* Light.swift */,
-				FF3034011DB97F1B00728920 /* LightState.swift */,
-				FF3034021DB97F1B00728920 /* PortalState.swift */,
-				FF3034031DB97F1B00728920 /* Rule */,
-				FF3034071DB97F1B00728920 /* Scene.swift */,
-				FF3034081DB97F1B00728920 /* Schedule */,
-				FF30340B1DB97F1B00728920 /* Sensors */,
-				FF30342F1DB97F1B00728920 /* SoftwareUpdateStatus.swift */,
-				FF3034301DB97F1B00728920 /* SoftwareUpdateStatusDeviceTypes.swift */,
-				FF3034311DB97F1B00728920 /* WhitelistEntry.swift */,
-			);
-			path = BridgeResourceModels;
-			sourceTree = "<group>";
-		};
-		FF3034031DB97F1B00728920 /* Rule */ = {
-			isa = PBXGroup;
-			children = (
-				FF3034041DB97F1B00728920 /* Rule.swift */,
-				FF3034051DB97F1B00728920 /* RuleAction.swift */,
-				FF3034061DB97F1B00728920 /* RuleCondition.swift */,
-			);
-			path = Rule;
-			sourceTree = "<group>";
-		};
-		FF3034081DB97F1B00728920 /* Schedule */ = {
-			isa = PBXGroup;
-			children = (
-				FF3034091DB97F1B00728920 /* Schedule.swift */,
-				FF30340A1DB97F1B00728920 /* ScheduleCommand.swift */,
-			);
-			path = Schedule;
-			sourceTree = "<group>";
-		};
-		FF30340B1DB97F1B00728920 /* Sensors */ = {
-			isa = PBXGroup;
-			children = (
-				FF30340C1DB97F1B00728920 /* DaylightSensor */,
-				FF3034101DB97F1B00728920 /* GenericFlagSensor */,
-				FF3034141DB97F1B00728920 /* GenericStatusSensor */,
-				FF3034181DB97F1B00728920 /* HumiditySensor */,
-				FF30341C1DB97F1B00728920 /* OpenCloseSensor */,
-				FF3034201DB97F1B00728920 /* PresenceSensor */,
-				FF3034241DB97F1B00728920 /* Sensor.swift */,
-				FF3034251DB97F1B00728920 /* SensorConfig.swift */,
-				FF3034261DB97F1B00728920 /* SensorState.swift */,
-				FF3034271DB97F1B00728920 /* SwitchSensor */,
-				FF30342B1DB97F1B00728920 /* TemperatureSensor */,
-			);
-			path = Sensors;
-			sourceTree = "<group>";
-		};
-		FF30340C1DB97F1B00728920 /* DaylightSensor */ = {
-			isa = PBXGroup;
-			children = (
-				FF30340D1DB97F1B00728920 /* DaylightSensor.swift */,
-				FF30340E1DB97F1B00728920 /* DaylightSensorConfig.swift */,
-				FF30340F1DB97F1B00728920 /* DaylightSensorState.swift */,
-			);
-			path = DaylightSensor;
-			sourceTree = "<group>";
-		};
-		FF3034101DB97F1B00728920 /* GenericFlagSensor */ = {
-			isa = PBXGroup;
-			children = (
-				FF3034111DB97F1B00728920 /* GenericFlagSensor.swift */,
-				FF3034121DB97F1B00728920 /* GenericFlagSensorConfig.swift */,
-				FF3034131DB97F1B00728920 /* GenericFlagSensorState.swift */,
-			);
-			path = GenericFlagSensor;
-			sourceTree = "<group>";
-		};
-		FF3034141DB97F1B00728920 /* GenericStatusSensor */ = {
-			isa = PBXGroup;
-			children = (
-				FF3034151DB97F1B00728920 /* GenericStatusSensor.swift */,
-				FF3034161DB97F1B00728920 /* GenericStatusSensorConfig.swift */,
-				FF3034171DB97F1B00728920 /* GenericStatusSensorState.swift */,
-			);
-			path = GenericStatusSensor;
-			sourceTree = "<group>";
-		};
-		FF3034181DB97F1B00728920 /* HumiditySensor */ = {
-			isa = PBXGroup;
-			children = (
-				FF3034191DB97F1B00728920 /* HumiditySensor.swift */,
-				FF30341A1DB97F1B00728920 /* HumiditySensorConfig.swift */,
-				FF30341B1DB97F1B00728920 /* HumiditySensorState.swift */,
-			);
-			path = HumiditySensor;
-			sourceTree = "<group>";
-		};
-		FF30341C1DB97F1B00728920 /* OpenCloseSensor */ = {
-			isa = PBXGroup;
-			children = (
-				FF30341D1DB97F1B00728920 /* OpenCloseSensor.swift */,
-				FF30341E1DB97F1B00728920 /* OpenCloseSensorConfig.swift */,
-				FF30341F1DB97F1B00728920 /* OpenCloseSensorState.swift */,
-			);
-			path = OpenCloseSensor;
-			sourceTree = "<group>";
-		};
-		FF3034201DB97F1B00728920 /* PresenceSensor */ = {
-			isa = PBXGroup;
-			children = (
-				FF3034211DB97F1B00728920 /* PresenceSensor.swift */,
-				FF3034221DB97F1B00728920 /* PresenceSensorConfig.swift */,
-				FF3034231DB97F1B00728920 /* PresenceSensorState.swift */,
-			);
-			path = PresenceSensor;
-			sourceTree = "<group>";
-		};
-		FF3034271DB97F1B00728920 /* SwitchSensor */ = {
-			isa = PBXGroup;
-			children = (
-				FF3034281DB97F1B00728920 /* SwitchSensor.swift */,
-				FF3034291DB97F1B00728920 /* SwitchSensorConfig.swift */,
-				FF30342A1DB97F1B00728920 /* SwitchSensorState.swift */,
-			);
-			path = SwitchSensor;
-			sourceTree = "<group>";
-		};
-		FF30342B1DB97F1B00728920 /* TemperatureSensor */ = {
-			isa = PBXGroup;
-			children = (
-				FF30342C1DB97F1B00728920 /* TemperatureSensor.swift */,
-				FF30342D1DB97F1B00728920 /* TemperatureSensorConfig.swift */,
-				FF30342E1DB97F1B00728920 /* TemperatureSensorState.swift */,
-			);
-			path = TemperatureSensor;
-			sourceTree = "<group>";
-		};
-		FF3034361DB97F1B00728920 /* Logger */ = {
-			isa = PBXGroup;
-			children = (
-				FF3034371DB97F1B00728920 /* LoggerConfig.swift */,
-			);
-			path = Logger;
-			sourceTree = "<group>";
-		};
-		FF30343E1DB97F1B00728920 /* BridgeServices */ = {
-			isa = PBXGroup;
-			children = (
-				FF30343F1DB97F1B00728920 /* BridgeAuthenticator */,
-				FF3034421DB97F1B00728920 /* BridgeFinder */,
-			);
-			path = BridgeServices;
-			sourceTree = "<group>";
-		};
-		FF30343F1DB97F1B00728920 /* BridgeAuthenticator */ = {
-			isa = PBXGroup;
-			children = (
-				FF3034401DB97F1B00728920 /* BridgeAuthenticator.swift */,
-				FF3034411DB97F1B00728920 /* BridgeAuthenticatorDelegate.swift */,
-			);
-			path = BridgeAuthenticator;
-			sourceTree = "<group>";
-		};
-		FF3034421DB97F1B00728920 /* BridgeFinder */ = {
-			isa = PBXGroup;
-			children = (
-				FF3034431DB97F1B00728920 /* BridgeFinder.swift */,
-				FF3034441DB97F1B00728920 /* BridgeFinderDelegate.swift */,
-				FF3034451DB97F1B00728920 /* HueBridge.swift */,
-				FF3034461DB97F1B00728920 /* HueBridgeIcon.swift */,
-				FF3034471DB97F1B00728920 /* Scanner */,
-				FF30344D1DB97F1B00728920 /* Validator */,
-			);
-			path = BridgeFinder;
-			sourceTree = "<group>";
-		};
-		FF3034471DB97F1B00728920 /* Scanner */ = {
-			isa = PBXGroup;
-			children = (
-				FF3034481DB97F1B00728920 /* IPScanner.swift */,
-				FF3034491DB97F1B00728920 /* NUPNPScanner.swift */,
-				FF30344A1DB97F1B00728920 /* Scanner.swift */,
-				FF30344B1DB97F1B00728920 /* ScannerDelegate.swift */,
-				FF30344C1DB97F1B00728920 /* SSDPScanner.swift */,
-			);
-			path = Scanner;
-			sourceTree = "<group>";
-		};
-		FF30344D1DB97F1B00728920 /* Validator */ = {
-			isa = PBXGroup;
-			children = (
-				FF30344E1DB97F1B00728920 /* BridgeResultParser.swift */,
-				FF30344F1DB97F1B00728920 /* BridgeValidator.swift */,
-			);
-			path = Validator;
-			sourceTree = "<group>";
-		};
 		FF37EDCC1D1102660026F70D /* Controls */ = {
 			isa = PBXGroup;
 			children = (
@@ -1565,7 +1194,6 @@
 				FF254FDB1D22F26500E96378 /* XPathQuery */,
 				FFF46BE61D1096DC00158751 /* HueSDK_iOS.framework */,
 				FFF46BCA1D10941500158751 /* Lumberjack */,
-				FF3033F61DB97F1B00728920 /* SwiftyHue */,
 				FF4AF7CC1D24ECF60009C777 /* sonos-objc */,
 				FFF46BE51D10956600158751 /* Turn_Touch_iOS-Bridging-Header.h */,
 			);
@@ -1908,16 +1536,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FF3034B21DB97F1B00728920 /* OpenCloseSensorState.swift in Sources */,
 				FF0F10E91CFFAD6100CC1F29 /* TTModeMenuCell.swift in Sources */,
 				FF4AF7B61D248A180009C777 /* TTModeWemoConnect.swift in Sources */,
 				FFF46BDD1D10941500158751 /* DDFileLogger.m in Sources */,
 				FFDA0FA81D3C4F1C0019859F /* LLSimpleCamera.m in Sources */,
-				FF3034CE1DB97F1B00728920 /* BridgeAuthenticatorDelegate.swift in Sources */,
-				FF3034C31DB97F1B00728920 /* BridgeSendAPI.swift in Sources */,
 				FF4AF7EB1D24F9E70009C777 /* TTModeSonosConnecting.swift in Sources */,
 				FF3032C11DB828B100728920 /* TTModeHueSceneMorningOptions.swift in Sources */,
-				FF3034BF1DB97F1B00728920 /* SoftwareUpdateStatus.swift in Sources */,
 				FF0F10E51CFFAD1B00CC1F29 /* TTModeMenuBordersView.swift in Sources */,
 				FF0F10C71CF63F1600CC1F29 /* TTModeMusic.swift in Sources */,
 				FF37EDDF1D11179E0026F70D /* TTModeHuePushlink.swift in Sources */,
@@ -1929,8 +1553,6 @@
 				FF4AF7D51D24ECF60009C777 /* SonosController.m in Sources */,
 				FF0F10D71CF6697A00CC1F29 /* TTDiamondView.swift in Sources */,
 				FF4487781D09367000ED8099 /* TTButtonState.swift in Sources */,
-				FF30349A1DB97F1B00728920 /* Group.swift in Sources */,
-				FF3034CB1DB97F1B00728920 /* TestRequester.swift in Sources */,
 				FF0F10D01CF63F6100CC1F29 /* TTModeAlarmClock.swift in Sources */,
 				FFB41B881CF536BB00CD5F09 /* TTActionMap.swift in Sources */,
 				FFC4B0F91D2F5E3B00A97C81 /* TTFTUXViewController.swift in Sources */,
@@ -1938,71 +1560,41 @@
 				FF7C14531DB2F2DD009CBA28 /* TTDeviceList.swift in Sources */,
 				FF0F10EB1CFFB4A800CC1F29 /* TTModeMenuCollectionView.swift in Sources */,
 				FF4AF7B21D2486F90009C777 /* TTModeWemoOptions.swift in Sources */,
-				FF3034C21DB97F1B00728920 /* BridgeResourcesCache.swift in Sources */,
-				FF3034D91DB97F1B00728920 /* BridgeValidator.swift in Sources */,
-				FF3034CC1DB97F1B00728920 /* Utilities.swift in Sources */,
-				FF3034BC1DB97F1B00728920 /* TemperatureSensor.swift in Sources */,
-				FF3034A51DB97F1B00728920 /* DaylightSensorConfig.swift in Sources */,
-				FF3034BB1DB97F1B00728920 /* SwitchSensorState.swift in Sources */,
 				FF08A2331D501ABD00D433A5 /* TTModeCameraReviewViewController.swift in Sources */,
 				FF7C144F1DB2F2AB009CBA28 /* TTBatchActions.swift in Sources */,
 				FF4AF7DC1D24F9370009C777 /* TTModeSonos.swift in Sources */,
-				FF3034D71DB97F1B00728920 /* SSDPScanner.swift in Sources */,
 				FFB41B7B1CEEA9E300CD5F09 /* TTModeDirection.swift in Sources */,
-				FF3034A01DB97F1B00728920 /* RuleCondition.swift in Sources */,
-				FF3034981DB97F1B00728920 /* BridgeResource.swift in Sources */,
-				FF3034D11DB97F1B00728920 /* HueBridge.swift in Sources */,
-				FF30349D1DB97F1B00728920 /* PortalState.swift in Sources */,
 				FF7C14581DB3085E009CBA28 /* TTBatchActionHeaderView.swift in Sources */,
-				FF3034C81DB97F1B00728920 /* ReplaceMe.swift in Sources */,
-				FF3034971DB97F1B00728920 /* BridgeConfiguration.swift in Sources */,
 				FFF270941CEE88E500E46575 /* AppDelegate.swift in Sources */,
-				FF3034A41DB97F1B00728920 /* DaylightSensor.swift in Sources */,
 				FF44876B1D08E1D600ED8099 /* TTPairingSpinner.swift in Sources */,
-				FF3034B81DB97F1B00728920 /* SensorState.swift in Sources */,
 				FFF46BDB1D10941500158751 /* DDAbstractDatabaseLogger.m in Sources */,
-				FF3034B91DB97F1B00728920 /* SwitchSensor.swift in Sources */,
 				FF3032BF1DB8289600728920 /* TTModeHueSceneNightLightOptions.swift in Sources */,
 				FFC9FE991D02520300038817 /* NSObject+Class.swift in Sources */,
-				FF3034A61DB97F1B00728920 /* DaylightSensorState.swift in Sources */,
 				FFB41B821CF5341700CD5F09 /* TTMode.swift in Sources */,
 				FF4AF7CB1D24C65A0009C777 /* TTPickerViewController.swift in Sources */,
 				FF37EDDB1D11178D0026F70D /* TTModeHueBridge.swift in Sources */,
 				FF4AF7D71D24ECF60009C777 /* SonosManager.m in Sources */,
 				FFDA0F9E1D3C49E80019859F /* TTModeCamera.swift in Sources */,
 				FF0F10CD1CF63F4D00CC1F29 /* TTModeHue.swift in Sources */,
-				FF3034BA1DB97F1B00728920 /* SwitchSensorConfig.swift in Sources */,
 				FF254F6B1D21C2CF00E96378 /* TTModeWemo.swift in Sources */,
-				FF3034A31DB97F1B00728920 /* ScheduleCommand.swift in Sources */,
 				FF37EDE31D1117B20026F70D /* TTModeHueConnected.swift in Sources */,
 				FF254FDE1D22F26500E96378 /* XPathQuery.m in Sources */,
 				FFF46BC71D0E5C8400158751 /* TTDeviceTitlesView.swift in Sources */,
-				FF3034C91DB97F1B00728920 /* ResourceCacheHeartbeatProcessor.swift in Sources */,
 				FF254FDA1D21EF1200E96378 /* TTModeWemoDevice.swift in Sources */,
-				FF3034AE1DB97F1B00728920 /* HumiditySensorConfig.swift in Sources */,
 				FF4AF7C51D248A630009C777 /* TTModeWemoDeviceToggleOptions.swift in Sources */,
 				FFF46BF01D10E6D400158751 /* TTOptionsDetailViewController.swift in Sources */,
 				FF4AF7BE1D248A3A0009C777 /* TTModeWemoConnected.swift in Sources */,
 				FF4AF7D81D24ECF60009C777 /* XMLReader.m in Sources */,
-				FF3034A21DB97F1B00728920 /* Schedule.swift in Sources */,
-				FF3034D81DB97F1B00728920 /* BridgeResultParser.swift in Sources */,
-				FF3034CF1DB97F1B00728920 /* BridgeFinder.swift in Sources */,
 				FF7C14521DB2F2DD009CBA28 /* TTDevice.swift in Sources */,
 				FFC4B1081D3717D500A97C81 /* TTFTUXView.swift in Sources */,
-				FF3034C51DB97F1B00728920 /* HeartbeatManager.swift in Sources */,
 				FF4487761D09365200ED8099 /* TTButtonTimer.swift in Sources */,
-				FF3034D21DB97F1B00728920 /* HueBridgeIcon.swift in Sources */,
 				FFF46BDE1D10941500158751 /* DDLog.m in Sources */,
-				FF3034C01DB97F1B00728920 /* SoftwareUpdateStatusDeviceTypes.swift in Sources */,
 				FF37EDCF1D1113C10026F70D /* TTModeHueOptions.swift in Sources */,
 				FFF46BDF1D10941500158751 /* DDTTYLogger.m in Sources */,
-				FF30349B1DB97F1B00728920 /* Light.swift in Sources */,
 				FF37EDCB1D1102620026F70D /* TTTabView.swift in Sources */,
 				FF4487621D08986200ED8099 /* TTTitleMenuPopover.swift in Sources */,
-				FF3034D51DB97F1B00728920 /* Scanner.swift in Sources */,
 				FFF46BC51D0E58C000158751 /* TTDeviceTitleView.swift in Sources */,
 				FF4AF7C21D248A4D0009C777 /* TTModeWemoDeviceSwitchOptions.swift in Sources */,
-				FF3034D31DB97F1B00728920 /* IPScanner.swift in Sources */,
 				FF37EDFD1D1B23B70026F70D /* TTModeHueRandomOptions.swift in Sources */,
 				FFC9FE951D021A0400038817 /* TTActionDiamondView.swift in Sources */,
 				FF44875F1D078FAC00ED8099 /* TTActionTitleView.swift in Sources */,
@@ -2011,71 +1603,37 @@
 				FF37EDF61D1B1A310026F70D /* TTModeHueSceneLateEveningOptions.swift in Sources */,
 				FFF46BE11D10941500158751 /* DispatchQueueLogFormatter.m in Sources */,
 				FF254F8E1D21CAF100E96378 /* TTModeWemoMulticastServer.swift in Sources */,
-				FF3034AB1DB97F1B00728920 /* GenericStatusSensorConfig.swift in Sources */,
 				FF37EDF91D1B23750026F70D /* TTModeHueSleepOptions.swift in Sources */,
-				FF3034C41DB97F1B00728920 /* Dictionary+Extension.swift in Sources */,
 				FF0F10E31CFFAC5300CC1F29 /* TTModeMenuContainer.swift in Sources */,
-				FF3034961DB97F1B00728920 /* Backup.swift in Sources */,
-				FF3034BD1DB97F1B00728920 /* TemperatureSensorConfig.swift in Sources */,
-				FF3034B71DB97F1B00728920 /* SensorConfig.swift in Sources */,
 				FFB41B841CF5342100CD5F09 /* TTModeMap.swift in Sources */,
-				FF3034B31DB97F1B00728920 /* PresenceSensor.swift in Sources */,
 				FF37EDEE1D13823F0026F70D /* TTModeHueSceneEarlyEveningOptions.swift in Sources */,
-				FF3034CA1DB97F1B00728920 /* SwiftyHue.swift in Sources */,
 				FFF46BE01D10941500158751 /* ContextFilterLogFormatter.m in Sources */,
-				FF3034AC1DB97F1B00728920 /* GenericStatusSensorState.swift in Sources */,
-				FF3034941DB97F1B00728920 /* BridgeAccessConfig.swift in Sources */,
 				FF4AF7C71D248A860009C777 /* TTModeWemoDeviceOnOptions.swift in Sources */,
-				FF3034A71DB97F1B00728920 /* GenericFlagSensor.swift in Sources */,
-				FF3034B51DB97F1B00728920 /* PresenceSensorState.swift in Sources */,
 				FFDA0FA91D3C4F1C0019859F /* UIImage+FixOrientation.m in Sources */,
-				FF3034B11DB97F1B00728920 /* OpenCloseSensorConfig.swift in Sources */,
-				FF3034AD1DB97F1B00728920 /* HumiditySensor.swift in Sources */,
 				FF7C14551DB30836009CBA28 /* TTBatchActionStackView.swift in Sources */,
-				FF3034D41DB97F1B00728920 /* NUPNPScanner.swift in Sources */,
-				FF3034A91DB97F1B00728920 /* GenericFlagSensorState.swift in Sources */,
 				FF4AF7BA1D248A290009C777 /* TTModeWemoConnecting.swift in Sources */,
 				FF4AF7EE1D24F9E70009C777 /* TTModeSonosOptions.swift in Sources */,
-				FF3034D61DB97F1B00728920 /* ScannerDelegate.swift in Sources */,
 				FF0F10C21CF60C3D00CC1F29 /* TTTitleBarView.swift in Sources */,
-				FF30349C1DB97F1B00728920 /* LightState.swift in Sources */,
 				FF0F10CA1CF63F3B00CC1F29 /* TTModePhone.swift in Sources */,
-				FF3034B61DB97F1B00728920 /* Sensor.swift in Sources */,
 				FF4487741D09300B00ED8099 /* NSData+Hex.swift in Sources */,
 				FFB84B2D1D90CE0A0037872C /* TTModeYogaViewController.swift in Sources */,
 				FF4487641D08AA8800ED8099 /* TTTitleMenuCell.swift in Sources */,
 				FFB41B791CEEA8E500CD5F09 /* TTModeTab.swift in Sources */,
-				FF3034B41DB97F1B00728920 /* PresenceSensorConfig.swift in Sources */,
-				FF30349E1DB97F1B00728920 /* Rule.swift in Sources */,
 				FF0F10BE1CF55A9000CC1F29 /* UIColor+hex.swift in Sources */,
-				FF3034CD1DB97F1B00728920 /* BridgeAuthenticator.swift in Sources */,
-				FF3034AF1DB97F1B00728920 /* HumiditySensorState.swift in Sources */,
 				FF37EDD31D11174C0026F70D /* TTModeHueConnect.swift in Sources */,
-				FF3034C11DB97F1B00728920 /* WhitelistEntry.swift in Sources */,
 				FF0F10DE1CF6763400CC1F29 /* TTModeTitleView.swift in Sources */,
 				FF37EDEB1D137A210026F70D /* TTModeHueSceneOptions.swift in Sources */,
 				FF0F10DC1CF669BE00CC1F29 /* TTDiamondLabel.swift in Sources */,
-				FF3034AA1DB97F1B00728920 /* GenericStatusSensor.swift in Sources */,
-				FF3034C61DB97F1B00728920 /* LoggerConfig.swift in Sources */,
-				FF3034A11DB97F1B00728920 /* Scene.swift in Sources */,
 				FF4AF7D61D24ECF60009C777 /* SonosDiscover.m in Sources */,
-				FF3034BE1DB97F1B00728920 /* TemperatureSensorState.swift in Sources */,
 				FF4AF7C91D248AD00009C777 /* TTModeWemoDeviceOffOptions.swift in Sources */,
-				FF3034B01DB97F1B00728920 /* OpenCloseSensor.swift in Sources */,
 				FFC4B0F01D2DBF3E00A97C81 /* TTPairingInfoViewController.swift in Sources */,
 				FFDA0FBA1D3C55930019859F /* TTModeCameraViewController.swift in Sources */,
 				FF4AF7E71D24F9E70009C777 /* TTModeSonosConnect.swift in Sources */,
-				FF30349F1DB97F1B00728920 /* RuleAction.swift in Sources */,
-				FF3034D01DB97F1B00728920 /* BridgeFinderDelegate.swift in Sources */,
-				FF3034A81DB97F1B00728920 /* GenericFlagSensorConfig.swift in Sources */,
-				FF3034C71DB97F1B00728920 /* NSDateFormatter+Extension.swift in Sources */,
 				FFB84B2A1D90BCBF0037872C /* TTModeYoga.swift in Sources */,
 				FF3032BD1DB8286E00728920 /* TTModeHueSceneCustomOptions.swift in Sources */,
-				FF3034951DB97F1B00728920 /* AppData.swift in Sources */,
 				FFDA0FA71D3C4F1C0019859F /* LLSimpleCamera+Helper.m in Sources */,
 				FFF270C51CEE97AF00E46575 /* TTMainViewController.swift in Sources */,
 				FFB41B861CF536AC00CD5F09 /* TTAction.swift in Sources */,
-				FF3034991DB97F1B00728920 /* Error.swift in Sources */,
 				FF44876D1D08E62200ED8099 /* TTBluetoothMonitor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

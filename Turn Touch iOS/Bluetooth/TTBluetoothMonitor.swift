@@ -585,7 +585,7 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
         if characteristic.uuid.isEqual(CBUUID(string: DEVICE_V2_CHARACTERISTIC_BUTTON_STATUS_UUID)) {
             if characteristic.value != nil {
                 if DEBUG_BLUETOOTH {
-                    print(" ---> \(bluetoothState) Button press: \(characteristic.value?.hexadecimalString)")
+                    print(" ---> (\(bluetoothState)) Button press: \(characteristic.value?.hexadecimalString ?? "nil")")
                 }
                 if device.isPaired {
                     buttonTimer.readBluetoothData(characteristic.value!)
@@ -619,7 +619,7 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
 
     }
     
-    func peripheral(_ peripheral: CBPeripheral, didWriteValueFor characteristic: CBCharacteristic!, error: Error?) {
+    func peripheral(_ peripheral: CBPeripheral, didWriteValueFor characteristic: CBCharacteristic, error: Error?) {
         if DEBUG_BLUETOOTH {
             print("peripheral did write: \(characteristic.value)")
         }
