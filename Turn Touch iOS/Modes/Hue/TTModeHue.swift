@@ -1345,7 +1345,20 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate {
             self.changeActionOption(TTModeHueConstants.kHueSeenRooms, to: seenRooms, direction: direction)
         }
         
-        // Loop through batch actions to determine which rooms aren't yet seen and given an action
+        // Sanity check for existing batch actions, ensuring none of them are already using the room
+        for batchAction in appDelegate().modeMap.batchActions.batchActions(in: direction) {
+            if let roomIdentifier = self.batchActionOptionValue(batchAction, optionName: TTModeHueConstants.kHueRoom, direction: direction) as? String {
+                if !seenRooms.contains(roomIdentifier) {
+                    if let room = cache?.groups.first(where: { $1.identifier == roomIdentifier }) {
+                        print(" ---> Already have room \(room.value.name)/\(room.value.identifier) in batch action")
+                        seenRooms.append(room.value.identifier)
+                        self.changeActionOption(TTModeHueConstants.kHueSeenRooms, to: seenRooms, direction: direction)
+                    }
+                }
+            }
+        }
+        
+        // Loop through batch actions to determine which rooms aren't yet seen and need batch actions for each unseen room
         for room in unseenRooms {
             if seenRooms.contains(room.identifier) {
                 // Skip the room that may have just been added as the main action
@@ -1366,7 +1379,7 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate {
 
     
         if actionScene == nil {
-    
+            
         }
     
         if actionDouble == nil {

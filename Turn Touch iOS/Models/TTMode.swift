@@ -377,14 +377,14 @@ class TTMode : NSObject, TTModeProtocol {
     func batchActionOptionValue(_ batchAction: TTAction, optionName: String, direction: TTModeDirection) -> Any? {
         let prefs = UserDefaults.standard
         let modeDirectionName = appDelegate().modeMap.directionName(modeDirection)
-        let actionDirectionName = appDelegate().modeMap.directionName(action.direction)
-        let optionKey = "TT:mode:\(modeDirectionName):action:\(actionDirectionName):batchactions:\(action.batchActionKey!):actionoption:\(optionName)"
+        let actionDirectionName = appDelegate().modeMap.directionName(batchAction.direction)
+        let optionKey = "TT:mode:\(modeDirectionName):action:\(actionDirectionName):batchactions:\(batchAction.batchActionKey!):actionoption:\(optionName)"
         var pref = prefs.object(forKey: optionKey)
         if DEBUG_PREFS {
             print(" -> Getting batch action options \(optionKey): \(pref)")
         }
         if pref == nil {
-            pref = self.defaultOption(action.actionName, optionName: optionName)
+            pref = self.defaultOption(batchAction.actionName, optionName: optionName)
         }
         if pref == nil {
             pref = self.defaultOption(optionName)
