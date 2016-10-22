@@ -33,6 +33,6 @@ class TTModeHueConnect: TTOptionsDetailViewController {
     
     @IBAction func searchForBridge(_ sender: UIButton) {
         self.setLoadingWithMessage("Searching for Hue...")
-        self.modeHue.searchForBridgeLocal()
+        self.modeHue.connectToBridge()
     }
 }

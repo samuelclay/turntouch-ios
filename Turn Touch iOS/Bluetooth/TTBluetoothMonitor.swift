@@ -46,7 +46,7 @@ protocol TTBluetoothMonitorDelegate {
     func pairingSuccess()
 }
 
-let DEBUG_BLUETOOTH = true
+let DEBUG_BLUETOOTH = false
 
 class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
     
@@ -134,11 +134,6 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
         var knownDevicesStillDisconnected = false
         var isActivelyConnecting = false
         
-        if [.bt_STATE_SCANNING_KNOWN, .bt_STATE_DISCOVER_SERVICES, .bt_STATE_DISCOVER_CHARACTERISTICS].contains(bluetoothState) {
-            print(" ---> (\(bluetoothState)) NOT scanning known")
-//            return
-        }
-
         bluetoothState = .bt_STATE_SCANNING_KNOWN
         if DEBUG_BLUETOOTH {
             print(" ---> (\(bluetoothState)) Scanning known: \(self.knownPeripheralIdentifiers().count) remotes")
@@ -601,13 +596,13 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
             }
         } else if characteristic.uuid.isEqual(CBUUID(string: DEVICE_V2_CHARACTERISTIC_NICKNAME_UUID)) {
             if (characteristic.value == nil) || (characteristic.value!.count == 0) {
-                print(" ---> \(bluetoothState) No nickname: \(device)")
+                print(" ---> (\(bluetoothState)) No nickname: \(device)")
             } else {
                 device.setNicknameData(characteristic.value!)
             }
             self.countDevices()
             
-            print(" ---> \(bluetoothState) Hello: \(device)")
+            print(" ---> (\(bluetoothState)) Hello: \(device)")
             
             let delayTime = DispatchTime.now() + Double(Int64(2 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
             DispatchQueue.main.asyncAfter(deadline: delayTime, execute: {
@@ -621,7 +616,7 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
     
     func peripheral(_ peripheral: CBPeripheral, didWriteValueFor characteristic: CBCharacteristic, error: Error?) {
         if DEBUG_BLUETOOTH {
-            print("peripheral did write: \(characteristic.value)")
+            print(" ---> Peripheral did write: \(characteristic.value) \(error ?? nil)")
         }
     }
     

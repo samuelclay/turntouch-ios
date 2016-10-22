@@ -21,7 +21,7 @@ class TTModeHueConnected: TTOptionsDetailViewController {
     }
 
     @IBAction func selectOtherBridge(_ sender: UIButton) {        
-        self.modeHue.searchForBridgeLocal(reset: true)
+        self.modeHue.findBridges()
     }
     
     @IBAction func reloadScenes(_ sender: UIButton) {
@@ -29,7 +29,7 @@ class TTModeHueConnected: TTOptionsDetailViewController {
     }
     
     func countLights() {
-        let cache = PHBridgeResourcesReader.readBridgeResourcesCache()
+        let cache = TTModeHue.hueSdk.resourceCache
         if let scenes = cache?.scenes,
             let lights = cache?.lights,
             let rooms = cache?.groups {

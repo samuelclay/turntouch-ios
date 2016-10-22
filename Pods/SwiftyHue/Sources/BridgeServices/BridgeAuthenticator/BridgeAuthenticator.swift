@@ -23,7 +23,7 @@ public class BridgeAuthenticator {
         self.init(bridge: bridge, uniqueIdentifier: uniqueIdentifier, pollingInterval: 3, timeout: 30)
     }
 
-    init(bridge: HueBridge, uniqueIdentifier: String, pollingInterval: TimeInterval, timeout: TimeInterval) {
+    public init(bridge: HueBridge, uniqueIdentifier: String, pollingInterval: TimeInterval, timeout: TimeInterval) {
         self.ip = bridge.ip
         self.uniqueIdentifier = uniqueIdentifier
         self.pollingInterval = pollingInterval
@@ -52,7 +52,11 @@ public class BridgeAuthenticator {
         let request = createRequest()
         
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
-            self.handleResponse(data, response: response, error: NSError(domain: "HueBridgeAuthenticator", code: 500, userInfo: [NSLocalizedDescriptionKey: error?.localizedDescription]))
+            if let error = error as? NSError {
+                self.handleResponse(data, response: response, error: error)
+            } else {
+                self.handleResponse(data, response: response, error: nil)
+            }
             return ()
         }
 
@@ -71,12 +75,13 @@ public class BridgeAuthenticator {
         RunLoop.main.add(timer, forMode: RunLoopMode.defaultRunLoopMode)
     }
 
-    private func handleResponse(_ data: Data?, response: URLResponse?, error: NSError) {
+    private func handleResponse(_ data: Data?, response: URLResponse?, error: NSError?) {
         if let error = self.parseError(error, data: data) {
             if error.code == 101 && !didInformDelegateAboutLinkButton {
                 // user needs to press the link button
+                let secondsLeft: TimeInterval = timeout - abs(authenticationStartedAt!.timeIntervalSinceNow)
                 DispatchQueue.main.async {
-                    self.delegate?.bridgeAuthenticatorRequiresLinkButtonPress(self)
+                    self.delegate?.bridgeAuthenticatorRequiresLinkButtonPress(self, secondsLeft: secondsLeft)
                 }
                 didInformDelegateAboutLinkButton = true
                 self.startNextRequest(self.ip, uniqueIdentifier: self.uniqueIdentifier)
@@ -101,20 +106,20 @@ public class BridgeAuthenticator {
             return error
         }
 
-//        guard let data = data else {
-//            return NSError(domain: "BridgeAuthenticator", code: 404, userInfo: [NSLocalizedDescriptionKey: "Could not authenticate user (no data)"])
-//        }
+        guard let data = data else {
+            return NSError(domain: "BridgeAuthenticator", code: 404, userInfo: [NSLocalizedDescriptionKey: "Could not authenticate user (no data)"])
+        }
 
-//        guard let result = try? JSONSerialization.jsonObject(with: data, options: []) else {
-//            return NSError(domain: "BridgeAuthenticator", code: 500, userInfo: [NSLocalizedDescriptionKey: "Could not parse result."])
-//        }
+        guard let result = try? JSONSerialization.jsonObject(with: data, options: []) as? [[String: [String: Any]]] else {
+            return NSError(domain: "BridgeAuthenticator", code: 500, userInfo: [NSLocalizedDescriptionKey: "Could not parse result."])
+        }
 
-//        guard let errorJson = result[0]["error"] as? [String: Any] else {
-//            return nil
-//        }
-//
-//        let desc = errorJson["description"] as! String
-//        let error = NSError(domain: "BridgeAuthenticator", code: errorJson["type"] as! Int, userInfo: [NSLocalizedDescriptionKey: desc])
+        guard let errorJson = result![0]["error"] else {
+            return nil
+        }
+
+        let desc = errorJson["description"] as! String
+        let error = NSError(domain: "BridgeAuthenticator", code: errorJson["type"] as! Int, userInfo: [NSLocalizedDescriptionKey: desc])
         return error
     }
 

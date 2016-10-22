@@ -58,9 +58,9 @@ class TTModeHueSceneOptions: TTOptionsDetailViewController, UITextFieldDelegate,
         var sceneSelected = self.action.optionValue(TTModeHueConstants.kHueScene) as? String
         var doubleSceneSelected = self.action.optionValue(TTModeHueConstants.kDoubleTapHueScene) as? String
 
-        let cache = PHBridgeResourcesReader.readBridgeResourcesCache()
+        let cache = TTModeHue.hueSdk.resourceCache
         
-        if cache?.scenes == nil || cache?.groups == nil {
+        guard let hueScenes = cache?.scenes, let hueRooms = cache?.groups else {
             print(" ---> Hue options not ready yet, no scenes or groups: \(cache?.scenes) / \(cache?.groups)")
             return
         }
@@ -94,12 +94,11 @@ class TTModeHueSceneOptions: TTOptionsDetailViewController, UITextFieldDelegate,
         
         var roomLights: [String] = []
         rooms = []
-        for (_, r) in (cache?.groups)! {
-            let room = r as! PHGroup
+        for (_, room) in hueRooms {
             rooms.append(["name": room.name, "identifier": room.identifier])
             if roomSelected == room.identifier {
                 roomPicker.text = room.name
-                roomLights = room.lightIdentifiers as! [String]
+                roomLights = room.lightIdentifiers!
             }
         }
         
@@ -109,12 +108,11 @@ class TTModeHueSceneOptions: TTOptionsDetailViewController, UITextFieldDelegate,
         }
         
         scenes = []
-        for (_, s) in (cache?.scenes)! {
-            let scene = s as! PHScene
+        for (_, scene) in hueScenes {
             // Check if any light in scene in is room
             var sceneInRoom = false
-            for sceneLight in scene.lightIdentifiers {
-                if roomLights.contains(sceneLight as! String) {
+            for sceneLight in scene.lightIdentifiers! {
+                if roomLights.contains(sceneLight) {
                     sceneInRoom = true
                     break
                 }
@@ -175,10 +173,10 @@ class TTModeHueSceneOptions: TTOptionsDetailViewController, UITextFieldDelegate,
             s.startAnimating()
         }
 
-        let bridgeSendApi = PHBridgeSendAPI()
-        bridgeSendApi.getAllScenes { (dictionary, errors) in
-            self.drawScenes()
-        }
+        let bridgeSendAPI = TTModeHue.hueSdk.bridgeSendAPI
+//        bridgeSendApi.getAllScenes { (dictionary, errors) in
+//            self.drawScenes()
+//        }
     }
     
     // MARK: Text Field delegate

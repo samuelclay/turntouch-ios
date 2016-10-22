@@ -280,7 +280,6 @@
 		FFF46BDF1D10941500158751 /* DDTTYLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = FFF46BD41D10941500158751 /* DDTTYLogger.m */; };
 		FFF46BE01D10941500158751 /* ContextFilterLogFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = FFF46BD71D10941500158751 /* ContextFilterLogFormatter.m */; };
 		FFF46BE11D10941500158751 /* DispatchQueueLogFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = FFF46BD91D10941500158751 /* DispatchQueueLogFormatter.m */; };
-		FFF46BE71D1096DC00158751 /* HueSDK_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFF46BE61D1096DC00158751 /* HueSDK_iOS.framework */; };
 		FFF46BE91D10DB2D00158751 /* TTModeHue.plist in Resources */ = {isa = PBXBuildFile; fileRef = FFF46BE81D10DB2D00158751 /* TTModeHue.plist */; };
 		FFF46BEE1D10E6A300158751 /* TTOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF46BED1D10E6A300158751 /* TTOptionsView.swift */; };
 		FFF46BF01D10E6D400158751 /* TTOptionsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF46BEF1D10E6D400158751 /* TTOptionsDetailViewController.swift */; };
@@ -583,7 +582,6 @@
 		FFF46BD81D10941500158751 /* DispatchQueueLogFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DispatchQueueLogFormatter.h; sourceTree = "<group>"; };
 		FFF46BD91D10941500158751 /* DispatchQueueLogFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DispatchQueueLogFormatter.m; sourceTree = "<group>"; };
 		FFF46BE51D10956600158751 /* Turn_Touch_iOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Turn_Touch_iOS-Bridging-Header.h"; sourceTree = "<group>"; };
-		FFF46BE61D1096DC00158751 /* HueSDK_iOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = HueSDK_iOS.framework; sourceTree = "<group>"; };
 		FFF46BE81D10DB2D00158751 /* TTModeHue.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = TTModeHue.plist; path = Modes/Hue/TTModeHue.plist; sourceTree = "<group>"; };
 		FFF46BED1D10E6A300158751 /* TTOptionsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TTOptionsView.swift; sourceTree = "<group>"; };
 		FFF46BEF1D10E6D400158751 /* TTOptionsDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TTOptionsDetailViewController.swift; sourceTree = "<group>"; };
@@ -595,7 +593,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				FF4AF7AF1D2475B50009C777 /* libxml2.tbd in Frameworks */,
-				FFF46BE71D1096DC00158751 /* HueSDK_iOS.framework in Frameworks */,
 				85D8B548CD81B8F0353F6C06 /* Pods_Turn_Touch_iOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1195,7 +1192,6 @@
 			children = (
 				FFDA0FA01D3C4F1C0019859F /* LLSimpleCamera */,
 				FF254FDB1D22F26500E96378 /* XPathQuery */,
-				FFF46BE61D1096DC00158751 /* HueSDK_iOS.framework */,
 				FFF46BCA1D10941500158751 /* Lumberjack */,
 				FF4AF7CC1D24ECF60009C777 /* sonos-objc */,
 				FFF46BE51D10956600158751 /* Turn_Touch_iOS-Bridging-Header.h */,

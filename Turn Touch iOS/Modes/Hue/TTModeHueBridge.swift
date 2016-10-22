@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyHue
 
 class TTModeHueBridge: TTOptionsDetailViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -15,35 +16,40 @@ class TTModeHueBridge: TTOptionsDetailViewController, UITableViewDelegate, UITab
     @IBOutlet var tableView: UITableView!
     @IBOutlet var searchButton: UIButton!
     @IBOutlet var label: UILabel!
-    var bridgesFound: [String: String] = [:]
-    var sortedBridgeKeys: [String] = []
+    var bridgesFound: [HueBridge] = []
+//    var sortedBridgeKeys: [String] = []
     @IBOutlet var tableHeightConstraint: NSLayoutConstraint!
+    let height: CGFloat = 64
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.translatesAutoresizingMaskIntoConstraints = false
         self.tableView.allowsSelection = true
         
-        tableHeightConstraint.constant = CGFloat(self.bridgesFound.count * 44)
+        tableHeightConstraint.constant = CGFloat(self.bridgesFound.count * Int(height))
     }
 
-    func setBridges(_ foundBridges: [String: String]?) {
-        if foundBridges != nil {
-            self.bridgesFound = foundBridges!
-            self.sortedBridgeKeys = self.bridgesFound.keys.sorted()
-        }
+    override func viewWillAppear(_ animated: Bool) {
+        self.setBridges(self.modeHue.foundBridges)
+    }
+    
+    func setBridges(_ foundBridges: [HueBridge]) {
+        self.bridgesFound = foundBridges
+//        self.sortedBridgeKeys = self.bridgesFound.sorted(by: { (lhs, rhs) -> Bool in
+//            lhs.friendlyName > rhs.friendlyName
+//        })
         
         self.label.text = "Please select a Hue bridge"
         
         print(" ---> Found hue bridges: \(self.bridgesFound)")
         self.tableView.reloadData()
         
-        tableHeightConstraint.constant = CGFloat(self.bridgesFound.count * 44)
+        tableHeightConstraint.constant = CGFloat(self.bridgesFound.count * Int(height))
         appDelegate().mainViewController.scrollView.layoutSubviews()
     }
     
     @IBAction func performRefresh(_ sender: UIButton?) {
-        self.modeHue.searchForBridgeLocal()
+        self.modeHue.findBridges()
         self.label.text = "Searching for Hue bridges..."
     }
     
@@ -54,15 +60,21 @@ class TTModeHueBridge: TTOptionsDetailViewController, UITableViewDelegate, UITab
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 44
+        return height
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = TTTitleMenuCell(style: .subtitle, reuseIdentifier: nil)
         
-        cell.textLabel?.text = self.sortedBridgeKeys[(indexPath as NSIndexPath).row%self.sortedBridgeKeys.count]
-        cell.detailTextLabel?.text = self.bridgesFound[self.sortedBridgeKeys[(indexPath as NSIndexPath).row%self.sortedBridgeKeys.count]]
-        
+//        cell.textLabel?.text = self.sortedBridgeKeys[(indexPath as NSIndexPath).row%self.sortedBridgeKeys.count]
+//        cell.detailTextLabel?.text = self.bridgesFound[self.sortedBridgeKeys[(indexPath as NSIndexPath).row%self.sortedBridgeKeys.count]]
+        let bridge = self.bridgesFound[(indexPath as NSIndexPath).row%self.bridgesFound.count]
+        cell.textLabel?.text = "\(bridge.friendlyName)"
+        cell.textLabel?.font = UIFont(name: "Effra", size: 18)
+
+        cell.detailTextLabel?.text = "\(bridge.modelName)"
+        cell.detailTextLabel?.font = UIFont(name: "Effra", size: 15)
+
         cell.accessoryType = .disclosureIndicator
         cell.selectionStyle = .gray
         
@@ -73,9 +85,8 @@ class TTModeHueBridge: TTOptionsDetailViewController, UITableViewDelegate, UITab
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let bridgeId = self.sortedBridgeKeys[(indexPath as NSIndexPath).row%self.sortedBridgeKeys.count]
-        let ipAddress = self.bridgesFound[bridgeId]
-        
-        self.modeHue.bridgeSelectedWithIpAddress(ipAddress: ipAddress!, andBridgeId: bridgeId)
+        let bridge = self.bridgesFound[(indexPath as NSIndexPath).row%self.bridgesFound.count]
+
+        self.modeHue.bridgeSelected(bridge)
     }
 }

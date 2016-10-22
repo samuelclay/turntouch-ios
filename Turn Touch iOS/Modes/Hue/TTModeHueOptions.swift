@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyHue
 
 class TTModeHueOptions: TTOptionsDetailViewController, TTModeHueDelegate {
     
@@ -46,17 +47,6 @@ class TTModeHueOptions: TTOptionsDetailViewController, TTModeHueDelegate {
             self.connectingViewController?.setConnectingWithMessage(message as? String)
         case .bridgeSelect:
             self.drawBridgeViewController()
-            if message != nil {
-                self.modeHue.foundBridges = message as! [String: String]
-            }
-            
-            if self.modeHue.foundBridges.count == 0 {
-                self.modeHue.hueState = .notConnected
-                self.changeState(self.modeHue.hueState, mode: self.modeHue, message: nil)
-                return
-            }
-            
-            self.bridgeViewController?.setBridges(self.modeHue.foundBridges)
         case .pushlink:
             self.drawPushlinkViewController()
             self.pushlinkViewController?.setProgress(message as? Int)

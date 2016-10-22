@@ -9,7 +9,6 @@
 #ifndef TTBridgingHeader_h
 #define TTBridgingHeader_h
 
-#import <HueSDK_iOS/HueSDK.h>
 #import <XPathQuery/XPathQuery.h>
 #import <sonos-objc/SonosController.h>
 #import <sonos-objc/SonosManager.h>
