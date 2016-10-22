@@ -1318,7 +1318,11 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate {
     }
     
     func ensureRoomSelected(in direction: TTModeDirection) {
-        let bridgeSendAPI = TTModeHue.hueSdk.bridgeSendAPI
+        let sameMode = appDelegate().modeMap.modeInDirection(self.modeDirection).nameOfClass == self.nameOfClass
+        if !sameMode {
+            return
+        }
+        
         let cache = TTModeHue.hueSdk.resourceCache
         
         // Cycle through action and batch actions, ensuring all have a room, single tap scene, and double tap, adding batch actions for rooms that aren't used
@@ -1337,6 +1341,7 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate {
             }
         }
         
+        // If the current action has no room set and is a Hue action, set the room
         if actionRoom == nil && unseenRooms.count > 0 {
             let unseenRoom = unseenRooms[0]
             seenRooms.append(unseenRoom.identifier)
@@ -1375,6 +1380,7 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate {
             self.changeActionOption(TTModeHueConstants.kHueSeenRooms, to: seenRooms, direction: direction)
             self.changeBatchActionOption(batchActionKey, optionName: TTModeHueConstants.kHueRoom, to: room.identifier,
                                          direction: self.modeDirection, actionDirection: direction)
+            appDelegate().mainViewController.adjustBatchActions()
         }
 
     
