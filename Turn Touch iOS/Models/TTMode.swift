@@ -9,6 +9,7 @@
 import Foundation
 
 let DEBUG_PREFS = false
+let DEBUG_PREFS_NIL = false
 
 enum ActionLayout {
     case action_LAYOUT_TITLE
@@ -269,7 +270,7 @@ class TTMode : NSObject, TTModeProtocol {
                 let directionName = appDelegate().modeMap.directionName(direction)
                 let optionKey = "TT:mode:\(self.nameOfClass)-\(directionName):option:\(optionName)"
                 guard let pref = prefs.object(forKey: optionKey) else {
-                    if DEBUG_PREFS {
+                    if DEBUG_PREFS_NIL {
                         print(" -> Getting mode options (\(directionName)) \(optionKey): nil")
                     }
                     continue
@@ -367,7 +368,7 @@ class TTMode : NSObject, TTModeProtocol {
             return pref
         }
         
-        if DEBUG_PREFS {
+        if DEBUG_PREFS_NIL {
             print(" -> Getting action options \(optionKey): nil")
         }
         return nil
@@ -405,7 +406,7 @@ class TTMode : NSObject, TTModeProtocol {
             return pref
         }
         
-        if DEBUG_PREFS {
+        if DEBUG_PREFS_NIL {
             print(" -> Getting mode option default \(optionName): nil")
         }
         return nil
@@ -425,7 +426,7 @@ class TTMode : NSObject, TTModeProtocol {
             return modeDefaults?[optionKey]
         }
         
-        if DEBUG_PREFS {
+        if DEBUG_PREFS_NIL {
             print(" -> Getting mode action option default \(optionKey): nil")
         }
         return nil
@@ -451,11 +452,11 @@ class TTMode : NSObject, TTModeProtocol {
         prefs.synchronize()
     }
     
-    func changeBatchActionOption(_ batchActionKey: String, optionName: String, to optionValue: Any) {
+    func changeBatchActionOption(_ batchActionKey: String, optionName: String, to optionValue: Any,
+                                 direction: TTModeDirection? = nil, actionDirection: TTModeDirection? = nil) {
         let prefs = UserDefaults.standard
-        let inspectingModeDirection = appDelegate().modeMap.inspectingModeDirection
-        let modeDirectionName = appDelegate().modeMap.directionName(modeDirection)
-        let actionDirectionName = appDelegate().modeMap.directionName(inspectingModeDirection)
+        let modeDirectionName = appDelegate().modeMap.directionName(direction ?? modeDirection)
+        let actionDirectionName = appDelegate().modeMap.directionName(actionDirection ?? appDelegate().modeMap.inspectingModeDirection)
         let optionKey = "TT:mode:\(modeDirectionName):action:\(actionDirectionName):batchactions:\(batchActionKey):actionoption:\(optionName)"
         let pref = prefs.object(forKey: optionKey)
         print(" -> Setting batch action options \(optionKey) from (\(pref ?? "nil")) to (\(optionValue))")

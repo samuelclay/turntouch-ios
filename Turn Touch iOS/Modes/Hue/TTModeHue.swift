@@ -38,6 +38,7 @@ enum TTHueRandomSaturation: Int {
 
 let MAX_HUE: UInt32 = 65535
 let MAX_BRIGHTNESS: UInt32 = 255
+let DEBUG_HUE = false
 
 struct TTModeHueConstants {
     static let kRandomColors: String = "randomColors"
@@ -65,7 +66,8 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate {
     
 //    static var phHueSdk: PHHueSDK!
     static var hueSdk: SwiftyHue!
-    var hueState: TTHueState = TTHueState.notConnected
+    static var reachability: Reachability!
+    static var hueState: TTHueState = TTHueState.notConnected
 //    var bridgeSearch: PHBridgeSearching!
     var bridgeFinder: BridgeFinder!
     var bridgeAuthenticator: BridgeAuthenticator!
@@ -74,7 +76,6 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate {
     var bridgeToken: Int = 0
     var bridgesTried: [String] = []
     var foundBridges: [HueBridge] = [] // Only used during bridge choosing
-    let reachability = Reachability()!
 
     required init() {
         super.init()
@@ -86,11 +87,18 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate {
     deinit {
 //        self.disableLocalHeartbeat()
 //        TTModeHue.phHueSdk.stop()
-        self.removeObservers()
     }
     
     override func activate() {
-        
+        self.removeObservers()
+        NotificationCenter.default.addObserver(self, selector: #selector(self.receiveHeartbeat), name: NSNotification.Name(rawValue: ResourceCacheUpdateNotification.configUpdated.rawValue), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.receiveHeartbeat), name: NSNotification.Name(rawValue: ResourceCacheUpdateNotification.lightsUpdated.rawValue), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.receiveHeartbeat), name: NSNotification.Name(rawValue: ResourceCacheUpdateNotification.scenesUpdated.rawValue), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.receiveHeartbeat), name: NSNotification.Name(rawValue: ResourceCacheUpdateNotification.groupsUpdated.rawValue), object: nil)
+    }
+
+    override func deactivate() {
+        self.removeObservers()
     }
     
     func initializeHue(_ force: Bool = false) {
@@ -127,13 +135,8 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate {
 //            notificationManager.register(self, with: #selector(self.buttonNotPressed(notification:)), forNotification: PUSHLINK_BUTTON_NOT_PRESSED_NOTIFICATION)
 //        }
         
-        NotificationCenter.default.addObserver(self, selector: #selector(self.receiveHeartbeat), name: NSNotification.Name(rawValue: ResourceCacheUpdateNotification.configUpdated.rawValue), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.receiveHeartbeat), name: NSNotification.Name(rawValue: ResourceCacheUpdateNotification.lightsUpdated.rawValue), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.receiveHeartbeat), name: NSNotification.Name(rawValue: ResourceCacheUpdateNotification.scenesUpdated.rawValue), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.receiveHeartbeat), name: NSNotification.Name(rawValue: ResourceCacheUpdateNotification.groupsUpdated.rawValue), object: nil)
-
-        hueState = .connecting
-        self.delegate?.changeState(hueState, mode:self, message:"Connecting...")
+        TTModeHue.hueState = .connecting
+        self.delegate?.changeState(TTModeHue.hueState, mode:self, message:"Connecting...")
         
         // The local heartbeat is a regular timer event in the SDK. Once enabled the SDK regular collects the current state of resources managed by the bridge into the Bridge Resources Cache
 //        self.enableLocalHeartbeat()
@@ -285,7 +288,7 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate {
     // MARK: Action methods
     
     func runScene(sceneName: String, doubleTap: Bool, defaultIdentifier: String) {
-        if hueState != .connected {
+        if TTModeHue.hueState != .connected {
             self.connectToBridge()
             return
         }
@@ -391,7 +394,7 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate {
     }
     
     func runTTModeHueSleep(duration sceneDuration: Int) {
-        if hueState != .connected {
+        if TTModeHue.hueState != .connected {
             self.connectToBridge()
             return
         }
@@ -430,7 +433,7 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate {
     }
     
     func runTTModeHueRandom(doubleTap: Bool) {
-        if hueState != .connected {
+        if TTModeHue.hueState != .connected {
             self.connectToBridge()
             return
         }
@@ -488,8 +491,8 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate {
     
     
     func connectToBridge(reset: Bool = false) {
-        hueState = .connecting
-        self.delegate?.changeState(hueState, mode: self, message: "Connecting to Hue...")
+        TTModeHue.hueState = .connecting
+        self.delegate?.changeState(TTModeHue.hueState, mode: self, message: "Connecting to Hue...")
 
         if reset {
             bridgesTried = []
@@ -516,7 +519,9 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate {
             latestBridge = bridge
             bridgesTried.append(savedBridge["serialNumber"]!)
             
-            print(" ---> Connecting to bridge: \(savedBridge)")
+            if DEBUG_HUE {
+                print(" ---> Connecting to bridge: \(savedBridge)")
+            }
             if let username = savedBridge["username"] {
                 self.authenticateBridge(username: username)
             } else {
@@ -538,8 +543,8 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate {
     }
     
     func findBridges() {
-        hueState = .connecting
-        self.delegate?.changeState(hueState, mode: self, message: "Searching for a Hue bridge...")
+        TTModeHue.hueState = .connecting
+        self.delegate?.changeState(TTModeHue.hueState, mode: self, message: "Searching for a Hue bridge...")
 
         bridgeFinder = BridgeFinder()
         bridgeFinder.delegate = self
@@ -547,23 +552,29 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate {
     }
     
     func watchReachability() {
-        reachability.whenReachable = { reachability in
+        if TTModeHue.reachability != nil {
+            return
+        }
+        
+        TTModeHue.reachability = Reachability()
+        
+        TTModeHue.reachability.whenReachable = { reachability in
             DispatchQueue.main.async {
-                if self.hueState != .connected {
+                if TTModeHue.hueState != .connected {
                     print(" ---> Reachable, re-connecting to Hue...")
                     self.connectToBridge(reset: true)
                 }
             }
         }
         
-        reachability.whenUnreachable = { reachability in
-            if self.hueState != .connected {
+        TTModeHue.reachability.whenUnreachable = { reachability in
+            if TTModeHue.hueState != .connected {
                 print(" ---> Unreachable, not connected")
             }
         }
         
         do {
-            try reachability.startNotifier()
+            try TTModeHue.reachability.startNotifier()
         } catch {
             print("Unable to start notifier")
         }
@@ -571,9 +582,9 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate {
     
     func bridgeFinder(_ finder: BridgeFinder, didFinishWithResult bridges: [HueBridge]) {
         if bridges.count > 0 {
-            hueState = .bridgeSelect
+            TTModeHue.hueState = .bridgeSelect
             foundBridges = bridges
-            self.delegate?.changeState(hueState, mode: self, message: nil)
+            self.delegate?.changeState(TTModeHue.hueState, mode: self, message: nil)
         } else {
             self.showNoBridgesFoundDialog()
         }
@@ -598,7 +609,7 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate {
 //        if let bridgeCount = savedBridges?.count, bridgeCount > 0 {
 //            // Try again if bridges known
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(10), execute: {
-                if self.hueState != .connected {
+                if TTModeHue.hueState != .connected {
                     self.connectToBridge()
                 }
             })
@@ -607,15 +618,15 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate {
 
     func showNoConnectionDialog() {
         NSLog(" ---> Connection to bridge lost")
-        hueState = .notConnected
-        self.delegate?.changeState(hueState, mode: self, message: "Connection to Hue bridge lost")
+        TTModeHue.hueState = .notConnected
+        self.delegate?.changeState(TTModeHue.hueState, mode: self, message: "Connection to Hue bridge lost")
     }
 
     func showNoBridgesFoundDialog() {
         // Insert retry logic here
         NSLog(" ---> Could not find bridge")
-        hueState = .notConnected
-        self.delegate?.changeState(hueState, mode: self, message: "Could not find any Hue bridges")
+        TTModeHue.hueState = .notConnected
+        self.delegate?.changeState(TTModeHue.hueState, mode: self, message: "Could not find any Hue bridges")
     }
 
     // MARK: - Hue Authenticator
@@ -636,21 +647,21 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate {
             self.removeSavedBridge(serialNumber: serialNumber)
         }
         
-        hueState = .notConnected
-        self.delegate?.changeState(hueState, mode: self, message: "Pushlink button not pressed within 30 seconds")
+        TTModeHue.hueState = .notConnected
+        self.delegate?.changeState(TTModeHue.hueState, mode: self, message: "Pushlink button not pressed within 30 seconds")
     }
     
     func bridgeAuthenticatorRequiresLinkButtonPress(_ authenticator: BridgeAuthenticator, secondsLeft: TimeInterval) {
         //        var dict = notification.userInfo!
         //        let progressPercentage: Int = (dict["progressPercentage"] as! Int)
-        hueState = .pushlink
+        TTModeHue.hueState = .pushlink
         let progress = Int(secondsLeft * (100/30.0))
-        self.delegate?.changeState(hueState, mode: self, message: progress)
+        self.delegate?.changeState(TTModeHue.hueState, mode: self, message: progress)
     }
     
     func authenticateBridge(username: String) {
-        if hueState != .connected {
-            hueState = .connected
+        if TTModeHue.hueState != .connected {
+            TTModeHue.hueState = .connected
             self.saveRecentBridge(username: username)
             self.updateHueConfig()
             
@@ -661,7 +672,7 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate {
     }
     
     func updateHueConfig() {
-        self.delegate?.changeState(hueState, mode: self, message: nil)
+        self.delegate?.changeState(TTModeHue.hueState, mode: self, message: nil)
         self.ensureScenes()
         self.ensureRooms()
     }
@@ -686,10 +697,14 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate {
         }
         
         if waitingOn.count == 0 {
-            print(" ---> Done with heartbeat")
+            if DEBUG_HUE {
+                print(" ---> Done with heartbeat")
+            }
             TTModeHue.hueSdk.stopHeartbeat()
         } else {
-            print(" ---> Still waiting on \(waitingOn.joined(separator: ", "))")
+            if DEBUG_HUE {
+                print(" ---> Still waiting on \(waitingOn.joined(separator: ", "))")
+            }
         }
     }
     
@@ -732,7 +747,9 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate {
         prefs.set(foundBridges, forKey: TTModeHueConstants.kHueSavedBridges)
         prefs.synchronize()
         
-        print(" ---> Saved bridges (username: \(username)): \(foundBridges)")
+        if DEBUG_HUE {
+            print(" ---> Saved bridges (username: \(username)): \(foundBridges)")
+        }
     }
     
     func removeSavedBridge(serialNumber: String) {
@@ -1303,40 +1320,55 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate {
     func ensureRoomSelected(in direction: TTModeDirection) {
         let bridgeSendAPI = TTModeHue.hueSdk.bridgeSendAPI
         let cache = TTModeHue.hueSdk.resourceCache
-
-        var seenRooms: [String]? = self.modeOptionValue(TTModeHueConstants.kHueSeenRooms, modeDirection: self.modeDirection) as? [String] ?? []
         
         // Cycle through action and batch actions, ensuring all have a room, single tap scene, and double tap, adding batch actions for rooms that aren't used
         let actionName = self.actionNameInDirection(direction)
         let actionRoom = self.actionOptionValue(TTModeHueConstants.kHueRoom, actionName: actionName, direction: direction)
         let actionScene = self.actionOptionValue(TTModeHueConstants.kHueScene, actionName: actionName, direction: direction)
         let actionDouble = self.actionOptionValue(TTModeHueConstants.kDoubleTapHueScene, actionName: actionName, direction: direction)
+        var seenRooms: [String] = self.actionOptionValue(TTModeHueConstants.kHueSeenRooms, actionName: actionName, direction: direction) as? [String] ?? []
 
-        if actionRoom == nil {
-//            if let groups = cache?.groups {
-//                var unusedRoom: PHGroup?
-//                for (_, group) in groups {
-//                    if let room = group as? PHGroup {
-//                        if !seenRooms!.contains(room.identifier) {
-//                            unusedRoom = room
-//                            seenRooms!.append(room.identifier)
-//                            break
-//                        }
-//                    }
-//                }
-//                
-//                if let unusedRoom = unusedRoom {
-//                    print(" ---> Setting \(actionName) room to \(unusedRoom.name)/\(unusedRoom.identifier)")
-//                    self.changeActionOption(actionName, to: unusedRoom.identifier, direction: direction)
-//                    self.changeModeOption(TTModeHueConstants.kHueSeenRooms, to: seenRooms!)
-//                }
-//            }
+        var unseenRooms: [Group] = []
+        if let rooms = cache?.groups {
+            for (_, room) in rooms {
+                if !seenRooms.contains(room.identifier) {
+                    unseenRooms.append(room)
+                }
+            }
         }
         
+        if actionRoom == nil && unseenRooms.count > 0 {
+            let unseenRoom = unseenRooms[0]
+            seenRooms.append(unseenRoom.identifier)
+            print(" ---> Setting \(actionName) room to \(unseenRoom.name)/\(unseenRoom.identifier)")
+            self.changeActionOption(TTModeHueConstants.kHueRoom, to: unseenRoom.identifier, direction: direction)
+            self.changeActionOption(TTModeHueConstants.kHueSeenRooms, to: seenRooms, direction: direction)
+        }
+        
+        // Loop through batch actions to determine which rooms aren't yet seen and given an action
+        for room in unseenRooms {
+            if seenRooms.contains(room.identifier) {
+                // Skip the room that may have just been added as the main action
+                print(" ---> Not adding \(room.identifier) room, already seen")
+
+                continue
+            }
+            print(" ---> Adding batch action for room \(room.name)/\(room.identifier) to \(actionName)")
+            let batchActionKey = appDelegate().modeMap.addBatchAction(modeDirection: self.modeDirection,
+                                                                      actionDirection: direction,
+                                                                      modeClassName: self.nameOfClass,
+                                                                      actionName: actionName)
+            seenRooms.append(room.identifier)
+            self.changeActionOption(TTModeHueConstants.kHueSeenRooms, to: seenRooms, direction: direction)
+            self.changeBatchActionOption(batchActionKey, optionName: TTModeHueConstants.kHueRoom, to: room.identifier,
+                                         direction: self.modeDirection, actionDirection: direction)
+        }
+
+    
         if actionScene == nil {
-            
+    
         }
-        
+    
         if actionDouble == nil {
             
         }

@@ -216,6 +216,7 @@ class TTModeMap: NSObject {
     }
     
     func addBatchAction(for actionName: String) {
+        // Adding batch action using the menu, selecting and inspecting directions
         let prefs = UserDefaults.standard
         var batchActionKeys = self.batchActionKeys()
         let uuid = UUID().uuidString
@@ -230,6 +231,21 @@ class TTModeMap: NSObject {
         tempModeName = nil
         
         self.didChangeValue(forKey: "inspectingModeDirection")
+    }
+    
+    func addBatchAction(modeDirection: TTModeDirection, actionDirection: TTModeDirection, modeClassName: String, actionName: String) -> String {
+        // Adding batch actions automatically
+        let prefs = UserDefaults.standard
+        var batchActionKeys = self.batchActionKeys(modeDirection: modeDirection, actionDirection: actionDirection)
+        let uuid = UUID().uuidString
+        let newActionKey = "\(modeClassName):\(actionName):\(uuid.substring(to: uuid.index(uuid.startIndex, offsetBy: 8)))"
+        batchActionKeys.append(newActionKey)
+        prefs.set(batchActionKeys, forKey: self.batchKey(modeDirection: modeDirection, actionDirection: actionDirection))
+        prefs.synchronize()
+
+        batchActions.assemble()
+        
+        return newActionKey
     }
     
     func removeBatchAction(for batchActionKey: String) {
@@ -251,20 +267,20 @@ class TTModeMap: NSObject {
         self.didChangeValue(forKey: "inspectingModeDirection")
     }
     
-    func batchActionKeys() -> [String] {
+    func batchActionKeys(modeDirection: TTModeDirection? = nil, actionDirection: TTModeDirection? = nil) -> [String] {
         let prefs = UserDefaults.standard
         var batchActionKeys: [String] = []
         
-        if let batchActionsPrefs = prefs.object(forKey: self.batchKey()) as? [String] {
+        if let batchActionsPrefs = prefs.object(forKey: self.batchKey(modeDirection: modeDirection, actionDirection: actionDirection)) as? [String] {
             batchActionKeys = batchActionsPrefs
         }
         
         return batchActionKeys
     }
     
-    func batchKey() -> String {
-        let modeDirectionName = self.directionName(selectedModeDirection)
-        let actionDirectionName = self.directionName(inspectingModeDirection)
+    func batchKey(modeDirection: TTModeDirection? = nil, actionDirection: TTModeDirection? = nil) -> String {
+        let modeDirectionName = self.directionName(modeDirection ?? selectedModeDirection)
+        let actionDirectionName = self.directionName(actionDirection ?? inspectingModeDirection)
         let batchKey = "TT:mode:\(modeDirectionName):action:\(actionDirectionName):batchactions"
         
         return batchKey

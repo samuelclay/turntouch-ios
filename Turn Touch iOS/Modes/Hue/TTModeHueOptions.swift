@@ -25,10 +25,10 @@ class TTModeHueOptions: TTOptionsDetailViewController, TTModeHueDelegate {
         self.modeHue.delegate = self
         self.view.clipsToBounds = true
 
-        if self.modeHue.hueState == .notConnected {
-            self.modeHue.hueState = .connecting
+        if TTModeHue.hueState == .notConnected {
+            TTModeHue.hueState = .connecting
         }
-        self.changeState(self.modeHue.hueState, mode: self.modeHue, message: nil)
+        self.changeState(TTModeHue.hueState, mode: self.modeHue, message: nil)
     }
 
     override func didReceiveMemoryWarning() {
