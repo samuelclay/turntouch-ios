@@ -86,6 +86,7 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate {
     deinit {
 //        self.disableLocalHeartbeat()
 //        TTModeHue.phHueSdk.stop()
+        self.removeObservers()
     }
     
     override func activate() {
@@ -127,12 +128,19 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate {
 //        }
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.receiveHeartbeat), name: NSNotification.Name(rawValue: ResourceCacheUpdateNotification.configUpdated.rawValue), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.receiveHeartbeat), name: NSNotification.Name(rawValue: ResourceCacheUpdateNotification.lightsUpdated.rawValue), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.receiveHeartbeat), name: NSNotification.Name(rawValue: ResourceCacheUpdateNotification.scenesUpdated.rawValue), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.receiveHeartbeat), name: NSNotification.Name(rawValue: ResourceCacheUpdateNotification.groupsUpdated.rawValue), object: nil)
 
         hueState = .connecting
         self.delegate?.changeState(hueState, mode:self, message:"Connecting...")
         
         // The local heartbeat is a regular timer event in the SDK. Once enabled the SDK regular collects the current state of resources managed by the bridge into the Bridge Resources Cache
 //        self.enableLocalHeartbeat()
+    }
+    
+    func removeObservers() {
+        NotificationCenter.default.removeObserver(self)
     }
     
     // MARK: Mode
