@@ -615,12 +615,6 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate {
         self.delegate?.changeState(hueState, mode: self, message: "Could not find any Hue bridges")
     }
 
-    func showNotAuthenticatedDialog() {
-        NSLog(" ---> Pushlink button not pressed within 30 sec")
-        hueState = .notConnected
-        self.delegate?.changeState(hueState, mode: self, message: "Pushlink button not pressed within 30 seconds")
-    }
-    
     // MARK: - Hue Authenticator
     
     func bridgeAuthenticator(_ authenticator: BridgeAuthenticator, didFinishAuthentication username: String) {
@@ -632,7 +626,15 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate {
     }
     
     func bridgeAuthenticatorDidTimeout(_ authenticator: BridgeAuthenticator) {
-        self.connectToBridge()
+        NSLog(" ---> Pushlink button not pressed within 30 sec")
+        
+        // Remove server from saved servers so it isn't automatically reconnected
+        if let serialNumber = latestBridge?.serialNumber {
+            self.removeSavedBridge(serialNumber: serialNumber)
+        }
+        
+        hueState = .notConnected
+        self.delegate?.changeState(hueState, mode: self, message: "Pushlink button not pressed within 30 seconds")
     }
     
     func bridgeAuthenticatorRequiresLinkButtonPress(_ authenticator: BridgeAuthenticator, secondsLeft: TimeInterval) {
@@ -726,6 +728,20 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate {
         
         prefs.set(foundBridges, forKey: TTModeHueConstants.kHueSavedBridges)
         prefs.synchronize()
+    }
+    
+    func removeSavedBridge(serialNumber: String) {
+        let prefs = UserDefaults.standard
+        
+        var foundBridges = prefs.array(forKey: TTModeHueConstants.kHueSavedBridges) as? [[String: String]] ?? []
+        foundBridges = foundBridges.filter({ (bridge) -> Bool in
+            bridge["serialNumber"] != serialNumber
+        })
+        
+        prefs.set(foundBridges, forKey: TTModeHueConstants.kHueSavedBridges)
+        prefs.synchronize()
+        
+        print(" ---> Removed bridge \(serialNumber): \(foundBridges)")
     }
     
     func startHueHeartbeat(username: String) {
