@@ -91,14 +91,14 @@ class TTModeWemo: TTMode, TTModeWemoMulticastDelegate, TTModeWemoDeviceDelegate 
     // MARK: Actions
     
     override class func actions() -> [String] {
-        return ["TTModeWemoDeviceOn",
+        return ["TTModeWemoDeviceStart",
                 "TTModeWemoDeviceOff",
                 "TTModeWemoDeviceToggle"]
     }
     
     // MARK: Action titles
     
-    func titleTTModeWemoDeviceOn() -> String {
+    func titleTTModeWemoDeviceStart() -> String {
         return "Turn on"
     }
     
@@ -112,7 +112,7 @@ class TTModeWemo: TTMode, TTModeWemoMulticastDelegate, TTModeWemoDeviceDelegate 
     
     // MARK: Action images
     
-    func imageTTModeWemoDeviceOn() -> String {
+    func imageTTModeWemoDeviceStart() -> String {
         return "next_story.png"
     }
     
@@ -128,7 +128,7 @@ class TTModeWemo: TTMode, TTModeWemoMulticastDelegate, TTModeWemoDeviceDelegate 
     // MARK: Defaults
     
     override func defaultNorth() -> String {
-        return "TTModeWemoDeviceOn"
+        return "TTModeWemoDeviceStart"
     }
     
     override func defaultEast() -> String {
@@ -153,7 +153,7 @@ class TTModeWemo: TTMode, TTModeWemoMulticastDelegate, TTModeWemoDeviceDelegate 
         TTModeWemo.multicastServer.deactivate()
     }
     
-    func runTTModeWemoDeviceOn(direction: NSNumber) {
+    func runTTModeWemoDeviceStart(direction: NSNumber) {
         if let device = self.selectedDevice(TTModeDirection(rawValue: direction.intValue)!) {
             device.changeDeviceState(.on)
         }

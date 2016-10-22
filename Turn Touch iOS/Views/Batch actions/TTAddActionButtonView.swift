@@ -40,8 +40,10 @@ class TTAddActionButtonView: UIView {
 //                                              toItem: self.layoutMarginsGuide, attribute: .bottom, multiplier: 1.0, constant: -24))
         self.addConstraint(NSLayoutConstraint(item: addButton, attribute: .centerX, relatedBy: .equal,
                                               toItem: self, attribute: .centerX, multiplier: 1.0, constant: 0))
+        self.addConstraint(NSLayoutConstraint(item: addButton, attribute: .centerY, relatedBy: .equal,
+                                              toItem: self, attribute: .centerY, multiplier: 1.0, constant: 0))
         self.addConstraint(NSLayoutConstraint(item: addButton, attribute: .height, relatedBy: .equal,
-                                              toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 64))
+                                              toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 24))
         
         self.registerAsObserver()
     }
@@ -77,8 +79,8 @@ class TTAddActionButtonView: UIView {
         UIColor(hex: 0xC2CBCE).set()
                 
         // Top border
-        line.move(to: CGPoint(x: self.bounds.minX + 24, y: self.bounds.minY - 0.5))
-        line.addLine(to: CGPoint(x: self.bounds.maxX - 24, y: self.bounds.minY - 0.5))
+        line.move(to: CGPoint(x: self.bounds.minX + 24, y: self.bounds.minY))
+        line.addLine(to: CGPoint(x: self.bounds.maxX - 24, y: self.bounds.minY))
         line.stroke()
 
         // Bottom border

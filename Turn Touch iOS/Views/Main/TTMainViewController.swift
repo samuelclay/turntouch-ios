@@ -153,8 +153,11 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
         scrollStackView.addArrangedSubview(addActionMenu)
         scrollStackView.addConstraint(addActionMenuConstraint)
         
-        addActionButtonView.isHidden = true
+        addActionButtonConstraint = NSLayoutConstraint(item: addActionButtonView, attribute: .height, relatedBy: .equal,
+                                                       toItem: nil, attribute: .notAnAttribute,
+                                                       multiplier: 1.0, constant: 0)
         scrollStackView.addArrangedSubview(addActionButtonView)
+        scrollStackView.addConstraint(addActionButtonConstraint)
         
         scrollView.setContentHuggingPriority(100, for: UILayoutConstraintAxis.vertical)
         scrollView.alwaysBounceVertical = true
@@ -282,7 +285,7 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
     }
     
     func toggleAddActionMenu() {
-        self.addActionMenuConstraint.constant = appDelegate().modeMap.openedAddActionChangeMenu ? modeMenuView.MENU_HEIGHT : 1
+        self.addActionMenuConstraint.constant = appDelegate().modeMap.openedAddActionChangeMenu ? modeMenuView.MENU_HEIGHT : 0
         UIView.animate(withDuration: 0.42, animations: {
             self.view.layoutIfNeeded()
         })
@@ -294,9 +297,9 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
     
     func toggleAddActionButtonView() {
         if appDelegate().modeMap.inspectingModeDirection != .no_DIRECTION {
-            addActionButtonView.isHidden = false
+            addActionButtonConstraint.constant = 64
         } else {
-            addActionButtonView.isHidden = true
+            addActionButtonConstraint.constant = 0
         }
     }
     

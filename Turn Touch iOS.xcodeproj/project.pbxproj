@@ -98,7 +98,7 @@
 		FF4AF7C21D248A4D0009C777 /* TTModeWemoDeviceSwitchOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4AF7C01D248A4D0009C777 /* TTModeWemoDeviceSwitchOptions.swift */; };
 		FF4AF7C31D248A4D0009C777 /* TTModeWemoDeviceSwitchOptions.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF4AF7C11D248A4D0009C777 /* TTModeWemoDeviceSwitchOptions.xib */; };
 		FF4AF7C51D248A630009C777 /* TTModeWemoDeviceToggleOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4AF7C41D248A630009C777 /* TTModeWemoDeviceToggleOptions.swift */; };
-		FF4AF7C71D248A860009C777 /* TTModeWemoDeviceOnOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4AF7C61D248A860009C777 /* TTModeWemoDeviceOnOptions.swift */; };
+		FF4AF7C71D248A860009C777 /* TTModeWemoDeviceStartOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4AF7C61D248A860009C777 /* TTModeWemoDeviceStartOptions.swift */; };
 		FF4AF7C91D248AD00009C777 /* TTModeWemoDeviceOffOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4AF7C81D248AD00009C777 /* TTModeWemoDeviceOffOptions.swift */; };
 		FF4AF7CB1D24C65A0009C777 /* TTPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4AF7CA1D24C65A0009C777 /* TTPickerViewController.swift */; };
 		FF4AF7D51D24ECF60009C777 /* SonosController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF4AF7CE1D24ECF60009C777 /* SonosController.m */; };
@@ -381,7 +381,7 @@
 		FF4AF7C01D248A4D0009C777 /* TTModeWemoDeviceSwitchOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeWemoDeviceSwitchOptions.swift; path = Modes/Wemo/TTModeWemoDeviceSwitchOptions.swift; sourceTree = "<group>"; };
 		FF4AF7C11D248A4D0009C777 /* TTModeWemoDeviceSwitchOptions.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TTModeWemoDeviceSwitchOptions.xib; path = Modes/Wemo/TTModeWemoDeviceSwitchOptions.xib; sourceTree = "<group>"; };
 		FF4AF7C41D248A630009C777 /* TTModeWemoDeviceToggleOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeWemoDeviceToggleOptions.swift; path = Modes/Wemo/TTModeWemoDeviceToggleOptions.swift; sourceTree = "<group>"; };
-		FF4AF7C61D248A860009C777 /* TTModeWemoDeviceOnOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeWemoDeviceOnOptions.swift; path = Modes/Wemo/TTModeWemoDeviceOnOptions.swift; sourceTree = "<group>"; };
+		FF4AF7C61D248A860009C777 /* TTModeWemoDeviceStartOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeWemoDeviceStartOptions.swift; path = Modes/Wemo/TTModeWemoDeviceStartOptions.swift; sourceTree = "<group>"; };
 		FF4AF7C81D248AD00009C777 /* TTModeWemoDeviceOffOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeWemoDeviceOffOptions.swift; path = Modes/Wemo/TTModeWemoDeviceOffOptions.swift; sourceTree = "<group>"; };
 		FF4AF7CA1D24C65A0009C777 /* TTPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTPickerViewController.swift; path = "Turn Touch iOS/Views/Controls/TTPickerViewController.swift"; sourceTree = SOURCE_ROOT; };
 		FF4AF7CD1D24ECF60009C777 /* SonosController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SonosController.h; sourceTree = "<group>"; };
@@ -767,7 +767,7 @@
 				FF4AF7C01D248A4D0009C777 /* TTModeWemoDeviceSwitchOptions.swift */,
 				FF4AF7C11D248A4D0009C777 /* TTModeWemoDeviceSwitchOptions.xib */,
 				FF4AF7C41D248A630009C777 /* TTModeWemoDeviceToggleOptions.swift */,
-				FF4AF7C61D248A860009C777 /* TTModeWemoDeviceOnOptions.swift */,
+				FF4AF7C61D248A860009C777 /* TTModeWemoDeviceStartOptions.swift */,
 				FF4AF7C81D248AD00009C777 /* TTModeWemoDeviceOffOptions.swift */,
 			);
 			name = Wemo;
@@ -1608,7 +1608,7 @@
 				FFB41B841CF5342100CD5F09 /* TTModeMap.swift in Sources */,
 				FF37EDEE1D13823F0026F70D /* TTModeHueSceneEarlyEveningOptions.swift in Sources */,
 				FFF46BE01D10941500158751 /* ContextFilterLogFormatter.m in Sources */,
-				FF4AF7C71D248A860009C777 /* TTModeWemoDeviceOnOptions.swift in Sources */,
+				FF4AF7C71D248A860009C777 /* TTModeWemoDeviceStartOptions.swift in Sources */,
 				FFDA0FA91D3C4F1C0019859F /* UIImage+FixOrientation.m in Sources */,
 				FF7C14551DB30836009CBA28 /* TTBatchActionStackView.swift in Sources */,
 				FF4AF7BA1D248A290009C777 /* TTModeWemoConnecting.swift in Sources */,
