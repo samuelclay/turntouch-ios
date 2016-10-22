@@ -201,9 +201,9 @@ class TTMode : NSObject, TTModeProtocol {
     }
     
     func actionNameInDirection(_ direction: TTModeDirection) -> String {
-        if action?.batchActionKey != nil {
-            return action.actionName
-        }
+//        if action?.batchActionKey != nil {
+//            return action.actionName
+//        }
         
         let prefs = UserDefaults.standard
         

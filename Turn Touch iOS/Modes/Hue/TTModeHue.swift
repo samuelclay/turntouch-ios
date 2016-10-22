@@ -1340,7 +1340,7 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate {
         if actionRoom == nil && unseenRooms.count > 0 {
             let unseenRoom = unseenRooms[0]
             seenRooms.append(unseenRoom.identifier)
-            print(" ---> Setting \(actionName) room to \(unseenRoom.name)/\(unseenRoom.identifier)")
+            print(" ---> Setting \(actionName)-\(appDelegate().modeMap.directionName(direction)) room to \(unseenRoom.name)/\(unseenRoom.identifier)")
             self.changeActionOption(TTModeHueConstants.kHueRoom, to: unseenRoom.identifier, direction: direction)
             self.changeActionOption(TTModeHueConstants.kHueSeenRooms, to: seenRooms, direction: direction)
         }
