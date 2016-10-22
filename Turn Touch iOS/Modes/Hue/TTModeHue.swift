@@ -516,6 +516,7 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate {
             latestBridge = bridge
             bridgesTried.append(savedBridge["serialNumber"]!)
             
+            print(" ---> Connecting to bridge: \(savedBridge)")
             if let username = savedBridge["username"] {
                 self.authenticateBridge(username: username)
             } else {
@@ -523,10 +524,12 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate {
                 bridgeAuthenticator = BridgeAuthenticator(bridge: bridge,
                                                           uniqueIdentifier: "TurnTouchHue#\(UIDevice.current.name)",
                                                           pollingInterval: 1,
-                                                          timeout: 30)
+                                                          timeout: 7)
                 bridgeAuthenticator.delegate = self
                 bridgeAuthenticator.start()
             }
+            
+            break
         }
         
         if !bridgeUntried {
@@ -721,13 +724,15 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate {
                          "UDN": latestBridge.UDN]
         if username != nil {
             newBridge["username"] = username
-        } else if oldBridge?["username"] != nil {
-            newBridge["username"] = oldBridge?["username"]
+        } else if let username = oldBridge?["username"] {
+            newBridge["username"] = username
         }
         foundBridges.insert(newBridge, at: 0)
         
         prefs.set(foundBridges, forKey: TTModeHueConstants.kHueSavedBridges)
         prefs.synchronize()
+        
+        print(" ---> Saved bridges (username: \(username)): \(foundBridges)")
     }
     
     func removeSavedBridge(serialNumber: String) {
