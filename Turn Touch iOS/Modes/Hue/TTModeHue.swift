@@ -126,6 +126,8 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate {
 //            notificationManager.register(self, with: #selector(self.buttonNotPressed(notification:)), forNotification: PUSHLINK_BUTTON_NOT_PRESSED_NOTIFICATION)
 //        }
         
+        NotificationCenter.default.addObserver(self, selector: #selector(self.receiveHeartbeat), name: NSNotification.Name(rawValue: ResourceCacheUpdateNotification.configUpdated.rawValue), object: nil)
+
         hueState = .connecting
         self.delegate?.changeState(hueState, mode:self, message:"Connecting...")
         
@@ -505,12 +507,18 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate {
             bridgeUntried = true
             latestBridge = bridge
             bridgesTried.append(savedBridge["serialNumber"]!)
-            bridgeAuthenticator = BridgeAuthenticator(bridge: bridge,
-                                                      uniqueIdentifier: "TurnTouchHue#\(UIDevice.current.name)",
-                                                      pollingInterval: 1,
-                                                      timeout: 30)
-            bridgeAuthenticator.delegate = self
-            bridgeAuthenticator.start()
+            
+            if let username = savedBridge["username"] {
+                self.authenticateBridge(username: username)
+            } else {
+                // New bridge hasn't been pushlinked yet
+                bridgeAuthenticator = BridgeAuthenticator(bridge: bridge,
+                                                          uniqueIdentifier: "TurnTouchHue#\(UIDevice.current.name)",
+                                                          pollingInterval: 1,
+                                                          timeout: 30)
+                bridgeAuthenticator.delegate = self
+                bridgeAuthenticator.start()
+            }
         }
         
         if !bridgeUntried {
@@ -608,17 +616,7 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate {
     // MARK: - Hue Authenticator
     
     func bridgeAuthenticator(_ authenticator: BridgeAuthenticator, didFinishAuthentication username: String) {
-            if hueState != .connected {
-                hueState = .connected
-                self.delegate?.changeState(hueState, mode: self, message: nil)
-                self.saveRecentBridge()
-                self.ensureScenes()
-                self.ensureRooms()
-                
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                    self.startHueHeartbeat(username: username)
-                }
-            }
+        self.authenticateBridge(username: username)
     }
     
     func bridgeAuthenticator(_ authenticator: BridgeAuthenticator, didFailWithError error: NSError) {
@@ -633,10 +631,56 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate {
         //        var dict = notification.userInfo!
         //        let progressPercentage: Int = (dict["progressPercentage"] as! Int)
         hueState = .pushlink
-        self.delegate?.changeState(hueState, mode: self, message: secondsLeft)
+        let progress = Int(secondsLeft * (100/30.0))
+        self.delegate?.changeState(hueState, mode: self, message: progress)
     }
     
-    func saveRecentBridge() {
+    func authenticateBridge(username: String) {
+        if hueState != .connected {
+            hueState = .connected
+            self.saveRecentBridge(username: username)
+            self.updateHueConfig()
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                self.startHueHeartbeat(username: username)
+            }
+        }
+    }
+    
+    func updateHueConfig() {
+        self.delegate?.changeState(hueState, mode: self, message: nil)
+        self.ensureScenes()
+        self.ensureRooms()
+    }
+    
+    func receiveHeartbeat() {
+        let cache = TTModeHue.hueSdk.resourceCache
+        
+        self.updateHueConfig()
+        
+        var waitingOn: [String] = []
+        if cache?.scenes == nil {
+            waitingOn.append("scenes")
+        }
+        if cache?.groups == nil {
+            waitingOn.append("groups")
+        }
+        if cache?.bridgeConfiguration == nil {
+            waitingOn.append("config")
+        }
+        if cache?.lights == nil {
+            waitingOn.append("lights")
+        }
+        
+        if waitingOn.count == 0 {
+            print(" ---> Done with heartbeat")
+            TTModeHue.hueSdk.stopHeartbeat()
+        } else {
+            print(" ---> Still waiting on \(waitingOn.joined(separator: ", "))")
+        }
+    }
+    
+    func saveRecentBridge(username: String? = nil) {
         let prefs = UserDefaults.standard
         
         guard let latestBridge = latestBridge else {
@@ -647,45 +691,52 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate {
         
         var foundBridges = prefs.array(forKey: TTModeHueConstants.kHueSavedBridges) as? [[String: String]] ?? []
         var oldIndex: Int = -1
+        var oldBridge: [String: String]?
         for (i, bridge) in foundBridges.enumerated() {
             if bridge["serialNumber"] == latestBridge.serialNumber {
                 oldIndex = i
+                oldBridge = bridge
             }
         }
         
         if oldIndex != -1 {
             foundBridges.remove(at: oldIndex)
         }
-        
-        foundBridges.insert(["ip": latestBridge.ip,
-                             "deviceType": latestBridge.deviceType,
-                             "friendlyName": latestBridge.friendlyName,
-                             "modelDescription": latestBridge.modelDescription,
-                             "modelName": latestBridge.modelName,
-                             "serialNumber": latestBridge.serialNumber,
-                             "UDN": latestBridge.UDN], at: 0)
+        var newBridge = ["ip": latestBridge.ip,
+                         "deviceType": latestBridge.deviceType,
+                         "friendlyName": latestBridge.friendlyName,
+                         "modelDescription": latestBridge.modelDescription,
+                         "modelName": latestBridge.modelName,
+                         "serialNumber": latestBridge.serialNumber,
+                         "UDN": latestBridge.UDN]
+        if username != nil {
+            newBridge["username"] = username
+        } else if oldBridge?["username"] != nil {
+            newBridge["username"] = oldBridge?["username"]
+        }
+        foundBridges.insert(newBridge, at: 0)
         
         prefs.set(foundBridges, forKey: TTModeHueConstants.kHueSavedBridges)
         prefs.synchronize()
     }
     
     func startHueHeartbeat(username: String) {
-        guard let bridgeConfig = TTModeHue.hueSdk.resourceCache?.bridgeConfiguration else {
-            print(" ---> Error: No bridge configuration...")
+        guard let latestBridge = latestBridge else {
+            print(" ---> Error: No latest bridge...")
             return
         }
         
-        let bridgeAccessConfig = BridgeAccessConfig(bridgeId: bridgeConfig.bridgeId,
-                                                    ipAddress: bridgeConfig.ipaddress!,
+        let bridgeAccessConfig = BridgeAccessConfig(bridgeId: latestBridge.serialNumber,
+                                                    ipAddress: latestBridge.ip,
                                                     username: username)
         
         TTModeHue.hueSdk.setBridgeAccessConfig(bridgeAccessConfig)
         TTModeHue.hueSdk.setLocalHeartbeatInterval(10, forResourceType: .lights)
         TTModeHue.hueSdk.setLocalHeartbeatInterval(10, forResourceType: .groups)
-        TTModeHue.hueSdk.setLocalHeartbeatInterval(10, forResourceType: .rules)
+//        TTModeHue.hueSdk.setLocalHeartbeatInterval(10, forResourceType: .rules)
         TTModeHue.hueSdk.setLocalHeartbeatInterval(10, forResourceType: .scenes)
-        TTModeHue.hueSdk.setLocalHeartbeatInterval(10, forResourceType: .schedules)
-        TTModeHue.hueSdk.setLocalHeartbeatInterval(10, forResourceType: .sensors)
+//        TTModeHue.hueSdk.setLocalHeartbeatInterval(10, forResourceType: .schedules)
+//        TTModeHue.hueSdk.setLocalHeartbeatInterval(10, forResourceType: .sensors)
         TTModeHue.hueSdk.setLocalHeartbeatInterval(10, forResourceType: .config)
         
         TTModeHue.hueSdk.startHeartbeat()
