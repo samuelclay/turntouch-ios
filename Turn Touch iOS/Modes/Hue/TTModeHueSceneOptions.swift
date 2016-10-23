@@ -54,7 +54,7 @@ class TTModeHueSceneOptions: TTOptionsDetailViewController, UITextFieldDelegate,
         let modeHue = self.mode as! TTModeHue
         modeHue.ensureRoomSelected(in: self.action.direction)
         
-        let roomSelected = self.action.optionValue(TTModeHueConstants.kHueRoom) as? String
+        var roomSelected = self.action.optionValue(TTModeHueConstants.kHueRoom) as? String
         var sceneSelected = self.action.optionValue(TTModeHueConstants.kHueScene) as? String
         var doubleSceneSelected = self.action.optionValue(TTModeHueConstants.kDoubleTapHueScene) as? String
 
@@ -65,31 +65,27 @@ class TTModeHueSceneOptions: TTOptionsDetailViewController, UITextFieldDelegate,
             return
         }
 
-//        if roomSelected == nil {
-//            self.action.changeActionOption(TTModeHueConstants.kHueRoom, to: roomSelected!)
-//        }
+        if roomSelected == nil {
+            for (_, room) in hueRooms {
+                roomSelected = room.identifier
+                self.action.changeActionOption(TTModeHueConstants.kHueRoom, to: roomSelected!)
+                break
+            }
+        }
 
         if sceneSelected == nil {
-            switch self.action.actionName {
-            case "TTModeHueSceneEarlyEvening":
-                sceneSelected = "TT-ee-1"
-            case "TTModeHueSceneLateEvening":
-                sceneSelected = "TT-le-1"
-            default:
-                sceneSelected = "TT-ee-1"
+            for (_, room) in hueRooms {
+                sceneSelected = "TT-ee-1-room-\(room.identifier)"
+                self.action.changeActionOption(TTModeHueConstants.kHueScene, to: sceneSelected!)
+                break
             }
-            self.action.changeActionOption(TTModeHueConstants.kHueScene, to: sceneSelected!)
         }
         if doubleSceneSelected == nil {
-            switch self.action.actionName {
-            case "TTModeHueSceneEarlyEvening":
-                doubleSceneSelected = "TT-ee-2"
-            case "TTModeHueSceneLateEvening":
-                doubleSceneSelected = "TT-le-2"
-            default:
-                doubleSceneSelected = "TT-ee-2"
+            for (_, room) in hueRooms {
+                doubleSceneSelected = "TT-ee-2-room-\(room.identifier)"
+                self.action.changeActionOption(TTModeHueConstants.kDoubleTapHueScene, to: doubleSceneSelected!)
+                break
             }
-            self.action.changeActionOption(TTModeHueConstants.kDoubleTapHueScene, to: doubleSceneSelected!)
         }
         
         var roomLights: [String] = []

@@ -1327,9 +1327,9 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate {
         
         // Cycle through action and batch actions, ensuring all have a room, single tap scene, and double tap, adding batch actions for rooms that aren't used
         let actionName = self.actionNameInDirection(direction)
-        let actionRoom = self.actionOptionValue(TTModeHueConstants.kHueRoom, actionName: actionName, direction: direction)
-        let actionScene = self.actionOptionValue(TTModeHueConstants.kHueScene, actionName: actionName, direction: direction)
-        let actionDouble = self.actionOptionValue(TTModeHueConstants.kDoubleTapHueScene, actionName: actionName, direction: direction)
+        var actionRoom = self.actionOptionValue(TTModeHueConstants.kHueRoom, actionName: actionName, direction: direction) as? String
+        let actionScene = self.actionOptionValue(TTModeHueConstants.kHueScene, actionName: actionName, direction: direction) as? String
+        let actionDouble = self.actionOptionValue(TTModeHueConstants.kDoubleTapHueScene, actionName: actionName, direction: direction) as? String
         var seenRooms: [String] = self.actionOptionValue(TTModeHueConstants.kHueSeenRooms, actionName: actionName, direction: direction) as? [String] ?? []
 
         var unseenRooms: [Group] = []
@@ -1345,6 +1345,7 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate {
         if actionRoom == nil && unseenRooms.count > 0 {
             let unseenRoom = unseenRooms[0]
             seenRooms.append(unseenRoom.identifier)
+            actionRoom = unseenRoom.identifier
             print(" ---> Setting \(actionName)-\(appDelegate().modeMap.directionName(direction)) room to \(unseenRoom.name)/\(unseenRoom.identifier)")
             self.changeActionOption(TTModeHueConstants.kHueRoom, to: unseenRoom.identifier, direction: direction)
             self.changeActionOption(TTModeHueConstants.kHueSeenRooms, to: seenRooms, direction: direction)
@@ -1383,14 +1384,54 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate {
             appDelegate().mainViewController.adjustBatchActions()
         }
 
-    
-        if actionScene == nil {
-            
+        // Assign default scenes for action
+        if actionScene == nil && actionRoom != nil {
+            if let scene = self.sceneDefault(actionName: actionName, singleTap: true) {
+                self.changeActionOption(TTModeHueConstants.kHueScene, to: "\(scene)-room-\(actionRoom!)", direction: direction)
+            }
         }
     
-        if actionDouble == nil {
-            
+        if actionDouble == nil && actionRoom != nil {
+            if let scene = self.sceneDefault(actionName: actionName, doubleTap: true) {
+                self.changeActionOption(TTModeHueConstants.kDoubleTapHueScene, to: "\(scene)-room-\(actionRoom!)", direction: direction)
+            }
         }
+        
+        // Assign default scenes for batch actions
+        for batchAction in appDelegate().modeMap.batchActions.batchActions(in: direction) {
+            if let roomIdentifier = self.batchActionOptionValue(batchAction, optionName: TTModeHueConstants.kHueRoom, direction: direction) as? String {
+                let singleScene = self.batchActionOptionValue(batchAction, optionName: TTModeHueConstants.kHueScene, direction: direction) as? String
+                if singleScene == nil {
+                    if let defaultScene = self.sceneDefault(actionName: actionName, singleTap: true) {
+                        self.changeActionOption(TTModeHueConstants.kHueScene, to: "\(defaultScene)-room-\(roomIdentifier)", direction: direction)
+                    }
+                }
+                
+                let doubleScene = self.batchActionOptionValue(batchAction, optionName: TTModeHueConstants.kDoubleTapHueScene, direction: direction) as? String
+                if doubleScene == nil {
+                    if let defaultScene = self.sceneDefault(actionName: actionName, doubleTap: true) {
+                        self.changeActionOption(TTModeHueConstants.kDoubleTapHueScene, to: "\(defaultScene)-room-\(roomIdentifier)", direction: direction)
+                    }
+                }
+            }
+        }
+    }
+    
+    func sceneDefault(actionName: String, singleTap: Bool = false, doubleTap: Bool = false) -> String? {
+        var scene: String?
+        switch actionName {
+        case "TTModeHueSceneEarlyEvening":
+            scene = doubleTap ? "TT-ee-2" : "TT-ee-1"
+        case "TTModeHueSceneLateEvening":
+            scene = doubleTap ? "TT-le-2" : "TT-le-1"
+        case "TTModeHueSceneMorning":
+            scene = doubleTap ? "TT-mo-2" : "TT-mo-1"
+        case "TTModeHueSceneNightLight":
+            scene = doubleTap ? "TT-nl-2" : "TT-nl-1"
+        default: break
+        }
+        
+        return scene
     }
     
 }
