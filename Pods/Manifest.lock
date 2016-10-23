@@ -53,7 +53,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   SwiftyHue:
-    :commit: 161bffd50131632de483955fa4f695c799574165
+    :commit: 76912c81c30ff22223a790de53514b1db62534cb
     :git: https://github.com/samuelclay/SwiftyHue.git
 
 SPEC CHECKSUMS:

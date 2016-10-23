@@ -37,7 +37,7 @@ enum TTHueRandomSaturation: Int {
 }
 
 let MAX_HUE: UInt32 = 65535
-let MAX_BRIGHTNESS: UInt32 = 255
+let MAX_BRIGHTNESS: UInt32 = 254
 let DEBUG_HUE = false
 
 struct TTModeHueConstants {
@@ -287,7 +287,7 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate {
     
     // MARK: Action methods
     
-    func runScene(sceneName: String, doubleTap: Bool, defaultIdentifier: String) {
+    func runScene(sceneName: String, doubleTap: Bool) {
         if TTModeHue.hueState != .connected {
             self.connectToBridge()
             return
@@ -295,70 +295,63 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate {
         
         let bridgeSendAPI = TTModeHue.hueSdk.bridgeSendAPI
         let cache = TTModeHue.hueSdk.resourceCache
-        var defaultScene: PartialScene?
-        var sceneIdentifier: String? = self.action.optionValue(doubleTap ? TTModeHueConstants.kDoubleTapHueScene : TTModeHueConstants.kHueScene) as? String
+        let sceneIdentifier: String? = self.action.optionValue(doubleTap ? TTModeHueConstants.kDoubleTapHueScene : TTModeHueConstants.kHueScene) as? String
         let roomIdentifier: String? = self.action.optionValue(TTModeHueConstants.kHueRoom) as? String
-        var scenes: Array<Dictionary<String, String>> = []
-        for (_, scene) in (cache?.scenes)! {
-            if scene.identifier == defaultIdentifier {
-                defaultScene = scene
+        var scenes: [[String: String]] = []
+        
+        if let hueScenes = cache?.scenes {
+            for (_, scene) in hueScenes {
+                scenes.append(["name": scene.name, "identifier": scene.identifier])
             }
-            scenes.append(["name": scene.name, "identifier": scene.identifier])
         }
         
         scenes = scenes.sorted { $0["name"]! < $1["name"]! }
         
-        if sceneIdentifier == nil || sceneIdentifier!.characters.count == 0 {
-            if let _defaultScene = defaultScene {
-                sceneIdentifier = _defaultScene.identifier
-            } else {
-                sceneIdentifier = scenes[0]["identifier"] // Last resort
+        if let sceneIdentifier = sceneIdentifier {
+            bridgeSendAPI.recallSceneWithIdentifier(sceneIdentifier, inGroupWithIdentifier: roomIdentifier ?? "0") { (errors: [Error]?) in
+                print(" ---> Scene change: \(sceneIdentifier) (\(errors))")
             }
-        }
-        
-        bridgeSendAPI.recallSceneWithIdentifier(sceneIdentifier!, inGroupWithIdentifier: roomIdentifier ?? "0") { (errors: [Error]?) in
-            print(" ---> Scene change: \(sceneIdentifier ?? "no identifier") (\(errors))")
         }
     }
     
     func runTTModeHueSceneEarlyEvening() {
-        self.runScene(sceneName: "TTModeHueSceneEarlyEvening", doubleTap: false, defaultIdentifier: "TT-ee-1")
+        self.runScene(sceneName: "TTModeHueSceneEarlyEvening", doubleTap: false)
     }
     
     func doubleRunTTModeHueSceneEarlyEvening() {
-        self.runScene(sceneName: "TTModeHueSceneEarlyEvening", doubleTap: true, defaultIdentifier: "TT-ee-2")
+        self.runScene(sceneName: "TTModeHueSceneEarlyEvening", doubleTap: true)
     }
     
     func runTTModeHueSceneLateEvening() {
-        self.runScene(sceneName: "TTModeHueSceneLateEvening", doubleTap: false, defaultIdentifier: "TT-le-1")
+        self.runScene(sceneName: "TTModeHueSceneLateEvening", doubleTap: false)
     }
     
     func doubleRunTTModeHueSceneLateEvening() {
-        self.runScene(sceneName: "TTModeHueSceneLateEvening", doubleTap: true, defaultIdentifier: "TT-le-2")
+        self.runScene(sceneName: "TTModeHueSceneLateEvening", doubleTap: true)
     }
     
     func runTTModeHueSceneMorning() {
-        self.runScene(sceneName: "TTModeHueSceneMorning", doubleTap: false, defaultIdentifier: "TT-mo-1")
+        self.runScene(sceneName: "TTModeHueSceneMorning", doubleTap: false)
     }
     
     func doubleRunTTModeHueSceneMorning() {
-        self.runScene(sceneName: "TTModeHueSceneMorning", doubleTap: true, defaultIdentifier: "TT-mo-2")
+        self.runScene(sceneName: "TTModeHueSceneMorning", doubleTap: true)
     }
     
     func runTTModeHueSceneNightLight() {
-        self.runScene(sceneName: "TTModeHueSceneNightLight", doubleTap: false, defaultIdentifier: "TT-nl-1")
+        self.runScene(sceneName: "TTModeHueSceneNightLight", doubleTap: false)
     }
     
     func doubleRunTTModeHueSceneNightLight() {
-        self.runScene(sceneName: "TTModeHueSceneNightLight", doubleTap: true, defaultIdentifier: "TT-nl-2")
+        self.runScene(sceneName: "TTModeHueSceneNightLight", doubleTap: true)
     }
     
     func runTTModeHueSceneCustom() {
-        self.runScene(sceneName: "TTModeHueSceneCustom", doubleTap: false, defaultIdentifier: "TT-ee-1")
+        self.runScene(sceneName: "TTModeHueSceneCustom", doubleTap: false)
     }
     
     func doubleRunTTModeHueSceneCustom() {
-        self.runScene(sceneName: "TTModeHueSceneCustom", doubleTap: true, defaultIdentifier: "TT-le-2")
+        self.runScene(sceneName: "TTModeHueSceneCustom", doubleTap: true)
     }
     
     func runTTModeHueOff() {
@@ -788,362 +781,14 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate {
         TTModeHue.hueSdk.startHeartbeat()
     }
     
-//    /**
-//     Notification receiver for successful local connection
-//     */
-//    func localConnection() {
-//        // Check current connection state
-//        self.checkConnectionState()
-//    }
-//    /**
-//     Notification receiver for failed local connection
-//     */
-//    func noLocalConnection() {
-//        // Check current connection state
-//        self.checkConnectionState()
-//    }
-//    
-//    /**
-//     Notification receiver for failed local authentication
-//     */
-//    func notAuthenticated() {
-//        self.perform(#selector(self.doAuthentication), with: nil, afterDelay: 0.5)
-//    }
-//
-//    /**
-//     Checks if we are currently connected to the bridge locally and if not, it will show an error when the error is not already shown.
-//     */
-//    func checkConnectionState() {
-//        if !TTModeHue.phHueSdk.localConnected() {
-////            self.showNoConnectionDialog()
-//            self.searchForBridgeLocal()
-//        } else {
-//            // One of the connections is made, remove popups and loading views
-//            if hueState != .connected {
-//                hueState = .connected
-//                self.delegate?.changeState(hueState, mode: self, message: nil)
-//                self.saveRecentBridge()
-//                self.ensureScenes()
-//                self.ensureRooms()
-//            }
-//        }
-//    }
-//    
-//    /**
-//     Shows the first no connection alert
-//     */
-//    func showNoConnectionDialog() {
-//        NSLog("Connection to bridge lost!")
-//        hueState = .notConnected
-//        self.delegate?.changeState(hueState, mode: self, message: "Connection to Hue bridge lost")
-//    }
-//    /**
-//     Shows the no bridges found alert
-//     */
-//    
-//    func showNoBridgesFoundDialog() {
-//        // Insert retry logic here
-//        NSLog("Could not find bridge!")
-//        hueState = .notConnected
-//        self.delegate?.changeState(hueState, mode: self, message: "Could not find any Hue bridges")
-//    }
-//    /**
-//     Shows the not authenticated alert
-//     */
-//    
-//    func showNotAuthenticatedDialog() {
-//        hueState = .notConnected
-//        self.delegate?.changeState(hueState, mode: self, message: "Pushlink button not pressed within 30 seconds")
-//        NSLog("Pushlink button not pressed within 30 sec!")
-//    }
-//    /**
-//     Search for bridges using UPnP and portal discovery, shows results to user or gives error when none found.
-//     */
-//    
-//    func searchForBridgeLocal(reset: Bool = false) {
-//        // In case if in pushlink loop
-//        TTModeHue.phHueSdk.cancelPushLinkAuthentication()
-//
-//        // Stop heartbeats
-//        self.disableLocalHeartbeat()
-//        // Start search
-//        hueState = .connecting
-//        self.delegate?.changeState(hueState, mode: self, message: "Searching for a Hue bridge...")
-//        
-//        // Add dispatch_once token
-//        let prefs = UserDefaults.standard
-//        var recentBridgeId = prefs.string(forKey: TTModeHueConstants.kHueRecentBridgeId)
-//        var recentBridgeIp = prefs.string(forKey: TTModeHueConstants.kHueRecentBridgeIp)
-//        if recentBridgeIp == nil {
-//            let cache = PHBridgeResourcesReader.readBridgeResourcesCache()
-//            recentBridgeIp = cache?.bridgeConfiguration?.ipaddress
-//            recentBridgeId = cache?.bridgeConfiguration?.bridgeId
-//        }
-//        if (reset || recentBridgeIp != nil) {
-//            if recentBridgeIp == nil || bridgesTried.contains(recentBridgeIp!) {
-////                // If can't connect to a specific bridge, take it off recent prefs.
-////                prefs.removeObject(forKey: TTModeHueConstants.kHueRecentBridgeId)
-////                prefs.removeObject(forKey: TTModeHueConstants.kHueRecentBridgeIp)
-////                prefs.synchronize()
-//
-//                if let foundBridges = prefs.array(forKey: TTModeHueConstants.kHueFoundBridges) as? [[String: String]] {
-//                    for foundBridge: [String: String] in foundBridges {
-//                        if !bridgesTried.contains(foundBridge["ipAddress"]!) {
-//                            print(" ---> Attempting connect to different Hue: \(foundBridge["ipAddress"]!)")
-//                            self.bridgeSelectedWithIpAddress(ipAddress: foundBridge["ipAddress"]!, andBridgeId: foundBridge["bridgeId"]!)
-//                            return
-//                        }
-//                    }
-//                }
-//            } else {
-//                print(" ---> Attempting connect to Hue: \(recentBridgeIp!)")
-//                self.bridgeSelectedWithIpAddress(ipAddress: recentBridgeIp!, andBridgeId: recentBridgeId!)
-//                return
-//            }
-//        }
-//        
-//        if self.bridgeToken == 0 {
-//            self.bridgeToken = 1
-//            print(" ---> No Hue bridge found, searching for bridges...")
-//            self.bridgeSearch = PHBridgeSearching(upnpSearch: true, andPortalSearch: true, andIpAddressSearch: true)
-//            self.bridgeSearch.startSearch(completionHandler: { (bridgesFound: [AnyHashable : Any]?) in
-//                /***************************************************
-//                 The search is complete, check whether we found a bridge
-//                 *****************************************************/
-//                // Check for results
-//                self.bridgesTried = []
-//                
-//                if let bridgeCount = bridgesFound?.count, bridgeCount > 0 {
-//                    self.hueState = .bridgeSelect
-//                    self.delegate?.changeState(self.hueState, mode: self, message: bridgesFound)
-//                } else {
-//                    /***************************************************
-//                     No bridge was found was found. Tell the user and offer to retry..
-//                     *****************************************************/
-//                    // No bridges were found, show this to the user
-//                    self.showNoBridgesFoundDialog()
-//                    self.delayReconnectToFoundBridges()
-//                }
-//                
-//                self.bridgeToken = 0
-//            })
-//        }
-//    }
-//    
-//    func delayReconnectToFoundBridges() {
-//        let prefs = UserDefaults.standard
-//        let foundBridges = prefs.array(forKey: TTModeHueConstants.kHueFoundBridges) as? [[String: String]]
-//        
-//        if let bridgeCount = foundBridges?.count, bridgeCount > 0 {
-//            // Try again if bridges known
-//            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(10), execute: {
-//                if self.hueState != .connected {
-//                    self.searchForBridgeLocal()
-//                }
-//            })
-//        }
-//    }
-//    
-//    func bridgeSelectedWithIpAddress(ipAddress: String, andBridgeId bridgeId: String) {
-//        print(" ---> Selected bridge: \(ipAddress) - \(bridgeId)")
-//        let prefs = UserDefaults.standard
-//        
-//        prefs.set(bridgeId, forKey: TTModeHueConstants.kHueRecentBridgeId)
-//        prefs.set(ipAddress, forKey: TTModeHueConstants.kHueRecentBridgeIp)
-//        prefs.synchronize()
-//        
-//        bridgesTried.append(ipAddress)
-//        
-//        hueState = .connecting
-//        self.delegate?.changeState(hueState, mode: self, message: "Connecting to Hue bridge...")
-//        TTModeHue.phHueSdk.setBridgeToUseWithId(bridgeId, ipAddress: ipAddress)
-//        
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-//            self.enableLocalHeartbeat()
-//        }
-//    }
-//    
-//    func saveRecentBridge() {
-//        bridgesTried = []
-//        
-//        let prefs = UserDefaults.standard
-//        if let recentBridgeId = prefs.object(forKey: TTModeHueConstants.kHueRecentBridgeId),
-//            let recentBridgeIp = prefs.object(forKey: TTModeHueConstants.kHueRecentBridgeIp) {
-//            var foundBridges = prefs.array(forKey: TTModeHueConstants.kHueFoundBridges) as? [[String: String]] ?? []
-//            let saved = foundBridges.contains(where: { (foundBridge) -> Bool in
-//                foundBridge["ipAddress"] == recentBridgeIp as? String
-//            })
-//            if !saved {
-//                foundBridges.append(["ipAddress": recentBridgeIp as! String, "bridgeId": recentBridgeId as! String])
-//                print(" ---> Saving new bridge: \(foundBridges)")
-//                prefs.set(foundBridges, forKey: TTModeHueConstants.kHueFoundBridges)
-//                prefs.synchronize()
-//            }
-//        }
-//
-//    }
-//    
-//    /**
-//     Starts the local heartbeat with a 10 second interval
-//     */
-//    func enableLocalHeartbeat() {
-//        /***************************************************
-//         The heartbeat processing collects data from the bridge
-//         so now try to see if we have a bridge already connected
-//         *****************************************************/
-//        let cache = PHBridgeResourcesReader.readBridgeResourcesCache()
-//        if cache?.bridgeConfiguration?.ipaddress != nil {
-//            // Enable heartbeat with interval of 10 seconds
-//            TTModeHue.phHueSdk.enableLocalConnection()
-//        } else {
-//            // Automaticly start searching for bridges
-//            self.searchForBridgeLocal()
-//        }
-//    }
-//    
-//    /**
-//     Stops the local heartbeat
-//     */
-//    func disableLocalHeartbeat() {
-//        TTModeHue.phHueSdk.disableLocalConnection()
-//    }
-//    
-//    /**
-//     Start the local authentication process
-//     */
-//    func doAuthentication() {
-//        // Disable heartbeats
-//        self.disableLocalHeartbeat()
-//
-//        /***************************************************
-//         To be certain that we own this bridge we must manually
-//         push link it. Here we display the view to do this.
-//         *****************************************************/
-//        hueState = .pushlink
-//        self.delegate?.changeState(hueState, mode: self, message: nil)
-//        
-//        /***************************************************
-//         Start the push linking process.
-//         *****************************************************/
-//        // Start pushlinking when the interface is shown
-//        self.startPushLinking()
-//    }
-//    
-//    func startPushLinking() {
-//        /***************************************************
-//         Set up the notifications for push linkng
-//         *****************************************************/
-//        // Register for notifications about pushlinking
-////        let phNotificationMgr: PHNotificationManager = PHNotificationManager.defaultManager()
-////        phNotificationMgr.deregisterObjectForAllNotifications(self)
-////        phNotificationMgr.registerObject(self, withSelector: #selector(self.authenticationSuccess),
-////                                         forNotification: PUSHLINK_LOCAL_AUTHENTICATION_SUCCESS_NOTIFICATION)
-////        phNotificationMgr.registerObject(self, withSelector: #selector(self.authenticationFailed),
-////                                         forNotification: PUSHLINK_LOCAL_AUTHENTICATION_FAILED_NOTIFICATION)
-////        phNotificationMgr.registerObject(self, withSelector: #selector(self.noLocalConnection),
-////                                         forNotification: PUSHLINK_NO_LOCAL_CONNECTION_NOTIFICATION)
-////        phNotificationMgr.registerObject(self, withSelector: #selector(self.noLocalBridge),
-////                                         forNotification: PUSHLINK_NO_LOCAL_BRIDGE_KNOWN_NOTIFICATION)
-////        phNotificationMgr.registerObject(self, withSelector: #selector(self.buttonNotPressed(_:)),
-////                                         forNotification: PUSHLINK_BUTTON_NOT_PRESSED_NOTIFICATION)
-//        // Call to the hue SDK to start pushlinking process
-//        /***************************************************
-//         Call the SDK to start Push linking.
-//         The notifications sent by the SDK will confirm success
-//         or failure of push linking
-//         *****************************************************/
-//        TTModeHue.phHueSdk.startPushlinkAuthentication()
-//    }
-//    /**
-//     Notification receiver which is called when the pushlinking was successful
-//     */
-//    
-//    func authenticationSuccess() {
-//        /***************************************************
-//         The notification PUSHLINK_LOCAL_AUTHENTICATION_SUCCESS_NOTIFICATION
-//         was received. We have confirmed the bridge.
-//         De-register for notifications and call
-//         pushLinkSuccess on the delegate
-//         *****************************************************/
-//        // Deregister for all notifications
-////        PHNotificationManager.defaultManager().deregisterObjectForAllNotifications(self)
-//        hueState = .connected
-//        self.delegate?.changeState(hueState, mode: self, message: nil)
-//        self.saveRecentBridge()
-//        self.disableLocalHeartbeat()
-//        // Start local heartbeat
-//        self.perform(#selector(self.enableLocalHeartbeat), with: nil, afterDelay: 1)
-//    }
-//    /**
-//     Notification receiver which is called when the pushlinking failed because the time limit was reached
-//     */
-//    
-//    func authenticationFailed() {
-//        // Deregister for all notifications
-////        PHNotificationManager.defaultManager().deregisterObjectForAllNotifications(self)
-//        // Inform delegate
-//        self.pushlinkFailed(error: PHError(domain: SDK_ERROR_DOMAIN, code: Int(PUSHLINK_TIME_LIMIT_REACHED.rawValue), userInfo: [
-//            NSLocalizedDescriptionKey : "Authentication failed: time limit reached."
-//        ]))
-//    }
-//    /**
-//     Notification receiver which is called when the pushlinking failed because we do not know the address of the local bridge
-//     */
-//    
-//    func noLocalBridge() {
-//        print(" No local bridge!!")
-//        // Deregister for all notifications
-////        PHNotificationManager.defaultManager().deregisterObjectForAllNotifications(self)
-//        // Inform delegate
-//        self.pushlinkFailed(error: PHError(domain: SDK_ERROR_DOMAIN, code: Int(PUSHLINK_NO_LOCAL_BRIDGE.rawValue), userInfo: [
-//            NSLocalizedDescriptionKey : "Authentication failed: No local bridge found."
-//        ]))
-//    }
-//    /**
-//     This method is called when the pushlinking is still ongoing but no button was pressed yet.
-//     @param notification The notification which contains the pushlinking percentage which has passed.
-//     */
-//    
-//    func buttonNotPressed(notification: NSNotification) {
-//        // Update status bar with percentage from notification
-//        var dict = notification.userInfo!
-//        let progressPercentage: Int = (dict["progressPercentage"] as! Int)
-//        hueState = .pushlink
-//        self.delegate?.changeState(hueState, mode: self, message: progressPercentage)
-//    }
-//    
-//    /**
-//     Delegate method for PHBridgePushLinkViewController which is invoked if the pushlinking was not successfull
-//     */
-//    
-//    func pushlinkFailed(error: PHError) {
-//        TTModeHue.phHueSdk.cancelPushLinkAuthentication()
-//        // Check which error occured
-//        if error.code == Int(PUSHLINK_NO_CONNECTION.rawValue) {
-//            // No local connection to bridge
-//            self.noLocalConnection()
-//            // Start local heartbeat (to see when connection comes back)
-//            self.perform(#selector(self.enableLocalHeartbeat), with: nil, afterDelay: 1)
-//        }
-//        else {
-//            // Retry:
-//            // self.doAuthentication()
-//            
-//            // Bridge button not pressed in time
-//            self.disableLocalHeartbeat()
-//            self.showNotAuthenticatedDialog()
-//            self.searchForBridgeLocal()
-//        }
-//    }
-
     // MARK: - Scenes and Rooms
     
     func ensureScenes(force: Bool = false) {
         let bridgeSendAPI = TTModeHue.hueSdk.bridgeSendAPI
         let cache = TTModeHue.hueSdk.resourceCache
         
-        guard let scenes = cache?.scenes, let lights = cache?.lights else {
-            print(" ---> Scenes/lights not ready yet")
+        guard let scenes = cache?.scenes, let lights = cache?.lights, let rooms = cache?.groups else {
+            print(" ---> Scenes/lights/rooms not ready yet for scene creation")
             return
         }
         
@@ -1153,74 +798,35 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate {
             foundScenes.append(scene.identifier)
         }
         
-//        // Scene: All Lights Off
-//        if !foundScenes.contains("TT-all-off") || force {
-//            let scene = PartialScene(json: <#T##JSON#>)
-//            scene.
-//            scene.name = "All Lights Off"
-//            scene.identifier = "TT-all-off"
-//            scene.lightIdentifiers = cache?.lights.map { (_, value) in (value as! PHLight).identifier! }
-//            bridgeSendAPI.saveScene(withCurrentLightStates: scene, completionHandler: {(errors) in
-//                print("Hue:SceneOff scene: \(errors)")
-//                for (_, value) in (cache?.lights)! {
-//                    let light = value as! PHLight
-//                    let lightState: PHLightState = light.lightState
-//                    lightState.on = NSNumber(booleanLiteral: true)
-//                    lightState.alert = PHLightAlertMode.init(0)
-//                    bridgeSendAPI.save(lightState, forLightIdentifier: light.identifier, inSceneWithIdentifier: scene.identifier, completionHandler: {(errors) in
-//                        print("Hue:SceneOff light: \(errors)")
-//                        self.delegate?.changeState(self.hueState, mode: self, message: nil)
-//                    })
-//                }
-//            })
-//        }
-//        
-//        if !foundScenes.contains("TT-loop") || force {
-//            let scene: PHScene = PHScene()
-//            scene.name = "Color loop"
-//            scene.identifier = "TT-loop"
-//            scene.lightIdentifiers = cache?.lights.map { (_, value) in (value as! PHLight).identifier! }
-//            bridgeSendAPI.saveScene(withCurrentLightStates: scene, completionHandler: {(errors) in
-////                print("Hue:Loop scene: \(errors)")
-//                for (_, value) in (cache?.lights)! {
-//                    let light = value as! PHLight
-//                    let lightState: PHLightState = PHLightState()
-//                    lightState.on = NSNumber(booleanLiteral: true)
-//                    lightState.alert = PHLightAlertMode.init(0)
-//                    lightState.effect = EFFECT_COLORLOOP
-//                    bridgeSendAPI.save(lightState, forLightIdentifier: light.identifier, inSceneWithIdentifier: scene.identifier, completionHandler: {(errors) in
-////                        print("Hue:Loop light: \(errors)")
-//                        self.delegate?.changeState(self.hueState, mode: self, message: nil)
-//                    })
-//                }
-//            })
-//        }
-//        
-//        if !foundScenes.contains("TT-ee-1") || force {
-//            let scene: PHScene = PHScene()
-//            scene.name = "Early Evening"
-//            scene.identifier = "TT-ee-1"
-//            scene.lightIdentifiers = cache?.lights.map { (_, value) in (value as! PHLight).identifier! }
-//            bridgeSendAPI.saveScene(withCurrentLightStates: scene, completionHandler: {(errors) in
-////                print("Hue:EE1 scene: \(errors)")
-//                for (_, value) in (cache?.lights)! {
-//                    let light = value as! PHLight
-//                    let lightState = PHLightState()
-//                    lightState.on = NSNumber(booleanLiteral: true)
-//                    lightState.alert = PHLightAlertMode.init(0)
-//                    let point = PHUtilities.calculateXY(UIColor(red: 235/255.0, green: 206/255.0, blue: 146/255.0, alpha: 1), forModel: light.modelNumber)
-//                    lightState.x = NSNumber(value: Float(point.x))
-//                    lightState.y = NSNumber(value: Float(point.y))
-//                    lightState.brightness = NSNumber(value: Int(MAX_BRIGHTNESS))
-//                    lightState.saturation = NSNumber(value: Int(MAX_BRIGHTNESS))
-//                    bridgeSendAPI.save(lightState, forLightIdentifier: light.identifier, inSceneWithIdentifier: scene.identifier, completionHandler: {(errors) in
-////                        print("Hue:EE1 scene: \(errors)")
-//                        self.delegate?.changeState(self.hueState, mode: self, message: nil)
-//                    })
-//                }
-//            })
-//        }
-//        
+        return // Don't execute below until it's ready. Turns out you can't create your own scene identifiers anymore
+        
+        for (_, room) in rooms {
+            let sceneIdentifier = "TT-ee-1-room-\(room.identifier)"
+            let roomLights = room.lightIdentifiers ?? []
+            if !foundScenes.contains(sceneIdentifier) || force {
+                bridgeSendAPI.removeSceneWithId(sceneIdentifier, completionHandler: { (errors) in
+                    bridgeSendAPI.createSceneWithName("Early Evening", includeLightIds: roomLights, completionHandler: { (errors) in
+                        print(" ---> Created scene EE1: \(sceneIdentifier) [\(roomLights)]")
+                        for (_, light) in lights {
+                            if !roomLights.contains(light.identifier) {
+                                continue
+                            }
+                            var lightState = LightState()
+                            lightState.on = true
+                            let point = HueUtilities.calculateXY(UIColor(red: 235/255.0, green: 206/255.0, blue: 146/255.0, alpha: 1), forModel: light.modelId)
+                            lightState.xy = [Float(point.x), Float(point.y)]
+                            lightState.brightness = Int(MAX_BRIGHTNESS)
+                            lightState.saturation = Int(MAX_BRIGHTNESS)
+                            bridgeSendAPI.updateLightStateInScene(sceneIdentifier, lightIdentifier: light.identifier, withLightState: lightState, completionHandler: { (errors) in
+                                print("Hue:EE1 scene in room \(sceneIdentifier)/\(light.identifier): \(errors)")
+                                self.delegate?.changeState(TTModeHue.hueState, mode: self, message: nil)
+                            })
+                        }
+                    })
+                })
+            }
+        }
+
 //        if !foundScenes.contains("TT-ee-2") || force {
 //            let scene: PHScene = PHScene()
 //            scene.name = "Early Evening 2"
@@ -1308,7 +914,49 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate {
 //                }
 //            })
 //        }
-        
+//
+//        if !foundScenes.contains("TT-all-off") || force {
+//            let scene = PartialScene(json: <#T##JSON#>)
+//            scene.
+//            scene.name = "All Lights Off"
+//            scene.identifier = "TT-all-off"
+//            scene.lightIdentifiers = cache?.lights.map { (_, value) in (value as! PHLight).identifier! }
+//            bridgeSendAPI.saveScene(withCurrentLightStates: scene, completionHandler: {(errors) in
+//                print("Hue:SceneOff scene: \(errors)")
+//                for (_, value) in (cache?.lights)! {
+//                    let light = value as! PHLight
+//                    let lightState: PHLightState = light.lightState
+//                    lightState.on = NSNumber(booleanLiteral: true)
+//                    lightState.alert = PHLightAlertMode.init(0)
+//                    bridgeSendAPI.save(lightState, forLightIdentifier: light.identifier, inSceneWithIdentifier: scene.identifier, completionHandler: {(errors) in
+//                        print("Hue:SceneOff light: \(errors)")
+//                        self.delegate?.changeState(self.hueState, mode: self, message: nil)
+//                    })
+//                }
+//            })
+//        }
+//
+//        if !foundScenes.contains("TT-loop") || force {
+//            let scene: PHScene = PHScene()
+//            scene.name = "Color loop"
+//            scene.identifier = "TT-loop"
+//            scene.lightIdentifiers = cache?.lights.map { (_, value) in (value as! PHLight).identifier! }
+//            bridgeSendAPI.saveScene(withCurrentLightStates: scene, completionHandler: {(errors) in
+////                print("Hue:Loop scene: \(errors)")
+//                for (_, value) in (cache?.lights)! {
+//                    let light = value as! PHLight
+//                    let lightState: PHLightState = PHLightState()
+//                    lightState.on = NSNumber(booleanLiteral: true)
+//                    lightState.alert = PHLightAlertMode.init(0)
+//                    lightState.effect = EFFECT_COLORLOOP
+//                    bridgeSendAPI.save(lightState, forLightIdentifier: light.identifier, inSceneWithIdentifier: scene.identifier, completionHandler: {(errors) in
+////                        print("Hue:Loop light: \(errors)")
+//                        self.delegate?.changeState(self.hueState, mode: self, message: nil)
+//                    })
+//                }
+//            })
+//        }
+
     }
     
     func ensureRooms() {
