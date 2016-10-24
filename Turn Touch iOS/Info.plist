@@ -35,6 +35,8 @@
 	<string>Turn Touch uses Bluetooth to connect to your remotes</string>
 	<key>NSCameraUsageDescription</key>
 	<string>The Turn Touch camera app uses the camera to take photos</string>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>The Turn Touch music app uses your library to control playback</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>Location is sparingly used to keep your remote always connected</string>
 	<key>NSMicrophoneUsageDescription</key>

@@ -22,6 +22,10 @@ class TTModeHueConnecting: TTOptionsDetailViewController {
         // Do any additional setup after loading the view.
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        appDelegate().mainViewController.scrollToBottom()
+    }
+
     func setConnectingWithMessage(_ message: String?) {
         var m = message
         if message == nil {

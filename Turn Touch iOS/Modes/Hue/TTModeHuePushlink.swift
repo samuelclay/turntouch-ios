@@ -19,6 +19,10 @@ class TTModeHuePushlink: TTOptionsDetailViewController {
 
         // Do any additional setup after loading the view.
     }
+
+    override func viewDidAppear(_ animated: Bool) {
+        appDelegate().mainViewController.scrollToBottom()
+    }
     
     func setProgress(_ progressPercentage: Int?) {
         if progressPercentage != nil {

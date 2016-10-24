@@ -28,9 +28,15 @@ class TTModeHueBridge: TTOptionsDetailViewController, UITableViewDelegate, UITab
         
         tableHeightConstraint.constant = CGFloat(self.bridgesFound.count * Int(height))
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
         self.setBridges(self.modeHue.foundBridges)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        appDelegate().mainViewController.scrollToBottom()
     }
     
     func setBridges(_ foundBridges: [HueBridge]) {
