@@ -38,7 +38,7 @@ enum TTHueRandomSaturation: Int {
 
 let MAX_HUE: UInt32 = 65535
 let MAX_BRIGHTNESS: UInt32 = 254
-let DEBUG_HUE = false
+let DEBUG_HUE = true
 
 struct TTModeHueConstants {
     static let kRandomColors: String = "randomColors"
@@ -68,6 +68,7 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate {
     static var hueSdk: SwiftyHue!
     static var reachability: Reachability!
     static var hueState: TTHueState = TTHueState.notConnected
+    static var sceneCreationCounter: Int = 0
 //    var bridgeSearch: PHBridgeSearching!
     var bridgeFinder: BridgeFinder!
     var bridgeAuthenticator: BridgeAuthenticator!
@@ -297,15 +298,6 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate {
         let cache = TTModeHue.hueSdk.resourceCache
         let sceneIdentifier: String? = self.action.optionValue(doubleTap ? TTModeHueConstants.kDoubleTapHueScene : TTModeHueConstants.kHueScene) as? String
         let roomIdentifier: String? = self.action.optionValue(TTModeHueConstants.kHueRoom) as? String
-        var scenes: [[String: String]] = []
-        
-        if let hueScenes = cache?.scenes {
-            for (_, scene) in hueScenes {
-                scenes.append(["name": scene.name, "identifier": scene.identifier])
-            }
-        }
-        
-        scenes = scenes.sorted { $0["name"]! < $1["name"]! }
         
         if let sceneIdentifier = sceneIdentifier {
             bridgeSendAPI.recallSceneWithIdentifier(sceneIdentifier, inGroupWithIdentifier: roomIdentifier ?? "0") { (errors: [Error]?) in
@@ -656,7 +648,7 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate {
         if TTModeHue.hueState != .connected {
             TTModeHue.hueState = .connected
             self.saveRecentBridge(username: username)
-            self.updateHueConfig()
+            self.receiveHeartbeat()
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                 self.startHueHeartbeat(username: username)
@@ -668,28 +660,29 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate {
         self.delegate?.changeState(TTModeHue.hueState, mode: self, message: nil)
         self.ensureScenes()
         self.ensureRooms()
+        self.ensureScenesSelected()
     }
     
     func receiveHeartbeat() {
         let cache = TTModeHue.hueSdk.resourceCache
         
-        self.updateHueConfig()
-        
         var waitingOn: [String] = []
-        if cache?.scenes == nil {
+        if cache?.scenes == nil || cache?.scenes.count == 0 {
             waitingOn.append("scenes")
         }
-        if cache?.groups == nil {
+        if cache?.groups == nil || cache?.groups.count == 0 {
             waitingOn.append("groups")
         }
         if cache?.bridgeConfiguration == nil {
             waitingOn.append("config")
         }
-        if cache?.lights == nil {
+        if cache?.lights == nil || cache?.lights.count == 0 {
             waitingOn.append("lights")
         }
         
         if waitingOn.count == 0 {
+            self.updateHueConfig()
+
             if DEBUG_HUE {
                 print(" ---> Done with heartbeat")
             }
@@ -791,6 +784,14 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate {
             print(" ---> Scenes/lights/rooms not ready yet for scene creation")
             return
         }
+        if scenes.count == 0 {
+            print(" ---> Scenes not counted yet")
+            return
+        }
+        if TTModeHue.sceneCreationCounter > 0 {
+            print(" ---> Not ensuring scenes, already on it")
+            return
+        }
         
         // Collect scene ids to check against
         var foundScenes: [String] = []
@@ -798,33 +799,47 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate {
             foundScenes.append(scene.identifier)
         }
         
-        return // Don't execute below until it's ready. Turns out you can't create your own scene identifiers anymore
-        
         for (_, room) in rooms {
-            let sceneIdentifier = "TT-ee-1-room-\(room.identifier)"
+            let sceneIdentifier = self.sceneForAction("TTModeHueSceneEarlyEvening", actionRoom: room.identifier, moment: .button_MOMENT_PRESSUP)
             let roomLights = room.lightIdentifiers ?? []
-            if !foundScenes.contains(sceneIdentifier) || force {
-                bridgeSendAPI.removeSceneWithId(sceneIdentifier, completionHandler: { (errors) in
-                    bridgeSendAPI.createSceneWithName("Early Evening", includeLightIds: roomLights, completionHandler: { (errors) in
-                        print(" ---> Created scene EE1: \(sceneIdentifier) [\(roomLights)]")
-                        for (_, light) in lights {
-                            if !roomLights.contains(light.identifier) {
-                                continue
-                            }
-                            var lightState = LightState()
-                            lightState.on = true
-                            let point = HueUtilities.calculateXY(UIColor(red: 235/255.0, green: 206/255.0, blue: 146/255.0, alpha: 1), forModel: light.modelId)
-                            lightState.xy = [Float(point.x), Float(point.y)]
-                            lightState.brightness = Int(MAX_BRIGHTNESS)
-                            lightState.saturation = Int(MAX_BRIGHTNESS)
-                            bridgeSendAPI.updateLightStateInScene(sceneIdentifier, lightIdentifier: light.identifier, withLightState: lightState, completionHandler: { (errors) in
-                                print("Hue:EE1 scene in room \(sceneIdentifier)/\(light.identifier): \(errors)")
-                                self.delegate?.changeState(TTModeHue.hueState, mode: self, message: nil)
-                            })
-                        }
-                    })
-                })
+            if sceneIdentifier != nil {
+                if foundScenes.contains(sceneIdentifier!) {
+                    if !force {
+                        continue
+                    }
+                }
+            } else {
+                print(" ---> Scene not found: EE1 [\(roomLights)] \(foundScenes)")
             }
+            
+            let sceneTitle = self.titleForAction("TTModeHueSceneEarlyEvening", buttonMoment: .button_MOMENT_PRESSUP)
+            TTModeHue.sceneCreationCounter += 1
+            bridgeSendAPI.createSceneWithName(sceneTitle, includeLightIds: roomLights, completionHandler: { (sceneIdentifier, errors) in
+                TTModeHue.sceneCreationCounter -= 1
+                guard let sceneIdentifier = sceneIdentifier else {
+                    print(" ---> Error: missing scene identifier")
+                    return
+                }
+                print(" ---> Created scene \(sceneTitle): [\(roomLights)] \(sceneIdentifier)")
+                
+                TTModeHue.hueSdk.startHeartbeat()
+
+                for (_, light) in lights {
+                    if !roomLights.contains(light.identifier) {
+                        continue
+                    }
+                    var lightState = LightState()
+                    lightState.on = true
+                    let point = HueUtilities.calculateXY(UIColor(red: 235/255.0, green: 206/255.0, blue: 146/255.0, alpha: 1), forModel: light.modelId)
+                    lightState.xy = [Float(point.x), Float(point.y)]
+                    lightState.brightness = Int(MAX_BRIGHTNESS)
+                    lightState.saturation = Int(MAX_BRIGHTNESS)
+                    bridgeSendAPI.updateLightStateInScene(sceneIdentifier, lightIdentifier: light.identifier, withLightState: lightState, completionHandler: { (errors) in
+                        print("Hue:EE1 scene in room \(sceneIdentifier)/\(light.identifier): \(errors)")
+                        self.delegate?.changeState(TTModeHue.hueState, mode: self, message: nil)
+                    })
+                }
+            })
         }
 
 //        if !foundScenes.contains("TT-ee-2") || force {
@@ -972,20 +987,24 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate {
         }
         
         let cache = TTModeHue.hueSdk.resourceCache
+        guard let rooms = cache?.groups else {
+            print(" ---> Rooms not ready yet for room creation")
+            return
+        }
+        if rooms.count == 0 {
+            print(" ---> Rooms not counted yet for room creation")
+            return
+        }
         
         // Cycle through action and batch actions, ensuring all have a room, single tap scene, and double tap, adding batch actions for rooms that aren't used
         let actionName = self.actionNameInDirection(direction)
         var actionRoom = self.actionOptionValue(TTModeHueConstants.kHueRoom, actionName: actionName, direction: direction) as? String
-        let actionScene = self.actionOptionValue(TTModeHueConstants.kHueScene, actionName: actionName, direction: direction) as? String
-        let actionDouble = self.actionOptionValue(TTModeHueConstants.kDoubleTapHueScene, actionName: actionName, direction: direction) as? String
         var seenRooms: [String] = self.actionOptionValue(TTModeHueConstants.kHueSeenRooms, actionName: actionName, direction: direction) as? [String] ?? []
 
         var unseenRooms: [Group] = []
-        if let rooms = cache?.groups {
-            for (_, room) in rooms {
-                if !seenRooms.contains(room.identifier) {
-                    unseenRooms.append(room)
-                }
+        for (_, room) in rooms {
+            if !seenRooms.contains(room.identifier) {
+                unseenRooms.append(room)
             }
         }
         
@@ -1003,7 +1022,7 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate {
         for batchAction in appDelegate().modeMap.batchActions.batchActions(in: direction) {
             if let roomIdentifier = self.batchActionOptionValue(batchAction, optionName: TTModeHueConstants.kHueRoom, direction: direction) as? String {
                 if !seenRooms.contains(roomIdentifier) {
-                    if let room = cache?.groups.first(where: { $1.identifier == roomIdentifier }) {
+                    if let room = rooms.first(where: { $1.identifier == roomIdentifier }) {
                         print(" ---> Already have room \(room.value.name)/\(room.value.identifier) in batch action")
                         seenRooms.append(room.value.identifier)
                         self.changeActionOption(TTModeHueConstants.kHueSeenRooms, to: seenRooms, direction: direction)
@@ -1031,55 +1050,84 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate {
                                          direction: self.modeDirection, actionDirection: direction)
             appDelegate().mainViewController.adjustBatchActions()
         }
-
-        // Assign default scenes for action
-        if actionScene == nil && actionRoom != nil {
-            if let scene = self.sceneDefault(actionName: actionName, singleTap: true) {
-                self.changeActionOption(TTModeHueConstants.kHueScene, to: "\(scene)-room-\(actionRoom!)", direction: direction)
-            }
-        }
+    }
     
-        if actionDouble == nil && actionRoom != nil {
-            if let scene = self.sceneDefault(actionName: actionName, doubleTap: true) {
-                self.changeActionOption(TTModeHueConstants.kDoubleTapHueScene, to: "\(scene)-room-\(actionRoom!)", direction: direction)
+    func ensureScenesSelected() {
+        for direction: TTModeDirection in [.north, .east, .west, .south] {
+            let actionName = self.actionNameInDirection(direction)
+            if !actionName.contains("Scene") {
+                continue
             }
-        }
-        
-        // Assign default scenes for batch actions
-        for batchAction in appDelegate().modeMap.batchActions.batchActions(in: direction) {
-            if let roomIdentifier = self.batchActionOptionValue(batchAction, optionName: TTModeHueConstants.kHueRoom, direction: direction) as? String {
-                let singleScene = self.batchActionOptionValue(batchAction, optionName: TTModeHueConstants.kHueScene, direction: direction) as? String
-                if singleScene == nil {
-                    if let defaultScene = self.sceneDefault(actionName: actionName, singleTap: true) {
-                        self.changeActionOption(TTModeHueConstants.kHueScene, to: "\(defaultScene)-room-\(roomIdentifier)", direction: direction)
-                    }
+            guard let actionRoom = self.actionOptionValue(TTModeHueConstants.kHueRoom, actionName: actionName, direction: direction) as? String else {
+                print(" ---> ensureScenesSelected not ready yet, no room selected")
+                continue
+            }
+            let actionScene = self.actionOptionValue(TTModeHueConstants.kHueScene, actionName: actionName, direction: direction) as? String
+            let actionDouble = self.actionOptionValue(TTModeHueConstants.kDoubleTapHueScene, actionName: actionName, direction: direction) as? String
+
+            // Assign default scenes for action
+            if actionScene == nil {
+                if let scene = self.sceneForAction(actionName, actionRoom: actionRoom, moment: .button_MOMENT_PRESSUP) {
+                    self.changeActionOption(TTModeHueConstants.kHueScene, to: scene, direction: direction)
                 }
-                
-                let doubleScene = self.batchActionOptionValue(batchAction, optionName: TTModeHueConstants.kDoubleTapHueScene, direction: direction) as? String
-                if doubleScene == nil {
-                    if let defaultScene = self.sceneDefault(actionName: actionName, doubleTap: true) {
-                        self.changeActionOption(TTModeHueConstants.kDoubleTapHueScene, to: "\(defaultScene)-room-\(roomIdentifier)", direction: direction)
+            }
+            
+            if actionDouble == nil {
+                if let scene = self.sceneForAction(actionName, actionRoom: actionRoom, moment: .button_MOMENT_DOUBLE) {
+                    self.changeActionOption(TTModeHueConstants.kDoubleTapHueScene, to: scene, direction: direction)
+                }
+            }
+            
+            // Assign default scenes for batch actions
+            for batchAction in appDelegate().modeMap.batchActions.batchActions(in: direction) {
+                if !batchAction.actionName.contains("Scene") {
+                    continue
+                }
+                if let roomIdentifier = self.batchActionOptionValue(batchAction, optionName: TTModeHueConstants.kHueRoom, direction: direction) as? String {
+                    let singleScene = self.batchActionOptionValue(batchAction, optionName: TTModeHueConstants.kHueScene, direction: direction) as? String
+                    if singleScene == nil {
+                        if let scene = self.sceneForAction(batchAction.actionName, actionRoom: roomIdentifier, moment: .button_MOMENT_PRESSUP) {
+                            self.changeBatchActionOption(batchAction.batchActionKey!, optionName: TTModeHueConstants.kHueScene,
+                                                         to: scene, direction: batchAction.mode.modeDirection, actionDirection: direction)
+                        }
+                    }
+                    
+                    let doubleScene = self.batchActionOptionValue(batchAction, optionName: TTModeHueConstants.kDoubleTapHueScene, direction: direction) as? String
+                    if doubleScene == nil {
+                        if let scene = self.sceneForAction(batchAction.actionName, actionRoom: roomIdentifier, moment: .button_MOMENT_DOUBLE) {
+                            self.changeBatchActionOption(batchAction.batchActionKey!, optionName: TTModeHueConstants.kDoubleTapHueScene,
+                                                         to: scene, direction: batchAction.mode.modeDirection, actionDirection: direction)
+                        }
                     }
                 }
             }
         }
     }
     
-    func sceneDefault(actionName: String, singleTap: Bool = false, doubleTap: Bool = false) -> String? {
-        var scene: String?
-        switch actionName {
-        case "TTModeHueSceneEarlyEvening":
-            scene = doubleTap ? "TT-ee-2" : "TT-ee-1"
-        case "TTModeHueSceneLateEvening":
-            scene = doubleTap ? "TT-le-2" : "TT-le-1"
-        case "TTModeHueSceneMorning":
-            scene = doubleTap ? "TT-mo-2" : "TT-mo-1"
-        case "TTModeHueSceneNightLight":
-            scene = doubleTap ? "TT-nl-2" : "TT-nl-1"
-        default: break
+    func sceneForAction(_ actionName: String, actionRoom: String, moment: TTButtonMoment) -> String? {
+        let sceneTitle = self.titleForAction(actionName, buttonMoment: moment)
+        guard let scenes = TTModeHue.hueSdk.resourceCache?.scenes,
+              let rooms = TTModeHue.hueSdk.resourceCache?.groups else {
+            return nil
         }
         
-        return scene
+        var roomLights: [String]?
+        for (_, room) in rooms {
+            if room.identifier == actionRoom {
+                roomLights = room.lightIdentifiers
+            }
+        }
+        
+        for (_, scene) in scenes {
+            if let sceneLights = scene.lightIdentifiers,
+                let roomLights = roomLights {
+                if scene.name == sceneTitle && Set(sceneLights) == Set(roomLights) {
+                    return scene.identifier
+                }
+            }
+        }
+        
+        return nil
     }
     
 }
