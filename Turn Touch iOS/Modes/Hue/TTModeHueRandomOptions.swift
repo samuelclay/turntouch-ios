@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TTModeHueRandomOptions: TTOptionsDetailViewController {
+class TTModeHueRandomOptions: TTModeHuePicker {
     
     @IBOutlet var segRandomColors: UISegmentedControl!
     @IBOutlet var segRandomBrightness: UISegmentedControl!
@@ -28,6 +28,11 @@ class TTModeHueRandomOptions: TTOptionsDetailViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.drawOptions()
+        self.drawScenes()
+    }
+    
+    func drawOptions() {
         segRandomColors.selectedSegmentIndex = self.action.optionValue(TTModeHueConstants.kRandomColors) as! Int
         segRandomBrightness.selectedSegmentIndex = self.action.optionValue(TTModeHueConstants.kRandomBrightness) as! Int
         segRandomSaturation.selectedSegmentIndex = self.action.optionValue(TTModeHueConstants.kRandomSaturation) as! Int
@@ -57,4 +62,5 @@ class TTModeHueRandomOptions: TTOptionsDetailViewController {
         self.action.changeActionOption(TTModeHueConstants.kDoubleTapRandomSaturation,
                                        to: NSNumber(value: doubleSegRandomSaturation.selectedSegmentIndex as Int))
     }
+
 }

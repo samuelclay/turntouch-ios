@@ -465,6 +465,33 @@ class TTMode : NSObject, TTModeProtocol {
         prefs.synchronize()
     }
     
+    func removeActionOption(_ optionName: String, direction: TTModeDirection?=nil) {
+        let prefs = UserDefaults.standard
+        let inspectingModeDirection = direction ?? appDelegate().modeMap.inspectingModeDirection
+        let modeDirectionName = appDelegate().modeMap.directionName(modeDirection)
+        let actionDirectionName = appDelegate().modeMap.directionName(inspectingModeDirection)
+        let actionName = self.actionNameInDirection(inspectingModeDirection)
+        let optionKey = "TT:mode:\(self.nameOfClass)-\(modeDirectionName):action:\(actionName)-\(actionDirectionName):option:\(optionName)"
+        let pref = prefs.object(forKey: optionKey)
+        print(" -> Deleting action option \(optionKey) (\(pref ?? "nil"))")
+        
+        prefs.removeObject(forKey: optionKey)
+        prefs.synchronize()
+    }
+    
+    func removeBatchActionOption(_ batchActionKey: String, optionName: String,
+                                 direction: TTModeDirection? = nil, actionDirection: TTModeDirection? = nil) {
+        let prefs = UserDefaults.standard
+        let modeDirectionName = appDelegate().modeMap.directionName(direction ?? modeDirection)
+        let actionDirectionName = appDelegate().modeMap.directionName(actionDirection ?? appDelegate().modeMap.inspectingModeDirection)
+        let optionKey = "TT:mode:\(modeDirectionName):action:\(actionDirectionName):batchactions:\(batchActionKey):actionoption:\(optionName)"
+        let pref = prefs.object(forKey: optionKey)
+        print(" -> Deleting batch action option \(optionKey) (\(pref ?? "nil"))")
+        
+        prefs.removeObject(forKey: optionKey)
+        prefs.synchronize()
+    }
+    
     // MARK: Images
     
     func imageNameInDirection(_ direction: TTModeDirection) -> String? {

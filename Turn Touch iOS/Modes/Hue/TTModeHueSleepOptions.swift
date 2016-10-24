@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TTModeHueSleepOptions: TTOptionsDetailViewController {
+class TTModeHueSleepOptions: TTModeHuePicker {
     
     @IBOutlet var durationLabel: UILabel!
     @IBOutlet var doubleDurationLabel: UILabel!
@@ -26,26 +26,22 @@ class TTModeHueSleepOptions: TTOptionsDetailViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let sceneDuration: Int = self.action.mode.actionOptionValue(TTModeHueConstants.kHueDuration,
-                                                                    actionName: "TTModeHueSleep",
-                                                                    direction: appDelegate().modeMap.inspectingModeDirection) as! Int
+        let sceneDuration: Int = self.action.optionValue(TTModeHueConstants.kHueDuration) as! Int
         durationSlider.value = Float(sceneDuration)
         self.updateSliderLabel(false)
         
-        let doubleSceneDuration: Int = self.action.mode.actionOptionValue(TTModeHueConstants.kHueDoubleTapDuration,
-                                                                          actionName: "TTModeHueSleep",
-                                                                          direction: appDelegate().modeMap.inspectingModeDirection) as! Int
+        let doubleSceneDuration: Int = self.action.optionValue(TTModeHueConstants.kHueDoubleTapDuration) as! Int
         doubleDurationSlider.value = Float(doubleSceneDuration)
         self.updateSliderLabel(true)
     }
     
     @IBAction func changeDuration(_ sender: UISlider) {
         let duration = Int(durationSlider.value)
-        self.action.mode.changeActionOption(TTModeHueConstants.kHueDuration, to: NSNumber(value: duration as Int))
+        self.action.changeActionOption(TTModeHueConstants.kHueDuration, to: NSNumber(value: duration as Int))
         self.updateSliderLabel(false)
         
         let doubleDuration = Int(doubleDurationSlider.value)
-        self.action.mode.changeActionOption(TTModeHueConstants.kHueDoubleTapDuration, to: NSNumber(value: doubleDuration as Int))
+        self.action.changeActionOption(TTModeHueConstants.kHueDoubleTapDuration, to: NSNumber(value: doubleDuration as Int))
         self.updateSliderLabel(true)
     }
     

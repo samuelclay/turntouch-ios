@@ -1,5 +1,5 @@
 //
-//  TTModeHueSceneNightLightOptions.swift
+//  TTModeHueSceneMidnightOilOptions.swift
 //  Turn Touch iOS
 //
 //  Created by Samuel Clay on 10/19/16.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TTModeHueSceneNightLightOptions: TTModeHueSceneOptions {
+class TTModeHueSceneMidnightOilOptions: TTModeHueSceneOptions {
     
     required init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: "TTModeHueSceneOptions", bundle: nibBundleOrNil)

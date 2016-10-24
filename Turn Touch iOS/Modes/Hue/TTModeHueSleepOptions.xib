@@ -18,6 +18,7 @@
                 <outlet property="doubleDurationSlider" destination="XDH-50-361" id="YYS-pm-eBD"/>
                 <outlet property="durationLabel" destination="spW-B6-Q0n" id="NoQ-4k-m90"/>
                 <outlet property="durationSlider" destination="Dag-yf-WNu" id="c5R-S2-0SH"/>
+                <outlet property="roomPicker" destination="skr-0w-Hzm" id="YbQ-1N-dZZ"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -71,29 +72,43 @@
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="skr-0w-Hzm">
+                    <fontDescription key="fontDescription" name="Effra-Regular" family="Effra" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="249" text="Room" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uSj-Pe-mCl">
+                    <fontDescription key="fontDescription" name="Effra-Regular" family="Effra" pointSize="13"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="FLT-Da-zeL" firstAttribute="leading" secondItem="mm0-KL-wAm" secondAttribute="trailing" constant="8" id="0Qg-Cu-vOZ"/>
                 <constraint firstItem="PgQ-H7-AJF" firstAttribute="width" secondItem="spW-B6-Q0n" secondAttribute="width" id="1nO-Qt-WWA"/>
                 <constraint firstItem="spW-B6-Q0n" firstAttribute="leading" secondItem="Dag-yf-WNu" secondAttribute="trailing" constant="22" id="2dh-W1-5SC"/>
+                <constraint firstItem="FLT-Da-zeL" firstAttribute="leading" secondItem="uSj-Pe-mCl" secondAttribute="leading" id="40U-tu-zKU"/>
                 <constraint firstItem="mm0-KL-wAm" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="22" id="6Zf-Ll-GMp"/>
                 <constraint firstItem="XgR-3t-wco" firstAttribute="width" secondItem="FLT-Da-zeL" secondAttribute="width" id="GaL-c1-VK9"/>
-                <constraint firstItem="FLT-Da-zeL" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="22" id="H6b-9E-6kk"/>
                 <constraint firstItem="Dag-yf-WNu" firstAttribute="leading" secondItem="FLT-Da-zeL" secondAttribute="trailing" constant="22" id="I03-ms-6mQ"/>
                 <constraint firstItem="FLT-Da-zeL" firstAttribute="centerY" secondItem="mm0-KL-wAm" secondAttribute="centerY" id="Ixw-Ea-aAs"/>
                 <constraint firstItem="XgR-3t-wco" firstAttribute="centerY" secondItem="mrV-Gn-ich" secondAttribute="centerY" id="K4L-yN-uHU"/>
                 <constraint firstAttribute="trailing" secondItem="spW-B6-Q0n" secondAttribute="trailing" constant="22" id="LL8-Ej-ARS"/>
                 <constraint firstItem="mrV-Gn-ich" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="22" id="LWC-Uq-TZf"/>
+                <constraint firstAttribute="trailing" secondItem="skr-0w-Hzm" secondAttribute="trailing" constant="22" id="MPZ-XR-Y5p"/>
                 <constraint firstItem="Dag-yf-WNu" firstAttribute="centerY" secondItem="FLT-Da-zeL" secondAttribute="centerY" id="OJ3-50-BYq"/>
                 <constraint firstItem="PgQ-H7-AJF" firstAttribute="centerY" secondItem="XgR-3t-wco" secondAttribute="centerY" id="TGf-2y-NtC"/>
                 <constraint firstItem="PgQ-H7-AJF" firstAttribute="leading" secondItem="XDH-50-361" secondAttribute="trailing" constant="22" id="g8l-zr-nSk"/>
                 <constraint firstItem="XDH-50-361" firstAttribute="leading" secondItem="XgR-3t-wco" secondAttribute="trailing" constant="22" id="hrw-xV-IPx"/>
                 <constraint firstAttribute="trailing" secondItem="PgQ-H7-AJF" secondAttribute="trailing" constant="22" id="hvH-yO-Ckc"/>
+                <constraint firstItem="skr-0w-Hzm" firstAttribute="centerY" secondItem="uSj-Pe-mCl" secondAttribute="centerY" id="jbB-dg-hZN"/>
                 <constraint firstItem="mrV-Gn-ich" firstAttribute="top" secondItem="mm0-KL-wAm" secondAttribute="bottom" constant="24" id="o0f-vu-a4u"/>
                 <constraint firstAttribute="bottomMargin" secondItem="mrV-Gn-ich" secondAttribute="bottom" constant="22" id="qD5-cU-xgN"/>
+                <constraint firstItem="Dag-yf-WNu" firstAttribute="leading" secondItem="skr-0w-Hzm" secondAttribute="leading" id="swz-HB-iEw"/>
                 <constraint firstItem="XgR-3t-wco" firstAttribute="leading" secondItem="mrV-Gn-ich" secondAttribute="trailing" constant="8" id="t0y-Lw-KNV"/>
                 <constraint firstItem="XDH-50-361" firstAttribute="centerY" secondItem="XgR-3t-wco" secondAttribute="centerY" id="w1Q-Mt-mwj"/>
+                <constraint firstItem="FLT-Da-zeL" firstAttribute="top" secondItem="uSj-Pe-mCl" secondAttribute="bottom" constant="24" id="xtt-tg-csw"/>
+                <constraint firstItem="skr-0w-Hzm" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="22" id="yKZ-W6-tPx"/>
                 <constraint firstItem="spW-B6-Q0n" firstAttribute="centerY" secondItem="FLT-Da-zeL" secondAttribute="centerY" id="znc-PG-3RN"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

@@ -61,4 +61,12 @@ class TTAction: NSObject {
             mode.changeBatchActionOption(batchActionKey!, optionName: optionName, to: optionValue)
         }
     }
+    
+    func removeActionOption(_ optionName: String) {
+        if batchActionKey == nil {
+            mode.removeActionOption(optionName, direction: direction)
+        } else {
+            mode.removeBatchActionOption(batchActionKey!, optionName: optionName)
+        }
+    }
 }
