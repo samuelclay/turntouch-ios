@@ -169,7 +169,7 @@ class TTModeHueSceneOptions: TTOptionsDetailViewController, UITextFieldDelegate,
             s.startAnimating()
         }
 
-        let bridgeSendAPI = TTModeHue.hueSdk.bridgeSendAPI
+//        let bridgeSendAPI = TTModeHue.hueSdk.bridgeSendAPI
 //        bridgeSendApi.getAllScenes { (dictionary, errors) in
 //            self.drawScenes()
 //        }
