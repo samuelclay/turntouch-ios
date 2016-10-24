@@ -682,7 +682,7 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate {
             self.updateHueConfig()
 
             if DEBUG_HUE {
-                print(" ---> Done with heartbeat")
+//                print(" ---> Done with heartbeat")
             }
             TTModeHue.hueSdk.stopHeartbeat()
         } else {
@@ -1132,6 +1132,12 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate {
     }
     
     func ensureScenesSelected() {
+        let cache = TTModeHue.hueSdk.resourceCache
+        guard let scenes = cache?.scenes else {
+            print(" ---> Scenes not ready yet for scene selection")
+            return
+        }
+
         for direction: TTModeDirection in [.north, .east, .west, .south] {
             let actionName = self.actionNameInDirection(direction)
             if !actionName.contains("Scene") {
@@ -1141,8 +1147,23 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate {
                 print(" ---> ensureScenesSelected not ready yet, no room selected")
                 continue
             }
-            let actionScene = self.actionOptionValue(TTModeHueConstants.kHueScene, actionName: actionName, direction: direction) as? String
-            let actionDouble = self.actionOptionValue(TTModeHueConstants.kDoubleTapHueScene, actionName: actionName, direction: direction) as? String
+
+            var actionScene = self.actionOptionValue(TTModeHueConstants.kHueScene, actionName: actionName, direction: direction) as? String
+            var actionDouble = self.actionOptionValue(TTModeHueConstants.kDoubleTapHueScene, actionName: actionName, direction: direction) as? String
+
+            // Double check that scene is still on bridge
+            if actionScene != nil {
+                if scenes.values.first(where: { (scene) -> Bool in scene.identifier == actionScene }) == nil {
+                    print(" ---> Scene no longer exists: \(actionScene), clearing...")
+                    actionScene = nil
+                }
+            }
+            if actionDouble != nil {
+                if scenes.values.first(where: { (scene) -> Bool in scene.identifier == actionDouble }) == nil {
+                    print(" ---> Scene no longer exists: \(actionDouble), clearing...")
+                    actionDouble = nil
+                }
+            }
 
             // Assign default scenes for action
             if actionScene == nil {
@@ -1163,7 +1184,22 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate {
                     continue
                 }
                 if let roomIdentifier = self.batchActionOptionValue(batchAction, optionName: TTModeHueConstants.kHueRoom, direction: direction) as? String {
-                    let singleScene = self.batchActionOptionValue(batchAction, optionName: TTModeHueConstants.kHueScene, direction: direction) as? String
+                    var singleScene = self.batchActionOptionValue(batchAction, optionName: TTModeHueConstants.kHueScene, direction: direction) as? String
+                    var doubleScene = self.batchActionOptionValue(batchAction, optionName: TTModeHueConstants.kDoubleTapHueScene, direction: direction) as? String
+
+                    if singleScene != nil {
+                        if scenes.values.first(where: { (scene) -> Bool in scene.identifier == singleScene }) == nil {
+                            print(" ---> Scene no longer exists: \(singleScene), clearing...")
+                            singleScene = nil
+                        }
+                    }
+                    if doubleScene != nil {
+                        if scenes.values.first(where: { (scene) -> Bool in scene.identifier == doubleScene }) == nil {
+                            print(" ---> Scene no longer exists: \(doubleScene), clearing...")
+                            doubleScene = nil
+                        }
+                    }
+
                     if singleScene == nil {
                         if let scene = self.sceneForAction(batchAction.actionName, actionRoom: roomIdentifier, moment: .button_MOMENT_PRESSUP) {
                             self.changeBatchActionOption(batchAction.batchActionKey!, optionName: TTModeHueConstants.kHueScene,
@@ -1171,7 +1207,6 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate {
                         }
                     }
                     
-                    let doubleScene = self.batchActionOptionValue(batchAction, optionName: TTModeHueConstants.kDoubleTapHueScene, direction: direction) as? String
                     if doubleScene == nil {
                         if let scene = self.sceneForAction(batchAction.actionName, actionRoom: roomIdentifier, moment: .button_MOMENT_DOUBLE) {
                             self.changeBatchActionOption(batchAction.batchActionKey!, optionName: TTModeHueConstants.kDoubleTapHueScene,
