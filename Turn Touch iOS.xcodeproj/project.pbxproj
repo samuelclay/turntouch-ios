@@ -89,6 +89,7 @@
 		FF458AAF1DBEB1BE003FD06B /* TTModeHuePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF458AAE1DBEB1BE003FD06B /* TTModeHuePicker.swift */; };
 		FF458AB11DBEC98C003FD06B /* TTModeHueSceneLightsOffOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF458AB01DBEC98C003FD06B /* TTModeHueSceneLightsOffOptions.swift */; };
 		FF458AB31DBED8A8003FD06B /* TTModeHueSceneColorLoopOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF458AB21DBED8A8003FD06B /* TTModeHueSceneColorLoopOptions.swift */; };
+		FF458AB61DBEF1E9003FD06B /* SonosManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FF458AB51DBEF1E9003FD06B /* SonosManager.m */; };
 		FF4AF7AF1D2475B50009C777 /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = FF4AF7AB1D2475630009C777 /* libxml2.tbd */; };
 		FF4AF7B21D2486F90009C777 /* TTModeWemoOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4AF7B01D2486F90009C777 /* TTModeWemoOptions.swift */; };
 		FF4AF7B31D2486F90009C777 /* TTModeWemoOptions.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF4AF7B11D2486F90009C777 /* TTModeWemoOptions.xib */; };
@@ -106,7 +107,6 @@
 		FF4AF7CB1D24C65A0009C777 /* TTPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4AF7CA1D24C65A0009C777 /* TTPickerViewController.swift */; };
 		FF4AF7D51D24ECF60009C777 /* SonosController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF4AF7CE1D24ECF60009C777 /* SonosController.m */; };
 		FF4AF7D61D24ECF60009C777 /* SonosDiscover.m in Sources */ = {isa = PBXBuildFile; fileRef = FF4AF7D01D24ECF60009C777 /* SonosDiscover.m */; };
-		FF4AF7D71D24ECF60009C777 /* SonosManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FF4AF7D21D24ECF60009C777 /* SonosManager.m */; };
 		FF4AF7D81D24ECF60009C777 /* XMLReader.m in Sources */ = {isa = PBXBuildFile; fileRef = FF4AF7D41D24ECF60009C777 /* XMLReader.m */; };
 		FF4AF7DA1D24F8D40009C777 /* mode_sonos.png in Resources */ = {isa = PBXBuildFile; fileRef = FF4AF7D91D24F8D40009C777 /* mode_sonos.png */; };
 		FF4AF7DC1D24F9370009C777 /* TTModeSonos.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4AF7DB1D24F9370009C777 /* TTModeSonos.swift */; };
@@ -374,6 +374,8 @@
 		FF458AAE1DBEB1BE003FD06B /* TTModeHuePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeHuePicker.swift; path = Modes/Hue/TTModeHuePicker.swift; sourceTree = "<group>"; };
 		FF458AB01DBEC98C003FD06B /* TTModeHueSceneLightsOffOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeHueSceneLightsOffOptions.swift; path = Modes/Hue/TTModeHueSceneLightsOffOptions.swift; sourceTree = "<group>"; };
 		FF458AB21DBED8A8003FD06B /* TTModeHueSceneColorLoopOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeHueSceneColorLoopOptions.swift; path = Modes/Hue/TTModeHueSceneColorLoopOptions.swift; sourceTree = "<group>"; };
+		FF458AB41DBEF1E9003FD06B /* SonosManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SonosManager.h; sourceTree = "<group>"; };
+		FF458AB51DBEF1E9003FD06B /* SonosManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SonosManager.m; sourceTree = "<group>"; };
 		FF4AF7AB1D2475630009C777 /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
 		FF4AF7AD1D2475780009C777 /* libxml2.2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.2.tbd; path = usr/lib/libxml2.2.tbd; sourceTree = SDKROOT; };
 		FF4AF7B01D2486F90009C777 /* TTModeWemoOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeWemoOptions.swift; path = Modes/Wemo/TTModeWemoOptions.swift; sourceTree = "<group>"; };
@@ -394,8 +396,6 @@
 		FF4AF7CE1D24ECF60009C777 /* SonosController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SonosController.m; sourceTree = "<group>"; };
 		FF4AF7CF1D24ECF60009C777 /* SonosDiscover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SonosDiscover.h; sourceTree = "<group>"; };
 		FF4AF7D01D24ECF60009C777 /* SonosDiscover.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SonosDiscover.m; sourceTree = "<group>"; };
-		FF4AF7D11D24ECF60009C777 /* SonosManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SonosManager.h; sourceTree = "<group>"; };
-		FF4AF7D21D24ECF60009C777 /* SonosManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SonosManager.m; sourceTree = "<group>"; };
 		FF4AF7D31D24ECF60009C777 /* XMLReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLReader.h; sourceTree = "<group>"; };
 		FF4AF7D41D24ECF60009C777 /* XMLReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLReader.m; sourceTree = "<group>"; };
 		FF4AF7D91D24F8D40009C777 /* mode_sonos.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mode_sonos.png; sourceTree = "<group>"; };
@@ -842,8 +842,8 @@
 				FF4AF7CE1D24ECF60009C777 /* SonosController.m */,
 				FF4AF7CF1D24ECF60009C777 /* SonosDiscover.h */,
 				FF4AF7D01D24ECF60009C777 /* SonosDiscover.m */,
-				FF4AF7D11D24ECF60009C777 /* SonosManager.h */,
-				FF4AF7D21D24ECF60009C777 /* SonosManager.m */,
+				FF458AB41DBEF1E9003FD06B /* SonosManager.h */,
+				FF458AB51DBEF1E9003FD06B /* SonosManager.m */,
 				FF4AF7D31D24ECF60009C777 /* XMLReader.h */,
 				FF4AF7D41D24ECF60009C777 /* XMLReader.m */,
 			);
@@ -1584,7 +1584,6 @@
 				FFB41B821CF5341700CD5F09 /* TTMode.swift in Sources */,
 				FF4AF7CB1D24C65A0009C777 /* TTPickerViewController.swift in Sources */,
 				FF37EDDB1D11178D0026F70D /* TTModeHueBridge.swift in Sources */,
-				FF4AF7D71D24ECF60009C777 /* SonosManager.m in Sources */,
 				FFDA0F9E1D3C49E80019859F /* TTModeCamera.swift in Sources */,
 				FF0F10CD1CF63F4D00CC1F29 /* TTModeHue.swift in Sources */,
 				FF254F6B1D21C2CF00E96378 /* TTModeWemo.swift in Sources */,
@@ -1608,6 +1607,7 @@
 				FF4AF7C21D248A4D0009C777 /* TTModeWemoDeviceSwitchOptions.swift in Sources */,
 				FF37EDFD1D1B23B70026F70D /* TTModeHueRandomOptions.swift in Sources */,
 				FFC9FE951D021A0400038817 /* TTActionDiamondView.swift in Sources */,
+				FF458AB61DBEF1E9003FD06B /* SonosManager.m in Sources */,
 				FF44875F1D078FAC00ED8099 /* TTActionTitleView.swift in Sources */,
 				FF7C145A1DB3088B009CBA28 /* TTAddActionButtonView.swift in Sources */,
 				FF37EDD71D1117670026F70D /* TTModeHueConnecting.swift in Sources */,

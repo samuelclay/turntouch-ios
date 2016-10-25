@@ -49,7 +49,7 @@ class TTModeSonosConnected: TTOptionsDetailViewController, UITextFieldDelegate, 
         
         let sonosDevices = modeSonos.foundDevices()
         for device in sonosDevices {
-            devices.append(["name": device.name, "identifier": device.uuid])
+            devices.append(["name": device.name!, "identifier": device.uuid!])
             if deviceSelected == device.uuid {
                 singlePicker.text = device.name
             }

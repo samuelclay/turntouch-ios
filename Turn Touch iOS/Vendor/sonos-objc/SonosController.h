@@ -30,23 +30,23 @@
 
 @interface SonosController : NSObject
 
-@property (nonatomic, strong) NSString *ip;
+@property (nonatomic, strong) NSString * _Nonnull ip;
 @property (nonatomic, assign) int port;
-@property (nonatomic, strong) NSString *group;
-@property (nonatomic, strong) NSString *name;
-@property (nonatomic, strong) NSString *uuid;
+@property (nonatomic, strong) NSString * _Nullable group;
+@property (nonatomic, strong) NSString * _Nullable name;
+@property (nonatomic, strong) NSString * _Nullable uuid;
 @property (nonatomic, assign, getter = isCoordinator) BOOL coordinator;
-@property (nonatomic, strong) NSMutableArray *slaves;
+@property (nonatomic, strong) NSMutableArray * _Nullable slaves;
 @property (nonatomic, assign, readonly) NSInteger cachedVolume;
 
 /**
  Creates and returns a Sonos Controller object.
  By default, the SOAP interface on Sonos Devices operate on port 1400, but use initWithIP:port: if you need to specify another port
  
- Use SonosManager to create these controllers automatically
+ Use SonosDiscover to create these controllers from a discovery
  */
-- (id)initWithIP:(NSString *)ip_;
-- (id)initWithIP:(NSString *)ip_ port:(int)port_;
+- (instancetype _Nonnull)initWithIP:(NSString * _Nonnull)ip_;
+- (instancetype _Nonnull)initWithIP:(NSString * _Nonnull)ip_ port:(int)port_;
 
 /**
  All SOAP methods returns asynchronus XML data from the Sonos Device in an NSDictionary format for easy reading.
@@ -62,7 +62,7 @@
  @param track The Track URI, may be nil to just play current track
  @param block Objective-C block to call on finish
  */
-- (void)play:(NSString *)track completion:(void (^)(NSDictionary *response, NSError *error))block;
+- (void)play:(NSString * _Nullable)track completion:(void (^ _Nullable)(NSDictionary * _Nullable response, NSError * _Nullable error))block;
 
 /**
  Plays a track with custom URI Metadata, Spotify etc needs this, see playSpotifyTrack:completion:
@@ -71,7 +71,7 @@
  @param URIMetaData Metadata XML String
  @param block Objective-C block to call on finish
  */
-- (void)play:(NSString *)track URIMetaData:(NSString *)URIMetaData completion:(void (^)(NSDictionary *response, NSError *error))block;
+- (void)play:(NSString * _Nonnull)track URIMetaData:(NSString * _Nonnull)URIMetaData completion:(void (^ _Nullable)(NSDictionary * _Nullable response, NSError * _Nullable error))block;
 
 /**
  Plays a Spotify track
@@ -79,7 +79,7 @@
  @param track Spotify track URI
  @param block Objective-C block to call on finish
  */
-- (void)playSpotifyTrack:(NSString *)track completion:(void (^)(NSDictionary *response, NSError *error))block;
+- (void)playSpotifyTrack:(NSString * _Nonnull)track completion:(void (^ _Nullable)(NSDictionary * _Nullable response, NSError * _Nullable error))block;
 
 /**
  Play track in queue
@@ -87,14 +87,14 @@
  @param position. Starts counting at 1
  @param block Objective-C block to call on finish
  */
-- (void)playQueuePosition:(int)position completion:(void (^)(NSDictionary *response, NSError *error))block;
+- (void)playQueuePosition:(int)position completion:(void (^ _Nullable)(NSDictionary * _Nullable response, NSError * _Nullable error))block;
 
 /**
  Pause playback
  
  @param block Objective-C block to call on finish
  */
-- (void)pause:(void (^)(NSDictionary *response, NSError *error))block;
+- (void)pause:(void (^ _Nullable)(NSDictionary * _Nullable response, NSError * _Nullable error))block;
 
 /**
  Toggle playback, pause if playing, play if paused
@@ -102,21 +102,21 @@
  
  @param block Objective-C block to call on finish
  */
-- (void)togglePlayback:(void (^)(BOOL playing, NSDictionary *response, NSError *error))block;
+- (void)togglePlayback:(void (^ _Nullable)(BOOL playing, NSDictionary * _Nullable response, NSError * _Nullable error))block;
 
 /**
  Next track
  
  @param block Objective-C block to call on finish
  */
-- (void)next:(void (^)(NSDictionary *response, NSError *error))block;
+- (void)next:(void (^ _Nullable)(NSDictionary * _Nullable response, NSError * _Nullable error))block;
 
 /**
  Previous track
  
  @param block Objective-C block to call on finish
  */
-- (void)previous:(void (^)(NSDictionary *response, NSError *error))block;
+- (void)previous:(void (^ _Nullable)(NSDictionary * _Nullable response, NSError * _Nullable error))block;
 
 /**
  Queue a track
@@ -124,7 +124,7 @@
  @param track The Track URI, may not be nil
  @param block Objective-C block to call on finish
  */
-- (void)queue:(NSString *)track replace:(BOOL)replace completion:(void (^)(NSDictionary *response, NSError *error))block;
+- (void)queue:(NSString * _Nonnull)track replace:(BOOL)replace completion:(void (^ _Nullable)(NSDictionary * _Nullable response, NSError * _Nullable error))block;
 
 /**
  Queue a track with custom URI Metadata
@@ -134,7 +134,7 @@
  @param URIMetaData URI Metadata XML String
  @param block Objective-C block to call on finish
  */
-- (void)queue:(NSString *)track URIMetaData:(NSString *)URIMetaData replace:(BOOL)replace completion:(void (^)(NSDictionary *response, NSError *error))block;
+- (void)queue:(NSString * _Nonnull)track URIMetaData:(NSString * _Nonnull)URIMetaData replace:(BOOL)replace completion:(void (^ _Nullable)(NSDictionary * _Nullable response, NSError * _Nullable error))block;
 
 /*
  Queue a Spotify playlist
@@ -144,7 +144,7 @@
  @param replace Replace current queue
  @param block Objective-C block to call on finish
  */
-- (void)queueSpotifyPlaylist:(NSString *)playlist replace:(BOOL)replace completion:(void (^)(NSDictionary *response, NSError *error))block;
+- (void)queueSpotifyPlaylist:(NSString * _Nonnull)playlist replace:(BOOL)replace completion:(void (^ _Nullable)(NSDictionary * _Nullable response, NSError * _Nullable error))block;
 
 /**
  Get current volume of device.
@@ -153,7 +153,7 @@
  @param maxCacheAge Allows for returning cached volume if the cached volume is not older than maxCacheAge (in seconds) otherwise a volume request is sent. Values <= 0 will always send volume get requests.
  @param block Objective-C block to call on finish
  */
-- (void)getVolume:(NSTimeInterval)maxCacheAge completion:(void (^)(NSInteger volume, NSDictionary *response, NSError *))block;
+- (void)getVolume:(NSTimeInterval)maxCacheAge completion:(void (^ _Nullable)(NSInteger volume, NSDictionary * _Nullable response, NSError * _Nullable error))block;
 
 /**
  Get current volume of device.
@@ -161,7 +161,7 @@
  
  @param block Objective-C block to call on finish
  */
-- (void)getVolume:(void (^)(NSInteger volume, NSDictionary *response, NSError *))block;
+- (void)getVolume:(void (^ _Nullable)(NSInteger volume, NSDictionary * _Nullable response, NSError * _Nullable error))block;
 
 /**
  Set volume of device.
@@ -170,7 +170,7 @@
  @param mergeRequests If YES, following volume set requests are not send as long as this request has not been answered. Instead all following setVolume calls will only update the internal state for the desired volume. A second set request for all merged calls to setVolume is then send out when this request has been answered. This avoids multiple set requests being sent out at the same time. If YES, getVolume will also return the internal state for the desired volume to be set, as long as this set request has not yet been answered. Setting mergeRequest to YES allows a smoother user experience when otherwise too many volume set requests would be sent out in parallel and thus arrive very delayed at the Sonos controllers. Consider combining merging the set requests with allowing for returning cached volumes in getVolume to provide the best user experience.
  @param block Objective-C block to call on finish
  */
-- (void)setVolume:(NSInteger)volume mergeRequests:(BOOL)mergeRequest completion:(void (^)(NSDictionary *response, NSError *error))block;
+- (void)setVolume:(NSInteger)volume mergeRequests:(BOOL)mergeRequest completion:(void (^ _Nullable)(NSDictionary * _Nullable response, NSError * _Nullable error))block;
 
 /**
  Set volume of device.
@@ -180,14 +180,14 @@
  @param block Objective-C block to call on finish
  */
 
-- (void)setVolume:(NSInteger)volume completion:(void (^)(NSDictionary *response, NSError *error))block;
+- (void)setVolume:(NSInteger)volume completion:(void (^ _Nullable)(NSDictionary * _Nullable response, NSError * _Nullable error))block;
 
 /**
  Get mute status
  
  @param block Objective-C block to call on finish
  */
-- (void)getMute:(void (^)(BOOL mute, NSDictionary *response, NSError *error))block;
+- (void)getMute:(void (^ _Nullable)(BOOL mute, NSDictionary * _Nullable response, NSError * _Nullable error))block;
 
 /**
  Set or unset mute on device
@@ -195,16 +195,16 @@
  @param mute Bool value
  @param block Objective-C block to call on finish
  */
-- (void)setMute:(BOOL)mute completion:(void (^)(NSDictionary *response, NSError *error))block;
+- (void)setMute:(BOOL)mute completion:(void (^ _Nullable)(NSDictionary * _Nullable response, NSError * _Nullable error))block;
 
 /**
  Get current track info.
  
  @param block Objective-C block to call on finish
  */
-- (void)trackInfo:(void (^)(NSString *artist, NSString *title, NSString *album, NSURL *albumArt, NSInteger time, NSInteger duration, NSInteger queueIndex, NSString *trackURI, NSString *protocol, NSError *error))block;
+- (void)trackInfo:(void (^ _Nullable)(NSString * _Nullable artist, NSString * _Nullable title, NSString * _Nullable album, NSURL * _Nullable albumArt, NSInteger time, NSInteger duration, NSInteger queueIndex, NSString * _Nullable trackURI, NSString * _Nullable protocol, NSError * _Nullable error))block;
 
-- (void)mediaInfo:(void (^)(NSDictionary *response, NSError *error))block;
+- (void)mediaInfo:(void (^ _Nullable)(NSDictionary * _Nullable response, NSError * _Nullable error))block;
 
 /**
  Playback status
@@ -212,7 +212,7 @@
  
  @param block Objective-C block to call on finish
  */
-- (void)playbackStatus:(void (^)(BOOL playing, NSDictionary *response, NSError *error))block;
+- (void)playbackStatus:(void (^ _Nullable)(BOOL playing, NSDictionary * _Nullable response, NSError * _Nullable error))block;
 
 /**
  More detailed version of playbackStatus:
@@ -221,8 +221,8 @@
  
  @param block Objective-C block to call on finish
  */
-- (void)status:(void (^)(NSDictionary *response, NSError *error))block;
+- (void)status:(void (^ _Nullable)(NSDictionary * _Nullable response, NSError * _Nullable error))block;
 
-- (void)browse:(void (^)(NSDictionary *response, NSError *error))block;
+- (void)browse:(void (^ _Nullable)(NSDictionary * _Nullable response, NSError * _Nullable error)) block;
 
 @end

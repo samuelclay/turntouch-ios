@@ -551,4 +551,12 @@ __a < __b ? __a : __b; })
     }];
 }
 
+-(BOOL)isEqual:(SonosController *)other {
+    return [self.ip isEqual:other.ip] && (self.port == other.port);
+}
+
+- (NSUInteger)hash {
+    return [self.ip hash] ^ self.port;
+}
+
 @end

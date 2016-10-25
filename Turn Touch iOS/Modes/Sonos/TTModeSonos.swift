@@ -23,6 +23,7 @@ fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
 
 struct TTModeSonosConstants {
     static let kSonosDeviceId = "sonosDeviceUUID"
+    static let kSonosCachedDevices = "sonosCachedDevices"
 }
 
 enum TTSonosState {
@@ -287,6 +288,9 @@ class TTModeSonos: TTMode {
     func selectedDevice() -> SonosController? {
         var devices = self.foundDevices()
         if devices.count == 0 {
+            devices = self.cachedDevices()
+        }
+        if devices.count == 0 {
             return nil
         }
         
@@ -300,6 +304,48 @@ class TTModeSonos: TTMode {
         
         
         return devices[0]
+    }
+    
+    func cachedDevices() -> [SonosController] {
+        var cachedDevices: [SonosController] = []
+        let prefs = UserDefaults.standard
+        guard let devices = prefs.array(forKey: TTModeSonosConstants.kSonosCachedDevices) as? [[String: String]] else {
+            return []
+        }
+        
+        for device in devices {
+            let cachedDevice = SonosController(ip: device["ip"]!, port: Int32(device["port"]!)!)
+            cachedDevice.group = device["group"]!
+//            cachedDevice.isCoordinator = device["isCoordinator"] as! Bool
+            cachedDevice.name = device["name"]!
+            cachedDevice.uuid = device["uuid"]!
+            cachedDevices.append(cachedDevice)
+            print(" ---> Loading cached sonos: \(cachedDevice)")
+        }
+        
+        return cachedDevices
+    }
+    
+    func cacheDevices(_ devices: [SonosController]?) {
+        var cachedDevices: [[String: String]] = []
+        guard let devices = devices else {
+            return
+        }
+        
+        for device in devices {
+            var cachedDevice: [String: String] = [:]
+            cachedDevice["ip"] = device.ip
+            cachedDevice["group"] = device.group
+//            cachedDevice["isCoordinator"] = device.isCoordinator
+            cachedDevice["name"] = device.name
+            cachedDevice["port"] = String(device.port)
+            cachedDevice["uuid"] = device.uuid
+            cachedDevices.append(cachedDevice)
+        }
+        
+        let prefs = UserDefaults.standard
+        prefs.set(cachedDevices, forKey: TTModeSonosConstants.kSonosCachedDevices)
+        prefs.synchronize()
     }
     
     func beginConnectingToSonos() {
@@ -317,6 +363,7 @@ class TTModeSonos: TTMode {
                 for device in devices {
                     self.deviceReady(device)
                 }
+                self.cacheDevices(devices)
                 if devices.count == 0 {
                     self.cancelConnectingToSonos()
                 }

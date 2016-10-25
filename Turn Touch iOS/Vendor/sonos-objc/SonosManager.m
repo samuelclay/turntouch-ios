@@ -48,17 +48,17 @@
 }
 
 - (void)discoverControllers:(void (^)())completion {
-    [SonosDiscover discoverControllers:^(NSArray *devices, NSError *error){
+    [SonosDiscover discoverControllers:^(NSArray *devices){
         NSMutableArray *coordinators = [[NSMutableArray alloc] init];
         NSMutableArray *slaves = [[NSMutableArray alloc] init];
         
         // Save all devices
-        for(NSDictionary *device in devices) {
-            SonosController *controller = [[SonosController alloc] initWithIP:[device valueForKey:@"ip"] port:[[device valueForKey:@"port"] intValue]];
-            controller.group = device[@"group"];
-            controller.name = device[@"name"];
-            controller.uuid = device[@"uuid"];
-            controller.coordinator = [device[@"coordinator"] boolValue];
+        for(SonosController *controller in devices) {
+//            SonosController *controller = [[SonosController alloc] initWithIP:[device valueForKey:@"ip"] port:[[device valueForKey:@"port"] intValue]];
+//            controller.group = device[@"group"];
+//            controller.name = device[@"name"];
+//            controller.uuid = device[@"uuid"];
+//            controller.coordinator = [device[@"coordinator"] boolValue];
             if([controller isCoordinator]) {
                 [coordinators addObject:controller];
             }
