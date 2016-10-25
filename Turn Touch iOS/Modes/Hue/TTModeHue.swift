@@ -171,6 +171,7 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate {
                 "TTModeHueSceneMidnightOil",
                 "TTModeHueSceneCustom",
                 "TTModeHueSceneLightsOff",
+                "TTModeHueSceneColorLoop",
                 "TTModeHueSleep",
                 "TTModeHueOff",
                 "TTModeHueRandom"]
@@ -210,6 +211,10 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate {
     
     func titleTTModeHueSceneLightsOff() -> String {
         return "Lights off"
+    }
+    
+    func titleTTModeHueSceneColorLoop() -> String {
+        return "Color loop"
     }
     
     func titleTTModeHueSceneCustom() -> String {
@@ -260,6 +265,10 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate {
     
     func imageTTModeHueSceneLightsOff() -> String {
         return "hue_sleep.png"
+    }
+    
+    func imageTTModeHueSceneColorLoop() -> String {
+        return "music_shuffle.png"
     }
     
     func imageTTModeHueSceneCustom() -> String {
@@ -349,6 +358,10 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate {
     
     func runTTModeHueSceneLightsOff() {
         self.runScene(sceneName: "TTModeHueSceneLightsOff", doubleTap: false)
+    }
+    
+    func runTTModeHueSceneColorLoop() {
+        self.runScene(sceneName: "TTModeHueSceneColorLoop", doubleTap: false)
     }
     
     func runTTModeHueSceneCustom() {
@@ -965,26 +978,12 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate {
             return lightState
         }
         
-//        if !foundScenes.contains("TT-loop") || force {
-//            let scene: PHScene = PHScene()
-//            scene.name = "Color loop"
-//            scene.identifier = "TT-loop"
-//            scene.lightIdentifiers = cache?.lights.map { (_, value) in (value as! PHLight).identifier! }
-//            bridgeSendAPI.saveScene(withCurrentLightStates: scene, completionHandler: {(errors) in
-////                print("Hue:Loop scene: \(errors)")
-//                for (_, value) in (cache?.lights)! {
-//                    let light = value as! PHLight
-//                    let lightState: PHLightState = PHLightState()
-//                    lightState.on = NSNumber(booleanLiteral: true)
-//                    lightState.alert = PHLightAlertMode.init(0)
-//                    lightState.effect = EFFECT_COLORLOOP
-//                    bridgeSendAPI.save(lightState, forLightIdentifier: light.identifier, inSceneWithIdentifier: scene.identifier, completionHandler: {(errors) in
-////                        print("Hue:Loop light: \(errors)")
-//                        self.delegate?.changeState(self.hueState, mode: self, message: nil)
-//                    })
-//                }
-//            })
-//        }
+        self.ensureScene(sceneName: "TTModeHueSceneColorLoop", moment: .button_MOMENT_PRESSUP, force: force) { (light: Light, index: Int) in
+            var lightState = LightState()
+            lightState.on = true
+            lightState.effect = "colorloop"
+            return lightState
+        }
 
     }
     
