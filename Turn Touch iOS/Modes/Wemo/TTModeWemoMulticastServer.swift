@@ -13,6 +13,7 @@ let MULTICAST_GROUP_IP = "239.255.255.250"
 
 protocol TTModeWemoMulticastDelegate {
     func foundDevice(_ headers: [String: String], host: String, port: Int, name: String?, live: Bool) -> TTModeWemoDevice
+    func finishScanning()
 }
 
 class TTModeWemoMulticastServer: NSObject, GCDAsyncUdpSocketDelegate {
@@ -82,6 +83,7 @@ class TTModeWemoMulticastServer: NSObject, GCDAsyncUdpSocketDelegate {
         let tt = DispatchTime.now() + Double(Int64(5 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC);
         DispatchQueue.main.asyncAfter(deadline: tt) {
             if self.attemptsLeft == 0 || self.udpSocket == nil {
+                self.delegate?.finishScanning()
                 return
             }
             self.attemptsLeft -= 1

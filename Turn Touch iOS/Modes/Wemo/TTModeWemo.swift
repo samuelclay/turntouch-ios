@@ -208,7 +208,7 @@ class TTModeWemo: TTMode, TTModeWemoMulticastDelegate, TTModeWemoDeviceDelegate 
     }
     
     func cancelConnectingToWemo() {
-        wemoState = .disconnected
+        wemoState = .connected
         delegate?.changeState(wemoState, mode: self)
         
         TTModeWemo.multicastServer.deactivate()
@@ -235,6 +235,11 @@ class TTModeWemo: TTMode, TTModeWemoMulticastDelegate, TTModeWemoDeviceDelegate 
         newDevice.requestDeviceInfo()
         
         return newDevice
+    }
+    
+    func finishScanning() {
+        wemoState = .connected
+        delegate?.changeState(wemoState, mode: self)
     }
     
     // MARK: Device delegate
