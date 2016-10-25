@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import ReachabilitySwift
+
 fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
   switch (lhs, rhs) {
   case let (l?, r?):
@@ -35,13 +37,15 @@ protocol TTModeSonosDelegate {
 
 class TTModeSonos: TTMode {
     
+    static var reachability: Reachability!
     var delegate: TTModeSonosDelegate!
     var sonosState = TTSonosState.disconnected
     var sonosManager = SonosManager.sharedInstance()
-    
+
     required init() {
         super.init()
-        
+
+        self.watchReachability()
     }
     
     override class func title() -> String {
@@ -161,7 +165,6 @@ class TTModeSonos: TTMode {
     
     override func activate() {
         if self.foundDevices().count == 0 {
-            sonosState = .connecting
             self.beginConnectingToSonos()
         } else {
             sonosState = .connected
@@ -177,8 +180,8 @@ class TTModeSonos: TTMode {
     func runTTModeSonosVolumeUp() {
         if let device = self.selectedDevice() {
             device.getVolume(TimeInterval(60*60), completion: { (volume, speakers, error) in
-                device.setVolume(volume + 6, mergeRequests: true, completion: { (speakers, error) in
-                    print(" ---> Turned volume: \(volume)+6 (\(error), \(speakers)")
+                device.setVolume(volume + 4, mergeRequests: true, completion: { (speakers, error) in
+                    print(" ---> Turned volume: \(volume)+4 (\(error), \(speakers)")
                 })
             })
         } else {
@@ -189,8 +192,8 @@ class TTModeSonos: TTMode {
     func runTTModeSonosVolumeDown() {
         if let device = self.selectedDevice() {
             device.getVolume(TimeInterval(60*60), completion: { (volume, speakers, error) in
-                device.setVolume(volume - 6, mergeRequests: true, completion: { (speakers, error) in
-                    print(" ---> Turned volume: \(volume)-6 (\(error), \(speakers)")
+                device.setVolume(volume - 4, mergeRequests: true, completion: { (speakers, error) in
+                    print(" ---> Turned volume: \(volume)-4 (\(error), \(speakers)")
                 })
             })
         } else {
@@ -300,6 +303,11 @@ class TTModeSonos: TTMode {
     }
     
     func beginConnectingToSonos() {
+        if sonosState == .connecting {
+            print(" ---> Already connecting to sonos...")
+            return
+        }
+        
         sonosState = .connecting
         delegate?.changeState(sonosState, mode: self)
         
@@ -327,4 +335,36 @@ class TTModeSonos: TTMode {
         sonosState = .connected
         delegate?.changeState(sonosState, mode: self)
     }
+    
+    // MARK: Reachability
+    
+    func watchReachability() {
+        if TTModeSonos.reachability != nil {
+            return
+        }
+        
+        TTModeSonos.reachability = Reachability()
+        
+        TTModeSonos.reachability.whenReachable = { reachability in
+            DispatchQueue.main.async {
+                if self.sonosState != .connected {
+                    print(" ---> Reachable, re-connecting to Sonos...")
+                    self.beginConnectingToSonos()
+                }
+            }
+        }
+        
+        TTModeSonos.reachability.whenUnreachable = { reachability in
+            if self.sonosState != .connected {
+                print(" ---> Unreachable, not connected")
+            }
+        }
+        
+        do {
+            try TTModeSonos.reachability.startNotifier()
+        } catch {
+            print("Unable to start notifier")
+        }
+    }
+    
 }
