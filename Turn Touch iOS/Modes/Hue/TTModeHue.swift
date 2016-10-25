@@ -62,14 +62,20 @@ protocol TTModeHueDelegate {
     func changeState(_ hueState: TTHueState, mode: TTModeHue, message: Any?)
 }
 
-class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate {
+class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, ResourceCacheHeartbeatProcessorDelegate {
     
 //    static var phHueSdk: PHHueSDK!
     static var hueSdk: SwiftyHue!
     static var reachability: Reachability!
     static var hueState: TTHueState = TTHueState.notConnected
-    static var sceneCreationCounter: Int = 0
+    static var createdScenes: [String] = []
     static var foundScenes: [String] = []
+    static var sceneQueue: OperationQueue = OperationQueue()
+    static var sceneSemaphore = DispatchSemaphore(value: 1)
+    static var sceneCacheSemaphore = DispatchSemaphore(value: 0)
+    static var sceneDeletionSemaphore = DispatchSemaphore(value: 1)
+    static var lightSemaphore = DispatchSemaphore(value: 1)
+    static var waitingOnScenes: Bool = false
 //    var bridgeSearch: PHBridgeSearching!
     var bridgeFinder: BridgeFinder!
     var bridgeAuthenticator: BridgeAuthenticator!
@@ -81,6 +87,8 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate {
 
     required init() {
         super.init()
+
+        TTModeHue.sceneQueue.maxConcurrentOperationCount = 1
         
         self.initializeHue()
         self.watchReachability()
@@ -109,39 +117,9 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate {
         }
         
         TTModeHue.hueSdk = SwiftyHue()
-//        TTModeHue.phHueSdk = PHHueSDK()
-//        TTModeHue.phHueSdk.startUp()
-//        TTModeHue.phHueSdk.enableLogging(false)
+//        TTModeHue.hueSdk.enableLogging(true)
         
         self.connectToBridge(reset: true)
-//        if let notificationManager = PHNotificationManager.default() {
-//            
-//            // The SDK will send the following notifications in response to events:
-//            //
-//            // - LOCAL_CONNECTION_NOTIFICATION
-//            // This notification will notify that the bridge heartbeat occurred and the bridge resources cache data has been updated
-//            //
-//            // - NO_LOCAL_CONNECTION_NOTIFICATION
-//            // This notification will notify that there is no connection with the bridge
-//            //
-//            // - NO_LOCAL_AUTHENTICATION_NOTIFICATION
-//            // This notification will notify that there is no authentication against the bridge
-//            notificationManager.register(self, with: #selector(self.localConnection) , forNotification: LOCAL_CONNECTION_NOTIFICATION)
-//            notificationManager.register(self, with: #selector(self.noLocalConnection), forNotification: NO_LOCAL_CONNECTION_NOTIFICATION)
-//            notificationManager.register(self, with: #selector(self.notAuthenticated), forNotification: NO_LOCAL_AUTHENTICATION_NOTIFICATION)
-//            
-//            notificationManager.register(self, with: #selector(self.authenticationSuccess), forNotification: PUSHLINK_LOCAL_AUTHENTICATION_SUCCESS_NOTIFICATION)
-//            notificationManager.register(self, with: #selector(self.authenticationFailed), forNotification: PUSHLINK_LOCAL_AUTHENTICATION_FAILED_NOTIFICATION)
-//            notificationManager.register(self, with: #selector(self.noLocalConnection), forNotification: PUSHLINK_NO_LOCAL_CONNECTION_NOTIFICATION)
-//            notificationManager.register(self, with: #selector(self.noLocalBridge), forNotification: PUSHLINK_NO_LOCAL_BRIDGE_KNOWN_NOTIFICATION)
-//            notificationManager.register(self, with: #selector(self.buttonNotPressed(notification:)), forNotification: PUSHLINK_BUTTON_NOT_PRESSED_NOTIFICATION)
-//        }
-        
-        TTModeHue.hueState = .connecting
-        self.delegate?.changeState(TTModeHue.hueState, mode:self, message:"Connecting...")
-        
-        // The local heartbeat is a regular timer event in the SDK. Once enabled the SDK regular collects the current state of resources managed by the bridge into the Bridge Resources Cache
-//        self.enableLocalHeartbeat()
     }
     
     func removeObservers() {
@@ -389,11 +367,19 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate {
     }
     
     func shouldIgnoreSingleBeforeDoubleTTModeHueSceneEarlyEvening() -> NSNumber {
-        return NSNumber(value: false)
+        return NSNumber(value: true)
     }
     
     func shouldIgnoreSingleBeforeDoubleTTModeHueSceneLateEvening() -> NSNumber {
-        return NSNumber(value: false)
+        return NSNumber(value: true)
+    }
+    
+    func shouldIgnoreSingleBeforeDoubleTTModeHueSceneMorning() -> NSNumber {
+        return NSNumber(value: true)
+    }
+    
+    func shouldIgnoreSingleBeforeDoubleTTModeHueSceneMidnightOil() -> NSNumber {
+        return NSNumber(value: true)
     }
     
     func shouldIgnoreSingleBeforeDoubleTTModeHueSleep() -> NSNumber {
@@ -401,7 +387,7 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate {
     }
     
     func shouldIgnoreSingleBeforeDoubleTTModeHueRandom() -> NSNumber {
-        return NSNumber(value: false)
+        return NSNumber(value: true)
     }
     
     func runTTModeHueSleep(duration sceneDuration: Int) {
@@ -530,6 +516,10 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate {
     
     
     func connectToBridge(reset: Bool = false) {
+        if TTModeHue.hueState == .connecting {
+            return
+        }
+        
         TTModeHue.hueState = .connecting
         self.delegate?.changeState(TTModeHue.hueState, mode: self, message: "Connecting to Hue...")
 
@@ -568,7 +558,7 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate {
                 bridgeAuthenticator = BridgeAuthenticator(bridge: bridge,
                                                           uniqueIdentifier: "TurnTouchHue#\(UIDevice.current.name)",
                                                           pollingInterval: 1,
-                                                          timeout: 7)
+                                                          timeout: 30)
                 bridgeAuthenticator.delegate = self
                 bridgeAuthenticator.start()
             }
@@ -816,7 +806,7 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate {
                                                     ipAddress: latestBridge.ip,
                                                     username: username)
         
-        TTModeHue.hueSdk.setBridgeAccessConfig(bridgeAccessConfig)
+        TTModeHue.hueSdk.setBridgeAccessConfig(bridgeAccessConfig, resourceCacheHeartbeatProcessorDelegate: self)
         TTModeHue.hueSdk.setLocalHeartbeatInterval(10, forResourceType: .lights)
         TTModeHue.hueSdk.setLocalHeartbeatInterval(10, forResourceType: .groups)
 //        TTModeHue.hueSdk.setLocalHeartbeatInterval(10, forResourceType: .rules)
@@ -825,7 +815,17 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate {
 //        TTModeHue.hueSdk.setLocalHeartbeatInterval(10, forResourceType: .sensors)
         TTModeHue.hueSdk.setLocalHeartbeatInterval(10, forResourceType: .config)
         
+        TTModeHue.hueSdk.stopHeartbeat()
         TTModeHue.hueSdk.startHeartbeat()
+    }
+    
+    func resourceCacheUpdated(_ resourceCache: BridgeResourcesCache) {
+        TTModeHue.hueSdk.resourceCache = resourceCache
+        print(" ---> Updated resource cache: \(resourceCache) \(TTModeHue.waitingOnScenes ? "Waiting on scenes, here they are!" : "")")
+        if TTModeHue.waitingOnScenes {
+            TTModeHue.waitingOnScenes = false
+            TTModeHue.sceneCacheSemaphore.signal()
+        }
     }
     
     // MARK: - Scenes and Rooms
@@ -841,153 +841,163 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate {
             print(" ---> Scenes not counted yet")
             return
         }
-        if TTModeHue.sceneCreationCounter > 0 {
-            print(" ---> Not ensuring scenes, already on it")
-            return
-        }
         
-        if force {
-            self.deleteScenes()
-        }
-        
-        // Collect scene ids to check against
-        TTModeHue.foundScenes = []
-        for (_, scene) in scenes {
-            TTModeHue.foundScenes.append(scene.identifier)
-        }
-        
-        self.ensureScene(sceneName: "TTModeHueSceneEarlyEvening", moment: .button_MOMENT_PRESSUP, force: force) { (light: Light, index: Int) in
-            var lightState = LightState()
-            lightState.on = true
-            let point = HueUtilities.calculateXY(UIColor(red: 235/255.0, green: 206/255.0, blue: 146/255.0, alpha: 1), forModel: light.modelId)
-            lightState.xy = [Float(point.x), Float(point.y)]
-            lightState.brightness = Int(MAX_BRIGHTNESS)
-            lightState.saturation = Int(MAX_BRIGHTNESS)
-            return lightState
-        }
-        
-        self.ensureScene(sceneName: "TTModeHueSceneEarlyEvening", moment: .button_MOMENT_DOUBLE, force: force) { (light: Light, index: Int) in
-            var lightState = LightState()
-            lightState.on = true
-            var point = HueUtilities.calculateXY(UIColor(red: 245/255.0, green: 176/255.0, blue: 116/255.0, alpha: 1), forModel: light.modelId)
-            if index % 3 == 2 {
-                point = HueUtilities.calculateXY(UIColor(red: 44/255.0, green: 56/255.0, blue: 225/255.0, alpha: 1), forModel: light.modelId)
+        DispatchQueue.global().async {
+            if force {
+                self.deleteScenes()
+                
+                if case .timedOut = TTModeHue.sceneCacheSemaphore.wait(timeout: DispatchTime.now() + DispatchTimeInterval.seconds(30)) {
+                    print(" ---> Waited too long for deleted scenes to come back")
+                }
+                
+                print(" ---> Done deleting, now creating scenes...")
             }
-            lightState.xy = [Float(point.x), Float(point.y)]
-            lightState.brightness = Int(200)
-            lightState.saturation = Int(MAX_BRIGHTNESS)
-            return lightState
-        }
-        
-        self.ensureScene(sceneName: "TTModeHueSceneLateEvening", moment: .button_MOMENT_PRESSUP, force: force) { (light: Light, index: Int) in
-            var lightState = LightState()
-            lightState.on = true
-            let point = HueUtilities.calculateXY(UIColor(red: 95/255.0, green: 76/255.0, blue: 36/255.0, alpha: 1), forModel: light.modelId)
-            lightState.xy = [Float(point.x), Float(point.y)]
-            lightState.brightness = Int(MAX_BRIGHTNESS)
-            lightState.saturation = Int(MAX_BRIGHTNESS)
-            return lightState
-        }
-        
-        self.ensureScene(sceneName: "TTModeHueSceneLateEvening", moment: .button_MOMENT_DOUBLE, force: force) { (light: Light, index: Int) in
-            var lightState = LightState()
-            lightState.on = true
-            var point = HueUtilities.calculateXY(UIColor(red: 145/255.0, green: 76/255.0, blue: 16/255.0, alpha: 1), forModel: light.modelId)
-            lightState.brightness = Int(Double(MAX_BRIGHTNESS)*(6/10.0))
-            if index % 3 == 1 {
-                point = HueUtilities.calculateXY(UIColor(red: 134/255.0, green: 56/255.0, blue: 205/255.0, alpha: 1), forModel: light.modelId)
-                lightState.brightness = Int(Double(MAX_BRIGHTNESS)*(8/10.0))
+            
+            // Collect scene ids to check against
+            TTModeHue.foundScenes = []
+            for (_, scene) in scenes {
+                TTModeHue.foundScenes.append(scene.identifier)
             }
-            lightState.xy = [Float(point.x), Float(point.y)]
-            lightState.saturation = Int(MAX_BRIGHTNESS)
-            return lightState
-        }
-        
-        self.ensureScene(sceneName: "TTModeHueSceneMorning", moment: .button_MOMENT_PRESSUP, force: force) { (light: Light, index: Int) in
-            var lightState = LightState()
-            lightState.on = true
-            var point = HueUtilities.calculateXY(UIColor(red: 145/255.0, green: 76/255.0, blue: 16/255.0, alpha: 1), forModel: light.modelId)
-            lightState.brightness = Int(Double(MAX_BRIGHTNESS)*(2/10.0))
-            if index % 3 == 1 {
-                point = HueUtilities.calculateXY(UIColor(red: 144/255.0, green: 56/255.0, blue: 20/255.0, alpha: 1), forModel: light.modelId)
-                lightState.brightness = Int(Double(MAX_BRIGHTNESS)*(5/10.0))
-            }
-            lightState.xy = [Float(point.x), Float(point.y)]
-            lightState.saturation = Int(MAX_BRIGHTNESS / 2)
-            return lightState
-        }
-        
-        self.ensureScene(sceneName: "TTModeHueSceneMorning", moment: .button_MOMENT_DOUBLE, force: force) { (light: Light, index: Int) in
-            var lightState = LightState()
-            lightState.on = true
-            var point = HueUtilities.calculateXY(UIColor(red: 195/255.0, green: 76/255.0, blue: 16/255.0, alpha: 1), forModel: light.modelId)
-            lightState.brightness = Int(Double(MAX_BRIGHTNESS)*(4/10.0))
-            if index % 3 == 1 {
-                point = HueUtilities.calculateXY(UIColor(red: 134/255.0, green: 76/255.0, blue: 26/255.0, alpha: 1), forModel: light.modelId)
-                lightState.brightness = Int(Double(MAX_BRIGHTNESS)*(6/10.0))
-            }
-            lightState.xy = [Float(point.x), Float(point.y)]
-            lightState.saturation = Int(MAX_BRIGHTNESS / 2)
-            return lightState
-        }
-        
-        self.ensureScene(sceneName: "TTModeHueSceneMidnightOil", moment: .button_MOMENT_PRESSUP, force: force) { (light: Light, index: Int) in
-            var lightState = LightState()
-            lightState.on = true
-            var point = HueUtilities.calculateXY(UIColor(red: 145/255.0, green: 176/255.0, blue: 165/255.0, alpha: 1), forModel: light.modelId)
-            lightState.brightness = Int(Double(MAX_BRIGHTNESS)*(2/10.0))
-            lightState.saturation = Int(MAX_BRIGHTNESS / 2)
-            if index % 3 == 1 {
-                point = HueUtilities.calculateXY(UIColor(red: 14/255.0, green: 56/255.0, blue: 200/255.0, alpha: 1), forModel: light.modelId)
-                lightState.brightness = Int(Double(MAX_BRIGHTNESS)*(1/10.0))
-                lightState.saturation = Int(MAX_BRIGHTNESS)
-            }
-            if index % 6 == 2 {
-                point = HueUtilities.calculateXY(UIColor(red: 14/255.0, green: 156/255.0, blue: 200/255.0, alpha: 1), forModel: light.modelId)
-                lightState.brightness = Int(Double(MAX_BRIGHTNESS)*(3/10.0))
-                lightState.saturation = Int(MAX_BRIGHTNESS)
-            }
-            lightState.xy = [Float(point.x), Float(point.y)]
-            return lightState
-        }
-        
-        self.ensureScene(sceneName: "TTModeHueSceneMidnightOil", moment: .button_MOMENT_DOUBLE, force: force) { (light: Light, index: Int) in
-            var lightState = LightState()
-            lightState.on = true
-            var point = HueUtilities.calculateXY(UIColor(red: 145/255.0, green: 76/255.0, blue: 65/255.0, alpha: 1), forModel: light.modelId)
-            lightState.brightness = Int(Double(MAX_BRIGHTNESS)*(2/10.0))
-            lightState.saturation = Int(MAX_BRIGHTNESS / 2)
-            if index % 3 == 2 {
-                point = HueUtilities.calculateXY(UIColor(red: 14/255.0, green: 26/255.0, blue: 240/255.0, alpha: 1), forModel: light.modelId)
-                lightState.brightness = Int(Double(MAX_BRIGHTNESS)*(3/10.0))
-                lightState.saturation = Int(MAX_BRIGHTNESS)
-            }
-            if index % 6 == 1 {
-                point = HueUtilities.calculateXY(UIColor(red: 140/255.0, green: 16/255.0, blue: 20/255.0, alpha: 1), forModel: light.modelId)
-                lightState.brightness = Int(Double(MAX_BRIGHTNESS)*(3/10.0))
-                lightState.saturation = Int(MAX_BRIGHTNESS)
-            }
-            lightState.xy = [Float(point.x), Float(point.y)]
-            return lightState
-        }
-        
-        self.ensureScene(sceneName: "TTModeHueSceneLightsOff", moment: .button_MOMENT_PRESSUP, force: force) { (light: Light, index: Int) in
-            var lightState = LightState()
-            lightState.on = false
-            lightState.brightness = Int(0)
-            return lightState
-        }
-        
-        self.ensureScene(sceneName: "TTModeHueSceneColorLoop", moment: .button_MOMENT_PRESSUP, force: force) { (light: Light, index: Int) in
-            var lightState = LightState()
-            lightState.on = true
-            lightState.effect = "colorloop"
-            return lightState
-        }
 
+            self.ensureScene(sceneName: "TTModeHueSceneEarlyEvening", moment: .button_MOMENT_PRESSUP) { (light: Light, index: Int) in
+                var lightState = LightState()
+                lightState.on = true
+                let point = HueUtilities.calculateXY(UIColor(red: 235/255.0, green: 206/255.0, blue: 146/255.0, alpha: 1), forModel: light.modelId)
+                lightState.xy = [Float(point.x), Float(point.y)]
+                lightState.brightness = Int(MAX_BRIGHTNESS)
+                lightState.saturation = Int(MAX_BRIGHTNESS)
+                return lightState
+            }
+            
+            self.ensureScene(sceneName: "TTModeHueSceneEarlyEvening", moment: .button_MOMENT_DOUBLE) { (light: Light, index: Int) in
+                var lightState = LightState()
+                lightState.on = true
+                var point = HueUtilities.calculateXY(UIColor(red: 245/255.0, green: 176/255.0, blue: 116/255.0, alpha: 1), forModel: light.modelId)
+                if index % 3 == 2 {
+                    point = HueUtilities.calculateXY(UIColor(red: 44/255.0, green: 56/255.0, blue: 225/255.0, alpha: 1), forModel: light.modelId)
+                }
+                lightState.xy = [Float(point.x), Float(point.y)]
+                lightState.brightness = Int(200)
+                lightState.saturation = Int(MAX_BRIGHTNESS)
+                return lightState
+            }
+            
+            self.ensureScene(sceneName: "TTModeHueSceneLateEvening", moment: .button_MOMENT_PRESSUP) { (light: Light, index: Int) in
+                var lightState = LightState()
+                lightState.on = true
+                let point = HueUtilities.calculateXY(UIColor(red: 95/255.0, green: 76/255.0, blue: 36/255.0, alpha: 1), forModel: light.modelId)
+                lightState.xy = [Float(point.x), Float(point.y)]
+                lightState.brightness = Int(MAX_BRIGHTNESS)
+                lightState.saturation = Int(MAX_BRIGHTNESS)
+                return lightState
+            }
+            
+            self.ensureScene(sceneName: "TTModeHueSceneLateEvening", moment: .button_MOMENT_DOUBLE) { (light: Light, index: Int) in
+                var lightState = LightState()
+                lightState.on = true
+                var point = HueUtilities.calculateXY(UIColor(red: 145/255.0, green: 76/255.0, blue: 16/255.0, alpha: 1), forModel: light.modelId)
+                lightState.brightness = Int(Double(MAX_BRIGHTNESS)*(6/10.0))
+                if index % 3 == 1 {
+                    point = HueUtilities.calculateXY(UIColor(red: 134/255.0, green: 56/255.0, blue: 205/255.0, alpha: 1), forModel: light.modelId)
+                    lightState.brightness = Int(Double(MAX_BRIGHTNESS)*(8/10.0))
+                }
+                lightState.xy = [Float(point.x), Float(point.y)]
+                lightState.saturation = Int(MAX_BRIGHTNESS)
+                return lightState
+            }
+            
+            self.ensureScene(sceneName: "TTModeHueSceneMorning", moment: .button_MOMENT_PRESSUP) { (light: Light, index: Int) in
+                var lightState = LightState()
+                lightState.on = true
+                var point = HueUtilities.calculateXY(UIColor(red: 145/255.0, green: 76/255.0, blue: 16/255.0, alpha: 1), forModel: light.modelId)
+                lightState.brightness = Int(Double(MAX_BRIGHTNESS)*(2/10.0))
+                if index % 3 == 1 {
+                    point = HueUtilities.calculateXY(UIColor(red: 144/255.0, green: 56/255.0, blue: 20/255.0, alpha: 1), forModel: light.modelId)
+                    lightState.brightness = Int(Double(MAX_BRIGHTNESS)*(5/10.0))
+                }
+                lightState.xy = [Float(point.x), Float(point.y)]
+                lightState.saturation = Int(MAX_BRIGHTNESS / 2)
+                return lightState
+            }
+            
+            self.ensureScene(sceneName: "TTModeHueSceneMorning", moment: .button_MOMENT_DOUBLE) { (light: Light, index: Int) in
+                var lightState = LightState()
+                lightState.on = true
+                var point = HueUtilities.calculateXY(UIColor(red: 195/255.0, green: 76/255.0, blue: 16/255.0, alpha: 1), forModel: light.modelId)
+                lightState.brightness = Int(Double(MAX_BRIGHTNESS)*(4/10.0))
+                if index % 3 == 1 {
+                    point = HueUtilities.calculateXY(UIColor(red: 134/255.0, green: 76/255.0, blue: 26/255.0, alpha: 1), forModel: light.modelId)
+                    lightState.brightness = Int(Double(MAX_BRIGHTNESS)*(6/10.0))
+                }
+                lightState.xy = [Float(point.x), Float(point.y)]
+                lightState.saturation = Int(MAX_BRIGHTNESS / 2)
+                return lightState
+            }
+            
+            self.ensureScene(sceneName: "TTModeHueSceneMidnightOil", moment: .button_MOMENT_PRESSUP) { (light: Light, index: Int) in
+                var lightState = LightState()
+                lightState.on = true
+                var point = HueUtilities.calculateXY(UIColor(red: 145/255.0, green: 176/255.0, blue: 165/255.0, alpha: 1), forModel: light.modelId)
+                lightState.brightness = Int(Double(MAX_BRIGHTNESS)*(2/10.0))
+                lightState.saturation = Int(MAX_BRIGHTNESS / 2)
+                if index % 3 == 1 {
+                    point = HueUtilities.calculateXY(UIColor(red: 14/255.0, green: 56/255.0, blue: 200/255.0, alpha: 1), forModel: light.modelId)
+                    lightState.brightness = Int(Double(MAX_BRIGHTNESS)*(1/10.0))
+                    lightState.saturation = Int(MAX_BRIGHTNESS)
+                }
+                if index % 6 == 2 {
+                    point = HueUtilities.calculateXY(UIColor(red: 14/255.0, green: 156/255.0, blue: 200/255.0, alpha: 1), forModel: light.modelId)
+                    lightState.brightness = Int(Double(MAX_BRIGHTNESS)*(3/10.0))
+                    lightState.saturation = Int(MAX_BRIGHTNESS)
+                }
+                lightState.xy = [Float(point.x), Float(point.y)]
+                return lightState
+            }
+            
+            self.ensureScene(sceneName: "TTModeHueSceneMidnightOil", moment: .button_MOMENT_DOUBLE) { (light: Light, index: Int) in
+                var lightState = LightState()
+                lightState.on = true
+                var point = HueUtilities.calculateXY(UIColor(red: 145/255.0, green: 76/255.0, blue: 65/255.0, alpha: 1), forModel: light.modelId)
+                lightState.brightness = Int(Double(MAX_BRIGHTNESS)*(2/10.0))
+                lightState.saturation = Int(MAX_BRIGHTNESS / 2)
+                if index % 3 == 2 {
+                    point = HueUtilities.calculateXY(UIColor(red: 14/255.0, green: 26/255.0, blue: 240/255.0, alpha: 1), forModel: light.modelId)
+                    lightState.brightness = Int(Double(MAX_BRIGHTNESS)*(3/10.0))
+                    lightState.saturation = Int(MAX_BRIGHTNESS)
+                }
+                if index % 6 == 1 {
+                    point = HueUtilities.calculateXY(UIColor(red: 140/255.0, green: 16/255.0, blue: 20/255.0, alpha: 1), forModel: light.modelId)
+                    lightState.brightness = Int(Double(MAX_BRIGHTNESS)*(3/10.0))
+                    lightState.saturation = Int(MAX_BRIGHTNESS)
+                }
+                lightState.xy = [Float(point.x), Float(point.y)]
+                return lightState
+            }
+            
+            self.ensureScene(sceneName: "TTModeHueSceneLightsOff", moment: .button_MOMENT_PRESSUP) { (light: Light, index: Int) in
+                var lightState = LightState()
+                lightState.on = false
+                lightState.brightness = Int(0)
+                return lightState
+            }
+            
+            self.ensureScene(sceneName: "TTModeHueSceneColorLoop", moment: .button_MOMENT_PRESSUP) { (light: Light, index: Int) in
+                var lightState = LightState()
+                lightState.on = true
+                lightState.effect = "colorloop"
+                return lightState
+            }
+        }
     }
     
-    func ensureScene(sceneName: String, moment: TTButtonMoment, force: Bool, lightsHandler: @escaping ((_ light: Light, _ index: Int) -> (LightState))) {
+    func ensureScene(sceneName: String, moment: TTButtonMoment, lightsHandler: @escaping ((_ light: Light, _ index: Int) -> (LightState))) {
+
+        let createdSceneName = "\(sceneName)-\(moment == .button_MOMENT_PRESSUP ? "single" : "double")"
+        if TTModeHue.createdScenes.contains(createdSceneName) {
+            print(" ---> Not ensuring scene \(sceneName), just created")
+            return
+        }
+
         let bridgeSendAPI = TTModeHue.hueSdk.bridgeSendAPI
         let cache = TTModeHue.hueSdk.resourceCache
 
@@ -996,43 +1006,71 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate {
             return
         }
 
-        for (_, room) in rooms {
-            let sceneIdentifier = self.sceneForAction(sceneName, actionRoom: room.identifier, moment: moment)
-            let roomLights = room.lightIdentifiers ?? []
-            if sceneIdentifier != nil {
-                if TTModeHue.foundScenes.contains(sceneIdentifier!) {
-                    if !force {
+        TTModeHue.createdScenes.append(createdSceneName)
+        DispatchQueue.global().async {
+            for (_, room) in rooms {
+                let sceneIdentifier = self.sceneForAction(sceneName, actionRoom: room.identifier, moment: moment)
+                let roomLights = room.lightIdentifiers ?? []
+                if sceneIdentifier != nil {
+                    if TTModeHue.foundScenes.contains(sceneIdentifier!) {
                         continue
                     }
+                } else {
+    //                    print(" ---> Scene not found: \(sceneName) [\(roomLights)] \(TTModeHue.foundScenes)")
                 }
-            } else {
-                print(" ---> Scene not found: \(sceneName) [\(roomLights)] \(TTModeHue.foundScenes)")
+                
+                if case .timedOut = TTModeHue.sceneSemaphore.wait(timeout: DispatchTime.now() + DispatchTimeInterval.seconds(30)) {
+                    print(" ---> Hue room timed out \(sceneIdentifier): \(sceneName)-\(roomLights)")
+                }
+
+                print(" ---> Creating scene \(sceneName): [\(roomLights)]")
+                let sceneTitle = self.titleForAction(sceneName, buttonMoment: moment)
+                bridgeSendAPI.createSceneWithName(sceneTitle, includeLightIds: roomLights, completionHandler: { (sceneIdentifier, errors) in
+                    guard let sceneIdentifier = sceneIdentifier else {
+                        print(" ---> Error: missing scene identifier")
+                        return
+                    }
+                    print(" ---> Created scene \(sceneTitle): [\(roomLights)] \(sceneIdentifier)")
+                    
+                    DispatchQueue.global().async {
+                        for (index, light) in lights.values.enumerated() {
+                            if !roomLights.contains(light.identifier) {
+                                continue
+                            }
+                            if case .timedOut = TTModeHue.lightSemaphore.wait(timeout: DispatchTime.now() + DispatchTimeInterval.seconds(10)) {
+                                print(" ---> Hue light timed out \(sceneIdentifier) #\(index): \(sceneName)-\(roomLights)")
+                            }
+                            print(" ---> Saving hue light \(sceneIdentifier) #\(index): \(sceneName)-\(roomLights)")
+                            let lightState = lightsHandler(light, index)
+                            bridgeSendAPI.updateLightStateInScene(sceneIdentifier, lightIdentifier: light.identifier, withLightState: lightState, completionHandler: { (errors) in
+                                print(" ---> Hue light done \(sceneIdentifier) #\(index): \(sceneName)-\(roomLights) \(errors)")
+                                TTModeHue.lightSemaphore.signal()
+        //                                self.delegate?.changeState(TTModeHue.hueState, mode: self, message: nil)
+                            })
+                        }
+                        
+                        //                print(" ---> All done creating scenes!")
+                        //                TTModeHue.hueSdk.stopHeartbeat()
+                        //                TTModeHue.hueSdk.startHeartbeat()
+                        if case .timedOut = TTModeHue.lightSemaphore.wait(timeout: DispatchTime.now() + DispatchTimeInterval.seconds(30)) {
+                            print(" ---> Hue lights timed out \(sceneIdentifier): \(sceneName)-\(roomLights)")
+                        }
+                        
+                        TTModeHue.lightSemaphore.signal()
+                        TTModeHue.sceneSemaphore.signal()
+                        
+                        self.updateScenes()
+                        
+                        if case .timedOut = TTModeHue.sceneCacheSemaphore.wait(timeout: DispatchTime.now() + DispatchTimeInterval.seconds(30)) {
+                            print(" ---> Waited too long for created scenes to come back")
+                        }
+
+                        self.ensureScenesSelected()
+                        TTModeHue.sceneCacheSemaphore.signal()
+                        
+                    }
+                })
             }
-            
-            let sceneTitle = self.titleForAction(sceneName, buttonMoment: moment)
-            TTModeHue.sceneCreationCounter += 1
-            bridgeSendAPI.createSceneWithName(sceneTitle, includeLightIds: roomLights, completionHandler: { (sceneIdentifier, errors) in
-                TTModeHue.sceneCreationCounter -= 1
-                guard let sceneIdentifier = sceneIdentifier else {
-                    print(" ---> Error: missing scene identifier")
-                    return
-                }
-                print(" ---> Created scene \(sceneTitle): [\(roomLights)] \(sceneIdentifier)")
-                
-                TTModeHue.hueSdk.stopHeartbeat()
-                TTModeHue.hueSdk.startHeartbeat()
-                
-                for (index, light) in lights.values.enumerated() {
-                    if !roomLights.contains(light.identifier) {
-                        continue
-                    }
-                    let lightState = lightsHandler(light, index)
-                    bridgeSendAPI.updateLightStateInScene(sceneIdentifier, lightIdentifier: light.identifier, withLightState: lightState, completionHandler: { (errors) in
-                        print(" ---> Hue: \(sceneName) scene in room \(sceneIdentifier)/\(light.identifier): \(lightState) \(errors)")
-                        self.delegate?.changeState(TTModeHue.hueState, mode: self, message: nil)
-                    })
-                }
-            })
         }
     }
     
@@ -1040,6 +1078,7 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate {
         let cache = TTModeHue.hueSdk.resourceCache
         let bridgeSendAPI = TTModeHue.hueSdk.bridgeSendAPI
         guard let scenes = cache?.scenes else {
+            print(" ---> Not deleting scenes, no scenes found!")
             return
         }
         
@@ -1051,13 +1090,44 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate {
             let doubleTitle = self.titleForAction(sceneName, buttonMoment: .button_MOMENT_DOUBLE)
             sceneTitles.append(doubleTitle)
         }
-        
-        for (_, scene) in scenes {
-            if sceneTitles.contains(scene.name) {
-                bridgeSendAPI.removeSceneWithId(scene.identifier, completionHandler: { (errors) in
-                    print(" ---> Removed \(scene.name) (\(scene.identifier)) [\(scene.lightIdentifiers!)])")
-                })
+
+        DispatchQueue.global().async {
+            for (_, scene) in scenes {
+                if sceneTitles.contains(scene.name) {
+                    if case .timedOut = TTModeHue.sceneSemaphore.wait(timeout: DispatchTime.now() + DispatchTimeInterval.seconds(10)) {
+                        print(" ---> Hue scene removal timed out \(scene.identifier): \(scene.name)-\(scene.lightIdentifiers!)")
+                    }
+                    print(" ---> Removing \(scene.name) (\(scene.identifier)) [\(scene.lightIdentifiers!)])")
+                    bridgeSendAPI.removeSceneWithId(scene.identifier, completionHandler: { (errors) in
+                        print(" ---> Removed \(scene.name) (\(scene.identifier)) [\(scene.lightIdentifiers!)])")
+                        TTModeHue.sceneSemaphore.signal()
+                    })
+                }
             }
+            
+
+            if case .timedOut = TTModeHue.sceneSemaphore.wait(timeout: DispatchTime.now() + DispatchTimeInterval.seconds(10)) {
+                print(" ---> Hue scene removals timed out")
+            }
+            print(" ---> Removed all Hue scenes")
+            TTModeHue.sceneSemaphore.signal()
+            TTModeHue.createdScenes = []
+            self.updateScenes()
+        }
+    }
+    
+    func updateScenes() {
+        print(" ---> Updating scenes...")
+
+        DispatchQueue.main.sync {
+            TTModeHue.hueSdk.removeLocalHeartbeat(forResourceType: .lights)
+            TTModeHue.hueSdk.removeLocalHeartbeat(forResourceType: .groups)
+            TTModeHue.hueSdk.removeLocalHeartbeat(forResourceType: .config)
+
+            print(" ---> Restarting heartbeat with only scenes")
+            TTModeHue.waitingOnScenes = true
+            TTModeHue.hueSdk.stopHeartbeat()
+            TTModeHue.hueSdk.startHeartbeat()
         }
     }
     
@@ -1162,13 +1232,13 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate {
             // Double check that scene is still on bridge and corrosponds to selected room
             if actionScene != nil {
                 if scenes.values.first(where: { (scene) -> Bool in scene.identifier == actionScene }) == nil {
-                    print(" ---> Scene no longer exists: \(actionScene), clearing...")
+                    print(" ---> Scene no longer exists: \(actionScene!) \(actionName), clearing...")
                     actionScene = nil
                 }
             }
             if actionDouble != nil {
                 if scenes.values.first(where: { (scene) -> Bool in scene.identifier == actionDouble }) == nil {
-                    print(" ---> Scene no longer exists: \(actionDouble), clearing...")
+                    print(" ---> Scene no longer exists: \(actionDouble!) \(actionName), clearing...")
                     actionDouble = nil
                 }
             }
@@ -1197,13 +1267,13 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate {
 
                     if singleScene != nil {
                         if scenes.values.first(where: { (scene) -> Bool in scene.identifier == singleScene }) == nil {
-                            print(" ---> Scene no longer exists: \(singleScene), clearing...")
+//                            print(" ---> Scene no longer exists: \(singleScene!) \(actionName), clearing...")
                             singleScene = nil
                         }
                     }
                     if doubleScene != nil {
                         if scenes.values.first(where: { (scene) -> Bool in scene.identifier == doubleScene }) == nil {
-                            print(" ---> Scene no longer exists: \(doubleScene), clearing...")
+//                            print(" ---> Scene no longer exists: \(doubleScene!) \(actionName), clearing...")
                             doubleScene = nil
                         }
                     }
