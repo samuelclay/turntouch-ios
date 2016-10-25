@@ -268,7 +268,7 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate {
     }
     
     func imageTTModeHueSceneColorLoop() -> String {
-        return "music_shuffle.png"
+        return "hue_random.png"
     }
     
     func imageTTModeHueSceneCustom() -> String {
