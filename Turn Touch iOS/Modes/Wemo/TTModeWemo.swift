@@ -23,6 +23,7 @@ fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
 struct TTModeWemoConstants {
     static let kWemoDeviceLocation = "wemoDeviceLocation"
     static let kWemoFoundDevices = "wemoFoundDevices"
+    static let kWemoSeenDevices = "wemoSeenDevices"
 }
 
 enum TTWemoState {
@@ -147,6 +148,8 @@ class TTModeWemo: TTMode, TTModeWemoMulticastDelegate, TTModeWemoDeviceDelegate 
     
     override func activate() {
         delegate?.changeState(wemoState, mode: self)
+        
+        self.ensureDevicesSelected()
     }
     
     override func deactivate() {
@@ -264,5 +267,89 @@ class TTModeWemo: TTMode, TTModeWemoMulticastDelegate, TTModeWemoDeviceDelegate 
 
         wemoState = .connected
         delegate?.changeState(wemoState, mode: self)
+        
+        self.ensureDevicesSelected()
     }
+    
+    // MARK: Device selection
+    
+    func ensureDevicesSelected() {
+        let sameMode = appDelegate().modeMap.modeInDirection(self.modeDirection).nameOfClass == self.nameOfClass
+        if !sameMode {
+            return
+        }
+        if TTModeWemo.foundDevices.count == 0 {
+            return
+        }
+        
+        for direction: TTModeDirection in [.north, .east, .west, .south] {
+            let actionName = self.actionNameInDirection(direction)
+            var seenDevices: [String] = self.actionOptionValue(TTModeWemoConstants.kWemoSeenDevices,
+                                                               actionName: actionName,
+                                                               direction: direction) as? [String] ?? []
+            let actionDevice = self.actionOptionValue(TTModeWemoConstants.kWemoDeviceLocation,
+                                                      actionName: actionName,
+                                                      direction: direction) as? String
+   
+            // Sanity check actual action options for devices so as to not repeat
+            if let actionDevice = actionDevice {
+                if !seenDevices.contains(actionDevice) {
+                    seenDevices.append(actionDevice)
+                }
+            }
+            for batchAction in appDelegate().modeMap.batchActions.batchActions(in: direction) {
+                if let deviceLocation = self.batchActionOptionValue(batchAction,
+                                                                    optionName: TTModeWemoConstants.kWemoDeviceLocation,
+                                                                    direction: direction) as? String {
+                    if !seenDevices.contains(deviceLocation) {
+                        print(" ---> Already have device \(deviceLocation) in batch action")
+                        seenDevices.append(deviceLocation)
+                    }
+                }
+            }
+
+            
+            var unseenDevices: [TTModeWemoDevice] = []
+            for device in TTModeWemo.foundDevices {
+                if !seenDevices.contains(device.location()) {
+                    unseenDevices.append(device)
+                }
+            }
+            
+            if unseenDevices.count == 0 {
+                return
+            }
+            
+            // If the current action has no device set and is a Wemo action, set the device
+            if actionDevice == nil {
+                let unseenDevice = unseenDevices[0]
+                print(" ---> Setting action for wemo device \(unseenDevice) to \(actionName)")
+                self.changeActionOption(TTModeWemoConstants.kWemoDeviceLocation, to: unseenDevice.location(),
+                                        direction: direction)
+                seenDevices.append(unseenDevice.location())
+                unseenDevices.remove(at: 0)
+            }
+            
+            if unseenDevices.count >= 1 {
+                for unseenDevice in unseenDevices {
+                    print(" ---> Adding batch action for wemo device \(unseenDevice) to \(actionName)")
+                    let batchActionKey = appDelegate().modeMap.addBatchAction(modeDirection: self.modeDirection,
+                                                                              actionDirection: direction,
+                                                                              modeClassName: self.nameOfClass,
+                                                                              actionName: actionName)
+                    seenDevices.append(unseenDevice.location())
+                    self.changeBatchActionOption(batchActionKey,
+                                                 optionName: TTModeWemoConstants.kWemoDeviceLocation,
+                                                 to: unseenDevice.location(),
+                                                 direction: self.modeDirection,
+                                                 actionDirection: direction)
+                    appDelegate().mainViewController.adjustBatchActions()
+                }
+            }
+
+            self.changeActionOption(TTModeWemoConstants.kWemoSeenDevices, to: seenDevices, direction: direction)
+        }
+
+    }
+    
 }
