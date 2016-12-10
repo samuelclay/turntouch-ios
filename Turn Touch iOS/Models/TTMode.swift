@@ -173,7 +173,7 @@ class TTMode : NSObject, TTModeProtocol {
         
         let selector = NSSelectorFromString("\(runAction)\(actionName)")
         if !self.responds(to: selector) && buttonMoment != .button_MOMENT_PRESSUP {
-            print(" ---> No double click title: \(actionName)")
+            // print(" ---> No double click title: \(actionName)")
             return self.titleForAction(actionName, buttonMoment: .button_MOMENT_PRESSUP)
         }
         

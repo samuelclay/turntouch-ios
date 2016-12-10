@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -14,6 +17,8 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TTModeHueConnected" customModule="Turn_Touch_iOS" customModuleProvider="target">
             <connections>
                 <outlet property="lightsLabel" destination="2YS-VH-2GU" id="DlJ-sy-EAU"/>
+                <outlet property="progressView" destination="Lwq-HE-Xc8" id="dtD-h0-ddY"/>
+                <outlet property="reloadScenesButton" destination="szy-7s-qNO" id="i8a-LS-haE"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -23,11 +28,13 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Connected to Hue" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FWr-5Z-Oo5">
+                    <rect key="frame" x="22" y="38" width="103" height="16"/>
                     <fontDescription key="fontDescription" name="Effra-Regular" family="Effra" pointSize="13"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K3R-sB-HiJ">
+                    <rect key="frame" x="440" y="22" width="138" height="48.5"/>
                     <fontDescription key="fontDescription" name="Effra-Regular" family="Effra" pointSize="13"/>
                     <state key="normal" title="Switch to another bridge"/>
                     <connections>
@@ -35,22 +42,29 @@
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="X rooms, Y lights, Z scenes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2YS-VH-2GU">
+                    <rect key="frame" x="20" y="84" width="149" height="16"/>
                     <fontDescription key="fontDescription" name="Effra-Regular" family="Effra" pointSize="13"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="szy-7s-qNO">
+                    <rect key="frame" x="499" y="78.5" width="81" height="28"/>
                     <fontDescription key="fontDescription" name="Effra-Regular" family="Effra" pointSize="13"/>
                     <state key="normal" title="Reload scenes"/>
                     <connections>
                         <action selector="reloadScenes:" destination="-1" eventType="touchUpInside" id="rqD-NV-gde"/>
                     </connections>
                 </button>
+                <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Lwq-HE-Xc8">
+                    <rect key="frame" x="499" y="91" width="81" height="2"/>
+                </progressView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="Lwq-HE-Xc8" firstAttribute="leading" secondItem="szy-7s-qNO" secondAttribute="leading" id="2vi-YN-Hzk"/>
                 <constraint firstItem="K3R-sB-HiJ" firstAttribute="centerY" secondItem="FWr-5Z-Oo5" secondAttribute="centerY" id="3cX-gI-0Jh"/>
                 <constraint firstItem="2YS-VH-2GU" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="4C4-jP-gcF"/>
+                <constraint firstItem="Lwq-HE-Xc8" firstAttribute="centerY" secondItem="szy-7s-qNO" secondAttribute="centerY" id="Bg5-xl-kNm"/>
                 <constraint firstItem="szy-7s-qNO" firstAttribute="centerY" secondItem="2YS-VH-2GU" secondAttribute="centerY" id="KyJ-n3-Aal"/>
                 <constraint firstItem="FWr-5Z-Oo5" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="22" id="U6u-Bj-qXw"/>
                 <constraint firstItem="K3R-sB-HiJ" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="22" id="XJb-59-xEw"/>
@@ -58,6 +72,7 @@
                 <constraint firstAttribute="bottom" secondItem="2YS-VH-2GU" secondAttribute="bottom" constant="30" id="hHs-Ve-HYr"/>
                 <constraint firstAttribute="trailing" secondItem="K3R-sB-HiJ" secondAttribute="trailing" constant="22" id="iEj-x9-aU6"/>
                 <constraint firstItem="szy-7s-qNO" firstAttribute="top" secondItem="K3R-sB-HiJ" secondAttribute="bottom" constant="8" id="qic-oQ-2z6"/>
+                <constraint firstItem="Lwq-HE-Xc8" firstAttribute="width" secondItem="szy-7s-qNO" secondAttribute="width" id="xrB-RK-6kj"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="471" y="209"/>

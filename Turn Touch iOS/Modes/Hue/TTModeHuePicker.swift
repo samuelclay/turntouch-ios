@@ -128,6 +128,9 @@ class TTModeHuePicker: TTOptionsDetailViewController, UITextFieldDelegate, UIPop
     
     func pickerDismissed(_ row: Int, textField: UITextField) {
         presented = false
+        if rooms.count == 0 {
+            return
+        }
         
         if textField == roomPicker {
             let room = rooms[row]
@@ -239,6 +242,10 @@ class TTModeHuePicker: TTOptionsDetailViewController, UITextFieldDelegate, UIPop
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        if rooms.count == 0 {
+            return
+        }
+        
         if pickerVC.textField == roomPicker {
             self.action.changeActionOption(TTModeHueConstants.kHueRoom, to: rooms[row]["identifier"]!)
             self.action.removeActionOption(TTModeHueConstants.kHueScene)

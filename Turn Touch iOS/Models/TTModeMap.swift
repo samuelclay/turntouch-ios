@@ -248,23 +248,26 @@ class TTModeMap: NSObject {
         return newActionKey
     }
     
-    func removeBatchAction(for batchActionKey: String) {
+    func removeBatchAction(for batchActionKey: String, silent: Bool = false, actionDirection: TTModeDirection? = nil) {
         let prefs = UserDefaults.standard
-        let batchActionKeys = self.batchActionKeys()
+        let batchActionKeys = self.batchActionKeys(modeDirection: nil, actionDirection: actionDirection)
         var newBatchActionKeys: [String] = []
         
         for key in batchActionKeys {
             if key != batchActionKey {
                 newBatchActionKeys.append(key)
+            } else {
+                print(" ---> Removing from \(batchActionKeys.count) batch actions in \(actionDirection?.rawValue): \(key)")
             }
         }
         
-        prefs.set(newBatchActionKeys, forKey: self.batchKey())
+        prefs.set(newBatchActionKeys, forKey: self.batchKey(actionDirection: actionDirection))
         prefs.synchronize()
         
-        batchActions.assemble()
-        
-        self.didChangeValue(forKey: "inspectingModeDirection")
+        if !silent {
+            batchActions.assemble()
+            self.didChangeValue(forKey: "inspectingModeDirection")
+        }
     }
     
     func batchActionKeys(modeDirection: TTModeDirection? = nil, actionDirection: TTModeDirection? = nil) -> [String] {

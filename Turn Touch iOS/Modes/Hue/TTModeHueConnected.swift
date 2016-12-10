@@ -8,16 +8,23 @@
 
 import UIKit
 
-class TTModeHueConnected: TTOptionsDetailViewController {
+class TTModeHueConnected: TTOptionsDetailViewController, TTModeHueSceneDelegate {
     
     var modeHue: TTModeHue!
     @IBOutlet var lightsLabel: UILabel!
+    @IBOutlet var progressView: UIProgressView!
+    @IBOutlet var reloadScenesButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.translatesAutoresizingMaskIntoConstraints = false
         
         self.countLights()
+
+        self.modeHue = appDelegate().modeMap.selectedMode as! TTModeHue
+        self.modeHue.sceneDelegate = self
+        
+        self.sceneUploadProgress()
     }
 
     @IBAction func selectOtherBridge(_ sender: UIButton) {        
@@ -39,6 +46,19 @@ class TTModeHueConnected: TTOptionsDetailViewController {
             lightsLabel.text = "\(roomStr), \(lightsStr), \(sceneStr)"
         } else {
             lightsLabel.text = "Loading scenes..."
+        }
+    }
+    
+    func sceneUploadProgress() {
+        let progress = self.modeHue.sceneUploadProgress
+        // return
+        if progress >= 0 {
+            progressView.isHidden = false
+            reloadScenesButton.isHidden = true
+            progressView.setProgress(progress, animated: true)
+        } else {
+            progressView.isHidden = true
+            reloadScenesButton.isHidden = false
         }
     }
 

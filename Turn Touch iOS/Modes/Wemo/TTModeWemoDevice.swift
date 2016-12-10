@@ -74,6 +74,7 @@ class TTModeWemoDevice: NSObject {
     func parseSetupXml(_ xmlData: Data) {
         let doc = SWXMLHash.parse(xmlData)
         deviceName = doc["root"]["device"]["friendlyName"].element?.text
+
         if deviceName != nil {
             print(" ---> Found wemo: \(deviceName ?? "[no device name]") (\(self.location()))")
         } else {

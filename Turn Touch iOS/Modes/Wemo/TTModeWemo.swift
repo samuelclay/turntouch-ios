@@ -39,7 +39,7 @@ protocol TTModeWemoDelegate {
 class TTModeWemo: TTMode, TTModeWemoMulticastDelegate, TTModeWemoDeviceDelegate {
     
     var delegate: TTModeWemoDelegate?
-    var wemoState = TTWemoState.disconnected
+    static var wemoState = TTWemoState.disconnected
     static var multicastServer = TTModeWemoMulticastServer()
     static var foundDevices: [TTModeWemoDevice] = []
     
@@ -48,15 +48,17 @@ class TTModeWemo: TTMode, TTModeWemoMulticastDelegate, TTModeWemoDeviceDelegate 
         
         TTModeWemo.multicastServer.delegate = self
         
-        self.assembleFoundDevices()
+        if TTModeWemo.foundDevices.count == 0 {
+            self.assembleFoundDevices()
+        }
         
         if TTModeWemo.foundDevices.count == 0 {
-            wemoState = .connecting
+            TTModeWemo.wemoState = .connecting
             self.beginConnectingToWemo()
         } else {
-            wemoState = .connected
+            TTModeWemo.wemoState = .connected
         }
-        delegate?.changeState(wemoState, mode: self)
+        delegate?.changeState(TTModeWemo.wemoState, mode: self)
     }
     
     func resetKnownDevices() {
@@ -74,6 +76,10 @@ class TTModeWemo: TTMode, TTModeWemoMulticastDelegate, TTModeWemoDeviceDelegate 
                 let newDevice = self.foundDevice([:], host: device["ipaddress"] as! String, port: device["port"] as! Int, name: device["name"] as! String?, live: false)
                 print(" ---> Loading wemo: \(newDevice.deviceName!) (\(newDevice.location()))")
             }
+        }
+        
+        for direction: TTModeDirection in [.north, .east, .west, .south] {
+            self.cleanDeviceBatchActions(in: direction)
         }
     }
     
@@ -147,7 +153,7 @@ class TTModeWemo: TTMode, TTModeWemoMulticastDelegate, TTModeWemoDeviceDelegate 
     // MARK: Action methods
     
     override func activate() {
-        delegate?.changeState(wemoState, mode: self)
+        delegate?.changeState(TTModeWemo.wemoState, mode: self)
         
         self.ensureDevicesSelected()
     }
@@ -204,15 +210,15 @@ class TTModeWemo: TTMode, TTModeWemoMulticastDelegate, TTModeWemoDeviceDelegate 
     }
     
     func beginConnectingToWemo() {
-        wemoState = .connecting
-        delegate?.changeState(wemoState, mode: self)
+        TTModeWemo.wemoState = .connecting
+        delegate?.changeState(TTModeWemo.wemoState, mode: self)
         
         TTModeWemo.multicastServer.beginBroadcast()
     }
     
     func cancelConnectingToWemo() {
-        wemoState = .connected
-        delegate?.changeState(wemoState, mode: self)
+        TTModeWemo.wemoState = .connected
+        delegate?.changeState(TTModeWemo.wemoState, mode: self)
         
         TTModeWemo.multicastServer.deactivate()
     }
@@ -241,8 +247,8 @@ class TTModeWemo: TTMode, TTModeWemoMulticastDelegate, TTModeWemoDeviceDelegate 
     }
     
     func finishScanning() {
-        wemoState = .connected
-        delegate?.changeState(wemoState, mode: self)
+        TTModeWemo.wemoState = .connected
+        delegate?.changeState(TTModeWemo.wemoState, mode: self)
     }
     
     // MARK: Device delegate
@@ -265,8 +271,8 @@ class TTModeWemo: TTMode, TTModeWemoMulticastDelegate, TTModeWemoDeviceDelegate 
         prefs.set(foundDevices, forKey: TTModeWemoConstants.kWemoFoundDevices)
         prefs.synchronize()
 
-        wemoState = .connected
-        delegate?.changeState(wemoState, mode: self)
+        TTModeWemo.wemoState = .connected
+        delegate?.changeState(TTModeWemo.wemoState, mode: self)
         
         self.ensureDevicesSelected()
     }
@@ -330,6 +336,7 @@ class TTModeWemo: TTMode, TTModeWemoMulticastDelegate, TTModeWemoDeviceDelegate 
                 unseenDevices.remove(at: 0)
             }
             
+            // Add the rest as batch actions
             if unseenDevices.count >= 1 {
                 for unseenDevice in unseenDevices {
                     print(" ---> Adding batch action for wemo device \(unseenDevice) to \(actionName)")
@@ -350,6 +357,26 @@ class TTModeWemo: TTMode, TTModeWemoMulticastDelegate, TTModeWemoDeviceDelegate 
             self.changeActionOption(TTModeWemoConstants.kWemoSeenDevices, to: seenDevices, direction: direction)
         }
 
+    }
+    
+    func cleanDeviceBatchActions(in direction: TTModeDirection) {
+        let batchActions = appDelegate().modeMap.selectedModeBatchActions(in: direction)
+        var removed = false
+        
+        for batchAction in batchActions {
+            let deviceSelected = batchAction.optionValue(TTModeWemoConstants.kWemoDeviceLocation) as? String
+            
+            if deviceSelected == nil {
+                print(" ---> Removing batch action due to unselected wemo: \(batchAction.batchActionKey!)")
+                appDelegate().modeMap.removeBatchAction(for: batchAction.batchActionKey!, silent: true, actionDirection: batchAction.direction)
+                appDelegate().mainViewController.batchActionsStackView.hideBatchAction(batchActionKey: batchAction.batchActionKey!)
+                removed = true
+            }
+        }
+        
+        if removed {
+            // appDelegate().modeMap.batchActions.assemble()
+        }
     }
     
 }

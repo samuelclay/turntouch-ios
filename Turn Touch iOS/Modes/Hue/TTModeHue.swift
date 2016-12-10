@@ -62,6 +62,10 @@ protocol TTModeHueDelegate {
     func changeState(_ hueState: TTHueState, mode: TTModeHue, message: Any?)
 }
 
+protocol TTModeHueSceneDelegate {
+    func sceneUploadProgress()
+}
+
 class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, ResourceCacheHeartbeatProcessorDelegate {
     
 //    static var phHueSdk: PHHueSDK!
@@ -81,9 +85,11 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
     var bridgeAuthenticator: BridgeAuthenticator!
     var latestBridge: HueBridge?
     var delegate: TTModeHueDelegate?
+    var sceneDelegate: TTModeHueSceneDelegate?
     var bridgeToken: Int = 0
     var bridgesTried: [String] = []
     var foundBridges: [HueBridge] = [] // Only used during bridge choosing
+    var sceneUploadProgress: Float = -1
 
     required init() {
         super.init()
@@ -859,6 +865,11 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
                 TTModeHue.foundScenes.append(scene.identifier)
             }
 
+            DispatchQueue.main.async {
+                self.sceneUploadProgress = 0
+                self.sceneDelegate?.sceneUploadProgress()
+            }
+
             self.ensureScene(sceneName: "TTModeHueSceneEarlyEvening", moment: .button_MOMENT_PRESSUP) { (light: Light, index: Int) in
                 var lightState = LightState()
                 lightState.on = true
@@ -987,6 +998,11 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
                 lightState.effect = "colorloop"
                 return lightState
             }
+            
+            DispatchQueue.main.async {
+                self.sceneUploadProgress = -1
+                self.sceneDelegate?.sceneUploadProgress()
+            }
         }
     }
     
@@ -994,7 +1010,7 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
 
         let createdSceneName = "\(sceneName)-\(moment == .button_MOMENT_PRESSUP ? "single" : "double")"
         if TTModeHue.createdScenes.contains(createdSceneName) {
-            print(" ---> Not ensuring scene \(sceneName), just created")
+            // print(" ---> Not ensuring scene \(sceneName), just created")
             return
         }
 
@@ -1031,7 +1047,11 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
                         return
                     }
                     print(" ---> Created scene \(sceneTitle): [\(roomLights)] \(sceneIdentifier)")
-                    
+                    DispatchQueue.main.async {
+                        self.sceneUploadProgress = 0.5
+                        self.sceneDelegate?.sceneUploadProgress()
+                    }
+
                     DispatchQueue.global().async {
                         for (index, light) in lights.values.enumerated() {
                             if !roomLights.contains(light.identifier) {
@@ -1044,6 +1064,10 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
                             let lightState = lightsHandler(light, index)
                             bridgeSendAPI.updateLightStateInScene(sceneIdentifier, lightIdentifier: light.identifier, withLightState: lightState, completionHandler: { (errors) in
                                 print(" ---> Hue light done \(sceneIdentifier) #\(index): \(sceneName)-\(roomLights) \(errors)")
+                                DispatchQueue.main.async {
+                                    self.sceneUploadProgress = Float(index)/Float(lights.count)
+                                    self.sceneDelegate?.sceneUploadProgress()
+                                }
                                 TTModeHue.lightSemaphore.signal()
         //                                self.delegate?.changeState(TTModeHue.hueState, mode: self, message: nil)
                             })
@@ -1090,30 +1114,45 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
             let doubleTitle = self.titleForAction(sceneName, buttonMoment: .button_MOMENT_DOUBLE)
             sceneTitles.append(doubleTitle)
         }
-
-        DispatchQueue.global().async {
-            for (_, scene) in scenes {
-                if sceneTitles.contains(scene.name) {
-                    if case .timedOut = TTModeHue.sceneSemaphore.wait(timeout: DispatchTime.now() + DispatchTimeInterval.seconds(10)) {
-                        print(" ---> Hue scene removal timed out \(scene.identifier): \(scene.name)-\(scene.lightIdentifiers!)")
-                    }
-                    print(" ---> Removing \(scene.name) (\(scene.identifier)) [\(scene.lightIdentifiers!)])")
-                    bridgeSendAPI.removeSceneWithId(scene.identifier, completionHandler: { (errors) in
-                        print(" ---> Removed \(scene.name) (\(scene.identifier)) [\(scene.lightIdentifiers!)])")
-                        TTModeHue.sceneSemaphore.signal()
-                    })
-                }
-            }
-            
-
-            if case .timedOut = TTModeHue.sceneSemaphore.wait(timeout: DispatchTime.now() + DispatchTimeInterval.seconds(10)) {
-                print(" ---> Hue scene removals timed out")
-            }
-            print(" ---> Removed all Hue scenes")
-            TTModeHue.sceneSemaphore.signal()
-            TTModeHue.createdScenes = []
-            self.updateScenes()
+        
+        DispatchQueue.main.async {
+            self.sceneUploadProgress = 1
+            self.sceneDelegate?.sceneUploadProgress()
         }
+        
+        var sceneCount = 0
+        for (_, scene) in scenes {
+            if sceneTitles.contains(scene.name) {
+                sceneCount += 1
+            }
+        }
+        var deleteCount = 0
+        for (_, scene) in scenes {
+            if sceneTitles.contains(scene.name) {
+                if case .timedOut = TTModeHue.sceneSemaphore.wait(timeout: DispatchTime.now() + DispatchTimeInterval.seconds(10)) {
+                    print(" ---> Hue scene removal timed out \(scene.identifier): \(scene.name)-\(scene.lightIdentifiers!)")
+                }
+                print(" ---> Removing \(scene.name) (\(scene.identifier)) [\(scene.lightIdentifiers!)])")
+                bridgeSendAPI.removeSceneWithId(scene.identifier, completionHandler: { (errors) in
+                    print(" ---> Removed \(scene.name) (\(scene.identifier)) [\(scene.lightIdentifiers!)])")
+                    TTModeHue.sceneSemaphore.signal()
+                    DispatchQueue.main.async {
+                        deleteCount += 1
+                        self.sceneUploadProgress = Float(sceneCount - deleteCount)/Float(sceneCount)
+                        self.sceneDelegate?.sceneUploadProgress()
+                    }
+                })
+            }
+        }
+        
+
+        if case .timedOut = TTModeHue.sceneSemaphore.wait(timeout: DispatchTime.now() + DispatchTimeInterval.seconds(10)) {
+            print(" ---> Hue scene removals timed out")
+        }
+        print(" ---> Removed all Hue scenes")
+        TTModeHue.sceneSemaphore.signal()
+        TTModeHue.createdScenes = []
+        self.updateScenes()
     }
     
     func updateScenes() {
@@ -1232,13 +1271,13 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
             // Double check that scene is still on bridge and corrosponds to selected room
             if actionScene != nil {
                 if scenes.values.first(where: { (scene) -> Bool in scene.identifier == actionScene }) == nil {
-                    print(" ---> Scene no longer exists: \(actionScene!) \(actionName), clearing...")
+                    // print(" ---> Scene no longer exists: \(actionScene!) \(actionName), clearing...")
                     actionScene = nil
                 }
             }
             if actionDouble != nil {
                 if scenes.values.first(where: { (scene) -> Bool in scene.identifier == actionDouble }) == nil {
-                    print(" ---> Scene no longer exists: \(actionDouble!) \(actionName), clearing...")
+                    // print(" ---> Scene no longer exists: \(actionDouble!) \(actionName), clearing...")
                     actionDouble = nil
                 }
             }

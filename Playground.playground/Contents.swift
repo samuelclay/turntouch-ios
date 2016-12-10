@@ -17,6 +17,10 @@ var bytes = [UInt8](repeating: 0, count: data.length)
 data.getBytes(&bytes, length: bytes.count)
 String(bytes[0], radix:2)
 
+var dict = ["a": 1, "b": 2, "c": 3]
+for (d, (key: _, value: value)) in dict.enumerated() {
+    print("\(d): \(value)")
+}
 
 // Range
 
