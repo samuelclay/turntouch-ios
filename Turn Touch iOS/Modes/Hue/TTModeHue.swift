@@ -157,7 +157,6 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
                 "TTModeHueSceneLightsOff",
                 "TTModeHueSceneColorLoop",
                 "TTModeHueSleep",
-                "TTModeHueOff",
                 "TTModeHueRandom"]
     }
     
@@ -217,10 +216,6 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
         return "Sleep fast"
     }
     
-    func titleTTModeHueOff() -> String {
-        return "Lights off"
-    }
-    
     func titleTTModeHueRandom() -> String {
         return "Random"
     }
@@ -260,10 +255,6 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
     }
     
     func imageTTModeHueSleep() -> String {
-        return "hue_sleep.png"
-    }
-    
-    func imageTTModeHueOff() -> String {
         return "hue_sleep.png"
     }
     
@@ -354,11 +345,6 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
     
     func doubleRunTTModeHueSceneCustom() {
         self.runScene(sceneName: "TTModeHueSceneCustom", doubleTap: true)
-    }
-    
-    func runTTModeHueOff() {
-        //    NSLog(@"Running scene off... %d", direction);
-        self.runTTModeHueSleep(duration: 1)
     }
     
     func runTTModeHueSleep() {
@@ -488,6 +474,8 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
 
             var lightState = LightState()
             
+            lightState.on = true
+
             if (randomColors == .allSame) || (randomColors == .someDifferent && arc4random() % 10 > 5) {
                 lightState.hue = randomColor
             } else {
