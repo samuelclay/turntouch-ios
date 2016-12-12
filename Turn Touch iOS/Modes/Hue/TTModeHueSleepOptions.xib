@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -28,38 +31,45 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="single_tap.png" translatesAutoresizingMaskIntoConstraints="NO" id="mm0-KL-wAm">
+                    <rect key="frame" x="22" y="71" width="32" height="30"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="32" id="LBa-20-1gZ"/>
                         <constraint firstAttribute="height" constant="30" id="WNE-0d-GL4"/>
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Single tap" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FLT-Da-zeL">
+                    <rect key="frame" x="62" y="78" width="62" height="16"/>
                     <fontDescription key="fontDescription" name="Effra-Regular" family="Effra" pointSize="13"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Double tap" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XgR-3t-wco">
+                    <rect key="frame" x="62" y="132" width="62" height="16"/>
                     <fontDescription key="fontDescription" name="Effra-Regular" family="Effra" pointSize="13"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="double_tap.png" translatesAutoresizingMaskIntoConstraints="NO" id="mrV-Gn-ich">
+                    <rect key="frame" x="22" y="125" width="32" height="30"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="AGL-Ga-JNh"/>
                         <constraint firstAttribute="width" constant="32" id="YYf-Ic-KdH"/>
                     </constraints>
                 </imageView>
                 <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="30" minValue="0.0" maxValue="60" translatesAutoresizingMaskIntoConstraints="NO" id="Dag-yf-WNu">
+                    <rect key="frame" x="144" y="70.5" width="133" height="31"/>
                     <connections>
                         <action selector="changeDuration:" destination="-1" eventType="valueChanged" id="cjj-nw-NWA"/>
                     </connections>
                 </slider>
                 <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="5" minValue="0.0" maxValue="60" translatesAutoresizingMaskIntoConstraints="NO" id="XDH-50-361">
+                    <rect key="frame" x="144" y="124.5" width="133" height="31"/>
                     <connections>
                         <action selector="changeDuration:" destination="-1" eventType="valueChanged" id="a8T-Yn-EtF"/>
                     </connections>
                 </slider>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="30 seconds" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="spW-B6-Q0n">
+                    <rect key="frame" x="297" y="78" width="74" height="16"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="74" id="jJO-ry-gTv"/>
                     </constraints>
@@ -68,15 +78,18 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5 seconds" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PgQ-H7-AJF">
+                    <rect key="frame" x="297" y="132" width="74" height="16"/>
                     <fontDescription key="fontDescription" name="Effra-Regular" family="Effra" pointSize="13"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="skr-0w-Hzm">
+                    <rect key="frame" x="146" y="22" width="225" height="30"/>
                     <fontDescription key="fontDescription" name="Effra-Regular" family="Effra" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="249" text="Room" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uSj-Pe-mCl">
+                    <rect key="frame" x="62" y="20" width="33.5" height="34"/>
                     <fontDescription key="fontDescription" name="Effra-Regular" family="Effra" pointSize="13"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>

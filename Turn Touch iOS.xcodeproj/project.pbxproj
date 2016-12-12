@@ -118,6 +118,9 @@
 		FF4AF7EC1D24F9E70009C777 /* TTModeSonosConnecting.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF4AF7E31D24F9E70009C777 /* TTModeSonosConnecting.xib */; };
 		FF4AF7EE1D24F9E70009C777 /* TTModeSonosOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4AF7E51D24F9E70009C777 /* TTModeSonosOptions.swift */; };
 		FF4AF7EF1D24F9E70009C777 /* TTModeSonosOptions.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF4AF7E61D24F9E70009C777 /* TTModeSonosOptions.xib */; };
+		FF4C037E1DFE5B6100EB0C92 /* TTModeCustom.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4C037D1DFE5B6100EB0C92 /* TTModeCustom.swift */; };
+		FF4C03811DFE5D4D00EB0C92 /* TTModeCustomURLOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4C03801DFE5D4D00EB0C92 /* TTModeCustomURLOptions.swift */; };
+		FF4C03841DFE699400EB0C92 /* TTModeCustomURLOptions.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF4C03821DFE5D8500EB0C92 /* TTModeCustomURLOptions.xib */; };
 		FF6434881D5130BF00F2FAE6 /* mode_camera.png in Resources */ = {isa = PBXBuildFile; fileRef = FF6434871D5130BF00F2FAE6 /* mode_camera.png */; };
 		FF7C144F1DB2F2AB009CBA28 /* TTBatchActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7C144E1DB2F2AB009CBA28 /* TTBatchActions.swift */; };
 		FF7C14521DB2F2DD009CBA28 /* TTDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7C14501DB2F2DD009CBA28 /* TTDevice.swift */; };
@@ -408,6 +411,9 @@
 		FF4AF7E31D24F9E70009C777 /* TTModeSonosConnecting.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TTModeSonosConnecting.xib; path = Modes/Sonos/TTModeSonosConnecting.xib; sourceTree = "<group>"; };
 		FF4AF7E51D24F9E70009C777 /* TTModeSonosOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeSonosOptions.swift; path = Modes/Sonos/TTModeSonosOptions.swift; sourceTree = "<group>"; };
 		FF4AF7E61D24F9E70009C777 /* TTModeSonosOptions.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TTModeSonosOptions.xib; path = Modes/Sonos/TTModeSonosOptions.xib; sourceTree = "<group>"; };
+		FF4C037D1DFE5B6100EB0C92 /* TTModeCustom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeCustom.swift; path = Modes/Custom/TTModeCustom.swift; sourceTree = "<group>"; };
+		FF4C03801DFE5D4D00EB0C92 /* TTModeCustomURLOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeCustomURLOptions.swift; path = Modes/Custom/TTModeCustomURLOptions.swift; sourceTree = "<group>"; };
+		FF4C03821DFE5D8500EB0C92 /* TTModeCustomURLOptions.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TTModeCustomURLOptions.xib; path = Modes/Custom/TTModeCustomURLOptions.xib; sourceTree = "<group>"; };
 		FF6434871D5130BF00F2FAE6 /* mode_camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mode_camera.png; sourceTree = "<group>"; };
 		FF7C144E1DB2F2AB009CBA28 /* TTBatchActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTBatchActions.swift; path = Models/TTBatchActions.swift; sourceTree = "<group>"; };
 		FF7C14501DB2F2DD009CBA28 /* TTDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTDevice.swift; path = Models/TTDevice.swift; sourceTree = "<group>"; };
@@ -648,6 +654,7 @@
 				FF4AF7DD1D24F93B0009C777 /* Sonos */,
 				FFDA0F9F1D3C49F40019859F /* Camera */,
 				FFB84B2B1D90CD6A0037872C /* Yoga */,
+				FF4C037F1DFE5B7000EB0C92 /* Custom */,
 			);
 			name = Modes;
 			sourceTree = "<group>";
@@ -865,6 +872,16 @@
 				FF4AF7E31D24F9E70009C777 /* TTModeSonosConnecting.xib */,
 			);
 			name = Sonos;
+			sourceTree = "<group>";
+		};
+		FF4C037F1DFE5B7000EB0C92 /* Custom */ = {
+			isa = PBXGroup;
+			children = (
+				FF4C037D1DFE5B6100EB0C92 /* TTModeCustom.swift */,
+				FF4C03801DFE5D4D00EB0C92 /* TTModeCustomURLOptions.swift */,
+				FF4C03821DFE5D8500EB0C92 /* TTModeCustomURLOptions.xib */,
+			);
+			name = Custom;
 			sourceTree = "<group>";
 		};
 		FF7C14561DB3083A009CBA28 /* Batch actions */ = {
@@ -1278,7 +1295,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = "Turn Touch";
 				TargetAttributes = {
 					FFF2708F1CEE88E500E46575 = {
@@ -1458,6 +1475,7 @@
 				FFB41B2A1CEE9A3000CD5F09 /* cog.png in Resources */,
 				FFB84B491D90D4240037872C /* yoga_position_10.png in Resources */,
 				FFDA0FB71D3C4FEE0019859F /* cancel@3x.png in Resources */,
+				FF4C03841DFE699400EB0C92 /* TTModeCustomURLOptions.xib in Resources */,
 				FF37EDE01D11179E0026F70D /* TTModeHuePushlink.xib in Resources */,
 				FFB84B3F1D90D4240037872C /* yoga_background.jpg in Resources */,
 				FF0F10D51CF6430E00CC1F29 /* Effra_Rg.ttf in Resources */,
@@ -1591,6 +1609,7 @@
 				FF254FDE1D22F26500E96378 /* XPathQuery.m in Sources */,
 				FFF46BC71D0E5C8400158751 /* TTDeviceTitlesView.swift in Sources */,
 				FF254FDA1D21EF1200E96378 /* TTModeWemoDevice.swift in Sources */,
+				FF4C03811DFE5D4D00EB0C92 /* TTModeCustomURLOptions.swift in Sources */,
 				FF4AF7C51D248A630009C777 /* TTModeWemoDeviceToggleOptions.swift in Sources */,
 				FFF46BF01D10E6D400158751 /* TTOptionsDetailViewController.swift in Sources */,
 				FF4AF7BE1D248A3A0009C777 /* TTModeWemoConnected.swift in Sources */,
@@ -1644,6 +1663,7 @@
 				FFB84B2A1D90BCBF0037872C /* TTModeYoga.swift in Sources */,
 				FF3032BD1DB8286E00728920 /* TTModeHueSceneCustomOptions.swift in Sources */,
 				FFDA0FA71D3C4F1C0019859F /* LLSimpleCamera+Helper.m in Sources */,
+				FF4C037E1DFE5B6100EB0C92 /* TTModeCustom.swift in Sources */,
 				FFF270C51CEE97AF00E46575 /* TTMainViewController.swift in Sources */,
 				FFB41B861CF536AC00CD5F09 /* TTAction.swift in Sources */,
 				FF44876D1D08E62200ED8099 /* TTBluetoothMonitor.swift in Sources */,
@@ -1758,6 +1778,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 552AD10F15F394A44BF4BD6D /* Pods-Turn Touch iOS.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1794,6 +1815,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 87558F01A91A74C470B9149B /* Pods-Turn Touch iOS.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";

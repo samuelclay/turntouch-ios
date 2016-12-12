@@ -46,6 +46,7 @@ class TTModeMap: NSObject {
             "TTModeSonos",
             "TTModeAlarmClock",
             "TTModeYoga",
+            "TTModeCustom",
         ]
         
         super.init()
