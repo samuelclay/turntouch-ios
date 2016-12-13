@@ -122,6 +122,7 @@
 		FF4C03811DFE5D4D00EB0C92 /* TTModeCustomURLOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4C03801DFE5D4D00EB0C92 /* TTModeCustomURLOptions.swift */; };
 		FF4C03841DFE699400EB0C92 /* TTModeCustomURLOptions.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF4C03821DFE5D8500EB0C92 /* TTModeCustomURLOptions.xib */; };
 		FF6434881D5130BF00F2FAE6 /* mode_camera.png in Resources */ = {isa = PBXBuildFile; fileRef = FF6434871D5130BF00F2FAE6 /* mode_camera.png */; };
+		FF7A235C1DFF7D21002B696D /* modal_failure.png in Resources */ = {isa = PBXBuildFile; fileRef = FF7A235B1DFF7D21002B696D /* modal_failure.png */; };
 		FF7C144F1DB2F2AB009CBA28 /* TTBatchActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7C144E1DB2F2AB009CBA28 /* TTBatchActions.swift */; };
 		FF7C14521DB2F2DD009CBA28 /* TTDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7C14501DB2F2DD009CBA28 /* TTDevice.swift */; };
 		FF7C14531DB2F2DD009CBA28 /* TTDeviceList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7C14511DB2F2DD009CBA28 /* TTDeviceList.swift */; };
@@ -415,6 +416,7 @@
 		FF4C03801DFE5D4D00EB0C92 /* TTModeCustomURLOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeCustomURLOptions.swift; path = Modes/Custom/TTModeCustomURLOptions.swift; sourceTree = "<group>"; };
 		FF4C03821DFE5D8500EB0C92 /* TTModeCustomURLOptions.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TTModeCustomURLOptions.xib; path = Modes/Custom/TTModeCustomURLOptions.xib; sourceTree = "<group>"; };
 		FF6434871D5130BF00F2FAE6 /* mode_camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mode_camera.png; sourceTree = "<group>"; };
+		FF7A235B1DFF7D21002B696D /* modal_failure.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = modal_failure.png; sourceTree = "<group>"; };
 		FF7C144E1DB2F2AB009CBA28 /* TTBatchActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTBatchActions.swift; path = Models/TTBatchActions.swift; sourceTree = "<group>"; };
 		FF7C14501DB2F2DD009CBA28 /* TTDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTDevice.swift; path = Models/TTDevice.swift; sourceTree = "<group>"; };
 		FF7C14511DB2F2DD009CBA28 /* TTDeviceList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTDeviceList.swift; path = Models/TTDeviceList.swift; sourceTree = "<group>"; };
@@ -1047,6 +1049,7 @@
 				FFB41B0E1CEE9A3000CD5F09 /* modal_remote_hero.png */,
 				FFB41B0F1CEE9A3000CD5F09 /* modal_remote_paired.png */,
 				FFB41B101CEE9A3000CD5F09 /* modal_success.png */,
+				FF7A235B1DFF7D21002B696D /* modal_failure.png */,
 			);
 			path = modal;
 			sourceTree = "<group>";
@@ -1371,6 +1374,7 @@
 				FFB41B6F1CEE9A3000CD5F09 /* modal_success.png in Resources */,
 				FFB41B4D1CEE9A3000CD5F09 /* sun.png in Resources */,
 				FFB84B4B1D90D4240037872C /* yoga_position_12.png in Resources */,
+				FF7A235C1DFF7D21002B696D /* modal_failure.png in Resources */,
 				FF37EDD81D1117670026F70D /* TTModeHueConnecting.xib in Resources */,
 				FFB84B511D91FDC40037872C /* TTModeYogaViewController.xib in Resources */,
 				FFB41B3A1CEE9A3000CD5F09 /* mode_meditation.png in Resources */,

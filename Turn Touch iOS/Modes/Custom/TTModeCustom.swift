@@ -9,8 +9,14 @@
 import UIKit
 
 struct TTModeCustomConstants {
-    static let customUrl: String = "customUrl"
+    static let singleCustomUrl: String = "singleCustomUrl"
     static let doubleCustomUrl: String = "doubleCustomUrl"
+    static let singleOutput: String = "singleOutput"
+    static let doubleOutput: String = "doubleOutput"
+    static let singleHitCount: String = "singleHitCount"
+    static let doubleHitCount: String = "doubleHitCount"
+    static let singleLastSuccess: String = "singleLastSuccess"
+    static let doubleLastSuccess: String = "doubleLastSuccess"
 }
 
 class TTModeCustom: TTMode {
@@ -35,6 +41,10 @@ class TTModeCustom: TTMode {
     
     func titleTTModeCustomURL() -> String {
         return "Custom URL"
+    }
+    
+    override func shouldIgnoreSingleBeforeDouble(_ direction: TTModeDirection) -> Bool {
+        return true;
     }
     
     // MARK: Action images
@@ -74,8 +84,47 @@ class TTModeCustom: TTMode {
     // MARK: Actions
     
     func runTTModeCustomURL() {
-        guard let customUrlString = self.action.optionValue(TTModeCustomConstants.customUrl) as? String else {
-            print(" ---> Error, no URL supplied!")
+        let customUrlString = self.action.optionValue(TTModeCustomConstants.singleCustomUrl) as? String
+        
+        hitUrl(customUrlString) { (urlContents, success) in
+            self.action.changeActionOption(TTModeCustomConstants.singleOutput, to: urlContents)
+            self.action.changeActionOption(TTModeCustomConstants.singleLastSuccess, to: success)
+            
+            var hitCount = self.action.optionValue(TTModeCustomConstants.singleHitCount) as? Int ?? 0
+            hitCount += 1
+            self.action.changeActionOption(TTModeCustomConstants.singleHitCount, to: hitCount)
+            DispatchQueue.main.async {
+                appDelegate().modeMap.inspectingModeDirection = appDelegate().modeMap.inspectingModeDirection
+            }
+        }
+    }
+    
+    func doubleRunTTModeCustomURL() {
+        let customUrlString = self.action.optionValue(TTModeCustomConstants.doubleCustomUrl) as? String
+        
+        hitUrl(customUrlString) { (urlContents, success) in
+            self.action.changeActionOption(TTModeCustomConstants.doubleOutput, to: urlContents)
+            self.action.changeActionOption(TTModeCustomConstants.doubleLastSuccess, to: success)
+            
+            var hitCount = self.action.optionValue(TTModeCustomConstants.doubleHitCount) as? Int ?? 0
+            hitCount += 1
+            self.action.changeActionOption(TTModeCustomConstants.doubleHitCount, to: hitCount)
+            DispatchQueue.main.async {
+                appDelegate().modeMap.inspectingModeDirection = appDelegate().modeMap.inspectingModeDirection
+            }
+        }
+    }
+    
+    func hitUrl(_ urlString: String?, callback: @escaping (String, Bool) -> Void) {
+        guard let customUrlString = urlString else {
+            print(" ---> No URL specified")
+            callback("No URL specified", false)
+            return
+        }
+
+        if customUrlString.characters.count == 0 {
+            print(" ---> No URL specified")
+            callback("No URL specified", false)
             return
         }
         
@@ -83,12 +132,13 @@ class TTModeCustom: TTMode {
             DispatchQueue.global().async {
                 do {
                     let urlContents = try String(contentsOf: customURL)
-                    print(" ---> URL returned: \(urlContents)")
+                    print(" ---> URL returned: \(urlContents.characters.count) bytes")
+                    callback(urlContents, true)
                 } catch {
                     print(" ---> URL threw: \(error)")
+                    callback(error.localizedDescription, false)
                 }
             }
         }
     }
-    
 }

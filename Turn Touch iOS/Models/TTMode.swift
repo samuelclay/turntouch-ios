@@ -145,7 +145,7 @@ class TTMode : NSObject, TTModeProtocol {
         }
         
         if self.action.batchActionKey == nil {
-            self.action = nil
+//            self.action = nil
         }
         
         if !success {
@@ -236,6 +236,7 @@ class TTMode : NSObject, TTModeProtocol {
         return directionAction
     }
     
+    // Don't run a button's single tap action until confirmed that it's not a double tap
     func shouldIgnoreSingleBeforeDouble(_ direction: TTModeDirection) -> Bool {
         let actionName = self.actionNameInDirection(direction)
         let titleSelector = NSSelectorFromString("shouldIgnoreSingleBeforeDouble\(actionName)")
@@ -247,6 +248,7 @@ class TTMode : NSObject, TTModeProtocol {
         return ignore.boolValue
     }
     
+    // Run a button's action on press *down* and not on standard press *up*
     func shouldFireImmediateOnPress(_ direction: TTModeDirection) -> Bool {
         let actionName = self.actionNameInDirection(direction)
         let titleSelector = NSSelectorFromString("shouldFireImmediate\(actionName)")
