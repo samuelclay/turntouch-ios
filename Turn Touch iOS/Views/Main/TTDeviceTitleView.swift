@@ -7,14 +7,16 @@
 //
 
 import UIKit
+import iOSDFULibrary
 
-class TTDeviceTitleView: UIView, TTTitleMenuDelegate {
+class TTDeviceTitleView: UIView, TTTitleMenuDelegate, DFUServiceDelegate, DFUProgressDelegate, LoggerDelegate, UIAlertViewDelegate {
 
     var device: TTDevice!
     var titleLabel: UILabel = UILabel()
     var stateLabel: UILabel = UILabel()
     var deviceImageView: UIImageView = UIImageView()
     @IBOutlet var settingsButton: UIButton! = UIButton(type: UIButtonType.system)
+    fileprivate var dfuController: DFUServiceController?
 
     init(device: TTDevice) {
         super.init(frame: CGRect.zero)
@@ -141,6 +143,8 @@ class TTDeviceTitleView: UIView, TTTitleMenuDelegate {
     
     func selectMenuOption(_ row: Int) {
         switch row {
+        case 1:
+            startDFUProcess()
         case 2:
             showRenameDevice()
         case 3:
@@ -176,4 +180,81 @@ class TTDeviceTitleView: UIView, TTTitleMenuDelegate {
         appDelegate().mainViewController.closeDeviceMenu()
         appDelegate().mainViewController.present(renameAlert, animated: true, completion: nil)
     }
+    
+    // MARK: - DFU
+    
+    
+    func startDFUProcess() {
+        guard device.peripheral != nil else {
+            print(" ---> No DFU peripheral was set")
+            return
+        }
+        
+        let dfuInitiator = DFUServiceInitiator(centralManager: appDelegate().bluetoothMonitor.manager,
+                                               target: device.peripheral)
+        dfuInitiator.delegate = self
+        dfuInitiator.progressDelegate = self
+        dfuInitiator.logger = self
+        
+        // This enables the experimental Buttonless DFU feature from SDK 12.
+        // Please, read the field documentation before use.
+//        dfuInitiator.enableUnsafeExperimentalButtonlessServiceInSecureDfu = true
+        
+        let latestFirmware = String(format: "%02d", UserDefaults.standard.integer(forKey: "TT:firmware:version"))
+        let fileUrl = Bundle.main.url(forResource: "nrf51_\(latestFirmware)", withExtension: "zip", subdirectory: "DFU")!
+        let selectedFirmware = DFUFirmware(urlToZipFile: fileUrl)
+
+        dfuController = dfuInitiator.with(firmware: selectedFirmware!).start()
+    }
+    
+    
+    //MARK: DFUServiceDelegate
+    
+    func dfuStateDidChange(to state:DFUState) {
+//        switch state {
+//        case .completed, .disconnecting, .aborted:
+//            self.dfuActivityIndicator.stopAnimating()
+//            self.dfuUploadProgressView.setProgress(0, animated: true)
+//            self.stopProcessButton.isEnabled = false
+//        default:
+//            self.stopProcessButton.isEnabled = true
+//        }
+//        
+//        self.dfuStatusLabel.text = state.description()
+        print("Changed state to: \(state.description())")
+        
+        // Forget the controller when DFU is done
+        if state == .completed || state == .aborted {
+            dfuController = nil
+        }
+    }
+    
+    func dfuError(_ error: DFUError, didOccurWithMessage message: String) {
+//        self.dfuStatusLabel.text = "Error \(error.rawValue): \(message)"
+//        self.dfuActivityIndicator.stopAnimating()
+//        self.dfuUploadProgressView.setProgress(0, animated: true)
+        print("Error \(error.rawValue): \(message)")
+        
+        // Forget the controller when DFU finished with an error
+        dfuController = nil
+        
+        appDelegate().bluetoothMonitor.disconnectDevice(device)
+    }
+    
+    //MARK: DFUProgressDelegate
+    
+    func dfuProgressDidChange(for part: Int, outOf totalParts: Int, to progress: Int, currentSpeedBytesPerSecond: Double, avgSpeedBytesPerSecond: Double) {
+//        self.dfuUploadProgressView.setProgress(Float(progress)/100.0, animated: true)
+//        self.dfuUploadStatus.text = String(format: "Part: %d/%d\nSpeed: %.1f KB/s\nAverage Speed: %.1f KB/s",
+//                                           part, totalParts, currentSpeedBytesPerSecond/1024, avgSpeedBytesPerSecond/1024)
+        print(" ---> Progress: " + String(format: "Part: %d/%d\nSpeed: %.1f KB/s\nAverage Speed: %.1f KB/s",
+                                                   part, totalParts, currentSpeedBytesPerSecond/1024, avgSpeedBytesPerSecond/1024))
+    }
+    
+    //MARK: LoggerDelegate
+    
+    func logWith(_ level:LogLevel, message:String) {
+        print("\(level.name()): \(message)")
+    }
+
 }
