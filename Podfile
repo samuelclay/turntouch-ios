@@ -12,4 +12,19 @@ target "Turn Touch iOS" do
 #    pod "Alamofire", "~> 4.0"
 #    pod "Log", "~> 1.0"
     pod "SwiftyHue", :git => "https://github.com/samuelclay/SwiftyHue.git", :branch => "swift3"
+    
+    pod "iOSDFULibrary", "~> 3.0"
+    pod "EVReflection", :git => "https://github.com/evermeer/EVReflection.git", :branch => "Swift3"
+    pod "SWRevealViewController"
+    pod "CorePlot", "~> 2.2"
 end
+
+
+post_install do |installer|
+    installer.pods_project.targets.each do |target|
+        target.build_configurations.each do |config|
+            config.build_settings['SWIFT_VERSION'] = '3.0'
+        end
+    end
+end
+
