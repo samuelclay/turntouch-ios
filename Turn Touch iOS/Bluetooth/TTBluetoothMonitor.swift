@@ -53,9 +53,11 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
     // Firmware rev. 20+ = v2
     let DEVICE_V2_SERVICE_BATTERY_UUID                 = "180F"
     let DEVICE_V2_SERVICE_BUTTON_UUID                  = "99c31523-dc4f-41b1-bb04-4e4deb81fadd"
+    let DEVICE_V2_SERVICE_FIRMWARE_UUID                = "00001530-1212-EFDE-1523-785FEABCD123"
     let DEVICE_V2_CHARACTERISTIC_BATTERY_LEVEL_UUID    = "2a19"
     let DEVICE_V2_CHARACTERISTIC_BUTTON_STATUS_UUID    = "99c31525-dc4f-41b1-bb04-4e4deb81fadd"
     let DEVICE_V2_CHARACTERISTIC_NICKNAME_UUID         = "99c31526-dc4f-41b1-bb04-4e4deb81fadd"
+    let DEVICE_V2_CHARACTERISTIC_FIRMWARE_UUID         = "00001534-1212-EFDE-1523-785FEABCD123"
     
     var manager: CBCentralManager!
     let buttonTimer = TTButtonTimer()
@@ -426,6 +428,7 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
         
         peripheral.discoverServices([CBUUID(string: DEVICE_V2_SERVICE_BUTTON_UUID),
             CBUUID(string: DEVICE_V2_SERVICE_BATTERY_UUID),
+            CBUUID(string: DEVICE_V2_SERVICE_FIRMWARE_UUID),
             CBUUID(string:"1523")])
     }
     
@@ -481,7 +484,7 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
     // MARK: CBPeripheral delegate
     func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
         bluetoothState = .bt_STATE_DISCOVER_CHARACTERISTICS
-        let device = foundDevices.deviceForPeripheral(peripheral)!
+        _ = foundDevices.deviceForPeripheral(peripheral)!
         if peripheral.services == nil {
             if DEBUG_BLUETOOTH {
                 print("Nil services")
@@ -495,13 +498,14 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
         
         for service: CBService in peripheral.services! {
             if service.uuid.isEqual(CBUUID(string: DEVICE_V2_SERVICE_BUTTON_UUID)) {
-                device.firmwareVersion = 2
                 peripheral.discoverCharacteristics([CBUUID(string: DEVICE_V2_CHARACTERISTIC_BUTTON_STATUS_UUID),
                                                     CBUUID(string: DEVICE_V2_CHARACTERISTIC_NICKNAME_UUID)], for: service)
             }
             if service.uuid.isEqual(CBUUID(string: DEVICE_V2_SERVICE_BATTERY_UUID)) {
-                device.firmwareVersion = 2
                 peripheral.discoverCharacteristics([CBUUID(string: DEVICE_V2_CHARACTERISTIC_BATTERY_LEVEL_UUID)], for: service)
+            }
+            if service.uuid.isEqual(CBUUID(string: DEVICE_V2_SERVICE_FIRMWARE_UUID)) {
+                peripheral.discoverCharacteristics([CBUUID(string: DEVICE_V2_CHARACTERISTIC_FIRMWARE_UUID)], for: service)
             }
 //            // Device Information Service
 //            if service.UUID.isEqual(CBUUID(string: "180A")) {
@@ -542,6 +546,14 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
                 if characteristic.uuid.isEqual(CBUUID(string: DEVICE_V2_CHARACTERISTIC_BATTERY_LEVEL_UUID)) {
                     peripheral.readValue(for: characteristic)
                     self.delayBatteryLevelReading()
+                }
+            }
+        }
+        
+        if service.uuid.isEqual(CBUUID(string: DEVICE_V2_SERVICE_FIRMWARE_UUID)) {
+            for characteristic: CBCharacteristic in service.characteristics! {
+                if characteristic.uuid.isEqual(CBUUID(string: DEVICE_V2_CHARACTERISTIC_FIRMWARE_UUID)) {
+                    peripheral.readValue(for: characteristic)
                 }
             }
         }
@@ -610,6 +622,24 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
                     self.ensureNicknameOnDevice(device)
                 }
             })
+        } else if characteristic.uuid.isEqual(CBUUID(string: DEVICE_V2_CHARACTERISTIC_BATTERY_LEVEL_UUID)) {
+            if (characteristic.value == nil || characteristic.value!.count == 0) {
+                print(" ---> (\(bluetoothState)) No battery level: \(device)")
+            } else {
+                let battery = characteristic.value!.withUnsafeBytes({ (bytes: UnsafePointer<UInt8>) -> UInt8 in
+                    return bytes[0]
+                })
+                device.batteryPct = NSNumber(value: battery)
+            }
+        } else if characteristic.uuid.isEqual(CBUUID(string: DEVICE_V2_CHARACTERISTIC_FIRMWARE_UUID)) {
+            if (characteristic.value == nil || characteristic.value!.count == 0) {
+                print(" ---> (\(bluetoothState)) No firmware version: \(device)")
+            } else {
+                let firmwareVersion = characteristic.value!.withUnsafeBytes({ (bytes: UnsafePointer<UInt8>) -> UInt8 in
+                    return bytes[0]
+                })
+                device.setFirmwareVersion(firmwareVersion: Int(firmwareVersion))
+            }
         }
 
     }

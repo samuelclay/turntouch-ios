@@ -2,10 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>New item</key>
-	<string></string>
 	<key>TT:firmware:version</key>
-	<string>5</string>
+	<string>6</string>
 	<key>TT:mode:north</key>
 	<string>TTModeWemo</string>
 	<key>TT:mode:east</key>
@@ -13,7 +11,7 @@
 	<key>TT:mode:west</key>
 	<string>TTModeHue</string>
 	<key>TT:mode:south</key>
-	<string>TTModeYoga</string>
+	<string>TTModeSonos</string>
 	<key>TT:selectedModeDirection</key>
 	<string>2</string>
 </dict>

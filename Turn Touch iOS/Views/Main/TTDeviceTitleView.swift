@@ -132,7 +132,8 @@ class TTDeviceTitleView: UIView, TTTitleMenuDelegate {
     
     func menuOptions() -> [[String : String]] {
         return [
-            ["title": "Battery: "],
+            ["title": device.batteryPct != nil ? "Battery: \(device.batteryPct!)%" : "> Not connected"],
+            ["title": device.firmwareVersion != nil ? "Firmware: v\(device.firmwareVersion!)" : "—"],
             ["title": "Rename remote"],
             ["title": "Forget this remote"],
         ]
@@ -140,9 +141,9 @@ class TTDeviceTitleView: UIView, TTTitleMenuDelegate {
     
     func selectMenuOption(_ row: Int) {
         switch row {
-        case 1:
-            showRenameDevice()
         case 2:
+            showRenameDevice()
+        case 3:
             appDelegate().bluetoothMonitor.forgetDevice(device)
         default:
             break

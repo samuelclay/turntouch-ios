@@ -76,6 +76,7 @@
 		FF37EDF61D1B1A310026F70D /* TTModeHueSceneLateEveningOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF37EDF51D1B1A310026F70D /* TTModeHueSceneLateEveningOptions.swift */; };
 		FF37EDF91D1B23750026F70D /* TTModeHueSleepOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF37EDF71D1B23750026F70D /* TTModeHueSleepOptions.swift */; };
 		FF37EDFD1D1B23B70026F70D /* TTModeHueRandomOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF37EDFB1D1B23B70026F70D /* TTModeHueRandomOptions.swift */; };
+		FF383F881E0254D200D3F15C /* DFU in Resources */ = {isa = PBXBuildFile; fileRef = FF383F871E0254D200D3F15C /* DFU */; };
 		FF44875F1D078FAC00ED8099 /* TTActionTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF44875E1D078FAB00ED8099 /* TTActionTitleView.swift */; };
 		FF4487621D08986200ED8099 /* TTTitleMenuPopover.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4487611D08986200ED8099 /* TTTitleMenuPopover.swift */; };
 		FF4487641D08AA8800ED8099 /* TTTitleMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4487631D08AA8800ED8099 /* TTTitleMenuCell.swift */; };
@@ -365,6 +366,7 @@
 		FF37EDF51D1B1A310026F70D /* TTModeHueSceneLateEveningOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeHueSceneLateEveningOptions.swift; path = Modes/Hue/TTModeHueSceneLateEveningOptions.swift; sourceTree = "<group>"; };
 		FF37EDF71D1B23750026F70D /* TTModeHueSleepOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeHueSleepOptions.swift; path = Modes/Hue/TTModeHueSleepOptions.swift; sourceTree = "<group>"; };
 		FF37EDFB1D1B23B70026F70D /* TTModeHueRandomOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeHueRandomOptions.swift; path = Modes/Hue/TTModeHueRandomOptions.swift; sourceTree = "<group>"; };
+		FF383F871E0254D200D3F15C /* DFU */ = {isa = PBXFileReference; lastKnownFileType = folder; path = DFU; sourceTree = "<group>"; };
 		FF44875E1D078FAB00ED8099 /* TTActionTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTActionTitleView.swift; path = Views/Actions/TTActionTitleView.swift; sourceTree = "<group>"; };
 		FF4487611D08986200ED8099 /* TTTitleMenuPopover.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTTitleMenuPopover.swift; path = Views/Main/TTTitleMenuPopover.swift; sourceTree = "<group>"; };
 		FF4487631D08AA8800ED8099 /* TTTitleMenuCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTTitleMenuCell.swift; path = Views/Main/TTTitleMenuCell.swift; sourceTree = "<group>"; };
@@ -1107,6 +1109,7 @@
 				FF0F10BF1CF5638D00CC1F29 /* Preferences.plist */,
 				FFF270A11CEE88E500E46575 /* Info.plist */,
 				FFF2709C1CEE88E500E46575 /* Assets.xcassets */,
+				FF383F871E0254D200D3F15C /* DFU */,
 				FFB41B7E1CF52E6200CD5F09 /* Fonts */,
 			);
 			name = "Supporting Files";
@@ -1428,6 +1431,7 @@
 				FFB41B561CEE9A3000CD5F09 /* itunes_playlist_icon.png in Resources */,
 				FFB41B1E1CEE9A3000CD5F09 /* music_rewind.png in Resources */,
 				FFC4B0F11D2DBF3E00A97C81 /* TTPairingInfoViewController.xib in Resources */,
+				FF383F881E0254D200D3F15C /* DFU in Resources */,
 				FF2023311D02147A005129E5 /* Icon-40@3x.png in Resources */,
 				FF4AF7EA1D24F9E70009C777 /* TTModeSonosConnected.xib in Resources */,
 				FFB41B491CEE9A3000CD5F09 /* remote_graphic.png in Resources */,

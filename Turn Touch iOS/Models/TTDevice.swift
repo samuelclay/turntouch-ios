@@ -22,13 +22,13 @@ class TTDevice: NSObject {
     var uuid: String!
     var peripheral: CBPeripheral!
     var buttonStatusChar: CBCharacteristic!
-    var batteryPct: NSNumber!
-    var lastActionDate: Date!
+    var batteryPct: NSNumber?
+    var lastActionDate: Date?
     var isPaired = false
     var isNotified = false
     var needsReconnection = false
     var inDFU = false
-    var firmwareVersion: Int!
+    var firmwareVersion: Int?
     var isFirmwareOld = false
     var state: TTDeviceState = .device_STATE_DISCONNECTED
     
@@ -81,7 +81,7 @@ class TTDevice: NSObject {
         let prefs = UserDefaults.standard
         let latestVersion = prefs.integer(forKey: "TT:firmware:version")
         
-        isFirmwareOld = firmwareVersion < latestVersion
+        isFirmwareOld = firmwareVersion! < latestVersion
     }
     
     func connected() -> Bool {

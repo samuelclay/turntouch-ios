@@ -38,6 +38,10 @@ class TTTitleMenuPopover: UIViewController, UITableViewDelegate, UITableViewData
             relatedBy: .equal, toItem: self.view, attribute: .height, multiplier: 1.0, constant: 0))
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        tableView.reloadData()
+    }
+    
     // MARK: Table View Delegate
     
     func numberOfSections(in tableView: UITableView) -> Int {
