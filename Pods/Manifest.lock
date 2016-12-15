@@ -22,8 +22,6 @@ PODS:
     - CocoaAsyncSocket/RunLoop
   - CocoaAsyncSocket/GCD (7.4.3)
   - CocoaAsyncSocket/RunLoop (7.4.3)
-  - CorePlot (2.2)
-  - EVReflection (3.1.2)
   - Gloss (1.1.1)
   - iOSDFULibrary (3.0.0):
     - Zip (~> 0.6)
@@ -41,33 +39,23 @@ PODS:
     - CocoaAsyncSocket (~> 7.4.3)
     - Gloss (~> 1.0)
     - Log (~> 1.0)
-  - SWRevealViewController (2.3.0)
   - SWXMLHash (3.0.3)
   - Zip (0.6.0)
 
 DEPENDENCIES:
   - AFNetworking (~> 3.0)
   - CocoaAsyncSocket (~> 7.4.3)
-  - CorePlot (~> 2.2)
-  - EVReflection (from `https://github.com/evermeer/EVReflection.git`, branch `Swift3`)
   - iOSDFULibrary (~> 3.0)
   - ReachabilitySwift (~> 3)
   - SwiftyHue (from `https://github.com/samuelclay/SwiftyHue.git`, branch `swift3`)
-  - SWRevealViewController
   - SWXMLHash (~> 3.0.0)
 
 EXTERNAL SOURCES:
-  EVReflection:
-    :branch: Swift3
-    :git: https://github.com/evermeer/EVReflection.git
   SwiftyHue:
     :branch: swift3
     :git: https://github.com/samuelclay/SwiftyHue.git
 
 CHECKOUT OPTIONS:
-  EVReflection:
-    :commit: a1c0d785d3df90de27a52135d8071ea1bb7defc7
-    :git: https://github.com/evermeer/EVReflection.git
   SwiftyHue:
     :commit: c1bb2532df750c6402f1230264422fbb90a93909
     :git: https://github.com/samuelclay/SwiftyHue.git
@@ -76,17 +64,14 @@ SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   Alamofire: 7682d43245de14874acd142ec137b144aa1dd335
   CocoaAsyncSocket: a18c75dca4b08723628a0bacca6e94803d90be91
-  CorePlot: cbe0c6e14220705e32e06a89c7d6a5a908b7d7d8
-  EVReflection: 102d8ca777db55200f48b80d9628c8d50fb4109d
   Gloss: 4a892694cba7387efa4102a51f86110651366b18
   iOSDFULibrary: 201dec70ae2d7e1cfbdc3cd8005b163f009c9dea
   Log: 5e368c9528db07517d18d2d04ff5fe2b6f5a1e21
   ReachabilitySwift: f5b9bb30a0777fac8f09ce8b067e32faeb29bb64
   SwiftyHue: b501202a51d7d017ec973360ff0544d47a4b6524
-  SWRevealViewController: 6d3fd97f70112fd7cef9de14df4260eacce4c63a
   SWXMLHash: 80d2529d74891bb2f15305a0b9e08f2a4f229ee7
   Zip: 805fc2fa9d2f05bbb7762d982d7a42ccdcc51f42
 
-PODFILE CHECKSUM: 52bb2090af6d676f28b2d0b7e17f18e7fb22a3a6
+PODFILE CHECKSUM: 93e80196badd94db31cae102ef206e1b70e5f3f4
 
 COCOAPODS: 1.2.0.beta.1
