@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreBluetooth
 import iOSDFULibrary
 
 class TTDeviceTitleView: UIView, TTTitleMenuDelegate, DFUServiceDelegate, DFUProgressDelegate, LoggerDelegate, UIAlertViewDelegate {
@@ -198,13 +199,14 @@ class TTDeviceTitleView: UIView, TTTitleMenuDelegate, DFUServiceDelegate, DFUPro
         
         // This enables the experimental Buttonless DFU feature from SDK 12.
         // Please, read the field documentation before use.
-//        dfuInitiator.enableUnsafeExperimentalButtonlessServiceInSecureDfu = true
+        dfuInitiator.enableUnsafeExperimentalButtonlessServiceInSecureDfu = true
         
         let latestFirmware = String(format: "%02d", UserDefaults.standard.integer(forKey: "TT:firmware:version"))
         let fileUrl = Bundle.main.url(forResource: "nrf51_\(latestFirmware)", withExtension: "zip", subdirectory: "DFU")!
         let selectedFirmware = DFUFirmware(urlToZipFile: fileUrl)
 
         dfuController = dfuInitiator.with(firmware: selectedFirmware!).start()
+        appDelegate().mainViewController.closeDeviceMenu()
     }
     
     
@@ -226,6 +228,11 @@ class TTDeviceTitleView: UIView, TTTitleMenuDelegate, DFUServiceDelegate, DFUPro
         // Forget the controller when DFU is done
         if state == .completed || state == .aborted {
             dfuController = nil
+            appDelegate().bluetoothMonitor.disconnectDevice(device)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: { 
+                appDelegate().bluetoothMonitor.scanKnown()
+            })
+
         }
     }
     
@@ -235,10 +242,7 @@ class TTDeviceTitleView: UIView, TTTitleMenuDelegate, DFUServiceDelegate, DFUPro
 //        self.dfuUploadProgressView.setProgress(0, animated: true)
         print("Error \(error.rawValue): \(message)")
         
-        // Forget the controller when DFU finished with an error
-        dfuController = nil
-        
-        appDelegate().bluetoothMonitor.disconnectDevice(device)
+        self.startDFUProcess()
     }
     
     //MARK: DFUProgressDelegate
@@ -247,8 +251,8 @@ class TTDeviceTitleView: UIView, TTTitleMenuDelegate, DFUServiceDelegate, DFUPro
 //        self.dfuUploadProgressView.setProgress(Float(progress)/100.0, animated: true)
 //        self.dfuUploadStatus.text = String(format: "Part: %d/%d\nSpeed: %.1f KB/s\nAverage Speed: %.1f KB/s",
 //                                           part, totalParts, currentSpeedBytesPerSecond/1024, avgSpeedBytesPerSecond/1024)
-        print(" ---> Progress: " + String(format: "Part: %d/%d\nSpeed: %.1f KB/s\nAverage Speed: %.1f KB/s",
-                                                   part, totalParts, currentSpeedBytesPerSecond/1024, avgSpeedBytesPerSecond/1024))
+        print(" ---> Progress: " + String(format: "%d%% Part: %d/%d\nSpeed: %.1f KB/s\nAverage Speed: %.1f KB/s",
+                                                   progress, part, totalParts, currentSpeedBytesPerSecond/1024, avgSpeedBytesPerSecond/1024))
     }
     
     //MARK: LoggerDelegate
