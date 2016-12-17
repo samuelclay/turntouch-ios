@@ -16,6 +16,8 @@ class TTDeviceTitleView: UIView, TTTitleMenuDelegate, DFUServiceDelegate, DFUPro
     var titleLabel: UILabel = UILabel()
     var stateLabel: UILabel = UILabel()
     var deviceImageView: UIImageView = UIImageView()
+    var dfuProgress: UIProgressView = UIProgressView()
+    var dfuSpinner: TTPairingSpinner = TTPairingSpinner()
     @IBOutlet var settingsButton: UIButton! = UIButton(type: UIButtonType.system)
     fileprivate var dfuController: DFUServiceController?
 
@@ -227,12 +229,13 @@ class TTDeviceTitleView: UIView, TTTitleMenuDelegate, DFUServiceDelegate, DFUPro
         
         // Forget the controller when DFU is done
         if state == .completed || state == .aborted {
+            print(" ---> Returning Bluetooth Monitor")
             dfuController = nil
-            appDelegate().bluetoothMonitor.disconnectDevice(device)
             DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: { 
+                appDelegate().bluetoothMonitor.manager.delegate = appDelegate().bluetoothMonitor
+                appDelegate().bluetoothMonitor.disconnectDevice(self.device)
                 appDelegate().bluetoothMonitor.scanKnown()
             })
-
         }
     }
     
@@ -251,8 +254,7 @@ class TTDeviceTitleView: UIView, TTTitleMenuDelegate, DFUServiceDelegate, DFUPro
 //        self.dfuUploadProgressView.setProgress(Float(progress)/100.0, animated: true)
 //        self.dfuUploadStatus.text = String(format: "Part: %d/%d\nSpeed: %.1f KB/s\nAverage Speed: %.1f KB/s",
 //                                           part, totalParts, currentSpeedBytesPerSecond/1024, avgSpeedBytesPerSecond/1024)
-        print(" ---> Progress: " + String(format: "%d%% Part: %d/%d\nSpeed: %.1f KB/s\nAverage Speed: %.1f KB/s",
-                                                   progress, part, totalParts, currentSpeedBytesPerSecond/1024, avgSpeedBytesPerSecond/1024))
+        print(" ---> Progress: \(progress)%")
     }
     
     //MARK: LoggerDelegate
