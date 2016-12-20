@@ -27,9 +27,9 @@ class TTDevice: NSObject {
     var isPaired = false
     var isNotified = false
     var needsReconnection = false
-    var inDFU = false
+    dynamic var inDFU = false
     var firmwareVersion: Int?
-    var isFirmwareOld = false
+    dynamic var isFirmwareOld = false
     var state: TTDeviceState = .device_STATE_DISCONNECTED
     
     init(peripheral newPeripheral: CBPeripheral) {

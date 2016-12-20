@@ -16,8 +16,22 @@ class TTPairingSpinner: UIView {
     override func awakeFromNib() {
         spinnerBeginTime = CACurrentMediaTime();
     }
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        spinnerBeginTime = CACurrentMediaTime()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+    
     override func draw(_ rect: CGRect) {
         self.layer.sublayers = nil
+
+        if self.isHidden {
+            return
+        }
         
         for i in 0 ..< 2 {
             let circle: CALayer = CALayer()

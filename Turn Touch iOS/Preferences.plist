@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>TT:firmware:version</key>
-	<string>6</string>
+	<string>7</string>
 	<key>TT:mode:north</key>
 	<string>TTModeWemo</string>
 	<key>TT:mode:east</key>

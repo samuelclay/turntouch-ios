@@ -18,6 +18,7 @@ class TTDeviceTitleView: UIView, TTTitleMenuDelegate, DFUServiceDelegate, DFUPro
     var deviceImageView: UIImageView = UIImageView()
     var dfuProgress: UIProgressView = UIProgressView()
     var dfuSpinner: TTPairingSpinner = TTPairingSpinner()
+    var upgradeButton: UIButton = UIButton()
     @IBOutlet var settingsButton: UIButton! = UIButton(type: UIButtonType.system)
     fileprivate var dfuController: DFUServiceController?
 
@@ -28,7 +29,7 @@ class TTDeviceTitleView: UIView, TTTitleMenuDelegate, DFUServiceDelegate, DFUPro
         self.translatesAutoresizingMaskIntoConstraints = false
         self.contentMode = UIViewContentMode.redraw;
         self.backgroundColor = UIColor(hex: 0xF5F6F8)
-        
+
         deviceImageView.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(deviceImageView)
         self.addConstraint(NSLayoutConstraint(item: deviceImageView, attribute: .leading, relatedBy: .equal,
@@ -65,6 +66,7 @@ class TTDeviceTitleView: UIView, TTTitleMenuDelegate, DFUServiceDelegate, DFUPro
         self.addConstraint(NSLayoutConstraint(item: settingsButton, attribute: NSLayoutAttribute.centerY, relatedBy: .equal,
             toItem: self, attribute: .centerY, multiplier: 1.0, constant: 0))
         
+        stateLabel.isHidden = true
         stateLabel.font = UIFont(name: "Effra", size: 15)
         stateLabel.textColor = UIColor(hex: 0x808AA0)
         stateLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -74,8 +76,47 @@ class TTDeviceTitleView: UIView, TTTitleMenuDelegate, DFUServiceDelegate, DFUPro
             toItem: settingsButton, attribute: .left, multiplier: 1.0, constant: -12))
         self.addConstraint(NSLayoutConstraint(item: stateLabel, attribute: .centerY, relatedBy: .equal,
             toItem: self, attribute: .centerY, multiplier: 1.0, constant: 0))
-
+ 
+        let latestVersion = UserDefaults.standard.integer(forKey: "TT:firmware:version")
+        upgradeButton.isHidden = false
+        upgradeButton.translatesAutoresizingMaskIntoConstraints = false
+        upgradeButton.titleLabel!.textAlignment = .right
+        upgradeButton.titleLabel!.font = UIFont(name: "Effra", size: 13)
+        upgradeButton.setTitleColor(upgradeButton.tintColor, for: .normal)
+        upgradeButton.titleLabel!.lineBreakMode = NSLineBreakMode.byClipping
+        upgradeButton.setTitle("Upgrade to v\(latestVersion)", for: .normal)
+        upgradeButton.addTarget(self, action: #selector(self.pressUpgrade(_:)), for: .touchUpInside)
+        self.addSubview(upgradeButton)
+        self.addConstraint(NSLayoutConstraint(item: upgradeButton, attribute: .right, relatedBy: .equal,
+                                              toItem: settingsButton, attribute: .left, multiplier: 1.0, constant: -12))
+        self.addConstraint(NSLayoutConstraint(item: upgradeButton, attribute: .centerY, relatedBy: .equal,
+                                              toItem: self, attribute: .centerY, multiplier: 1.0, constant: 0))
+        
+        dfuProgress.isHidden = false
+        dfuProgress.translatesAutoresizingMaskIntoConstraints = false
+        self.addSubview(dfuProgress)
+        self.addConstraint(NSLayoutConstraint(item: dfuProgress, attribute: .right, relatedBy: .equal,
+                                              toItem: settingsButton, attribute: .left, multiplier: 1.0, constant: -12))
+        self.addConstraint(NSLayoutConstraint(item: dfuProgress, attribute: .centerY, relatedBy: .equal,
+                                              toItem: self, attribute: .centerY, multiplier: 1.0, constant: 0))
+        self.addConstraint(NSLayoutConstraint(item: dfuProgress, attribute: .width, relatedBy: .equal,
+                                              toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 100))
+        
+        dfuSpinner.isHidden = false
+        dfuSpinner.translatesAutoresizingMaskIntoConstraints = false
+        dfuSpinner.backgroundColor = UIColor.clear
+        self.addSubview(dfuSpinner)
+        self.addConstraint(NSLayoutConstraint(item: dfuSpinner, attribute: .right, relatedBy: .equal,
+                                              toItem: dfuProgress, attribute: .left, multiplier: 1.0, constant: -12))
+        self.addConstraint(NSLayoutConstraint(item: dfuSpinner, attribute: .centerY, relatedBy: .equal,
+                                              toItem: self, attribute: .centerY, multiplier: 1.0, constant: 0))
+        self.addConstraint(NSLayoutConstraint(item: dfuSpinner, attribute: .width, relatedBy: .equal,
+                                              toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 16))
+        self.addConstraint(NSLayoutConstraint(item: dfuSpinner, attribute: .height, relatedBy: .equal,
+                                              toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 16))
+        
         self.registerAsObserver()
+        self.updateLayout()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -87,20 +128,32 @@ class TTDeviceTitleView: UIView, TTTitleMenuDelegate, DFUServiceDelegate, DFUPro
     func registerAsObserver() {
         appDelegate().modeMap.addObserver(self, forKeyPath: "selectedModeDirection", options: [], context: nil)
         appDelegate().modeMap.addObserver(self, forKeyPath: "openedModeChangeMenu", options: [], context: nil)
+        device.addObserver(self, forKeyPath: "isFirmwareOld", options: [], context: nil)
+        device.addObserver(self, forKeyPath: "inDFU", options: [], context: nil)
     }
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?,
                                          change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        if keyPath == "selectedModeDirection" {
-            self.setNeedsDisplay()
-        } else if keyPath == "openedModeChangeMenu" {
-            self.setNeedsDisplay()
+        DispatchQueue.main.async {
+            if keyPath == "selectedModeDirection" {
+                self.setNeedsDisplay()
+            } else if keyPath == "openedModeChangeMenu" {
+                self.setNeedsDisplay()
+            } else if keyPath == "isFirmwareOld" {
+                self.updateLayout()
+                self.setNeedsDisplay()
+            } else if keyPath == "inDFU" {
+                self.updateLayout()
+                self.setNeedsDisplay()
+            }
         }
     }
     
     deinit {
         appDelegate().modeMap.removeObserver(self, forKeyPath: "selectedModeDirection")
         appDelegate().modeMap.removeObserver(self, forKeyPath: "openedModeChangeMenu")
+        device.removeObserver(self, forKeyPath: "isFirmwareOld")
+        device.removeObserver(self, forKeyPath: "inDFU")
     }
 
     // MARK: Drawing
@@ -114,6 +167,30 @@ class TTDeviceTitleView: UIView, TTTitleMenuDelegate, DFUServiceDelegate, DFUPro
         super.draw(rect)
         
         self.drawBorder()
+    }
+    
+    func updateLayout() {
+        if device.isFirmwareOld && !device.inDFU {
+            dfuSpinner.isHidden = true
+            dfuProgress.isHidden = true
+            stateLabel.isHidden = true
+            upgradeButton.isHidden = false
+            self.backgroundColor = UIColor(hex: 0xFAFCE0)
+        } else if device.inDFU {
+            dfuProgress.isHidden = false
+            dfuSpinner.isHidden = false
+            stateLabel.isHidden = true
+            upgradeButton.isHidden = true
+            self.backgroundColor = UIColor(hex: 0xFAFCE0)
+        } else {
+            dfuSpinner.isHidden = true
+            dfuProgress.isHidden = true
+            stateLabel.isHidden = false
+            upgradeButton.isHidden = true
+            self.backgroundColor = UIColor(hex: 0xF5F6F8)
+        }
+        
+        dfuSpinner.setNeedsDisplay()
     }
     
     func drawBorder() {
@@ -131,6 +208,10 @@ class TTDeviceTitleView: UIView, TTTitleMenuDelegate, DFUServiceDelegate, DFUPro
     
     func pressSettings(_ sender: UIButton!) {
         appDelegate().mainViewController.toggleDeviceMenu(sender, deviceTitleView: self, device: device)
+    }
+    
+    func pressUpgrade(_ sendor: UIButton!) {
+        startDFUProcess()
     }
     
     // MARK: Menu Delegate
@@ -209,6 +290,8 @@ class TTDeviceTitleView: UIView, TTTitleMenuDelegate, DFUServiceDelegate, DFUPro
 
         dfuController = dfuInitiator.with(firmware: selectedFirmware!).start()
         appDelegate().mainViewController.closeDeviceMenu()
+        
+        device.inDFU = true
     }
     
     
@@ -255,6 +338,8 @@ class TTDeviceTitleView: UIView, TTTitleMenuDelegate, DFUServiceDelegate, DFUPro
 //        self.dfuUploadStatus.text = String(format: "Part: %d/%d\nSpeed: %.1f KB/s\nAverage Speed: %.1f KB/s",
 //                                           part, totalParts, currentSpeedBytesPerSecond/1024, avgSpeedBytesPerSecond/1024)
         print(" ---> Progress: \(progress)%")
+        
+        dfuProgress.setProgress(Float(progress)/100, animated: true)
     }
     
     //MARK: LoggerDelegate
