@@ -294,7 +294,7 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
         
         if let sceneIdentifier = sceneIdentifier {
             bridgeSendAPI.recallSceneWithIdentifier(sceneIdentifier, inGroupWithIdentifier: roomIdentifier ?? "0") { (errors: [Error]?) in
-                print(" ---> Scene change: \(sceneIdentifier) (\(errors))")
+                print(" ---> Scene change: \(sceneName), \(sceneIdentifier) (\(errors))")
             }
         }
     }
@@ -1005,84 +1005,81 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
         let bridgeSendAPI = TTModeHue.hueSdk.bridgeSendAPI
         let cache = TTModeHue.hueSdk.resourceCache
 
-        guard let lights = cache?.lights, let rooms = cache?.groups else {
+        guard let lights = cache?.lights, let _ = cache?.groups else {
             print(" ---> Scenes/lights/rooms not ready yet for scene creation")
             return
         }
 
         TTModeHue.createdScenes.append(createdSceneName)
         DispatchQueue.global().async {
-            for (_, room) in rooms {
-                let sceneIdentifier = self.sceneForAction(sceneName, actionRoom: room.identifier, moment: moment)
-                let roomLights = room.lightIdentifiers ?? []
-                if sceneIdentifier != nil {
-                    if TTModeHue.foundScenes.contains(sceneIdentifier!) {
-                        continue
-                    }
-                } else {
-    //                    print(" ---> Scene not found: \(sceneName) [\(roomLights)] \(TTModeHue.foundScenes)")
+            let sceneIdentifier = self.sceneForAction(sceneName, moment: moment)
+            if sceneIdentifier != nil {
+                if TTModeHue.foundScenes.contains(sceneIdentifier!) {
+                    return
                 }
-                
-                if case .timedOut = TTModeHue.sceneSemaphore.wait(timeout: DispatchTime.now() + DispatchTimeInterval.seconds(30)) {
-                    print(" ---> Hue room timed out \(sceneIdentifier): \(sceneName)-\(roomLights)")
-                }
-
-                print(" ---> Creating scene \(sceneName): [\(roomLights)]")
-                let sceneTitle = self.titleForAction(sceneName, buttonMoment: moment)
-                bridgeSendAPI.createSceneWithName(sceneTitle, includeLightIds: roomLights, completionHandler: { (sceneIdentifier, errors) in
-                    guard let sceneIdentifier = sceneIdentifier else {
-                        print(" ---> Error: missing scene identifier")
-                        return
-                    }
-                    print(" ---> Created scene \(sceneTitle): [\(roomLights)] \(sceneIdentifier)")
-                    DispatchQueue.main.async {
-                        self.sceneUploadProgress = 0.5
-                        self.sceneDelegate?.sceneUploadProgress()
-                    }
-
-                    DispatchQueue.global().async {
-                        for (index, light) in lights.values.enumerated() {
-                            if !roomLights.contains(light.identifier) {
-                                continue
-                            }
-                            if case .timedOut = TTModeHue.lightSemaphore.wait(timeout: DispatchTime.now() + DispatchTimeInterval.seconds(10)) {
-                                print(" ---> Hue light timed out \(sceneIdentifier) #\(index): \(sceneName)-\(roomLights)")
-                            }
-                            print(" ---> Saving hue light \(sceneIdentifier) #\(index): \(sceneName)-\(roomLights)")
-                            let lightState = lightsHandler(light, index)
-                            bridgeSendAPI.updateLightStateInScene(sceneIdentifier, lightIdentifier: light.identifier, withLightState: lightState, completionHandler: { (errors) in
-                                print(" ---> Hue light done \(sceneIdentifier) #\(index): \(sceneName)-\(roomLights) \(errors)")
-                                DispatchQueue.main.async {
-                                    self.sceneUploadProgress = Float(index)/Float(lights.count)
-                                    self.sceneDelegate?.sceneUploadProgress()
-                                }
-                                TTModeHue.lightSemaphore.signal()
-        //                                self.delegate?.changeState(TTModeHue.hueState, mode: self, message: nil)
-                            })
-                        }
-                        
-                        //                print(" ---> All done creating scenes!")
-                        //                TTModeHue.hueSdk.stopHeartbeat()
-                        //                TTModeHue.hueSdk.startHeartbeat()
-                        if case .timedOut = TTModeHue.lightSemaphore.wait(timeout: DispatchTime.now() + DispatchTimeInterval.seconds(30)) {
-                            print(" ---> Hue lights timed out \(sceneIdentifier): \(sceneName)-\(roomLights)")
-                        }
-                        
-                        TTModeHue.lightSemaphore.signal()
-                        TTModeHue.sceneSemaphore.signal()
-                        
-                        self.updateScenes()
-                        
-                        if case .timedOut = TTModeHue.sceneCacheSemaphore.wait(timeout: DispatchTime.now() + DispatchTimeInterval.seconds(30)) {
-                            print(" ---> Waited too long for created scenes to come back")
-                        }
-
-                        self.ensureScenesSelected()
-                        TTModeHue.sceneCacheSemaphore.signal()
-                        
-                    }
-                })
+            } else {
+//                    print(" ---> Scene not found: \(sceneName) [\(roomLights)] \(TTModeHue.foundScenes)")
             }
+            
+            if case .timedOut = TTModeHue.sceneSemaphore.wait(timeout: DispatchTime.now() + DispatchTimeInterval.seconds(30)) {
+                print(" ---> Hue room timed out \(sceneIdentifier): \(sceneName)")
+            }
+
+            print(" ---> Creating scene \(sceneName)")
+            let sceneTitle = self.titleForAction(sceneName, buttonMoment: moment)
+            let lightIdentifiers = cache?.lights.map { (key, light) -> String in
+                return light.identifier
+            }
+            bridgeSendAPI.createSceneWithName(sceneTitle, includeLightIds: lightIdentifiers ?? [], completionHandler: { (sceneIdentifier, errors) in
+                guard let sceneIdentifier = sceneIdentifier else {
+                    print(" ---> Error: missing scene identifier")
+                    return
+                }
+                print(" ---> Created scene \(sceneTitle): \(sceneIdentifier)")
+                DispatchQueue.main.async {
+                    self.sceneUploadProgress = 0.5
+                    self.sceneDelegate?.sceneUploadProgress()
+                }
+
+                DispatchQueue.global().async {
+                    for (index, light) in lights.values.enumerated() {
+                        if case .timedOut = TTModeHue.lightSemaphore.wait(timeout: DispatchTime.now() + DispatchTimeInterval.seconds(10)) {
+                            print(" ---> Hue light timed out \(sceneIdentifier) #\(index): \(sceneName)")
+                        }
+                        print(" ---> Saving hue light \(sceneIdentifier) #\(index): \(sceneName)")
+                        let lightState = lightsHandler(light, index)
+                        bridgeSendAPI.updateLightStateInScene(sceneIdentifier, lightIdentifier: light.identifier, withLightState: lightState, completionHandler: { (errors) in
+                            print(" ---> Hue light done \(sceneIdentifier) #\(index): \(sceneName) \(errors)")
+                            DispatchQueue.main.async {
+                                self.sceneUploadProgress = Float(index)/Float(lights.count)
+                                self.sceneDelegate?.sceneUploadProgress()
+                            }
+                            TTModeHue.lightSemaphore.signal()
+    //                                self.delegate?.changeState(TTModeHue.hueState, mode: self, message: nil)
+                        })
+                    }
+                    
+                    //                print(" ---> All done creating scenes!")
+                    //                TTModeHue.hueSdk.stopHeartbeat()
+                    //                TTModeHue.hueSdk.startHeartbeat()
+                    if case .timedOut = TTModeHue.lightSemaphore.wait(timeout: DispatchTime.now() + DispatchTimeInterval.seconds(30)) {
+                        print(" ---> Hue lights timed out \(sceneIdentifier): \(sceneName)")
+                    }
+                    
+                    TTModeHue.lightSemaphore.signal()
+                    TTModeHue.sceneSemaphore.signal()
+                    
+                    self.updateScenes()
+                    
+                    if case .timedOut = TTModeHue.sceneCacheSemaphore.wait(timeout: DispatchTime.now() + DispatchTimeInterval.seconds(30)) {
+                        print(" ---> Waited too long for created scenes to come back")
+                    }
+
+                    self.ensureScenesSelected()
+                    TTModeHue.sceneCacheSemaphore.signal()
+                    
+                }
+            })
         }
     }
     
@@ -1248,7 +1245,7 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
             if !actionName.contains("Scene") {
                 continue
             }
-            guard let actionRoom = self.actionOptionValue(TTModeHueConstants.kHueRoom, actionName: actionName, direction: direction) as? String else {
+            guard let _ = self.actionOptionValue(TTModeHueConstants.kHueRoom, actionName: actionName, direction: direction) as? String else {
                 print(" ---> ensureScenesSelected not ready yet, no room selected")
                 continue
             }
@@ -1272,13 +1269,13 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
 
             // Assign default scenes for action
             if actionScene == nil {
-                if let scene = self.sceneForAction(actionName, actionRoom: actionRoom, moment: .button_MOMENT_PRESSUP) {
+                if let scene = self.sceneForAction(actionName, moment: .button_MOMENT_PRESSUP) {
                     self.changeActionOption(TTModeHueConstants.kHueScene, to: scene, direction: direction)
                 }
             }
             
             if actionDouble == nil {
-                if let scene = self.sceneForAction(actionName, actionRoom: actionRoom, moment: .button_MOMENT_DOUBLE) {
+                if let scene = self.sceneForAction(actionName, moment: .button_MOMENT_DOUBLE) {
                     self.changeActionOption(TTModeHueConstants.kDoubleTapHueScene, to: scene, direction: direction)
                 }
             }
@@ -1288,61 +1285,48 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
                 if !batchAction.actionName.contains("Scene") {
                     continue
                 }
-                if let roomIdentifier = self.batchActionOptionValue(batchAction, optionName: TTModeHueConstants.kHueRoom, direction: direction) as? String {
-                    var singleScene = self.batchActionOptionValue(batchAction, optionName: TTModeHueConstants.kHueScene, direction: direction) as? String
-                    var doubleScene = self.batchActionOptionValue(batchAction, optionName: TTModeHueConstants.kDoubleTapHueScene, direction: direction) as? String
+                var singleScene = self.batchActionOptionValue(batchAction, optionName: TTModeHueConstants.kHueScene, direction: direction) as? String
+                var doubleScene = self.batchActionOptionValue(batchAction, optionName: TTModeHueConstants.kDoubleTapHueScene, direction: direction) as? String
 
-                    if singleScene != nil {
-                        if scenes.values.first(where: { (scene) -> Bool in scene.identifier == singleScene }) == nil {
+                if singleScene != nil {
+                    if scenes.values.first(where: { (scene) -> Bool in scene.identifier == singleScene }) == nil {
 //                            print(" ---> Scene no longer exists: \(singleScene!) \(actionName), clearing...")
-                            singleScene = nil
-                        }
+                        singleScene = nil
                     }
-                    if doubleScene != nil {
-                        if scenes.values.first(where: { (scene) -> Bool in scene.identifier == doubleScene }) == nil {
+                }
+                if doubleScene != nil {
+                    if scenes.values.first(where: { (scene) -> Bool in scene.identifier == doubleScene }) == nil {
 //                            print(" ---> Scene no longer exists: \(doubleScene!) \(actionName), clearing...")
-                            doubleScene = nil
-                        }
+                        doubleScene = nil
                     }
+                }
 
-                    if singleScene == nil {
-                        if let scene = self.sceneForAction(batchAction.actionName, actionRoom: roomIdentifier, moment: .button_MOMENT_PRESSUP) {
-                            self.changeBatchActionOption(batchAction.batchActionKey!, optionName: TTModeHueConstants.kHueScene,
-                                                         to: scene, direction: batchAction.mode.modeDirection, actionDirection: direction)
-                        }
+                if singleScene == nil {
+                    if let scene = self.sceneForAction(batchAction.actionName, moment: .button_MOMENT_PRESSUP) {
+                        self.changeBatchActionOption(batchAction.batchActionKey!, optionName: TTModeHueConstants.kHueScene,
+                                                     to: scene, direction: batchAction.mode.modeDirection, actionDirection: direction)
                     }
-                    
-                    if doubleScene == nil {
-                        if let scene = self.sceneForAction(batchAction.actionName, actionRoom: roomIdentifier, moment: .button_MOMENT_DOUBLE) {
-                            self.changeBatchActionOption(batchAction.batchActionKey!, optionName: TTModeHueConstants.kDoubleTapHueScene,
-                                                         to: scene, direction: batchAction.mode.modeDirection, actionDirection: direction)
-                        }
+                }
+                
+                if doubleScene == nil {
+                    if let scene = self.sceneForAction(batchAction.actionName, moment: .button_MOMENT_DOUBLE) {
+                        self.changeBatchActionOption(batchAction.batchActionKey!, optionName: TTModeHueConstants.kDoubleTapHueScene,
+                                                     to: scene, direction: batchAction.mode.modeDirection, actionDirection: direction)
                     }
                 }
             }
         }
     }
     
-    func sceneForAction(_ actionName: String, actionRoom: String, moment: TTButtonMoment) -> String? {
+    func sceneForAction(_ actionName: String, moment: TTButtonMoment) -> String? {
         let sceneTitle = self.titleForAction(actionName, buttonMoment: moment)
-        guard let scenes = TTModeHue.hueSdk.resourceCache?.scenes,
-              let rooms = TTModeHue.hueSdk.resourceCache?.groups else {
+        guard let scenes = TTModeHue.hueSdk.resourceCache?.scenes else {
             return nil
         }
         
-        var roomLights: [String]?
-        for (_, room) in rooms {
-            if room.identifier == actionRoom {
-                roomLights = room.lightIdentifiers
-            }
-        }
-        
         for (_, scene) in scenes {
-            if let sceneLights = scene.lightIdentifiers,
-                let roomLights = roomLights {
-                if scene.name == sceneTitle && Set(sceneLights) == Set(roomLights) {
-                    return scene.identifier
-                }
+            if scene.name == sceneTitle {
+                return scene.identifier
             }
         }
         

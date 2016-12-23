@@ -100,7 +100,7 @@ class TTDeviceTitleView: UIView, TTTitleMenuDelegate, DFUServiceDelegate, DFUPro
         self.addConstraint(NSLayoutConstraint(item: dfuProgress, attribute: .centerY, relatedBy: .equal,
                                               toItem: self, attribute: .centerY, multiplier: 1.0, constant: 0))
         self.addConstraint(NSLayoutConstraint(item: dfuProgress, attribute: .width, relatedBy: .equal,
-                                              toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 100))
+                                              toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 60))
         
         dfuSpinner.isHidden = false
         dfuSpinner.translatesAutoresizingMaskIntoConstraints = false

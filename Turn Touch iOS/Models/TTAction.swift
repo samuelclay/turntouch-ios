@@ -31,11 +31,12 @@ class TTAction: NSObject {
         mode = modeClass.init()
         mode.modeDirection = appDelegate().modeMap.selectedModeDirection
         mode.action = self
+        actionName = chunks[1]
+        self.direction = direction
+
         if mode.responds(to: NSSelectorFromString("activate")) {
             mode.activate()
         }
-        actionName = chunks[1]
-        self.direction = direction
     }
     
     func deactivate() {

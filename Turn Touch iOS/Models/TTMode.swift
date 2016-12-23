@@ -8,7 +8,7 @@
 
 import Foundation
 
-let DEBUG_PREFS = false
+let DEBUG_PREFS = true
 let DEBUG_PREFS_NIL = false
 
 enum ActionLayout {
@@ -124,8 +124,8 @@ class TTMode : NSObject, TTModeProtocol {
     
     func runAction(_ actionName: String, direction: TTModeDirection, funcAction: String) -> Bool {
         var success = false
-        print(" ---> Running \(direction): \(funcAction)\(actionName)")
-        if self.action == nil { //|| self.action.batchActionKey == nil {
+        print(" ---> Running \(direction.rawValue): \(funcAction)\(actionName)")
+        if self.action == nil || self.action.batchActionKey == nil {
             self.action = TTAction(actionName: actionName, direction: direction)
         }
         
@@ -201,9 +201,9 @@ class TTMode : NSObject, TTModeProtocol {
     }
     
     func actionNameInDirection(_ direction: TTModeDirection) -> String {
-//        if action?.batchActionKey != nil {
-//            return action.actionName
-//        }
+        if action?.batchActionKey != nil {
+            return action.actionName
+        }
         
         let prefs = UserDefaults.standard
         
