@@ -13,6 +13,7 @@ class TTModeHueConnected: TTOptionsDetailViewController, TTModeHueSceneDelegate 
     var modeHue: TTModeHue!
     @IBOutlet var lightsLabel: UILabel!
     @IBOutlet var progressView: UIProgressView!
+    @IBOutlet var spinner: TTPairingSpinner!
     @IBOutlet var reloadScenesButton: UIButton!
     
     override func viewDidLoad() {
@@ -53,11 +54,13 @@ class TTModeHueConnected: TTOptionsDetailViewController, TTModeHueSceneDelegate 
         let progress = self.modeHue.sceneUploadProgress
         // return
         if progress >= 0 {
-            progressView.isHidden = false
-            reloadScenesButton.isHidden = true
-            progressView.setProgress(progress, animated: true)
+            spinner.isHidden = false
+//            progressView.isHidden = false
+//            reloadScenesButton.isHidden = true
+//            progressView.setProgress(progress, animated: true)
         } else {
-            progressView.isHidden = true
+            spinner.isHidden = true
+//            progressView.isHidden = true
             reloadScenesButton.isHidden = false
         }
     }

@@ -46,7 +46,7 @@ protocol TTBluetoothMonitorDelegate {
     func pairingSuccess()
 }
 
-let DEBUG_BLUETOOTH = true
+let DEBUG_BLUETOOTH = false
 
 class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
     

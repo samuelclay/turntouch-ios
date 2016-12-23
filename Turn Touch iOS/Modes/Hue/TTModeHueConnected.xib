@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -19,6 +19,7 @@
                 <outlet property="lightsLabel" destination="2YS-VH-2GU" id="DlJ-sy-EAU"/>
                 <outlet property="progressView" destination="Lwq-HE-Xc8" id="dtD-h0-ddY"/>
                 <outlet property="reloadScenesButton" destination="szy-7s-qNO" id="i8a-LS-haE"/>
+                <outlet property="spinner" destination="Uoo-Qf-hbw" id="afq-rU-pV1"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -55,9 +56,17 @@
                         <action selector="reloadScenes:" destination="-1" eventType="touchUpInside" id="rqD-NV-gde"/>
                     </connections>
                 </button>
-                <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Lwq-HE-Xc8">
+                <progressView hidden="YES" opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Lwq-HE-Xc8">
                     <rect key="frame" x="499" y="91" width="81" height="2"/>
                 </progressView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uoo-Qf-hbw" customClass="TTPairingSpinner" customModule="Turn_Touch_iOS" customModuleProvider="target">
+                    <rect key="frame" x="473" y="83" width="18" height="18"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="18" id="4xR-jH-AU9"/>
+                        <constraint firstAttribute="height" constant="18" id="bSZ-gW-faP"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
@@ -69,8 +78,10 @@
                 <constraint firstItem="FWr-5Z-Oo5" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="22" id="U6u-Bj-qXw"/>
                 <constraint firstItem="K3R-sB-HiJ" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="22" id="XJb-59-xEw"/>
                 <constraint firstAttribute="trailing" secondItem="szy-7s-qNO" secondAttribute="trailing" constant="20" id="fF2-sE-Mc3"/>
+                <constraint firstItem="szy-7s-qNO" firstAttribute="leading" secondItem="Uoo-Qf-hbw" secondAttribute="trailing" constant="8" id="gEe-L1-gSB"/>
                 <constraint firstAttribute="bottom" secondItem="2YS-VH-2GU" secondAttribute="bottom" constant="30" id="hHs-Ve-HYr"/>
                 <constraint firstAttribute="trailing" secondItem="K3R-sB-HiJ" secondAttribute="trailing" constant="22" id="iEj-x9-aU6"/>
+                <constraint firstItem="szy-7s-qNO" firstAttribute="centerY" secondItem="Uoo-Qf-hbw" secondAttribute="centerY" id="jBF-Ic-Z8f"/>
                 <constraint firstItem="szy-7s-qNO" firstAttribute="top" secondItem="K3R-sB-HiJ" secondAttribute="bottom" constant="8" id="qic-oQ-2z6"/>
                 <constraint firstItem="Lwq-HE-Xc8" firstAttribute="width" secondItem="szy-7s-qNO" secondAttribute="width" id="xrB-RK-6kj"/>
             </constraints>

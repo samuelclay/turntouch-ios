@@ -686,7 +686,7 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
         if TTModeHue.hueState != .connected {
             TTModeHue.hueState = .connected
             self.saveRecentBridge(username: username)
-            self.receiveHeartbeat()
+            self.receiveHeartbeat(notification: nil)
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                 self.startHueHeartbeat(username: username)
@@ -701,9 +701,18 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
         self.ensureScenesSelected()
     }
     
-    func receiveHeartbeat() {
+    func receiveHeartbeat(notification: NSNotification?) {
         let cache = TTModeHue.hueSdk.resourceCache
         
+        if let notification = notification {
+            if notification.name.rawValue == ResourceCacheUpdateNotification.scenesUpdated.rawValue {
+                if TTModeHue.waitingOnScenes {
+                    TTModeHue.waitingOnScenes = false
+                    TTModeHue.sceneCacheSemaphore.signal()
+                }
+            }
+        }
+
         var waitingOn: [String] = []
         if cache?.scenes == nil || cache?.scenes.count == 0 {
             waitingOn.append("scenes")
@@ -815,11 +824,7 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
     
     func resourceCacheUpdated(_ resourceCache: BridgeResourcesCache) {
         TTModeHue.hueSdk.resourceCache = resourceCache
-        print(" ---> Updated resource cache: \(resourceCache) \(TTModeHue.waitingOnScenes ? "Waiting on scenes, here they are!" : "")")
-        if TTModeHue.waitingOnScenes {
-            TTModeHue.waitingOnScenes = false
-            TTModeHue.sceneCacheSemaphore.signal()
-        }
+        print(" ---> Updated resource cache: \(resourceCache) \(TTModeHue.waitingOnScenes ? "Waiting on scenes, here they are!" : "") (\(resourceCache.scenes.count) scenes)")
     }
     
     // MARK: - Scenes and Rooms
@@ -840,11 +845,16 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
             if force {
                 self.deleteScenes()
                 
-                if case .timedOut = TTModeHue.sceneCacheSemaphore.wait(timeout: DispatchTime.now() + DispatchTimeInterval.seconds(30)) {
+                if case .timedOut = TTModeHue.sceneCacheSemaphore.wait(timeout: DispatchTime.now() + DispatchTimeInterval.seconds(10)) {
                     print(" ---> Waited too long for deleted scenes to come back")
                 }
                 
                 print(" ---> Done deleting, now creating scenes...")
+            }
+            
+            guard let scenes = TTModeHue.hueSdk.resourceCache?.scenes else {
+                print(" ---> Error with scenes...")
+                return
             }
             
             // Collect scene ids to check against
@@ -998,7 +1008,7 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
 
         let createdSceneName = "\(sceneName)-\(moment == .button_MOMENT_PRESSUP ? "single" : "double")"
         if TTModeHue.createdScenes.contains(createdSceneName) {
-            // print(" ---> Not ensuring scene \(sceneName), just created")
+            print(" ---> Not ensuring scene \(sceneName), just created")
             return
         }
 
@@ -1015,6 +1025,7 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
             let sceneIdentifier = self.sceneForAction(sceneName, moment: moment)
             if sceneIdentifier != nil {
                 if TTModeHue.foundScenes.contains(sceneIdentifier!) {
+                    print(" ---> Scene already found: \(sceneName) \(sceneIdentifier) \(TTModeHue.foundScenes)")
                     return
                 }
             } else {
@@ -1074,7 +1085,8 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
                     if case .timedOut = TTModeHue.sceneCacheSemaphore.wait(timeout: DispatchTime.now() + DispatchTimeInterval.seconds(30)) {
                         print(" ---> Waited too long for created scenes to come back")
                     }
-
+                    
+                    print(" TTModeHue.sceneCacheSemaphore: \(TTModeHue.sceneCacheSemaphore)")
                     self.ensureScenesSelected()
                     TTModeHue.sceneCacheSemaphore.signal()
                     
@@ -1326,6 +1338,7 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
         
         for (_, scene) in scenes {
             if scene.name == sceneTitle {
+                print(" ---> \(actionName) \(scene.name) is \(scene.identifier)")
                 return scene.identifier
             }
         }

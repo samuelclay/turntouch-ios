@@ -107,8 +107,11 @@ class TTModeHuePicker: TTOptionsDetailViewController, UITextFieldDelegate, UIPop
             }
             
             if !sceneInRoom {
+                print(" ---> (\(hueScenes.count) scenes) Tossing scene \(scene.name) \(scene.identifier) because \(roomLights) aren't in \(scene.lightIdentifiers!)")
                 continue
             }
+            print(" ---> (\(hueScenes.count) scenes) Keeping scene \(scene.name) \(scene.identifier) because \(roomLights) are in \(scene.lightIdentifiers!)")
+
             
             scenes.append(["name": scene.name, "identifier": scene.identifier])
             if sceneSelected == scene.identifier {
