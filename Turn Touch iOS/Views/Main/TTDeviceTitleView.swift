@@ -292,6 +292,13 @@ class TTDeviceTitleView: UIView, TTTitleMenuDelegate, DFUServiceDelegate, DFUPro
         appDelegate().mainViewController.closeDeviceMenu()
         
         device.inDFU = true
+        
+        DispatchQueue.global().asyncAfter(deadline: .now() + .seconds(45)) {
+            if self.device.inDFU && self.device.state == .device_STATE_CONNECTED {
+                print(" ---> Error, took too long for DFU, aborting... \(self.device)")
+                _ = self.dfuController?.abort()
+            }
+        }
     }
     
     

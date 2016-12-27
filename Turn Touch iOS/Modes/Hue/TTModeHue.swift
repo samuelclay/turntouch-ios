@@ -55,7 +55,6 @@ struct TTModeHueConstants {
     static let kHueRecentBridgeId: String = "hueRecentBridgeId"
     static let kHueRecentBridgeIp: String = "hueRecentBridgeIp"
     static let kHueSavedBridges: String = "hueSavedBridges"
-    static let kHueSeenRooms: String = "hueSeenRooms"
 }
 
 protocol TTModeHueDelegate {
