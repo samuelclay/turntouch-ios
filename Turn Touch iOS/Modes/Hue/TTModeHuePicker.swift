@@ -83,7 +83,7 @@ class TTModeHuePicker: TTOptionsDetailViewController, UITextFieldDelegate, UIPop
         
         for room in rooms {
             if roomSelected == room["identifier"] {
-                roomPicker.text = rooms[0]["name"]
+                roomPicker.text = room["name"]
             }
         }
 

@@ -293,17 +293,17 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
         
         let bridgeSendAPI = TTModeHue.hueSdk.bridgeSendAPI
         let sceneIdentifier: String? = self.action.optionValue(doubleTap ? TTModeHueConstants.kDoubleTapHueScene : TTModeHueConstants.kHueScene) as? String
-        var roomIdentifier: String? = self.action.optionValue(TTModeHueConstants.kHueRoom) as? String
+        var roomIdentifier = self.action.optionValue(TTModeHueConstants.kHueRoom) as! String
         if roomIdentifier == "all" {
             roomIdentifier = "0"
         }
         
         if let sceneIdentifier = sceneIdentifier {
-            bridgeSendAPI.recallSceneWithIdentifier(sceneIdentifier, inGroupWithIdentifier: roomIdentifier ?? "0") { (errors: [Error]?) in
+            bridgeSendAPI.recallSceneWithIdentifier(sceneIdentifier, inGroupWithIdentifier: roomIdentifier) { (errors: [Error]?) in
                 let error = errors?[0] ?? nil
-                print(" ---> Scene change: \(sceneName), \(sceneIdentifier) (\(error))")
+                print(" ---> Scene change: \(sceneName), \(sceneIdentifier) in \(roomIdentifier) (\(error))")
                 if error.debugDescription.contains("for parameter, scene") {
-                    self.ensureScenes(force: true)
+                    self.ensureScenes()
                 }
             }
         }
