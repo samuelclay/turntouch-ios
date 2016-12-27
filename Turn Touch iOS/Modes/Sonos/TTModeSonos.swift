@@ -40,8 +40,8 @@ class TTModeSonos: TTMode {
     
     static var reachability: Reachability!
     var delegate: TTModeSonosDelegate!
-    var sonosState = TTSonosState.disconnected
-    var sonosManager = SonosManager.sharedInstance()
+    static var sonosState = TTSonosState.disconnected
+    static var sonosManager = SonosManager.sharedInstance()
 
     required init() {
         super.init()
@@ -168,9 +168,9 @@ class TTModeSonos: TTMode {
         if self.foundDevices().count == 0 {
             self.beginConnectingToSonos()
         } else {
-            sonosState = .connected
+            TTModeSonos.sonosState = .connected
         }
-        delegate?.changeState(sonosState, mode: self)
+        delegate?.changeState(TTModeSonos.sonosState, mode: self)
     }
     
     override func deactivate() {
@@ -275,8 +275,11 @@ class TTModeSonos: TTMode {
     // MARK: Sonos devices
     
     func foundDevices() -> [SonosController] {
-        var devices = sonosManager?.allDevices() as! [SonosController]
-        
+        var devices = TTModeSonos.sonosManager?.allDevices() as! [SonosController]
+        if devices.count == 0 {
+            devices = self.cachedDevices()
+        }
+
         devices = devices.sorted {
             (a, b) -> Bool in
             return a.name < b.name
@@ -288,13 +291,11 @@ class TTModeSonos: TTMode {
     func selectedDevice() -> SonosController? {
         var devices = self.foundDevices()
         if devices.count == 0 {
-            devices = self.cachedDevices()
-        }
-        if devices.count == 0 {
             return nil
         }
         
-        if let deviceId = self.action.mode.modeOptionValue(TTModeSonosConstants.kSonosDeviceId, modeDirection: appDelegate().modeMap.selectedModeDirection) as! String? {
+        if let deviceId = self.action.mode.modeOptionValue(TTModeSonosConstants.kSonosDeviceId,
+                                                           modeDirection: appDelegate().modeMap.selectedModeDirection) as? String {
             for foundDevice: SonosController in devices {
                 if foundDevice.uuid == deviceId {
                     return foundDevice
@@ -349,15 +350,15 @@ class TTModeSonos: TTMode {
     }
     
     func beginConnectingToSonos() {
-        if sonosState == .connecting {
+        if TTModeSonos.sonosState == .connecting {
             print(" ---> Already connecting to sonos...")
             return
         }
         
-        sonosState = .connecting
-        delegate?.changeState(sonosState, mode: self)
+        TTModeSonos.sonosState = .connecting
+        delegate?.changeState(TTModeSonos.sonosState, mode: self)
         
-        sonosManager?.discoverControllers {
+        TTModeSonos.sonosManager?.discoverControllers {
             DispatchQueue.main.async(execute: {
                 let devices = self.foundDevices()
                 for device in devices {
@@ -372,15 +373,15 @@ class TTModeSonos: TTMode {
     }
     
     func cancelConnectingToSonos() {
-        sonosState = .disconnected
-        delegate?.changeState(sonosState, mode: self)
+        TTModeSonos.sonosState = .disconnected
+        delegate?.changeState(TTModeSonos.sonosState, mode: self)
     }
     
     // MARK: Device delegate
     
     func deviceReady(_ device: SonosController) {
-        sonosState = .connected
-        delegate?.changeState(sonosState, mode: self)
+        TTModeSonos.sonosState = .connected
+        delegate?.changeState(TTModeSonos.sonosState, mode: self)
     }
     
     // MARK: Reachability
@@ -394,7 +395,7 @@ class TTModeSonos: TTMode {
         
         TTModeSonos.reachability.whenReachable = { reachability in
             DispatchQueue.main.async {
-                if self.sonosState != .connected {
+                if TTModeSonos.sonosState != .connected {
                     print(" ---> Reachable, re-connecting to Sonos...")
                     self.beginConnectingToSonos()
                 }
@@ -402,7 +403,7 @@ class TTModeSonos: TTMode {
         }
         
         TTModeSonos.reachability.whenUnreachable = { reachability in
-            if self.sonosState != .connected {
+            if TTModeSonos.sonosState != .connected {
                 print(" ---> Unreachable, not connected")
             }
         }

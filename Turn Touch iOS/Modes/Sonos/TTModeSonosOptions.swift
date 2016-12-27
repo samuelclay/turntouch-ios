@@ -21,7 +21,7 @@ class TTModeSonosOptions: TTOptionsDetailViewController, TTModeSonosDelegate {
         self.modeSonos = self.mode as! TTModeSonos
         self.modeSonos.delegate = self
         
-        self.changeState(self.modeSonos.sonosState, mode: self.modeSonos)
+        self.changeState(TTModeSonos.sonosState, mode: self.modeSonos)
     }
     
     func changeState(_ state: TTSonosState, mode: TTModeSonos) {
