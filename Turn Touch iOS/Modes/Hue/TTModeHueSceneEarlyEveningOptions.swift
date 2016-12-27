@@ -19,9 +19,6 @@ class TTModeHueSceneEarlyEveningOptions: TTModeHueSceneOptions {
     }
 
     override func viewDidLoad() {
-        let modeHue = self.mode as! TTModeHue
-        modeHue.ensureRoomSelected(in: self.action.direction)
-        
         super.viewDidLoad()
     }
 }

@@ -43,10 +43,9 @@ class TTModeHuePicker: TTOptionsDetailViewController, UITextFieldDelegate, UIPop
         doublePicker?.delegate = self
                 
         let modeHue = self.mode as! TTModeHue
-        modeHue.ensureRoomSelected(in: self.action.direction)
         modeHue.ensureScenesSelected()
         
-        var roomSelected = self.action.optionValue(TTModeHueConstants.kHueRoom) as? String
+        let roomSelected = self.action.optionValue(TTModeHueConstants.kHueRoom) as? String
         var sceneSelected = self.action.optionValue(TTModeHueConstants.kHueScene) as? String
         var doubleSceneSelected = self.action.optionValue(TTModeHueConstants.kDoubleTapHueScene) as? String
         
@@ -55,14 +54,6 @@ class TTModeHuePicker: TTOptionsDetailViewController, UITextFieldDelegate, UIPop
         guard let hueScenes = cache?.scenes, let hueRooms = cache?.groups else {
             print(" ---> Hue options not ready yet, no scenes or groups: \(cache?.scenes) / \(cache?.groups)")
             return
-        }
-        
-        if roomSelected == nil {
-            for (_, room) in hueRooms {
-                roomSelected = room.identifier
-                self.action.changeActionOption(TTModeHueConstants.kHueRoom, to: roomSelected!)
-                break
-            }
         }
         
         if sceneSelected == nil {
@@ -82,14 +73,20 @@ class TTModeHuePicker: TTOptionsDetailViewController, UITextFieldDelegate, UIPop
         
         var roomLights: [String] = []
         rooms = []
+        rooms.append(["name": "All Rooms", "identifier": "all"])
         for (_, room) in hueRooms {
             rooms.append(["name": room.name, "identifier": room.identifier])
             if roomSelected == room.identifier {
-                roomPicker.text = room.name
                 roomLights = room.lightIdentifiers!
             }
         }
         
+        for room in rooms {
+            if roomSelected == room["identifier"] {
+                roomPicker.text = rooms[0]["name"]
+            }
+        }
+
         rooms = rooms.sorted {
             (a, b) -> Bool in
             return a["name"] < b["name"]
@@ -100,17 +97,17 @@ class TTModeHuePicker: TTOptionsDetailViewController, UITextFieldDelegate, UIPop
             // Check if any light in scene in is room
             var sceneInRoom = false
             for sceneLight in scene.lightIdentifiers! {
-                if roomLights.contains(sceneLight) {
+                if roomLights.contains(sceneLight) || roomSelected == "all" {
                     sceneInRoom = true
                     break
                 }
             }
             
             if !sceneInRoom {
-                print(" ---> (\(hueScenes.count) scenes) Tossing scene \(scene.name) \(scene.identifier) because \(roomLights) aren't in \(scene.lightIdentifiers!)")
+//                print(" ---> (\(hueScenes.count) scenes) Tossing scene \(scene.name) \(scene.identifier) because \(roomLights) aren't in \(scene.lightIdentifiers!)")
                 continue
             }
-            print(" ---> (\(hueScenes.count) scenes) Keeping scene \(scene.name) \(scene.identifier) because \(roomLights) are in \(scene.lightIdentifiers!)")
+//            print(" ---> (\(hueScenes.count) scenes) Keeping scene \(scene.name) \(scene.identifier) because \(roomLights) are in \(scene.lightIdentifiers!)")
 
             
             scenes.append(["name": scene.name, "identifier": scene.identifier])

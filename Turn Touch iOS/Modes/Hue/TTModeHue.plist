@@ -20,5 +20,21 @@
 	<integer>2</integer>
 	<key>TTModeHueSleep:hueDuration</key>
 	<integer>30</integer>
+	<key>TTModeHueSceneLateEvening:hueRoom</key>
+	<string>all</string>
+	<key>TTModeHueSceneEarlyEvening:hueRoom</key>
+	<string>all</string>
+	<key>TTModeHueSceneMidnightOil:hueRoom</key>
+	<string>all</string>
+	<key>TTModeHueSceneMorning:hueRoom</key>
+	<string>all</string>
+	<key>TTModeHueRandom:hueRoom</key>
+	<string>all</string>
+	<key>TTModeHueSleep:hueRoom</key>
+	<string>all</string>
+	<key>TTModeHueSceneColorLoop:hueRoom</key>
+	<string>all</string>
+	<key>TTModeHueSceneLightsOff:hueRoom</key>
+	<string>all</string>
 </dict>
 </plist>

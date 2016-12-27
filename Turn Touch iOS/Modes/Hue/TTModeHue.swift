@@ -73,13 +73,15 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
     static var reachability: Reachability!
     static var hueState: TTHueState = TTHueState.notConnected
     static var createdScenes: [String] = []
-    static var foundScenes: [String] = []
     static var sceneQueue: OperationQueue = OperationQueue()
     static var sceneSemaphore = DispatchSemaphore(value: 1)
     static var sceneCacheSemaphore = DispatchSemaphore(value: 0)
+    static var sceneCreateQueue = DispatchQueue(label: "TT:hueSceneCreate", attributes: .concurrent)
+    static var sceneCreateGroup = DispatchGroup()
     static var sceneDeletionSemaphore = DispatchSemaphore(value: 1)
     static var lightSemaphore = DispatchSemaphore(value: 1)
     static var waitingOnScenes: Bool = false
+    static var ensuringScenes: Bool = false
 //    var bridgeSearch: PHBridgeSearching!
     var bridgeFinder: BridgeFinder!
     var bridgeAuthenticator: BridgeAuthenticator!
@@ -89,6 +91,7 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
     var bridgeToken: Int = 0
     var bridgesTried: [String] = []
     var foundBridges: [HueBridge] = [] // Only used during bridge choosing
+    var foundScenes: [String] = []
     var sceneUploadProgress: Float = -1
 
     required init() {
@@ -290,11 +293,18 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
         
         let bridgeSendAPI = TTModeHue.hueSdk.bridgeSendAPI
         let sceneIdentifier: String? = self.action.optionValue(doubleTap ? TTModeHueConstants.kDoubleTapHueScene : TTModeHueConstants.kHueScene) as? String
-        let roomIdentifier: String? = self.action.optionValue(TTModeHueConstants.kHueRoom) as? String
+        var roomIdentifier: String? = self.action.optionValue(TTModeHueConstants.kHueRoom) as? String
+        if roomIdentifier == "all" {
+            roomIdentifier = "0"
+        }
         
         if let sceneIdentifier = sceneIdentifier {
             bridgeSendAPI.recallSceneWithIdentifier(sceneIdentifier, inGroupWithIdentifier: roomIdentifier ?? "0") { (errors: [Error]?) in
-                print(" ---> Scene change: \(sceneName), \(sceneIdentifier) (\(errors))")
+                let error = errors?[0] ?? nil
+                print(" ---> Scene change: \(sceneName), \(sceneIdentifier) (\(error))")
+                if error.debugDescription.contains("for parameter, scene") {
+                    self.ensureScenes(force: true)
+                }
             }
         }
     }
@@ -400,11 +410,18 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
         }
         
         var roomLights: [String]? = []
-        if let rooms = cache?.groups, let roomIdentifier = roomIdentifier {
-            for (_, room) in rooms {
-                if room.identifier == roomIdentifier {
-                    roomLights = room.lightIdentifiers
-                    break
+        if let rooms = cache?.groups,
+            let roomIdentifier = roomIdentifier {
+            if roomIdentifier == "all" {
+                roomLights = cache?.lights.map({ (key: String, value: Light) -> String in
+                    return value.identifier
+                })
+            } else {
+                for (_, room) in rooms {
+                    if room.identifier == roomIdentifier {
+                        roomLights = room.lightIdentifiers
+                        break
+                    }
                 }
             }
         }
@@ -458,11 +475,18 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
         }
         
         var roomLights: [String]? = []
-        if let rooms = cache?.groups, let roomIdentifier = roomIdentifier {
-            for (_, room) in rooms {
-                if room.identifier == roomIdentifier {
-                    roomLights = room.lightIdentifiers
-                    break
+        if let rooms = cache?.groups,
+            let roomIdentifier = roomIdentifier {
+            if roomIdentifier == "all" {
+                roomLights = cache?.lights.map({ (key: String, value: Light) -> String in
+                    return value.identifier
+                })
+            } else {
+                for (_, room) in rooms {
+                    if room.identifier == roomIdentifier {
+                        roomLights = room.lightIdentifiers
+                        break
+                    }
                 }
             }
         }
@@ -697,7 +721,6 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
     func updateHueConfig() {
         self.delegate?.changeState(TTModeHue.hueState, mode: self, message: nil)
         self.ensureScenes()
-        self.ensureRooms()
         self.ensureScenesSelected()
     }
     
@@ -731,7 +754,7 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
             self.updateHueConfig()
 
             if DEBUG_HUE {
-//                print(" ---> Done with heartbeat")
+                print(" ---> Done with heartbeat")
             }
             TTModeHue.hueSdk.stopHeartbeat()
         } else {
@@ -831,7 +854,6 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
     
     func ensureScenes(force: Bool = false) {
         let cache = TTModeHue.hueSdk.resourceCache
-        
         guard let scenes = cache?.scenes, let _ = cache?.lights, let _ = cache?.groups else {
             print(" ---> Scenes/lights/rooms not ready yet for scene creation")
             return
@@ -842,6 +864,12 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
         }
         
         DispatchQueue.global().async {
+            if TTModeHue.ensuringScenes {
+                print(" ---> Already ensuring scenes...")
+                return
+            }
+            TTModeHue.ensuringScenes = true
+            
             if force {
                 self.deleteScenes()
                 
@@ -858,9 +886,11 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
             }
             
             // Collect scene ids to check against
-            TTModeHue.foundScenes = []
-            for (_, scene) in scenes {
-                TTModeHue.foundScenes.append(scene.identifier)
+            self.foundScenes = []
+            if !force {
+                for (_, scene) in scenes {
+                    self.foundScenes.append(scene.identifier)
+                }
             }
 
             DispatchQueue.main.async {
@@ -997,10 +1027,14 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
                 return lightState
             }
             
-            DispatchQueue.main.async {
-                self.sceneUploadProgress = -1
-                self.sceneDelegate?.sceneUploadProgress()
-            }
+            TTModeHue.sceneCreateGroup.notify(queue: TTModeHue.sceneCreateQueue, execute: { 
+                DispatchQueue.main.async {
+                    print(" ---> DONE uploading scenes")
+                    TTModeHue.ensuringScenes = false
+                    self.sceneUploadProgress = -1
+                    self.sceneDelegate?.sceneUploadProgress()
+                }
+            })
         }
     }
     
@@ -1020,16 +1054,18 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
             return
         }
 
+        TTModeHue.sceneCreateGroup.enter()
         TTModeHue.createdScenes.append(createdSceneName)
         DispatchQueue.global().async {
             let sceneIdentifier = self.sceneForAction(sceneName, moment: moment)
             if sceneIdentifier != nil {
-                if TTModeHue.foundScenes.contains(sceneIdentifier!) {
-                    print(" ---> Scene already found: \(sceneName) \(sceneIdentifier) \(TTModeHue.foundScenes)")
+                if self.foundScenes.contains(sceneIdentifier!) {
+                    print(" ---> Scene already found: \(sceneName) \(sceneIdentifier) \(self.foundScenes)")
+                    TTModeHue.sceneCreateGroup.leave()
                     return
                 }
             } else {
-//                    print(" ---> Scene not found: \(sceneName) [\(roomLights)] \(TTModeHue.foundScenes)")
+//                    print(" ---> Scene not found: \(sceneName) [\(roomLights)] \(self.foundScenes)")
             }
             
             if case .timedOut = TTModeHue.sceneSemaphore.wait(timeout: DispatchTime.now() + DispatchTimeInterval.seconds(30)) {
@@ -1044,6 +1080,7 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
             bridgeSendAPI.createSceneWithName(sceneTitle, includeLightIds: lightIdentifiers ?? [], completionHandler: { (sceneIdentifier, errors) in
                 guard let sceneIdentifier = sceneIdentifier else {
                     print(" ---> Error: missing scene identifier")
+                    TTModeHue.sceneCreateGroup.leave()
                     return
                 }
                 print(" ---> Created scene \(sceneTitle): \(sceneIdentifier)")
@@ -1078,6 +1115,7 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
                     }
                     
                     TTModeHue.lightSemaphore.signal()
+                    TTModeHue.sceneCreateGroup.leave()
                     TTModeHue.sceneSemaphore.signal()
                     
                     self.updateScenes()
@@ -1125,7 +1163,7 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
         }
         var deleteCount = 0
         for (_, scene) in scenes {
-            if sceneTitles.contains(scene.name) {
+            if sceneTitles.contains(scene.name) { // Only delete Turn Touch scenes
                 if case .timedOut = TTModeHue.sceneSemaphore.wait(timeout: DispatchTime.now() + DispatchTimeInterval.seconds(10)) {
                     print(" ---> Hue scene removal timed out \(scene.identifier): \(scene.name)-\(scene.lightIdentifiers!)")
                 }
@@ -1147,101 +1185,32 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
             print(" ---> Hue scene removals timed out")
         }
         print(" ---> Removed all Hue scenes")
+        
         TTModeHue.sceneSemaphore.signal()
         TTModeHue.createdScenes = []
+        foundScenes = []
         self.updateScenes()
     }
     
     func updateScenes() {
         print(" ---> Updating scenes...")
-
+        
+        TTModeHue.hueSdk.removeLocalHeartbeat(forResourceType: .lights)
+        TTModeHue.hueSdk.removeLocalHeartbeat(forResourceType: .groups)
+        TTModeHue.hueSdk.removeLocalHeartbeat(forResourceType: .config)
+        
+        print(" ---> Restarting heartbeat with only scenes")
+        TTModeHue.waitingOnScenes = true
+        TTModeHue.hueSdk.stopHeartbeat()
+        
+        let cacheX = UserDefaults.standard.value(forKey: "CacheX")
+        print(" ---> Deleting Hue cache: \(cacheX)")
+        UserDefaults.standard.removeObject(forKey: "CacheX")
+        UserDefaults.standard.synchronize()
+        
         DispatchQueue.main.sync {
-            TTModeHue.hueSdk.removeLocalHeartbeat(forResourceType: .lights)
-            TTModeHue.hueSdk.removeLocalHeartbeat(forResourceType: .groups)
-            TTModeHue.hueSdk.removeLocalHeartbeat(forResourceType: .config)
-
-            print(" ---> Restarting heartbeat with only scenes")
-            TTModeHue.waitingOnScenes = true
-            TTModeHue.hueSdk.stopHeartbeat()
+            foundScenes = []
             TTModeHue.hueSdk.startHeartbeat()
-        }
-    }
-    
-    func ensureRooms() {
-        for direction: TTModeDirection in [.north, .east, .west, .south] {
-            self.ensureRoomSelected(in: direction)
-        }
-    }
-    
-    func ensureRoomSelected(in direction: TTModeDirection) {
-        let sameMode = appDelegate().modeMap.modeInDirection(self.modeDirection).nameOfClass == self.nameOfClass
-        if !sameMode {
-            return
-        }
-        
-        let cache = TTModeHue.hueSdk.resourceCache
-        guard let rooms = cache?.groups else {
-            print(" ---> Rooms not ready yet for room creation")
-            return
-        }
-        if rooms.count == 0 {
-            print(" ---> Rooms not counted yet for room creation")
-            return
-        }
-        
-        // Cycle through action and batch actions, ensuring all have a room, single tap scene, and double tap, adding batch actions for rooms that aren't used
-        let actionName = self.actionNameInDirection(direction)
-        var actionRoom = self.actionOptionValue(TTModeHueConstants.kHueRoom, actionName: actionName, direction: direction) as? String
-        var seenRooms: [String] = self.actionOptionValue(TTModeHueConstants.kHueSeenRooms, actionName: actionName, direction: direction) as? [String] ?? []
-
-        var unseenRooms: [Group] = []
-        for (_, room) in rooms {
-            if !seenRooms.contains(room.identifier) {
-                unseenRooms.append(room)
-            }
-        }
-        
-        // If the current action has no room set and is a Hue action, set the room
-        if actionRoom == nil && unseenRooms.count > 0 {
-            let unseenRoom = unseenRooms[0]
-            seenRooms.append(unseenRoom.identifier)
-            actionRoom = unseenRoom.identifier
-            print(" ---> Setting \(actionName)-\(appDelegate().modeMap.directionName(direction)) room to \(unseenRoom.name)/\(unseenRoom.identifier)")
-            self.changeActionOption(TTModeHueConstants.kHueRoom, to: unseenRoom.identifier, direction: direction)
-            self.changeActionOption(TTModeHueConstants.kHueSeenRooms, to: seenRooms, direction: direction)
-        }
-        
-        // Sanity check for existing batch actions, ensuring none of them are already using the room
-        for batchAction in appDelegate().modeMap.batchActions.batchActions(in: direction) {
-            if let roomIdentifier = self.batchActionOptionValue(batchAction, optionName: TTModeHueConstants.kHueRoom, direction: direction) as? String {
-                if !seenRooms.contains(roomIdentifier) {
-                    if let room = rooms.first(where: { $1.identifier == roomIdentifier }) {
-                        print(" ---> Already have room \(room.value.name)/\(room.value.identifier) in batch action")
-                        seenRooms.append(room.value.identifier)
-                        self.changeActionOption(TTModeHueConstants.kHueSeenRooms, to: seenRooms, direction: direction)
-                    }
-                }
-            }
-        }
-        
-        // Loop through batch actions to determine which rooms aren't yet seen and need batch actions for each unseen room
-        for room in unseenRooms {
-            if seenRooms.contains(room.identifier) {
-                // Skip the room that may have just been added as the main action
-                print(" ---> Not adding \(room.identifier) room, already seen")
-
-                continue
-            }
-            print(" ---> Adding batch action for room \(room.name)/\(room.identifier) to \(actionName)")
-            let batchActionKey = appDelegate().modeMap.addBatchAction(modeDirection: self.modeDirection,
-                                                                      actionDirection: direction,
-                                                                      modeClassName: self.nameOfClass,
-                                                                      actionName: actionName)
-            seenRooms.append(room.identifier)
-            self.changeActionOption(TTModeHueConstants.kHueSeenRooms, to: seenRooms, direction: direction)
-            self.changeBatchActionOption(batchActionKey, optionName: TTModeHueConstants.kHueRoom, to: room.identifier,
-                                         direction: self.modeDirection, actionDirection: direction)
-            appDelegate().mainViewController.adjustBatchActions()
         }
     }
     
