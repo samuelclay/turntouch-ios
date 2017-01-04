@@ -22,22 +22,29 @@ PODS:
     - CocoaAsyncSocket/RunLoop
   - CocoaAsyncSocket/GCD (7.4.3)
   - CocoaAsyncSocket/RunLoop (7.4.3)
-  - Gloss (1.1.1)
-  - iOSDFULibrary (3.0.1):
+  - Firebase (1.2.3)
+  - Gloss (1.0.0)
+  - iOSDFULibrary (3.0.3):
     - Zip (~> 0.6)
+  - JSONModel (1.2.0)
   - Log (1.0)
+  - NestSDK (0.1.5):
+    - Firebase (= 1.2.3)
+    - JSONModel (= 1.2.0)
+    - SSKeychain (= 1.3.1)
   - ReachabilitySwift (3)
-  - SwiftyHue (0.1.19):
-    - SwiftyHue/Base (= 0.1.19)
-    - SwiftyHue/BridgeServices (= 0.1.19)
-  - SwiftyHue/Base (0.1.19):
+  - SSKeychain (1.3.1)
+  - SwiftyHue (0.2.4):
+    - SwiftyHue/Base (= 0.2.4)
+    - SwiftyHue/BridgeServices (= 0.2.4)
+  - SwiftyHue/Base (0.2.4):
     - Alamofire (~> 4.0.1)
-    - Gloss (~> 1.0)
+    - Gloss (~> 1.0.0)
     - Log (~> 1.0)
-  - SwiftyHue/BridgeServices (0.1.19):
+  - SwiftyHue/BridgeServices (0.2.4):
     - Alamofire (~> 4.0.1)
     - CocoaAsyncSocket (~> 7.4.3)
-    - Gloss (~> 1.0)
+    - Gloss (~> 1.0.0)
     - Log (~> 1.0)
   - SWXMLHash (3.0.3)
   - Zip (0.6.0)
@@ -45,7 +52,9 @@ PODS:
 DEPENDENCIES:
   - AFNetworking (~> 3.0)
   - CocoaAsyncSocket (~> 7.4.3)
+  - Firebase (~> 1.2.3)
   - iOSDFULibrary (~> 3.0)
+  - NestSDK (= 0.1.5)
   - ReachabilitySwift (~> 3)
   - SwiftyHue (from `https://github.com/samuelclay/SwiftyHue.git`, branch `swift3`)
   - SWXMLHash (~> 3.0.0)
@@ -57,21 +66,25 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   SwiftyHue:
-    :commit: c1bb2532df750c6402f1230264422fbb90a93909
+    :commit: 3cdb3af3d0c0740596c9bf0eb53f6d5fed1eb8e2
     :git: https://github.com/samuelclay/SwiftyHue.git
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   Alamofire: 7682d43245de14874acd142ec137b144aa1dd335
   CocoaAsyncSocket: a18c75dca4b08723628a0bacca6e94803d90be91
-  Gloss: 4a892694cba7387efa4102a51f86110651366b18
-  iOSDFULibrary: 30e74140d40f6a017b67e5a75b1f2cb99a47852d
+  Firebase: 7a1b6a0848467348672afebfb306c624a3510f04
+  Gloss: 014789e9e69ca18f127eacca999f4c9b0bff6d58
+  iOSDFULibrary: 8ee219333340f3cee943189d91c1165e142c5e7a
+  JSONModel: 12523685c4b623553ccf844bbbf7007624317b2c
   Log: 5e368c9528db07517d18d2d04ff5fe2b6f5a1e21
+  NestSDK: 0ede51652a4688767b1b07a8dbb159a0b52dc8ac
   ReachabilitySwift: f5b9bb30a0777fac8f09ce8b067e32faeb29bb64
-  SwiftyHue: b501202a51d7d017ec973360ff0544d47a4b6524
+  SSKeychain: 04c4ec40f4c3deda524e269bc76e5f30e638a174
+  SwiftyHue: b4a30a2e67652e140a8ba1e4e0b8a2ff13e3d499
   SWXMLHash: 80d2529d74891bb2f15305a0b9e08f2a4f229ee7
   Zip: 805fc2fa9d2f05bbb7762d982d7a42ccdcc51f42
 
-PODFILE CHECKSUM: 1633287d592c24fb8eb683f43060c332f78f072f
+PODFILE CHECKSUM: 95b7eaa4b4d585267411ddd0d647cd96f777ecb2
 
 COCOAPODS: 1.2.0.beta.1

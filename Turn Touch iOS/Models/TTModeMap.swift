@@ -44,7 +44,8 @@ class TTModeMap: NSObject {
             "TTModeHue",
             "TTModeWemo",
             "TTModeSonos",
-            "TTModeAlarmClock",
+            "TTModeNest",
+//            "TTModeAlarmClock",
             "TTModeYoga",
             "TTModeCustom",
         ]

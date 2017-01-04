@@ -44,6 +44,15 @@
 		FF2023401D021605005129E5 /* Icon-60@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FF20233E1D021605005129E5 /* Icon-60@2x.png */; };
 		FF2023411D021605005129E5 /* Icon-60@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = FF20233F1D021605005129E5 /* Icon-60@3x.png */; };
 		FF2023431D0216AF005129E5 /* Icon-83.5.png in Resources */ = {isa = PBXBuildFile; fileRef = FF2023421D0216AF005129E5 /* Icon-83.5.png */; };
+		FF21F9301E172BC300DFDBB4 /* TTModeNest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF21F92F1E172BC300DFDBB4 /* TTModeNest.swift */; };
+		FF21F9331E1C9DEF00DFDBB4 /* TTModeNestOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF21F9321E1C9DEF00DFDBB4 /* TTModeNestOptions.swift */; };
+		FF21F9351E1C9E1500DFDBB4 /* TTModeNestOptions.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF21F9341E1C9E1500DFDBB4 /* TTModeNestOptions.xib */; };
+		FF21F9381E1C9EEC00DFDBB4 /* TTModeNestConnect.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF21F9361E1C9EEC00DFDBB4 /* TTModeNestConnect.swift */; };
+		FF21F9391E1C9EEC00DFDBB4 /* TTModeNestConnect.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF21F9371E1C9EEC00DFDBB4 /* TTModeNestConnect.xib */; };
+		FF21F93C1E1C9F0000DFDBB4 /* TTModeNestConnecting.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF21F93A1E1C9F0000DFDBB4 /* TTModeNestConnecting.swift */; };
+		FF21F93D1E1C9F0000DFDBB4 /* TTModeNestConnecting.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF21F93B1E1C9F0000DFDBB4 /* TTModeNestConnecting.xib */; };
+		FF21F9401E1C9F0F00DFDBB4 /* TTModeNestConnected.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF21F93E1E1C9F0F00DFDBB4 /* TTModeNestConnected.swift */; };
+		FF21F9411E1C9F0F00DFDBB4 /* TTModeNestConnected.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF21F93F1E1C9F0F00DFDBB4 /* TTModeNestConnected.xib */; };
 		FF254F641D1B2C6B00E96378 /* TTModeHueRandomOptions.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF254F621D1B2C6B00E96378 /* TTModeHueRandomOptions.xib */; };
 		FF254F651D1B2C6B00E96378 /* TTModeHueSleepOptions.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF254F631D1B2C6B00E96378 /* TTModeHueSleepOptions.xib */; };
 		FF254F6B1D21C2CF00E96378 /* TTModeWemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF254F6A1D21C2CE00E96378 /* TTModeWemo.swift */; };
@@ -333,6 +342,15 @@
 		FF20233E1D021605005129E5 /* Icon-60@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-60@2x.png"; path = "Turn Touch iOS/Images/app icon/Icon-60@2x.png"; sourceTree = SOURCE_ROOT; };
 		FF20233F1D021605005129E5 /* Icon-60@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-60@3x.png"; path = "Turn Touch iOS/Images/app icon/Icon-60@3x.png"; sourceTree = SOURCE_ROOT; };
 		FF2023421D0216AF005129E5 /* Icon-83.5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-83.5.png"; path = "Turn Touch iOS/Images/app icon/Icon-83.5.png"; sourceTree = SOURCE_ROOT; };
+		FF21F92F1E172BC300DFDBB4 /* TTModeNest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeNest.swift; path = Modes/Nest/TTModeNest.swift; sourceTree = "<group>"; };
+		FF21F9321E1C9DEF00DFDBB4 /* TTModeNestOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeNestOptions.swift; path = Modes/Nest/TTModeNestOptions.swift; sourceTree = "<group>"; };
+		FF21F9341E1C9E1500DFDBB4 /* TTModeNestOptions.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TTModeNestOptions.xib; path = Modes/Nest/TTModeNestOptions.xib; sourceTree = "<group>"; };
+		FF21F9361E1C9EEC00DFDBB4 /* TTModeNestConnect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeNestConnect.swift; path = Modes/Nest/TTModeNestConnect.swift; sourceTree = "<group>"; };
+		FF21F9371E1C9EEC00DFDBB4 /* TTModeNestConnect.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TTModeNestConnect.xib; path = Modes/Nest/TTModeNestConnect.xib; sourceTree = "<group>"; };
+		FF21F93A1E1C9F0000DFDBB4 /* TTModeNestConnecting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeNestConnecting.swift; path = Modes/Nest/TTModeNestConnecting.swift; sourceTree = "<group>"; };
+		FF21F93B1E1C9F0000DFDBB4 /* TTModeNestConnecting.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TTModeNestConnecting.xib; path = Modes/Nest/TTModeNestConnecting.xib; sourceTree = "<group>"; };
+		FF21F93E1E1C9F0F00DFDBB4 /* TTModeNestConnected.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeNestConnected.swift; path = Modes/Nest/TTModeNestConnected.swift; sourceTree = "<group>"; };
+		FF21F93F1E1C9F0F00DFDBB4 /* TTModeNestConnected.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TTModeNestConnected.xib; path = Modes/Nest/TTModeNestConnected.xib; sourceTree = "<group>"; };
 		FF254F621D1B2C6B00E96378 /* TTModeHueRandomOptions.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TTModeHueRandomOptions.xib; path = Modes/Hue/TTModeHueRandomOptions.xib; sourceTree = "<group>"; };
 		FF254F631D1B2C6B00E96378 /* TTModeHueSleepOptions.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TTModeHueSleepOptions.xib; path = Modes/Hue/TTModeHueSleepOptions.xib; sourceTree = "<group>"; };
 		FF254F6A1D21C2CE00E96378 /* TTModeWemo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeWemo.swift; path = Modes/Wemo/TTModeWemo.swift; sourceTree = "<group>"; };
@@ -659,6 +677,7 @@
 				FFDA0F9F1D3C49F40019859F /* Camera */,
 				FFB84B2B1D90CD6A0037872C /* Yoga */,
 				FF4C037F1DFE5B7000EB0C92 /* Custom */,
+				FF21F9311E172BC700DFDBB4 /* Nest */,
 			);
 			name = Modes;
 			sourceTree = "<group>";
@@ -770,6 +789,22 @@
 			path = "actions/app icon";
 			sourceTree = "<group>";
 		};
+		FF21F9311E172BC700DFDBB4 /* Nest */ = {
+			isa = PBXGroup;
+			children = (
+				FF21F92F1E172BC300DFDBB4 /* TTModeNest.swift */,
+				FF21F9321E1C9DEF00DFDBB4 /* TTModeNestOptions.swift */,
+				FF21F9341E1C9E1500DFDBB4 /* TTModeNestOptions.xib */,
+				FF21F9361E1C9EEC00DFDBB4 /* TTModeNestConnect.swift */,
+				FF21F9371E1C9EEC00DFDBB4 /* TTModeNestConnect.xib */,
+				FF21F93A1E1C9F0000DFDBB4 /* TTModeNestConnecting.swift */,
+				FF21F93B1E1C9F0000DFDBB4 /* TTModeNestConnecting.xib */,
+				FF21F93E1E1C9F0F00DFDBB4 /* TTModeNestConnected.swift */,
+				FF21F93F1E1C9F0F00DFDBB4 /* TTModeNestConnected.xib */,
+			);
+			name = Nest;
+			sourceTree = "<group>";
+		};
 		FF254F6C1D21C2D300E96378 /* Wemo */ = {
 			isa = PBXGroup;
 			children = (
@@ -870,10 +905,10 @@
 				FF4AF7E61D24F9E70009C777 /* TTModeSonosOptions.xib */,
 				FF4AF7DE1D24F9E70009C777 /* TTModeSonosConnect.swift */,
 				FF4AF7DF1D24F9E70009C777 /* TTModeSonosConnect.xib */,
-				FF4AF7E01D24F9E70009C777 /* TTModeSonosConnected.swift */,
-				FF4AF7E11D24F9E70009C777 /* TTModeSonosConnected.xib */,
 				FF4AF7E21D24F9E70009C777 /* TTModeSonosConnecting.swift */,
 				FF4AF7E31D24F9E70009C777 /* TTModeSonosConnecting.xib */,
+				FF4AF7E01D24F9E70009C777 /* TTModeSonosConnected.swift */,
+				FF4AF7E11D24F9E70009C777 /* TTModeSonosConnected.xib */,
 			);
 			name = Sonos;
 			sourceTree = "<group>";
@@ -1335,6 +1370,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FF21F9351E1C9E1500DFDBB4 /* TTModeNestOptions.xib in Resources */,
 				FFB84B541D9202CB0037872C /* Dalton Maag - Effra Light.ttf in Resources */,
 				FFB84B551D9202CB0037872C /* Dalton Maag - Effra Std Bold.ttf in Resources */,
 				FF2023411D021605005129E5 /* Icon-60@3x.png in Resources */,
@@ -1357,6 +1393,7 @@
 				FFB41B3C1CEE9A3000CD5F09 /* mode_music.png in Resources */,
 				FFB84B411D90D4240037872C /* yoga_position_2.png in Resources */,
 				FFDA0FB61D3C4FEE0019859F /* cancel@2x.png in Resources */,
+				FF21F93D1E1C9F0000DFDBB4 /* TTModeNestConnecting.xib in Resources */,
 				FF2023351D02147A005129E5 /* Icon-57@2x.png in Resources */,
 				FF20232D1D02147A005129E5 /* Icon-29@2x.png in Resources */,
 				FF20233C1D02147A005129E5 /* iTunesArtwork in Resources */,
@@ -1389,6 +1426,7 @@
 				FFB41B4A1CEE9A3000CD5F09 /* settings.png in Resources */,
 				FFB41B351CEE9A3000CD5F09 /* mode_electricobjects.png in Resources */,
 				FF4AF7DA1D24F8D40009C777 /* mode_sonos.png in Resources */,
+				FF21F9391E1C9EEC00DFDBB4 /* TTModeNestConnect.xib in Resources */,
 				FFB84B4E1D90D4240037872C /* yoga_position_15.png in Resources */,
 				FFB41B6E1CEE9A3000CD5F09 /* modal_remote_paired.png in Resources */,
 				FFB41B271CEE9A3000CD5F09 /* button_x.png in Resources */,
@@ -1422,6 +1460,7 @@
 				FF3036591DB9BF0900728920 /* press_smartbridgeV2.png in Resources */,
 				FFB41B131CEE9A3000CD5F09 /* chevron_north.png in Resources */,
 				FFB41B4B1CEE9A3000CD5F09 /* settings@2x.png in Resources */,
+				FF21F9411E1C9F0F00DFDBB4 /* TTModeNestConnected.xib in Resources */,
 				FFB41B201CEE9A3000CD5F09 /* music_volume_down.png in Resources */,
 				FF20233D1D02147A005129E5 /* iTunesArtwork@2x in Resources */,
 				FFB84B4F1D90D4240037872C /* yoga_position_16.png in Resources */,
@@ -1578,6 +1617,7 @@
 				FFDA0FA81D3C4F1C0019859F /* LLSimpleCamera.m in Sources */,
 				FF4AF7EB1D24F9E70009C777 /* TTModeSonosConnecting.swift in Sources */,
 				FF3032C11DB828B100728920 /* TTModeHueSceneMorningOptions.swift in Sources */,
+				FF21F9331E1C9DEF00DFDBB4 /* TTModeNestOptions.swift in Sources */,
 				FF0F10E51CFFAD1B00CC1F29 /* TTModeMenuBordersView.swift in Sources */,
 				FF0F10C71CF63F1600CC1F29 /* TTModeMusic.swift in Sources */,
 				FF37EDDF1D11179E0026F70D /* TTModeHuePushlink.swift in Sources */,
@@ -1601,6 +1641,7 @@
 				FF7C144F1DB2F2AB009CBA28 /* TTBatchActions.swift in Sources */,
 				FF4AF7DC1D24F9370009C777 /* TTModeSonos.swift in Sources */,
 				FFB41B7B1CEEA9E300CD5F09 /* TTModeDirection.swift in Sources */,
+				FF21F9381E1C9EEC00DFDBB4 /* TTModeNestConnect.swift in Sources */,
 				FF7C14581DB3085E009CBA28 /* TTBatchActionHeaderView.swift in Sources */,
 				FFF270941CEE88E500E46575 /* AppDelegate.swift in Sources */,
 				FF44876B1D08E1D600ED8099 /* TTPairingSpinner.swift in Sources */,
@@ -1622,6 +1663,7 @@
 				FFF46BF01D10E6D400158751 /* TTOptionsDetailViewController.swift in Sources */,
 				FF4AF7BE1D248A3A0009C777 /* TTModeWemoConnected.swift in Sources */,
 				FF4AF7D81D24ECF60009C777 /* XMLReader.m in Sources */,
+				FF21F9301E172BC300DFDBB4 /* TTModeNest.swift in Sources */,
 				FF7C14521DB2F2DD009CBA28 /* TTDevice.swift in Sources */,
 				FFC4B1081D3717D500A97C81 /* TTFTUXView.swift in Sources */,
 				FF4487761D09365200ED8099 /* TTButtonTimer.swift in Sources */,
@@ -1636,6 +1678,7 @@
 				FFC9FE951D021A0400038817 /* TTActionDiamondView.swift in Sources */,
 				FF458AB61DBEF1E9003FD06B /* SonosManager.m in Sources */,
 				FF44875F1D078FAC00ED8099 /* TTActionTitleView.swift in Sources */,
+				FF21F9401E1C9F0F00DFDBB4 /* TTModeNestConnected.swift in Sources */,
 				FF7C145A1DB3088B009CBA28 /* TTAddActionButtonView.swift in Sources */,
 				FF37EDD71D1117670026F70D /* TTModeHueConnecting.swift in Sources */,
 				FF37EDF61D1B1A310026F70D /* TTModeHueSceneLateEveningOptions.swift in Sources */,
@@ -1656,6 +1699,7 @@
 				FF4487741D09300B00ED8099 /* NSData+Hex.swift in Sources */,
 				FFB84B2D1D90CE0A0037872C /* TTModeYogaViewController.swift in Sources */,
 				FF4487641D08AA8800ED8099 /* TTTitleMenuCell.swift in Sources */,
+				FF21F93C1E1C9F0000DFDBB4 /* TTModeNestConnecting.swift in Sources */,
 				FFB41B791CEEA8E500CD5F09 /* TTModeTab.swift in Sources */,
 				FF0F10BE1CF55A9000CC1F29 /* UIColor+hex.swift in Sources */,
 				FF37EDD31D11174C0026F70D /* TTModeHueConnect.swift in Sources */,
@@ -1788,6 +1832,7 @@
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 6W5HRS3393;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(PROJECT_DIR)/Turn Touch iOS/Vendor\"",
@@ -1824,6 +1869,7 @@
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 6W5HRS3393;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(PROJECT_DIR)/Turn Touch iOS/Vendor\"",

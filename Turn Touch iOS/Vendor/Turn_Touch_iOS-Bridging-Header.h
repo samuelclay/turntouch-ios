@@ -14,5 +14,7 @@
 #import <sonos-objc/SonosManager.h>
 #import <sonos-objc/SonosDiscover.h>
 #import <LLSimpleCamera/LLSimpleCamera.h>
+#import <NestSDK/NestSDK.h>
+
 
 #endif /* TTBridgingHeader_h */

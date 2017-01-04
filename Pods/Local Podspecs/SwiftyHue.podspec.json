@@ -1,6 +1,6 @@
 {
   "name": "SwiftyHue",
-  "version": "0.1.19",
+  "version": "0.2.4",
   "summary": "Philips Hue SDK written in swift.",
   "description": "Philips Hue SDK written in swift. Work in progress.",
   "homepage": "https://github.com/Spriter/SwiftyHue.git",
@@ -12,11 +12,12 @@
   },
   "source": {
     "git": "https://github.com/Spriter/SwiftyHue.git",
-    "tag": "v0.1.19"
+    "tag": "0.2.4"
   },
   "platforms": {
-    "ios": "8.0",
-    "tvos": "9.0"
+    "ios": "9.0",
+    "tvos": "9.0",
+    "osx": "10.11"
   },
   "pod_target_xcconfig": {
     "ENABLE_TESTABILITY[config=Debug]": "YES"
@@ -37,7 +38,7 @@
           "~> 4.0.1"
         ],
         "Gloss": [
-          "~> 1.0"
+          "~> 1.0.0"
         ],
         "Log": [
           "~> 1.0"
@@ -57,7 +58,7 @@
           "~> 4.0.1"
         ],
         "Gloss": [
-          "~> 1.0"
+          "~> 1.0.0"
         ],
         "CocoaAsyncSocket": [
           "~> 7.4.3"

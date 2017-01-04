@@ -25,33 +25,7 @@
 
 import Foundation
 
-extension Dictionary {
-    
-    // MARK: - Public Functions
-    
-    /**
-     Retrieves value from dictionary given a key path delimited with
-     provided delimiter to indicate a nested value.
-     
-     For example, a dictionary with [ "outer" : [ "inner" : "value" ] ]
-     could retrive 'value' via  path "outer.inner", given a
-     delimiter of ''.
-     
-     - parameter keyPath:   Key path delimited by delimiter.
-     - parameter delimiter: Delimiter.
-     
-     - returns: Value retrieved from dic
-     */
-    public func valueForKeyPath(keyPath: String, withDelimiter delimiter: String = GlossKeyPathDelimiter) -> Any? {
-        let keys = keyPath.components(separatedBy: delimiter)
-        
-        guard keys.first as? Key != nil else {
-            print("[Gloss] Unable to use keyPath '\(keyPath)' as key on type: \(Key.self)")
-            return nil
-        }
-        
-        return self.findValue(keys: keys)
-    }
+internal extension Dictionary {
     
     // MARK: - Internal functions
     
@@ -62,7 +36,7 @@ extension Dictionary {
     
     - parameter elements: Elements to add to the new dictionary.
     */
-    internal init(elements: [Element]) {
+    init(elements: [Element]) {
         self.init()
         
         for (key, value) in elements {
@@ -77,30 +51,25 @@ extension Dictionary {
      
      - returns: New dictionary of transformed values.
      */
-    internal func flatMap<KeyPrime : Hashable, ValuePrime>(_ transform: (Key, Value) throws -> (KeyPrime, ValuePrime)?) rethrows -> [KeyPrime : ValuePrime] {
+    func flatMap<KeyPrime : Hashable, ValuePrime>(_ transform: (Key, Value) throws -> (KeyPrime, ValuePrime)?) rethrows -> [KeyPrime : ValuePrime] {
         return Dictionary<KeyPrime,ValuePrime>(elements: try flatMap({ (key, value) in
             return try transform(key, value)
         }))
     }
     
-    // MARK: - Private functions
-    
     /**
-     Retrieves value from dictionary given a key path delimited with
-     provided delimiter by going down the dictionary stack tree
+     Adds entries from provided dictionary to current dictionary.
      
-     - parameter keys: Array of keys splited by delimiter
-     - parameter depthLevel: Indicates current depth level in the dictionary tree
-     - returns: object retrieved from dic
+     Note: If current dictionary and provided dictionary have the same
+     key, the value from the provided dictionary overwrites current value.
+     
+     - parameter other:     Dictionary to add entries from
+     - parameter delimiter: Key path delimiter
      */
-    private func findValue(keys: [String], depthLevel: Int = 0) -> Any? {
-        if let currentKey = keys[depthLevel] as? Key {
-            if depthLevel == keys.count-1 {
-                return self[currentKey]
-            } else if let newDict = self[currentKey] as? Dictionary {
-                return newDict.findValue(keys: keys, depthLevel: depthLevel+1)
-            }
+    mutating func add(other: Dictionary) -> () {
+        for (key, value) in other {
+            self.updateValue(value, forKey:key)
         }
-        return nil
     }
+    
 }

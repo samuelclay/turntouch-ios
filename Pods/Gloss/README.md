@@ -25,10 +25,14 @@ Use the `swift_2.3` branch for a compatible version of Gloss plus Example projec
 
 The Gloss source currently available via CocoaPods and Carthage is compatible with Swift 3.0.
 
+### Deprecations
+
+:warning: "Nested keypaths" have been deprecated as of version `0.8.0` ([Read more](#nested-keypaths-deprecation))
+
 ### Installation with CocoaPods
 
 ```ruby
-pod 'Gloss', '~> 1.1'
+pod 'Gloss', '~> 1.0'
 ```
 
 ### Installation with Carthage
@@ -47,7 +51,7 @@ import PackageDescription
 let package = Package(
     name: "HelloWorld",
     dependencies: [
-        .Package(url: "https://github.com/hkellaway/Gloss.git", majorVersion: 1, minorVersion: 1)
+        .Package(url: "https://github.com/hkellaway/Gloss.git", majorVersion: 1)
     ]
 )
 ```
@@ -188,8 +192,6 @@ struct Repo: Decodable {
 
 Despite being more complex, this model is just as simple to compose - common types such as an `NSURL`, an `enum` value, and another Gloss model, `RepoOwner`, are handled without extra overhead! :tada:
 
--(Note: If nested models are present in JSON but not desired in your Gloss models, see [Retrieving Nested Model Values without Creating Extra Models](#retrieving-nested-model-values-without-creating-extra-models).)
-
 ### Serialization
 
 Next, how would we allow models to be translated _to_ JSON? Let's take a look again at the `RepoOwner` model:
@@ -303,41 +305,6 @@ guard let jsonArray = repoOwners.toJSONArray() else {
 print(jsonArray)
 ```
 
-### Retrieving Nested Model Values without Creating Extra Models
-
-We saw in earlier examples that `Repo` has a nested model `RepoOwner` - and that nested Gloss models are handled automatically. But what if the nested models represented in our JSON really don't need to be their own models? 
-
-Gloss provides a way to indicate nested model values with simple `.` syntax - let's revisit the `owner` values for `Repo` and see what changes:
-
-``` swift
-import Gloss
-
-struct Repo: Glossy {
-
-    let ownerId: Int?
-    let ownerUsername: String?
-
-    // MARK: - Deserialization
-
-    init?(json: JSON) {
-        self.ownerId = "owner.id" <~~ json
-        self.ownerUsername = "owner.login" <~~ json
-    }
-
-    // MARK: - Serialization
-
-        func toJSON() -> JSON? {
-        return jsonify([
-            "owner.id" ~~> self.ownerId,
-            "owner.login" ~~> self.ownerUsername
-            ])
-
-}
-
-```
-
-Now, instead of declaring a nested model `owner` of type `RepoOwner` with its own `id` and `username` properties, the desired values from `owner` are retrieved by specifying the key names in a string delimited by periods (i.e. `owner.id` and `owner.login`).
-
 ## Additonal Topics
 
 ### Gloss Transformations
@@ -350,9 +317,9 @@ Gloss comes with a number of transformations built in for convenience (See: [Glo
 
 Translating from and to JSON is handled via:
 
-`Decoder.decode(dateForKey:, dateFormatter:)` and `Decode.decode(dateArrayFromKey:, dateFormatter:)` where `key` is the JSON key and `dateFormatter` is the `DateFormatter` used to translate the date(s). e.g. `self.date = Decoder.decode(dateForKey: "dateKey", dateFormatter: myDateFormatter)(json)`
+`Decoder.decode(dateFromKey:, dateFormatter:)` and `Decode.decode(dateArrayFromKey:, dateFormatter:)` where `key` is the JSON key and `dateFormatter` is the `DateFormatter` used to translate the date(s). e.g. `self.date = Decoder.decode(dateFromKey: "dateKey", dateFormatter: myDateFormatter)(json)`
 
-`Encoder.encode(dateForKey:, dateFormatter:)` and `Encode.encode(dateForKey:, dateFormatter:)` where `key` is the JSON key and `dateFormatter` is the `DateFormatter` used to translate the date(s). e.g. `Encoder.encode(dateForKey: "dateKey", dateFormatter: myDateFormatter)(self.date)`
+`Encoder.encode(dateFromKey:, dateFormatter:)` and `Encode.encode(dateFromKey:, dateFormatter:)` where `key` is the JSON key and `dateFormatter` is the `DateFormatter` used to translate the date(s). e.g. `Encoder.encode(dateFromKey: "dateKey", dateFormatter: myDateFormatter)(self.date)`
 
 #### Custom Transformations
 
@@ -383,7 +350,7 @@ extension Decoder {
 
     static func decodeStringUppercase(key: String, json: JSON) -> String? {
             
-        if let string = json.valueForKeypath(key) as? String {
+        if let string = json[key] as? String {
             return string.uppercaseString
         }
 
@@ -395,7 +362,7 @@ extension Decoder {
 
 We've created an extension on `Decoder` and written our own decode function, `decodeStringUppercase`.
 
-What's important to note is that the return type for `decodeStringUppercase` is the desired type -- in this case, `String?`. The value you're working with will be accessible via `json.valueForKeypath(_:)` and will need to be cast to the desired type using `as?`. Then, manipulation can be done - for example, uppercasing. The transformed value should be returned; in the case that the cast failed, `nil` should be returned.
+What's important to note is that the return type for `decodeStringUppercase` is the desired type -- in this case, `String?`. The value you're working with will be accessible via `json[key]` and will need to be cast to the desired type using `as?`. Then, manipulation can be done - for example, uppercasing. The transformed value should be returned; in the case that the cast failed, `nil` should be returned.
 
 Though depicted here as being in the same file,  the `Decoder` extension is not required to be. Additionally, representing the custom decoding function as a member of `Decoder` is not required, but simply stays true to the semantics of Gloss.
 
@@ -433,7 +400,7 @@ extension Encoder {
     static func encodeStringLowercase(key: String, value: String?) -> JSON? {
             
         if let value = value {
-            return [key : value.lowercaseString]
+            return [key : value.lowercaseString as AnyObject]
         }
 
         return nil
@@ -473,44 +440,41 @@ The `<~~` operator is simply syntactic sugar for a set of `Decoder.decode` funct
 * Simple types (`Decoder.decode(key:)`)
 * `Decodable` models (`Decoder.decode(decodableForKey:)`)
 * Simple arrays (`Decoder.decode(key:)`)
-* Arrays of `Decodable` models (`Decoder.decode(decodableArrayForKey:)`)
-* Dictionaries of `Decodable` models (`Decoder.decode(decodableDictionaryForKey:)`)
-* Enum types (`Decoder.decode(enumForKey:)`)
-* Enum arrays (`Decoder.decode(enumArrayForKey:)`)
-* Int32 types (`Decoder.decode(int32ForKey:)`)
-* Int32 arrays (`Decoder.decode(int32ArrayForKey:)`)
-* UInt32 types (`Decoder.decode(uint32ForKey:)`)
-* UInt32 arrays (`Decoder.decode(uint32ArrayForKey:)`)
-* Int64 types (`Decoder.decode(int64ForKey:)`)
-* Int64 array (`Decoder.decode(int64ArrayForKey:)`)
-* UInt64 types (`Decoder.decode(uint64ForKey:)`)
-* UInt64 array (`Decoder.decode(uint64ArrayForKey:)`)
-* NSURL types (`Decoder.decode(urlForKey:)`)
-* NSURL arrays (`Decode.decode(urlArrayForKey:)`)
-* UUID types (`Decoder.decode(uuidForKey:)`)
-* UUID arrays (`Decoder.decode(uuidArrayForKey:)`)
+* Arrays of `Decodable` models (`Decoder.decode(decodableArray:)`)
+* Dictionaries of `Decodable` models (`Decoder.decode(decodableDictionary:)`)
+* Enum types (`Decoder.decode(enum:)`)
+* Enum arrays (`Decoder.decode(enumArray:)`)
+* Int32 types (`Decoder.decode(int32:)`)
+* Int32 arrays (`Decoder.decode(int32Array:)`)
+* UInt32 types (`Decoder.decode(uint32:)`)
+* UInt32 arrays (`Decoder.decode(uint32Array:)`)
+* Int64 types (`Decoder.decode(int64:)`)
+* Int64 array (`Decoder.decode(int64Array:)`)
+* UInt64 types (`Decoder.decode(uint64:)`)
+* UInt64 array (`Decoder.decode(uint64Array:)`)
+* NSURL types (`Decoder.decode(url:)`)
+* NSURL arrays (`Decode.decode(urlArray:)`)
 
 ##### The Encode Operator: `~~>`
 
 The `~~>` operator is simply syntactic sugar for a set of `Encoder.encode` functions:
 
 * Simple types (`Encoder.encode(key:)`)
-* `Encodable` models (`Encoder.encode(encodableForKey:)`)
-* Simple arrays (`Encoder.encode(arrayForKey:)`)
-* Arrays of `Encodable` models (`Encoder.encode(encodableArrayForKey:)`)
-* Dictionaries of `Encodable` models (`Encoder.encode(encodableDictionaryForKey:)`)
-* Enum types (`Encoder.encode(enumForKey:)`)
-* Enum arrays (`Encoder.encode(enumArrayForKey:)`)
-* Int32 types (`Encoder.encode(int32ForKey:)`)
-* Int32 arrays (`Encoder.encode(int32ArrayForKey:)`)
-* UInt32 types (`Encoder.encode(uint32ForKey:)`)
-* UInt32 arrays (`Encoder.encode(uint32ArrayForKey:)`)
-* Int64 types (`Encoder.encode(int64ForKey:)`)
-* Int64 arrays (`Encoder.encode(int64ArrayForKey:)`)
-* UInt64 types (`Encoder.encode(uint64ForKey:)`)
-* UInt64 arrays (`Encoder.encode(uint64ArrayForKey:)`)
-* NSURL types (`Encoder.encode(urlForKey:)`)
-* UUID types (`Encoder.encode(uuidForKey:)`)
+* `Encodable` models (`Encoder.encode(encodable:)`)
+* Simple arrays (`Encoder.encode(array:)`)
+* Arrays of `Encodable` models (`Encoder.encode(encodableArray:)`)
+* Dictionaries of `Encodable` models (`Encoder.encode(encodableDictionary:)`)
+* Enum types (`Encoder.encode(enum:)`)
+* Enum arrays (`Encoder.encode(enumArray:)`)
+* Int32 types (`Encoder.encode(int32:)`)
+* Int32 arrays (`Encoder.encode(int32Array:)`)
+* UInt32 types (`Encoder.encode(uint32:)`)
+* UInt32 arrays (`Encoder.encode(uint32Array:)`)
+* Int64 types (`Encoder.encode(int64:)`)
+* Int64 arrays (`Encoder.encode(int64Array:)`)
+* UInt64 types (`Encoder.encode(uint64:)`)
+* UInt64 arrays (`Encoder.encode(uint64Array:)`)
+* NSURL types (`Encoder.encode(url:)`)
 
 ### Gloss Protocols
 
@@ -519,6 +483,29 @@ Models that are to be created from JSON _must_ adopt the `Decodable` protocol.
 Models that are to be transformed to JSON _must_ adopt the `Encodable` protocol.
 
 The `Glossy` protocol depicted in the examples is simply a convenience for defining models that can translated to _and_ from JSON. `Glossy` can be replaced by `Decodable, Encodable` for more preciseness, if desired.
+
+## Deprecation Details
+
+### Nested Keypaths Deprecation
+
+This feature has been removed as of version `0.8.0`.
+
+Version `0.7.0` introduced "nested keypaths" - this allowed values nested deep in a JSON structure to be accessed via a period-delimited key. For example, given a JSON structure:
+
+```
+[ "outer" : [
+        "inner" : 123
+    ]
+]
+```
+
+the value of `123` could be accessed via the key `outer.inner`.
+
+While this was a handy feature, it caused a runtime crash when using a Release configuration (see [Issue #135](https://github.com/hkellaway/Gloss/issues/135)).
+
+For those using nested keypaths or those who have deeply nested values, these can be handled by creating nested models or creating [Custom Transformations](#custom-transformations). See the Example project for illustrations of each.
+
+The tag `deprecation-nested-keypaths` marks the last merge that included nested keypaths and can be pointed to while models are updated.
 
 ## Why "Gloss"?
 
@@ -547,15 +534,14 @@ Check out Gloss in these cool places!
 * [Alamofire-Gloss](https://github.com/spxrogers/Alamofire-Gloss)
 * [CRUD](https://github.com/MetalheadSanya/CRUD)
 * [Moya-Gloss](https://github.com/spxrogers/Moya-Gloss)
-* [OctoAPI](http://github.com/ferusinfo/OctoAPI)
 * [Restofire-Gloss](https://github.com/Restofire/Restofire-Gloss)
 
 #### SDKs/Products
 
-* [AniList](http://anilist.co) ([Unofficial iOS SDK](https://github.com/CodeEagle/AniList))
+* [AniList](http://anilist.co) ([iOS SDK](https://github.com/CodeEagle/AniList))
 * [Drift](http://www.drift.com) ([iOS SDK](https://github.com/Driftt/drift-sdk-ios))
-* [Phillips Hue](http://www2.meethue.com/en-US) ([Unofficial iOS SDK](https://github.com/Spriter/SwiftyHue))
-* [Skiplagged](http://skiplagged.com) ([Unofficial iOS SDK] (https://github.com/bulusoy/Skiplagged))
+* [Phillips Hue](http://www2.meethue.com/en-US) ([iOS SDK](https://github.com/Spriter/SwiftyHue))
+* [Skiplagged](http://skiplagged.com) ([iOS SDK] (https://github.com/bulusoy/Skiplagged))
 
 #### Apps
 

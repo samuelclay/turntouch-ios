@@ -2,6 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NestRedirectURL</key>
+	<string>http://localhost:8080/auth/nest/callback</string>
+	<key>NestProductSecret</key>
+	<string>NhVqDyIynlwKqGMjqo7PbUKBc</string>
+	<key>NestProductID</key>
+	<string>8ac433c5-3fdf-419b-84e9-573c486e9c52</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
