@@ -44,21 +44,18 @@ class TTModeNestConnected: TTOptionsDetailViewController, UITextFieldDelegate, U
         pickerVC?.picker.reloadAllComponents()
         var deviceSelected = self.mode.modeOptionValue(TTModeNestConstants.kNestThermostatIdentifier,
                                                        modeDirection: appDelegate().modeMap.selectedModeDirection) as? String
-        //        var doubleSceneSelected = self.action.optionValue(TTModeHueConstants.kDoubleTapHueScene,
-        //                                                          direction: appDelegate().modeMap.inspectingModeDirection) as? String
+
+        for (_, thermostat) in TTModeNest.thermostats {
+            devices.append(["name": thermostat.name, "identifier": thermostat.deviceId])
+            if deviceSelected == thermostat.deviceId {
+                singlePicker.text = thermostat.name
+            }
+        }
         
-//        let nestDevices = modeNest.foundDevices()
-//        for device in nestDevices {
-//            devices.append(["name": device.name!, "identifier": device.uuid!])
-//            if deviceSelected == device.uuid {
-//                singlePicker.text = device.name
-//            }
-//        }
-//        
-//        if deviceSelected == nil && devices.count > 0 {
-//            singlePicker.text = devices[0]["name"]
-//            deviceSelected = devices[0]["identifier"]
-//        }
+        if deviceSelected == nil && devices.count > 0 {
+            singlePicker.text = devices[0]["name"]
+            deviceSelected = devices[0]["identifier"]
+        }
     }
     
     func pickerDismissed(_ row: Int, textField: UITextField) {

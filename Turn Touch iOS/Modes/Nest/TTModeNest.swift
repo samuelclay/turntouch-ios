@@ -36,6 +36,7 @@ class TTModeNest: TTMode, NestSDKAuthorizationViewControllerDelegate {
     static var dataManager: NestSDKDataManager = NestSDKDataManager()
     static var deviceObserverHandles: Array<NestSDKObserverHandle> = []
     static var structuresObserverHandle: NestSDKObserverHandle = 0
+    static var thermostats: [String: NestSDKThermostat] = [:]
 
     required init() {
         super.init()
@@ -300,7 +301,7 @@ class TTModeNest: TTMode, NestSDKAuthorizationViewControllerDelegate {
             
             // Iterate through all structures and set observers for all devices
             for structure in structuresArray as! [NestSDKStructure] {
-                self.logMessage("Found structure: \(structure.name)!")
+                self.logMessage("Found structure: \(structure.name ?? "[no name]")")
                 
                 self.observeThermostatsWithinStructure(structure)
             }
@@ -308,15 +309,23 @@ class TTModeNest: TTMode, NestSDKAuthorizationViewControllerDelegate {
     }
     
     func observeThermostatsWithinStructure(_ structure: NestSDKStructure) {
-        for thermostatId in structure.thermostats as! [String] {
+        guard let thermostats = structure.thermostats else {
+            print(" ---> No thermostats yet")
+            return
+        }
+        
+        for thermostatId in thermostats as! [String] {
             let handle = TTModeNest.dataManager.observeThermostat(withId: thermostatId, block: {
                 thermostat, error in
                 
                 if (error != nil) {
                     self.logMessage("Error observing thermostat: \(error)")
-                    
-                } else {
-                    self.logMessage("Thermostat \(thermostat?.name) updated! Current temperature in C: \(thermostat?.ambientTemperatureC)")
+                    return
+                }
+                if let thermostat = thermostat {
+                    self.logMessage("Thermostat \(thermostat.name) updated, temperature now: \(thermostat.ambientTemperatureF)°F")
+                    TTModeNest.thermostats[thermostatId] = thermostat
+                    self.delegate.changeState(TTNestState.connected, mode: self)
                 }
             })
             

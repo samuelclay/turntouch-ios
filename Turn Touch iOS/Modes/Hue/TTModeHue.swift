@@ -846,7 +846,7 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
     
     func resourceCacheUpdated(_ resourceCache: BridgeResourcesCache) {
         TTModeHue.hueSdk.resourceCache = resourceCache
-        print(" ---> Updated resource cache: \(resourceCache) \(TTModeHue.waitingOnScenes ? "Waiting on scenes, here they are!" : "") (\(resourceCache.scenes.count) scenes)")
+//        print(" ---> Updated resource cache: \(resourceCache) \(TTModeHue.waitingOnScenes ? "Waiting on scenes, here they are!" : "") (\(resourceCache.scenes.count) scenes)")
     }
     
     // MARK: - Scenes and Rooms

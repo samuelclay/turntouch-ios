@@ -52,7 +52,6 @@ PODS:
 DEPENDENCIES:
   - AFNetworking (~> 3.0)
   - CocoaAsyncSocket (~> 7.4.3)
-  - Firebase (~> 1.2.3)
   - iOSDFULibrary (~> 3.0)
   - NestSDK (= 0.1.5)
   - ReachabilitySwift (~> 3)
@@ -85,6 +84,6 @@ SPEC CHECKSUMS:
   SWXMLHash: 80d2529d74891bb2f15305a0b9e08f2a4f229ee7
   Zip: 805fc2fa9d2f05bbb7762d982d7a42ccdcc51f42
 
-PODFILE CHECKSUM: 95b7eaa4b4d585267411ddd0d647cd96f777ecb2
+PODFILE CHECKSUM: 4f02654c6464b2dbbcb6ed1b75b68f7dbaeaa849
 
 COCOAPODS: 1.2.0.beta.1

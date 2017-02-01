@@ -20,19 +20,21 @@ class TTModeNestConnecting: TTOptionsDetailViewController {
         super.viewDidLoad()
 
         let authorizationManager = NestSDKAuthorizationManager()
-        authorizationManager.authorizeWithNestAccount(from: self, handler:{
+        authorizationManager.authorizeWithNestAccount(from: appDelegate().mainViewController, handler: {
             result, error in
             
-            if (error == nil) {
-                print("Process error: \(error)")
-                self.modeNest.cancelConnectingToNest()
-            } else if result != nil && (result?.isCancelled)! {
-                print("Cancelled")
-                self.modeNest.cancelConnectingToNest()
-            } else {
-                print("Authorized!")
-                self.modeNest.nestReady()
-                
+            DispatchQueue.main.async {                
+                if error != nil {
+                    print("Process error: \(error)")
+                    self.modeNest.cancelConnectingToNest()
+                } else if result != nil && (result?.isCancelled)! {
+                    print("Cancelled")
+                    self.modeNest.cancelConnectingToNest()
+                } else {
+                    print("Authorized!")
+                    self.modeNest.nestReady()
+                    
+                }
             }
         })
 
