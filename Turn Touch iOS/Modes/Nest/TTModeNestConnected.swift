@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TTModeNestConnected: TTOptionsDetailViewController, UITextFieldDelegate, UIPopoverPresentationControllerDelegate, UIPickerViewDelegate, TTPickerViewControllerDelegate, TTModeNestDelegate {
+class TTModeNestConnected: TTOptionsDetailViewController, UITextFieldDelegate, UIPopoverPresentationControllerDelegate, UIPickerViewDelegate, TTPickerViewControllerDelegate {
     
     var modeNest: TTModeNest!
     
@@ -20,7 +20,8 @@ class TTModeNestConnected: TTOptionsDetailViewController, UITextFieldDelegate, U
     @IBOutlet var spinner: [UIActivityIndicatorView]!
     @IBOutlet var refreshButton: [UIButton]!
     @IBOutlet var singlePicker: UITextField!
-    //    @IBOutlet var doublePicker: UITextField!
+    @IBOutlet var labelAmbient: UILabel!
+    @IBOutlet var labelTarget: UILabel!
     
     var devices: [[String: String]] = []
     
@@ -29,7 +30,6 @@ class TTModeNestConnected: TTOptionsDetailViewController, UITextFieldDelegate, U
         self.view.translatesAutoresizingMaskIntoConstraints = false
         
         self.modeNest = self.mode as! TTModeNest
-        self.modeNest.delegate = self
         singlePicker.delegate = self
         //        doublePicker.delegate = self
         
@@ -84,15 +84,7 @@ class TTModeNestConnected: TTOptionsDetailViewController, UITextFieldDelegate, U
             s.startAnimating()
         }
         
-        self.modeNest.beginConnectingToNest()
-    }
-    
-    func changeState(_ state: TTNestState, mode: TTModeNest) {
-        if state == .connected {
-            spinner.forEach({ $0.isHidden = true })
-            refreshButton.forEach({ $0.isHidden = false })
-        }
-        self.selectDevice()
+        self.modeNest.authorizeNest()
     }
     
     // MARK: Text Field delegate

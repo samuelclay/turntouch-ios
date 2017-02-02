@@ -36,6 +36,24 @@ class TTModeNestOptions: TTOptionsDetailViewController, TTModeNestDelegate {
         }
     }
     
+    func updateThermostat(_ thermostat: NestSDKThermostat) {
+        let isCelsius = thermostat.temperatureScale == .C
+        let scale = isCelsius ? "C" : "F"
+        let ambient = isCelsius ? "\(thermostat.ambientTemperatureC)°\(scale)" :
+                                  "\(thermostat.ambientTemperatureF)°\(scale)"
+        var target: String
+        if thermostat.hvacMode == .heatCool {
+            let targetLow = isCelsius ? "\(thermostat.targetTemperatureLowC)" : "\(thermostat.targetTemperatureLowF)"
+            let targetHigh = isCelsius ? "\(thermostat.targetTemperatureHighC)" : "\(thermostat.targetTemperatureHighF)"
+            target = "\(targetLow)°\(scale) - \(targetHigh)°\(scale)"
+        } else {
+            let targetTemp = isCelsius ? "\(thermostat.targetTemperatureC)" : "\(thermostat.targetTemperatureF)"
+            target = "\(targetTemp)°\(scale)"
+        }
+        self.connectedViewController?.labelAmbient.text = ambient
+        self.connectedViewController?.labelTarget.text = target
+    }
+    
     // MARK: View connectrollers
     
     func clearViewConnectrollers() {

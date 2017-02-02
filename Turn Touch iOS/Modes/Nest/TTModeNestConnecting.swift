@@ -19,25 +19,6 @@ class TTModeNestConnecting: TTOptionsDetailViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let authorizationManager = NestSDKAuthorizationManager()
-        authorizationManager.authorizeWithNestAccount(from: appDelegate().mainViewController, handler: {
-            result, error in
-            
-            DispatchQueue.main.async {                
-                if error != nil {
-                    print("Process error: \(error)")
-                    self.modeNest.cancelConnectingToNest()
-                } else if result != nil && (result?.isCancelled)! {
-                    print("Cancelled")
-                    self.modeNest.cancelConnectingToNest()
-                } else {
-                    print("Authorized!")
-                    self.modeNest.nestReady()
-                    
-                }
-            }
-        })
-
         self.view.translatesAutoresizingMaskIntoConstraints = false
         self.view.clipsToBounds = true
     }

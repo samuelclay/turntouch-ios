@@ -21,7 +21,7 @@ class TTModeNestConnect: TTOptionsDetailViewController {
     }
     
     @IBAction func beginConnect(_ sender: UIButton) {
-        self.modeNest.beginConnectingToNest()
+        self.modeNest.authorizeNest()
     }
 
 }

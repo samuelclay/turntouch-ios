@@ -24,6 +24,7 @@ enum TTNestState {
 
 protocol TTModeNestDelegate {
     func changeState(_ state: TTNestState, mode: TTModeNest)
+    func updateThermostat(_ thermostat: NestSDKThermostat)
 }
 
 
@@ -138,83 +139,6 @@ class TTModeNest: TTMode, NestSDKAuthorizationViewControllerDelegate {
         
     }
     
-    // MARK: Nest devices
-    
-//    func foundDevices() -> [String] {
-//        var devices = TTModeNest.dataManager.thermostat(withId: <#T##String!#>, block: <#T##NestSDKThermostatUpdateHandler!##NestSDKThermostatUpdateHandler!##(NestSDKThermostat?, Error?) -> Void#>)
-//        if devices.count == 0 {
-//            devices = self.cachedDevices()
-//        }
-//        
-//        devices = devices.sorted {
-//            (a, b) -> Bool in
-//            return a.name < b.name
-//        }
-//        
-//        return devices
-//    }
-//    
-//    func selectedDevice() -> SonosController? {
-//        var devices = self.foundDevices()
-//        if devices.count == 0 {
-//            return nil
-//        }
-//        
-//        if let deviceId = self.action.mode.modeOptionValue(TTModeSonosConstants.kSonosDeviceId,
-//                                                           modeDirection: appDelegate().modeMap.selectedModeDirection) as? String {
-//            for foundDevice: SonosController in devices {
-//                if foundDevice.uuid == deviceId {
-//                    return foundDevice
-//                }
-//            }
-//        }
-//        
-//        
-//        return devices[0]
-//    }
-//    
-//    func cachedDevices() -> [SonosController] {
-//        var cachedDevices: [SonosController] = []
-//        let prefs = UserDefaults.standard
-//        guard let devices = prefs.array(forKey: TTModeSonosConstants.kSonosCachedDevices) as? [[String: String]] else {
-//            return []
-//        }
-//        
-//        for device in devices {
-//            let cachedDevice = SonosController(ip: device["ip"]!, port: Int32(device["port"]!)!)
-//            cachedDevice.group = device["group"]!
-//            //            cachedDevice.isCoordinator = device["isCoordinator"] as! Bool
-//            cachedDevice.name = device["name"]!
-//            cachedDevice.uuid = device["uuid"]!
-//            cachedDevices.append(cachedDevice)
-//            print(" ---> Loading cached sonos: \(cachedDevice)")
-//        }
-//        
-//        return cachedDevices
-//    }
-//    
-//    func cacheDevices(_ devices: [SonosController]?) {
-//        var cachedDevices: [[String: String]] = []
-//        guard let devices = devices else {
-//            return
-//        }
-//        
-//        for device in devices {
-//            var cachedDevice: [String: String] = [:]
-//            cachedDevice["ip"] = device.ip
-//            cachedDevice["group"] = device.group
-//            //            cachedDevice["isCoordinator"] = device.isCoordinator
-//            cachedDevice["name"] = device.name
-//            cachedDevice["port"] = String(device.port)
-//            cachedDevice["uuid"] = device.uuid
-//            cachedDevices.append(cachedDevice)
-//        }
-//        
-//        let prefs = UserDefaults.standard
-//        prefs.set(cachedDevices, forKey: TTModeSonosConstants.kSonosCachedDevices)
-//        prefs.synchronize()
-//    }
-    
     // MARK: Nest Reachability
     
     func watchReachability() {
@@ -229,6 +153,7 @@ class TTModeNest: TTMode, NestSDKAuthorizationViewControllerDelegate {
                 if TTModeNest.nestState != .connected {
                     print(" ---> Reachable, re-connecting to Nest...")
                     self.observeStructures()
+                    self.beginConnectingToNest()
                 }
             }
         }
@@ -242,7 +167,7 @@ class TTModeNest: TTMode, NestSDKAuthorizationViewControllerDelegate {
         do {
             try TTModeNest.reachability.startNotifier()
         } catch {
-            print("Unable to start notifier")
+            print("Unable to start Nest notifier")
         }
     }
     
@@ -256,9 +181,34 @@ class TTModeNest: TTMode, NestSDKAuthorizationViewControllerDelegate {
         delegate?.changeState(TTModeNest.nestState, mode: self)
     }
     
+    func authorizeNest() {
+        let authorizationManager = NestSDKAuthorizationManager()
+        authorizationManager.authorizeWithNestAccount(from: appDelegate().mainViewController, handler: {
+            result, error in
+            
+            DispatchQueue.main.async {
+                if error != nil {
+                    print("Process error: \(error)")
+                    self.cancelConnectingToNest()
+                } else if result != nil && (result?.isCancelled)! {
+                    print("Cancelled")
+                    self.cancelConnectingToNest()
+                } else {
+                    print("Authorized!")
+                    self.nestReady()
+                    
+                }
+            }
+        })
+    }
+    
     func cancelConnectingToNest() {
-        TTModeNest.nestState = .disconnected
-        delegate?.changeState(TTModeNest.nestState, mode: self)
+        if (NestSDKAccessToken.current() != nil) {
+            self.observeStructures()
+        } else {
+            TTModeNest.nestState = .disconnected
+            delegate?.changeState(TTModeNest.nestState, mode: self)
+        }
     }
     
     func nestReady() {
@@ -326,6 +276,7 @@ class TTModeNest: TTMode, NestSDKAuthorizationViewControllerDelegate {
                     self.logMessage("Thermostat \(thermostat.name) updated, temperature now: \(thermostat.ambientTemperatureF)°F")
                     TTModeNest.thermostats[thermostatId] = thermostat
                     self.delegate.changeState(TTNestState.connected, mode: self)
+                    self.delegate.updateThermostat(thermostat)
                 }
             })
             
@@ -352,25 +303,6 @@ class TTModeNest: TTMode, NestSDKAuthorizationViewControllerDelegate {
     
     func logMessage(_ message: String) {
         print(" ---> Nest API: \(message)")
-    }
-    
-    // MARK: NestSDKConnectWithNestButtonDelegate
-    func connectWithNestButton(connectWithNestButton: NestSDKConnectWithNestButton!, didAuthorizeWithResult result: NestSDKAuthorizationManagerAuthorizationResult!, error: NSError!) {
-        if (error != nil) {
-            print("Process error: \(error)")
-            
-        } else if (result.isCancelled) {
-            print("Cancelled")
-            
-        } else {
-            print("Authorized!")
-            
-            observeStructures()
-        }
-    }
-    
-    func connectWithNestButtonDidUnauthorize(connectWithNestButton: NestSDKConnectWithNestButton!) {
-        removeObservers()
     }
     
 }
