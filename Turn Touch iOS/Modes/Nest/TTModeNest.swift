@@ -38,6 +38,7 @@ class TTModeNest: TTMode, NestSDKAuthorizationViewControllerDelegate {
     static var deviceObserverHandles: Array<NestSDKObserverHandle> = []
     static var structuresObserverHandle: NestSDKObserverHandle = 0
     static var thermostats: [String: NestSDKThermostat] = [:]
+    static var structures: [String: NestSDKStructure] = [:]
 
     required init() {
         super.init()
@@ -128,11 +129,43 @@ class TTModeNest: TTMode, NestSDKAuthorizationViewControllerDelegate {
     
     
     func runTTModeNestRaiseTemp() {
-        
+        self.changeTemperature(direction: 1)
     }
     
     func runTTModeNestLowerTemp() {
+        self.changeTemperature(direction: -1)
+    }
+    
+    func changeTemperature(direction: Int) {
+        guard let thermostat = self.selectedThermostat() else {
+            print(" ---> No Nest thermostat! Can't change temperature")
+            return
+        }
         
+        if thermostat.hvacMode == .heatCool {
+            if direction > 0 {
+                thermostat.targetTemperatureHighF += 1;
+                thermostat.targetTemperatureLowF += 1;
+            } else {
+                thermostat.targetTemperatureHighF -= 1;
+                thermostat.targetTemperatureLowF -= 1;
+            }
+        } else {
+            if direction > 0 {
+                thermostat.targetTemperatureF += 1;
+            } else {
+                thermostat.targetTemperatureF -= 1;
+            }
+        }
+        
+        TTModeNest.dataManager.setThermostat(thermostat) { (thermostat, error) in
+            if error != nil {
+                self.logMessage("Error while updating thermostat \(thermostat): \(error)")
+                return
+            }
+            
+            self.logMessage("Updated thermostat")
+        }
     }
     
     func runTTModeNestSetTemp() {
@@ -253,6 +286,7 @@ class TTModeNest: TTMode, NestSDKAuthorizationViewControllerDelegate {
             for structure in structuresArray as! [NestSDKStructure] {
                 self.logMessage("Found structure: \(structure.name ?? "[no name]")")
                 
+                TTModeNest.structures[structure.structureId] = structure
                 self.observeThermostatsWithinStructure(structure)
             }
         })
@@ -303,6 +337,19 @@ class TTModeNest: TTMode, NestSDKAuthorizationViewControllerDelegate {
     
     func logMessage(_ message: String) {
         print(" ---> Nest API: \(message)")
+    }
+    
+    func selectedThermostat() -> NestSDKThermostat? {
+        if let deviceSelected = self.modeOptionValue(TTModeNestConstants.kNestThermostatIdentifier,
+                                                     modeDirection: appDelegate().modeMap.selectedModeDirection) as? String {
+            let thermostat = TTModeNest.thermostats[deviceSelected]
+            return thermostat
+        } else if TTModeNest.thermostats.count >= 1 {
+            let thermostat = TTModeNest.thermostats.first?.value
+            return thermostat
+        }
+        
+        return nil
     }
     
 }
