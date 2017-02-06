@@ -45,7 +45,6 @@
 		FF2023411D021605005129E5 /* Icon-60@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = FF20233F1D021605005129E5 /* Icon-60@3x.png */; };
 		FF2023431D0216AF005129E5 /* Icon-83.5.png in Resources */ = {isa = PBXBuildFile; fileRef = FF2023421D0216AF005129E5 /* Icon-83.5.png */; };
 		FF21F9301E172BC300DFDBB4 /* TTModeNest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF21F92F1E172BC300DFDBB4 /* TTModeNest.swift */; };
-		FF21F9331E1C9DEF00DFDBB4 /* TTModeNestOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF21F9321E1C9DEF00DFDBB4 /* TTModeNestOptions.swift */; };
 		FF21F9351E1C9E1500DFDBB4 /* TTModeNestOptions.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF21F9341E1C9E1500DFDBB4 /* TTModeNestOptions.xib */; };
 		FF21F9381E1C9EEC00DFDBB4 /* TTModeNestConnect.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF21F9361E1C9EEC00DFDBB4 /* TTModeNestConnect.swift */; };
 		FF21F9391E1C9EEC00DFDBB4 /* TTModeNestConnect.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF21F9371E1C9EEC00DFDBB4 /* TTModeNestConnect.xib */; };
@@ -59,6 +58,9 @@
 		FF254F8E1D21CAF100E96378 /* TTModeWemoMulticastServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF254F8D1D21CAF100E96378 /* TTModeWemoMulticastServer.swift */; };
 		FF254FDA1D21EF1200E96378 /* TTModeWemoDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF254FD91D21EF1200E96378 /* TTModeWemoDevice.swift */; };
 		FF254FDE1D22F26500E96378 /* XPathQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = FF254FDD1D22F26500E96378 /* XPathQuery.m */; };
+		FF2E1C461E42D92000CFBEE0 /* TTModeNestSetTempOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2E1C441E42D92000CFBEE0 /* TTModeNestSetTempOptions.swift */; };
+		FF2E1C481E43C2FA00CFBEE0 /* TTModeNestOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF21F9321E1C9DEF00DFDBB4 /* TTModeNestOptions.swift */; };
+		FF2E1C491E43C30800CFBEE0 /* TTModeNestSetTempOptions.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF2E1C451E42D92000CFBEE0 /* TTModeNestSetTempOptions.xib */; };
 		FF3032BD1DB8286E00728920 /* TTModeHueSceneCustomOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3032BC1DB8286E00728920 /* TTModeHueSceneCustomOptions.swift */; };
 		FF3032BF1DB8289600728920 /* TTModeHueSceneMidnightOilOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3032BE1DB8289600728920 /* TTModeHueSceneMidnightOilOptions.swift */; };
 		FF3032C11DB828B100728920 /* TTModeHueSceneMorningOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3032C01DB828B100728920 /* TTModeHueSceneMorningOptions.swift */; };
@@ -358,6 +360,8 @@
 		FF254FD91D21EF1200E96378 /* TTModeWemoDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeWemoDevice.swift; path = Modes/Wemo/TTModeWemoDevice.swift; sourceTree = "<group>"; };
 		FF254FDC1D22F26500E96378 /* XPathQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPathQuery.h; sourceTree = "<group>"; };
 		FF254FDD1D22F26500E96378 /* XPathQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPathQuery.m; sourceTree = "<group>"; };
+		FF2E1C441E42D92000CFBEE0 /* TTModeNestSetTempOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeNestSetTempOptions.swift; path = Modes/Nest/TTModeNestSetTempOptions.swift; sourceTree = "<group>"; };
+		FF2E1C451E42D92000CFBEE0 /* TTModeNestSetTempOptions.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TTModeNestSetTempOptions.xib; path = Modes/Nest/TTModeNestSetTempOptions.xib; sourceTree = "<group>"; };
 		FF3032BC1DB8286E00728920 /* TTModeHueSceneCustomOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeHueSceneCustomOptions.swift; path = Modes/Hue/TTModeHueSceneCustomOptions.swift; sourceTree = "<group>"; };
 		FF3032BE1DB8289600728920 /* TTModeHueSceneMidnightOilOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeHueSceneMidnightOilOptions.swift; path = Modes/Hue/TTModeHueSceneMidnightOilOptions.swift; sourceTree = "<group>"; };
 		FF3032C01DB828B100728920 /* TTModeHueSceneMorningOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeHueSceneMorningOptions.swift; path = Modes/Hue/TTModeHueSceneMorningOptions.swift; sourceTree = "<group>"; };
@@ -801,6 +805,8 @@
 				FF21F93B1E1C9F0000DFDBB4 /* TTModeNestConnecting.xib */,
 				FF21F93E1E1C9F0F00DFDBB4 /* TTModeNestConnected.swift */,
 				FF21F93F1E1C9F0F00DFDBB4 /* TTModeNestConnected.xib */,
+				FF2E1C441E42D92000CFBEE0 /* TTModeNestSetTempOptions.swift */,
+				FF2E1C451E42D92000CFBEE0 /* TTModeNestSetTempOptions.xib */,
 			);
 			name = Nest;
 			sourceTree = "<group>";
@@ -1372,6 +1378,7 @@
 			files = (
 				FF21F9351E1C9E1500DFDBB4 /* TTModeNestOptions.xib in Resources */,
 				FFB84B541D9202CB0037872C /* Dalton Maag - Effra Light.ttf in Resources */,
+				FF2E1C491E43C30800CFBEE0 /* TTModeNestSetTempOptions.xib in Resources */,
 				FFB84B551D9202CB0037872C /* Dalton Maag - Effra Std Bold.ttf in Resources */,
 				FF2023411D021605005129E5 /* Icon-60@3x.png in Resources */,
 				FFB41B2C1CEE9A3000CD5F09 /* equalizer-1.png in Resources */,
@@ -1617,7 +1624,6 @@
 				FFDA0FA81D3C4F1C0019859F /* LLSimpleCamera.m in Sources */,
 				FF4AF7EB1D24F9E70009C777 /* TTModeSonosConnecting.swift in Sources */,
 				FF3032C11DB828B100728920 /* TTModeHueSceneMorningOptions.swift in Sources */,
-				FF21F9331E1C9DEF00DFDBB4 /* TTModeNestOptions.swift in Sources */,
 				FF0F10E51CFFAD1B00CC1F29 /* TTModeMenuBordersView.swift in Sources */,
 				FF0F10C71CF63F1600CC1F29 /* TTModeMusic.swift in Sources */,
 				FF37EDDF1D11179E0026F70D /* TTModeHuePushlink.swift in Sources */,
@@ -1632,6 +1638,7 @@
 				FF4487781D09367000ED8099 /* TTButtonState.swift in Sources */,
 				FF0F10D01CF63F6100CC1F29 /* TTModeAlarmClock.swift in Sources */,
 				FFB41B881CF536BB00CD5F09 /* TTActionMap.swift in Sources */,
+				FF2E1C461E42D92000CFBEE0 /* TTModeNestSetTempOptions.swift in Sources */,
 				FFC4B0F91D2F5E3B00A97C81 /* TTFTUXViewController.swift in Sources */,
 				FFC4B0F31D2DC38C00A97C81 /* TTModalButton.swift in Sources */,
 				FF7C14531DB2F2DD009CBA28 /* TTDeviceList.swift in Sources */,
@@ -1665,6 +1672,7 @@
 				FF4AF7D81D24ECF60009C777 /* XMLReader.m in Sources */,
 				FF21F9301E172BC300DFDBB4 /* TTModeNest.swift in Sources */,
 				FF7C14521DB2F2DD009CBA28 /* TTDevice.swift in Sources */,
+				FF2E1C481E43C2FA00CFBEE0 /* TTModeNestOptions.swift in Sources */,
 				FFC4B1081D3717D500A97C81 /* TTFTUXView.swift in Sources */,
 				FF4487761D09365200ED8099 /* TTButtonTimer.swift in Sources */,
 				FFF46BDE1D10941500158751 /* DDLog.m in Sources */,

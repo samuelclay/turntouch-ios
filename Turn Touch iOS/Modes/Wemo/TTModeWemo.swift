@@ -50,6 +50,8 @@ class TTModeWemo: TTMode, TTModeWemoMulticastDelegate, TTModeWemoDeviceDelegate 
         
         if TTModeWemo.foundDevices.count == 0 {
             self.assembleFoundDevices()
+        } else {
+            self.cleanDeviceBatchActions()
         }
         
         if TTModeWemo.foundDevices.count == 0 {
@@ -78,9 +80,7 @@ class TTModeWemo: TTMode, TTModeWemoMulticastDelegate, TTModeWemoDeviceDelegate 
             }
         }
         
-        for direction: TTModeDirection in [.north, .east, .west, .south] {
-            self.cleanDeviceBatchActions(in: direction)
-        }
+        self.cleanDeviceBatchActions()
     }
     
     override class func title() -> String {
@@ -359,18 +359,27 @@ class TTModeWemo: TTMode, TTModeWemoMulticastDelegate, TTModeWemoDeviceDelegate 
 
     }
     
+    func cleanDeviceBatchActions() {
+        for direction: TTModeDirection in [.north, .east, .west, .south] {
+            self.cleanDeviceBatchActions(in: direction)
+        }
+    }
+    
     func cleanDeviceBatchActions(in direction: TTModeDirection) {
         let batchActions = appDelegate().modeMap.selectedModeBatchActions(in: direction)
         var removed = false
+        var seenDevices: [String] = []
         
         for batchAction in batchActions {
             let deviceSelected = batchAction.optionValue(TTModeWemoConstants.kWemoDeviceLocation) as? String
-            
-            if deviceSelected == nil {
+
+            if deviceSelected == nil || seenDevices.contains(deviceSelected!) {
                 print(" ---> Removing batch action due to unselected wemo: \(batchAction.batchActionKey!)")
                 appDelegate().modeMap.removeBatchAction(for: batchAction.batchActionKey!, silent: true, actionDirection: batchAction.direction)
                 appDelegate().mainViewController.batchActionsStackView.hideBatchAction(batchActionKey: batchAction.batchActionKey!)
                 removed = true
+            } else {
+                seenDevices.append(deviceSelected!)
             }
         }
         
