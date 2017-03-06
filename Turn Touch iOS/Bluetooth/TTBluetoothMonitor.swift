@@ -46,7 +46,7 @@ protocol TTBluetoothMonitorDelegate {
     func pairingSuccess()
 }
 
-let DEBUG_BLUETOOTH = false
+let DEBUG_BLUETOOTH = true
 
 class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
     
@@ -132,6 +132,23 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
     
     // MARK: Scanning
     
+    func resetSearch() {
+        let peripherals = manager.retrievePeripherals(withIdentifiers: self.knownPeripheralIdentifiers())
+        for peripheral in peripherals {
+            let foundDevice = foundDevices.deviceForPeripheral(peripheral)
+            
+            if let foundDevice = foundDevice {
+                if foundDevice.state == .device_STATE_SEARCHING {
+                    foundDevice.state = .device_STATE_DISCONNECTED
+                }
+            } else if peripheral.state != .disconnected {
+                print(" ---> Error with peripheral, no found but not disconnected: \(peripheral)")
+            }
+        }
+        
+        self.scanKnown()
+    }
+    
     func scanKnown()  {
         var knownDevicesStillDisconnected = false
         var isActivelyConnecting = false
@@ -155,7 +172,7 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
                 
                 if peripheral.state != CBPeripheralState.disconnected && foundDevice!.state != TTDeviceState.device_STATE_SEARCHING {
                     if DEBUG_BLUETOOTH {
-                        print(" ---> Already connected: \(foundDevice!)")
+                        print(" ---> Already connected: \(foundDevice!)") 
                     }
                     continue
                 } else {

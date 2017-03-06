@@ -2,12 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NestRedirectURL</key>
-	<string>http://localhost:8080/auth/nest/callback</string>
-	<key>NestProductSecret</key>
-	<string>NhVqDyIynlwKqGMjqo7PbUKBc</string>
-	<key>NestProductID</key>
-	<string>8ac433c5-3fdf-419b-84e9-573c486e9c52</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
@@ -23,11 +17,11 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>0.6.0</string>
+	<string>0.6.1</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>8</string>
+	<string>10</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 	<key>LSRequiresIPhoneOS</key>
@@ -49,6 +43,12 @@
 	<string>The Turn Touch camera app uses the microphone when recording video</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>The Turn Touch camera app saves photos to your photo library</string>
+	<key>NestProductID</key>
+	<string>8ac433c5-3fdf-419b-84e9-573c486e9c52</string>
+	<key>NestProductSecret</key>
+	<string>NhVqDyIynlwKqGMjqo7PbUKBc</string>
+	<key>NestRedirectURL</key>
+	<string>http://localhost:8080/auth/nest/callback</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Effra_Rg.ttf</string>

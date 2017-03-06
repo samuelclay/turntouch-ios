@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreLocation
+import ReachabilitySwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate {
@@ -16,6 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     var modeMap: TTModeMap!
     var bluetoothMonitor: TTBluetoothMonitor!
     var locationManager: CLLocationManager!
+    var reachability: Reachability!
     @IBOutlet var mainViewController: TTMainViewController!
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -38,6 +40,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         window?.rootViewController = mainViewController
         window?.makeKeyAndVisible()
         modeMap.activateModes()
+        self.watchReachability()
 
         DispatchQueue.global().async {
             self.beginLocationUpdates()
@@ -81,6 +84,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         print(" ---> applicationDidBecomeActive")
         
         bluetoothMonitor.countDevices()
+        bluetoothMonitor.resetSearch()
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
@@ -103,6 +107,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         prefs.register(defaults: defaultPrefs)
         prefs.synchronize()
     }
+    
+    // MARK: Location
     
     func beginLocationUpdates() {
         switch CLLocationManager.authorizationStatus() {
@@ -145,6 +151,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         }
     }
     
+    // MARK: Reachability
+    
+    func watchReachability() {
+        if reachability != nil {
+            return
+        }
+        
+        reachability = Reachability()
+        
+        reachability.whenReachable = { reachability in
+            DispatchQueue.main.async {
+                print(" ---> Reachable, re-connecting to bluetooth...")
+                self.bluetoothMonitor.scanKnown()
+            }
+        }
+        
+        reachability.whenUnreachable = { reachability in
+            print(" ---> Unreachable, not connected")
+        }
+        
+    }
+
  }
 
 func appDelegate () -> AppDelegate {
