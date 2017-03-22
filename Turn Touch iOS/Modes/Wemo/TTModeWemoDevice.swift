@@ -73,6 +73,7 @@ class TTModeWemoDevice: NSObject {
     
     func parseSetupXml(_ xmlData: Data) {
         let doc = SWXMLHash.parse(xmlData)
+//        print(" ---> Wemo data: \(String(data: xmlData, encoding: .utf8))")
         deviceName = doc["root"]["device"]["friendlyName"].element?.text
 
         if deviceName != nil {

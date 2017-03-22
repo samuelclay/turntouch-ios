@@ -78,9 +78,9 @@ class TTModeWemoMulticastServer: NSObject, GCDAsyncUdpSocketDelegate {
                        "USER-AGENT: Turn Touch iOS Wemo Finder",
                        "", ""].joined(separator: "\r\n")
         if let data = message.data(using: String.Encoding.utf8) {
-            udpSocket.send(data, toHost: MULTICAST_GROUP_IP, port: 1900, withTimeout: TimeInterval(5), tag: 0)
+            udpSocket.send(data, toHost: MULTICAST_GROUP_IP, port: 1900, withTimeout: TimeInterval(3), tag: 0)
         }
-        let tt = DispatchTime.now() + Double(Int64(5 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC);
+        let tt = DispatchTime.now() + Double(Int64(3 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC);
         DispatchQueue.main.asyncAfter(deadline: tt) {
             if self.attemptsLeft == 0 || self.udpSocket == nil {
                 self.delegate?.finishScanning()

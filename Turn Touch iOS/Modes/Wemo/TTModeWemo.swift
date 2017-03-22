@@ -42,6 +42,7 @@ class TTModeWemo: TTMode, TTModeWemoMulticastDelegate, TTModeWemoDeviceDelegate 
     static var wemoState = TTWemoState.disconnected
     static var multicastServer = TTModeWemoMulticastServer()
     static var foundDevices: [TTModeWemoDevice] = []
+    static var recentlyFoundDevices: [TTModeWemoDevice] = []
     
     required init() {
         super.init()
@@ -209,10 +210,16 @@ class TTModeWemo: TTMode, TTModeWemoMulticastDelegate, TTModeWemoDeviceDelegate 
         return wemoDevice
     }
     
+    func refreshDevices() {
+        TTModeWemo.recentlyFoundDevices = []
+        self.beginConnectingToWemo()
+    }
+
     func beginConnectingToWemo() {
         TTModeWemo.wemoState = .connecting
         delegate?.changeState(TTModeWemo.wemoState, mode: self)
         
+        TTModeWemo.multicastServer.delegate = self
         TTModeWemo.multicastServer.beginBroadcast()
     }
     
@@ -230,6 +237,8 @@ class TTModeWemo: TTMode, TTModeWemoMulticastDelegate, TTModeWemoDeviceDelegate 
         newDevice.delegate = self
         if name != nil {
             newDevice.deviceName = name!
+        } else {
+            newDevice.deviceName = newDevice.location()
         }
         
         for device in TTModeWemo.foundDevices {
@@ -238,8 +247,14 @@ class TTModeWemo: TTMode, TTModeWemoMulticastDelegate, TTModeWemoDeviceDelegate 
                 return device
             }
         }
+        for device in TTModeWemo.recentlyFoundDevices {
+            if device.isEqualToDevice(newDevice) {
+                return device
+            }
+        }
         
         TTModeWemo.foundDevices.append(newDevice)
+        TTModeWemo.recentlyFoundDevices.append(newDevice)
 
         newDevice.requestDeviceInfo()
         
@@ -262,8 +277,14 @@ class TTModeWemo: TTMode, TTModeWemoMulticastDelegate, TTModeWemoDeviceDelegate 
         }
         
         var foundDevices: [[String: Any]] = []
+        var foundIps: [String] = []
         for device in TTModeWemo.foundDevices {
             if device.deviceName == nil {
+                continue
+            }
+            if !foundIps.contains(device.location()) {
+                foundIps.append(device.location())
+            } else {
                 continue
             }
             foundDevices.append(["ipaddress": device.ipAddress, "port": device.port, "name": device.deviceName])

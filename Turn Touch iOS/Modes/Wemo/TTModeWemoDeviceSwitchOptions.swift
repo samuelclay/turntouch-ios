@@ -69,7 +69,7 @@ class TTModeWemoDeviceSwitchOptions: TTOptionsDetailViewController, UITextFieldD
             s.startAnimating()
         }
         
-        self.modeWemo.beginConnectingToWemo()
+        self.modeWemo.refreshDevices()
     }
     
     func changeState(_ state: TTWemoState, mode: TTModeWemo) {
