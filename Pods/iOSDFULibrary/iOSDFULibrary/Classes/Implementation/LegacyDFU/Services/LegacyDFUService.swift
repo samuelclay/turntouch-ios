@@ -63,7 +63,7 @@ import CoreBluetooth
     
     // MARK: - Initialization
     
-    required init(_ service:CBService, _ logger:LoggerHelper) {
+    required init(_ service: CBService, _ logger: LoggerHelper) {
         self.service = service
         self.logger = logger
         super.init()
@@ -117,6 +117,12 @@ import CoreBluetooth
     
     // MARK: - Service API methods
     
+    /**
+     Discovers characteristics in the DFU Service. Result it reported using callbacks.
+     
+     - parameter success: method called when required DFU characteristics were discovered
+     - parameter report:  method called when an error occurred
+     */
     func discoverCharacteristics(onSuccess success: @escaping Callback, onError report: @escaping ErrorCallback) {
         // Save callbacks
         self.success = success
@@ -201,8 +207,8 @@ import CoreBluetooth
      - parameter success: a callback called when a response with status Success is received
      - parameter report:  a callback called when a response with an error status is received
      */
-    func sendDfuStart(withFirmwareType type:UInt8, andSize size:DFUFirmwareSize, onSuccess success: @escaping Callback, onError report: @escaping ErrorCallback) {
-        if aborted {
+    func sendDfuStart(withFirmwareType type: UInt8, andSize size: DFUFirmwareSize, onSuccess success: @escaping Callback, onError report: @escaping ErrorCallback) {
+        guard !aborted else {
             sendReset(onError: report)
             return
         }
@@ -229,8 +235,8 @@ import CoreBluetooth
      - parameter success: a callback called when a response with status Success is received
      - parameter report:  a callback called when a response with an error status is received
      */
-    func sendStartDfu(withFirmwareSize size:DFUFirmwareSize, onSuccess success: @escaping Callback, onError report: @escaping ErrorCallback) {
-        if aborted {
+    func sendStartDfu(withFirmwareSize size: DFUFirmwareSize, onSuccess success: @escaping Callback, onError report: @escaping ErrorCallback) {
+        guard !aborted else {
             sendReset(onError: report)
             return
         }
@@ -253,8 +259,8 @@ import CoreBluetooth
      - parameter success: a callback called when a response with status Success is received
      - parameter report:  a callback called when a response with an error status is received
      */
-    func sendInitPacket(_ data:Data, onSuccess success: @escaping Callback, onError report: @escaping ErrorCallback) {
-        if aborted {
+    func sendInitPacket(_ data: Data, onSuccess success: @escaping Callback, onError report: @escaping ErrorCallback) {
+        guard !aborted else {
             sendReset(onError: report)
             return
         }
@@ -335,15 +341,15 @@ import CoreBluetooth
      Sends the firmware data to the DFU target device.
      
      - parameter aFirmware: the firmware to be sent
-     - parameter aPRNValue:   number of packets of firmware data to be received by the DFU target before
+     - parameter aPRNValue: number of packets of firmware data to be received by the DFU target before
      sending a new Packet Receipt Notification
      - parameter progressDelegate: a progress delagate that will be informed about transfer progress
-     - parameter success:  a callback called when a response with status Success is received
-     - parameter report:   a callback called when a response with an error status is received
+     - parameter success:   a callback called when a response with status Success is received
+     - parameter report:    a callback called when a response with an error status is received
      */
     func sendFirmware(_ aFirmware: DFUFirmware, andReportProgressTo progressDelegate: DFUProgressDelegate?,
-                    onSuccess success: @escaping Callback, onError report: @escaping ErrorCallback) {
-        if aborted {
+                      onSuccess success: @escaping Callback, onError report: @escaping ErrorCallback) {
+        guard !aborted else {
             sendReset(onError: report)
             return
         }
