@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import AudioToolbox
 
 class TTModeMap: NSObject {
     
@@ -35,7 +36,8 @@ class TTModeMap: NSObject {
     dynamic var availableAddActions: [[String: Any]] = []
     
     var waitingForDoubleClick = false
-    
+    var player: AVAudioPlayer?
+
     override init() {
         self.availableModes = [
             "TTModePhone",
@@ -139,6 +141,56 @@ class TTModeMap: NSObject {
         self.reset()
         self.selectedModeDirection = direction
         batchActions.assemble()
+        
+        if #available(iOS 10.0, *) {
+            if UIApplication.shared.applicationState == .active {
+//                let generator = UINotificationFeedbackGenerator()
+//                generator.notificationOccurred(.success)
+            } else {
+                AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
+                AudioServicesPlayAlertSound(kSystemSoundID_Vibrate)
+            }
+        } else {
+            AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
+            AudioServicesPlayAlertSound(kSystemSoundID_Vibrate)
+        }
+        
+        var url: URL!
+        switch direction {
+        case .north:
+            url = Bundle.main.url(forResource: "north tone", withExtension: "wav")!
+        case .east:
+            url = Bundle.main.url(forResource: "east tone", withExtension: "wav")!
+        case .west:
+            url = Bundle.main.url(forResource: "west tone", withExtension: "wav")!
+        case .south:
+            url = Bundle.main.url(forResource: "south tone", withExtension: "wav")!
+        default:
+            url = Bundle.main.url(forResource: "south tone", withExtension: "wav")!
+        }
+        
+        
+        do {
+            UIApplication.shared.beginReceivingRemoteControlEvents()
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback, with: .mixWithOthers)
+            do {
+                try AVAudioSession.sharedInstance().setActive(true)
+            } catch {
+                    print(" ---> Audio active error: \(error.localizedDescription)")
+                }
+        } catch {
+            print(" ---> Audio category error: \(error.localizedDescription)")
+        }
+
+        do {
+            player = try AVAudioPlayer(contentsOf: url)
+            guard let player = player else { return }
+            
+            player.prepareToPlay()
+            player.play()
+        } catch let error {
+            print(error.localizedDescription)
+        }
     }
     
     func runActiveButton() {
@@ -170,6 +222,19 @@ class TTModeMap: NSObject {
         let actions = self.selectedModeBatchActions(in: direction)
         for batchAction in actions {
             batchAction.mode.runDirection(direction)
+        }
+        
+        if #available(iOS 10.0, *) {
+            if UIApplication.shared.applicationState == .active {
+                let generator = UIImpactFeedbackGenerator(style: .heavy)
+                generator.impactOccurred()
+            } else {
+                AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
+                AudioServicesPlayAlertSound(kSystemSoundID_Vibrate)
+            }
+        } else {
+            AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
+            AudioServicesPlayAlertSound(kSystemSoundID_Vibrate)
         }
     }
     
@@ -259,7 +324,8 @@ class TTModeMap: NSObject {
             if key != batchActionKey {
                 newBatchActionKeys.append(key)
             } else {
-                print(" ---> Removing from \(batchActionKeys.count) batch actions in \(actionDirection?.rawValue): \(key)")
+                print(" ---> Removing from \(batchActionKeys.count) batch actions in \(String(describing: actionDirection?.rawValue)): \(key)")
+                
             }
         }
         

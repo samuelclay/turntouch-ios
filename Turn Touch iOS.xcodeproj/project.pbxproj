@@ -265,6 +265,10 @@
 		FFB84B511D91FDC40037872C /* TTModeYogaViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFB84B501D91FDC40037872C /* TTModeYogaViewController.xib */; };
 		FFB84B541D9202CB0037872C /* Dalton Maag - Effra Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FFB84B521D91FEED0037872C /* Dalton Maag - Effra Light.ttf */; };
 		FFB84B551D9202CB0037872C /* Dalton Maag - Effra Std Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FFB84B531D91FEED0037872C /* Dalton Maag - Effra Std Bold.ttf */; };
+		FFC33C3B1EA173B600321EB9 /* east tone.wav in Resources */ = {isa = PBXBuildFile; fileRef = FFC33C371EA173B600321EB9 /* east tone.wav */; };
+		FFC33C3C1EA173B600321EB9 /* north tone.wav in Resources */ = {isa = PBXBuildFile; fileRef = FFC33C381EA173B600321EB9 /* north tone.wav */; };
+		FFC33C3D1EA173B600321EB9 /* south tone.wav in Resources */ = {isa = PBXBuildFile; fileRef = FFC33C391EA173B600321EB9 /* south tone.wav */; };
+		FFC33C3E1EA173B600321EB9 /* west tone.wav in Resources */ = {isa = PBXBuildFile; fileRef = FFC33C3A1EA173B600321EB9 /* west tone.wav */; };
 		FFC4B0F01D2DBF3E00A97C81 /* TTPairingInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC4B0EE1D2DBF3E00A97C81 /* TTPairingInfoViewController.swift */; };
 		FFC4B0F11D2DBF3E00A97C81 /* TTPairingInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFC4B0EF1D2DBF3E00A97C81 /* TTPairingInfoViewController.xib */; };
 		FFC4B0F31D2DC38C00A97C81 /* TTModalButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC4B0F21D2DC38C00A97C81 /* TTModalButton.swift */; };
@@ -572,6 +576,10 @@
 		FFB84B501D91FDC40037872C /* TTModeYogaViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TTModeYogaViewController.xib; path = Modes/Yoga/TTModeYogaViewController.xib; sourceTree = "<group>"; };
 		FFB84B521D91FEED0037872C /* Dalton Maag - Effra Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Dalton Maag - Effra Light.ttf"; path = "Fonts/Dalton Maag - Effra Light.ttf"; sourceTree = "<group>"; };
 		FFB84B531D91FEED0037872C /* Dalton Maag - Effra Std Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Dalton Maag - Effra Std Bold.ttf"; path = "Fonts/Dalton Maag - Effra Std Bold.ttf"; sourceTree = "<group>"; };
+		FFC33C371EA173B600321EB9 /* east tone.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "east tone.wav"; sourceTree = "<group>"; };
+		FFC33C381EA173B600321EB9 /* north tone.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "north tone.wav"; sourceTree = "<group>"; };
+		FFC33C391EA173B600321EB9 /* south tone.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "south tone.wav"; sourceTree = "<group>"; };
+		FFC33C3A1EA173B600321EB9 /* west tone.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "west tone.wav"; sourceTree = "<group>"; };
 		FFC4B0EC1D2C911E00A97C81 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		FFC4B0EE1D2DBF3E00A97C81 /* TTPairingInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTPairingInfoViewController.swift; path = Views/Modal/TTPairingInfoViewController.swift; sourceTree = "<group>"; };
 		FFC4B0EF1D2DBF3E00A97C81 /* TTPairingInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TTPairingInfoViewController.xib; path = Views/Modal/TTPairingInfoViewController.xib; sourceTree = "<group>"; };
@@ -948,6 +956,7 @@
 				FFB41AEE1CEE9A3000CD5F09 /* iTunes */,
 				FFB41AF91CEE9A3000CD5F09 /* logo */,
 				FFB41B061CEE9A3000CD5F09 /* modal */,
+				FFC33C361EA173B600321EB9 /* sounds */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -1194,6 +1203,17 @@
 			name = Yoga;
 			sourceTree = "<group>";
 		};
+		FFC33C361EA173B600321EB9 /* sounds */ = {
+			isa = PBXGroup;
+			children = (
+				FFC33C371EA173B600321EB9 /* east tone.wav */,
+				FFC33C381EA173B600321EB9 /* north tone.wav */,
+				FFC33C391EA173B600321EB9 /* south tone.wav */,
+				FFC33C3A1EA173B600321EB9 /* west tone.wav */,
+			);
+			path = sounds;
+			sourceTree = "<group>";
+		};
 		FFC9FE961D021A0800038817 /* Action Diamond */ = {
 			isa = PBXGroup;
 			children = (
@@ -1404,6 +1424,7 @@
 				FF2023351D02147A005129E5 /* Icon-57@2x.png in Resources */,
 				FF20232D1D02147A005129E5 /* Icon-29@2x.png in Resources */,
 				FF20233C1D02147A005129E5 /* iTunesArtwork in Resources */,
+				FFC33C3B1EA173B600321EB9 /* east tone.wav in Resources */,
 				FFB41B241CEE9A3000CD5F09 /* button_chevron.png in Resources */,
 				FFDA0FB31D3C4FEE0019859F /* camera-switch.png in Resources */,
 				FFB41B1C1CEE9A3000CD5F09 /* music_play.png in Resources */,
@@ -1448,6 +1469,7 @@
 				FFB41B211CEE9A3000CD5F09 /* music_volume_mute.png in Resources */,
 				FF4AF7EF1D24F9E70009C777 /* TTModeSonosOptions.xib in Resources */,
 				FFB41B261CEE9A3000CD5F09 /* button_plus.png in Resources */,
+				FFC33C3D1EA173B600321EB9 /* south tone.wav in Resources */,
 				FFB41B1A1CEE9A3000CD5F09 /* music_ff.png in Resources */,
 				FFB41B481CEE9A3000CD5F09 /* presentation-chart.png in Resources */,
 				FFB41B471CEE9A3000CD5F09 /* newspaper-3.png in Resources */,
@@ -1511,6 +1533,7 @@
 				FF37EDD01D1113C10026F70D /* TTModeHueOptions.xib in Resources */,
 				FF20232C1D02147A005129E5 /* Icon-29.png in Resources */,
 				FFB41B6C1CEE9A3000CD5F09 /* modal_remote_failed.png in Resources */,
+				FFC33C3C1EA173B600321EB9 /* north tone.wav in Resources */,
 				FF4487691D08D0C600ED8099 /* TTPairingViewController.xib in Resources */,
 				FF37EDF01D14A9E80026F70D /* single_tap.png in Resources */,
 				FFB41B2D1CEE9A3000CD5F09 /* filmstrip-3.png in Resources */,
@@ -1530,6 +1553,7 @@
 				FFB84B491D90D4240037872C /* yoga_position_10.png in Resources */,
 				FFDA0FB71D3C4FEE0019859F /* cancel@3x.png in Resources */,
 				FF4C03841DFE699400EB0C92 /* TTModeCustomURLOptions.xib in Resources */,
+				FFC33C3E1EA173B600321EB9 /* west tone.wav in Resources */,
 				FF37EDE01D11179E0026F70D /* TTModeHuePushlink.xib in Resources */,
 				FFB84B3F1D90D4240037872C /* yoga_background.jpg in Resources */,
 				FF0F10D51CF6430E00CC1F29 /* Effra_Rg.ttf in Resources */,

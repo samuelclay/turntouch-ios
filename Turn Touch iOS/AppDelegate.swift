@@ -26,10 +26,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 
         let centralManagerIdentifiers = launchOptions?[UIApplicationLaunchOptionsKey.bluetoothCentrals]
         if centralManagerIdentifiers != nil {
-            print(" ---> centralManagerIdentifiers: \(centralManagerIdentifiers)")
+            print(" ---> centralManagerIdentifiers: \(String(describing: centralManagerIdentifiers))")
         }
 
 //        print(UserDefaults.standardUserDefaults().dictionaryRepresentation())
+        do {
+            UIApplication.shared.beginReceivingRemoteControlEvents()
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryAmbient)
+            try AVAudioSession.sharedInstance().setActive(true)
+        } catch let error {
+            print(" ---> Audio error: \(error.localizedDescription)")
+        }
         
         bluetoothMonitor = TTBluetoothMonitor()
         modeMap = TTModeMap()
