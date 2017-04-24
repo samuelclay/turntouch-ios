@@ -170,26 +170,27 @@ class TTModeMap: NSObject {
         }
         
         
-        do {
-            UIApplication.shared.beginReceivingRemoteControlEvents()
-            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback, with: .mixWithOthers)
+        if modeChangeType == .remoteButton {
             do {
-                try AVAudioSession.sharedInstance().setActive(true)
+                try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback, with: .mixWithOthers)
+                do {
+                    try AVAudioSession.sharedInstance().setActive(true)
+                } catch {
+                        print(" ---> Audio active error: \(error.localizedDescription)")
+                    }
             } catch {
-                    print(" ---> Audio active error: \(error.localizedDescription)")
-                }
-        } catch {
-            print(" ---> Audio category error: \(error.localizedDescription)")
-        }
+                print(" ---> Audio category error: \(error.localizedDescription)")
+            }
 
-        do {
-            player = try AVAudioPlayer(contentsOf: url)
-            guard let player = player else { return }
-            
-            player.prepareToPlay()
-            player.play()
-        } catch let error {
-            print(error.localizedDescription)
+            do {
+                player = try AVAudioPlayer(contentsOf: url)
+                guard let player = player else { return }
+                
+                player.prepareToPlay()
+                player.play()
+            } catch let error {
+                print(error.localizedDescription)
+            }
         }
     }
     

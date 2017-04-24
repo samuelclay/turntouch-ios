@@ -30,13 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         }
 
 //        print(UserDefaults.standardUserDefaults().dictionaryRepresentation())
-        do {
-            UIApplication.shared.beginReceivingRemoteControlEvents()
-            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryAmbient)
-            try AVAudioSession.sharedInstance().setActive(true)
-        } catch let error {
-            print(" ---> Audio error: \(error.localizedDescription)")
-        }
+        UIApplication.shared.beginReceivingRemoteControlEvents()
         
         bluetoothMonitor = TTBluetoothMonitor()
         modeMap = TTModeMap()

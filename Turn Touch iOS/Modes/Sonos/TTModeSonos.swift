@@ -215,7 +215,7 @@ class TTModeSonos: TTMode {
     }
     
     func runTTModeSonosPlayPause() {
-        if let device = self.selectedDevice() {
+        if let device = self.selectedDevice(coordinator: true) {
             device.togglePlayback({ (playing, speakers, error) in
                 print(" ---> Toggled sonos playback \(playing): \(speakers) \(error)")
             })
@@ -225,7 +225,7 @@ class TTModeSonos: TTMode {
     }
     
     func runTTModeSonosPlay() {
-        if let device = self.selectedDevice() {
+        if let device = self.selectedDevice(coordinator: true) {
             device.playbackStatus({ (playing, body, error) in
                 if !playing {
                     device.togglePlayback({ (playing, body, errors) in
@@ -239,7 +239,7 @@ class TTModeSonos: TTMode {
     }
     
     func runTTModeSonosPause() {
-        if let device = self.selectedDevice() {
+        if let device = self.selectedDevice(coordinator: true) {
             device.playbackStatus({ (playing, body, error) in
                 if playing {
                     device.togglePlayback({ (playing, body, errors) in
@@ -253,7 +253,7 @@ class TTModeSonos: TTMode {
     }
     
     func runTTModeSonosNextTrack() {
-        if let device = self.selectedDevice() {
+        if let device = self.selectedDevice(coordinator: true) {
             device.next({ (body, error) in
                 print((" ---> Next track: \(body) \(error)"))
             })
@@ -263,7 +263,7 @@ class TTModeSonos: TTMode {
     }
     
     func runTTModeSonosPreviousTrack() {
-        if let device = self.selectedDevice() {
+        if let device = self.selectedDevice(coordinator: true) {
             device.previous({ (body, error) in
                 print((" ---> Previous track: \(body) \(error)"))
             })
@@ -288,7 +288,7 @@ class TTModeSonos: TTMode {
         return devices
     }
     
-    func selectedDevice() -> SonosController? {
+    func selectedDevice(coordinator: Bool = false) -> SonosController? {
         var devices = self.foundDevices()
         if devices.count == 0 {
             return nil
@@ -298,6 +298,15 @@ class TTModeSonos: TTMode {
                                                            modeDirection: appDelegate().modeMap.selectedModeDirection) as? String {
             for foundDevice: SonosController in devices {
                 if foundDevice.uuid == deviceId {
+                    // Find the coordinator in the same group as the device
+                    if coordinator && !foundDevice.isCoordinator {
+                        for coordinatorDevice: SonosController in devices {
+                            if coordinatorDevice.isCoordinator && coordinatorDevice.group == foundDevice.group {
+                                return foundDevice
+                            }
+                        }
+                    }
+                    
                     return foundDevice
                 }
             }
@@ -310,34 +319,39 @@ class TTModeSonos: TTMode {
     func cachedDevices() -> [SonosController] {
         var cachedDevices: [SonosController] = []
         let prefs = UserDefaults.standard
-        guard let devices = prefs.array(forKey: TTModeSonosConstants.kSonosCachedDevices) as? [[String: String]] else {
+        guard let devices = prefs.array(forKey: TTModeSonosConstants.kSonosCachedDevices) as? [[String: Any]] else {
             return []
         }
         
         for device in devices {
-            let cachedDevice = SonosController(ip: device["ip"]!, port: Int32(device["port"]!)!)
-            cachedDevice.group = device["group"]!
-//            cachedDevice.isCoordinator = device["isCoordinator"] as! Bool
-            cachedDevice.name = device["name"]!
-            cachedDevice.uuid = device["uuid"]!
-            cachedDevices.append(cachedDevice)
-            print(" ---> Loading cached sonos: \(cachedDevice)")
+            let ip = device["ip"] as! String
+            let port = Int32(device["port"] as! String)
+            if let port = port {
+                let cachedDevice = SonosController(ip: ip, port: port)
+            
+                cachedDevice.group = device["group"] as? String
+                cachedDevice.isCoordinator = device["isCoordinator"] as? Bool ?? true
+                cachedDevice.name = device["name"] as? String
+                cachedDevice.uuid = device["uuid"] as? String
+                cachedDevices.append(cachedDevice)
+                print(" ---> Loading cached sonos: \(cachedDevice)")
+            }
         }
         
         return cachedDevices
     }
     
     func cacheDevices(_ devices: [SonosController]?) {
-        var cachedDevices: [[String: String]] = []
+        var cachedDevices: [[String: Any]] = []
         guard let devices = devices else {
             return
         }
         
         for device in devices {
-            var cachedDevice: [String: String] = [:]
+            var cachedDevice: [String: Any] = [:]
             cachedDevice["ip"] = device.ip
             cachedDevice["group"] = device.group
-//            cachedDevice["isCoordinator"] = device.isCoordinator
+            cachedDevice["isCoordinator"] = device.isCoordinator
             cachedDevice["name"] = device.name
             cachedDevice["port"] = String(device.port)
             cachedDevice["uuid"] = device.uuid
