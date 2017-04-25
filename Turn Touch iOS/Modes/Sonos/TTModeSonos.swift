@@ -177,13 +177,21 @@ class TTModeSonos: TTMode {
 
     }
     
+    func adjustVolume(device: SonosController, volume: Int, left: Int) {
+        if left == 0 {
+            return
+        }
+        let adjust = left > 0 ? 1 : -1
+        device.setVolume(volume + adjust, mergeRequests: true, completion: { (speakers, error) in
+            print(" ---> Turned volume: \(volume)+\(adjust) (\(String(describing: error)), \(String(describing: speakers))")
+            self.adjustVolume(device: device, volume: volume+adjust, left: left - adjust)
+        })
+    }
     
     func runTTModeSonosVolumeUp() {
         if let device = self.selectedDevice() {
             device.getVolume(TimeInterval(60*60), completion: { (volume, speakers, error) in
-                device.setVolume(volume + 4, mergeRequests: true, completion: { (speakers, error) in
-                    print(" ---> Turned volume: \(volume)+4 (\(error), \(speakers)")
-                })
+                self.adjustVolume(device: device, volume: volume, left: 3)
             })
         } else {
             self.beginConnectingToSonos()
@@ -193,9 +201,7 @@ class TTModeSonos: TTMode {
     func runTTModeSonosVolumeDown() {
         if let device = self.selectedDevice() {
             device.getVolume(TimeInterval(60*60), completion: { (volume, speakers, error) in
-                device.setVolume(volume - 4, mergeRequests: true, completion: { (speakers, error) in
-                    print(" ---> Turned volume: \(volume)-4 (\(error), \(speakers)")
-                })
+                self.adjustVolume(device: device, volume: volume, left: -3)
             })
         } else {
             self.beginConnectingToSonos()
@@ -224,18 +230,31 @@ class TTModeSonos: TTMode {
         }
     }
     
+    func doubleRunTTModeSonosPlayPause() {
+        self.runTTModeSonosPreviousTrack()
+    }
+    
     func runTTModeSonosPlay() {
         if let device = self.selectedDevice(coordinator: true) {
             device.playbackStatus({ (playing, body, error) in
                 if !playing {
                     device.togglePlayback({ (playing, body, errors) in
                         print(" ---> Paused sonos playback \(playing): \(body) \(error)")
+                        if !playing {
+                            device.togglePlayback({ (playing, body, errors) in
+                                print(" ---> Paused sonos playback twice \(playing): \(body) \(error)")
+                            })
+                        }
                     })
                 }
             })
         } else {
             self.beginConnectingToSonos()
         }
+    }
+
+    func doubleRunTTModeSonosPlay() {
+        self.runTTModeSonosPreviousTrack()
     }
     
     func runTTModeSonosPause() {
@@ -252,6 +271,10 @@ class TTModeSonos: TTMode {
         }
     }
     
+    func doubleRunTTModeSonosPause() {
+        self.runTTModeSonosPreviousTrack()
+    }
+
     func runTTModeSonosNextTrack() {
         if let device = self.selectedDevice(coordinator: true) {
             device.next({ (body, error) in
@@ -266,6 +289,9 @@ class TTModeSonos: TTMode {
         if let device = self.selectedDevice(coordinator: true) {
             device.previous({ (body, error) in
                 print((" ---> Previous track: \(body) \(error)"))
+                
+                // Sonos pauses when going to the preview track for some reason
+                self.runTTModeSonosPlay()
             })
         } else {
             self.beginConnectingToSonos()
