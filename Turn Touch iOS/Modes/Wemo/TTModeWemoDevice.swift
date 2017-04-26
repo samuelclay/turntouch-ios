@@ -65,7 +65,7 @@ class TTModeWemoDevice: NSObject {
                     }
                 }
             } else {
-                print(" ---> Wemo REST error: \(connectionError)")
+                print(" ---> Wemo REST error: \(String(describing: connectionError))")
             }
         }
         task.resume()
@@ -127,7 +127,7 @@ class TTModeWemoDevice: NSObject {
                     }
                 }
             } else {
-                print(" ---> Wemo REST error: \(connectionError)")
+                print(" ---> Wemo REST error: \(String(describing: connectionError))")
             }
         }
         task.resume()
@@ -177,7 +177,7 @@ class TTModeWemoDevice: NSObject {
                     }
                 }
             } else {
-                print(" ---> Wemo REST error: \(connectionError)")
+                print(" ---> Wemo REST error: \(String(describing: connectionError))")
             }
         }
         task.resume()

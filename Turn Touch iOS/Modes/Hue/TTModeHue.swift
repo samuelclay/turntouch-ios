@@ -300,7 +300,7 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
         if let sceneIdentifier = sceneIdentifier {
             bridgeSendAPI.recallSceneWithIdentifier(sceneIdentifier, inGroupWithIdentifier: roomIdentifier) { (errors: [Error]?) in
                 let error = errors?[0] ?? nil
-                print(" ---> Scene change: \(sceneName), \(sceneIdentifier) in \(roomIdentifier) (\(error))")
+                print(" ---> Scene change: \(sceneName), \(sceneIdentifier) in \(roomIdentifier) (\(String(describing: error)))")
                 if error.debugDescription.contains("for parameter, scene") {
                     self.ensureScenes()
                 }
@@ -436,7 +436,7 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
             
             DispatchQueue.main.async {
                 bridgeSendAPI.updateLightStateForId(light.identifier, withLightState: lightState, transitionTime: sceneTransition, completionHandler: { (errors) in
-                    print(" ---> Sleep light in \(sceneTransition): \(errors)")
+                    print(" ---> Sleep light in \(sceneTransition): \(String(describing: errors))")
                 })
             }
         }
@@ -523,7 +523,7 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
             
             DispatchQueue.main.async {
                 bridgeSendAPI.updateLightStateForId(light.identifier, withLightState: lightState, completionHandler: { (errors) in
-                    print(" ---> Finished random: \(errors)")
+                    print(" ---> Finished random: \(String(describing: errors))")
                 })
             }
         }
@@ -803,7 +803,7 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
         prefs.synchronize()
         
         if DEBUG_HUE {
-            print(" ---> Saved bridges (username: \(username)): \(foundBridges)")
+            print(" ---> Saved bridges (username: \(String(describing: username))): \(foundBridges)")
         }
     }
     
@@ -1059,7 +1059,7 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
             let sceneIdentifier = self.sceneForAction(sceneName, moment: moment)
             if sceneIdentifier != nil {
                 if self.foundScenes.contains(sceneIdentifier!) {
-                    print(" ---> Scene already found: \(sceneName) \(sceneIdentifier) \(self.foundScenes)")
+                    print(" ---> Scene already found: \(sceneName) \(String(describing: sceneIdentifier)) \(self.foundScenes)")
                     TTModeHue.sceneCreateGroup.leave()
                     return
                 }
@@ -1068,7 +1068,7 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
             }
             
             if case .timedOut = TTModeHue.sceneSemaphore.wait(timeout: DispatchTime.now() + DispatchTimeInterval.seconds(30)) {
-                print(" ---> Hue room timed out \(sceneIdentifier): \(sceneName)")
+                print(" ---> Hue room timed out \(String(describing: sceneIdentifier)): \(sceneName)")
             }
 
             print(" ---> Creating scene \(sceneName)")
@@ -1096,7 +1096,7 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
                         print(" ---> Saving hue light \(sceneIdentifier) #\(index): \(sceneName)")
                         let lightState = lightsHandler(light, index)
                         bridgeSendAPI.updateLightStateInScene(sceneIdentifier, lightIdentifier: light.identifier, withLightState: lightState, completionHandler: { (errors) in
-                            print(" ---> Hue light done \(sceneIdentifier) #\(index): \(sceneName) \(errors)")
+                            print(" ---> Hue light done \(sceneIdentifier) #\(index): \(sceneName) \(String(describing: errors))")
                             DispatchQueue.main.async {
                                 self.sceneUploadProgress = Float(index)/Float(lights.count)
                                 self.sceneDelegate?.sceneUploadProgress()
@@ -1203,7 +1203,7 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
         TTModeHue.hueSdk.stopHeartbeat()
         
         let cacheX = UserDefaults.standard.value(forKey: "CacheX")
-        print(" ---> Deleting Hue cache: \(cacheX)")
+        print(" ---> Deleting Hue cache: \(String(describing: cacheX))")
         UserDefaults.standard.removeObject(forKey: "CacheX")
         UserDefaults.standard.synchronize()
         

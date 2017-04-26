@@ -160,7 +160,7 @@ class TTModeNest: TTMode, NestSDKAuthorizationViewControllerDelegate {
         
         TTModeNest.dataManager.setThermostat(thermostat) { (thermostat, error) in
             if error != nil {
-                self.logMessage("Error while updating thermostat \(thermostat): \(error)")
+                self.logMessage("Error while updating thermostat \(String(describing: thermostat)): \(String(describing: error))")
                 return
             }
             
@@ -221,7 +221,7 @@ class TTModeNest: TTMode, NestSDKAuthorizationViewControllerDelegate {
             
             DispatchQueue.main.async {
                 if error != nil {
-                    print("Process error: \(error)")
+                    print("Process error: \(String(describing: error))")
                     self.cancelConnectingToNest()
                 } else if result != nil && (result?.isCancelled)! {
                     print("Cancelled")
@@ -303,7 +303,7 @@ class TTModeNest: TTMode, NestSDKAuthorizationViewControllerDelegate {
                 thermostat, error in
                 
                 if (error != nil) {
-                    self.logMessage("Error observing thermostat: \(error)")
+                    self.logMessage("Error observing thermostat: \(String(describing: error))")
                     return
                 }
                 if let thermostat = thermostat {

@@ -52,7 +52,7 @@ class TTModeHuePicker: TTOptionsDetailViewController, UITextFieldDelegate, UIPop
         let cache = TTModeHue.hueSdk.resourceCache
         
         guard let hueScenes = cache?.scenes, let hueRooms = cache?.groups else {
-            print(" ---> Hue options not ready yet, no scenes or groups: \(cache?.scenes) / \(cache?.groups)")
+            print(" ---> Hue options not ready yet, no scenes or groups: \(String(describing: cache?.scenes)) / \(String(describing: cache?.groups))")
             return
         }
         

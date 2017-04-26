@@ -320,7 +320,7 @@ class TTMode : NSObject, TTModeProtocol {
         let modeDirectionName = appDelegate().modeMap.directionName(modeDirection)
         let optionKey = "TT:mode:\(self.nameOfClass)-\(modeDirectionName):option:\(optionName)"
         let pref = prefs.object(forKey: optionKey)
-        print(" -> Setting mode option \(optionKey) from (\(pref)) to (\(optionValue))")
+        print(" -> Setting mode option \(optionKey) from (\(String(describing: pref))) to (\(optionValue))")
         
         prefs.set(optionValue, forKey: optionKey)
         prefs.synchronize()
@@ -383,7 +383,7 @@ class TTMode : NSObject, TTModeProtocol {
         let optionKey = "TT:mode:\(modeDirectionName):action:\(actionDirectionName):batchactions:\(batchAction.batchActionKey!):actionoption:\(optionName)"
         var pref = prefs.object(forKey: optionKey)
         if DEBUG_PREFS {
-            print(" -> Getting batch action options \(optionKey): \(pref)")
+            print(" -> Getting batch action options \(optionKey): \(String(describing: pref))")
         }
         if pref == nil {
             pref = self.defaultOption(batchAction.actionName, optionName: optionName)

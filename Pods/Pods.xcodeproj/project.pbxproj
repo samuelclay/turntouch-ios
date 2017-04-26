@@ -10,16 +10,16 @@
 		0044B0D357E181B361BFE0418B8AE3F1 /* JSONModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E68FC9F53FEDDBBD3B9B00C06F49CD3D /* JSONModel.m */; };
 		00636ABFFAE027FFC5C5F15F8C68E45A /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CFB4B96D5AD5B21E8FECC03C3CE47E2 /* CFNetwork.framework */; };
 		00C05031BBA5BA48A00FE41348F41BDA /* UIRefreshControl+AFNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = 3C5104A7856DF3EB0FA07CB19456B45F /* UIRefreshControl+AFNetworking.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		02AF8B96E19007790F4E1DBB31DC1B85 /* LegacyDFUService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A3C739F66E96852A2E4A3EE36304CA1 /* LegacyDFUService.swift */; };
+		01322E33B313EBAC8C9C39CF8A5E46BB /* DFUExecutor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72F8DEDFABBE09E42F6CE26A4AF880F4 /* DFUExecutor.swift */; };
 		03E99FAF135ACEE4247287C45BD84187 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3597C54AE99FA79B996BEDBB94AAC908 /* Utilities.swift */; };
 		046DDD630DDEA1EF6F38854A59D82424 /* OpenCloseSensorConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE40A89648878A169595D0A0926605C /* OpenCloseSensorConfig.swift */; };
 		086EB4A18B1D75028DE21114D78375BF /* NestSDKProductDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 09BAB809AA6D6936478A1ABF734A62F9 /* NestSDKProductDataModel.m */; };
 		0946806167A04CDC73709FE86536BC1B /* Zip-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 47D4341032CB72CC217686363A903BA1 /* Zip-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		094BAAAAA6D41A9E6A5D4F5D1C131CCF /* JSONModelArray.h in Headers */ = {isa = PBXBuildFile; fileRef = 6C63F5E14601629CE14A82ACBBE3B8E6 /* JSONModelArray.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		098EA1C961FF0A005E9664F8CE1E4E3E /* DFUServiceSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8DB43C1B194E324FCBF46431F429A5 /* DFUServiceSelector.swift */; };
 		09A6D1B068FD8C9F9A64FB3CCAF46378 /* JSONKeyMapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 13A6EB748E1C0BB5D6794FD59780F260 /* JSONKeyMapper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0AA36A1CE7F92CCB207155F9CE8E19DC /* NestSDKAuthorizationManagerAuthorizationResult.m in Sources */ = {isa = PBXBuildFile; fileRef = FAE44C4386A3D05079EB68C8347D01D2 /* NestSDKAuthorizationManagerAuthorizationResult.m */; };
 		0AB79688E7DE4D64E80B6CE114C3342B /* NestSDKProductResourceUse.h in Headers */ = {isa = PBXBuildFile; fileRef = B12489E961189E5A5F46F37FDF7028C2 /* NestSDKProductResourceUse.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		0B4523995B7ABC300D963EDA19884C96 /* SecureDFUControlPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4944293556D7D32AD72BD0D0C7AF852 /* SecureDFUControlPoint.swift */; };
 		0B7F9732663EF1180CB1655585E2FC85 /* Encoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 976952689965A8B7CBCE8D6373F7C89E /* Encoder.swift */; };
 		0C11011B58F53FC0448CB65E4BD72B37 /* GCDAsyncSocket.h in Headers */ = {isa = PBXBuildFile; fileRef = ED1D87F4FEBC2901B086AF3582FEEF44 /* GCDAsyncSocket.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0C30956B34C2827A362BDE2D6E168E12 /* SwiftyHue.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D822E38721F780A41292205E7704989 /* SwiftyHue.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -27,8 +27,11 @@
 		0CF37311119388680C995FB7E9638D3B /* JSONValueTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 115E125345B11FA6B30282934A490649 /* JSONValueTransformer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0D1FFD30267C0776FD3E88EFF51E312F /* UIImageView+AFNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = 795A5DD1F10E5D5E907BA6E33955BD12 /* UIImageView+AFNetworking.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0D4777F3EB761DE6A871FC70025C9235 /* NestSDKStructureDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 09773BF35391A79BFC47A51F2570B454 /* NestSDKStructureDataModel.m */; };
+		0D9F7CCBFC8144496C156C61020F26B6 /* DFUPeripheralDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0ACB5A5B128048DEC62012727DC6151 /* DFUPeripheralDelegate.swift */; };
 		0DD7767CC5C5285846B85077A171BF49 /* NestSDKWheres.h in Headers */ = {isa = PBXBuildFile; fileRef = 8097C960F78BF3772821530FA52B6681 /* NestSDKWheres.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0E50E3C4E549ED0E4BF1D945B40E6864 /* NestSDKProductLocation.h in Headers */ = {isa = PBXBuildFile; fileRef = 6127F495C4591A0BD3C686EADBA2FBA0 /* NestSDKProductLocation.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0FC0B9F2D6FC5740273559C790C9B4EE /* LegacyDFUPeripheral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AC978AF9983D44FAFDD08F79CCBE9E /* LegacyDFUPeripheral.swift */; };
+		10684EC843B5094D5E974B134A677717 /* DFUPeripheral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00607EE8AB09227B00CC9C7DA8E19D76 /* DFUPeripheral.swift */; };
 		10EB23E9ECC4B33E16933BB1EA560B6A /* Timeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F521700E65DC6B4E445544E4925CE6 /* Timeline.swift */; };
 		1294DE0E6595774B8D00DE2F1371A82C /* JSONHTTPClient.h in Headers */ = {isa = PBXBuildFile; fileRef = D638555677B7F49195B5DBB1E171AF0F /* JSONHTTPClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		134DDF253DA0C3E56E3FA0F669A37651 /* TemperatureSensorState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B27810B75E9281C00072BE5DDBA851 /* TemperatureSensorState.swift */; };
@@ -36,10 +39,9 @@
 		13D7EC4EB87909B002CFD2B193FA45DB /* JSONValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 112FA8D8FD87A9DF4BC5E26582DFE94C /* JSONValueTransformer.m */; };
 		140F458AB7312414FC423FEED70A3733 /* UIActivityIndicatorView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = FD92A976410D9D1D22CC21079C745B03 /* UIActivityIndicatorView+AFNetworking.m */; };
 		149FCF52F49C048B10BA4C646809316C /* RuleCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C8AEB639C3D3BE270D970F2BD2B71F /* RuleCondition.swift */; };
-		1521A78DC3CCD6049E180AC99DC6DD83 /* LoggerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF40BB9E4DBB21777AEA1C6DDF3B9C8 /* LoggerDelegate.swift */; };
 		15351109371A0A49DF018654F732DC95 /* NestSDKThermostat.h in Headers */ = {isa = PBXBuildFile; fileRef = 854F1204A58E31F88047C2AC1B21B523 /* NestSDKThermostat.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		15AB02AEE6262A2ABF77063288E0EAB2 /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220A2EDE1BE8D680A46EF824424CAB43 /* Double.swift */; };
 		15AFD9072E7034D3099734E11F655A12 /* NestSDKDataManagerHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C328B81122E46577E4FDD5081ED3EEC /* NestSDKDataManagerHelper.m */; };
+		15CB30AF7FDA60B14201718F7A3828F1 /* SecureDFUServiceInitiator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AF5E901C16B8A014826B2F04AB50C04 /* SecureDFUServiceInitiator.swift */; };
 		15E3D5DDA9EC9E2B6C7D09D2C8BC55AF /* NestSDKProductLocationDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 472453259ACCCA2E6338C0FF88A64262 /* NestSDKProductLocationDataModel.m */; };
 		16A35A6E729632DD6D3B31D98D9659B7 /* GenericFlagSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AD3AD3074C0341D1036C8DEF0CA7D8 /* GenericFlagSensor.swift */; };
 		1717DA647E21CEDE2D5838E9E6AF0ACB /* Gloss.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E48D89475CEE652DAB196489631DEE13 /* Gloss.framework */; };
@@ -47,13 +49,13 @@
 		19398E017EA6405F6CB0BA5D711F86C9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1496114AB10702CC5B15E329D6BA1013 /* Foundation.framework */; };
 		1A0BCEAC162787A543E45B44FCF6E634 /* LightState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15847713F5FA5ABE6E462E5A858E6FAC /* LightState.swift */; };
 		1B9EDEDC964E6B08F78920B4F4B9DB84 /* Alamofire-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = A1C079DF0470E749CC82A7D80ABC555C /* Alamofire-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1BB77E9BE15CF5EEC753C261A06F385B /* DFUPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E707018FE02619F607BB41C3F95702 /* DFUPacket.swift */; };
+		1C54A6B77203286061C3EA6504E8C610 /* ManifestFirmwareInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5389AEB3BFDCCBBCB6AB980417801AE2 /* ManifestFirmwareInfo.swift */; };
 		1C845F8441007558AE7386064FE833AD /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = B382058973F10E96EEFA0BF0F4FBEB57 /* zip.c */; };
 		1CBB0FA8277FE82233061DF62F22767D /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45EEFF28792F31DEFFD1BD7557FF6629 /* Security.framework */; };
-		1CCA821DFE6F8EC02D76AB85C5B92431 /* SecureDFUPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56BD84D65E6320C8EA202C9F14437E56 /* SecureDFUPacket.swift */; };
 		1DAE43C67B1018DA53F213A0185DC814 /* NestSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = B42AB561D737416F88AB42BA5482965A /* NestSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1DE19DE96390C69F6606153506FD205C /* GCDAsyncUdpSocket.h in Headers */ = {isa = PBXBuildFile; fileRef = AC991F8F18933A7CEF168D9FA106C9F9 /* GCDAsyncUdpSocket.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1E2A6D057E20BE8F5ED3E594F7B8C286 /* AFNetworking-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 149A361EC7DFA6B8E2F554F9973E4906 /* AFNetworking-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1E5062FD096EDDF190E68CD76882D96D /* iOSDFULibrary-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 421460F5BF0E76A64C507E71E12C6C93 /* iOSDFULibrary-dummy.m */; };
 		1EB630692A6927CABC750B8A980BC8C5 /* TemperatureSensorConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0070A8F704951AB45AC62F33C820B392 /* TemperatureSensorConfig.swift */; };
 		1FC2DBB9168E0C0EEE024E2B96BA81F1 /* HumiditySensorConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = E66B5020E97E65821F30A74AB134C8DA /* HumiditySensorConfig.swift */; };
 		21DE5900CA3DDEF60E78AEC6004D94A4 /* Rule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D322864BB8AB589BC511EEFAFD9CE7 /* Rule.swift */; };
@@ -61,8 +63,9 @@
 		2337882407D90DF0490B57F0397CD70B /* NestSDKMetadataDataModel.h in Headers */ = {isa = PBXBuildFile; fileRef = D04F12306956293F1B11E3D7B7C04E42 /* NestSDKMetadataDataModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		236413CBF53202398441DD6F4BAC1F2B /* OpenCloseSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38573E5A63E782123048D27E681F5343 /* OpenCloseSensor.swift */; };
 		23EFB184AD12FB1014FFC765CE0D710A /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45EEFF28792F31DEFFD1BD7557FF6629 /* Security.framework */; };
+		2519C86FCEAD3E52A40787A134BAD94A /* DFUStreamBin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F0970C714664F41221848F445AE29E /* DFUStreamBin.swift */; };
+		253AB194E391160253343A3E563E5CCD /* LegacyDFUPeripheralDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253DF6E82E4B1CA51D0CB464D95B43AD /* LegacyDFUPeripheralDelegate.swift */; };
 		254302657B536704F51338322996183D /* NestSDKProductResourceUseDataModel.h in Headers */ = {isa = PBXBuildFile; fileRef = FDDBBB0BA3B87F65F567C4BE247EFDD3 /* NestSDKProductResourceUseDataModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		257D501B3FB2B3C88BC1A5A69BA83CD7 /* ExperimentalButtonlessDFU.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE126158A54E5871326D72A16EA3FB48 /* ExperimentalButtonlessDFU.swift */; };
 		270C791A8BB7E656E1C11420115AF4B8 /* Log-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = DA4EF686AA3F8A55928A845DF2E760BF /* Log-dummy.m */; };
 		277DA319B999A3B8DCD66D1B300FC435 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1496114AB10702CC5B15E329D6BA1013 /* Foundation.framework */; };
 		28DB8048EC32242FE2B4640BAC90E97C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1496114AB10702CC5B15E329D6BA1013 /* Foundation.framework */; };
@@ -70,30 +73,25 @@
 		2AA2358951B341D1298F7699A556D1AC /* Formatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED9A9DF540F91C5E2B199F608991B63 /* Formatters.swift */; };
 		2AD71E34351A80D33DA08F37F08F7695 /* JSONKeyMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C3B65612753B37CBE9B90D06572CC6 /* JSONKeyMapper.m */; };
 		2B0705CC26A4CBEE32A5A60284AED35B /* UIButton+AFNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = C4714FBFCCD9BD729E35EBBED66D2B5E /* UIButton+AFNetworking.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		2B2484A6DAFA32E18EE7058AC927CCF9 /* LegacyDFUServiceInitiator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6491287D7E10C6FD3DB6C41705028DA0 /* LegacyDFUServiceInitiator.swift */; };
 		2C396D4A09547722251D602CBC47E291 /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FCDC259A8D3708FD91B945D773A0930 /* GCDAsyncSocket.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		2D280E657B7624066C8EC4962F04A153 /* SwitchSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E863BB3EF16A804DA74925F8476A2DEC /* SwitchSensor.swift */; };
 		2D3B5A40C16DA968B701C25526DC94BC /* Pods-Turn Touch iOS-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 15750F491A9622A9741B8A043FF35807 /* Pods-Turn Touch iOS-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2E357C7AF18C22C9D9EF61F5BE365135 /* IPScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937D56902C6A532F4C643065E5BE4517 /* IPScanner.swift */; };
-		2E6C3C73FA8B97E497388F2920342408 /* DFUPeripheralSelectorDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5336B79F65F66114ABC130D41023471A /* DFUPeripheralSelectorDelegate.swift */; };
 		2EF3479593AD6EF87A5D950C7F4DAF18 /* NestSDKProductResourceDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CE7C4CDE8A00F16A5699E8A4B73B108D /* NestSDKProductResourceDataModel.m */; };
 		2F82DEF9492FD2774889E79FBF3DC78C /* GenericStatusSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10F53D818C3D1437EC0F485853C66995 /* GenericStatusSensor.swift */; };
 		2FFDDA9B995A699608F8AF2433B288DC /* NestSDKAuthorizationManager.h in Headers */ = {isa = PBXBuildFile; fileRef = D06E5F0E8D59F1E1C6986D373470782A /* NestSDKAuthorizationManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		30C488B83E64A5C42DA44B280B94D293 /* AsyncUdpSocket.h in Headers */ = {isa = PBXBuildFile; fileRef = 681CB83BF808C8A77EF1510422D14D85 /* AsyncUdpSocket.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		30C84EC7453606FF91CCF27C5FC3913A /* SecureDFUPeripheralDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB8A02FE7196142631A36B97685372D /* SecureDFUPeripheralDelegate.swift */; };
 		3102F65B503038B6AF991C7F66B6FF7E /* NestSDKService.h in Headers */ = {isa = PBXBuildFile; fileRef = 541D59A5C4A99B22F5ED7232AF7FF5A9 /* NestSDKService.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3145CF29D7BDDB9415B3288BF74BEABE /* Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D2E54C8C25C1C48B212E72A9C2A642 /* Operators.swift */; };
 		32076D3DD644045CF79DFFEBB6BFF3F2 /* UIButton+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 22279C027AD7CAE45EB4B881493972D4 /* UIButton+AFNetworking.m */; };
-		324DF45ED3357CAA119EAA9D7DBB9E85 /* DFUControlPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7129143904431468C6F364BF1203BCF /* DFUControlPoint.swift */; };
+		3437D39A89FCCA78EC1575E17A524633 /* SecureDFUService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD83463598A2F9560CC95CDB75A4C010 /* SecureDFUService.swift */; };
 		34C88657FE7ABE9F833623F94952D253 /* UIProgressView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 46D596B49DCC8627E9E908E63D36C0A0 /* UIProgressView+AFNetworking.m */; };
-		3584309C9C2541AEA48E2B74C3DDA60D /* DFUStarterPeripheral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD3BA3130C58A42ED22BF0F33309A17 /* DFUStarterPeripheral.swift */; };
+		359752737A8C17F221B32FFACD30212B /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B78C02C99730ECBDFE1D79A1DCCB591 /* Data.swift */; };
 		35CBB7B255FD8D412AFCECBC4311A847 /* AFNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = 27D643CB93888A5CDEC5EFEEE87372E7 /* AFNetworking.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3626B94094672CB1C9DEA32B9F9502E1 /* TaskDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009023C12D4F5DCD9B242C1DA8329DFF /* TaskDelegate.swift */; };
-		363B82333E44E82267E47E4AE8B46B02 /* DFUPeripheralSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6021C2ED8063D7D2EC0E153086A57E48 /* DFUPeripheralSelector.swift */; };
 		3B07A5A59BCEF86BD70C54627F1D009F /* NUPNPScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = F069A023FBB20C98EC8D42F701057478 /* NUPNPScanner.swift */; };
-		3BD629B12DC96CC4BE80DC44AF9FCE7D /* DFUStreamHex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD1B4CE89AD7650F79861C600E1DA99 /* DFUStreamHex.swift */; };
 		3D92F4B0BCE4C557EE2FB30C86453D88 /* Pods-Turn Touch iOS-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B395AD42D1A3A41E95CB67524729411 /* Pods-Turn Touch iOS-dummy.m */; };
-		3DC8D32FF2B3D52D6501B507DE1EE668 /* SecureDFUService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1E57B4CCBECFEB1CB61314E69BC347 /* SecureDFUService.swift */; };
+		400464B8A4A6E5897B6C6B6F67DE4219 /* ButtonlessDFU.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DD6D572EA1D8AE922394776FAC9DB7C /* ButtonlessDFU.swift */; };
 		4178BA8F12F9E0403AA16BC10BFE1F2A /* NestSDKUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = DC4D076B9177F0F79335034F101E22F7 /* NestSDKUtils.m */; };
 		41D8CA60DAFF67BF3CFFFF62E4D98DA9 /* JSONModelClassProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B9F4B2A7169BE0B9DB2C9DCBE7E332 /* JSONModelClassProperty.m */; };
 		41DE3B87372A5A8822A1C7B41B8A492E /* ScannerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EF92EA9B121FB006F157C47CF8835B /* ScannerDelegate.swift */; };
@@ -101,15 +99,12 @@
 		422EC1D50B6D5D4075BECC35CE82868E /* HumiditySensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A498E50DC2A0254647DF4531E0E16C1 /* HumiditySensor.swift */; };
 		432964DCE521099CFF45A6042C5FD020 /* CocoaAsyncSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BD5040D7691A21FC4489DB033B90188 /* CocoaAsyncSocket.framework */; };
 		4347D7A955D5D527C4D6CF8FD6DFEB23 /* NestSDKSmokeCOAlarmDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BDEB9C1B554BE19B19BEAEC1F919DCB /* NestSDKSmokeCOAlarmDataModel.m */; };
-		4437E070109A3AEF263C76C444B3B233 /* SecureDFUPeripheral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DCDAC3C5A61F8526AAFAFC9102CC0CD /* SecureDFUPeripheral.swift */; };
 		4442D8453D210EFC13CFE2CAF862ED1D /* AFHTTPSessionManager.h in Headers */ = {isa = PBXBuildFile; fileRef = B036A710CD4626612BE32B0BFB22745D /* AFHTTPSessionManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		444ACAC5744015E446F09B3A0DC3AAE8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1496114AB10702CC5B15E329D6BA1013 /* Foundation.framework */; };
-		4472DA256EFDBFB7F2C248356B946B95 /* DFUPeripheral.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E780E329B6CC18DF7FE3C9DAED11C5 /* DFUPeripheral.swift */; };
 		44E2ED995B42563456DE597E25B11D8E /* NestSDKWheresDataModel.h in Headers */ = {isa = PBXBuildFile; fileRef = DAF4A220E8CB99FA2FC9F9BACC98E4BC /* NestSDKWheresDataModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		452F61ED5386C11F19A4F15D4EBC9471 /* TemperatureSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12671D88EB4D0BF8E7A982BB16072DC /* TemperatureSensor.swift */; };
 		45CA891CF3514EF57F673C8374DC263B /* GenericFlagSensorState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C000FC09BDDE8E711E3A7A8AE37DDC7 /* GenericFlagSensorState.swift */; };
 		45F802D04B3BE0CAEC586C2F3016027B /* UIActivityIndicatorView+AFNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = EACBC7A3E4EE41199FBD5419FED17A2B /* UIActivityIndicatorView+AFNetworking.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		462FD86D2E3E911441454D47F20EABA4 /* DFUService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31B26385FBEE7F40E0B88D57DBCDFDAA /* DFUService.swift */; };
 		46DD06768AC0242841ABF480CFE6F209 /* NestSDKDataModel.h in Headers */ = {isa = PBXBuildFile; fileRef = CACECF48F016195BEBC033D8F97EB696 /* NestSDKDataModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4721EBFCAA5A3A489AEE8B7F879DABFC /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45EEFF28792F31DEFFD1BD7557FF6629 /* Security.framework */; };
 		47C9B63B21365BBCB82778A0DC3330DF /* NestSDKDataModelProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = E32F63122D8E0E00FA932974F233F84B /* NestSDKDataModelProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -122,7 +117,6 @@
 		49CEC07B78BFAE4699B502DC6208E25D /* GenericFlagSensorConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57A3AB062DE64A6333753E88B354CB9 /* GenericFlagSensorConfig.swift */; };
 		4ADCE1BE96E43FA27B66FCE35B6E71A3 /* NestSDKProductLocationDataModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 21F8805DF28736E07C72A81FAC233202 /* NestSDKProductLocationDataModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4B12C32A76B1CE1E3EBA3FE5EF36FDD3 /* QuickZip.swift in Sources */ = {isa = PBXBuildFile; fileRef = C98C1E2DD8CF636D601FE4F396F46A44 /* QuickZip.swift */; };
-		4C3DBC954F9F35B7D7608E9D47C8CFB1 /* ZipArchive.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCB66CCB0292A7CA8CC43E3438ABF120 /* ZipArchive.swift */; };
 		4CF0E715B133A3C4D86A166ADC299472 /* PresenceSensorState.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED2258182D89A9E19259649831CC48B /* PresenceSensorState.swift */; };
 		4D0BF16AAECA32336AC7D61EEBFCB7EA /* SSKeychainQuery.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CA0CACAEE75CC4375C70B15E895FDD9 /* SSKeychainQuery.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4D1A2597EABFA48B92BFB5652D7B0E65 /* JSONModel-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = B28A2ED9C7E33E4B0971E2CCD79D380A /* JSONModel-dummy.m */; };
@@ -132,69 +126,66 @@
 		4EECC9C57D4B854F1ADDBDEB0B31D26A /* NestSDKError.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AAA08A85A53699D47D759AFCEE1C36B /* NestSDKError.m */; };
 		4FD921C5A28AF5844D46B1181ABFD5F9 /* JSONModelClassProperty.h in Headers */ = {isa = PBXBuildFile; fileRef = 7EB035408BB14EC4F2DDC93335D87AB9 /* JSONModelClassProperty.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		50595CFB680D00ACD54B5C489BDA217D /* Log.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFE634637278ADB9C9AF4DDC341466F2 /* Log.framework */; };
+		50D18CDC8CB1F47E501C5BDEED4B536F /* SecureDFUPeripheral.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACFFFC0CD64061EEAADBCA5E6B28C982 /* SecureDFUPeripheral.swift */; };
 		51047C1945103943F70BEADE83725630 /* UIWebView+AFNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = FB5BECBD8379826D1133BDCD06818607 /* UIWebView+AFNetworking.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		515DE98AE9BABB1892285CF1431A2FAE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1496114AB10702CC5B15E329D6BA1013 /* Foundation.framework */; };
+		523E999816F70DB5ACFFA9F77A0F014D /* LoggerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87F2484799906533DC8580427E71862 /* LoggerHelper.swift */; };
 		527C92E683EF10B7220E3FE130ACE3E5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1496114AB10702CC5B15E329D6BA1013 /* Foundation.framework */; };
 		5387216E723A3C68E851CA15573CDD71 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D39946C32FE2E248B71783508D2553 /* Request.swift */; };
 		54644D0942488BAB54D3CF3D304380DA /* NestSDKProduct.h in Headers */ = {isa = PBXBuildFile; fileRef = C6CE35FE0D4DA0B673B955DA8C99367E /* NestSDKProduct.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		55BBC80EE019F2A32FB5A4B547FF57ED /* unzip.h in Headers */ = {isa = PBXBuildFile; fileRef = 28C05254EE6F359480E1E2BAFD8D6DAC /* unzip.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		5644BF44151D5AB3F2CBB8EB6B6D6F44 /* DFUServiceInitiator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783AD3529B88F97EBA9B61E480D8B9FE /* DFUServiceInitiator.swift */; };
 		56A9A008EC1F8AE290912D3ABE0FCF26 /* NestSDKDeviceDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3886E3114888F4A9E6733FAA3DDF0113 /* NestSDKDeviceDataModel.m */; };
 		56D7404E5E6FCBE9FBCCF6008D562C1F /* NestSDKDataManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 8836A6A17ED695DEDB68E12829FF37CF /* NestSDKDataManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		584794AAFF3398ADA099058B92B3C496 /* NestSDKAccessTokenCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 6854EEE67C01442F8A3264F7E6C86E54 /* NestSDKAccessTokenCache.m */; };
 		5894C32B5FE5DD2778F15303962DC923 /* GCDAsyncUdpSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = C143BC1540CBB382BD60E1083B518A07 /* GCDAsyncUdpSocket.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		59D23731034D480FC7D6B5AE2B7FDFF2 /* DFUStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504928D4302BCCCFF9E3633B0A131E96 /* DFUStream.swift */; };
 		5A1D34D104D42B1EE399E23BCD7935A0 /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 384D6F29B17D4EC4833D7AA193E8CA5C /* AFURLResponseSerialization.m */; };
 		5AEFB30509EFFA2960F3ADEA84B95C45 /* SSKeychain.h in Headers */ = {isa = PBXBuildFile; fileRef = 5C58325A51EF310F035C5E5B9C130DA9 /* SSKeychain.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		5B79EE1FA0B18CCD252E9065DFABD834 /* IntelHex2BinConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 428C0BE2665D29D8CD2C5E38B01BBB6C /* IntelHex2BinConverter.m */; };
 		5C71D24ECB558E3000AB234197EB2C41 /* Gloss-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 9EB74D4B9581F8F6C4D5A3336D48DC2A /* Gloss-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5D3AAD33EE2A4C7B2F92EA81EB415076 /* SSKeychain-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 045E0063A2503AE4CA873643BDDD56A9 /* SSKeychain-dummy.m */; };
 		5E3EE12205B4426826B1E4BA7272DBAA /* NestSDKETA.h in Headers */ = {isa = PBXBuildFile; fileRef = 5FA637413AC4C9F04488043AF14F3BDA /* NestSDKETA.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5EF053B476F18A9E2962355CB1B1FE30 /* BridgeAccessConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C1337F2847584D54F4E96834101D29 /* BridgeAccessConfig.swift */; };
 		61200D01A1855D7920CEF835C8BE00B0 /* DispatchQueue+Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557D917937D4D272537B140D5AB17724 /* DispatchQueue+Alamofire.swift */; };
-		61CBAA381E8DAECDD3BDB958526E02C3 /* DFUController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0847B7D66E79DA84E5CB3E943F74ACE4 /* DFUController.swift */; };
 		61E645B87CBC6CA44AE05685E914021E /* NestSDKStructure.h in Headers */ = {isa = PBXBuildFile; fileRef = 8F38A9324C86D8B3FB90C309D46084F2 /* NestSDKStructure.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		62F65AD8DC4F0F9610F4B8B4738EC094 /* ServerTrustPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0897CEEA1E7BE3AB5604A349F234DD1 /* ServerTrustPolicy.swift */; };
 		63FA20E551A676306BE473A823D0DEFB /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E469C17183EBCE2AD2C7334B945887F /* Utilities.swift */; };
 		6411E714C4D2A9F3982981B5E0E59080 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CFB4B96D5AD5B21E8FECC03C3CE47E2 /* CFNetwork.framework */; };
+		6454653B7C3EE76C7AF11644A935D2F1 /* DFUService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD5947937340F527468E0B63ABBF27F /* DFUService.swift */; };
 		647CCEA028C1E3CD20A3544A9B30CFCD /* NestSDKAuthorizationManagerAuthorizationResult.h in Headers */ = {isa = PBXBuildFile; fileRef = 81761D0BD70E198E914B14DF8577E445 /* NestSDKAuthorizationManagerAuthorizationResult.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		649E78B5EA450FABDF5201E31F265FAB /* AFNetworkActivityIndicatorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C84B4ECBB661D79922DC477211C724E4 /* AFNetworkActivityIndicatorManager.m */; };
 		64AB95FFFED1A51A96D196AF4AFE82A0 /* NestSDKDeviceDataModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 6AAB7266C02B9685E0DF025F445469C2 /* NestSDKDeviceDataModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		64FB533082B32DE873C7826F88C4E840 /* ResourceCacheHeartbeatProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA01E612889039EA16DB1161A012FCA /* ResourceCacheHeartbeatProcessor.swift */; };
 		6573AF9ABA59AC8D1F52B07088197F71 /* AFSecurityPolicy.h in Headers */ = {isa = PBXBuildFile; fileRef = 2BE031332513031B17036B0FCF6C448F /* AFSecurityPolicy.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		665E1951D3AA233841442B7B1E28FF70 /* DFUVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41F33CB74078A7624C6D49080806980B /* DFUVersion.swift */; };
-		6660C3B944EC92C33E40D3C60D0B5DCC /* DFUServiceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE8DCCE75600DDEF791BAD003E8E2C7 /* DFUServiceDelegate.swift */; };
+		664824A193F98B342B49FF257417C50F /* ZipArchive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B16B94456168633793F733927D5638 /* ZipArchive.swift */; };
 		66C9E20233967B3C46A64EE45F20DD5D /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0FFF7E5DE8174CB65539FB3C5316D03 /* Group.swift */; };
-		66EF39EB9CE58B25D15D6370451A9CA4 /* LegacyDFUExecutor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE62253E433C392C0B50CEE642A46BD5 /* LegacyDFUExecutor.swift */; };
 		67B775CA7879DD54C05469989DF6CAA2 /* crypt.h in Headers */ = {isa = PBXBuildFile; fileRef = 29BCFACC655407CADF4E172845729CAC /* crypt.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		6996D92CD2A2BA1797BC653978845622 /* NestSDKMetadataDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C77E4DFD421B08EEB69799BCC4CC2734 /* NestSDKMetadataDataModel.m */; };
 		6A255DF63979F4128764F0EECE424B9E /* NestSDKSmokeCOAlarm.h in Headers */ = {isa = PBXBuildFile; fileRef = E631806A8DD8E02E59E7460480B4A2BF /* NestSDKSmokeCOAlarm.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6AADB14F5D822DD9C0049621D1348F9A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C0BBFCE06C991EAF49F68A0A74DBFA8 /* SystemConfiguration.framework */; };
 		6BBD8C4B1FF352AE3344E9719A7F4DD7 /* SWXMLHash+TypeConversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F3E41E7FDCF2300B7C9D3383735E9E /* SWXMLHash+TypeConversion.swift */; };
-		6E63EAEC9E138E1D1BF81EFB47D5E3BC /* LegacyDFUPeripheralDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54C3FB73BE70BA09B800D0BE66BF9E0 /* LegacyDFUPeripheralDelegate.swift */; };
 		6F767AA5FD679164FBD0F5289E187664 /* BridgeFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A19404752F646067FC529AEBC28F8C /* BridgeFinder.swift */; };
-		7063DB5BD812F0131C599EF9C9D8AC43 /* iOSDFULibrary-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = B47D594B6DC93D4C7E5CE44E45FF23C6 /* iOSDFULibrary-dummy.m */; };
 		713EEB85EF1D8DC85A188569EB923C6A /* JSONModel+networking.h in Headers */ = {isa = PBXBuildFile; fileRef = 1977EA006FD9D1810C69A209F98026E2 /* JSONModel+networking.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7225B32E9EA8BAC0687E3DF127E85445 /* NestSDKCameraDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E41F5EAA6E95F24945D7C5EFA27263BC /* NestSDKCameraDataModel.m */; };
 		729FCA7C2D4DF047F53A24AF918628AB /* SwiftyHue-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 714B22239DE48AC093B3AD686D083AFC /* SwiftyHue-dummy.m */; };
 		72BE65E696A388D4CC0D75BE461FEF1B /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A20B3AB2B2386D80D31809DA5142FA7B /* MobileCoreServices.framework */; };
 		7304D6FFBF6DD378C26A29C61C07959A /* GenericStatusSensorState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91BAA1E355BBE72CAEB938728F59D98F /* GenericStatusSensorState.swift */; };
 		73F1EA4FE9964EF8A6EFC672514F2BE6 /* NestSDKProductResource.h in Headers */ = {isa = PBXBuildFile; fileRef = AB2E844AC403D3B760E8DEB8A096840F /* NestSDKProductResource.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		74C89A46013F3F6AAA93D930F5C24472 /* Manifest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 544D387806E3CECFB98ABB70A8BB42C3 /* Manifest.swift */; };
 		74E0ACC236F2A7156D845064AB8FEAED /* SensorConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE40CD4903417DE83580BB64E96058F /* SensorConfig.swift */; };
 		750C58A46611056DB68820E5F397ED73 /* LoggerConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB596DC6C268AC4BE3D90A7ED1AB009 /* LoggerConfig.swift */; };
 		7515500C314CF57EAA3DBD1016DF20A3 /* NestSDKProductResourceUseDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B12FCFAF43771BED79BCA749F5C20555 /* NestSDKProductResourceUseDataModel.m */; };
-		752F6AE718819039CF2E00756745BF1C /* iOSDFULibrary-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 357D74F7033E4F34B9266339A9E8138D /* iOSDFULibrary-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		752F6AE718819039CF2E00756745BF1C /* iOSDFULibrary-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = FDB30200662A91D0B7FE16C20AB932D4 /* iOSDFULibrary-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		75C7DEE4980F6FF62EE095B0F812BC05 /* BridgeAuthenticator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C648FF32377F47D864B754F9B3065151 /* BridgeAuthenticator.swift */; };
 		76A35714431A1EB612DF919BF902CD7C /* Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 541341E9843D151DA914F045D847F132 /* Formatter.swift */; };
-		791DAA949CC3C23C1712F9FE562560BE /* DFUStreamZip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866B712046A3C7BEBB47DD5BF18EB09D /* DFUStreamZip.swift */; };
+		776499CEE8DF10BBAACE785C9F447A8E /* DFUStreamHex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202D1B20A24A704978BF58499A165939 /* DFUStreamHex.swift */; };
 		7935EECBDFDD5E46FF20F9BA20D1425A /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E2E80B0658C36F984CB61EB037C4A0D /* Logger.swift */; };
 		7A06120EA1857B0FD584CEB5CC0954EA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1496114AB10702CC5B15E329D6BA1013 /* Foundation.framework */; };
 		7A112C0F21A62CB6F1AA8D917A6EEA6C /* AFNetworkActivityIndicatorManager.h in Headers */ = {isa = PBXBuildFile; fileRef = EDFDF1BF0DA300E8F63368BFAA88F67A /* AFNetworkActivityIndicatorManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7A6FCED5CA8019083C4ED75366396460 /* HumiditySensorState.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA81D6AEDAB7F82E491DCF65B9B08372 /* HumiditySensorState.swift */; };
+		7A96B3BB4FBC7AE48D70426635BD9640 /* SecureDFUExecutor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCA967FC561EC6875A497BD4FBFDC00 /* SecureDFUExecutor.swift */; };
 		7B5FE28C7EA4122B0598738E54DBEBD8 /* SessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBE989ADB09E4D913768F6D2ADEE70C8 /* SessionDelegate.swift */; };
 		7B93C3406B20045F314DA985EE6FB023 /* Benchmarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CCF6E781D8A16433921FB0AB458837 /* Benchmarker.swift */; };
 		7B9A2435E174B381421D51EFDD529ADD /* NestSDKUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = A2E5A9DA06537002CEA1FA6D447A2490 /* NestSDKUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7C3B0307B141CBB8E4D9D0113138C400 /* SoftdeviceBootloaderInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5EAA617A4287C829413D1D1805EAE7 /* SoftdeviceBootloaderInfo.swift */; };
+		7C23B87D1D226CF5E7D3E94949CFEB3E /* DFUServiceInitiator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79744351A94B2AC26E5D62141AD0FB15 /* DFUServiceInitiator.swift */; };
 		7CE16B1BF75DF396768A0A3CFD968DB1 /* UIWebView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 15933D067E81405FB36F71B6D8B58981 /* UIWebView+AFNetworking.m */; };
 		7D195E545AB458470E1AB714F4E67715 /* NestSDKAccessToken.m in Sources */ = {isa = PBXBuildFile; fileRef = D1ACC77EF271B114D6889F64EB70FC56 /* NestSDKAccessToken.m */; };
 		7D8CC01E8C9EFFF9F4D65406CDE0AB66 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8779BC1C0A0C721BF9B2E5AF41CA20EB /* Result.swift */; };
@@ -207,10 +198,13 @@
 		82C1E946A9B21928D8A6D475D3E49930 /* SSKeychainQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = E25D6D4E3FACCDCDA45F4A6FD572F9DB /* SSKeychainQuery.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		84000992C9FB7C8A6DDD5450B460D3B4 /* DaylightSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27876C4516B76B2B644749240AD06E9E /* DaylightSensor.swift */; };
 		866088EE697383E5003A9FC2921F2877 /* NestSDKAuthorizationViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 5D9DDDE81BA6BB013F44AB43F1F8374A /* NestSDKAuthorizationViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		867CD2D647947D7D86EF724898A601DF /* LegacyDFUExecutor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E32A782DA3BB280147A509F8E70CAF99 /* LegacyDFUExecutor.swift */; };
+		8733CC03512833333E848F8C2A90A894 /* LegacyDFUService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D29F53ABA78998302991DBB2745FFE /* LegacyDFUService.swift */; };
 		8803BC4F4F3A5FB09774792F46269B20 /* BridgeSendAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD60621C9067BD9998C4F66505ABFB6 /* BridgeSendAPI.swift */; };
 		88F1E412F0EAE8D5DC3D561FF98F9A68 /* SwitchSensorConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C8B5843EDB3F37BFC15294C65DE556 /* SwitchSensorConfig.swift */; };
 		899F8529D3C5FB1C41ECF95278CF9E89 /* NestSDKCameraLastEventDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 23E99D57EEF55E6534B772C90F988351 /* NestSDKCameraLastEventDataModel.m */; };
 		8BC8BCCF43F0296FA595ABD7AB30AD8C /* JSONAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = 6FB38A4FA6106B658EF7F59464A9A433 /* JSONAPI.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8BE5EEDD0D189F165201A726C5B77C83 /* LegacyDFUServiceInitiator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895453C4CAB634DD60D261AEC83DF1D3 /* LegacyDFUServiceInitiator.swift */; };
 		8C2EFEECBABDF9B1C44810ADBB1D88F4 /* NSArray+JSONModel.h in Headers */ = {isa = PBXBuildFile; fileRef = F68125685104223D02F3EC4C568C7E44 /* NSArray+JSONModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8DE2D812B3BD5075AA9E57AE674EAED7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1496114AB10702CC5B15E329D6BA1013 /* Foundation.framework */; };
 		8E374CC2528CAFA11639941112C5E042 /* DaylightSensorConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F00EF8E28D00EE40E9D3B510EBAC52 /* DaylightSensorConfig.swift */; };
@@ -220,17 +214,18 @@
 		916B825072E218CD3CBD6E99422573ED /* NSDateFormatter+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5318381FA5727BB06505CEAA23F5A8C /* NSDateFormatter+Extension.swift */; };
 		9193F47F8252B8BB75D248B49D888D78 /* Zip.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BA18B953911B08A1ECE61B2B035E4FC /* Zip.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9264BD69AFA8EE74F0D7F0EBD74F762F /* UIImage+AFNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = DE522B9C74A9811E619792A662D69641 /* UIImage+AFNetworking.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		9361B1BA48C36AC1CF4C723E7915C37D /* DFUPeripheralDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9956A92AE690E3472D5186B7BBCE2C58 /* DFUPeripheralDelegate.swift */; };
 		938AD9ABCF6425165E1EE1848079EECE /* SwiftyHue-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = AFFE0B863D64FBC59934023FD82C1134 /* SwiftyHue-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		93DFC0CC12E763AE770017349EE009D1 /* AFNetworkReachabilityManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 1844425E67A483E3BEBE66DD98DFB34D /* AFNetworkReachabilityManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		93E94C7A6E3F76EFF1B4F17FE5D332B9 /* Manifest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF94DD7AB114A6EE6401D9E0C655A55 /* Manifest.swift */; };
+		941D05A452C1F2FCCFFD5A8B7A9EEF68 /* DFUStarterPeripheral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B6F09382C40BE7D334286587CECC98 /* DFUStarterPeripheral.swift */; };
 		948458DC0A9308A2D8C018C37FB7BBDD /* AFURLResponseSerialization.h in Headers */ = {isa = PBXBuildFile; fileRef = E1F2C2691A297756A43C714561F55BB6 /* AFURLResponseSerialization.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		950F6A52A644AFB81473077D46D6A130 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448D4A0ABEA5CCA63827AB6AF34FCFEF /* Data.swift */; };
+		958479F1EB708A42D9A7FDC184B99E68 /* SecureDFUPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 131EEC152E08E50355C77BE6E010C0E3 /* SecureDFUPacket.swift */; };
+		975B7FB1C5BFB02E56697335FEA425D7 /* DFUFirmware.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B17D4EEDB58089E40FCF38436DEE27 /* DFUFirmware.swift */; };
 		989BB99467CEE94D57D76ABAC4BC4F71 /* SoftwareUpdateStatusDeviceTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAED7A0D701B513155A00BE225EF985D /* SoftwareUpdateStatusDeviceTypes.swift */; };
 		989C4E055E2EE7B0FC42DC1D1C1FB714 /* Backup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72A86BD3248AF65D61D57239F61DB39D /* Backup.swift */; };
 		9A2CE39B3A5DC3FEC8A6E478C6EF9FA7 /* NestSDKETADataModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 58AA914001EAB39FD7F2811E4B2FA5DA /* NestSDKETADataModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9B1784EEAC87A6E8A399216415E83D4D /* NestSDKCameraLastEventDataModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 19A0DBF9300671849E74588350610279 /* NestSDKCameraLastEventDataModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9C79C35EAA9E874B59F131BAE16626B1 /* BridgeValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BF6B2DA07B5431D10CD77F9E8BC2FB /* BridgeValidator.swift */; };
-		9D6B70F1FBDA9819AA53102CE95A559C /* SecureDFUExecutor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF3ACA096D1288C3DF8B138AA08FD5C /* SecureDFUExecutor.swift */; };
 		9D706F11DA002F96274EB9EA62B7C95A /* Dictionary+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F4BA891568A52DCD38BF11053DDC70C /* Dictionary+Extension.swift */; };
 		9DBEA07CF16F2E809B32EC3E05E7FB73 /* NestSDKMacroses.h in Headers */ = {isa = PBXBuildFile; fileRef = 42C007048191C1B84ACAF3F06BA0F5D1 /* NestSDKMacroses.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9ED2BB2981896E0A39EFA365503F58CE /* AFError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D145506FD4BD5A9584B4F2621E7D19A /* AFError.swift */; };
@@ -242,7 +237,6 @@
 		A19EF65F57F51B11867BD76304CEB1ED /* NestSDKProductDataModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 29D79D7B77E552438743327F92B17265 /* NestSDKProductDataModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A1CABF1BEC70AED2EA86EB8ED5F1A05F /* JSONModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 320F3B6C25C1F2EE4559EA1412DD3667 /* JSONModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A2352E05DCE00256C8308441C09F9496 /* NestSDKDataManagerHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = A590E67B6B2403A40327B0B59CF7C75F /* NestSDKDataManagerHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A29716E55C9D6029716D51F111AD3BAA /* DFUFirmware.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13D14BC8A3248EE2156C73253F2D7633 /* DFUFirmware.swift */; };
 		A2A6F71B727312BD45CC7A4AAD7B0AB7 /* NetworkReachabilityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D0B3A87443189F27F52672F0C7787D /* NetworkReachabilityManager.swift */; };
 		A31CA3E12FED754E18441FB860D6EBE4 /* JSONModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFCFB485463B343E8C646EDC716DF189 /* JSONModel.framework */; };
 		A3591DEDA776B48C026E7F9144981E58 /* AFAutoPurgingImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = C3CC1CE035F26BBFEA9E7DA4043C1416 /* AFAutoPurgingImageCache.m */; };
@@ -255,7 +249,6 @@
 		A7586B38BE1733D775A68590F53D7F43 /* NestSDKProductSoftwareDataModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 0EE84BF69C98F64EDFF493F02EDAE627 /* NestSDKProductSoftwareDataModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A769CCDF85C8D057B5FBCB96938BA638 /* HeartbeatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21A9E68C33ED41008608301A5B37A02 /* HeartbeatManager.swift */; };
 		A76C1CF2410B8302DABE653EA027BDB9 /* NestSDKETADataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BBC6C315403F917CD0E74D497DF3B2E7 /* NestSDKETADataModel.m */; };
-		A8629D12FAB72ACAD4175D85E022F4D5 /* DFUStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE35EDA9C90A41146C88E5A99143304 /* DFUStream.swift */; };
 		A9EEEA7477981DEEBC72432DE9990A4B /* Alamofire-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5787B2B80F4BE7275B8579525756B3F4 /* Alamofire-dummy.m */; };
 		AA8EBD2830DE3940347331857719A522 /* JSONHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = F22765A4F6DF7FF52AC427A8381B8A03 /* JSONHTTPClient.m */; };
 		AB2FB5817BFC1FC4A5BD44E2D5767C24 /* JSONModel+networking.m in Sources */ = {isa = PBXBuildFile; fileRef = DD344595DE087AAB33797DF873579469 /* JSONModel+networking.m */; };
@@ -270,8 +263,10 @@
 		B0533FD55B74E5771C4A67584858CC28 /* SSKeychain-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 383A798611EF19113E0D725E576732F7 /* SSKeychain-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B16A078FC7FBC172A266A336AEF7F673 /* UIRefreshControl+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 246B3497EB369FA6A46B63FDD8D82F6B /* UIRefreshControl+AFNetworking.m */; };
 		B2700ABEF22E86196226DA6F7A3DD22F /* Scanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F321815F7AB1EFAF03A14A4C9DE36D /* Scanner.swift */; };
-		B3F25ADC850701A6919764AD1EAD34F2 /* LoggerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E67BE0E52635159840F286DF58BF42F7 /* LoggerHelper.swift */; };
+		B3013DB2565885D18384F41AE84CB8FE /* SoftdeviceBootloaderInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72039685AE84D7DFC726A1C0FEDEDD28 /* SoftdeviceBootloaderInfo.swift */; };
+		B363F0EB578D43CD79BE93FDDA32582A /* SecureDFUPeripheralDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827A51D38DEFAFA935A2A532F637790E /* SecureDFUPeripheralDelegate.swift */; };
 		B470D9A84B3693C1C337EB332B9B6322 /* TestRequester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57370BD3C03F70718F92C68B715C0058 /* TestRequester.swift */; };
+		B4FD35227C1800C253425D8271FC2DB8 /* DFUVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4B64BB9C5F6BA0804EE6DCE7337FF4 /* DFUVersion.swift */; };
 		B5252700B06A7CEE763E68B5ECF69C78 /* Zip-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 554C1D89C0B054743E42159F7D6D8FAB /* Zip-dummy.m */; };
 		B65FCF589DA398C3EFE0128064E510EC /* MultipartFormData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63593544CD907706AD4A4604FE267C0B /* MultipartFormData.swift */; };
 		B7F73EF253E5BEECEB1AEA339C728489 /* zip.h in Headers */ = {isa = PBXBuildFile; fileRef = 627F02560A19E3B72DD504DD359B82D4 /* zip.h */; settings = {ATTRIBUTES = (Project, ); }; };
@@ -279,10 +274,11 @@
 		BA2D29D9265012FAC7A88D9A8CCD9989 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7FCEBABE45389BB824C7D52CE612D3F /* CoreGraphics.framework */; };
 		BA5AC5FE9F72D8709AF5A29284758717 /* Log-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 17AA0925926DA4ECD7FF18AF29CC818F /* Log-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BBEFE2F9CEB73DC7BD97FFA66A0D9D4F /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E0ECCBF23283ECBA593F81EED0B490F /* Validation.swift */; };
+		BBF10223BBE7FA3BC2A166AE047CD744 /* crc32.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7945E648A346CC8605EA14C843E4D94 /* crc32.swift */; };
 		BC22E83FBE012D2A1B6B72B886832AF4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1496114AB10702CC5B15E329D6BA1013 /* Foundation.framework */; };
+		BD69F40211574CD9E7EA414022AB7614 /* DFUStreamZip.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83C415CD170FCD1BD5E549FE004164F /* DFUStreamZip.swift */; };
 		BE5C67A07E289FE1F9BE27335B159997 /* ParameterEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 820059FEC63105BAD5059EDB83CE8790 /* ParameterEncoding.swift */; };
 		BE9786F4A9F00427D790C68639DA789C /* NestSDKConnectWithNestButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BBC0BE044EBFC608E66BEAF2B7A4921 /* NestSDKConnectWithNestButton.m */; };
-		BF6C3BFDCE013088F862A9FFA2DE7CD6 /* SecureDFUServiceInitiator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737A3150F81DF1DD1B7E3BA9551ABFEA /* SecureDFUServiceInitiator.swift */; };
 		C0E8E08FE58DE774C942343E04646115 /* AppData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89245DFDF8E375B0A5A7B017C76B54F /* AppData.swift */; };
 		C292E1DF1D7600ECFA5644E27411AD9F /* ExtensionDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCC2416AAE2D8E2CF5ABCB9B7C17C93 /* ExtensionDictionary.swift */; };
 		C2A0DA1D5A60CAD0294B6DC4A3E03889 /* UIColor+NestBlue.h in Headers */ = {isa = PBXBuildFile; fileRef = 7108B92A6A35420F275FF6F39AC8C36C /* UIColor+NestBlue.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -290,12 +286,13 @@
 		C4797C9C981B49F1E8C2A2379E4F29CB /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0296794C2DC513CD532963C3AA3BBBA /* Error.swift */; };
 		C5230CA217CC773F80D22F33A91E06E0 /* BridgeResourcesCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7992D0334B72CCD594B4763FC70C461D /* BridgeResourcesCache.swift */; };
 		C63761C14B318FC07693B8793C08D924 /* NestSDKProductSoftware.h in Headers */ = {isa = PBXBuildFile; fileRef = C6468488BA307B386C8BE2D93B03F22A /* NestSDKProductSoftware.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C6549066C22F81E10F8071B78F44D0EC /* DFUPeripheralSelectorDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51B5DDF8C50BBE8E4F89F8F590F5A13 /* DFUPeripheralSelectorDelegate.swift */; };
 		C74B0091B3401AFC2A666FD8CE8BD170 /* PortalState.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5B139769CBC76B0B61A9C80D083BC8 /* PortalState.swift */; };
 		C79CB7E06911226EE9D2051D3828156B /* NestSDKDevice.h in Headers */ = {isa = PBXBuildFile; fileRef = B0FADC6E2AB2E17083938F4B90F3058B /* NestSDKDevice.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C83195C00D0A4ED165BBD30AB8F6ED0C /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F25642F8233E9FEF213E077BDF21178 /* Reachability.swift */; };
 		C86F2629C0401B5AC4B6B0CBBA80ACDE /* PresenceSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A65C6B6B7EC54CE91DD27D8ACBAA4C5A /* PresenceSensor.swift */; };
 		C885DABB9E5269404AE2D9A4C401D7B9 /* HueBridgeIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198CD4A4578D2F529941FCBEC285DA30 /* HueBridgeIcon.swift */; };
-		C8BC42883EE3C6487A78F59BDCF597A8 /* LegacyDFUPeripheral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327919B2AD167A55F894C0B6CA71D5D5 /* LegacyDFUPeripheral.swift */; };
+		C9481668EE25A75E3F03BD42CEB4636F /* SecureDFUControlPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FCC301F856CB49C302DBC8F4FC2A71B /* SecureDFUControlPoint.swift */; };
 		CA5A0E67361798C0833D40C61A40B918 /* RuleAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4349FEA95D9FF7D528A03D5482BA9C8D /* RuleAction.swift */; };
 		CB24403C5A8F17BA1531F46580830C28 /* BridgeResultParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462B6F37A93D1AB4F4855EAD09093817 /* BridgeResultParser.swift */; };
 		CB6D60925223897FFA2662667DF83E8A /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EC5A129D67E30A9D20C2718A8D98D11 /* Response.swift */; };
@@ -310,40 +307,44 @@
 		CEDCF93BB92984BDC66536BAB40A2488 /* NestSDKProductIdentificationDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D8E2CDF48C6EB05D17FDA21B9F63CB4 /* NestSDKProductIdentificationDataModel.m */; };
 		CF287829627F26B2EB4382B897D06A0E /* AFNetworking-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 84771F75232D2D2BDE3BB4A7ADD54290 /* AFNetworking-dummy.m */; };
 		CF8B539B607E7DECBDAE01330A6A49B2 /* HueBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE140E4DDA67BB8FA8BD857644E4DF7 /* HueBridge.swift */; };
-		D0005F53BCA7BC904E91F5DDF756F395 /* crc32.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D0D60D0463FDE69EB482448C4B30A73 /* crc32.swift */; };
+		CF9D92DCC22BEC637AFCCA5C8291C2FC /* DFUControlPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85C8D16D00AB1B73B7E57A88A50804C /* DFUControlPoint.swift */; };
 		D14D399983A924E23DDA8873B75A0712 /* NestSDKFirebaseService.h in Headers */ = {isa = PBXBuildFile; fileRef = C1E0FF82CB998FD7B5DB62EDEC12E9D8 /* NestSDKFirebaseService.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D2B25EDC91A9E93A3A099B1EB385E320 /* ZipUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B27D0BC6AB5262006A23EA92AF9BCB5 /* ZipUtilities.swift */; };
 		D2EC6C4B6209542028BE45AB18BEE103 /* SSKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 0905A2B8C315679CBAB98D39266D7E75 /* SSKeychain.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		D3706B90D2E8214B9E0881B85EC8AD1D /* ReplaceMe.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73109C0020C07C0925923381D687CB1 /* ReplaceMe.swift */; };
 		D3A718D0FA099F112B9E9EE1CC554C7F /* NestSDKWheresDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FB03A59EE1FF31DC1B118985C735EBE /* NestSDKWheresDataModel.m */; };
 		D416CC9D014759848DB89D15D4DD6FA3 /* AsyncSocket.h in Headers */ = {isa = PBXBuildFile; fileRef = 36BCBA395F1CFEBF84F70FB5CA3CC8BF /* AsyncSocket.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D490C2F75D77E34F4927D944CC8FCCAE /* DFUStreamBin.swift in Sources */ = {isa = PBXBuildFile; fileRef = E527D3834058BFD3C2C5C101554E4C4F /* DFUStreamBin.swift */; };
+		D419BA5A7DC20FBCB3D5726D349F5CAE /* IntelHex2BinConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 69CEBAF6DDAA05B37DD3C8A8CDB35707 /* IntelHex2BinConverter.m */; };
 		D4E80BD7EAAB83200183110578A80591 /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AD855FCDAB81598386F2B814CD335888 /* AFURLSessionManager.m */; };
 		D5A221B2D4A1196DDF63DC8950E0C2C8 /* NestSDKRESTService.h in Headers */ = {isa = PBXBuildFile; fileRef = EC65171D6E133440F960BA64B19F9E7E /* NestSDKRESTService.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D755535B0DF8EE88DBCCA40AF73A8CBE /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = 26F28A766F4E0308E0A3ABB06CAF9912 /* unzip.c */; };
 		D801081177851E9C3B70BEA9929882CA /* ReachabilitySwift-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = AB56A01507EBF85D0413E6E86B5E265E /* ReachabilitySwift-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D89066FE54BFCFA48CCD6C2DE72B1D5E /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6128161E505B31507B90E82E0AE24F00 /* Scene.swift */; };
-		DA62B954B4817184DDAFC4A8760AD25B /* ManifestFirmwareInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA66CCAAFBD36F097E8ED9723BCE4B38 /* ManifestFirmwareInfo.swift */; };
 		DB526B06DF1334BF5A0F005B2487D47F /* ScheduleCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AC584753CBFCE4802E836E52C882D6 /* ScheduleCommand.swift */; };
 		DC5F430689C54F8E1FEA311572696A25 /* Zip.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AED7408E019C31D0784D35A2AC5DBD6 /* Zip.framework */; };
 		DD887A93A200A87A51B3D00BD1B80D20 /* AFNetworkReachabilityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 04AFD6244C99DEA134A073104CCAFEC6 /* AFNetworkReachabilityManager.m */; };
 		DE97996EC1C292587E612C09828A9AE6 /* BridgeAuthenticatorDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E8D01A685FF79C1D486C0DBD3AA104 /* BridgeAuthenticatorDelegate.swift */; };
 		DEA76B98223A0D3DDFB2C038C2B778BC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1496114AB10702CC5B15E329D6BA1013 /* Foundation.framework */; };
 		E1247BDD2195F9EA1EA71B8583C5BDED /* Decoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = D496331E59B6EC80B40BE5717F3156F7 /* Decoder.swift */; };
-		E150143D27FBE04F2D73800E92BDCBD7 /* IntelHex2BinConverter.h in Headers */ = {isa = PBXBuildFile; fileRef = 877BEC47577647FD6F22737B76F72A86 /* IntelHex2BinConverter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E150143D27FBE04F2D73800E92BDCBD7 /* IntelHex2BinConverter.h in Headers */ = {isa = PBXBuildFile; fileRef = DEE8BA9A0046D0378FC77D42F781593E /* IntelHex2BinConverter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E1596EE5C601F8570252AB5ED2542613 /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C3727497B66D5DAD67030C4E4EC77E /* Double.swift */; };
 		E2351871DB3380442266FF58A430A514 /* NestSDKApplicationDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B891065C6D17C9F88A0E5CFC335A564A /* NestSDKApplicationDelegate.m */; };
 		E23B9A6F533461CB33C0FA6FB59E3AB2 /* UIKit+AFNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C3337ED495445DBD76C582E9AE03168 /* UIKit+AFNetworking.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E4214BBBD53DE8F4AEC5AEF3C91278FB /* WhitelistEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD78B8F69692405DDC3A0339F55CAFFE /* WhitelistEntry.swift */; };
-		E4B4511367E7EB6765F7C7ECE4DFF253 /* DFUServiceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCB5B9BEA95F2D3787EDA9710A5BBBA /* DFUServiceController.swift */; };
 		E5956CABF6B4CCBFB2FF99D36C7B62E4 /* NestSDKDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ACDEDCC5403F96CAE94AE56A5DE6D152 /* NestSDKDataManager.m */; };
 		E6679E50B1801DB62D44D7E55D6379FD /* ExtensionArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA73D8BADA9E689676C37A63A3564CB /* ExtensionArray.swift */; };
+		E6EFD83C3EA5EC920589ECE90956893D /* DFUServiceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B472897C2F6A4B95B086094E4B2CF99 /* DFUServiceDelegate.swift */; };
 		E7D830678460598D1341B33C77B51B7A /* NestSDKSmokeCOAlarmDataModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 1EEFAD210379701C654BA86339724F39 /* NestSDKSmokeCOAlarmDataModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E844802FAA3AA30FB5EE281288C8E2A6 /* DFUPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453A6E5A9304E657335AE9EFE3159C21 /* DFUPacket.swift */; };
+		E8E991B5C8C7B55BBEECB9A0A822D307 /* DFUController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 697C6A36ACFA84A777215273D47971D5 /* DFUController.swift */; };
 		EA7A506BE1AF0671D5274B53D4C61143 /* SoftwareUpdateStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633ADDCDA65B61E208075898BB704884 /* SoftwareUpdateStatus.swift */; };
 		EAF16633DB3C992CF975BE4A2932D41C /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 79FAC85EF29EC72381CB673ADB007184 /* AFHTTPSessionManager.m */; };
 		EB8CFCAE73C1966B886454EB68E356F0 /* JSONModelLib.h in Headers */ = {isa = PBXBuildFile; fileRef = 3246A435871F660404DB819690B07C7C /* JSONModelLib.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		ED23A1AB23CAD3DFA26AF915BEE2F085 /* DaylightSensorState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FEC7D83C33A1BC2F7D41546EE76A49 /* DaylightSensorState.swift */; };
 		ED3AD6E01EE3BF1611E738E4D418AE90 /* SWXMLHash-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 9C799E9BAAE16720E66A918C9B3ECC33 /* SWXMLHash-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EECC2055944AD402FC384B523811F67D /* DFUPeripheralSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13B5DA59FC040AD1C6BC34138A2CE81 /* DFUPeripheralSelector.swift */; };
 		EEE01FEEED5B5ADBBAFFBBF18979F7B4 /* NestSDKThermostatDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 22D177883B9C37D495517876161A3B73 /* NestSDKThermostatDataModel.m */; };
+		EEE56F6293B6F86444BED4CDC6234AAA /* LoggerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1372870404853D33F0940BEC9E44B3F /* LoggerDelegate.swift */; };
 		EF78C4457CD849AA004EB797EA115F2B /* NestSDKAuthorizationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D5BDC10F6279B2BC30DAA07BC7B43F6 /* NestSDKAuthorizationManager.m */; };
 		EF897F8116AA2045F6C944B2F9FF2D19 /* JSONModelError.m in Sources */ = {isa = PBXBuildFile; fileRef = 334609403312A6969CFAABAFCE25BA7D /* JSONModelError.m */; };
 		EFD264FC408EBF3BA2528E70B08DDD94 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFD569C8C638C4FB763DC6F79BABD14 /* Notifications.swift */; };
@@ -359,7 +360,6 @@
 		F4E6D6B19CEC15536F71832772D17B97 /* OpenCloseSensorState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EADC31DBDBBA415A607FC7B21A30022 /* OpenCloseSensorState.swift */; };
 		F5CEA9E62688FEB3FD3CDCE760889E8A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1496114AB10702CC5B15E329D6BA1013 /* Foundation.framework */; };
 		F69BE1ACA45E6FCB51D6DB147FB8C1D1 /* BridgeResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3914BAA15DA753756D3804E16EAB0552 /* BridgeResource.swift */; };
-		F6A204A5B428CABBAC973AE82FEE2784 /* DFUExecutor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FABDE6441FBCECBA01CAA3E0A011CCC /* DFUExecutor.swift */; };
 		F6BECD98B97CBFEBE2C96F0E9E72A6C0 /* ResponseSerialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A38F1FA254C8AAD6ED59AEA4000BA7 /* ResponseSerialization.swift */; };
 		F74861D230E8EA85A5FEED680D155C22 /* Gloss-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = EA5240AAB853050FFF0138EB8127532B /* Gloss-dummy.m */; };
 		F796C88605742734DF5171FF77A6D0B2 /* Light.swift in Sources */ = {isa = PBXBuildFile; fileRef = 677023B79612BFC425A54CA6B9E6349B /* Light.swift */; };
@@ -368,7 +368,7 @@
 		F8B3D3092ED0417E8CDF32033F6122F5 /* Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E19B01471F47D15619FDD5B2AB2F314 /* Alamofire.swift */; };
 		F90E80C078681B5F6EBC9374DDAA37DE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1496114AB10702CC5B15E329D6BA1013 /* Foundation.framework */; };
 		F9D56D0317295116ED27F720660DB435 /* NestSDKLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 23F03793302AC6F9C1C6574CF99A8A0C /* NestSDKLogger.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		FB03F80233DCC4DCCB295EA77E7E48A8 /* DFUServiceSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D51DEA8320E44E7F05ED7D9238AC46B /* DFUServiceSelector.swift */; };
+		FAC332B9C56587D7115FFEBCEF64C7DE /* DFUServiceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7F9550A5E33EC56BEAA7154037ECBB /* DFUServiceController.swift */; };
 		FBD459E8C61DACFE14398355EFDB1AD7 /* NestSDKCameraLastEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 85A89EF642522CD496C2AB57CCF44262 /* NestSDKCameraLastEvent.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FC06F196A47F2657455AA209102EBEF8 /* CocoaAsyncSocket-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E5BC7334CC3B7D9AC3A1598FF9D40EB /* CocoaAsyncSocket-dummy.m */; };
 		FCDF9951F7AA324D95C7DF3C51179AC5 /* NestSDKConnectWithNestButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A51F50D574830A0BE5F5FA015FF4CC8 /* NestSDKConnectWithNestButton.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -520,6 +520,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		00607EE8AB09227B00CC9C7DA8E19D76 /* DFUPeripheral.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DFUPeripheral.swift; path = iOSDFULibrary/Classes/Implementation/GenericDFU/DFUPeripheral.swift; sourceTree = "<group>"; };
 		0070A8F704951AB45AC62F33C820B392 /* TemperatureSensorConfig.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TemperatureSensorConfig.swift; path = Sources/Base/BridgeResourceModels/Sensors/TemperatureSensor/TemperatureSensorConfig.swift; sourceTree = "<group>"; };
 		0085275B9258CA553FCB2A2D17715C36 /* NestSDK-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "NestSDK-dummy.m"; sourceTree = "<group>"; };
 		009023C12D4F5DCD9B242C1DA8329DFF /* TaskDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TaskDelegate.swift; path = Source/TaskDelegate.swift; sourceTree = "<group>"; };
@@ -531,23 +532,25 @@
 		045E0063A2503AE4CA873643BDDD56A9 /* SSKeychain-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SSKeychain-dummy.m"; sourceTree = "<group>"; };
 		04AFD6244C99DEA134A073104CCAFEC6 /* AFNetworkReachabilityManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AFNetworkReachabilityManager.m; path = AFNetworking/AFNetworkReachabilityManager.m; sourceTree = "<group>"; };
 		056DD68E912F5B923E68106A8E300638 /* ReachabilitySwift.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = ReachabilitySwift.modulemap; sourceTree = "<group>"; };
-		0847B7D66E79DA84E5CB3E943F74ACE4 /* DFUController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DFUController.swift; path = iOSDFULibrary/Classes/Implementation/GenericDFU/DFUController.swift; sourceTree = "<group>"; };
 		0905A2B8C315679CBAB98D39266D7E75 /* SSKeychain.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SSKeychain.m; path = SSKeychain/SSKeychain.m; sourceTree = "<group>"; };
 		09773BF35391A79BFC47A51F2570B454 /* NestSDKStructureDataModel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NestSDKStructureDataModel.m; path = NestSDK/NestSDK/NestSDKStructureDataModel.m; sourceTree = "<group>"; };
 		09BAB809AA6D6936478A1ABF734A62F9 /* NestSDKProductDataModel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NestSDKProductDataModel.m; path = NestSDK/NestSDK/NestSDKProductDataModel.m; sourceTree = "<group>"; };
 		0A498E50DC2A0254647DF4531E0E16C1 /* HumiditySensor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HumiditySensor.swift; path = Sources/Base/BridgeResourceModels/Sensors/HumiditySensor/HumiditySensor.swift; sourceTree = "<group>"; };
 		0AE0578732A3648E23D992DA17EE9D46 /* BridgeConfiguration.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BridgeConfiguration.swift; path = Sources/Base/BridgeResourceModels/BridgeConfiguration.swift; sourceTree = "<group>"; };
 		0C30553F9EBA8F84883A161FB6284F8A /* Alamofire.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = Alamofire.modulemap; sourceTree = "<group>"; };
+		0DD6D572EA1D8AE922394776FAC9DB7C /* ButtonlessDFU.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ButtonlessDFU.swift; path = iOSDFULibrary/Classes/Implementation/SecureDFU/Characteristics/ButtonlessDFU.swift; sourceTree = "<group>"; };
 		0DE7C1779F5B84FDA8DC7D2C88155F78 /* iOSDFULibrary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = iOSDFULibrary.framework; path = iOSDFULibrary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0EE84BF69C98F64EDFF493F02EDAE627 /* NestSDKProductSoftwareDataModel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NestSDKProductSoftwareDataModel.h; path = NestSDK/NestSDK/NestSDKProductSoftwareDataModel.h; sourceTree = "<group>"; };
 		0F08BB8BAF0DD2F74D3707E593F178AB /* JSONModel-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "JSONModel-prefix.pch"; sourceTree = "<group>"; };
 		0F6042DBEE6310B9A7FF79BEB169DF7C /* ioapi.c */ = {isa = PBXFileReference; includeInIndex = 1; name = ioapi.c; path = Zip/minizip/ioapi.c; sourceTree = "<group>"; };
+		0FCC301F856CB49C302DBC8F4FC2A71B /* SecureDFUControlPoint.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SecureDFUControlPoint.swift; path = iOSDFULibrary/Classes/Implementation/SecureDFU/Characteristics/SecureDFUControlPoint.swift; sourceTree = "<group>"; };
 		10F53D818C3D1437EC0F485853C66995 /* GenericStatusSensor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GenericStatusSensor.swift; path = Sources/Base/BridgeResourceModels/Sensors/GenericStatusSensor/GenericStatusSensor.swift; sourceTree = "<group>"; };
 		112FA8D8FD87A9DF4BC5E26582DFE94C /* JSONValueTransformer.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = JSONValueTransformer.m; path = JSONModel/JSONModelTransformations/JSONValueTransformer.m; sourceTree = "<group>"; };
 		115E125345B11FA6B30282934A490649 /* JSONValueTransformer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JSONValueTransformer.h; path = JSONModel/JSONModelTransformations/JSONValueTransformer.h; sourceTree = "<group>"; };
+		11B16B94456168633793F733927D5638 /* ZipArchive.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ZipArchive.swift; path = iOSDFULibrary/Classes/Utilities/ZipArchive.swift; sourceTree = "<group>"; };
 		12EE0C5849693DBD5247B8B53A1999EA /* NestSDK-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "NestSDK-umbrella.h"; sourceTree = "<group>"; };
+		131EEC152E08E50355C77BE6E010C0E3 /* SecureDFUPacket.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SecureDFUPacket.swift; path = iOSDFULibrary/Classes/Implementation/SecureDFU/Characteristics/SecureDFUPacket.swift; sourceTree = "<group>"; };
 		13A6EB748E1C0BB5D6794FD59780F260 /* JSONKeyMapper.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JSONKeyMapper.h; path = JSONModel/JSONModelTransformations/JSONKeyMapper.h; sourceTree = "<group>"; };
-		13D14BC8A3248EE2156C73253F2D7633 /* DFUFirmware.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DFUFirmware.swift; path = iOSDFULibrary/Classes/Implementation/Firmware/DFUFirmware.swift; sourceTree = "<group>"; };
 		13F2DEBE4B843BE033C3E82C1BC855FF /* ReachabilitySwift-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ReachabilitySwift-prefix.pch"; sourceTree = "<group>"; };
 		1496114AB10702CC5B15E329D6BA1013 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		149A361EC7DFA6B8E2F554F9973E4906 /* AFNetworking-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "AFNetworking-umbrella.h"; sourceTree = "<group>"; };
@@ -561,28 +564,30 @@
 		17D322864BB8AB589BC511EEFAFD9CE7 /* Rule.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Rule.swift; path = Sources/Base/BridgeResourceModels/Rule/Rule.swift; sourceTree = "<group>"; };
 		17F4AB84A79E47C36BD0A7C6E1A0805E /* PresenceSensorConfig.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PresenceSensorConfig.swift; path = Sources/Base/BridgeResourceModels/Sensors/PresenceSensor/PresenceSensorConfig.swift; sourceTree = "<group>"; };
 		1844425E67A483E3BEBE66DD98DFB34D /* AFNetworkReachabilityManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AFNetworkReachabilityManager.h; path = AFNetworking/AFNetworkReachabilityManager.h; sourceTree = "<group>"; };
+		18AC978AF9983D44FAFDD08F79CCBE9E /* LegacyDFUPeripheral.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LegacyDFUPeripheral.swift; path = iOSDFULibrary/Classes/Implementation/LegacyDFU/Peripherals/LegacyDFUPeripheral.swift; sourceTree = "<group>"; };
 		1977EA006FD9D1810C69A209F98026E2 /* JSONModel+networking.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "JSONModel+networking.h"; path = "JSONModel/JSONModelNetworking/JSONModel+networking.h"; sourceTree = "<group>"; };
 		1987F106CDAA5ED6E7483E6DE7459D4B /* NestSDKAuthenticableService.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NestSDKAuthenticableService.h; path = NestSDK/NestSDK/NestSDKAuthenticableService.h; sourceTree = "<group>"; };
 		198CD4A4578D2F529941FCBEC285DA30 /* HueBridgeIcon.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HueBridgeIcon.swift; path = Sources/BridgeServices/BridgeFinder/HueBridgeIcon.swift; sourceTree = "<group>"; };
 		19A0DBF9300671849E74588350610279 /* NestSDKCameraLastEventDataModel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NestSDKCameraLastEventDataModel.h; path = NestSDK/NestSDK/NestSDKCameraLastEventDataModel.h; sourceTree = "<group>"; };
 		1A19DF977820FE6FB9AC7C02A057AAB6 /* Gloss.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Gloss.swift; path = Sources/Gloss.swift; sourceTree = "<group>"; };
 		1A94FFD1AEA5C35AF6A35EDA9091FF8B /* Schedule.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Schedule.swift; path = Sources/Base/BridgeResourceModels/Schedule/Schedule.swift; sourceTree = "<group>"; };
+		1AF5E901C16B8A014826B2F04AB50C04 /* SecureDFUServiceInitiator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SecureDFUServiceInitiator.swift; path = iOSDFULibrary/Classes/Implementation/SecureDFU/DFU/SecureDFUServiceInitiator.swift; sourceTree = "<group>"; };
+		1B472897C2F6A4B95B086094E4B2CF99 /* DFUServiceDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DFUServiceDelegate.swift; path = iOSDFULibrary/Classes/Implementation/DFUServiceDelegate.swift; sourceTree = "<group>"; };
 		1C000FC09BDDE8E711E3A7A8AE37DDC7 /* GenericFlagSensorState.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GenericFlagSensorState.swift; path = Sources/Base/BridgeResourceModels/Sensors/GenericFlagSensor/GenericFlagSensorState.swift; sourceTree = "<group>"; };
 		1CE0392878FD118D96398E2E94F44188 /* SwitchSensorState.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwitchSensorState.swift; path = Sources/Base/BridgeResourceModels/Sensors/SwitchSensor/SwitchSensorState.swift; sourceTree = "<group>"; };
 		1CF94005E43FA4320CE54B96119CD9D0 /* Gloss.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = Gloss.modulemap; sourceTree = "<group>"; };
 		1CFB4B96D5AD5B21E8FECC03C3CE47E2 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/CFNetwork.framework; sourceTree = DEVELOPER_DIR; };
-		1DCDAC3C5A61F8526AAFAFC9102CC0CD /* SecureDFUPeripheral.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SecureDFUPeripheral.swift; path = iOSDFULibrary/Classes/Implementation/SecureDFU/Peripheral/SecureDFUPeripheral.swift; sourceTree = "<group>"; };
 		1E2E80B0658C36F984CB61EB037C4A0D /* Logger.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Logger.swift; path = Source/Logger.swift; sourceTree = "<group>"; };
 		1E469C17183EBCE2AD2C7334B945887F /* Utilities.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Utilities.swift; path = Sources/Base/Utilities.swift; sourceTree = "<group>"; };
 		1ED9A9DF540F91C5E2B199F608991B63 /* Formatters.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Formatters.swift; path = Source/Extensions/Formatters.swift; sourceTree = "<group>"; };
 		1EEFAD210379701C654BA86339724F39 /* NestSDKSmokeCOAlarmDataModel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NestSDKSmokeCOAlarmDataModel.h; path = NestSDK/NestSDK/NestSDKSmokeCOAlarmDataModel.h; sourceTree = "<group>"; };
 		1F25642F8233E9FEF213E077BDF21178 /* Reachability.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Reachability.swift; path = Reachability/Reachability.swift; sourceTree = "<group>"; };
 		1FB03A59EE1FF31DC1B118985C735EBE /* NestSDKWheresDataModel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NestSDKWheresDataModel.m; path = NestSDK/NestSDK/NestSDKWheresDataModel.m; sourceTree = "<group>"; };
+		202D1B20A24A704978BF58499A165939 /* DFUStreamHex.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DFUStreamHex.swift; path = iOSDFULibrary/Classes/Utilities/Streams/DFUStreamHex.swift; sourceTree = "<group>"; };
 		2090319938F167D8BCAB5BC3AF6E9240 /* NestSDK.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = NestSDK.xcconfig; sourceTree = "<group>"; };
 		2092A0B419C3834F40A569B37FEA9E4C /* Gloss-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Gloss-prefix.pch"; sourceTree = "<group>"; };
 		21D2E54C8C25C1C48B212E72A9C2A642 /* Operators.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Operators.swift; path = Sources/Operators.swift; sourceTree = "<group>"; };
 		21F8805DF28736E07C72A81FAC233202 /* NestSDKProductLocationDataModel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NestSDKProductLocationDataModel.h; path = NestSDK/NestSDK/NestSDKProductLocationDataModel.h; sourceTree = "<group>"; };
-		220A2EDE1BE8D680A46EF824424CAB43 /* Double.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Double.swift; path = iOSDFULibrary/Classes/Utilities/Double.swift; sourceTree = "<group>"; };
 		22279C027AD7CAE45EB4B881493972D4 /* UIButton+AFNetworking.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIButton+AFNetworking.m"; path = "UIKit+AFNetworking/UIButton+AFNetworking.m"; sourceTree = "<group>"; };
 		227C0E5E515ADBFC8E359B447C0B9FFD /* Themes.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Themes.swift; path = Source/Extensions/Themes.swift; sourceTree = "<group>"; };
 		22D177883B9C37D495517876161A3B73 /* NestSDKThermostatDataModel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NestSDKThermostatDataModel.m; path = NestSDK/NestSDK/NestSDKThermostatDataModel.m; sourceTree = "<group>"; };
@@ -591,6 +596,8 @@
 		23F03793302AC6F9C1C6574CF99A8A0C /* NestSDKLogger.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NestSDKLogger.h; path = NestSDK/NestSDK/NestSDKLogger.h; sourceTree = "<group>"; };
 		246B3497EB369FA6A46B63FDD8D82F6B /* UIRefreshControl+AFNetworking.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIRefreshControl+AFNetworking.m"; path = "UIKit+AFNetworking/UIRefreshControl+AFNetworking.m"; sourceTree = "<group>"; };
 		24BF6B2DA07B5431D10CD77F9E8BC2FB /* BridgeValidator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BridgeValidator.swift; path = Sources/BridgeServices/BridgeFinder/Validator/BridgeValidator.swift; sourceTree = "<group>"; };
+		24D29F53ABA78998302991DBB2745FFE /* LegacyDFUService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LegacyDFUService.swift; path = iOSDFULibrary/Classes/Implementation/LegacyDFU/Services/LegacyDFUService.swift; sourceTree = "<group>"; };
+		253DF6E82E4B1CA51D0CB464D95B43AD /* LegacyDFUPeripheralDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LegacyDFUPeripheralDelegate.swift; path = iOSDFULibrary/Classes/Implementation/LegacyDFU/Peripherals/LegacyDFUPeripheralDelegate.swift; sourceTree = "<group>"; };
 		254AB113FA4A8D9144196E187490DC0A /* NestSDKError.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NestSDKError.h; path = NestSDK/NestSDK/NestSDKError.h; sourceTree = "<group>"; };
 		257397EEE8DC90F9BE1ED2159D1F5231 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		263151B82EFE67C337839EF6B109573D /* NestSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = NestSDK.framework; path = NestSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -601,7 +608,6 @@
 		29BCFACC655407CADF4E172845729CAC /* crypt.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = crypt.h; path = Zip/minizip/crypt.h; sourceTree = "<group>"; };
 		29D79D7B77E552438743327F92B17265 /* NestSDKProductDataModel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NestSDKProductDataModel.h; path = NestSDK/NestSDK/NestSDKProductDataModel.h; sourceTree = "<group>"; };
 		2A0FE5EAD895066DC1B4D61B12BD3426 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2A1E57B4CCBECFEB1CB61314E69BC347 /* SecureDFUService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SecureDFUService.swift; path = iOSDFULibrary/Classes/Implementation/SecureDFU/Services/SecureDFUService.swift; sourceTree = "<group>"; };
 		2A59EB4F89BD7CD1415DED7C53D20C44 /* NSArray+JSONModel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSArray+JSONModel.m"; path = "JSONModel/JSONModelCategories/NSArray+JSONModel.m"; sourceTree = "<group>"; };
 		2AD60621C9067BD9998C4F66505ABFB6 /* BridgeSendAPI.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BridgeSendAPI.swift; path = Sources/Base/BridgeSendAPI.swift; sourceTree = "<group>"; };
 		2AE894837056C19BE054E8A012C9AE60 /* Pods-Turn Touch iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Turn Touch iOS.release.xcconfig"; sourceTree = "<group>"; };
@@ -612,16 +618,13 @@
 		2C3337ED495445DBD76C582E9AE03168 /* UIKit+AFNetworking.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIKit+AFNetworking.h"; path = "UIKit+AFNetworking/UIKit+AFNetworking.h"; sourceTree = "<group>"; };
 		2CA0CACAEE75CC4375C70B15E895FDD9 /* SSKeychainQuery.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SSKeychainQuery.h; path = SSKeychain/SSKeychainQuery.h; sourceTree = "<group>"; };
 		311B286C0A130CA01B941A76D773D15D /* NestSDKRESTService.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NestSDKRESTService.m; path = NestSDK/NestSDK/NestSDKRESTService.m; sourceTree = "<group>"; };
-		31B26385FBEE7F40E0B88D57DBCDFDAA /* DFUService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DFUService.swift; path = iOSDFULibrary/Classes/Implementation/GenericDFU/DFUService.swift; sourceTree = "<group>"; };
 		320F3B6C25C1F2EE4559EA1412DD3667 /* JSONModel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JSONModel.h; path = JSONModel/JSONModel/JSONModel.h; sourceTree = "<group>"; };
 		3246A435871F660404DB819690B07C7C /* JSONModelLib.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JSONModelLib.h; path = JSONModel/JSONModelLib.h; sourceTree = "<group>"; };
-		327919B2AD167A55F894C0B6CA71D5D5 /* LegacyDFUPeripheral.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LegacyDFUPeripheral.swift; path = iOSDFULibrary/Classes/Implementation/LegacyDFU/Peripherals/LegacyDFUPeripheral.swift; sourceTree = "<group>"; };
 		33434581AE12A691897DD9C2E3218A92 /* NestSDKApplicationDelegate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NestSDKApplicationDelegate.h; path = NestSDK/NestSDK/NestSDKApplicationDelegate.h; sourceTree = "<group>"; };
 		334609403312A6969CFAABAFCE25BA7D /* JSONModelError.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = JSONModelError.m; path = JSONModel/JSONModel/JSONModelError.m; sourceTree = "<group>"; };
 		33A38F1FA254C8AAD6ED59AEA4000BA7 /* ResponseSerialization.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ResponseSerialization.swift; path = Source/ResponseSerialization.swift; sourceTree = "<group>"; };
 		33B27810B75E9281C00072BE5DDBA851 /* TemperatureSensorState.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TemperatureSensorState.swift; path = Sources/Base/BridgeResourceModels/Sensors/TemperatureSensor/TemperatureSensorState.swift; sourceTree = "<group>"; };
 		33E737512F5201FB8BDC516A6C00CE05 /* NestSDKThermostatDataModel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NestSDKThermostatDataModel.h; path = NestSDK/NestSDK/NestSDKThermostatDataModel.h; sourceTree = "<group>"; };
-		357D74F7033E4F34B9266339A9E8138D /* iOSDFULibrary-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "iOSDFULibrary-umbrella.h"; sourceTree = "<group>"; };
 		3597C54AE99FA79B996BEDBB94AAC908 /* Utilities.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Utilities.swift; path = "Source/Supporting Files/Utilities.swift"; sourceTree = "<group>"; };
 		36BCBA395F1CFEBF84F70FB5CA3CC8BF /* AsyncSocket.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AsyncSocket.h; path = Source/RunLoop/AsyncSocket.h; sourceTree = "<group>"; };
 		3708E6F2FEB275666DCA0FAB12455A26 /* SessionManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SessionManager.swift; path = Source/SessionManager.swift; sourceTree = "<group>"; };
@@ -635,23 +638,22 @@
 		38F00EF8E28D00EE40E9D3B510EBAC52 /* DaylightSensorConfig.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DaylightSensorConfig.swift; path = Sources/Base/BridgeResourceModels/Sensors/DaylightSensor/DaylightSensorConfig.swift; sourceTree = "<group>"; };
 		3914BAA15DA753756D3804E16EAB0552 /* BridgeResource.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BridgeResource.swift; path = Sources/Base/BridgeResourceModels/BridgeResource.swift; sourceTree = "<group>"; };
 		39AD7FF278F1C801A6B9C59418DB6EF8 /* CocoaAsyncSocket.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = CocoaAsyncSocket.framework; path = CocoaAsyncSocket.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		39B17D4EEDB58089E40FCF38436DEE27 /* DFUFirmware.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DFUFirmware.swift; path = iOSDFULibrary/Classes/Implementation/Firmware/DFUFirmware.swift; sourceTree = "<group>"; };
 		3AC76EE9F357C28B5D6C4C464C364DF0 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3AED7408E019C31D0784D35A2AC5DBD6 /* Zip.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Zip.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B103CCA1630CDA440B74B2625374AE2 /* AFURLSessionManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AFURLSessionManager.h; path = AFNetworking/AFURLSessionManager.h; sourceTree = "<group>"; };
 		3BA18B953911B08A1ECE61B2B035E4FC /* Zip.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Zip.h; path = Zip/Zip.h; sourceTree = "<group>"; };
 		3C5104A7856DF3EB0FA07CB19456B45F /* UIRefreshControl+AFNetworking.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIRefreshControl+AFNetworking.h"; path = "UIKit+AFNetworking/UIRefreshControl+AFNetworking.h"; sourceTree = "<group>"; };
-		3CE35EDA9C90A41146C88E5A99143304 /* DFUStream.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DFUStream.swift; path = iOSDFULibrary/Classes/Utilities/Streams/DFUStream.swift; sourceTree = "<group>"; };
-		3D51DEA8320E44E7F05ED7D9238AC46B /* DFUServiceSelector.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DFUServiceSelector.swift; path = iOSDFULibrary/Classes/Implementation/DFUSelector/DFUServiceSelector.swift; sourceTree = "<group>"; };
+		3C8DB43C1B194E324FCBF46431F429A5 /* DFUServiceSelector.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DFUServiceSelector.swift; path = iOSDFULibrary/Classes/Implementation/DFUSelector/DFUServiceSelector.swift; sourceTree = "<group>"; };
 		3DE40CD4903417DE83580BB64E96058F /* SensorConfig.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SensorConfig.swift; path = Sources/Base/BridgeResourceModels/Sensors/SensorConfig.swift; sourceTree = "<group>"; };
 		3F8E4E3C0973C2CBE2FDCD1CC73AE7FD /* Gloss.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Gloss.xcconfig; sourceTree = "<group>"; };
 		404680DD898710E68B2EADFDA5356658 /* JSONAPI.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = JSONAPI.m; path = JSONModel/JSONModelNetworking/JSONAPI.m; sourceTree = "<group>"; };
-		41F33CB74078A7624C6D49080806980B /* DFUVersion.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DFUVersion.swift; path = iOSDFULibrary/Classes/Implementation/LegacyDFU/Characteristics/DFUVersion.swift; sourceTree = "<group>"; };
-		428C0BE2665D29D8CD2C5E38B01BBB6C /* IntelHex2BinConverter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = IntelHex2BinConverter.m; path = iOSDFULibrary/Classes/Utilities/HexToBinConverter/IntelHex2BinConverter.m; sourceTree = "<group>"; };
+		421460F5BF0E76A64C507E71E12C6C93 /* iOSDFULibrary-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "iOSDFULibrary-dummy.m"; sourceTree = "<group>"; };
 		42C007048191C1B84ACAF3F06BA0F5D1 /* NestSDKMacroses.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NestSDKMacroses.h; path = NestSDK/NestSDK/NestSDKMacroses.h; sourceTree = "<group>"; };
 		4349FEA95D9FF7D528A03D5482BA9C8D /* RuleAction.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RuleAction.swift; path = Sources/Base/BridgeResourceModels/Rule/RuleAction.swift; sourceTree = "<group>"; };
 		434E9233726B5552DC5D3281732086DD /* AFSecurityPolicy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AFSecurityPolicy.m; path = AFNetworking/AFSecurityPolicy.m; sourceTree = "<group>"; };
 		4412678D28DECA2E2DAC8C1C161A66F6 /* NestSDKProductResourceDataModel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NestSDKProductResourceDataModel.h; path = NestSDK/NestSDK/NestSDKProductResourceDataModel.h; sourceTree = "<group>"; };
-		448D4A0ABEA5CCA63827AB6AF34FCFEF /* Data.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Data.swift; path = iOSDFULibrary/Classes/Utilities/Data.swift; sourceTree = "<group>"; };
+		453A6E5A9304E657335AE9EFE3159C21 /* DFUPacket.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DFUPacket.swift; path = iOSDFULibrary/Classes/Implementation/LegacyDFU/Characteristics/DFUPacket.swift; sourceTree = "<group>"; };
 		45EEFF28792F31DEFFD1BD7557FF6629 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
 		462B6F37A93D1AB4F4855EAD09093817 /* BridgeResultParser.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BridgeResultParser.swift; path = Sources/BridgeServices/BridgeFinder/Validator/BridgeResultParser.swift; sourceTree = "<group>"; };
 		46D596B49DCC8627E9E908E63D36C0A0 /* UIProgressView+AFNetworking.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIProgressView+AFNetworking.m"; path = "UIKit+AFNetworking/UIProgressView+AFNetworking.m"; sourceTree = "<group>"; };
@@ -660,35 +662,29 @@
 		47A19404752F646067FC529AEBC28F8C /* BridgeFinder.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BridgeFinder.swift; path = Sources/BridgeServices/BridgeFinder/BridgeFinder.swift; sourceTree = "<group>"; };
 		47D4341032CB72CC217686363A903BA1 /* Zip-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Zip-umbrella.h"; sourceTree = "<group>"; };
 		487E0252D31105B66E01263DB12BFA12 /* CocoaAsyncSocket.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = CocoaAsyncSocket.xcconfig; sourceTree = "<group>"; };
-		4A3C739F66E96852A2E4A3EE36304CA1 /* LegacyDFUService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LegacyDFUService.swift; path = iOSDFULibrary/Classes/Implementation/LegacyDFU/Services/LegacyDFUService.swift; sourceTree = "<group>"; };
 		4B766E9AEAB690DCFA127118EF59745E /* JSONModel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = JSONModel.framework; path = JSONModel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BBC0BE044EBFC608E66BEAF2B7A4921 /* NestSDKConnectWithNestButton.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NestSDKConnectWithNestButton.m; path = NestSDK/NestSDK/NestSDKConnectWithNestButton.m; sourceTree = "<group>"; };
 		4BE3B63AA1CB17C357670FBF2DE0B7D5 /* Log.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Log.framework; path = Log.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C0C57B3DF060F8B3F8E7378FD0C6AF1 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4C328B81122E46577E4FDD5081ED3EEC /* NestSDKDataManagerHelper.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NestSDKDataManagerHelper.m; path = NestSDK/NestSDK/NestSDKDataManagerHelper.m; sourceTree = "<group>"; };
 		4CCC0A28BB26B36971A509DF5D9B76A0 /* SSKeychain.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SSKeychain.xcconfig; sourceTree = "<group>"; };
-		4CE8DCCE75600DDEF791BAD003E8E2C7 /* DFUServiceDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DFUServiceDelegate.swift; path = iOSDFULibrary/Classes/Implementation/DFUServiceDelegate.swift; sourceTree = "<group>"; };
-		4DD1B4CE89AD7650F79861C600E1DA99 /* DFUStreamHex.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DFUStreamHex.swift; path = iOSDFULibrary/Classes/Utilities/Streams/DFUStreamHex.swift; sourceTree = "<group>"; };
-		4DF40BB9E4DBB21777AEA1C6DDF3B9C8 /* LoggerDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LoggerDelegate.swift; path = iOSDFULibrary/Classes/Utilities/Logging/LoggerDelegate.swift; sourceTree = "<group>"; };
 		4E15D408F16CBD0CBAC2727C01225281 /* BridgeFinderDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BridgeFinderDelegate.swift; path = Sources/BridgeServices/BridgeFinder/BridgeFinderDelegate.swift; sourceTree = "<group>"; };
 		4FDAC50542BB28520F143A4CEE76875B /* SwiftyHue.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = SwiftyHue.modulemap; sourceTree = "<group>"; };
 		4FEBA5A0DA8308F90F763EBE79CFFB18 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		502FEC851D597522D8A475C933A0ABD1 /* ReachabilitySwift.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = ReachabilitySwift.xcconfig; sourceTree = "<group>"; };
-		5336B79F65F66114ABC130D41023471A /* DFUPeripheralSelectorDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DFUPeripheralSelectorDelegate.swift; path = iOSDFULibrary/Classes/Implementation/DFUPeripheralSelectorDelegate.swift; sourceTree = "<group>"; };
+		504928D4302BCCCFF9E3633B0A131E96 /* DFUStream.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DFUStream.swift; path = iOSDFULibrary/Classes/Utilities/Streams/DFUStream.swift; sourceTree = "<group>"; };
+		5389AEB3BFDCCBBCB6AB980417801AE2 /* ManifestFirmwareInfo.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ManifestFirmwareInfo.swift; path = iOSDFULibrary/Classes/Utilities/DFUPackage/Manifest/ManifestFirmwareInfo.swift; sourceTree = "<group>"; };
 		541341E9843D151DA914F045D847F132 /* Formatter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Formatter.swift; path = Source/Formatter.swift; sourceTree = "<group>"; };
 		541D59A5C4A99B22F5ED7232AF7FF5A9 /* NestSDKService.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NestSDKService.h; path = NestSDK/NestSDK/NestSDKService.h; sourceTree = "<group>"; };
-		544D387806E3CECFB98ABB70A8BB42C3 /* Manifest.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Manifest.swift; path = iOSDFULibrary/Classes/Utilities/DFUPackage/Manifest/Manifest.swift; sourceTree = "<group>"; };
 		54C3B65612753B37CBE9B90D06572CC6 /* JSONKeyMapper.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = JSONKeyMapper.m; path = JSONModel/JSONModelTransformations/JSONKeyMapper.m; sourceTree = "<group>"; };
 		554C1D89C0B054743E42159F7D6D8FAB /* Zip-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Zip-dummy.m"; sourceTree = "<group>"; };
 		557D917937D4D272537B140D5AB17724 /* DispatchQueue+Alamofire.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "DispatchQueue+Alamofire.swift"; path = "Source/DispatchQueue+Alamofire.swift"; sourceTree = "<group>"; };
 		55E26644D5F01AB39255E02FA022FBF1 /* JSONModelError.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JSONModelError.h; path = JSONModel/JSONModel/JSONModelError.h; sourceTree = "<group>"; };
-		56BD84D65E6320C8EA202C9F14437E56 /* SecureDFUPacket.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SecureDFUPacket.swift; path = iOSDFULibrary/Classes/Implementation/SecureDFU/Characteristics/SecureDFUPacket.swift; sourceTree = "<group>"; };
 		57370BD3C03F70718F92C68B715C0058 /* TestRequester.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TestRequester.swift; path = Sources/Base/TestRequester.swift; sourceTree = "<group>"; };
 		5787B2B80F4BE7275B8579525756B3F4 /* Alamofire-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Alamofire-dummy.m"; sourceTree = "<group>"; };
 		58AA914001EAB39FD7F2811E4B2FA5DA /* NestSDKETADataModel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NestSDKETADataModel.h; path = NestSDK/NestSDK/NestSDKETADataModel.h; sourceTree = "<group>"; };
 		593AF467119A777EED3D5694D976A3BC /* NestSDKAccessToken.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NestSDKAccessToken.h; path = NestSDK/NestSDK/NestSDKAccessToken.h; sourceTree = "<group>"; };
 		5AB9DAE53F9DC1121A89A110EE3C8475 /* SwiftyHue.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SwiftyHue.xcconfig; sourceTree = "<group>"; };
-		5B5A7C20E099C0CC90ABE724A2F8B54F /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5BDEB9C1B554BE19B19BEAEC1F919DCB /* NestSDKSmokeCOAlarmDataModel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NestSDKSmokeCOAlarmDataModel.m; path = NestSDK/NestSDK/NestSDKSmokeCOAlarmDataModel.m; sourceTree = "<group>"; };
 		5BE140E4DDA67BB8FA8BD857644E4DF7 /* HueBridge.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HueBridge.swift; path = Sources/BridgeServices/BridgeFinder/HueBridge.swift; sourceTree = "<group>"; };
 		5C58325A51EF310F035C5E5B9C130DA9 /* SSKeychain.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SSKeychain.h; path = SSKeychain/SSKeychain.h; sourceTree = "<group>"; };
@@ -696,7 +692,6 @@
 		5F4BA891568A52DCD38BF11053DDC70C /* Dictionary+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Dictionary+Extension.swift"; path = "Sources/Base/Dictionary+Extension.swift"; sourceTree = "<group>"; };
 		5FA637413AC4C9F04488043AF14F3BDA /* NestSDKETA.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NestSDKETA.h; path = NestSDK/NestSDK/NestSDKETA.h; sourceTree = "<group>"; };
 		5FCDC259A8D3708FD91B945D773A0930 /* GCDAsyncSocket.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = GCDAsyncSocket.m; path = Source/GCD/GCDAsyncSocket.m; sourceTree = "<group>"; };
-		6021C2ED8063D7D2EC0E153086A57E48 /* DFUPeripheralSelector.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DFUPeripheralSelector.swift; path = iOSDFULibrary/Classes/Implementation/DFUPeripheralSelector.swift; sourceTree = "<group>"; };
 		6127F495C4591A0BD3C686EADBA2FBA0 /* NestSDKProductLocation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NestSDKProductLocation.h; path = NestSDK/NestSDK/NestSDKProductLocation.h; sourceTree = "<group>"; };
 		6128161E505B31507B90E82E0AE24F00 /* Scene.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Scene.swift; path = Sources/Base/BridgeResourceModels/Scene.swift; sourceTree = "<group>"; };
 		627F02560A19E3B72DD504DD359B82D4 /* zip.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = zip.h; path = Zip/minizip/zip.h; sourceTree = "<group>"; };
@@ -705,12 +700,13 @@
 		636A528AE5CFA0CF1FA22ADEA008A38D /* Sensor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Sensor.swift; path = Sources/Base/BridgeResourceModels/Sensors/Sensor.swift; sourceTree = "<group>"; };
 		63F321815F7AB1EFAF03A14A4C9DE36D /* Scanner.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Scanner.swift; path = Sources/BridgeServices/BridgeFinder/Scanner/Scanner.swift; sourceTree = "<group>"; };
 		643CF299887655846AA787E4D2CEA167 /* SWXMLHash-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SWXMLHash-prefix.pch"; sourceTree = "<group>"; };
-		6491287D7E10C6FD3DB6C41705028DA0 /* LegacyDFUServiceInitiator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LegacyDFUServiceInitiator.swift; path = iOSDFULibrary/Classes/Implementation/LegacyDFU/DFU/LegacyDFUServiceInitiator.swift; sourceTree = "<group>"; };
 		677023B79612BFC425A54CA6B9E6349B /* Light.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Light.swift; path = Sources/Base/BridgeResourceModels/Light.swift; sourceTree = "<group>"; };
 		681CB83BF808C8A77EF1510422D14D85 /* AsyncUdpSocket.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AsyncUdpSocket.h; path = Source/RunLoop/AsyncUdpSocket.h; sourceTree = "<group>"; };
 		6854EEE67C01442F8A3264F7E6C86E54 /* NestSDKAccessTokenCache.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NestSDKAccessTokenCache.m; path = NestSDK/NestSDK/NestSDKAccessTokenCache.m; sourceTree = "<group>"; };
 		68B9F4B2A7169BE0B9DB2C9DCBE7E332 /* JSONModelClassProperty.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = JSONModelClassProperty.m; path = JSONModel/JSONModel/JSONModelClassProperty.m; sourceTree = "<group>"; };
 		68C2A321D4BFD2EE3633D896E336BE45 /* SWXMLHash.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SWXMLHash.swift; path = Source/SWXMLHash.swift; sourceTree = "<group>"; };
+		697C6A36ACFA84A777215273D47971D5 /* DFUController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DFUController.swift; path = iOSDFULibrary/Classes/Implementation/GenericDFU/DFUController.swift; sourceTree = "<group>"; };
+		69CEBAF6DDAA05B37DD3C8A8CDB35707 /* IntelHex2BinConverter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = IntelHex2BinConverter.m; path = iOSDFULibrary/Classes/Utilities/HexToBinConverter/IntelHex2BinConverter.m; sourceTree = "<group>"; };
 		6A67D5B38B995DD62E3CDF8B6693FFC9 /* SSKeychain.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = SSKeychain.modulemap; sourceTree = "<group>"; };
 		6AAB7266C02B9685E0DF025F445469C2 /* NestSDKDeviceDataModel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NestSDKDeviceDataModel.h; path = NestSDK/NestSDK/NestSDKDeviceDataModel.h; sourceTree = "<group>"; };
 		6B395AD42D1A3A41E95CB67524729411 /* Pods-Turn Touch iOS-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Turn Touch iOS-dummy.m"; sourceTree = "<group>"; };
@@ -718,19 +714,21 @@
 		6C63F5E14601629CE14A82ACBBE3B8E6 /* JSONModelArray.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JSONModelArray.h; path = JSONModel/JSONModel/JSONModelArray.h; sourceTree = "<group>"; };
 		6D3CDFA5748655892E72B4F751747AAB /* NestSDKMetaData.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NestSDKMetaData.h; path = NestSDK/NestSDK/NestSDKMetaData.h; sourceTree = "<group>"; };
 		6D5BDC10F6279B2BC30DAA07BC7B43F6 /* NestSDKAuthorizationManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NestSDKAuthorizationManager.m; path = NestSDK/NestSDK/NestSDKAuthorizationManager.m; sourceTree = "<group>"; };
+		6D7F9550A5E33EC56BEAA7154037ECBB /* DFUServiceController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DFUServiceController.swift; path = iOSDFULibrary/Classes/Implementation/DFUServiceController.swift; sourceTree = "<group>"; };
 		6F56728DDD71F8071B439C4ABD722E4A /* Log.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = Log.modulemap; sourceTree = "<group>"; };
-		6FABDE6441FBCECBA01CAA3E0A011CCC /* DFUExecutor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DFUExecutor.swift; path = iOSDFULibrary/Classes/Implementation/GenericDFU/DFUExecutor.swift; sourceTree = "<group>"; };
 		6FB38A4FA6106B658EF7F59464A9A433 /* JSONAPI.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JSONAPI.h; path = JSONModel/JSONModelNetworking/JSONAPI.h; sourceTree = "<group>"; };
 		7108B92A6A35420F275FF6F39AC8C36C /* UIColor+NestBlue.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIColor+NestBlue.h"; path = "NestSDK/NestSDK/UIColor+NestBlue.h"; sourceTree = "<group>"; };
 		714B22239DE48AC093B3AD686D083AFC /* SwiftyHue-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SwiftyHue-dummy.m"; sourceTree = "<group>"; };
+		71B6F09382C40BE7D334286587CECC98 /* DFUStarterPeripheral.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DFUStarterPeripheral.swift; path = iOSDFULibrary/Classes/Implementation/DFUSelector/DFUStarterPeripheral.swift; sourceTree = "<group>"; };
 		71F3E41E7FDCF2300B7C9D3383735E9E /* SWXMLHash+TypeConversion.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "SWXMLHash+TypeConversion.swift"; path = "Source/SWXMLHash+TypeConversion.swift"; sourceTree = "<group>"; };
+		72039685AE84D7DFC726A1C0FEDEDD28 /* SoftdeviceBootloaderInfo.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SoftdeviceBootloaderInfo.swift; path = iOSDFULibrary/Classes/Utilities/DFUPackage/Manifest/SoftdeviceBootloaderInfo.swift; sourceTree = "<group>"; };
 		72A86BD3248AF65D61D57239F61DB39D /* Backup.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Backup.swift; path = Sources/Base/BridgeResourceModels/Backup.swift; sourceTree = "<group>"; };
-		737A3150F81DF1DD1B7E3BA9551ABFEA /* SecureDFUServiceInitiator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SecureDFUServiceInitiator.swift; path = iOSDFULibrary/Classes/Implementation/SecureDFU/DFU/SecureDFUServiceInitiator.swift; sourceTree = "<group>"; };
+		72F8DEDFABBE09E42F6CE26A4AF880F4 /* DFUExecutor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DFUExecutor.swift; path = iOSDFULibrary/Classes/Implementation/GenericDFU/DFUExecutor.swift; sourceTree = "<group>"; };
 		73F20E88FB0E8B0437C2F507B1CC6E06 /* Pods-Turn Touch iOS-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Turn Touch iOS-frameworks.sh"; sourceTree = "<group>"; };
 		77F7B4144F30F73312A8DA0012F42A23 /* ReachabilitySwift-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "ReachabilitySwift-dummy.m"; sourceTree = "<group>"; };
-		783AD3529B88F97EBA9B61E480D8B9FE /* DFUServiceInitiator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DFUServiceInitiator.swift; path = iOSDFULibrary/Classes/Implementation/DFUServiceInitiator.swift; sourceTree = "<group>"; };
 		788FE9E1406A363ADC2B6ADE75C518BC /* Alamofire-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Alamofire-prefix.pch"; sourceTree = "<group>"; };
 		795A5DD1F10E5D5E907BA6E33955BD12 /* UIImageView+AFNetworking.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIImageView+AFNetworking.h"; path = "UIKit+AFNetworking/UIImageView+AFNetworking.h"; sourceTree = "<group>"; };
+		79744351A94B2AC26E5D62141AD0FB15 /* DFUServiceInitiator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DFUServiceInitiator.swift; path = iOSDFULibrary/Classes/Implementation/DFUServiceInitiator.swift; sourceTree = "<group>"; };
 		7992D0334B72CCD594B4763FC70C461D /* BridgeResourcesCache.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BridgeResourcesCache.swift; path = Sources/Base/BridgeResourcesCache.swift; sourceTree = "<group>"; };
 		79FAC85EF29EC72381CB673ADB007184 /* AFHTTPSessionManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AFHTTPSessionManager.m; path = AFNetworking/AFHTTPSessionManager.m; sourceTree = "<group>"; };
 		7BB596DC6C268AC4BE3D90A7ED1AB009 /* LoggerConfig.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LoggerConfig.swift; path = Sources/Base/Logger/LoggerConfig.swift; sourceTree = "<group>"; };
@@ -744,49 +742,47 @@
 		815F6F33F2D24105B6B1F7CB89C211E1 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		81761D0BD70E198E914B14DF8577E445 /* NestSDKAuthorizationManagerAuthorizationResult.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NestSDKAuthorizationManagerAuthorizationResult.h; path = NestSDK/NestSDK/NestSDKAuthorizationManagerAuthorizationResult.h; sourceTree = "<group>"; };
 		820059FEC63105BAD5059EDB83CE8790 /* ParameterEncoding.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ParameterEncoding.swift; path = Source/ParameterEncoding.swift; sourceTree = "<group>"; };
+		827A51D38DEFAFA935A2A532F637790E /* SecureDFUPeripheralDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SecureDFUPeripheralDelegate.swift; path = iOSDFULibrary/Classes/Implementation/SecureDFU/Peripheral/SecureDFUPeripheralDelegate.swift; sourceTree = "<group>"; };
 		84771F75232D2D2BDE3BB4A7ADD54290 /* AFNetworking-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "AFNetworking-dummy.m"; sourceTree = "<group>"; };
 		854F1204A58E31F88047C2AC1B21B523 /* NestSDKThermostat.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NestSDKThermostat.h; path = NestSDK/NestSDK/NestSDKThermostat.h; sourceTree = "<group>"; };
 		85A89EF642522CD496C2AB57CCF44262 /* NestSDKCameraLastEvent.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NestSDKCameraLastEvent.h; path = NestSDK/NestSDK/NestSDKCameraLastEvent.h; sourceTree = "<group>"; };
-		866B712046A3C7BEBB47DD5BF18EB09D /* DFUStreamZip.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DFUStreamZip.swift; path = iOSDFULibrary/Classes/Utilities/Streams/DFUStreamZip.swift; sourceTree = "<group>"; };
 		86D39946C32FE2E248B71783508D2553 /* Request.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Request.swift; path = Source/Request.swift; sourceTree = "<group>"; };
 		86F09F72FAD5923FECE0A21210197279 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8779BC1C0A0C721BF9B2E5AF41CA20EB /* Result.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Result.swift; path = Source/Result.swift; sourceTree = "<group>"; };
-		877BEC47577647FD6F22737B76F72A86 /* IntelHex2BinConverter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = IntelHex2BinConverter.h; path = iOSDFULibrary/Classes/Utilities/HexToBinConverter/IntelHex2BinConverter.h; sourceTree = "<group>"; };
 		8836A6A17ED695DEDB68E12829FF37CF /* NestSDKDataManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NestSDKDataManager.h; path = NestSDK/NestSDK/NestSDKDataManager.h; sourceTree = "<group>"; };
+		895453C4CAB634DD60D261AEC83DF1D3 /* LegacyDFUServiceInitiator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LegacyDFUServiceInitiator.swift; path = iOSDFULibrary/Classes/Implementation/LegacyDFU/DFU/LegacyDFUServiceInitiator.swift; sourceTree = "<group>"; };
 		8AAA08A85A53699D47D759AFCEE1C36B /* NestSDKError.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NestSDKError.m; path = NestSDK/NestSDK/NestSDKError.m; sourceTree = "<group>"; };
 		8B27D0BC6AB5262006A23EA92AF9BCB5 /* ZipUtilities.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ZipUtilities.swift; path = Zip/ZipUtilities.swift; sourceTree = "<group>"; };
-		8B5EAA617A4287C829413D1D1805EAE7 /* SoftdeviceBootloaderInfo.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SoftdeviceBootloaderInfo.swift; path = iOSDFULibrary/Classes/Utilities/DFUPackage/Manifest/SoftdeviceBootloaderInfo.swift; sourceTree = "<group>"; };
 		8D50F71D9DDECC1FED010CFB57835E73 /* SSKeychain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SSKeychain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8DCA967FC561EC6875A497BD4FBFDC00 /* SecureDFUExecutor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SecureDFUExecutor.swift; path = iOSDFULibrary/Classes/Implementation/SecureDFU/DFU/SecureDFUExecutor.swift; sourceTree = "<group>"; };
 		8E0ECCBF23283ECBA593F81EED0B490F /* Validation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Validation.swift; path = Source/Validation.swift; sourceTree = "<group>"; };
 		8E19B01471F47D15619FDD5B2AB2F314 /* Alamofire.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Alamofire.swift; path = Source/Alamofire.swift; sourceTree = "<group>"; };
 		8EC5A129D67E30A9D20C2718A8D98D11 /* Response.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Response.swift; path = Source/Response.swift; sourceTree = "<group>"; };
 		8F38A9324C86D8B3FB90C309D46084F2 /* NestSDKStructure.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NestSDKStructure.h; path = NestSDK/NestSDK/NestSDKStructure.h; sourceTree = "<group>"; };
 		8F478FB4239E2B71B3BC77E487C85A78 /* NestSDK.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = NestSDK.modulemap; sourceTree = "<group>"; };
 		91BAA1E355BBE72CAEB938728F59D98F /* GenericStatusSensorState.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GenericStatusSensorState.swift; path = Sources/Base/BridgeResourceModels/Sensors/GenericStatusSensor/GenericStatusSensorState.swift; sourceTree = "<group>"; };
+		924F8114AF8654B266ADE4D3777B151D /* iOSDFULibrary.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = iOSDFULibrary.modulemap; sourceTree = "<group>"; };
 		92AD3AD3074C0341D1036C8DEF0CA7D8 /* GenericFlagSensor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GenericFlagSensor.swift; path = Sources/Base/BridgeResourceModels/Sensors/GenericFlagSensor/GenericFlagSensor.swift; sourceTree = "<group>"; };
 		937D56902C6A532F4C643065E5BE4517 /* IPScanner.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = IPScanner.swift; path = Sources/BridgeServices/BridgeFinder/Scanner/IPScanner.swift; sourceTree = "<group>"; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9544580F5DD99D30CEB4B4FDE35EBC93 /* CocoaAsyncSocket.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = CocoaAsyncSocket.modulemap; sourceTree = "<group>"; };
-		96E707018FE02619F607BB41C3F95702 /* DFUPacket.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DFUPacket.swift; path = iOSDFULibrary/Classes/Implementation/LegacyDFU/Characteristics/DFUPacket.swift; sourceTree = "<group>"; };
+		95F0970C714664F41221848F445AE29E /* DFUStreamBin.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DFUStreamBin.swift; path = iOSDFULibrary/Classes/Utilities/Streams/DFUStreamBin.swift; sourceTree = "<group>"; };
 		976952689965A8B7CBCE8D6373F7C89E /* Encoder.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Encoder.swift; path = Sources/Encoder.swift; sourceTree = "<group>"; };
 		977BFD9AFF28D0C96ED384FF5678677B /* Pods_Turn_Touch_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Turn_Touch_iOS.framework; path = "Pods-Turn Touch iOS.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9848B29B4CAF0205CB83258A6946A923 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		98948F763F112A81A68ADB3BBFB5BF71 /* iOSDFULibrary-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "iOSDFULibrary-prefix.pch"; sourceTree = "<group>"; };
-		9956A92AE690E3472D5186B7BBCE2C58 /* DFUPeripheralDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DFUPeripheralDelegate.swift; path = iOSDFULibrary/Classes/Implementation/GenericDFU/DFUPeripheralDelegate.swift; sourceTree = "<group>"; };
 		9A51F50D574830A0BE5F5FA015FF4CC8 /* NestSDKConnectWithNestButton.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NestSDKConnectWithNestButton.h; path = NestSDK/NestSDK/NestSDKConnectWithNestButton.h; sourceTree = "<group>"; };
 		9AA01E612889039EA16DB1161A012FCA /* ResourceCacheHeartbeatProcessor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ResourceCacheHeartbeatProcessor.swift; path = Sources/Base/ResourceCacheHeartbeatProcessor.swift; sourceTree = "<group>"; };
-		9BD3BA3130C58A42ED22BF0F33309A17 /* DFUStarterPeripheral.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DFUStarterPeripheral.swift; path = iOSDFULibrary/Classes/Implementation/DFUSelector/DFUStarterPeripheral.swift; sourceTree = "<group>"; };
+		9B78C02C99730ECBDFE1D79A1DCCB591 /* Data.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Data.swift; path = iOSDFULibrary/Classes/Utilities/Data.swift; sourceTree = "<group>"; };
 		9C5143EF78C43C95E97195416A1ABF32 /* Pods-Turn Touch iOS.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-Turn Touch iOS.modulemap"; sourceTree = "<group>"; };
-		9C71BA02275766650DD84FB4C7B80E8D /* iOSDFULibrary.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = iOSDFULibrary.xcconfig; sourceTree = "<group>"; };
 		9C799E9BAAE16720E66A918C9B3ECC33 /* SWXMLHash-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SWXMLHash-umbrella.h"; sourceTree = "<group>"; };
+		9CA7BAB428D73632659384E8527EBA71 /* iOSDFULibrary.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = iOSDFULibrary.xcconfig; sourceTree = "<group>"; };
 		9CE40A89648878A169595D0A0926605C /* OpenCloseSensorConfig.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OpenCloseSensorConfig.swift; path = Sources/Base/BridgeResourceModels/Sensors/OpenCloseSensor/OpenCloseSensorConfig.swift; sourceTree = "<group>"; };
-		9D0D60D0463FDE69EB482448C4B30A73 /* crc32.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = crc32.swift; path = iOSDFULibrary/Classes/Utilities/crc32.swift; sourceTree = "<group>"; };
 		9D145506FD4BD5A9584B4F2621E7D19A /* AFError.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AFError.swift; path = Source/AFError.swift; sourceTree = "<group>"; };
 		9D822E38721F780A41292205E7704989 /* SwiftyHue.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SwiftyHue.h; path = Sources/SwiftyHue.h; sourceTree = "<group>"; };
 		9EADC31DBDBBA415A607FC7B21A30022 /* OpenCloseSensorState.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OpenCloseSensorState.swift; path = Sources/Base/BridgeResourceModels/Sensors/OpenCloseSensor/OpenCloseSensorState.swift; sourceTree = "<group>"; };
 		9EB74D4B9581F8F6C4D5A3336D48DC2A /* Gloss-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Gloss-umbrella.h"; sourceTree = "<group>"; };
 		9EFD569C8C638C4FB763DC6F79BABD14 /* Notifications.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Notifications.swift; path = Source/Notifications.swift; sourceTree = "<group>"; };
-		9FB8A02FE7196142631A36B97685372D /* SecureDFUPeripheralDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SecureDFUPeripheralDelegate.swift; path = iOSDFULibrary/Classes/Implementation/SecureDFU/Peripheral/SecureDFUPeripheralDelegate.swift; sourceTree = "<group>"; };
+		A13B5DA59FC040AD1C6BC34138A2CE81 /* DFUPeripheralSelector.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DFUPeripheralSelector.swift; path = iOSDFULibrary/Classes/Implementation/DFUPeripheralSelector.swift; sourceTree = "<group>"; };
 		A1A689E8AA4EB687BA2845F910E3B402 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A1C079DF0470E749CC82A7D80ABC555C /* Alamofire-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Alamofire-umbrella.h"; sourceTree = "<group>"; };
 		A20B3AB2B2386D80D31809DA5142FA7B /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/MobileCoreServices.framework; sourceTree = DEVELOPER_DIR; };
@@ -798,15 +794,16 @@
 		A590E67B6B2403A40327B0B59CF7C75F /* NestSDKDataManagerHelper.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NestSDKDataManagerHelper.h; path = NestSDK/NestSDK/NestSDKDataManagerHelper.h; sourceTree = "<group>"; };
 		A5FEC7D83C33A1BC2F7D41546EE76A49 /* DaylightSensorState.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DaylightSensorState.swift; path = Sources/Base/BridgeResourceModels/Sensors/DaylightSensor/DaylightSensorState.swift; sourceTree = "<group>"; };
 		A65C6B6B7EC54CE91DD27D8ACBAA4C5A /* PresenceSensor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PresenceSensor.swift; path = Sources/Base/BridgeResourceModels/Sensors/PresenceSensor/PresenceSensor.swift; sourceTree = "<group>"; };
+		A72F3E9B84F22D53CD2CD589C0241A50 /* iOSDFULibrary-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "iOSDFULibrary-prefix.pch"; sourceTree = "<group>"; };
 		A73109C0020C07C0925923381D687CB1 /* ReplaceMe.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ReplaceMe.swift; path = Sources/Base/ReplaceMe.swift; sourceTree = "<group>"; };
 		A89245DFDF8E375B0A5A7B017C76B54F /* AppData.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AppData.swift; path = Sources/Base/BridgeResourceModels/AppData.swift; sourceTree = "<group>"; };
 		A8D0B3A87443189F27F52672F0C7787D /* NetworkReachabilityManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NetworkReachabilityManager.swift; path = Source/NetworkReachabilityManager.swift; sourceTree = "<group>"; };
 		A9EA4619D56553872D592FA2027C54EF /* AFURLRequestSerialization.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AFURLRequestSerialization.m; path = AFNetworking/AFURLRequestSerialization.m; sourceTree = "<group>"; };
-		AA66CCAAFBD36F097E8ED9723BCE4B38 /* ManifestFirmwareInfo.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ManifestFirmwareInfo.swift; path = iOSDFULibrary/Classes/Utilities/DFUPackage/Manifest/ManifestFirmwareInfo.swift; sourceTree = "<group>"; };
 		AB2E844AC403D3B760E8DEB8A096840F /* NestSDKProductResource.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NestSDKProductResource.h; path = NestSDK/NestSDK/NestSDKProductResource.h; sourceTree = "<group>"; };
 		AB56A01507EBF85D0413E6E86B5E265E /* ReachabilitySwift-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ReachabilitySwift-umbrella.h"; sourceTree = "<group>"; };
 		AC991F8F18933A7CEF168D9FA106C9F9 /* GCDAsyncUdpSocket.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCDAsyncUdpSocket.h; path = Source/GCD/GCDAsyncUdpSocket.h; sourceTree = "<group>"; };
 		ACDEDCC5403F96CAE94AE56A5DE6D152 /* NestSDKDataManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NestSDKDataManager.m; path = NestSDK/NestSDK/NestSDKDataManager.m; sourceTree = "<group>"; };
+		ACFFFC0CD64061EEAADBCA5E6B28C982 /* SecureDFUPeripheral.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SecureDFUPeripheral.swift; path = iOSDFULibrary/Classes/Implementation/SecureDFU/Peripheral/SecureDFUPeripheral.swift; sourceTree = "<group>"; };
 		AD855FCDAB81598386F2B814CD335888 /* AFURLSessionManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AFURLSessionManager.m; path = AFNetworking/AFURLSessionManager.m; sourceTree = "<group>"; };
 		AFFE0B863D64FBC59934023FD82C1134 /* SwiftyHue-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SwiftyHue-umbrella.h"; sourceTree = "<group>"; };
 		B036A710CD4626612BE32B0BFB22745D /* AFHTTPSessionManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AFHTTPSessionManager.h; path = AFNetworking/AFHTTPSessionManager.h; sourceTree = "<group>"; };
@@ -819,10 +816,7 @@
 		B382058973F10E96EEFA0BF0F4FBEB57 /* zip.c */ = {isa = PBXFileReference; includeInIndex = 1; name = zip.c; path = Zip/minizip/zip.c; sourceTree = "<group>"; };
 		B411ED63B3B3C9C20205CF638B8C5D65 /* NestSDKDataModel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NestSDKDataModel.m; path = NestSDK/NestSDK/NestSDKDataModel.m; sourceTree = "<group>"; };
 		B42AB561D737416F88AB42BA5482965A /* NestSDK.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NestSDK.h; path = NestSDK/NestSDK/NestSDK.h; sourceTree = "<group>"; };
-		B47D594B6DC93D4C7E5CE44E45FF23C6 /* iOSDFULibrary-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "iOSDFULibrary-dummy.m"; sourceTree = "<group>"; };
 		B59F8C7F8718C1392B6F7EA4D3DC795A /* AFURLRequestSerialization.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AFURLRequestSerialization.h; path = AFNetworking/AFURLRequestSerialization.h; sourceTree = "<group>"; };
-		B6E780E329B6CC18DF7FE3C9DAED11C5 /* DFUPeripheral.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DFUPeripheral.swift; path = iOSDFULibrary/Classes/Implementation/GenericDFU/DFUPeripheral.swift; sourceTree = "<group>"; };
-		B7129143904431468C6F364BF1203BCF /* DFUControlPoint.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DFUControlPoint.swift; path = iOSDFULibrary/Classes/Implementation/LegacyDFU/Characteristics/DFUControlPoint.swift; sourceTree = "<group>"; };
 		B7FCEBABE45389BB824C7D52CE612D3F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
 		B86B6DFAAA4D41BD0A55F844F161C100 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B88E5FB8EE415585E32F10ACE79F22EE /* SSKeychain-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SSKeychain-prefix.pch"; sourceTree = "<group>"; };
@@ -831,10 +825,12 @@
 		BA865F219C0D1D02C5CFE66141B77923 /* ioapi.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ioapi.h; path = Zip/minizip/ioapi.h; sourceTree = "<group>"; };
 		BAAB28D6A8EBE7C40E598835FC540D27 /* NestSDKCamera.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NestSDKCamera.h; path = NestSDK/NestSDK/NestSDKCamera.h; sourceTree = "<group>"; };
 		BBC6C315403F917CD0E74D497DF3B2E7 /* NestSDKETADataModel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NestSDKETADataModel.m; path = NestSDK/NestSDK/NestSDKETADataModel.m; sourceTree = "<group>"; };
+		BBF94DD7AB114A6EE6401D9E0C655A55 /* Manifest.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Manifest.swift; path = iOSDFULibrary/Classes/Utilities/DFUPackage/Manifest/Manifest.swift; sourceTree = "<group>"; };
 		BC5D7ECBD19184226AC65EF4236E34CB /* GenericStatusSensorConfig.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GenericStatusSensorConfig.swift; path = Sources/Base/BridgeResourceModels/Sensors/GenericStatusSensor/GenericStatusSensorConfig.swift; sourceTree = "<group>"; };
+		BD83463598A2F9560CC95CDB75A4C010 /* SecureDFUService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SecureDFUService.swift; path = iOSDFULibrary/Classes/Implementation/SecureDFU/Services/SecureDFUService.swift; sourceTree = "<group>"; };
 		BE3FBF2D0933CBCDCF674CF8F00BDB72 /* AFImageDownloader.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AFImageDownloader.h; path = "UIKit+AFNetworking/AFImageDownloader.h"; sourceTree = "<group>"; };
-		BE62253E433C392C0B50CEE642A46BD5 /* LegacyDFUExecutor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LegacyDFUExecutor.swift; path = iOSDFULibrary/Classes/Implementation/LegacyDFU/DFU/LegacyDFUExecutor.swift; sourceTree = "<group>"; };
 		BF081D784E4AA65A56288A9C1366174B /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BFD5947937340F527468E0B63ABBF27F /* DFUService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DFUService.swift; path = iOSDFULibrary/Classes/Implementation/GenericDFU/DFUService.swift; sourceTree = "<group>"; };
 		BFE634637278ADB9C9AF4DDC341466F2 /* Log.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Log.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0897CEEA1E7BE3AB5604A349F234DD1 /* ServerTrustPolicy.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ServerTrustPolicy.swift; path = Source/ServerTrustPolicy.swift; sourceTree = "<group>"; };
 		C0C8AEB639C3D3BE270D970F2BD2B71F /* RuleCondition.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RuleCondition.swift; path = Sources/Base/BridgeResourceModels/Rule/RuleCondition.swift; sourceTree = "<group>"; };
@@ -844,18 +840,17 @@
 		C1E0FF82CB998FD7B5DB62EDEC12E9D8 /* NestSDKFirebaseService.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NestSDKFirebaseService.h; path = NestSDK/NestSDK/NestSDKFirebaseService.h; sourceTree = "<group>"; };
 		C3CC1CE035F26BBFEA9E7DA4043C1416 /* AFAutoPurgingImageCache.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AFAutoPurgingImageCache.m; path = "UIKit+AFNetworking/AFAutoPurgingImageCache.m"; sourceTree = "<group>"; };
 		C4714FBFCCD9BD729E35EBBED66D2B5E /* UIButton+AFNetworking.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIButton+AFNetworking.h"; path = "UIKit+AFNetworking/UIButton+AFNetworking.h"; sourceTree = "<group>"; };
-		C54C3FB73BE70BA09B800D0BE66BF9E0 /* LegacyDFUPeripheralDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LegacyDFUPeripheralDelegate.swift; path = iOSDFULibrary/Classes/Implementation/LegacyDFU/Peripherals/LegacyDFUPeripheralDelegate.swift; sourceTree = "<group>"; };
 		C6468488BA307B386C8BE2D93B03F22A /* NestSDKProductSoftware.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NestSDKProductSoftware.h; path = NestSDK/NestSDK/NestSDKProductSoftware.h; sourceTree = "<group>"; };
 		C648FF32377F47D864B754F9B3065151 /* BridgeAuthenticator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BridgeAuthenticator.swift; path = Sources/BridgeServices/BridgeAuthenticator/BridgeAuthenticator.swift; sourceTree = "<group>"; };
 		C6CE35FE0D4DA0B673B955DA8C99367E /* NestSDKProduct.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NestSDKProduct.h; path = NestSDK/NestSDK/NestSDKProduct.h; sourceTree = "<group>"; };
 		C7362B0B4A7E501CC2E0F03EBD72F3C4 /* Pods-Turn Touch iOS-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Turn Touch iOS-acknowledgements.markdown"; sourceTree = "<group>"; };
 		C77E4DFD421B08EEB69799BCC4CC2734 /* NestSDKMetadataDataModel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NestSDKMetadataDataModel.m; path = NestSDK/NestSDK/NestSDKMetadataDataModel.m; sourceTree = "<group>"; };
+		C83C415CD170FCD1BD5E549FE004164F /* DFUStreamZip.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DFUStreamZip.swift; path = iOSDFULibrary/Classes/Utilities/Streams/DFUStreamZip.swift; sourceTree = "<group>"; };
 		C84B4ECBB661D79922DC477211C724E4 /* AFNetworkActivityIndicatorManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AFNetworkActivityIndicatorManager.m; path = "UIKit+AFNetworking/AFNetworkActivityIndicatorManager.m"; sourceTree = "<group>"; };
 		C98C1E2DD8CF636D601FE4F396F46A44 /* QuickZip.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = QuickZip.swift; path = Zip/QuickZip.swift; sourceTree = "<group>"; };
 		C9CF8F4B9F124E0367EA3D170CFF9533 /* Alamofire.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Alamofire.xcconfig; sourceTree = "<group>"; };
 		CACECF48F016195BEBC033D8F97EB696 /* NestSDKDataModel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NestSDKDataModel.h; path = NestSDK/NestSDK/NestSDKDataModel.h; sourceTree = "<group>"; };
 		CB01EC6B6D394ED07300D85A50CDA5D8 /* Zip-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Zip-prefix.pch"; sourceTree = "<group>"; };
-		CCCB5B9BEA95F2D3787EDA9710A5BBBA /* DFUServiceController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DFUServiceController.swift; path = iOSDFULibrary/Classes/Implementation/DFUServiceController.swift; sourceTree = "<group>"; };
 		CDEF2E662545AA2896C0D2FD9E041940 /* JSONModel-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "JSONModel-umbrella.h"; sourceTree = "<group>"; };
 		CE104DFA9B1E2340C3B9D7A93180B7B8 /* AFNetworking.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = AFNetworking.modulemap; sourceTree = "<group>"; };
 		CE4D3C4E792403115C63214BC512CE07 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -864,12 +859,16 @@
 		CFC8133CE528C7007BEF442EAA98E90C /* UIProgressView+AFNetworking.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIProgressView+AFNetworking.h"; path = "UIKit+AFNetworking/UIProgressView+AFNetworking.h"; sourceTree = "<group>"; };
 		D04F12306956293F1B11E3D7B7C04E42 /* NestSDKMetadataDataModel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NestSDKMetadataDataModel.h; path = NestSDK/NestSDK/NestSDKMetadataDataModel.h; sourceTree = "<group>"; };
 		D06E5F0E8D59F1E1C6986D373470782A /* NestSDKAuthorizationManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NestSDKAuthorizationManager.h; path = NestSDK/NestSDK/NestSDKAuthorizationManager.h; sourceTree = "<group>"; };
+		D0ACB5A5B128048DEC62012727DC6151 /* DFUPeripheralDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DFUPeripheralDelegate.swift; path = iOSDFULibrary/Classes/Implementation/GenericDFU/DFUPeripheralDelegate.swift; sourceTree = "<group>"; };
 		D1ACC77EF271B114D6889F64EB70FC56 /* NestSDKAccessToken.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NestSDKAccessToken.m; path = NestSDK/NestSDK/NestSDKAccessToken.m; sourceTree = "<group>"; };
 		D3BFADE9576C30AC7C23ACC949AD9A7C /* AFImageDownloader.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AFImageDownloader.m; path = "UIKit+AFNetworking/AFImageDownloader.m"; sourceTree = "<group>"; };
-		D4944293556D7D32AD72BD0D0C7AF852 /* SecureDFUControlPoint.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SecureDFUControlPoint.swift; path = iOSDFULibrary/Classes/Implementation/SecureDFU/Characteristics/SecureDFUControlPoint.swift; sourceTree = "<group>"; };
 		D496331E59B6EC80B40BE5717F3156F7 /* Decoder.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Decoder.swift; path = Sources/Decoder.swift; sourceTree = "<group>"; };
+		D51B5DDF8C50BBE8E4F89F8F590F5A13 /* DFUPeripheralSelectorDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DFUPeripheralSelectorDelegate.swift; path = iOSDFULibrary/Classes/Implementation/DFUPeripheralSelectorDelegate.swift; sourceTree = "<group>"; };
 		D60F2E52202F8ACCEB397EBC8D85BDF7 /* AFAutoPurgingImageCache.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AFAutoPurgingImageCache.h; path = "UIKit+AFNetworking/AFAutoPurgingImageCache.h"; sourceTree = "<group>"; };
 		D638555677B7F49195B5DBB1E171AF0F /* JSONHTTPClient.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JSONHTTPClient.h; path = JSONModel/JSONModelNetworking/JSONHTTPClient.h; sourceTree = "<group>"; };
+		D85C8D16D00AB1B73B7E57A88A50804C /* DFUControlPoint.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DFUControlPoint.swift; path = iOSDFULibrary/Classes/Implementation/LegacyDFU/Characteristics/DFUControlPoint.swift; sourceTree = "<group>"; };
+		D87F2484799906533DC8580427E71862 /* LoggerHelper.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LoggerHelper.swift; path = iOSDFULibrary/Classes/Utilities/Logging/LoggerHelper.swift; sourceTree = "<group>"; };
+		D8C3727497B66D5DAD67030C4E4EC77E /* Double.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Double.swift; path = iOSDFULibrary/Classes/Utilities/Double.swift; sourceTree = "<group>"; };
 		D9777444F32DD17DB7CC628628C974F8 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Alamofire.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA4EF686AA3F8A55928A845DF2E760BF /* Log-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Log-dummy.m"; sourceTree = "<group>"; };
 		DA6604D17AD9A34CD55E3F1444429E42 /* NestSDKProductSoftwareDataModel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NestSDKProductSoftwareDataModel.m; path = NestSDK/NestSDK/NestSDKProductSoftwareDataModel.m; sourceTree = "<group>"; };
@@ -881,26 +880,27 @@
 		DD344595DE087AAB33797DF873579469 /* JSONModel+networking.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "JSONModel+networking.m"; path = "JSONModel/JSONModelNetworking/JSONModel+networking.m"; sourceTree = "<group>"; };
 		DD9AFEF0B3192F9F756DC6250A7D2D60 /* SWXMLHash-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SWXMLHash-dummy.m"; sourceTree = "<group>"; };
 		DE522B9C74A9811E619792A662D69641 /* UIImage+AFNetworking.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIImage+AFNetworking.h"; path = "UIKit+AFNetworking/UIImage+AFNetworking.h"; sourceTree = "<group>"; };
+		DEE8BA9A0046D0378FC77D42F781593E /* IntelHex2BinConverter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = IntelHex2BinConverter.h; path = iOSDFULibrary/Classes/Utilities/HexToBinConverter/IntelHex2BinConverter.h; sourceTree = "<group>"; };
 		DFD31824D5EA7F0C19D41E9DECE3953A /* JSONModel.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = JSONModel.modulemap; sourceTree = "<group>"; };
 		E0296794C2DC513CD532963C3AA3BBBA /* Error.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Error.swift; path = Sources/Base/BridgeResourceModels/Error.swift; sourceTree = "<group>"; };
 		E12671D88EB4D0BF8E7A982BB16072DC /* TemperatureSensor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TemperatureSensor.swift; path = Sources/Base/BridgeResourceModels/Sensors/TemperatureSensor/TemperatureSensor.swift; sourceTree = "<group>"; };
+		E1372870404853D33F0940BEC9E44B3F /* LoggerDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LoggerDelegate.swift; path = iOSDFULibrary/Classes/Utilities/Logging/LoggerDelegate.swift; sourceTree = "<group>"; };
 		E1F2C2691A297756A43C714561F55BB6 /* AFURLResponseSerialization.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AFURLResponseSerialization.h; path = AFNetworking/AFURLResponseSerialization.h; sourceTree = "<group>"; };
 		E25D6D4E3FACCDCDA45F4A6FD572F9DB /* SSKeychainQuery.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SSKeychainQuery.m; path = SSKeychain/SSKeychainQuery.m; sourceTree = "<group>"; };
 		E2CB4B2F5EB83AC4B01C5761B8331A6C /* Log.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Log.xcconfig; sourceTree = "<group>"; };
+		E32A782DA3BB280147A509F8E70CAF99 /* LegacyDFUExecutor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LegacyDFUExecutor.swift; path = iOSDFULibrary/Classes/Implementation/LegacyDFU/DFU/LegacyDFUExecutor.swift; sourceTree = "<group>"; };
 		E32F63122D8E0E00FA932974F233F84B /* NestSDKDataModelProtocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NestSDKDataModelProtocol.h; path = NestSDK/NestSDK/NestSDKDataModelProtocol.h; sourceTree = "<group>"; };
 		E3CCF6E781D8A16433921FB0AB458837 /* Benchmarker.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Benchmarker.swift; path = Source/Benchmarker.swift; sourceTree = "<group>"; };
 		E41F5EAA6E95F24945D7C5EFA27263BC /* NestSDKCameraDataModel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NestSDKCameraDataModel.m; path = NestSDK/NestSDK/NestSDKCameraDataModel.m; sourceTree = "<group>"; };
 		E48D89475CEE652DAB196489631DEE13 /* Gloss.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Gloss.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E4CACFA9BDBA009A057214CE3F75200D /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E502FC8D07F36FB4883A242175D64668 /* NestSDK-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "NestSDK-prefix.pch"; sourceTree = "<group>"; };
 		E526E3F3253E80B1A02E7DF4C9D017BB /* NestSDKFirebaseService.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NestSDKFirebaseService.m; path = NestSDK/NestSDK/NestSDKFirebaseService.m; sourceTree = "<group>"; };
-		E527D3834058BFD3C2C5C101554E4C4F /* DFUStreamBin.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DFUStreamBin.swift; path = iOSDFULibrary/Classes/Utilities/Streams/DFUStreamBin.swift; sourceTree = "<group>"; };
 		E631806A8DD8E02E59E7460480B4A2BF /* NestSDKSmokeCOAlarm.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NestSDKSmokeCOAlarm.h; path = NestSDK/NestSDK/NestSDKSmokeCOAlarm.h; sourceTree = "<group>"; };
 		E65B3E46BEEBEBE6D9289F2888DC614C /* Log-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Log-prefix.pch"; sourceTree = "<group>"; };
 		E66B5020E97E65821F30A74AB134C8DA /* HumiditySensorConfig.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HumiditySensorConfig.swift; path = Sources/Base/BridgeResourceModels/Sensors/HumiditySensor/HumiditySensorConfig.swift; sourceTree = "<group>"; };
-		E67BE0E52635159840F286DF58BF42F7 /* LoggerHelper.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LoggerHelper.swift; path = iOSDFULibrary/Classes/Utilities/Logging/LoggerHelper.swift; sourceTree = "<group>"; };
 		E68FC9F53FEDDBBD3B9B00C06F49CD3D /* JSONModel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = JSONModel.m; path = JSONModel/JSONModel/JSONModel.m; sourceTree = "<group>"; };
 		E863BB3EF16A804DA74925F8476A2DEC /* SwitchSensor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwitchSensor.swift; path = Sources/Base/BridgeResourceModels/Sensors/SwitchSensor/SwitchSensor.swift; sourceTree = "<group>"; };
-		E91B668782A20AF35EE17CFA0DB7F29F /* iOSDFULibrary.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = iOSDFULibrary.modulemap; sourceTree = "<group>"; };
 		E95CC40032C8AC463B31209BBBE1FE46 /* CocoaAsyncSocket-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CocoaAsyncSocket-prefix.pch"; sourceTree = "<group>"; };
 		EA5240AAB853050FFF0138EB8127532B /* Gloss-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Gloss-dummy.m"; sourceTree = "<group>"; };
 		EACBC7A3E4EE41199FBD5419FED17A2B /* UIActivityIndicatorView+AFNetworking.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIActivityIndicatorView+AFNetworking.h"; path = "UIKit+AFNetworking/UIActivityIndicatorView+AFNetworking.h"; sourceTree = "<group>"; };
@@ -927,19 +927,19 @@
 		F68125685104223D02F3EC4C568C7E44 /* NSArray+JSONModel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSArray+JSONModel.h"; path = "JSONModel/JSONModelCategories/NSArray+JSONModel.h"; sourceTree = "<group>"; };
 		F722919CF9A0B1BEAE387F1FDC3453F1 /* AFNetworking-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "AFNetworking-prefix.pch"; sourceTree = "<group>"; };
 		F73B868DB220D8F06DE6376072156790 /* Zip.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Zip.swift; path = Zip/Zip.swift; sourceTree = "<group>"; };
+		F7945E648A346CC8605EA14C843E4D94 /* crc32.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = crc32.swift; path = iOSDFULibrary/Classes/Utilities/crc32.swift; sourceTree = "<group>"; };
 		F8E52FCB5437D295754D8BA5D4DA67FE /* NestSDKCameraDataModel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NestSDKCameraDataModel.h; path = NestSDK/NestSDK/NestSDKCameraDataModel.h; sourceTree = "<group>"; };
 		FAE44C4386A3D05079EB68C8347D01D2 /* NestSDKAuthorizationManagerAuthorizationResult.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NestSDKAuthorizationManagerAuthorizationResult.m; path = NestSDK/NestSDK/NestSDKAuthorizationManagerAuthorizationResult.m; sourceTree = "<group>"; };
 		FB4D0AD72181276135D61E166C01E461 /* JSONModelArray.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = JSONModelArray.m; path = JSONModel/JSONModel/JSONModelArray.m; sourceTree = "<group>"; };
 		FB5BECBD8379826D1133BDCD06818607 /* UIWebView+AFNetworking.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIWebView+AFNetworking.h"; path = "UIKit+AFNetworking/UIWebView+AFNetworking.h"; sourceTree = "<group>"; };
 		FB8F9A593170C2445DCB72335550F831 /* ReachabilitySwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = ReachabilitySwift.framework; path = ReachabilitySwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBE989ADB09E4D913768F6D2ADEE70C8 /* SessionDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SessionDelegate.swift; path = Source/SessionDelegate.swift; sourceTree = "<group>"; };
-		FCB66CCB0292A7CA8CC43E3438ABF120 /* ZipArchive.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ZipArchive.swift; path = iOSDFULibrary/Classes/Utilities/ZipArchive.swift; sourceTree = "<group>"; };
-		FCF3ACA096D1288C3DF8B138AA08FD5C /* SecureDFUExecutor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SecureDFUExecutor.swift; path = iOSDFULibrary/Classes/Implementation/SecureDFU/DFU/SecureDFUExecutor.swift; sourceTree = "<group>"; };
 		FD78B8F69692405DDC3A0339F55CAFFE /* WhitelistEntry.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WhitelistEntry.swift; path = Sources/Base/BridgeResourceModels/WhitelistEntry.swift; sourceTree = "<group>"; };
 		FD92A976410D9D1D22CC21079C745B03 /* UIActivityIndicatorView+AFNetworking.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIActivityIndicatorView+AFNetworking.m"; path = "UIKit+AFNetworking/UIActivityIndicatorView+AFNetworking.m"; sourceTree = "<group>"; };
 		FD9645A14DAC73175BE497B7610B1471 /* SwiftyHue-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SwiftyHue-prefix.pch"; sourceTree = "<group>"; };
+		FDB30200662A91D0B7FE16C20AB932D4 /* iOSDFULibrary-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "iOSDFULibrary-umbrella.h"; sourceTree = "<group>"; };
 		FDDBBB0BA3B87F65F567C4BE247EFDD3 /* NestSDKProductResourceUseDataModel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NestSDKProductResourceUseDataModel.h; path = NestSDK/NestSDK/NestSDKProductResourceUseDataModel.h; sourceTree = "<group>"; };
-		FE126158A54E5871326D72A16EA3FB48 /* ExperimentalButtonlessDFU.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExperimentalButtonlessDFU.swift; path = iOSDFULibrary/Classes/Implementation/SecureDFU/Characteristics/ExperimentalButtonlessDFU.swift; sourceTree = "<group>"; };
+		FF4B64BB9C5F6BA0804EE6DCE7337FF4 /* DFUVersion.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DFUVersion.swift; path = iOSDFULibrary/Classes/Implementation/LegacyDFU/Characteristics/DFUVersion.swift; sourceTree = "<group>"; };
 		FFA73D8BADA9E689676C37A63A3564CB /* ExtensionArray.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExtensionArray.swift; path = Sources/ExtensionArray.swift; sourceTree = "<group>"; };
 		FFAD604AB7D9D0F9D41E962757DDBD90 /* SWXMLHash.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SWXMLHash.xcconfig; sourceTree = "<group>"; };
 		FFD3B7B93313B85E7893575F005114C5 /* JSONModel.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = JSONModel.xcconfig; sourceTree = "<group>"; };
@@ -1349,59 +1349,6 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
-		5F3D99DEC7F1FB08F030BC39DD2116C2 /* iOSDFULibrary */ = {
-			isa = PBXGroup;
-			children = (
-				9D0D60D0463FDE69EB482448C4B30A73 /* crc32.swift */,
-				448D4A0ABEA5CCA63827AB6AF34FCFEF /* Data.swift */,
-				0847B7D66E79DA84E5CB3E943F74ACE4 /* DFUController.swift */,
-				B7129143904431468C6F364BF1203BCF /* DFUControlPoint.swift */,
-				6FABDE6441FBCECBA01CAA3E0A011CCC /* DFUExecutor.swift */,
-				13D14BC8A3248EE2156C73253F2D7633 /* DFUFirmware.swift */,
-				96E707018FE02619F607BB41C3F95702 /* DFUPacket.swift */,
-				B6E780E329B6CC18DF7FE3C9DAED11C5 /* DFUPeripheral.swift */,
-				9956A92AE690E3472D5186B7BBCE2C58 /* DFUPeripheralDelegate.swift */,
-				6021C2ED8063D7D2EC0E153086A57E48 /* DFUPeripheralSelector.swift */,
-				5336B79F65F66114ABC130D41023471A /* DFUPeripheralSelectorDelegate.swift */,
-				31B26385FBEE7F40E0B88D57DBCDFDAA /* DFUService.swift */,
-				CCCB5B9BEA95F2D3787EDA9710A5BBBA /* DFUServiceController.swift */,
-				4CE8DCCE75600DDEF791BAD003E8E2C7 /* DFUServiceDelegate.swift */,
-				783AD3529B88F97EBA9B61E480D8B9FE /* DFUServiceInitiator.swift */,
-				3D51DEA8320E44E7F05ED7D9238AC46B /* DFUServiceSelector.swift */,
-				9BD3BA3130C58A42ED22BF0F33309A17 /* DFUStarterPeripheral.swift */,
-				3CE35EDA9C90A41146C88E5A99143304 /* DFUStream.swift */,
-				E527D3834058BFD3C2C5C101554E4C4F /* DFUStreamBin.swift */,
-				4DD1B4CE89AD7650F79861C600E1DA99 /* DFUStreamHex.swift */,
-				866B712046A3C7BEBB47DD5BF18EB09D /* DFUStreamZip.swift */,
-				41F33CB74078A7624C6D49080806980B /* DFUVersion.swift */,
-				220A2EDE1BE8D680A46EF824424CAB43 /* Double.swift */,
-				FE126158A54E5871326D72A16EA3FB48 /* ExperimentalButtonlessDFU.swift */,
-				877BEC47577647FD6F22737B76F72A86 /* IntelHex2BinConverter.h */,
-				428C0BE2665D29D8CD2C5E38B01BBB6C /* IntelHex2BinConverter.m */,
-				BE62253E433C392C0B50CEE642A46BD5 /* LegacyDFUExecutor.swift */,
-				327919B2AD167A55F894C0B6CA71D5D5 /* LegacyDFUPeripheral.swift */,
-				C54C3FB73BE70BA09B800D0BE66BF9E0 /* LegacyDFUPeripheralDelegate.swift */,
-				4A3C739F66E96852A2E4A3EE36304CA1 /* LegacyDFUService.swift */,
-				6491287D7E10C6FD3DB6C41705028DA0 /* LegacyDFUServiceInitiator.swift */,
-				4DF40BB9E4DBB21777AEA1C6DDF3B9C8 /* LoggerDelegate.swift */,
-				E67BE0E52635159840F286DF58BF42F7 /* LoggerHelper.swift */,
-				544D387806E3CECFB98ABB70A8BB42C3 /* Manifest.swift */,
-				AA66CCAAFBD36F097E8ED9723BCE4B38 /* ManifestFirmwareInfo.swift */,
-				D4944293556D7D32AD72BD0D0C7AF852 /* SecureDFUControlPoint.swift */,
-				FCF3ACA096D1288C3DF8B138AA08FD5C /* SecureDFUExecutor.swift */,
-				56BD84D65E6320C8EA202C9F14437E56 /* SecureDFUPacket.swift */,
-				1DCDAC3C5A61F8526AAFAFC9102CC0CD /* SecureDFUPeripheral.swift */,
-				9FB8A02FE7196142631A36B97685372D /* SecureDFUPeripheralDelegate.swift */,
-				2A1E57B4CCBECFEB1CB61314E69BC347 /* SecureDFUService.swift */,
-				737A3150F81DF1DD1B7E3BA9551ABFEA /* SecureDFUServiceInitiator.swift */,
-				8B5EAA617A4287C829413D1D1805EAE7 /* SoftdeviceBootloaderInfo.swift */,
-				FCB66CCB0292A7CA8CC43E3438ABF120 /* ZipArchive.swift */,
-				A558B5B3073EC6DEEDF713E7859C3F8D /* Support Files */,
-			);
-			name = iOSDFULibrary;
-			path = iOSDFULibrary;
-			sourceTree = "<group>";
-		};
 		6C037ECBC575B0247C3EEE0973D9EE33 /* CocoaAsyncSocket */ = {
 			isa = PBXGroup;
 			children = (
@@ -1486,6 +1433,20 @@
 			path = Zip;
 			sourceTree = "<group>";
 		};
+		8AD67393A14B9E2940A4258739E850D7 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				E4CACFA9BDBA009A057214CE3F75200D /* Info.plist */,
+				924F8114AF8654B266ADE4D3777B151D /* iOSDFULibrary.modulemap */,
+				9CA7BAB428D73632659384E8527EBA71 /* iOSDFULibrary.xcconfig */,
+				421460F5BF0E76A64C507E71E12C6C93 /* iOSDFULibrary-dummy.m */,
+				A72F3E9B84F22D53CD2CD589C0241A50 /* iOSDFULibrary-prefix.pch */,
+				FDB30200662A91D0B7FE16C20AB932D4 /* iOSDFULibrary-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/iOSDFULibrary";
+			sourceTree = "<group>";
+		};
 		8E3304B48F154DB6FA0ADAAA6A31C16F /* JSONModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -1564,7 +1525,7 @@
 				6C037ECBC575B0247C3EEE0973D9EE33 /* CocoaAsyncSocket */,
 				CD2FBE3B8DF5E0B9ADFC3A6A439C2956 /* Firebase */,
 				A51299A8C1C68D559D5E4C10076653B9 /* Gloss */,
-				5F3D99DEC7F1FB08F030BC39DD2116C2 /* iOSDFULibrary */,
+				FFEDCC217AE2AFAA416C44E70256BC20 /* iOSDFULibrary */,
 				8E3304B48F154DB6FA0ADAAA6A31C16F /* JSONModel */,
 				A3D3F2C2C2E0CD0D84D13452ECDF94CE /* Log */,
 				0065D8D6E7A36601D8108B153F022317 /* NestSDK */,
@@ -1606,20 +1567,6 @@
 			);
 			name = Gloss;
 			path = Gloss;
-			sourceTree = "<group>";
-		};
-		A558B5B3073EC6DEEDF713E7859C3F8D /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				5B5A7C20E099C0CC90ABE724A2F8B54F /* Info.plist */,
-				E91B668782A20AF35EE17CFA0DB7F29F /* iOSDFULibrary.modulemap */,
-				9C71BA02275766650DD84FB4C7B80E8D /* iOSDFULibrary.xcconfig */,
-				B47D594B6DC93D4C7E5CE44E45FF23C6 /* iOSDFULibrary-dummy.m */,
-				98948F763F112A81A68ADB3BBFB5BF71 /* iOSDFULibrary-prefix.pch */,
-				357D74F7033E4F34B9266339A9E8138D /* iOSDFULibrary-umbrella.h */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/iOSDFULibrary";
 			sourceTree = "<group>";
 		};
 		B37A197B66E3F2C985EC923229622536 /* Support Files */ = {
@@ -1870,6 +1817,59 @@
 				434E9233726B5552DC5D3281732086DD /* AFSecurityPolicy.m */,
 			);
 			name = Security;
+			sourceTree = "<group>";
+		};
+		FFEDCC217AE2AFAA416C44E70256BC20 /* iOSDFULibrary */ = {
+			isa = PBXGroup;
+			children = (
+				0DD6D572EA1D8AE922394776FAC9DB7C /* ButtonlessDFU.swift */,
+				F7945E648A346CC8605EA14C843E4D94 /* crc32.swift */,
+				9B78C02C99730ECBDFE1D79A1DCCB591 /* Data.swift */,
+				697C6A36ACFA84A777215273D47971D5 /* DFUController.swift */,
+				D85C8D16D00AB1B73B7E57A88A50804C /* DFUControlPoint.swift */,
+				72F8DEDFABBE09E42F6CE26A4AF880F4 /* DFUExecutor.swift */,
+				39B17D4EEDB58089E40FCF38436DEE27 /* DFUFirmware.swift */,
+				453A6E5A9304E657335AE9EFE3159C21 /* DFUPacket.swift */,
+				00607EE8AB09227B00CC9C7DA8E19D76 /* DFUPeripheral.swift */,
+				D0ACB5A5B128048DEC62012727DC6151 /* DFUPeripheralDelegate.swift */,
+				A13B5DA59FC040AD1C6BC34138A2CE81 /* DFUPeripheralSelector.swift */,
+				D51B5DDF8C50BBE8E4F89F8F590F5A13 /* DFUPeripheralSelectorDelegate.swift */,
+				BFD5947937340F527468E0B63ABBF27F /* DFUService.swift */,
+				6D7F9550A5E33EC56BEAA7154037ECBB /* DFUServiceController.swift */,
+				1B472897C2F6A4B95B086094E4B2CF99 /* DFUServiceDelegate.swift */,
+				79744351A94B2AC26E5D62141AD0FB15 /* DFUServiceInitiator.swift */,
+				3C8DB43C1B194E324FCBF46431F429A5 /* DFUServiceSelector.swift */,
+				71B6F09382C40BE7D334286587CECC98 /* DFUStarterPeripheral.swift */,
+				504928D4302BCCCFF9E3633B0A131E96 /* DFUStream.swift */,
+				95F0970C714664F41221848F445AE29E /* DFUStreamBin.swift */,
+				202D1B20A24A704978BF58499A165939 /* DFUStreamHex.swift */,
+				C83C415CD170FCD1BD5E549FE004164F /* DFUStreamZip.swift */,
+				FF4B64BB9C5F6BA0804EE6DCE7337FF4 /* DFUVersion.swift */,
+				D8C3727497B66D5DAD67030C4E4EC77E /* Double.swift */,
+				DEE8BA9A0046D0378FC77D42F781593E /* IntelHex2BinConverter.h */,
+				69CEBAF6DDAA05B37DD3C8A8CDB35707 /* IntelHex2BinConverter.m */,
+				E32A782DA3BB280147A509F8E70CAF99 /* LegacyDFUExecutor.swift */,
+				18AC978AF9983D44FAFDD08F79CCBE9E /* LegacyDFUPeripheral.swift */,
+				253DF6E82E4B1CA51D0CB464D95B43AD /* LegacyDFUPeripheralDelegate.swift */,
+				24D29F53ABA78998302991DBB2745FFE /* LegacyDFUService.swift */,
+				895453C4CAB634DD60D261AEC83DF1D3 /* LegacyDFUServiceInitiator.swift */,
+				E1372870404853D33F0940BEC9E44B3F /* LoggerDelegate.swift */,
+				D87F2484799906533DC8580427E71862 /* LoggerHelper.swift */,
+				BBF94DD7AB114A6EE6401D9E0C655A55 /* Manifest.swift */,
+				5389AEB3BFDCCBBCB6AB980417801AE2 /* ManifestFirmwareInfo.swift */,
+				0FCC301F856CB49C302DBC8F4FC2A71B /* SecureDFUControlPoint.swift */,
+				8DCA967FC561EC6875A497BD4FBFDC00 /* SecureDFUExecutor.swift */,
+				131EEC152E08E50355C77BE6E010C0E3 /* SecureDFUPacket.swift */,
+				ACFFFC0CD64061EEAADBCA5E6B28C982 /* SecureDFUPeripheral.swift */,
+				827A51D38DEFAFA935A2A532F637790E /* SecureDFUPeripheralDelegate.swift */,
+				BD83463598A2F9560CC95CDB75A4C010 /* SecureDFUService.swift */,
+				1AF5E901C16B8A014826B2F04AB50C04 /* SecureDFUServiceInitiator.swift */,
+				72039685AE84D7DFC726A1C0FEDEDD28 /* SoftdeviceBootloaderInfo.swift */,
+				11B16B94456168633793F733927D5638 /* ZipArchive.swift */,
+				8AD67393A14B9E2940A4258739E850D7 /* Support Files */,
+			);
+			name = iOSDFULibrary;
+			path = iOSDFULibrary;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -2172,7 +2172,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 46EC2299A313886B883737DA453B9A83 /* Build configuration list for PBXNativeTarget "iOSDFULibrary" */;
 			buildPhases = (
-				676DC10DE5EF9FC410DAF44E238E267C /* Sources */,
+				81A676E377B01413CE4DA639040C96B8 /* Sources */,
 				BE8062B1EA73C0788A77D1BEC88A5112 /* Frameworks */,
 				37ADE5075FF8178853B1A5F4434D07C3 /* Headers */,
 			);
@@ -2580,57 +2580,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		676DC10DE5EF9FC410DAF44E238E267C /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D0005F53BCA7BC904E91F5DDF756F395 /* crc32.swift in Sources */,
-				950F6A52A644AFB81473077D46D6A130 /* Data.swift in Sources */,
-				61CBAA381E8DAECDD3BDB958526E02C3 /* DFUController.swift in Sources */,
-				324DF45ED3357CAA119EAA9D7DBB9E85 /* DFUControlPoint.swift in Sources */,
-				F6A204A5B428CABBAC973AE82FEE2784 /* DFUExecutor.swift in Sources */,
-				A29716E55C9D6029716D51F111AD3BAA /* DFUFirmware.swift in Sources */,
-				1BB77E9BE15CF5EEC753C261A06F385B /* DFUPacket.swift in Sources */,
-				4472DA256EFDBFB7F2C248356B946B95 /* DFUPeripheral.swift in Sources */,
-				9361B1BA48C36AC1CF4C723E7915C37D /* DFUPeripheralDelegate.swift in Sources */,
-				363B82333E44E82267E47E4AE8B46B02 /* DFUPeripheralSelector.swift in Sources */,
-				2E6C3C73FA8B97E497388F2920342408 /* DFUPeripheralSelectorDelegate.swift in Sources */,
-				462FD86D2E3E911441454D47F20EABA4 /* DFUService.swift in Sources */,
-				E4B4511367E7EB6765F7C7ECE4DFF253 /* DFUServiceController.swift in Sources */,
-				6660C3B944EC92C33E40D3C60D0B5DCC /* DFUServiceDelegate.swift in Sources */,
-				5644BF44151D5AB3F2CBB8EB6B6D6F44 /* DFUServiceInitiator.swift in Sources */,
-				FB03F80233DCC4DCCB295EA77E7E48A8 /* DFUServiceSelector.swift in Sources */,
-				3584309C9C2541AEA48E2B74C3DDA60D /* DFUStarterPeripheral.swift in Sources */,
-				A8629D12FAB72ACAD4175D85E022F4D5 /* DFUStream.swift in Sources */,
-				D490C2F75D77E34F4927D944CC8FCCAE /* DFUStreamBin.swift in Sources */,
-				3BD629B12DC96CC4BE80DC44AF9FCE7D /* DFUStreamHex.swift in Sources */,
-				791DAA949CC3C23C1712F9FE562560BE /* DFUStreamZip.swift in Sources */,
-				665E1951D3AA233841442B7B1E28FF70 /* DFUVersion.swift in Sources */,
-				15AB02AEE6262A2ABF77063288E0EAB2 /* Double.swift in Sources */,
-				257D501B3FB2B3C88BC1A5A69BA83CD7 /* ExperimentalButtonlessDFU.swift in Sources */,
-				5B79EE1FA0B18CCD252E9065DFABD834 /* IntelHex2BinConverter.m in Sources */,
-				7063DB5BD812F0131C599EF9C9D8AC43 /* iOSDFULibrary-dummy.m in Sources */,
-				66EF39EB9CE58B25D15D6370451A9CA4 /* LegacyDFUExecutor.swift in Sources */,
-				C8BC42883EE3C6487A78F59BDCF597A8 /* LegacyDFUPeripheral.swift in Sources */,
-				6E63EAEC9E138E1D1BF81EFB47D5E3BC /* LegacyDFUPeripheralDelegate.swift in Sources */,
-				02AF8B96E19007790F4E1DBB31DC1B85 /* LegacyDFUService.swift in Sources */,
-				2B2484A6DAFA32E18EE7058AC927CCF9 /* LegacyDFUServiceInitiator.swift in Sources */,
-				1521A78DC3CCD6049E180AC99DC6DD83 /* LoggerDelegate.swift in Sources */,
-				B3F25ADC850701A6919764AD1EAD34F2 /* LoggerHelper.swift in Sources */,
-				74C89A46013F3F6AAA93D930F5C24472 /* Manifest.swift in Sources */,
-				DA62B954B4817184DDAFC4A8760AD25B /* ManifestFirmwareInfo.swift in Sources */,
-				0B4523995B7ABC300D963EDA19884C96 /* SecureDFUControlPoint.swift in Sources */,
-				9D6B70F1FBDA9819AA53102CE95A559C /* SecureDFUExecutor.swift in Sources */,
-				1CCA821DFE6F8EC02D76AB85C5B92431 /* SecureDFUPacket.swift in Sources */,
-				4437E070109A3AEF263C76C444B3B233 /* SecureDFUPeripheral.swift in Sources */,
-				30C84EC7453606FF91CCF27C5FC3913A /* SecureDFUPeripheralDelegate.swift in Sources */,
-				3DC8D32FF2B3D52D6501B507DE1EE668 /* SecureDFUService.swift in Sources */,
-				BF6C3BFDCE013088F862A9FFA2DE7CD6 /* SecureDFUServiceInitiator.swift in Sources */,
-				7C3B0307B141CBB8E4D9D0113138C400 /* SoftdeviceBootloaderInfo.swift in Sources */,
-				4C3DBC954F9F35B7D7608E9D47C8CFB1 /* ZipArchive.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		6A10001116C48A3F5FDB7E1BC749EECD /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -2679,6 +2628,57 @@
 				1C845F8441007558AE7386064FE833AD /* zip.c in Sources */,
 				48EE55BDBD977CF0E0B59A56C6329901 /* Zip.swift in Sources */,
 				D2B25EDC91A9E93A3A099B1EB385E320 /* ZipUtilities.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		81A676E377B01413CE4DA639040C96B8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				400464B8A4A6E5897B6C6B6F67DE4219 /* ButtonlessDFU.swift in Sources */,
+				BBF10223BBE7FA3BC2A166AE047CD744 /* crc32.swift in Sources */,
+				359752737A8C17F221B32FFACD30212B /* Data.swift in Sources */,
+				E8E991B5C8C7B55BBEECB9A0A822D307 /* DFUController.swift in Sources */,
+				CF9D92DCC22BEC637AFCCA5C8291C2FC /* DFUControlPoint.swift in Sources */,
+				01322E33B313EBAC8C9C39CF8A5E46BB /* DFUExecutor.swift in Sources */,
+				975B7FB1C5BFB02E56697335FEA425D7 /* DFUFirmware.swift in Sources */,
+				E844802FAA3AA30FB5EE281288C8E2A6 /* DFUPacket.swift in Sources */,
+				10684EC843B5094D5E974B134A677717 /* DFUPeripheral.swift in Sources */,
+				0D9F7CCBFC8144496C156C61020F26B6 /* DFUPeripheralDelegate.swift in Sources */,
+				EECC2055944AD402FC384B523811F67D /* DFUPeripheralSelector.swift in Sources */,
+				C6549066C22F81E10F8071B78F44D0EC /* DFUPeripheralSelectorDelegate.swift in Sources */,
+				6454653B7C3EE76C7AF11644A935D2F1 /* DFUService.swift in Sources */,
+				FAC332B9C56587D7115FFEBCEF64C7DE /* DFUServiceController.swift in Sources */,
+				E6EFD83C3EA5EC920589ECE90956893D /* DFUServiceDelegate.swift in Sources */,
+				7C23B87D1D226CF5E7D3E94949CFEB3E /* DFUServiceInitiator.swift in Sources */,
+				098EA1C961FF0A005E9664F8CE1E4E3E /* DFUServiceSelector.swift in Sources */,
+				941D05A452C1F2FCCFFD5A8B7A9EEF68 /* DFUStarterPeripheral.swift in Sources */,
+				59D23731034D480FC7D6B5AE2B7FDFF2 /* DFUStream.swift in Sources */,
+				2519C86FCEAD3E52A40787A134BAD94A /* DFUStreamBin.swift in Sources */,
+				776499CEE8DF10BBAACE785C9F447A8E /* DFUStreamHex.swift in Sources */,
+				BD69F40211574CD9E7EA414022AB7614 /* DFUStreamZip.swift in Sources */,
+				B4FD35227C1800C253425D8271FC2DB8 /* DFUVersion.swift in Sources */,
+				E1596EE5C601F8570252AB5ED2542613 /* Double.swift in Sources */,
+				D419BA5A7DC20FBCB3D5726D349F5CAE /* IntelHex2BinConverter.m in Sources */,
+				1E5062FD096EDDF190E68CD76882D96D /* iOSDFULibrary-dummy.m in Sources */,
+				867CD2D647947D7D86EF724898A601DF /* LegacyDFUExecutor.swift in Sources */,
+				0FC0B9F2D6FC5740273559C790C9B4EE /* LegacyDFUPeripheral.swift in Sources */,
+				253AB194E391160253343A3E563E5CCD /* LegacyDFUPeripheralDelegate.swift in Sources */,
+				8733CC03512833333E848F8C2A90A894 /* LegacyDFUService.swift in Sources */,
+				8BE5EEDD0D189F165201A726C5B77C83 /* LegacyDFUServiceInitiator.swift in Sources */,
+				EEE56F6293B6F86444BED4CDC6234AAA /* LoggerDelegate.swift in Sources */,
+				523E999816F70DB5ACFFA9F77A0F014D /* LoggerHelper.swift in Sources */,
+				93E94C7A6E3F76EFF1B4F17FE5D332B9 /* Manifest.swift in Sources */,
+				1C54A6B77203286061C3EA6504E8C610 /* ManifestFirmwareInfo.swift in Sources */,
+				C9481668EE25A75E3F03BD42CEB4636F /* SecureDFUControlPoint.swift in Sources */,
+				7A96B3BB4FBC7AE48D70426635BD9640 /* SecureDFUExecutor.swift in Sources */,
+				958479F1EB708A42D9A7FDC184B99E68 /* SecureDFUPacket.swift in Sources */,
+				50D18CDC8CB1F47E501C5BDEED4B536F /* SecureDFUPeripheral.swift in Sources */,
+				B363F0EB578D43CD79BE93FDDA32582A /* SecureDFUPeripheralDelegate.swift in Sources */,
+				3437D39A89FCCA78EC1575E17A524633 /* SecureDFUService.swift in Sources */,
+				15CB30AF7FDA60B14201718F7A3828F1 /* SecureDFUServiceInitiator.swift in Sources */,
+				B3013DB2565885D18384F41AE84CB8FE /* SoftdeviceBootloaderInfo.swift in Sources */,
+				664824A193F98B342B49FF257417C50F /* ZipArchive.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3666,7 +3666,7 @@
 		};
 		D491F1BB0D1E5726E66A6350D315C1ED /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9C71BA02275766650DD84FB4C7B80E8D /* iOSDFULibrary.xcconfig */;
+			baseConfigurationReference = 9CA7BAB428D73632659384E8527EBA71 /* iOSDFULibrary.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -3698,7 +3698,7 @@
 		};
 		E033FEEFC1DCF0BC57D855EF5C9CA0D6 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9C71BA02275766650DD84FB4C7B80E8D /* iOSDFULibrary.xcconfig */;
+			baseConfigurationReference = 9CA7BAB428D73632659384E8527EBA71 /* iOSDFULibrary.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";

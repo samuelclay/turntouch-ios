@@ -212,7 +212,7 @@ class TTModeSonos: TTMode {
         if let device = self.selectedDevice() {
             device.getMute({ (mute, speakers, error) in
                 device.setMute(!mute, completion: { (speakers, error) in
-                    print(" ---> Muted volume: \(mute) (\(error), \(speakers)")
+                    print(" ---> Muted volume: \(mute) (\(String(describing: error)), \(String(describing: speakers))")
                 })
             })
         } else {
@@ -223,7 +223,7 @@ class TTModeSonos: TTMode {
     func runTTModeSonosPlayPause() {
         if let device = self.selectedDevice(coordinator: true) {
             device.togglePlayback({ (playing, speakers, error) in
-                print(" ---> Toggled sonos playback \(playing): \(speakers) \(error)")
+                print(" ---> Toggled sonos playback \(playing): \(String(describing: speakers)) \(String(describing: error))")
             })
         } else {
             self.beginConnectingToSonos()
@@ -239,10 +239,10 @@ class TTModeSonos: TTMode {
             device.playbackStatus({ (playing, body, error) in
                 if !playing {
                     device.togglePlayback({ (playing, body, errors) in
-                        print(" ---> Paused sonos playback \(playing): \(body) \(error)")
+                        print(" ---> Paused sonos playback \(playing): \(String(describing: body)) \(String(describing: error))")
                         if !playing {
                             device.togglePlayback({ (playing, body, errors) in
-                                print(" ---> Paused sonos playback twice \(playing): \(body) \(error)")
+                                print(" ---> Paused sonos playback twice \(playing): \(String(describing: body)) \(String(describing: error))")
                             })
                         }
                     })
@@ -262,7 +262,7 @@ class TTModeSonos: TTMode {
             device.playbackStatus({ (playing, body, error) in
                 if playing {
                     device.togglePlayback({ (playing, body, errors) in
-                        print(" ---> Paused sonos playback \(playing): \(body) \(error)")
+                        print(" ---> Paused sonos playback \(playing): \(String(describing: body)) \(String(describing: error))")
                     })
                 }
             })
@@ -278,7 +278,7 @@ class TTModeSonos: TTMode {
     func runTTModeSonosNextTrack() {
         if let device = self.selectedDevice(coordinator: true) {
             device.next({ (body, error) in
-                print((" ---> Next track: \(body) \(error)"))
+                print((" ---> Next track: \(String(describing: body)) \(String(describing: error))"))
             })
         } else {
             self.beginConnectingToSonos()
@@ -288,7 +288,7 @@ class TTModeSonos: TTMode {
     func runTTModeSonosPreviousTrack() {
         if let device = self.selectedDevice(coordinator: true) {
             device.previous({ (body, error) in
-                print((" ---> Previous track: \(body) \(error)"))
+                print((" ---> Previous track: \(String(describing: body)) \(String(describing: error))"))
                 
                 // Sonos pauses when going to the preview track for some reason
                 self.runTTModeSonosPlay()

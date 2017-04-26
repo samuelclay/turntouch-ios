@@ -109,7 +109,7 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
         }
         
         if DEBUG_BLUETOOTH {
-            print(" ---> Central manager state: \(state) - \(manager)/\(manager.state)", state!, manager, manager.state)
+            print(" ---> Central manager state: \(String(describing: state)) - \(manager)/\(manager.state)", state!, manager, manager.state)
         }
         return false
     }
@@ -454,7 +454,7 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
         let paired = device?.isPaired
         
         if DEBUG_BLUETOOTH {
-            print(" ---> (\(bluetoothState)) Disconnected device: \(device)")
+            print(" ---> (\(bluetoothState)) Disconnected device: \(String(describing: device))")
         }
         
         if bluetoothState == .bt_STATE_CONNECTING_UNKNOWN {
@@ -485,7 +485,7 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
     func centralManager(_ central: CBCentralManager, didFailToConnect peripheral: CBPeripheral, error: Error?) {
         let device = foundDevices.deviceForPeripheral(peripheral)
         if DEBUG_BLUETOOTH {
-            print(" ---> (\(bluetoothState)) Failed connect to device: \(device)-\(peripheral): \(error?.localizedDescription)")
+            print(" ---> (\(bluetoothState)) Failed connect to device: \(String(describing: device))-\(peripheral): \(String(describing: error?.localizedDescription))")
         }
         
         foundDevices.removePeripheral(peripheral)
@@ -621,7 +621,7 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
                 }
                 device.lastActionDate = Date()
             } else {
-                print(" ---> \(bluetoothState) Characteristic error: \(error?.localizedDescription)")
+                print(" ---> \(bluetoothState) Characteristic error: \(String(describing: error?.localizedDescription))")
             }
         } else if characteristic.uuid.isEqual(CBUUID(string: DEVICE_V2_CHARACTERISTIC_NICKNAME_UUID)) {
             if (characteristic.value == nil) || (characteristic.value!.count == 0) {
@@ -663,7 +663,7 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
     
     func peripheral(_ peripheral: CBPeripheral, didWriteValueFor characteristic: CBCharacteristic, error: Error?) {
         if DEBUG_BLUETOOTH {
-            print(" ---> Peripheral did write: \(characteristic.value) \(error ?? nil)")
+            print(" ---> Peripheral did write: \(String(describing: characteristic.value)) \(String(describing: error ?? nil))")
         }
     }
     

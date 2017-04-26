@@ -71,9 +71,9 @@ class TTModeCameraViewController: UIViewController {
         }
         
         camera.onError = { (cam, error) -> Void in
-            print(" camera error: \(error)")
+            print(" camera error: \(String(describing: error))")
             
-            if let camError = error as? NSError {
+            if let camError = error as NSError? {
                 if camError.domain == LLSimpleCameraErrorDomain {
                     if camError.code == Int(LLSimpleCameraErrorCodeCameraPermission.rawValue) ||
                         camError.code == Int(LLSimpleCameraErrorCodeMicrophonePermission.rawValue) {
@@ -254,12 +254,12 @@ class TTModeCameraViewController: UIViewController {
         if segmentedControl.selectedSegmentIndex == 0 {
             camera.capture({ (cam, image, metadata, error) -> Void in
                 if error == nil {
-                    print("image: \(image) - \(metadata)")
+                    print("image: \(String(describing: image)) - \(String(describing: metadata))")
                     self.modeCamera.cameraState = .imageReview
                     let reviewViewController = TTModeCameraReviewViewController(image: image!)
                     self.present(reviewViewController, animated: false, completion: nil)
                 } else {
-                    print("capture error: \(error)")
+                    print("capture error: \(String(describing: error))")
                 }
                 return ()
             }, exactSeenImage: true)
@@ -274,7 +274,7 @@ class TTModeCameraViewController: UIViewController {
                 
                 let outputURL = self.applicationDocumentsDirectory()?.appendingPathComponent("test1").appendingPathExtension("mov")
                 camera.startRecording(withOutputUrl: outputURL, didRecord: { (cam, outputFileUrl, error) -> Void in
-                    print("recorded video: \(outputFileUrl)")
+                    print("recorded video: \(String(describing: outputFileUrl))")
                     return ()
                 })
             } else {

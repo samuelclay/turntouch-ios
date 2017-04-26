@@ -135,7 +135,7 @@ class TTModeMusic: TTMode {
                 lastVolume = AVAudioSession.sharedInstance().outputVolume
             }
         } else if keyPath == "nowPlayingInfo" {
-            print(" Now playing info: \(musicPlayer.nowPlayingItem)")
+            print(" Now playing info: \(String(describing: musicPlayer.nowPlayingItem))")
         }
     }
     
