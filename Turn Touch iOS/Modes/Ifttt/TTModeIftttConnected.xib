@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Effra_Rg.ttf">
+            <string>Effra-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TTModeNestConnected" customModule="Turn_Touch_iOS" customModuleProvider="target">
+            <connections>
+                <outlet property="labelAmbient" destination="Yws-cr-XME" id="5Rd-DN-HWj"/>
+                <outlet property="labelTarget" destination="5HU-ip-UUZ" id="kPE-bV-BkT"/>
+                <outlet property="singlePicker" destination="ZrU-DT-fBt" id="Jqo-eK-vcw"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outletCollection property="refreshButton" destination="D51-2l-faF" collectionClass="NSMutableArray" id="IoL-gP-5lx"/>
+                <outletCollection property="spinner" destination="s8W-zx-ygX" collectionClass="NSMutableArray" id="Ja5-v8-2PR"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="532" height="168"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D51-2l-faF">
+                    <rect key="frame" x="492" y="18" width="20" height="20"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="20" id="Mez-O9-iOs"/>
+                        <constraint firstAttribute="height" constant="20" id="TIx-iI-GGL"/>
+                    </constraints>
+                    <state key="normal" image="refresh.png"/>
+                    <connections>
+                        <action selector="refreshDevices:" destination="-1" eventType="touchUpInside" id="I4s-y8-cb3"/>
+                    </connections>
+                </button>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="s8W-zx-ygX">
+                    <rect key="frame" x="492" y="18" width="20" height="20"/>
+                </activityIndicatorView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thermostat" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bd1-fL-FoJ">
+                    <rect key="frame" x="20" y="20" width="68" height="16"/>
+                    <fontDescription key="fontDescription" name="Effra-Regular" family="Effra" pointSize="13"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Room temperature" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xUY-1P-NtR">
+                    <rect key="frame" x="113.5" y="75" width="107" height="16"/>
+                    <fontDescription key="fontDescription" name="Effra-Regular" family="Effra" pointSize="13"/>
+                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Temperature set to" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wv1-2k-arM">
+                    <rect key="frame" x="312.5" y="75" width="107.5" height="16"/>
+                    <fontDescription key="fontDescription" name="Effra-Regular" family="Effra" pointSize="13"/>
+                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZrU-DT-fBt">
+                    <rect key="frame" x="110" y="4" width="360" height="47"/>
+                    <fontDescription key="fontDescription" name="Effra-Regular" family="Effra" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="123°F" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yws-cr-XME">
+                    <rect key="frame" x="120.5" y="99" width="92.5" height="45"/>
+                    <fontDescription key="fontDescription" name="Effra-Regular" family="Effra" pointSize="37"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="123°F" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5HU-ip-UUZ">
+                    <rect key="frame" x="320.5" y="99" width="92.5" height="45"/>
+                    <fontDescription key="fontDescription" name="Effra-Regular" family="Effra" pointSize="37"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="5HU-ip-UUZ" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" constant="100" id="2lt-uO-FMc"/>
+                <constraint firstItem="bd1-fL-FoJ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="3tM-vG-86A"/>
+                <constraint firstItem="D51-2l-faF" firstAttribute="leading" secondItem="ZrU-DT-fBt" secondAttribute="trailing" constant="22" id="7Mr-9b-KNa"/>
+                <constraint firstItem="Yws-cr-XME" firstAttribute="top" secondItem="xUY-1P-NtR" secondAttribute="bottom" constant="8" id="Ms7-7X-BhZ"/>
+                <constraint firstItem="5HU-ip-UUZ" firstAttribute="centerX" secondItem="wv1-2k-arM" secondAttribute="centerX" id="QIy-nq-GJZ"/>
+                <constraint firstItem="D51-2l-faF" firstAttribute="centerX" secondItem="s8W-zx-ygX" secondAttribute="centerX" id="T5w-8V-zXz"/>
+                <constraint firstItem="D51-2l-faF" firstAttribute="centerY" secondItem="s8W-zx-ygX" secondAttribute="centerY" id="UaH-Pb-43F"/>
+                <constraint firstItem="bd1-fL-FoJ" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="20" id="X3g-CB-57y"/>
+                <constraint firstItem="xUY-1P-NtR" firstAttribute="top" secondItem="ZrU-DT-fBt" secondAttribute="bottom" constant="24" id="YSD-F7-6tk"/>
+                <constraint firstItem="5HU-ip-UUZ" firstAttribute="top" secondItem="wv1-2k-arM" secondAttribute="bottom" constant="8" id="ZCy-ui-AwL"/>
+                <constraint firstItem="ZrU-DT-fBt" firstAttribute="leading" secondItem="bd1-fL-FoJ" secondAttribute="trailing" constant="22" id="dW4-oP-uFv"/>
+                <constraint firstAttribute="trailing" secondItem="D51-2l-faF" secondAttribute="trailing" constant="20" id="esl-G5-Ma1"/>
+                <constraint firstItem="Yws-cr-XME" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" constant="-100" id="f7c-gg-edr"/>
+                <constraint firstItem="s8W-zx-ygX" firstAttribute="centerY" secondItem="D51-2l-faF" secondAttribute="centerY" id="pFR-3f-qu9"/>
+                <constraint firstAttribute="bottom" secondItem="Yws-cr-XME" secondAttribute="bottom" constant="24" id="qGI-rL-Aw2"/>
+                <constraint firstItem="Yws-cr-XME" firstAttribute="centerX" secondItem="xUY-1P-NtR" secondAttribute="centerX" id="sXc-4D-Qw8"/>
+                <constraint firstItem="ZrU-DT-fBt" firstAttribute="centerY" secondItem="bd1-fL-FoJ" secondAttribute="centerY" id="tim-qo-q05"/>
+                <constraint firstItem="D51-2l-faF" firstAttribute="centerY" secondItem="ZrU-DT-fBt" secondAttribute="centerY" id="xkD-Yf-sgA"/>
+                <constraint firstItem="s8W-zx-ygX" firstAttribute="centerX" secondItem="D51-2l-faF" secondAttribute="centerX" id="yLj-1k-rif"/>
+                <constraint firstItem="wv1-2k-arM" firstAttribute="centerY" secondItem="xUY-1P-NtR" secondAttribute="centerY" id="zHZ-bE-r8b"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="48" y="-128"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="refresh.png" width="128" height="128"/>
+    </resources>
+</document>
