@@ -143,6 +143,9 @@
 		FF534C3E1EB0351A002EE584 /* TTModeIftttOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF534C351EB0351A002EE584 /* TTModeIftttOptions.swift */; };
 		FF534C3F1EB0351A002EE584 /* TTModeIftttOptions.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF534C361EB0351A002EE584 /* TTModeIftttOptions.xib */; };
 		FF534C411EB03C93002EE584 /* mode_ifttt.png in Resources */ = {isa = PBXBuildFile; fileRef = FF534C401EB03C93002EE584 /* mode_ifttt.png */; };
+		FF534C451EB12BEF002EE584 /* TTModeIftttOAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF534C431EB12BEF002EE584 /* TTModeIftttOAuthViewController.swift */; };
+		FF534C461EB12BEF002EE584 /* TTModeIftttOAuthViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF534C441EB12BEF002EE584 /* TTModeIftttOAuthViewController.xib */; };
+		FF534C481EB14E4B002EE584 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = FF534C471EB14E4B002EE584 /* Settings.bundle */; };
 		FF6434881D5130BF00F2FAE6 /* mode_camera.png in Resources */ = {isa = PBXBuildFile; fileRef = FF6434871D5130BF00F2FAE6 /* mode_camera.png */; };
 		FF7A235C1DFF7D21002B696D /* modal_failure.png in Resources */ = {isa = PBXBuildFile; fileRef = FF7A235B1DFF7D21002B696D /* modal_failure.png */; };
 		FF7C144F1DB2F2AB009CBA28 /* TTBatchActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7C144E1DB2F2AB009CBA28 /* TTBatchActions.swift */; };
@@ -464,6 +467,9 @@
 		FF534C361EB0351A002EE584 /* TTModeIftttOptions.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TTModeIftttOptions.xib; sourceTree = "<group>"; };
 		FF534C401EB03C93002EE584 /* mode_ifttt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mode_ifttt.png; sourceTree = "<group>"; };
 		FF534C421EB05D67002EE584 /* Turn Touch iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Turn Touch iOS.entitlements"; sourceTree = "<group>"; };
+		FF534C431EB12BEF002EE584 /* TTModeIftttOAuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TTModeIftttOAuthViewController.swift; sourceTree = "<group>"; };
+		FF534C441EB12BEF002EE584 /* TTModeIftttOAuthViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TTModeIftttOAuthViewController.xib; sourceTree = "<group>"; };
+		FF534C471EB14E4B002EE584 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		FF6434871D5130BF00F2FAE6 /* mode_camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mode_camera.png; sourceTree = "<group>"; };
 		FF7A235B1DFF7D21002B696D /* modal_failure.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = modal_failure.png; sourceTree = "<group>"; };
 		FF7C144E1DB2F2AB009CBA28 /* TTBatchActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTBatchActions.swift; path = Models/TTBatchActions.swift; sourceTree = "<group>"; };
@@ -971,6 +977,8 @@
 				FF534C341EB0351A002EE584 /* TTModeIftttConnecting.xib */,
 				FF534C351EB0351A002EE584 /* TTModeIftttOptions.swift */,
 				FF534C361EB0351A002EE584 /* TTModeIftttOptions.xib */,
+				FF534C431EB12BEF002EE584 /* TTModeIftttOAuthViewController.swift */,
+				FF534C441EB12BEF002EE584 /* TTModeIftttOAuthViewController.xib */,
 			);
 			name = Ifttt;
 			path = Modes/Ifttt;
@@ -1196,6 +1204,7 @@
 		FFB41B7D1CF52E5700CD5F09 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				FF534C471EB14E4B002EE584 /* Settings.bundle */,
 				FF0F10BF1CF5638D00CC1F29 /* Preferences.plist */,
 				FFF270A11CEE88E500E46575 /* Info.plist */,
 				FFF2709C1CEE88E500E46575 /* Assets.xcassets */,
@@ -1623,8 +1632,10 @@
 				FFB41B5C1CEE9A3000CD5F09 /* logo_16.png in Resources */,
 				FF534C3B1EB0351A002EE584 /* TTModeIftttConnected.xib in Resources */,
 				FFB41B171CEE9A3000CD5F09 /* hue_random.png in Resources */,
+				FF534C461EB12BEF002EE584 /* TTModeIftttOAuthViewController.xib in Resources */,
 				FFB41B4F1CEE9A3000CD5F09 /* vinyl.png in Resources */,
 				FFB41B501CEE9A3000CD5F09 /* itunes_audiobook_icon.png in Resources */,
+				FF534C481EB14E4B002EE584 /* Settings.bundle in Resources */,
 				FF0F10C01CF5638D00CC1F29 /* Preferences.plist in Resources */,
 				FFB84B4A1D90D4240037872C /* yoga_position_11.png in Resources */,
 				FFB41B531CEE9A3000CD5F09 /* itunes_library_icon.png in Resources */,
@@ -1719,6 +1730,7 @@
 				FFC4B0F31D2DC38C00A97C81 /* TTModalButton.swift in Sources */,
 				FF7C14531DB2F2DD009CBA28 /* TTDeviceList.swift in Sources */,
 				FF0F10EB1CFFB4A800CC1F29 /* TTModeMenuCollectionView.swift in Sources */,
+				FF534C451EB12BEF002EE584 /* TTModeIftttOAuthViewController.swift in Sources */,
 				FF4AF7B21D2486F90009C777 /* TTModeWemoOptions.swift in Sources */,
 				FF08A2331D501ABD00D433A5 /* TTModeCameraReviewViewController.swift in Sources */,
 				FF7C144F1DB2F2AB009CBA28 /* TTBatchActions.swift in Sources */,

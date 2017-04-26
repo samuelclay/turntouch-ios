@@ -104,6 +104,8 @@ class TTTitleBarView: UIView, TTTitleMenuDelegate {
         switch row {
         case 0:
             appDelegate().mainViewController.showPairingModal()
+        case 1:
+            appDelegate().mainViewController.showSettingsModal()
         case 2:
             appDelegate().mainViewController.showFtuxModal()
         default:

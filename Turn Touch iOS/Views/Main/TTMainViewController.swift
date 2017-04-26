@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import InAppSettingsKit
 
 enum TTModalState {
     case app
@@ -17,7 +18,7 @@ enum TTModalState {
     case support
 }
 
-class TTMainViewController: UIViewController, UIPopoverPresentationControllerDelegate {
+class TTMainViewController: UIViewController, UIPopoverPresentationControllerDelegate, IASKSettingsDelegate {
     
     var stackView = UIStackView()
     var scrollStackView = UIStackView()
@@ -53,6 +54,7 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
     var modalState: TTModalState?
     var pairingViewController: TTPairingViewController?
     var pairingInfoViewController: TTPairingInfoViewController?
+    var settingsViewController: IASKAppSettingsViewController!
     var ftuxViewController: TTFTUXViewController?
     var modalNavController: UINavigationController!
     
@@ -504,5 +506,34 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
         modalNavController.dismiss(animated: true, completion: nil)
         modalNavController = nil
     }
-
+    
+    // MARK: Settings
+    
+    func showSettingsModal() {
+        if modalNavController != nil {
+            print(" ---> Don't show settings modal, already showing it")
+            return
+        }
+        
+        titleMenu.dismiss(animated: true , completion: nil)
+        settingsViewController = IASKAppSettingsViewController()
+        settingsViewController.showCreditsFooter = false
+        settingsViewController.delegate = self
+        
+        modalNavController = UINavigationController(rootViewController: settingsViewController)
+        modalNavController.modalPresentationStyle = .formSheet
+        self.present(modalNavController, animated: true, completion: nil)
+    }
+    
+    func closeSettingsModal() {
+        modalNavController.dismiss(animated: true, completion: nil)
+        modalNavController = nil
+    }
+    
+    // IASKSettingsDelegate
+    
+    func settingsViewControllerDidEnd(_ sender: IASKAppSettingsViewController!) {
+        sender.synchronizeSettings()
+        self.closeSettingsModal()
+    }
 }

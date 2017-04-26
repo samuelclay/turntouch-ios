@@ -115,7 +115,7 @@ class TTModeIfttt: TTMode {
             DispatchQueue.main.async {
                 if TTModeIfttt.IftttState != .connected {
                     print(" ---> Reachable, re-connecting to Ifttt...")
-                    self.beginConnectingToIfttt()
+//                    self.beginConnectingToIfttt()
                 }
             }
         }

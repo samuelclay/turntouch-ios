@@ -18,6 +18,7 @@ PODS:
   - CocoaAsyncSocket (7.6.0)
   - Firebase (1.2.3)
   - Gloss (1.2.4)
+  - InAppSettingsKit (2.8.1)
   - iOSDFULibrary (3.1.0):
     - Zip (~> 0.7)
   - JSONModel (1.2.0)
@@ -46,6 +47,7 @@ PODS:
 DEPENDENCIES:
   - AFNetworking (~> 3.1)
   - CocoaAsyncSocket (~> 7.6.0)
+  - InAppSettingsKit (~> 2.8)
   - iOSDFULibrary (~> 3.1)
   - NestSDK (= 0.1.5)
   - ReachabilitySwift (~> 3)
@@ -68,6 +70,7 @@ SPEC CHECKSUMS:
   CocoaAsyncSocket: b9d5589f07baf9de8f34cc25abd4fcba28f13805
   Firebase: 7a1b6a0848467348672afebfb306c624a3510f04
   Gloss: 4e036074610fdb993abcb958ebcd7332588e2333
+  InAppSettingsKit: 94d2fba3ccd700fc4e32c6d09fabcc0af2426744
   iOSDFULibrary: 3b8a3014e3e4d1bec99b634b2f79fa856e28e556
   JSONModel: 12523685c4b623553ccf844bbbf7007624317b2c
   Log: 5e368c9528db07517d18d2d04ff5fe2b6f5a1e21
@@ -78,6 +81,6 @@ SPEC CHECKSUMS:
   SWXMLHash: 29d20b84692fc319ea8ed933058fe7d8d005139b
   Zip: e34513299ac38c0686d5b24504da7ce343799ab9
 
-PODFILE CHECKSUM: f4f43c70606d4d24b3a919a8252db3f6cd60ab1f
+PODFILE CHECKSUM: 0b9ece48b9c304c6e1d0506a18bc91126b4b01fe
 
 COCOAPODS: 1.2.1

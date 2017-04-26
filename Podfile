@@ -12,6 +12,7 @@ target "Turn Touch iOS" do
     pod "SwiftyHue", :git => "https://github.com/samuelclay/SwiftyHue.git", :branch => "swift3"
     
     pod "iOSDFULibrary", "~> 3.1"
+    pod "InAppSettingsKit", "~> 2.8"
 end
 
 
