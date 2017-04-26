@@ -2,8 +2,8 @@ platform :ios, "9.0"
 use_frameworks!
 
 target "Turn Touch iOS" do
-    pod "CocoaAsyncSocket", "~> 7.4.3"
-    pod "AFNetworking", "~> 3.0"
+    pod "CocoaAsyncSocket", "~> 7.6.0"
+    pod "AFNetworking", "~> 3.1"
     pod "SWXMLHash", "~> 3.0.0"
     pod "ReachabilitySwift", "~> 3"
     pod "NestSDK", "0.1.5"
@@ -11,7 +11,7 @@ target "Turn Touch iOS" do
     # SwiftyHue
     pod "SwiftyHue", :git => "https://github.com/samuelclay/SwiftyHue.git", :branch => "swift3"
     
-    pod "iOSDFULibrary", "~> 3.0"
+    pod "iOSDFULibrary", "~> 3.1"
 end
 
 

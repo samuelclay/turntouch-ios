@@ -20,7 +20,7 @@
 
 #import <Foundation/Foundation.h>
 #import "NestSDKDataModel.h"
-#import "NestSDKMetadata.h"
+#import "NestSDKMetaData.h"
 
 @protocol Optional;
 

@@ -35,10 +35,10 @@
       "source_files": "Sources/Base/**/*.{h,swift}",
       "dependencies": {
         "Alamofire": [
-          "~> 4.0.1"
+          "~> 4.4.0"
         ],
         "Gloss": [
-          "~> 1.0.0"
+          "~> 1.2.4"
         ],
         "Log": [
           "~> 1.0"
@@ -55,13 +55,13 @@
       },
       "dependencies": {
         "Alamofire": [
-          "~> 4.0.1"
+          "~> 4.4.0"
         ],
         "Gloss": [
-          "~> 1.0.0"
+          "~> 1.2.4"
         ],
         "CocoaAsyncSocket": [
-          "~> 7.4.3"
+          "~> 7.6.0"
         ],
         "Log": [
           "~> 1.0"
