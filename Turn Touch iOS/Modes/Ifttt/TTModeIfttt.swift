@@ -10,7 +10,8 @@ import UIKit
 import ReachabilitySwift
 
 struct TTModeIftttConstants {
-    static let kIftttThermostatIdentifier = "IftttThermostatIdentifier"
+    static let kIftttDeviceIdKey = "TT:IFTTT:device_id"
+    static let kIftttIsActionSetup = "isActionSetup"
 }
 
 enum TTIftttState {
@@ -45,13 +46,14 @@ class TTModeIfttt: TTMode {
     }
     
     override class func imageName() -> String {
-        return "mode_Ifttt.png"
+        return "mode_ifttt.png"
     }
     
     // MARK: Actions
     
     override class func actions() -> [String] {
-        return ["TTModeIftttTriggerAction",
+        return [
+            "TTModeIftttTriggerAction",
         ]
     }
     
@@ -97,7 +99,7 @@ class TTModeIfttt: TTMode {
     
     
     func runTTModeIftttTriggerAction() {
-
+        
     }
     
     // MARK: Ifttt Reachability
@@ -157,6 +159,35 @@ class TTModeIfttt: TTMode {
     
     func logMessage(_ message: String) {
         print(" ---> Ifttt API: \(message)")
+    }
+    
+    // MARK: Device info
+    
+    func deviceId() -> String {
+        var uuid: NSUUID!
+        let prefs = UserDefaults.standard
+
+        if let uuidString = NSUbiquitousKeyValueStore.default().string(forKey: TTModeIftttConstants.kIftttDeviceIdKey) {
+            uuid = NSUUID(uuidString: uuidString)
+        
+            prefs.set(uuid.uuidString, forKey: TTModeIftttConstants.kIftttDeviceIdKey)
+            prefs.synchronize()
+        } else if let uuidString = prefs.string(forKey: TTModeIftttConstants.kIftttDeviceIdKey) {
+            uuid = NSUUID(uuidString: uuidString)
+
+            NSUbiquitousKeyValueStore.default().set(uuid.uuidString, forKey: TTModeIftttConstants.kIftttDeviceIdKey)
+            NSUbiquitousKeyValueStore.default().synchronize()
+        } else {
+            uuid = NSUUID()
+            
+            prefs.set(uuid.uuidString, forKey: TTModeIftttConstants.kIftttDeviceIdKey)
+            prefs.synchronize()
+
+            NSUbiquitousKeyValueStore.default().set(uuid.uuidString, forKey: TTModeIftttConstants.kIftttDeviceIdKey)
+            NSUbiquitousKeyValueStore.default().synchronize()
+        }
+        
+        return uuid.uuidString
     }
     
 }

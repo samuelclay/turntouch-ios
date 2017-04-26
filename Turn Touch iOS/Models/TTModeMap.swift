@@ -50,6 +50,7 @@ class TTModeMap: NSObject {
 //            "TTModeAlarmClock",
             "TTModeYoga",
             "TTModeCustom",
+            "TTModeIfttt",
         ]
         
         super.init()
@@ -142,19 +143,6 @@ class TTModeMap: NSObject {
         self.selectedModeDirection = direction
         batchActions.assemble()
         
-        if #available(iOS 10.0, *) {
-            if UIApplication.shared.applicationState == .active {
-//                let generator = UINotificationFeedbackGenerator()
-//                generator.notificationOccurred(.success)
-            } else {
-                AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
-                AudioServicesPlayAlertSound(kSystemSoundID_Vibrate)
-            }
-        } else {
-            AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
-            AudioServicesPlayAlertSound(kSystemSoundID_Vibrate)
-        }
-        
         var url: URL!
         switch direction {
         case .north:
@@ -171,6 +159,19 @@ class TTModeMap: NSObject {
         
         
         if modeChangeType == .remoteButton {
+            if #available(iOS 10.0, *) {
+                if UIApplication.shared.applicationState == .active {
+                    //                let generator = UINotificationFeedbackGenerator()
+                    //                generator.notificationOccurred(.success)
+                } else {
+                    AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
+                    AudioServicesPlayAlertSound(kSystemSoundID_Vibrate)
+                }
+            } else {
+                AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
+                AudioServicesPlayAlertSound(kSystemSoundID_Vibrate)
+            }
+            
             do {
                 try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback, with: .mixWithOthers)
                 do {

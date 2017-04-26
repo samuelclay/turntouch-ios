@@ -274,7 +274,7 @@ class TTDiamondView: UIView {
                     combinedPath.fill()
                 }
             } else {
-                combinedPath.lineWidth = isInspectingDirection ? 3.0 : 1.0
+                combinedPath.lineWidth = isInspectingDirection && !bottomHalf ? 3.0 : 1.0
                 modeColor!.setStroke()
                 combinedPath.stroke()
             }
