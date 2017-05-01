@@ -67,6 +67,10 @@ class TTDiamondView: UIView {
         self.translatesAutoresizingMaskIntoConstraints = false
         self.isUserInteractionEnabled = true
         
+        let longPressRecognizer = UILongPressGestureRecognizer(target: self,
+                                                               action: #selector(self.longPressed))
+        self.addGestureRecognizer(longPressRecognizer)
+
         self.registerAsObserver()
     }
     
@@ -389,4 +393,34 @@ class TTDiamondView: UIView {
         appDelegate().mainViewController.scrollView.isScrollEnabled = true
     }
     
+    func longPressed(sender: UILongPressGestureRecognizer) {
+        if (sender.state == .began) {
+            if diamondType != .interactive {
+                return
+            }
+            
+            let location = sender.location(ofTouch: 0, in: self)
+            if northPathTop.contains(location) || northPathBottom.contains(location) {
+                overrideActiveDirection = .north
+            } else if eastPathTop.contains(location) || eastPathBottom.contains(location) {
+                overrideActiveDirection = .east
+            } else if westPathTop.contains(location) || westPathBottom.contains(location) {
+                overrideActiveDirection = .west
+            } else if southPathTop.contains(location) || southPathBottom.contains(location) {
+                overrideActiveDirection = .south
+            } else {
+                overrideActiveDirection = .no_DIRECTION
+            }
+            
+            if appDelegate().modeMap.inspectingModeDirection != overrideActiveDirection {
+                if appDelegate().modeMap.openedActionChangeMenu {
+                    appDelegate().modeMap.openedActionChangeMenu = false
+                }
+                appDelegate().modeMap.toggleInspectingModeDirection(overrideActiveDirection)
+            }
+            appDelegate().mainViewController.actionTitleView.pressChange(nil)
+            
+            appDelegate().mainViewController.scrollView.isScrollEnabled = true
+        }
+    }
 }

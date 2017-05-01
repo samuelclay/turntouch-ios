@@ -54,6 +54,10 @@ class TTModeTab: UIView {
         
         self.setupMode()
         self.registerAsObserver()
+        
+        let longPressRecognizer = UILongPressGestureRecognizer(target: self,
+                                                               action: #selector(self.longPressed))
+        self.addGestureRecognizer(longPressRecognizer)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -243,5 +247,14 @@ class TTModeTab: UIView {
     
     func switchMode() {
         appDelegate().modeMap.switchMode(self.modeDirection, modeChangeType: .modeTab)
+    }
+    
+    func longPressed(sender: UILongPressGestureRecognizer) {
+        if (sender.state == .began) {
+            if appDelegate().modeMap.selectedModeDirection != self.modeDirection {
+                appDelegate().modeMap.switchMode(self.modeDirection, modeChangeType: .modeTab)
+            }
+            appDelegate().mainViewController.modeTitleView.pressChange(nil)
+        }
     }
 }
