@@ -130,7 +130,6 @@ class TTMode : NSObject, TTModeProtocol {
         }
         
         // runAction:direction
-//        let titleSelector = NSSelectorFromString("\(funcAction)\(actionName)WithDirection:") // Swift 3
         let titleSelector = Selector("\(funcAction)\(actionName)WithDirection:")
         if self.responds(to: titleSelector) {
             self.perform(titleSelector, with: NSNumber(value: direction.rawValue))
@@ -377,16 +376,24 @@ class TTMode : NSObject, TTModeProtocol {
     }
     
     func batchActionOptionValue(_ batchAction: TTAction, optionName: String, direction: TTModeDirection) -> Any? {
+        return self.batchActionOptionValue(batchActionKey: batchAction.batchActionKey!,
+                                           optionName: optionName,
+                                           actionName: batchAction.actionName,
+                                           actionDirection: direction)
+    }
+    
+    func batchActionOptionValue(batchActionKey: String, optionName: String, actionName: String,
+                                actionDirection: TTModeDirection) -> Any? {
         let prefs = UserDefaults.standard
         let modeDirectionName = appDelegate().modeMap.directionName(modeDirection)
-        let actionDirectionName = appDelegate().modeMap.directionName(batchAction.direction)
-        let optionKey = "TT:mode:\(modeDirectionName):action:\(actionDirectionName):batchactions:\(batchAction.batchActionKey!):actionoption:\(optionName)"
+        let actionDirectionName = appDelegate().modeMap.directionName(actionDirection)
+        let optionKey = "TT:mode:\(modeDirectionName):action:\(actionDirectionName):batchactions:\(batchActionKey):actionoption:\(optionName)"
         var pref = prefs.object(forKey: optionKey)
         if DEBUG_PREFS {
             print(" -> Getting batch action options \(optionKey): \(String(describing: pref))")
         }
         if pref == nil {
-            pref = self.defaultOption(batchAction.actionName, optionName: optionName)
+            pref = self.defaultOption(actionName, optionName: optionName)
         }
         if pref == nil {
             pref = self.defaultOption(optionName)

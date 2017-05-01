@@ -20,7 +20,7 @@ class TTModeIftttConnect: TTOptionsDetailViewController {
     }
     
     @IBAction func beginConnect(_ sender: UIButton) {
-        self.modeIfttt.authorizeIfttt()
+        self.modeIfttt.beginConnectingToIfttt()
     }
 
 }

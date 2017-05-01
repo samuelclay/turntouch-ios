@@ -141,7 +141,7 @@ class TTModeMap: NSObject {
         self.selectedMode.activate(direction)
         self.reset()
         self.selectedModeDirection = direction
-        batchActions.assemble()
+        batchActions.assemble(modeDirection: direction)
         
         var url: URL!
         switch direction {
@@ -221,8 +221,8 @@ class TTModeMap: NSObject {
         }
         
         // Batch actions
-        let actions = self.selectedModeBatchActions(in: direction)
-        for batchAction in actions {
+        let batchActions = self.selectedModeBatchActions(in: direction)
+        for batchAction in batchActions {
             batchAction.mode.runDirection(direction)
         }
         
@@ -294,7 +294,7 @@ class TTModeMap: NSObject {
         prefs.set(batchActionKeys, forKey: self.batchKey())
         prefs.synchronize()
         
-        batchActions.assemble()
+        batchActions.assemble(modeDirection: self.selectedModeDirection)
         
         tempMode = nil
         tempModeName = nil
@@ -312,7 +312,7 @@ class TTModeMap: NSObject {
         prefs.set(batchActionKeys, forKey: self.batchKey(modeDirection: modeDirection, actionDirection: actionDirection))
         prefs.synchronize()
 
-        batchActions.assemble()
+        batchActions.assemble(modeDirection: self.selectedModeDirection)
         
         return newActionKey
     }
@@ -335,7 +335,7 @@ class TTModeMap: NSObject {
         prefs.synchronize()
         
         if !silent {
-            batchActions.assemble()
+            batchActions.assemble(modeDirection: self.selectedModeDirection)
             self.didChangeValue(forKey: "inspectingModeDirection")
         }
     }

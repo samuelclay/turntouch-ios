@@ -10,12 +10,14 @@ import UIKit
 
 class TTBatchActions: NSObject {
     
+    var modeDirection: TTModeDirection = .no_DIRECTION
     var northActions: [TTAction] = []
     var eastActions: [TTAction] = []
     var westActions: [TTAction] = []
     var southActions: [TTAction] = []
     
-    func assemble() {
+    func assemble(modeDirection: TTModeDirection) {
+        self.modeDirection = modeDirection
         northActions = self.assembleBatchAction(in: .north)
         eastActions = self.assembleBatchAction(in: .east)
         westActions = self.assembleBatchAction(in: .west)
@@ -46,8 +48,12 @@ class TTBatchActions: NSObject {
     }
     
     func batchActionKey(in direction: TTModeDirection) -> String {
-        let modeDirectionName = appDelegate().modeMap.directionName(appDelegate().modeMap.selectedModeDirection)
-        let actionDirectionName = appDelegate().modeMap.directionName(direction)
+        return self.modeBatchActionKey(modeDirection: modeDirection, actionDirection: direction)
+    }
+    
+    func modeBatchActionKey(modeDirection: TTModeDirection, actionDirection: TTModeDirection) -> String {
+        let modeDirectionName = appDelegate().modeMap.directionName(modeDirection)
+        let actionDirectionName = appDelegate().modeMap.directionName(actionDirection)
         let batchKey = "TT:mode:\(modeDirectionName):action:\(actionDirectionName):batchactions"
         
         return batchKey
