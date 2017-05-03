@@ -45,6 +45,10 @@ class TTAction: NSObject {
         }
     }
     
+    func isBatchAction() -> Bool {
+        return self.batchActionKey != nil
+    }
+    
     // MARK: Options
     
     func optionValue(_ optionName: String) -> Any? {

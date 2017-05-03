@@ -21,7 +21,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Dj-Uk-hCL">
-                    <rect key="frame" x="132.5" y="20" width="120" height="76"/>
+                    <rect key="frame" x="132.5" y="20" width="120" height="30"/>
                     <state key="normal" title="Connect to IFTTT"/>
                     <connections>
                         <action selector="beginConnect:" destination="-1" eventType="touchUpInside" id="lgC-Zo-ikT"/>
@@ -32,7 +32,6 @@
             <constraints>
                 <constraint firstItem="4Dj-Uk-hCL" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="20" id="IST-ub-Dqv"/>
                 <constraint firstItem="4Dj-Uk-hCL" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="pei-iQ-7O9"/>
-                <constraint firstAttribute="bottom" secondItem="4Dj-Uk-hCL" secondAttribute="bottom" constant="20" id="vzP-k6-xuy"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="24.5" y="52.5"/>

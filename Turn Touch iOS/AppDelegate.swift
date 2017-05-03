@@ -9,7 +9,8 @@
 import UIKit
 import CoreLocation
 import ReachabilitySwift
-
+import InAppSettingsKit
+ 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate {
 
@@ -104,9 +105,49 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         let prefs = UserDefaults.standard
         let defaultPrefsFile = Bundle.main.path(forResource: "Preferences", ofType: "plist")
         let defaultPrefs = NSDictionary(contentsOfFile: defaultPrefsFile!) as! [String: AnyObject]
-        
         prefs.register(defaults: defaultPrefs)
+
+        self.processDefaultSettings()
+        
+        prefs.set(Bundle.main.infoDictionary!["CFBundleShortVersionString"], forKey: "version")
+        prefs.set(Bundle.main.infoDictionary!["CFBundleVersion"], forKey: "build_number")
+        
         prefs.synchronize()
+    }
+    
+    func processDefaultSettings() {
+        let defaults = UserDefaults.standard
+        defaults.synchronize()
+        
+        guard let settingsBundle = Bundle.main.path(forResource: "Settings", ofType: "bundle") as NSString? else {
+            NSLog("Could not find Settings.bundle");
+            return;
+        }
+        
+        if let settings = NSDictionary(contentsOfFile: settingsBundle.appendingPathComponent("Root.plist")) {
+            print(" ---> Settings: \(settings)")
+            if let preferences = settings.object(forKey: "PreferenceSpecifiers") as? [[String: Any]] {
+            
+                var defaultsToRegister = [String: Any](minimumCapacity: preferences.count)
+                
+                for prefSpecification in preferences {
+                    if let key = prefSpecification["Key"] as? String {
+                        if !key.contains("") {
+                            let currentObject = defaults.object(forKey: key)
+                            if currentObject == nil {
+                                let objectToSet = prefSpecification["DefaultValue"]
+                                defaultsToRegister[key] = objectToSet!
+                                
+                                NSLog("Setting object \(String(describing: objectToSet)) for key \(key)")
+                            }
+                        }
+                    }
+                }
+                
+                defaults.register(defaults: defaultsToRegister)
+                defaults.synchronize()
+            }
+        }
     }
     
     // MARK: Location

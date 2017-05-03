@@ -14,6 +14,7 @@ class TTModeHueSceneOptions: TTModeHuePicker {
 
     @IBOutlet var spinner: [UIActivityIndicatorView]!
     @IBOutlet var refreshButton: [UIButton]!
+    var modeHue: TTModeHue!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,11 +33,14 @@ class TTModeHueSceneOptions: TTModeHuePicker {
         spinner.forEach { (s) in
             s.startAnimating()
         }
+        
+        modeHue = self.mode as! TTModeHue
+        
+        modeHue.updateScenes()
 
-//        let bridgeSendAPI = TTModeHue.hueSdk.bridgeSendAPI
-//        bridgeSendApi.getAllScenes { (dictionary, errors) in
-//            self.drawScenes()
-//        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
+            self.drawScenes()
+        }
     }
     
 }

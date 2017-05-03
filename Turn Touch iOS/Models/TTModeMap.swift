@@ -8,6 +8,7 @@
 
 import Foundation
 import AudioToolbox
+import Alamofire
 
 class TTModeMap: NSObject {
     
@@ -238,6 +239,8 @@ class TTModeMap: NSObject {
             AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
             AudioServicesPlayAlertSound(kSystemSoundID_Vibrate)
         }
+        
+        self.shareUsage(direction, .button_MOMENT_PRESSUP)
     }
     
     func runDoubleButton(_ direction: TTModeDirection) {
@@ -254,6 +257,63 @@ class TTModeMap: NSObject {
         for batchAction: TTAction in actions {
             batchAction.mode.runDoubleDirection(direction)
         }
+        
+        self.shareUsage(direction, .button_MOMENT_PRESSUP)
+    }
+    
+    func shareUsage(_ direction: TTModeDirection, _ buttonMoment: TTButtonMoment) {
+        let prefs = UserDefaults.standard
+        if !prefs.bool(forKey: "TT:pref:share_usage_stats") {
+            return
+        }
+        let buttonPress = buttonMoment == .button_MOMENT_DOUBLE ? "double" : "single"
+        let userId = self.userId()
+        let deviceId = self.deviceId()
+        let deviceName = UIDevice.current.name
+        let deviceModel = UIDevice.current.model
+        let devicePlatform = UIDevice.current.systemName
+        let deviceVersion = UIDevice.current.systemVersion
+        let devices = appDelegate().bluetoothMonitor.foundDevices.devices
+        var remoteName: String?
+        if devices.count >= 1 {
+            remoteName = devices[0].nickname
+        }
+        
+        var presses: [[String: Any]] = []
+        presses.append([
+            "app_name": self.selectedMode.nameOfClass,
+            "app_direction": self.directionName(self.selectedMode.modeDirection),
+            "button_name": self.selectedMode.actionNameInDirection(direction),
+            "button_direction": self.directionName(direction),
+            "button_moment": buttonPress,
+            "batch_action": false,
+        ])
+        let batchActions = self.selectedModeBatchActions(in: direction)
+        for batchAction in batchActions {
+            presses.append([
+                "app_name": batchAction.mode.nameOfClass,
+                "app_direction": self.directionName(self.selectedMode.modeDirection),
+                "button_name": batchAction.actionName,
+                "button_direction": self.directionName(direction),
+                "button_moment": buttonPress,
+                "batch_action": true,
+            ])
+        }
+        let params: [String: Any] = [
+            "user_id": userId,
+            "device_id": deviceId,
+            "device_name": deviceName,
+            "device_platform": devicePlatform,
+            "device_model": deviceModel,
+            "device_version": deviceVersion,
+            "remote_name": remoteName ?? "",
+            "presses": presses,
+        ]
+        Alamofire.request("https://turntouch.com/usage/record", method: .post,
+                          parameters: params, encoding: JSONEncoding.default).responseJSON
+            { response in
+                print(" ---> Button trigger: \(response)")
+            }
     }
     
     // MARK: Batch actions
@@ -426,5 +486,50 @@ class TTModeMap: NSObject {
             self.inspectingModeDirection = direction
         }
     }
+
+    // MARK: Device info
     
+    func userId() -> String {
+        var uuid: NSUUID!
+        let prefs = UserDefaults.standard
+        
+        if let uuidString = NSUbiquitousKeyValueStore.default().string(forKey: TTModeIftttConstants.kIftttUserIdKey) {
+            uuid = NSUUID(uuidString: uuidString)
+            
+            prefs.set(uuid.uuidString, forKey: TTModeIftttConstants.kIftttUserIdKey)
+            prefs.synchronize()
+        } else if let uuidString = prefs.string(forKey: TTModeIftttConstants.kIftttUserIdKey) {
+            uuid = NSUUID(uuidString: uuidString)
+            
+            NSUbiquitousKeyValueStore.default().set(uuid.uuidString, forKey: TTModeIftttConstants.kIftttUserIdKey)
+            NSUbiquitousKeyValueStore.default().synchronize()
+        } else {
+            uuid = NSUUID()
+            
+            prefs.set(uuid.uuidString, forKey: TTModeIftttConstants.kIftttUserIdKey)
+            prefs.synchronize()
+            
+            NSUbiquitousKeyValueStore.default().set(uuid.uuidString, forKey: TTModeIftttConstants.kIftttUserIdKey)
+            NSUbiquitousKeyValueStore.default().synchronize()
+        }
+        
+        return uuid.uuidString
+    }
+    
+    func deviceId() -> String {
+        var uuid: NSUUID!
+        let prefs = UserDefaults.standard
+        
+        if let uuidString = prefs.string(forKey: TTModeIftttConstants.kIftttDeviceIdKey) {
+            uuid = NSUUID(uuidString: uuidString)
+        } else {
+            uuid = NSUUID()
+            
+            prefs.set(uuid.uuidString, forKey: TTModeIftttConstants.kIftttDeviceIdKey)
+            prefs.synchronize()
+        }
+        
+        return uuid.uuidString
+    }
+
 }

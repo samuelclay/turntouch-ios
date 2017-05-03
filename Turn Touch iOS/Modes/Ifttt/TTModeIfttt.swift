@@ -126,8 +126,8 @@ class TTModeIfttt: TTMode {
                        ]
     
         let params: [String: Any] = [
-            "user_id": self.iftttUserId(),
-            "device_id": self.iftttDeviceId(),
+            "user_id": appDelegate().modeMap.userId(),
+            "device_id": appDelegate().modeMap.deviceId(),
             "triggers": [trigger],
         ]
         
@@ -178,8 +178,8 @@ class TTModeIfttt: TTMode {
     }
     
     func iftttDeviceAttrs() -> [String: String] {
-        let userId = self.iftttUserId()
-        let deviceId = self.iftttDeviceId()
+        let userId = appDelegate().modeMap.userId()
+        let deviceId = appDelegate().modeMap.deviceId()
         let deviceName = UIDevice.current.name
         let deviceModel = UIDevice.current.model
         let devicePlatform = UIDevice.current.systemName
@@ -235,8 +235,8 @@ class TTModeIfttt: TTMode {
         let triggers = self.collectTriggers()
         
         let params: [String: Any] = [
-            "user_id": self.iftttUserId(),
-            "device_id": self.iftttDeviceId(),
+            "user_id": appDelegate().modeMap.userId(),
+            "device_id": appDelegate().modeMap.deviceId(),
             "triggers": triggers,
         ]
         print(" ---> Registering: \(params)")
@@ -311,50 +311,5 @@ class TTModeIfttt: TTMode {
     func logMessage(_ message: String) {
         print(" ---> Ifttt API: \(message)")
     }
-    
-    // MARK: Device info
-    
-    func iftttUserId() -> String {
-        var uuid: NSUUID!
-        let prefs = UserDefaults.standard
         
-        if let uuidString = NSUbiquitousKeyValueStore.default().string(forKey: TTModeIftttConstants.kIftttUserIdKey) {
-            uuid = NSUUID(uuidString: uuidString)
-            
-            prefs.set(uuid.uuidString, forKey: TTModeIftttConstants.kIftttUserIdKey)
-            prefs.synchronize()
-        } else if let uuidString = prefs.string(forKey: TTModeIftttConstants.kIftttUserIdKey) {
-            uuid = NSUUID(uuidString: uuidString)
-            
-            NSUbiquitousKeyValueStore.default().set(uuid.uuidString, forKey: TTModeIftttConstants.kIftttUserIdKey)
-            NSUbiquitousKeyValueStore.default().synchronize()
-        } else {
-            uuid = NSUUID()
-            
-            prefs.set(uuid.uuidString, forKey: TTModeIftttConstants.kIftttUserIdKey)
-            prefs.synchronize()
-            
-            NSUbiquitousKeyValueStore.default().set(uuid.uuidString, forKey: TTModeIftttConstants.kIftttUserIdKey)
-            NSUbiquitousKeyValueStore.default().synchronize()
-        }
-        
-        return uuid.uuidString
-    }
-    
-    func iftttDeviceId() -> String {
-        var uuid: NSUUID!
-        let prefs = UserDefaults.standard
-        
-        if let uuidString = prefs.string(forKey: TTModeIftttConstants.kIftttDeviceIdKey) {
-            uuid = NSUUID(uuidString: uuidString)
-        } else {
-            uuid = NSUUID()
-            
-            prefs.set(uuid.uuidString, forKey: TTModeIftttConstants.kIftttDeviceIdKey)
-            prefs.synchronize()
-        }
-        
-        return uuid.uuidString
-    }
-    
 }

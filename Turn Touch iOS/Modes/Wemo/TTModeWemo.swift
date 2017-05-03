@@ -51,7 +51,7 @@ class TTModeWemo: TTMode, TTModeWemoMulticastDelegate, TTModeWemoDeviceDelegate 
         
         if TTModeWemo.foundDevices.count == 0 {
             self.assembleFoundDevices()
-        } else {
+        } else if self.action == nil || self.action.batchActionKey == nil {
             self.cleanDeviceBatchActions()
         }
         
@@ -358,7 +358,7 @@ class TTModeWemo: TTMode, TTModeWemoMulticastDelegate, TTModeWemoDeviceDelegate 
             }
             
             // Add the rest as batch actions
-            if unseenDevices.count >= 1 {
+            if (self.action == nil || !self.action.isBatchAction()) && unseenDevices.count >= 1 {
                 for unseenDevice in unseenDevices {
                     print(" ---> Adding batch action for wemo device \(unseenDevice) to \(actionName)")
                     let batchActionKey = appDelegate().modeMap.addBatchAction(modeDirection: self.modeDirection,
@@ -392,6 +392,9 @@ class TTModeWemo: TTMode, TTModeWemoMulticastDelegate, TTModeWemoDeviceDelegate 
         var seenDevices: [String] = []
         
         for batchAction in batchActions {
+            if !batchAction.actionName.contains("TTModeWemo") {
+                continue
+            }
             let deviceSelected = batchAction.optionValue(TTModeWemoConstants.kWemoDeviceLocation) as? String
 
             if deviceSelected == nil || seenDevices.contains(deviceSelected!) {
