@@ -315,7 +315,7 @@ class TTModeMap: NSObject {
             "device_model": deviceModel,
             "device_version": deviceVersion,
             "remote_name": remoteName ?? "",
-            "presses": presses,
+            "button_actions": presses,
         ]
         Alamofire.request("https://turntouch.com/usage/record", method: .post,
                           parameters: params, encoding: JSONEncoding.default).responseJSON
