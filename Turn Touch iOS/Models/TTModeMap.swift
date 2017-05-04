@@ -160,38 +160,43 @@ class TTModeMap: NSObject {
         
         
         if modeChangeType == .remoteButton {
-            if #available(iOS 10.0, *) {
-                if UIApplication.shared.applicationState == .active {
-                    //                let generator = UINotificationFeedbackGenerator()
-                    //                generator.notificationOccurred(.success)
+            let prefs = UserDefaults.standard
+            if prefs.bool(forKey: "TT:pref:vibrate_on_app_change") {
+                if #available(iOS 10.0, *) {
+//                    if UIApplication.shared.applicationState == .active {
+                        //                let generator = UINotificationFeedbackGenerator()
+                        //                generator.notificationOccurred(.success)
+//                    } else {
+                        AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
+                        AudioServicesPlayAlertSound(kSystemSoundID_Vibrate)
+//                    }
                 } else {
                     AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
                     AudioServicesPlayAlertSound(kSystemSoundID_Vibrate)
                 }
-            } else {
-                AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
-                AudioServicesPlayAlertSound(kSystemSoundID_Vibrate)
             }
             
-            do {
-                try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback, with: .mixWithOthers)
+            if prefs.bool(forKey: "TT:pref:sound_on_app_change") {
                 do {
-                    try AVAudioSession.sharedInstance().setActive(true)
+                    try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback, with: .mixWithOthers)
+                    do {
+                        try AVAudioSession.sharedInstance().setActive(true)
+                    } catch {
+                            print(" ---> Audio active error: \(error.localizedDescription)")
+                        }
                 } catch {
-                        print(" ---> Audio active error: \(error.localizedDescription)")
-                    }
-            } catch {
-                print(" ---> Audio category error: \(error.localizedDescription)")
-            }
+                    print(" ---> Audio category error: \(error.localizedDescription)")
+                }
 
-            do {
-                player = try AVAudioPlayer(contentsOf: url)
-                guard let player = player else { return }
-                
-                player.prepareToPlay()
-                player.play()
-            } catch let error {
-                print(error.localizedDescription)
+                do {
+                    player = try AVAudioPlayer(contentsOf: url)
+                    guard let player = player else { return }
+                    
+                    player.prepareToPlay()
+                    player.play()
+                } catch let error {
+                    print(error.localizedDescription)
+                }
             }
         }
     }
@@ -227,17 +232,20 @@ class TTModeMap: NSObject {
             batchAction.mode.runDirection(direction)
         }
         
-        if #available(iOS 10.0, *) {
-            if UIApplication.shared.applicationState == .active {
-                let generator = UIImpactFeedbackGenerator(style: .heavy)
-                generator.impactOccurred()
+        let prefs = UserDefaults.standard
+        if prefs.bool(forKey: "TT:pref:vibrate_on_action") {
+            if #available(iOS 10.0, *) {
+                if UIApplication.shared.applicationState == .active {
+                    let generator = UIImpactFeedbackGenerator(style: .heavy)
+                    generator.impactOccurred()
+                } else {
+                    AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
+                    AudioServicesPlayAlertSound(kSystemSoundID_Vibrate)
+                }
             } else {
                 AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
                 AudioServicesPlayAlertSound(kSystemSoundID_Vibrate)
             }
-        } else {
-            AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
-            AudioServicesPlayAlertSound(kSystemSoundID_Vibrate)
         }
         
         self.shareUsage(direction, .button_MOMENT_PRESSUP)

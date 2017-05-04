@@ -10,6 +10,42 @@
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 			<key>Title</key>
+			<string>Sounds &amp; Vibration</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+			<key>Title</key>
+			<string>Play sound on app change</string>
+			<key>Key</key>
+			<string>TT:pref:sound_on_app_change</string>
+			<key>DefaultValue</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+			<key>Title</key>
+			<string>Vibrate on app change</string>
+			<key>Key</key>
+			<string>TT:pref:vibrate_on_app_change</string>
+			<key>DefaultValue</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+			<key>Title</key>
+			<string>Vibrate on button press</string>
+			<key>Key</key>
+			<string>TT:pref:vibrate_on_action</string>
+			<key>DefaultValue</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+			<key>Title</key>
 			<string>Help a developer out</string>
 			<key>FooterText</key>
 			<string>By enabling this switch you allow for usage stats to be gathered. These are only used to improve the service. Your data will never be sold.</string>
