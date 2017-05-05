@@ -198,6 +198,8 @@ class TTModeMap: NSObject {
                     print(error.localizedDescription)
                 }
             }
+
+            self.shareUsage(.no_DIRECTION, .button_MOMENT_HELD)
         }
     }
     
@@ -266,7 +268,7 @@ class TTModeMap: NSObject {
             batchAction.mode.runDoubleDirection(direction)
         }
         
-        self.shareUsage(direction, .button_MOMENT_PRESSUP)
+        self.shareUsage(direction, .button_MOMENT_DOUBLE)
     }
     
     func shareUsage(_ direction: TTModeDirection, _ buttonMoment: TTButtonMoment) {
@@ -274,7 +276,7 @@ class TTModeMap: NSObject {
         if !prefs.bool(forKey: "TT:pref:share_usage_stats") {
             return
         }
-        let buttonPress = buttonMoment == .button_MOMENT_DOUBLE ? "double" : "single"
+        let buttonPress = self.momentName(buttonMoment)
         let userId = self.userId()
         let deviceId = self.deviceId()
         let deviceName = UIDevice.current.name
@@ -320,7 +322,7 @@ class TTModeMap: NSObject {
         Alamofire.request("https://turntouch.com/usage/record", method: .post,
                           parameters: params, encoding: JSONEncoding.default).responseJSON
             { response in
-                print(" ---> Button trigger: \(response)")
+                print(" ---> Usage: \(response)")
             }
     }
     
@@ -473,6 +475,21 @@ class TTModeMap: NSObject {
             return "west"
         case .south:
             return "south"
+        default:
+            return ""
+        }
+    }
+    
+    func momentName(_ moment: TTButtonMoment) -> String {
+        switch moment {
+        case .button_MOMENT_PRESSUP:
+            return "single"
+        case .button_MOMENT_PRESSDOWN:
+            return "down"
+        case .button_MOMENT_DOUBLE:
+            return "double"
+        case .button_MOMENT_HELD:
+            return "hold"
         default:
             return ""
         }

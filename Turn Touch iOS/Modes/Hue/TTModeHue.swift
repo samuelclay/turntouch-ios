@@ -925,7 +925,7 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
                 lightState.on = true
                 let point = HueUtilities.calculateXY(UIColor(red: 95/255.0, green: 76/255.0, blue: 36/255.0, alpha: 1), forModel: light.modelId)
                 lightState.xy = [Float(point.x), Float(point.y)]
-                lightState.brightness = Int(MAX_BRIGHTNESS)
+                lightState.brightness = Int(Double(MAX_BRIGHTNESS)*(6/10.0))
                 lightState.saturation = Int(MAX_BRIGHTNESS)
                 return lightState
             }
