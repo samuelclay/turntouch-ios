@@ -161,20 +161,6 @@ class TTModeMap: NSObject {
         
         if modeChangeType == .remoteButton {
             let prefs = UserDefaults.standard
-            if prefs.bool(forKey: "TT:pref:vibrate_on_app_change") {
-                if #available(iOS 10.0, *) {
-//                    if UIApplication.shared.applicationState == .active {
-                        //                let generator = UINotificationFeedbackGenerator()
-                        //                generator.notificationOccurred(.success)
-//                    } else {
-                        AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
-                        AudioServicesPlayAlertSound(kSystemSoundID_Vibrate)
-//                    }
-                } else {
-                    AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
-                    AudioServicesPlayAlertSound(kSystemSoundID_Vibrate)
-                }
-            }
             
             if prefs.bool(forKey: "TT:pref:sound_on_app_change") {
                 do {
@@ -182,12 +168,12 @@ class TTModeMap: NSObject {
                     do {
                         try AVAudioSession.sharedInstance().setActive(true)
                     } catch {
-                            print(" ---> Audio active error: \(error.localizedDescription)")
-                        }
+                        print(" ---> Audio active error: \(error.localizedDescription)")
+                    }
                 } catch {
                     print(" ---> Audio category error: \(error.localizedDescription)")
                 }
-
+                
                 do {
                     player = try AVAudioPlayer(contentsOf: url)
                     guard let player = player else { return }
@@ -198,6 +184,30 @@ class TTModeMap: NSObject {
                     print(error.localizedDescription)
                 }
             }
+            
+            // Doesn't work in background
+//            if prefs.bool(forKey: "TT:pref:sound_on_app_change") {
+//                var soundId: SystemSoundID = 0
+//                AudioServicesCreateSystemSoundID(url as CFURL, &soundId)
+//                AudioServicesPlaySystemSoundWithCompletion(soundId, { 
+//                    AudioServicesDisposeSystemSoundID(soundId)
+//                })
+//            }
+
+            if prefs.bool(forKey: "TT:pref:vibrate_on_app_change") {
+                if #available(iOS 10.0, *) {
+                    // does nothing on iPhone 6s
+//                    if UIApplication.shared.applicationState == .active {
+//                        let generator = UINotificationFeedbackGenerator()
+//                        generator.notificationOccurred(.success)
+//                    } else {
+                        AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
+//                    }
+                } else {
+                    AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
+                }
+            }
+            
 
             self.shareUsage(.no_DIRECTION, .button_MOMENT_HELD)
         }
@@ -237,16 +247,15 @@ class TTModeMap: NSObject {
         let prefs = UserDefaults.standard
         if prefs.bool(forKey: "TT:pref:vibrate_on_action") {
             if #available(iOS 10.0, *) {
-                if UIApplication.shared.applicationState == .active {
-                    let generator = UIImpactFeedbackGenerator(style: .heavy)
-                    generator.impactOccurred()
-                } else {
+                // does nothing on iPhone 6s
+//                if UIApplication.shared.applicationState == .active {
+//                    let generator = UIImpactFeedbackGenerator(style: .heavy)
+//                    generator.impactOccurred()
+//                } else {
                     AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
-                    AudioServicesPlayAlertSound(kSystemSoundID_Vibrate)
-                }
+//                }
             } else {
                 AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
-                AudioServicesPlayAlertSound(kSystemSoundID_Vibrate)
             }
         }
         
@@ -550,6 +559,8 @@ class TTModeMap: NSObject {
         } else {
             uuid = NSUUID()
             
+            print(" ---> Generating new device ID: \(uuid.uuidString)")
+                
             prefs.set(uuid.uuidString, forKey: TTModeIftttConstants.kIftttDeviceIdKey)
             prefs.synchronize()
         }
