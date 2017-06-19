@@ -209,7 +209,7 @@ class TTModeMap: NSObject {
             }
             
 
-            self.shareUsage(.no_DIRECTION, .button_MOMENT_HELD)
+            self.recordButtonMoment(.no_DIRECTION, .button_MOMENT_HELD)
         }
     }
     
@@ -259,7 +259,7 @@ class TTModeMap: NSObject {
             }
         }
         
-        self.shareUsage(direction, .button_MOMENT_PRESSUP)
+        self.recordButtonMoment(direction, .button_MOMENT_PRESSUP)
     }
     
     func runDoubleButton(_ direction: TTModeDirection) {
@@ -277,15 +277,42 @@ class TTModeMap: NSObject {
             batchAction.mode.runDoubleDirection(direction)
         }
         
-        self.shareUsage(direction, .button_MOMENT_DOUBLE)
+        self.recordButtonMoment(direction, .button_MOMENT_DOUBLE)
     }
     
-    func shareUsage(_ direction: TTModeDirection, _ buttonMoment: TTButtonMoment) {
+    func recordButtonMoment(_ direction: TTModeDirection, _ buttonMoment: TTButtonMoment) {
+        let buttonPress = self.momentName(buttonMoment)
+        var presses: [[String: Any]] = []
+        
+        presses.append([
+            "app_name": self.selectedMode.nameOfClass,
+            "app_direction": self.directionName(self.selectedMode.modeDirection),
+            "button_name": self.selectedMode.actionNameInDirection(direction),
+            "button_direction": self.directionName(direction),
+            "button_moment": buttonPress,
+            "batch_action": false,
+            ])
+        
+        let batchActions = self.selectedModeBatchActions(in: direction)
+        for batchAction in batchActions {
+            presses.append([
+                "app_name": batchAction.mode.nameOfClass,
+                "app_direction": self.directionName(self.selectedMode.modeDirection),
+                "button_name": batchAction.actionName,
+                "button_direction": self.directionName(direction),
+                "button_moment": buttonPress,
+                "batch_action": true,
+                ])
+        }
+        
+        self.recordUsage(additionalParams: ["button_actions": presses])
+    }
+    
+    func recordUsage(additionalParams: [String: Any]) {
         let prefs = UserDefaults.standard
         if !prefs.bool(forKey: "TT:pref:share_usage_stats") {
             return
         }
-        let buttonPress = self.momentName(buttonMoment)
         let userId = self.userId()
         let deviceId = self.deviceId()
         let deviceName = UIDevice.current.name
@@ -297,28 +324,7 @@ class TTModeMap: NSObject {
         if devices.count >= 1 {
             remoteName = devices[0].nickname
         }
-        
-        var presses: [[String: Any]] = []
-        presses.append([
-            "app_name": self.selectedMode.nameOfClass,
-            "app_direction": self.directionName(self.selectedMode.modeDirection),
-            "button_name": self.selectedMode.actionNameInDirection(direction),
-            "button_direction": self.directionName(direction),
-            "button_moment": buttonPress,
-            "batch_action": false,
-        ])
-        let batchActions = self.selectedModeBatchActions(in: direction)
-        for batchAction in batchActions {
-            presses.append([
-                "app_name": batchAction.mode.nameOfClass,
-                "app_direction": self.directionName(self.selectedMode.modeDirection),
-                "button_name": batchAction.actionName,
-                "button_direction": self.directionName(direction),
-                "button_moment": buttonPress,
-                "batch_action": true,
-            ])
-        }
-        let params: [String: Any] = [
+        var params: [String: Any] = [
             "user_id": userId,
             "device_id": deviceId,
             "device_name": deviceName,
@@ -326,8 +332,12 @@ class TTModeMap: NSObject {
             "device_model": deviceModel,
             "device_version": deviceVersion,
             "remote_name": remoteName ?? "",
-            "button_actions": presses,
-        ]
+            ]
+        
+        for (k, v) in additionalParams {
+            params[k] = v
+        }
+        
         Alamofire.request("https://turntouch.com/usage/record", method: .post,
                           parameters: params, encoding: JSONEncoding.default).responseJSON
             { response in

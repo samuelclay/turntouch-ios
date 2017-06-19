@@ -191,7 +191,7 @@ class TTModeSonos: TTMode {
     func runTTModeSonosVolumeUp() {
         if let device = self.selectedDevice() {
             device.getVolume(TimeInterval(60*60), completion: { (volume, speakers, error) in
-                self.adjustVolume(device: device, volume: volume, left: 1)
+                self.adjustVolume(device: device, volume: volume, left: 2)
             })
         } else {
             self.beginConnectingToSonos()
@@ -201,7 +201,7 @@ class TTModeSonos: TTMode {
     func runTTModeSonosVolumeDown() {
         if let device = self.selectedDevice() {
             device.getVolume(TimeInterval(60*60), completion: { (volume, speakers, error) in
-                self.adjustVolume(device: device, volume: volume, left: -1)
+                self.adjustVolume(device: device, volume: volume, left: -2)
             })
         } else {
             self.beginConnectingToSonos()

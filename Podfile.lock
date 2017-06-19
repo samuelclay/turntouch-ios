@@ -15,7 +15,7 @@ PODS:
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
   - Alamofire (4.4.0)
-  - CocoaAsyncSocket (7.6.0)
+  - CocoaAsyncSocket (7.6.1)
   - Firebase (1.2.3)
   - Gloss (1.2.4)
   - InAppSettingsKit (2.8.1)
@@ -41,7 +41,7 @@ PODS:
     - CocoaAsyncSocket (~> 7.6.0)
     - Gloss (~> 1.2.4)
     - Log (~> 1.0)
-  - SWXMLHash (3.0.4)
+  - SWXMLHash (3.0.5)
   - Zip (0.7.0)
 
 DEPENDENCIES:
@@ -67,7 +67,7 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
-  CocoaAsyncSocket: b9d5589f07baf9de8f34cc25abd4fcba28f13805
+  CocoaAsyncSocket: 7eadd3f59e1a6c84e2aefc93e9ff7b55156fe174
   Firebase: 7a1b6a0848467348672afebfb306c624a3510f04
   Gloss: 4e036074610fdb993abcb958ebcd7332588e2333
   InAppSettingsKit: 94d2fba3ccd700fc4e32c6d09fabcc0af2426744
@@ -78,7 +78,7 @@ SPEC CHECKSUMS:
   ReachabilitySwift: f5b9bb30a0777fac8f09ce8b067e32faeb29bb64
   SSKeychain: 04c4ec40f4c3deda524e269bc76e5f30e638a174
   SwiftyHue: 0684460dd34fcd060e2aab475682aa5773a946dc
-  SWXMLHash: 29d20b84692fc319ea8ed933058fe7d8d005139b
+  SWXMLHash: 701f7d07c032089b9ff34e0352bd4fed1a24652a
   Zip: e34513299ac38c0686d5b24504da7ce343799ab9
 
 PODFILE CHECKSUM: 0b9ece48b9c304c6e1d0506a18bc91126b4b01fe

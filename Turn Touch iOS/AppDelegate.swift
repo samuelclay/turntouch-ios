@@ -52,6 +52,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             if self.bluetoothMonitor.noKnownDevices() {
 //                appDelegate().mainViewController.showPairingModal()
             }
+            
+            appDelegate().modeMap.recordUsage(additionalParams: ["moment": "launch"])
         }
         
         DispatchQueue.main.async {
