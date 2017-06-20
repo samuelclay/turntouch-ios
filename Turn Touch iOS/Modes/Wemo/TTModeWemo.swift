@@ -22,6 +22,7 @@ fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
 
 struct TTModeWemoConstants {
     static let kWemoDeviceLocation = "wemoDeviceLocation"
+    static let kWemoDeviceLocations = "wemoDeviceLocations"
     static let kWemoFoundDevices = "wemoFoundDevices"
     static let kWemoSeenDevices = "wemoSeenDevices"
 }
@@ -51,8 +52,6 @@ class TTModeWemo: TTMode, TTModeWemoMulticastDelegate, TTModeWemoDeviceDelegate 
         
         if TTModeWemo.foundDevices.count == 0 {
             self.assembleFoundDevices()
-        } else if self.action == nil || self.action.batchActionKey == nil {
-            self.cleanDeviceBatchActions()
         }
         
         if TTModeWemo.foundDevices.count == 0 {
@@ -80,8 +79,6 @@ class TTModeWemo: TTMode, TTModeWemoMulticastDelegate, TTModeWemoDeviceDelegate 
                 print(" ---> Loading wemo: \(newDevice.deviceName!) (\(newDevice.location()))")
             }
         }
-        
-        self.cleanDeviceBatchActions()
     }
     
     override class func title() -> String {
@@ -155,8 +152,6 @@ class TTModeWemo: TTMode, TTModeWemoMulticastDelegate, TTModeWemoDeviceDelegate 
     
     override func activate() {
         delegate?.changeState(TTModeWemo.wemoState, mode: self)
-        
-        self.ensureDevicesSelected()
     }
     
     override func deactivate() {
@@ -164,19 +159,22 @@ class TTModeWemo: TTMode, TTModeWemoMulticastDelegate, TTModeWemoDeviceDelegate 
     }
     
     func runTTModeWemoDeviceStart(direction: NSNumber) {
-        if let device = self.selectedDevice(TTModeDirection(rawValue: direction.intValue)!) {
+        let devices = self.selectedDevices(TTModeDirection(rawValue: direction.intValue)!)
+        for device in devices {
             device.changeDeviceState(.on)
         }
     }
     
     func runTTModeWemoDeviceOff(direction: NSNumber) {
-        if let device = self.selectedDevice(TTModeDirection(rawValue: direction.intValue)!) {
+        let devices = self.selectedDevices(TTModeDirection(rawValue: direction.intValue)!)
+        for device in devices {
             device.changeDeviceState(.off)
         }
     }
     
     func runTTModeWemoDeviceToggle(direction: NSNumber) {
-        if let device = self.selectedDevice(TTModeDirection(rawValue: direction.intValue)!) {
+        let devices = self.selectedDevices(TTModeDirection(rawValue: direction.intValue)!)
+        for device in devices {
             device.requestDeviceState {
                 if device.deviceState == TTModeWemoDeviceState.on {
                     device.changeDeviceState(.off)
@@ -189,25 +187,23 @@ class TTModeWemo: TTMode, TTModeWemoMulticastDelegate, TTModeWemoDeviceDelegate 
     
     // MARK: Wemo devices
     
-    func selectedDevice(_ direction: TTModeDirection) -> TTModeWemoDevice? {
+    func selectedDevices(_ direction: TTModeDirection) -> [TTModeWemoDevice] {
+        self.ensureDevicesSelected()
+        var devices: [TTModeWemoDevice] = []
+        
         if TTModeWemo.foundDevices.count == 0 {
-            return nil
+            return devices
         }
         
-        if let deviceLocation = self.action.optionValue(TTModeWemoConstants.kWemoDeviceLocation) as! String? {
+        if let deviceLocations = self.action.optionValue(TTModeWemoConstants.kWemoDeviceLocations) as? [String] {
             for foundDevice in TTModeWemo.foundDevices {
-                if foundDevice.location() == deviceLocation {
-                    return foundDevice
+                if deviceLocations.contains(foundDevice.location()) {
+                    devices.append(foundDevice)
                 }
             }
         }
         
-        let wemoDevice = TTModeWemo.foundDevices[0]
-        
-        // Store the chosen wemo device so that it is used consistently
-        self.action.changeActionOption(TTModeWemoConstants.kWemoDeviceLocation, to: wemoDevice.location())
-        
-        return wemoDevice
+        return devices
     }
     
     func refreshDevices() {
@@ -294,122 +290,30 @@ class TTModeWemo: TTMode, TTModeWemoMulticastDelegate, TTModeWemoDeviceDelegate 
 
         TTModeWemo.wemoState = .connected
         delegate?.changeState(TTModeWemo.wemoState, mode: self)
-        
-        self.ensureDevicesSelected()
     }
     
     // MARK: Device selection
     
     func ensureDevicesSelected() {
-        let sameMode = appDelegate().modeMap.modeInDirection(self.modeDirection).nameOfClass == self.nameOfClass
-        if !sameMode {
-            return
-        }
+//        let sameMode = appDelegate().modeMap.modeInDirection(self.modeDirection).nameOfClass == self.nameOfClass
+//        if !sameMode {
+//            return
+//        }
         if TTModeWemo.foundDevices.count == 0 {
             return
         }
-        
-        for direction: TTModeDirection in [.north, .east, .west, .south] {
-            let actionName = self.actionNameInDirection(direction)
-            var seenDevices: [String] = self.actionOptionValue(TTModeWemoConstants.kWemoSeenDevices,
-                                                               actionName: actionName,
-                                                               direction: direction) as? [String] ?? []
-            let actionDevice = self.actionOptionValue(TTModeWemoConstants.kWemoDeviceLocation,
-                                                      actionName: actionName,
-                                                      direction: direction) as? String
-   
-            // Sanity check actual action options for devices so as to not repeat
-            if let actionDevice = actionDevice {
-                if !seenDevices.contains(actionDevice) {
-                    seenDevices.append(actionDevice)
-                }
-            }
-            for batchAction in appDelegate().modeMap.batchActions.batchActions(in: direction) {
-                if let deviceLocation = self.batchActionOptionValue(batchAction,
-                                                                    optionName: TTModeWemoConstants.kWemoDeviceLocation,
-                                                                    direction: direction) as? String {
-                    if !seenDevices.contains(deviceLocation) {
-                        print(" ---> Already have device \(deviceLocation) in batch action")
-                        seenDevices.append(deviceLocation)
-                    }
-                }
-            }
-
-            
-            var unseenDevices: [TTModeWemoDevice] = []
-            for device in TTModeWemo.foundDevices {
-                if !seenDevices.contains(device.location()) {
-                    unseenDevices.append(device)
-                }
-            }
-            
-            if unseenDevices.count == 0 {
-                return
-            }
-            
-            // If the current action has no device set and is a Wemo action, set the device
-            if actionDevice == nil {
-                let unseenDevice = unseenDevices[0]
-                print(" ---> Setting action for wemo device \(unseenDevice) to \(actionName)")
-                self.changeActionOption(TTModeWemoConstants.kWemoDeviceLocation, to: unseenDevice.location(),
-                                        direction: direction)
-                seenDevices.append(unseenDevice.location())
-                unseenDevices.remove(at: 0)
-            }
-            
-            // Add the rest as batch actions
-            if (self.action == nil || !self.action.isBatchAction()) && unseenDevices.count >= 1 {
-                for unseenDevice in unseenDevices {
-                    print(" ---> Adding batch action for wemo device \(unseenDevice) to \(actionName)")
-                    let batchActionKey = appDelegate().modeMap.addBatchAction(modeDirection: self.modeDirection,
-                                                                              actionDirection: direction,
-                                                                              modeClassName: self.nameOfClass,
-                                                                              actionName: actionName)
-                    seenDevices.append(unseenDevice.location())
-                    self.changeBatchActionOption(batchActionKey,
-                                                 optionName: TTModeWemoConstants.kWemoDeviceLocation,
-                                                 to: unseenDevice.location(),
-                                                 direction: self.modeDirection,
-                                                 actionDirection: direction)
-                    appDelegate().mainViewController.adjustBatchActions()
-                }
-            }
-
-            self.changeActionOption(TTModeWemoConstants.kWemoSeenDevices, to: seenDevices, direction: direction)
-        }
-
-    }
-    
-    func cleanDeviceBatchActions() {
-        for direction: TTModeDirection in [.north, .east, .west, .south] {
-            self.cleanDeviceBatchActions(in: direction)
-        }
-    }
-    
-    func cleanDeviceBatchActions(in direction: TTModeDirection) {
-        let batchActions = appDelegate().modeMap.selectedModeBatchActions(in: direction)
-        var removed = false
-        var seenDevices: [String] = []
-        
-        for batchAction in batchActions {
-            if !batchAction.actionName.contains("TTModeWemo") {
-                continue
-            }
-            let deviceSelected = batchAction.optionValue(TTModeWemoConstants.kWemoDeviceLocation) as? String
-
-            if deviceSelected == nil || seenDevices.contains(deviceSelected!) {
-                print(" ---> Removing batch action due to unselected wemo: \(batchAction.batchActionKey!)")
-                appDelegate().modeMap.removeBatchAction(for: batchAction.batchActionKey!, silent: true, actionDirection: batchAction.direction)
-                appDelegate().mainViewController.batchActionsStackView.hideBatchAction(batchActionKey: batchAction.batchActionKey!)
-                removed = true
-            } else {
-                seenDevices.append(deviceSelected!)
+        let deviceLocations = self.action.optionValue(TTModeWemoConstants.kWemoDeviceLocations) as? [String]
+        if let deviceLocations = deviceLocations {
+            if deviceLocations.count > 0 {
+                return;
             }
         }
         
-        if removed {
-            // appDelegate().modeMap.batchActions.assemble()
+        // Nothing selected, so select everything
+        let locations = TTModeWemo.foundDevices.map { (device) -> String in
+            return device.location()
         }
+        self.action.changeActionOption(TTModeWemoConstants.kWemoDeviceLocations, to: locations)
     }
-    
+
 }

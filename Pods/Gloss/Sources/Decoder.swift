@@ -54,7 +54,7 @@ public struct Decoder {
             if
                 let value = json.valueForKeyPath(keyPath: key, withDelimiter: keyPathDelimiter),
                 !(value is NSNull) {
-                logger.log(message: "Value found for key \"\(key)\" but decoding failed.")
+//                logger.log(message: "Value found for key \"\(key)\" but decoding failed.")
             }
             
             return nil

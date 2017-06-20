@@ -8,187 +8,155 @@
 
 import UIKit
 
-class TTModeWemoDeviceSwitchOptions: TTOptionsDetailViewController, UITextFieldDelegate, UIPopoverPresentationControllerDelegate, UIPickerViewDelegate, TTPickerViewControllerDelegate, TTModeWemoDelegate {
+class TTModeWemoDeviceSwitchOptions: TTOptionsDetailViewController, UITableViewDelegate, UITableViewDataSource, TTModeWemoDelegate {
     
     var modeWemo: TTModeWemo!
     
-    var pickerVC: TTPickerViewController!
-    var popoverController: UIPopoverPresentationController?
-    var presented = false
-    
     @IBOutlet var spinner: [UIActivityIndicatorView]!
-    @IBOutlet var refreshButton: [UIButton]!
-    @IBOutlet var singlePicker: UITextField!
-//    @IBOutlet var doublePicker: UITextField!
+    @IBOutlet var settingsButton: [UIButton]!
+    @IBOutlet var devicesTable: UITableView!
+    @IBOutlet var noticeLabel: UILabel!
     
     var devices: [[String: String]] = []
+    var selectedDevices: [String] = []
+    
+    @IBOutlet var tableHeightConstaint: NSLayoutConstraint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.modeWemo = self.mode as! TTModeWemo
         self.modeWemo.delegate = self
-        singlePicker.delegate = self
-//        doublePicker.delegate = self
         
         spinner.forEach({ $0.isHidden = true })
-        refreshButton.forEach({ $0.isHidden = false })
+        settingsButton.forEach({ $0.isHidden = false })
         
-        self.selectDevice()
+        self.devicesTable.rowHeight = UITableViewAutomaticDimension
+        self.devicesTable.estimatedRowHeight = 2
+        
+        self.selectDevices()
+        
+        self.devicesTable.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        self.devicesTable.layoutIfNeeded()
+        tableHeightConstaint.constant = self.devicesTable.contentSize.height
     }
     
-    func selectDevice() {
+    func selectDevices() {
         devices = []
-        pickerVC?.picker.reloadAllComponents()
-
-        let deviceSelected = self.action.optionValue(TTModeWemoConstants.kWemoDeviceLocation) as? String
-        
-//        var doubleSceneSelected = self.action.optionValue(TTModeHueConstants.kDoubleTapHueScene,
-//                                                          direction: appDelegate().modeMap.inspectingModeDirection) as? String
+        _ = self.modeWemo.selectedDevices(self.action.direction)
+        let devicesSelected = self.action.optionValue(TTModeWemoConstants.kWemoDeviceLocations) as? [String]
         
         for device in TTModeWemo.foundDevices {
             devices.append(["name": device.deviceName, "identifier": device.location()])
-            if deviceSelected == device.location() {
-                singlePicker.text = device.deviceName
+            if let devicesSelected = devicesSelected,
+                devicesSelected.contains(device.location()) {
+                selectedDevices.append(device.location())
             }
         }
-    }
-    
-    func pickerDismissed(_ row: Int, textField: UITextField) {
-        presented = false
-
-        if row >= devices.count {
-            return
+        
+        if devices.count == 0 {
+            noticeLabel.isHidden = false
+            noticeLabel.text = "No WeMo devices found"
+            noticeLabel.textColor = UIColor.lightGray
+        } else {
+            noticeLabel.isHidden = true
         }
     }
     
     @IBAction func refreshDevices(_ sender: AnyObject) {
         spinner.forEach({ $0.isHidden = false })
-        refreshButton.forEach({ $0.isHidden = true })
+        settingsButton.forEach({ $0.isHidden = true })
         spinner.forEach { (s) in
             s.startAnimating()
         }
         
+        if devices.count == 0 {
+            noticeLabel.isHidden = false
+            noticeLabel.text = "Searching for WeMo devices..."
+            noticeLabel.textColor = UIColor.darkGray
+        }
+
         self.modeWemo.refreshDevices()
     }
     
     func changeState(_ state: TTWemoState, mode: TTModeWemo) {
         if state == .connected {
             spinner.forEach({ $0.isHidden = true })
-            refreshButton.forEach({ $0.isHidden = false })
+            settingsButton.forEach({ $0.isHidden = false })
         }
-        self.selectDevice()
+        self.selectDevices()
     }
     
-    // MARK: Text Field delegate
+    // MARK: TableView delegate
     
-    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        
-        if presented {
-            return false
-        }
-        
-        pickerVC = TTPickerViewController()
-        pickerVC.delegate = self
-        pickerVC.textField = textField
-        pickerVC.modalPresentationStyle = .popover
-        pickerVC.preferredContentSize = CGSize(width: 240, height: 180)
-        pickerVC.picker.delegate = self
-        
-        popoverController = pickerVC.popoverPresentationController
-        if let popover = popoverController {
-            popover.sourceView = textField
-            popover.sourceRect = CGRect(origin: CGPoint(x: textField.bounds.midX, y: -8), size: CGSize.zero)
-            popover.delegate = self
-            popover.permittedArrowDirections = [.up, .down]
-            self.present(pickerVC, animated: true, completion: nil)
-            presented = true
-            
-            var deviceSelected: String?
-            if textField == singlePicker {
-                deviceSelected = self.action.optionValue(TTModeWemoConstants.kWemoDeviceLocation) as? String
-//            } else if textField == doublePicker {
-//                sceneSelected = self.action.optionValue(TTModeHueConstants.kDoubleTapHueScene,
-//                                                        direction: appDelegate().modeMap.inspectingModeDirection) as? String
-            }
-            var currentRow: Int = 0
-            for (i, device) in devices.enumerated() {
-                if device["identifier"] == deviceSelected {
-                    currentRow = i
-                    break
-                }
-            }
-            pickerVC.picker.selectRow(currentRow, inComponent: 0, animated: true)
-        }
-        
-        return false
-    }
-    
-    // MARK: - Delegates and data sources
-    
-    func adaptivePresentationStyle(for controller: UIPresentationController)
-        -> UIModalPresentationStyle {
-            return .none
-    }
-    
-    func numberOfComponentsInPickerView(_ pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return devices.count
     }
     
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return devices[row]["name"]
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 44
     }
     
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        if pickerView == singlePicker {
-            self.action.changeActionOption(TTModeWemoConstants.kWemoDeviceLocation, to: devices[row]["identifier"]!)
-//        } else if pickerView == doublePicker {
-//            self.action.changeActionOption(TTModeHueConstants.kDoubleTapHueScene, to: scenes[row]["identifier"]!)
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cellDevice = devices[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        cell.selectionStyle = .blue
+        
+        cell.textLabel?.text = cellDevice["name"]!
+        cell.detailTextLabel?.text = cellDevice["identifier"]!
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let cellDevice = devices[indexPath.row]
+        
+        if selectedDevices.contains(cellDevice["identifier"]!) {
+            cell.accessoryType = .checkmark
+            cell.setSelected(true, animated: false)
+            self.devicesTable.selectRow(at: indexPath, animated: false, scrollPosition: .none)
+        } else {
+            cell.accessoryType = .none
+            cell.setSelected(false, animated: false)
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("Selected: \(indexPath)")
+        if let cell = tableView.cellForRow(at: indexPath) {
+            cell.accessoryType = .checkmark
+        }
+        let selectedIdentifier = devices[indexPath.row]["identifier"]!
+        
+        var locations = self.action.optionValue(TTModeWemoConstants.kWemoDeviceLocations) as? [String]
+        if locations == nil {
+            locations = [selectedIdentifier]
+        } else if !locations!.contains(selectedIdentifier) {
+            locations!.append(selectedIdentifier)
         }
         
-        let device = devices[row]
-        
-        singlePicker.text = device["name"]
-        
-        if let identifier = device["identifier"] {
-//            if textField == singlePicker {
-                self.action.changeActionOption(TTModeWemoConstants.kWemoDeviceLocation, to: identifier)
-                //            } else if textField == doublePicker {
-                //                self.action.changeActionOption(TTModeHueConstants.kDoubleTapHueScene, to: identifier)
-//            }
+        self.action.changeActionOption(TTModeWemoConstants.kWemoDeviceLocations, to: locations!)
+    }
+    
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        print("Deselected: \(indexPath)")
+        if let cell = tableView.cellForRow(at: indexPath) {
+            cell.accessoryType = .none
         }
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
-        let titleData = devices[row]["name"]
-        let myTitle = NSAttributedString(string: titleData!, attributes: [NSFontAttributeName:UIFont(name: "Effra", size: 18.0)!,NSForegroundColorAttributeName:UIColor.blue])
-        return myTitle
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
-        var pickerLabel = view as! UILabel!
-        if view == nil {  //if no label there yet
-            pickerLabel = UILabel()
-            //color the label's background
-            let hue = CGFloat(row)/CGFloat(devices.count)
-            pickerLabel?.backgroundColor = UIColor(hue: hue, saturation: 1.0, brightness: 1.0, alpha: 1.0)
+        let selectedIdentifier = devices[indexPath.row]["identifier"]!
+        
+        var locations = self.action.optionValue(TTModeWemoConstants.kWemoDeviceLocations) as? [String]
+        if locations == nil {
+            locations = [selectedIdentifier]
+        } else if locations!.contains(selectedIdentifier) {
+            locations!.remove(at: locations!.index(of: selectedIdentifier)!)
         }
-        let titleData = devices[row]["name"]
-        let myTitle = NSAttributedString(string: titleData!, attributes: [NSFontAttributeName:UIFont(name: "Effra", size: 18.0)!,NSForegroundColorAttributeName:UIColor.black])
-        pickerLabel!.attributedText = myTitle
-        pickerLabel!.textAlignment = .center
         
-        return pickerLabel!
-        
+        self.action.changeActionOption(TTModeWemoConstants.kWemoDeviceLocations, to: locations!)
     }
     
-    func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
-        return 36.0
-    }
-
 }
