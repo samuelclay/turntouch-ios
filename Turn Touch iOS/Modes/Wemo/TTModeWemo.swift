@@ -67,6 +67,8 @@ class TTModeWemo: TTMode, TTModeWemoMulticastDelegate, TTModeWemoDeviceDelegate 
         let prefs = UserDefaults.standard
         prefs.removeObject(forKey: TTModeWemoConstants.kWemoFoundDevices)
         prefs.synchronize()
+        
+        self.assembleFoundDevices()
     }
     
     func assembleFoundDevices() {

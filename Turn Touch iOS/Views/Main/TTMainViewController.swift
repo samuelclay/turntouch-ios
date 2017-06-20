@@ -50,6 +50,7 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
     
     let titleMenu = TTTitleMenuPopover()
     let deviceMenu = TTTitleMenuPopover()
+    let modeOptionsMenu = TTTitleMenuPopover()
 
     var modalState: TTModalState?
     var pairingViewController: TTPairingViewController?
@@ -410,8 +411,8 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
             popoverViewController.permittedArrowDirections = .up
             popoverViewController.delegate = self
             popoverViewController.sourceView = sender
-            popoverViewController.sourceRect = CGRect(x: -8, y: 0,
-                                                      width: sender.frame.width,
+            popoverViewController.sourceRect = CGRect(x: 0, y: 0,
+                                                      width: sender.frame.width - 12,
                                                       height: sender.frame.height)
         }
         self.present(titleMenu, animated: true, completion: nil)
@@ -421,21 +422,39 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
         deviceMenu.delegate = deviceTitleView
         deviceMenu.modalPresentationStyle = .popover
         deviceMenu.preferredContentSize = CGSize(width: 204,
-                                                height: 32 * deviceMenu.delegate.menuOptions().count)
+                                                 height: 32 * deviceMenu.delegate.menuOptions().count)
         let popoverViewController = deviceMenu.popoverPresentationController
         popoverViewController!.permittedArrowDirections = .down
         popoverViewController!.delegate = self
         popoverViewController!.sourceView = sender
-        popoverViewController!.sourceRect = CGRect(x: -8, y: 0,
-                                                   width: sender.frame.width,
+        popoverViewController!.sourceRect = CGRect(x: 0, y: 0,
+                                                   width: sender.frame.width - 12,
                                                    height: sender.frame.height)
         self.present(deviceMenu, animated: true, completion: nil)
+    }
+    
+    func toggleModeOptionsMenu(_ sender: UIButton, delegate: TTTitleMenuDelegate) {
+        modeOptionsMenu.delegate = delegate
+        modeOptionsMenu.modalPresentationStyle = .popover
+        modeOptionsMenu.preferredContentSize = CGSize(width: 204,
+                                               height: 32 * modeOptionsMenu.delegate.menuOptions().count)
+        let popoverViewController = modeOptionsMenu.popoverPresentationController
+        popoverViewController!.permittedArrowDirections = .down
+        popoverViewController!.delegate = self
+        popoverViewController!.sourceView = sender
+        popoverViewController!.sourceRect = CGRect(x: 0, y: 0,
+                                                   width: sender.frame.width - 12,
+                                                   height: sender.frame.height)
+        self.present(modeOptionsMenu, animated: true, completion: nil)
     }
     
     func closeDeviceMenu() {
         deviceMenu.dismiss(animated: true, completion: nil)
     }
     
+    func closeModeOptionsMenu() {
+        modeOptionsMenu.dismiss(animated: true, completion: nil)
+    }
     
     // MARK: Modals
     

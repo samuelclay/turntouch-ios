@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TTModeWemoDeviceSwitchOptions: TTOptionsDetailViewController, UITableViewDelegate, UITableViewDataSource, TTModeWemoDelegate {
+class TTModeWemoDeviceSwitchOptions: TTOptionsDetailViewController, UITableViewDelegate, UITableViewDataSource, TTModeWemoDelegate, TTTitleMenuDelegate {
     
     var modeWemo: TTModeWemo!
     
@@ -33,16 +33,28 @@ class TTModeWemoDeviceSwitchOptions: TTOptionsDetailViewController, UITableViewD
         
         self.devicesTable.rowHeight = UITableViewAutomaticDimension
         self.devicesTable.estimatedRowHeight = 2
+        self.devicesTable.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         
         self.selectDevices()
-        
-        self.devicesTable.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+    }
+    
+    func redrawTable() {
+        self.devicesTable.reloadData()
         self.devicesTable.layoutIfNeeded()
         tableHeightConstaint.constant = self.devicesTable.contentSize.height
     }
     
+    func changeState(_ state: TTWemoState, mode: TTModeWemo) {
+        if state == .connected {
+            spinner.forEach({ $0.isHidden = true })
+            settingsButton.forEach({ $0.isHidden = false })
+        }
+        self.selectDevices()
+    }
+    
     func selectDevices() {
         devices = []
+        selectedDevices = []
         _ = self.modeWemo.selectedDevices(self.action.direction)
         let devicesSelected = self.action.optionValue(TTModeWemoConstants.kWemoDeviceLocations) as? [String]
         
@@ -55,36 +67,70 @@ class TTModeWemoDeviceSwitchOptions: TTOptionsDetailViewController, UITableViewD
         }
         
         if devices.count == 0 {
-            noticeLabel.isHidden = false
-            noticeLabel.text = "No WeMo devices found"
-            noticeLabel.textColor = UIColor.lightGray
+            if TTModeWemo.wemoState == .connecting {
+                self.noticeLabel.text = "Searching for WeMo devices..."
+                self.noticeLabel.textColor = UIColor.darkGray
+                spinner.forEach({ $0.isHidden = false })
+                settingsButton.forEach({ $0.isHidden = true })
+                spinner.forEach { (s) in
+                    s.startAnimating()
+                }
+            } else {
+                self.noticeLabel.text = "No WeMo devices found"
+                self.noticeLabel.textColor = UIColor.lightGray
+                spinner.forEach({ $0.isHidden = true })
+                settingsButton.forEach({ $0.isHidden = false })
+            }
+            self.noticeLabel.isHidden = false
         } else {
-            noticeLabel.isHidden = true
+            self.noticeLabel.isHidden = true
         }
+        
+        self.redrawTable()
     }
     
-    @IBAction func refreshDevices(_ sender: AnyObject) {
+    // MARK: Actions
+    
+    @IBAction func settings(_ sender: UIButton) {
+        appDelegate().mainViewController.toggleModeOptionsMenu(sender, delegate: self)
+    }
+    
+    // MARK: Menu Delegate
+    
+    func menuOptions() -> [[String : String]] {
+        return [
+            ["title": "Search for new devices..."],
+            ["title": "Remove all and search..."],
+        ]
+    }
+    
+    func selectMenuOption(_ row: Int) {
+        switch row {
+        case 0:
+            refreshDevices()
+        case 1:
+            purgeDevices()
+        default:
+            break
+        }
+        appDelegate().mainViewController.closeModeOptionsMenu()
+    }
+    
+    @IBAction func refreshDevices() {
         spinner.forEach({ $0.isHidden = false })
         settingsButton.forEach({ $0.isHidden = true })
         spinner.forEach { (s) in
             s.startAnimating()
         }
         
-        if devices.count == 0 {
-            noticeLabel.isHidden = false
-            noticeLabel.text = "Searching for WeMo devices..."
-            noticeLabel.textColor = UIColor.darkGray
-        }
-
         self.modeWemo.refreshDevices()
     }
     
-    func changeState(_ state: TTWemoState, mode: TTModeWemo) {
-        if state == .connected {
-            spinner.forEach({ $0.isHidden = true })
-            settingsButton.forEach({ $0.isHidden = false })
-        }
+    func purgeDevices() {
+        self.modeWemo.resetKnownDevices()
+        self.action.removeActionOption(TTModeWemoConstants.kWemoDeviceLocations)
         self.selectDevices()
+        self.refreshDevices()
     }
     
     // MARK: TableView delegate
