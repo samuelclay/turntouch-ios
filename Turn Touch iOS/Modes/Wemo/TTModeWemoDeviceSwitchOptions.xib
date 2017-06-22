@@ -18,7 +18,7 @@
             <connections>
                 <outlet property="devicesTable" destination="WqU-XV-hBv" id="Qf2-RF-Rhj"/>
                 <outlet property="noticeLabel" destination="xEe-HV-oGe" id="rZK-gh-Jbe"/>
-                <outlet property="tableHeightConstaint" destination="XVb-0C-k9j" id="QGm-aT-HCB"/>
+                <outlet property="tableHeightConstraint" destination="XVb-0C-k9j" id="87Y-Vz-q5W"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outletCollection property="spinner" destination="c6u-gn-l11" collectionClass="NSMutableArray" id="SdR-tq-0Ze"/>
                 <outletCollection property="settingsButton" destination="4Hd-ra-HFv" collectionClass="NSMutableArray" id="Zeh-Y5-IIS"/>

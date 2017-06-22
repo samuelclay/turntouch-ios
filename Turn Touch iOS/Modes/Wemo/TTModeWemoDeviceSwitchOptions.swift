@@ -17,10 +17,7 @@ class TTModeWemoDeviceSwitchOptions: TTOptionsDetailViewController, UITableViewD
     @IBOutlet var devicesTable: UITableView!
     @IBOutlet var noticeLabel: UILabel!
     
-    var devices: [[String: String]] = []
-    var selectedDevices: [String] = []
-    
-    @IBOutlet var tableHeightConstaint: NSLayoutConstraint!
+    @IBOutlet var tableHeightConstraint: NSLayoutConstraint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,8 +38,10 @@ class TTModeWemoDeviceSwitchOptions: TTOptionsDetailViewController, UITableViewD
     func redrawTable() {
         self.devicesTable.reloadData()
         self.devicesTable.layoutIfNeeded()
-        tableHeightConstaint.constant = self.devicesTable.contentSize.height
+        tableHeightConstraint.constant = self.devicesTable.contentSize.height
     }
+    
+    // MARK: Wemo Delegate
     
     func changeState(_ state: TTWemoState, mode: TTModeWemo) {
         if state == .connected {
@@ -53,22 +52,11 @@ class TTModeWemoDeviceSwitchOptions: TTOptionsDetailViewController, UITableViewD
     }
     
     func selectDevices() {
-        devices = []
-        selectedDevices = []
-        _ = self.modeWemo.selectedDevices(self.action.direction)
-        let devicesSelected = self.action.optionValue(TTModeWemoConstants.kWemoDeviceLocations) as? [String]
+        self.modeWemo.ensureDevicesSelected()
         
-        for device in TTModeWemo.foundDevices {
-            devices.append(["name": device.deviceName, "identifier": device.location()])
-            if let devicesSelected = devicesSelected,
-                devicesSelected.contains(device.location()) {
-                selectedDevices.append(device.location())
-            }
-        }
-        
-        if devices.count == 0 {
+        if TTModeWemo.foundDevices.count == 0 {
             if TTModeWemo.wemoState == .connecting {
-                self.noticeLabel.text = "Searching for WeMo devices..."
+                self.noticeLabel.text = "Searching for Wemo devices..."
                 self.noticeLabel.textColor = UIColor.darkGray
                 spinner.forEach({ $0.isHidden = false })
                 settingsButton.forEach({ $0.isHidden = true })
@@ -76,7 +64,7 @@ class TTModeWemoDeviceSwitchOptions: TTOptionsDetailViewController, UITableViewD
                     s.startAnimating()
                 }
             } else {
-                self.noticeLabel.text = "No WeMo devices found"
+                self.noticeLabel.text = "No Wemo devices found"
                 self.noticeLabel.textColor = UIColor.lightGray
                 spinner.forEach({ $0.isHidden = true })
                 settingsButton.forEach({ $0.isHidden = false })
@@ -136,7 +124,7 @@ class TTModeWemoDeviceSwitchOptions: TTOptionsDetailViewController, UITableViewD
     // MARK: TableView delegate
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return devices.count
+        return TTModeWemo.foundDevices.count
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -148,20 +136,21 @@ class TTModeWemoDeviceSwitchOptions: TTOptionsDetailViewController, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cellDevice = devices[indexPath.row]
+        let cellDevice = TTModeWemo.foundDevices[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         cell.selectionStyle = .blue
         
-        cell.textLabel?.text = cellDevice["name"]!
-        cell.detailTextLabel?.text = cellDevice["identifier"]!
+        cell.textLabel?.text = cellDevice.deviceName
+        cell.detailTextLabel?.text = cellDevice.location()
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        let cellDevice = devices[indexPath.row]
-        
-        if selectedDevices.contains(cellDevice["identifier"]!) {
+        let cellDevice = TTModeWemo.foundDevices[indexPath.row]
+        let devicesSelected = self.action.optionValue(TTModeWemoConstants.kWemoDeviceLocations) as? [String]
+
+        if let devicesSelected = devicesSelected, devicesSelected.contains(cellDevice.location()) {
             cell.accessoryType = .checkmark
             cell.setSelected(true, animated: false)
             self.devicesTable.selectRow(at: indexPath, animated: false, scrollPosition: .none)
@@ -176,16 +165,16 @@ class TTModeWemoDeviceSwitchOptions: TTOptionsDetailViewController, UITableViewD
         if let cell = tableView.cellForRow(at: indexPath) {
             cell.accessoryType = .checkmark
         }
-        let selectedIdentifier = devices[indexPath.row]["identifier"]!
+        let selectedIdentifier = TTModeWemo.foundDevices[indexPath.row].location()
         
-        var locations = self.action.optionValue(TTModeWemoConstants.kWemoDeviceLocations) as? [String]
-        if locations == nil {
-            locations = [selectedIdentifier]
-        } else if !locations!.contains(selectedIdentifier) {
-            locations!.append(selectedIdentifier)
+        var devicesSelected = self.action.optionValue(TTModeWemoConstants.kWemoDeviceLocations) as? [String]
+        if devicesSelected == nil {
+            devicesSelected = [selectedIdentifier]
+        } else if !devicesSelected!.contains(selectedIdentifier) {
+            devicesSelected!.append(selectedIdentifier)
         }
         
-        self.action.changeActionOption(TTModeWemoConstants.kWemoDeviceLocations, to: locations!)
+        self.action.changeActionOption(TTModeWemoConstants.kWemoDeviceLocations, to: devicesSelected!)
     }
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
@@ -193,16 +182,16 @@ class TTModeWemoDeviceSwitchOptions: TTOptionsDetailViewController, UITableViewD
         if let cell = tableView.cellForRow(at: indexPath) {
             cell.accessoryType = .none
         }
-        let selectedIdentifier = devices[indexPath.row]["identifier"]!
+        let selectedIdentifier = TTModeWemo.foundDevices[indexPath.row].location()
         
-        var locations = self.action.optionValue(TTModeWemoConstants.kWemoDeviceLocations) as? [String]
-        if locations == nil {
-            locations = [selectedIdentifier]
-        } else if locations!.contains(selectedIdentifier) {
-            locations!.remove(at: locations!.index(of: selectedIdentifier)!)
+        var devicesSelected = self.action.optionValue(TTModeWemoConstants.kWemoDeviceLocations) as? [String]
+        if devicesSelected == nil {
+            devicesSelected = [selectedIdentifier]
+        } else if devicesSelected!.contains(selectedIdentifier) {
+            devicesSelected!.remove(at: devicesSelected!.index(of: selectedIdentifier)!)
         }
         
-        self.action.changeActionOption(TTModeWemoConstants.kWemoDeviceLocations, to: locations!)
+        self.action.changeActionOption(TTModeWemoConstants.kWemoDeviceLocations, to: devicesSelected!)
     }
     
 }
