@@ -116,7 +116,7 @@ class TTModeWemoDeviceSwitchOptions: TTOptionsDetailViewController, UITableViewD
     
     func purgeDevices() {
         self.modeWemo.resetKnownDevices()
-        self.action.removeActionOption(TTModeWemoConstants.kWemoDeviceLocations)
+//        self.action.removeActionOption(TTModeWemoConstants.kWemoDeviceLocations) // Keep selections in case they're useful
         self.selectDevices()
         self.refreshDevices()
     }
