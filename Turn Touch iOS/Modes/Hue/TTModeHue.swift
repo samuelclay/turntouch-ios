@@ -1261,7 +1261,9 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
             }
             
             // Assign default scenes for batch actions
-            for batchAction in appDelegate().modeMap.batchActions.batchActions(in: direction) {
+            let batchActionsModel = appDelegate().modeMap.batchActions
+            let batchActions = batchActionsModel.batchActions(in: direction)
+            for batchAction in batchActions {
                 if !batchAction.actionName.contains("Scene") {
                     continue
                 }

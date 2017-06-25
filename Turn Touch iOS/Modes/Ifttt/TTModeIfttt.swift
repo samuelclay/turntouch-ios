@@ -177,33 +177,8 @@ class TTModeIfttt: TTMode {
         delegate?.changeState(TTModeIfttt.IftttState, mode: self)
     }
     
-    func iftttDeviceAttrs() -> [String: String] {
-        let userId = appDelegate().modeMap.userId()
-        let deviceId = appDelegate().modeMap.deviceId()
-        let deviceName = UIDevice.current.name
-        let deviceModel = UIDevice.current.model
-        let devicePlatform = UIDevice.current.systemName
-        let deviceVersion = UIDevice.current.systemVersion
-        let devices = appDelegate().bluetoothMonitor.foundDevices.devices
-        var remoteName: String?
-        if devices.count >= 1 {
-            remoteName = devices[0].nickname
-        }
-        let attrs: [String: String] = [
-            "user_id": userId,
-            "device_id": deviceId,
-            "device_name": deviceName,
-            "device_platform": devicePlatform,
-            "device_model": deviceModel,
-            "device_version": deviceVersion,
-            "remote_name": remoteName ?? "",
-            ]
-        
-        return attrs
-    }
-    
     func authorizeIfttt() {
-        let attrs = self.iftttDeviceAttrs()
+        let attrs = appDelegate().modeMap.deviceAttrs() as! [String: String]
         let params = (attrs.flatMap({ (key, value) -> String in
             return "\(key)=\(value.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!)"
         }) as Array).joined(separator: "&")
@@ -212,12 +187,12 @@ class TTModeIfttt: TTMode {
         oauthViewController.modalPresentationStyle = .formSheet
         appDelegate().mainViewController.present(oauthViewController, animated: true, completion: nil)
     }
-    
-    func openRecipe(actionDirection: TTModeDirection) {
+     
+    func openRecipe(direction: TTModeDirection) {
         let modeDirection = appDelegate().modeMap.directionName(self.modeDirection)
-        let actionDirection = appDelegate().modeMap.directionName(actionDirection)
+        let actionDirection = appDelegate().modeMap.directionName(direction)
         
-        var attrs = self.iftttDeviceAttrs()
+        var attrs = appDelegate().modeMap.deviceAttrs() as! [String: String]
         attrs["app_direction"] = modeDirection
         attrs["button_direction"] = actionDirection
 
@@ -229,6 +204,25 @@ class TTModeIfttt: TTMode {
         oauthViewController = SFSafariViewController(url: URL(string: url)!, entersReaderIfAvailable: false)
         oauthViewController.modalPresentationStyle = .formSheet
         appDelegate().mainViewController.present(oauthViewController, animated: true, completion: nil)
+    }
+    
+    func purgeRecipe(direction: TTModeDirection, callback: (() -> Void)? = nil) {
+        let modeDirection = appDelegate().modeMap.directionName(self.modeDirection)
+        let actionDirection = appDelegate().modeMap.directionName(direction)
+        
+        var params = appDelegate().modeMap.deviceAttrs() as! [String: String]
+        params["app_direction"] = modeDirection
+        params["button_direction"] = actionDirection
+
+        print(" ---> Purging: \(params)")
+        Alamofire.request("https://turntouch.com/ifttt/purge_trigger", method: .post,
+                          parameters: params, encoding: URLEncoding.default).responseJSON
+            { response in
+                print(" ---> Purged: \(response)")
+                if let callback = callback {
+                    callback()
+                }
+        }
     }
     
     func registerTriggers(callback: (() -> Void)? = nil) {
@@ -299,8 +293,8 @@ class TTModeIfttt: TTMode {
     }
     
     func cancelConnectingToIfttt() {
-            TTModeIfttt.IftttState = .disconnected
-            delegate?.changeState(TTModeIfttt.IftttState, mode: self)
+        TTModeIfttt.IftttState = .disconnected
+        delegate?.changeState(TTModeIfttt.IftttState, mode: self)
     }
     
     func IftttReady() {

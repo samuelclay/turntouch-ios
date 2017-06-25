@@ -313,6 +313,20 @@ class TTModeMap: NSObject {
         if !prefs.bool(forKey: "TT:pref:share_usage_stats") {
             return
         }
+        var params = self.deviceAttrs()
+        
+        for (k, v) in additionalParams {
+            params[k] = v
+        }
+        
+        Alamofire.request("https://turntouch.com/usage/record", method: .post,
+                          parameters: params, encoding: JSONEncoding.default).responseJSON
+            { response in
+                print(" ---> Usage: \(response)")
+            }
+    }
+    
+    func deviceAttrs() -> [String: Any] {
         let userId = self.userId()
         let deviceId = self.deviceId()
         let deviceName = UIDevice.current.name
@@ -324,7 +338,7 @@ class TTModeMap: NSObject {
         if devices.count >= 1 {
             remoteName = devices[0].nickname
         }
-        var params: [String: Any] = [
+        let params: [String: Any] = [
             "user_id": userId,
             "device_id": deviceId,
             "device_name": deviceName,
@@ -334,15 +348,7 @@ class TTModeMap: NSObject {
             "remote_name": remoteName ?? "",
             ]
         
-        for (k, v) in additionalParams {
-            params[k] = v
-        }
-        
-        Alamofire.request("https://turntouch.com/usage/record", method: .post,
-                          parameters: params, encoding: JSONEncoding.default).responseJSON
-            { response in
-                print(" ---> Usage: \(response)")
-            }
+        return params
     }
     
     // MARK: Batch actions

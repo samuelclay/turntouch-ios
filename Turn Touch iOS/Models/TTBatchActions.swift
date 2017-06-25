@@ -39,14 +39,6 @@ class TTBatchActions: NSObject {
         return batchActions
     }
     
-    func deactivate() {
-        for action in [northActions, eastActions, westActions, southActions] {
-            for batchAction in action {
-                batchAction.deactivate()
-            }
-        }
-    }
-    
     func batchActionKey(in direction: TTModeDirection) -> String {
         return self.modeBatchActionKey(modeDirection: modeDirection, actionDirection: direction)
     }
@@ -69,6 +61,14 @@ class TTBatchActions: NSObject {
         }
         
         return []
+    }
+    
+    func deactivate() {
+        for action in [northActions, eastActions, westActions, southActions] {
+            for batchAction in action {
+                batchAction.deactivate()
+            }
+        }
     }
     
 }

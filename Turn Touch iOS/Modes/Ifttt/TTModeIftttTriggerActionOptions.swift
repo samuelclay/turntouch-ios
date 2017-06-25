@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TTModeIftttTriggerActionOptions: TTOptionsDetailViewController {
+class TTModeIftttTriggerActionOptions: TTOptionsDetailViewController, TTTitleMenuDelegate {
 
     var modeIfttt: TTModeIfttt!
 
@@ -31,10 +31,45 @@ class TTModeIftttTriggerActionOptions: TTOptionsDetailViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    
+    // MARK: Actions
+
     @IBAction func openRecipe(sender: UIControl) {
         modeIfttt.registerTriggers {
-            self.modeIfttt.openRecipe(actionDirection: self.action.direction)
+            self.modeIfttt.openRecipe(direction: self.action.direction)
         }
     }
+    
+    @IBAction func openSettings(_ sender: UIButton) {
+        appDelegate().mainViewController.toggleModeOptionsMenu(sender, delegate: self)
+    }
+    
+    func replaceRecipe() {
+        modeIfttt.registerTriggers {
+            self.modeIfttt.purgeRecipe(direction: self.action.direction) {
+                self.modeIfttt.openRecipe(direction: self.action.direction)
+            }
+        }
+    }
+    
+    // MARK: Menu Delegate
+    
+    func menuOptions() -> [[String : String]] {
+        return [
+            ["title": "Replace this recipe..."],
+        ]
+    }
+    
+    func selectMenuOption(_ row: Int) {
+        switch row {
+        case 0:
+            replaceRecipe()
+        default:
+            break
+        }
+        appDelegate().mainViewController.closeModeOptionsMenu()
+    }
+    
+
 
 }
