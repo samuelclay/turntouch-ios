@@ -1207,9 +1207,11 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
         UserDefaults.standard.removeObject(forKey: "CacheX")
         UserDefaults.standard.synchronize()
         
-        DispatchQueue.main.sync {
-            foundScenes = []
-            TTModeHue.hueSdk.startHeartbeat()
+        DispatchQueue.global().async {            
+            DispatchQueue.main.sync {
+                self.foundScenes = []
+                TTModeHue.hueSdk.startHeartbeat()
+            }
         }
     }
     
