@@ -15,11 +15,11 @@
 		03E99FAF135ACEE4247287C45BD84187 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508ED378F1C129B844F719033BB944A6 /* Utilities.swift */; };
 		086EB4A18B1D75028DE21114D78375BF /* NestSDKProductDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C6CB6679B26D16CC36C048FEDED85984 /* NestSDKProductDataModel.m */; };
 		08B14F1FB860553E2C3C94A9883C91F0 /* ScheduleCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5B1B058A9D4CA0F0B20777BBF399A0 /* ScheduleCommand.swift */; };
-		0946806167A04CDC73709FE86536BC1B /* Zip-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 7EA1A5E6176FDCE04159C83488BC0848 /* Zip-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		094BAAAAA6D41A9E6A5D4F5D1C131CCF /* JSONModelArray.h in Headers */ = {isa = PBXBuildFile; fileRef = D04EEECEBCEAFBEACAC96FD904A9FF7A /* JSONModelArray.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		098DFB58854D1CE865272C3D86EF49EE /* DaylightSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B936E5A5CC0E61A618DEC33E44B0DD8B /* DaylightSensor.swift */; };
 		098EA1C961FF0A005E9664F8CE1E4E3E /* DFUServiceSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC2B0DDFDBB7941E59F1D0A97101D86B /* DFUServiceSelector.swift */; };
 		09A6D1B068FD8C9F9A64FB3CCAF46378 /* JSONKeyMapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B3B75A8B7C92CA63C7608F9622D5F5B /* JSONKeyMapper.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0A8CC78B7D5522AFDB7660C919492110 /* ioapi.h in Headers */ = {isa = PBXBuildFile; fileRef = 51D25BD2FAF19F894C95D71F35C57651 /* ioapi.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		0AA36A1CE7F92CCB207155F9CE8E19DC /* NestSDKAuthorizationManagerAuthorizationResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F832CD1512E28A47B75E7277278A837 /* NestSDKAuthorizationManagerAuthorizationResult.m */; };
 		0AB79688E7DE4D64E80B6CE114C3342B /* NestSDKProductResourceUse.h in Headers */ = {isa = PBXBuildFile; fileRef = DE64094DF64A00273720944244AE3CAA /* NestSDKProductResourceUse.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0CF37311119388680C995FB7E9638D3B /* JSONValueTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 0E5F84FAEEFE33E27DD2C4D642F5E117 /* JSONValueTransformer.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -51,7 +51,7 @@
 		19BC7C5813AAC70AD2CDB13538AC43BE /* ScannerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C39AD5D1A2E2C30BE6E1887B2B803D /* ScannerDelegate.swift */; };
 		1B9EDEDC964E6B08F78920B4F4B9DB84 /* Alamofire-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 2B31F21F4D82490E50B6342DE249C4BD /* Alamofire-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1C54A6B77203286061C3EA6504E8C610 /* ManifestFirmwareInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810CE61C9DC9B78A67057029EE919405 /* ManifestFirmwareInfo.swift */; };
-		1C845F8441007558AE7386064FE833AD /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = 2DC650502A3ACEDA78C3C07249D96141 /* zip.c */; };
+		1C845F8441007558AE7386064FE833AD /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = 1DECEC790941F9E4B8B18A66B02E96C8 /* zip.c */; };
 		1DAE43C67B1018DA53F213A0185DC814 /* NestSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = DC42D700D2425516EA9BB7FDAD133B84 /* NestSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1E2A6D057E20BE8F5ED3E594F7B8C286 /* AFNetworking-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 37A8F29F12C75A1614222A5433613134 /* AFNetworking-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1E5062FD096EDDF190E68CD76882D96D /* iOSDFULibrary-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = B0E1779EDD22ED53FE814C79CCB23370 /* iOSDFULibrary-dummy.m */; };
@@ -94,6 +94,7 @@
 		363F9B7B4595DBC13CACDDD503697807 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43BB05A1FCA70A2112C5AB678092F804 /* Utilities.swift */; };
 		381A429E9CC6979A1CDF662742C62475 /* IASKMultipleValueSelection.m in Sources */ = {isa = PBXBuildFile; fileRef = F6073C2EEF7078BA6B9CC9374FB1ECCA /* IASKMultipleValueSelection.m */; };
 		3A092E87C33AEFE16AA5784AC08BA9E9 /* th.lproj in Resources */ = {isa = PBXBuildFile; fileRef = BD128BE16CFCFDC54B0196A807C3D0DF /* th.lproj */; };
+		3D78A91C00E60807EE6B3B67D33A6E21 /* zip.h in Headers */ = {isa = PBXBuildFile; fileRef = 54AA81095E33A2477ED142C6C9E7E5E4 /* zip.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		3DDF70C2F8D2D9697F2F55FD9DF66A49 /* BridgeAccessConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD26719DE83F71F612C5BB5C0E6D394B /* BridgeAccessConfig.swift */; };
 		3E8842ED563F1B6001E0BBDA33CDEDBE /* AppData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104F197BB50F93EA5F835575DD68F560 /* AppData.swift */; };
 		400464B8A4A6E5897B6C6B6F67DE4219 /* ButtonlessDFU.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50466D749F4EE472D7C03C289AA4C6C8 /* ButtonlessDFU.swift */; };
@@ -114,13 +115,13 @@
 		47F04CBDF6C54B220F6AEECEF15264D5 /* AFAutoPurgingImageCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 07E6FB617F1CF8B48C0A80D072763C70 /* AFAutoPurgingImageCache.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		48178C3052AB6D6F58D07F59D0DEECEB /* NestSDKProductIdentification.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D4BD1DE17F540B3EEC2C6B5EAF74758 /* NestSDKProductIdentification.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4844EE339A52D499A4AE6414BBE3D1EA /* NestSDK-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 486CAFFB10DB08102E987271B42136CF /* NestSDK-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		48EE55BDBD977CF0E0B59A56C6329901 /* Zip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B4BB25B187E1D776066C6890B5A1B4 /* Zip.swift */; };
+		48EE55BDBD977CF0E0B59A56C6329901 /* Zip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442BE6369331E25B53E939FEB0C92EE5 /* Zip.swift */; };
 		495733958B825639F9C1F0E15F336E1B /* NestSDKAccessToken.h in Headers */ = {isa = PBXBuildFile; fileRef = 5F09FDACAE8CAE7EC520A0C9975C8BE3 /* NestSDKAccessToken.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4998C73670492A5B49463B947B65C9B8 /* el.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 543030E9DF23052B3BB550BB230BC408 /* el.lproj */; };
 		49A603E981211AE58C28F73B4866E594 /* BridgeResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508C128F08E6EEE5A9430A205273BF86 /* BridgeResource.swift */; };
 		4A5783D4AF06C48693EEA27138805FEA /* Gloss.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F78B12824B1C4D6376C3E617A5348193 /* Gloss.framework */; };
 		4ADCE1BE96E43FA27B66FCE35B6E71A3 /* NestSDKProductLocationDataModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C9964B1E4C414829C58B7E9873012A1 /* NestSDKProductLocationDataModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		4B12C32A76B1CE1E3EBA3FE5EF36FDD3 /* QuickZip.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2E56415451669AE632E2450CBBC220 /* QuickZip.swift */; };
+		4B12C32A76B1CE1E3EBA3FE5EF36FDD3 /* QuickZip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211A8018C921B4FC496B7766C2320158 /* QuickZip.swift */; };
 		4D0BF16AAECA32336AC7D61EEBFCB7EA /* SSKeychainQuery.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A99C3874D3A375D887309C768D28813 /* SSKeychainQuery.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4D1A2597EABFA48B92BFB5652D7B0E65 /* JSONModel-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7503817A055C47CE4534CFF6C8FDBC /* JSONModel-dummy.m */; };
 		4D210E159BFB94B43BA1DEF818697047 /* ja.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 4EDF8C4620300131ED62F2DED55DB653 /* ja.lproj */; };
@@ -132,6 +133,7 @@
 		509B9FE724C7E9DEEF825C72C508353A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67A3A5E4B17A183CD79D53B765FF598D /* Foundation.framework */; };
 		50D18CDC8CB1F47E501C5BDEED4B536F /* SecureDFUPeripheral.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF03874994381F87349B464DAD821E19 /* SecureDFUPeripheral.swift */; };
 		51047C1945103943F70BEADE83725630 /* UIWebView+AFNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = 134A241D94EF93C7AA3421C4109C315E /* UIWebView+AFNetworking.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		51E9BD655294E26BAC914FA7C601E7A0 /* unzip.h in Headers */ = {isa = PBXBuildFile; fileRef = E4A351331C46C181351A6707B5665606 /* unzip.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		523E999816F70DB5ACFFA9F77A0F014D /* LoggerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C603118C91BA703450EAD80CAD25102 /* LoggerHelper.swift */; };
 		5387216E723A3C68E851CA15573CDD71 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C5D868B4E4CC21DD7CFAEBCDBA2F6F /* Request.swift */; };
 		538E3D762166B71A00202E68057991DA /* IASKAppSettingsWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AB72722A5ADA580FF39D7DBE60076B8 /* IASKAppSettingsWebViewController.m */; };
@@ -140,11 +142,11 @@
 		551267314E4B8236E9166BB48BE68B36 /* IASKPSSliderSpecifierViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 29815B9B50C73046A2C95E5B54C3519F /* IASKPSSliderSpecifierViewCell.m */; };
 		5522CC4F310DC2DD0C7498E99A659568 /* nl.lproj in Resources */ = {isa = PBXBuildFile; fileRef = D11DCE2053EB3545B0CF57DF3B5D46E1 /* nl.lproj */; };
 		55B8583C9E1BDF5DD66B2EFCDD0F665B /* BridgeFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42070924836808EA4869F984B3420FC /* BridgeFinder.swift */; };
-		55BBC80EE019F2A32FB5A4B547FF57ED /* unzip.h in Headers */ = {isa = PBXBuildFile; fileRef = D3D3D5237E44520349E0DB469BBF9F94 /* unzip.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		5619649AEFC6D7EDBACF625DD1C47F81 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67A3A5E4B17A183CD79D53B765FF598D /* Foundation.framework */; };
 		56A9A008EC1F8AE290912D3ABE0FCF26 /* NestSDKDeviceDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DD9E5DEF4407D3283232C91B6117B16E /* NestSDKDeviceDataModel.m */; };
 		56D7404E5E6FCBE9FBCCF6008D562C1F /* NestSDKDataManager.h in Headers */ = {isa = PBXBuildFile; fileRef = E537FFEF72A27D14658448DAFEEBE5E6 /* NestSDKDataManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		584794AAFF3398ADA099058B92B3C496 /* NestSDKAccessTokenCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B8A3B5D26021EA3C6FB2461F605A09C /* NestSDKAccessTokenCache.m */; };
+		58C632C23C48C8DFE9E53A2C5E4BAEC5 /* Zip-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 6923D8BF591294684BBDF0DCD38114BE /* Zip-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		592B0924D4135C09A1A45D93F290C043 /* SwitchSensorState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08113BB7869D857EAB3A4C44283CB95 /* SwitchSensorState.swift */; };
 		597118B15378AA2DD1C8BAE0F6FBE952 /* SWXMLHash+TypeConversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41153E31E0482AE50E14175A1A7A2678 /* SWXMLHash+TypeConversion.swift */; };
 		59D23731034D480FC7D6B5AE2B7FDFF2 /* DFUStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495DFF98FDB1EA9E1A3DD0F7BCF98629 /* DFUStream.swift */; };
@@ -171,7 +173,6 @@
 		664824A193F98B342B49FF257417C50F /* ZipArchive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6D5C3BAA767F70EC68DC10B1E0A790 /* ZipArchive.swift */; };
 		66A1A0483409DB005E246BD2AFB7110D /* Rule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E4D210D2C0CA5614CBAF76FD5A157F8 /* Rule.swift */; };
 		66CC8DB497CFF35475C0BD0A0C6268B2 /* IASKSettingsStoreFile.m in Sources */ = {isa = PBXBuildFile; fileRef = B518B2B152759D844A7253AD10968657 /* IASKSettingsStoreFile.m */; };
-		67B775CA7879DD54C05469989DF6CAA2 /* crypt.h in Headers */ = {isa = PBXBuildFile; fileRef = D58459B230B29C83C83F5F067F86AF2F /* crypt.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		69552472DBFDD7697E0FD99BD398A44E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67A3A5E4B17A183CD79D53B765FF598D /* Foundation.framework */; };
 		6996D92CD2A2BA1797BC653978845622 /* NestSDKMetadataDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 468D9284C172E1B92CA2071551F1E7FB /* NestSDKMetadataDataModel.m */; };
 		6A255DF63979F4128764F0EECE424B9E /* NestSDKSmokeCOAlarm.h in Headers */ = {isa = PBXBuildFile; fileRef = 654E20EB6A4E76DC6ABFA2A65131D1DF /* NestSDKSmokeCOAlarm.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -210,6 +211,7 @@
 		7D7DDE139D322F937EDA95E3FE266B1E /* HumiditySensorConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DEA057335F274FE88BC8AD73882F3A /* HumiditySensorConfig.swift */; };
 		7D8CC01E8C9EFFF9F4D65406CDE0AB66 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D33C03EC5828CD2C77974A1F04BC72 /* Result.swift */; };
 		7E4F0161B4D135DA3A0763619A56C2F5 /* CocoaAsyncSocket-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = CCFB2896320B28054BEA9B5AC328372D /* CocoaAsyncSocket-dummy.m */; };
+		7E5A8BA2A7944437068EE379EDD9DF11 /* crypt.h in Headers */ = {isa = PBXBuildFile; fileRef = BFB1B8DFD755597752F76963C6B691C9 /* crypt.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		7F77EE6AE5CE34861B1E75898A3D25E4 /* NestSDKAccessTokenCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AD48A666969CE256BF803A421299CAA /* NestSDKAccessTokenCache.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		801097C43E15F9AF569CC738F080772B /* SwitchSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687229BC37FC8ACC2EED0970932A0F1D /* SwitchSensor.swift */; };
 		80AC34DA753F009F5778DDDC04C0D6BE /* NestSDKProductResourceDataModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 96E23E4A0ECD269105DD804CB9CD6B1E /* NestSDKProductResourceDataModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -237,7 +239,6 @@
 		8E9EB88FC32BD9C6355D29D8D88CDC26 /* fr.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 86FC02569404E2F08649C3ACE5B2FF17 /* fr.lproj */; };
 		8FE6F77C0BC102DBE6F8EA6135465FF7 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12627D86B2409024DE881F816930C817 /* Theme.swift */; };
 		909058C0B0299CB36F642DEA45F2A2C4 /* Themes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D496DE47F1E91052A9A1BE2D306D401 /* Themes.swift */; };
-		9193F47F8252B8BB75D248B49D888D78 /* Zip.h in Headers */ = {isa = PBXBuildFile; fileRef = C1440460461CEA7F03E9915322DAB033 /* Zip.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9264BD69AFA8EE74F0D7F0EBD74F762F /* UIImage+AFNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = 7D55F8B8B4E05E169A81260A5EFBDD34 /* UIImage+AFNetworking.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		931DC5767F0D1D964EFD7B6E52C05277 /* GenericStatusSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387397EB778DC992CFE31865DBB49BD3 /* GenericStatusSensor.swift */; };
 		93DFC0CC12E763AE770017349EE009D1 /* AFNetworkReachabilityManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 67832206DAC82B919215223941308CED /* AFNetworkReachabilityManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -298,14 +299,14 @@
 		B3013DB2565885D18384F41AE84CB8FE /* SoftdeviceBootloaderInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A29C6436688635FFCE231A9EF19BACC /* SoftdeviceBootloaderInfo.swift */; };
 		B363F0EB578D43CD79BE93FDDA32582A /* SecureDFUPeripheralDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00999E04808091FE7EE08DCC59AD3AE /* SecureDFUPeripheralDelegate.swift */; };
 		B4FD35227C1800C253425D8271FC2DB8 /* DFUVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0B7620C0F07F56A4597D4657CFE3D9 /* DFUVersion.swift */; };
-		B5252700B06A7CEE763E68B5ECF69C78 /* Zip-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CEDC17964BD56C8BADDCE88276EACE6 /* Zip-dummy.m */; };
+		B5252700B06A7CEE763E68B5ECF69C78 /* Zip-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 716DD40EE8D368D3019A7C7B65B8149F /* Zip-dummy.m */; };
 		B65FCF589DA398C3EFE0128064E510EC /* MultipartFormData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE0AD3C6C7C370876F55E4F495A38AD /* MultipartFormData.swift */; };
 		B688B80E8B12B7F6988B29DC592DA94D /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22FF2A212132BDCECD65EE9A14C93AFC /* Security.framework */; };
-		B7F73EF253E5BEECEB1AEA339C728489 /* zip.h in Headers */ = {isa = PBXBuildFile; fileRef = 5C6D37703AC44BF5C5B14E6223DBF159 /* zip.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		B8819E4624E16D8177A9899E340C35AA /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = E36DF862C7F48F955FBAAF978928CE57 /* ioapi.c */; };
+		B8819E4624E16D8177A9899E340C35AA /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = DFE1797CD147D1A8E8D286DD8686C63C /* ioapi.c */; };
 		B8DAE56B8358E2875EBCF300C52EE566 /* LoggerConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE32A4992A04847698E75C76CA97DA4A /* LoggerConfig.swift */; };
 		BA5AC5FE9F72D8709AF5A29284758717 /* Log-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 00D821DDFFAD411BABF69ACD755C3C20 /* Log-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BA605DE9DAC3AE71C477ED604E11978E /* es.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 0FFA238C6559B12BEBB9D5CF8759C4A0 /* es.lproj */; };
+		BACB9922ECE93352DFA4E17C4BB93AD9 /* Zip.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A486DFC73ECC9C6977C570234515BC6 /* Zip.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BB06A279BF8EF15106312E8889E1B627 /* IASKSettingsReader.h in Headers */ = {isa = PBXBuildFile; fileRef = 324493F3FF35F363BA37B3D9F3CB04AC /* IASKSettingsReader.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BB3A20087431DCB142EBCE9C5EC2C0CE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67A3A5E4B17A183CD79D53B765FF598D /* Foundation.framework */; };
 		BBAE9FE0EB109648289D7FAA9E67B073 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF95F508F9BF4556D205359695E9C6AB /* SystemConfiguration.framework */; };
@@ -330,7 +331,6 @@
 		CA3DD0BBA10012C102290B35C704D3CB /* Gloss-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = E0356C287DF9B06D3689ABD04E020BFD /* Gloss-dummy.m */; };
 		CA4AC75689DE4A58E07F5B5E620545B5 /* Pods-Turn Touch iOS-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B395AD42D1A3A41E95CB67524729411 /* Pods-Turn Touch iOS-dummy.m */; };
 		CB6D60925223897FFA2662667DF83E8A /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03C06C1F2C9E21F0EDFEDBA8C7C9B4E /* Response.swift */; };
-		CC0AF1383226FC45CB3A3B7C1CC5C9DF /* ioapi.h in Headers */ = {isa = PBXBuildFile; fileRef = 11870D340299BB9962B7638B17351FD4 /* ioapi.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		CC262A8E5E754CEDEF9DDE8BA9A1127F /* NestSDKRESTService.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AFAFA34133B41D84979F4A197F61585 /* NestSDKRESTService.m */; };
 		CC303F983E875215BCA3F7DC7ECBD30C /* BridgeAuthenticatorDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5E69362ED22E9290082F478E10496B /* BridgeAuthenticatorDelegate.swift */; };
 		CD7E6BCE20AFABB2223E7E822B123595 /* GenericStatusSensorState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A42D3808AB972743E6414C1FF09AC23 /* GenericStatusSensorState.swift */; };
@@ -343,7 +343,7 @@
 		D01B2EBC1AB52980422F5A831BBCE3F4 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC560A2B6A0A7399A04DB9777B23F374 /* CFNetwork.framework */; };
 		D14D399983A924E23DDA8873B75A0712 /* NestSDKFirebaseService.h in Headers */ = {isa = PBXBuildFile; fileRef = C056801C00F9BB9BBAF6667D1E4F36F4 /* NestSDKFirebaseService.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D29EE91D60C650332804622984A0A6D5 /* Log.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A31488FE4626960F7C31F2BA73822D12 /* Log.framework */; };
-		D2B25EDC91A9E93A3A099B1EB385E320 /* ZipUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A85D3D23110F5210B1A72F91FED760E /* ZipUtilities.swift */; };
+		D2B25EDC91A9E93A3A099B1EB385E320 /* ZipUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28DAC8C516C4125A3CD0D0782C573A4 /* ZipUtilities.swift */; };
 		D2EC6C4B6209542028BE45AB18BEE103 /* SSKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D0DF42E33E199EFC0B8ADF193B2529B /* SSKeychain.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		D354E7B46BC2B2280CCE65F5023ED407 /* HeartbeatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B25A6F3E82F490C6E33CB9CFE07E800 /* HeartbeatManager.swift */; };
 		D3A718D0FA099F112B9E9EE1CC554C7F /* NestSDKWheresDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5270874C26975A214462CC43035CD5B4 /* NestSDKWheresDataModel.m */; };
@@ -354,7 +354,7 @@
 		D53944BE79FB849BF94EE6A34DBD4561 /* BridgeResourcesCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5338A02E823242D13594FB4B85C017 /* BridgeResourcesCache.swift */; };
 		D5A221B2D4A1196DDF63DC8950E0C2C8 /* NestSDKRESTService.h in Headers */ = {isa = PBXBuildFile; fileRef = D9FAA29839E39663BF7FA479E953E6BA /* NestSDKRESTService.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D62EF0D6265907B0CBF8ACC14AD2A88E /* GenericFlagSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC60116B435A3710C7B6E74D3352AD1A /* GenericFlagSensor.swift */; };
-		D755535B0DF8EE88DBCCA40AF73A8CBE /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = BF072ED15F3CD68C3053E19807344EE2 /* unzip.c */; };
+		D755535B0DF8EE88DBCCA40AF73A8CBE /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = 80D3EB85FD1DC692018DFF7FC474A694 /* unzip.c */; };
 		D7C1A356BF40055D55294E8F46A108E8 /* ru.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 31B473B47C6D552D40A1418A23DF269B /* ru.lproj */; };
 		D7D57622770F6B36B7D4D27D959DAF0F /* de.lproj in Resources */ = {isa = PBXBuildFile; fileRef = EDCACF3C281E0CC13A47E1D923998A2D /* de.lproj */; };
 		D841B67FE0336A0E2C642C0CB85CC420 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 030F06B70844300B8B7731C2F0F67742 /* UIKit.framework */; };
@@ -610,7 +610,6 @@
 		0C2EEE015E5BC197F2A992CB75F05585 /* Gloss-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Gloss-umbrella.h"; sourceTree = "<group>"; };
 		0C7F3E55AAA25BBB431D3AA46AC731D5 /* Alamofire-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Alamofire-dummy.m"; sourceTree = "<group>"; };
 		0CCFAC440CE6A2F2FB860941FC84798F /* NUPNPScanner.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NUPNPScanner.swift; path = Sources/BridgeServices/BridgeFinder/Scanner/NUPNPScanner.swift; sourceTree = "<group>"; };
-		0CEDC17964BD56C8BADDCE88276EACE6 /* Zip-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Zip-dummy.m"; sourceTree = "<group>"; };
 		0D8A523594753F18043B25F8D83AD582 /* JSONAPI.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = JSONAPI.m; path = JSONModel/JSONModelNetworking/JSONAPI.m; sourceTree = "<group>"; };
 		0DBA74EB47748F4276FF03FAA9BF38FA /* JSONHTTPClient.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JSONHTTPClient.h; path = JSONModel/JSONModelNetworking/JSONHTTPClient.h; sourceTree = "<group>"; };
 		0E030A3615934AE46435D87382071FD5 /* SwiftyHue.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SwiftyHue.h; path = Sources/SwiftyHue.h; sourceTree = "<group>"; };
@@ -620,7 +619,6 @@
 		0FFA238C6559B12BEBB9D5CF8759C4A0 /* es.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = es.lproj; path = InAppSettingsKit/Resources/es.lproj; sourceTree = "<group>"; };
 		104F197BB50F93EA5F835575DD68F560 /* AppData.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AppData.swift; path = Sources/Base/BridgeResourceModels/AppData.swift; sourceTree = "<group>"; };
 		10997CEB6DCE025D72EA55BBEDE698C9 /* TestRequester.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TestRequester.swift; path = Sources/Base/TestRequester.swift; sourceTree = "<group>"; };
-		11870D340299BB9962B7638B17351FD4 /* ioapi.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ioapi.h; path = Zip/minizip/ioapi.h; sourceTree = "<group>"; };
 		12627D86B2409024DE881F816930C817 /* Theme.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Theme.swift; path = Source/Theme.swift; sourceTree = "<group>"; };
 		134A241D94EF93C7AA3421C4109C315E /* UIWebView+AFNetworking.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIWebView+AFNetworking.h"; path = "UIKit+AFNetworking/UIWebView+AFNetworking.h"; sourceTree = "<group>"; };
 		13B018E687CD6031D1A15B2A9771515F /* NestSDKProductIdentificationDataModel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NestSDKProductIdentificationDataModel.m; path = NestSDK/NestSDK/NestSDKProductIdentificationDataModel.m; sourceTree = "<group>"; };
@@ -638,12 +636,14 @@
 		1B5338A02E823242D13594FB4B85C017 /* BridgeResourcesCache.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BridgeResourcesCache.swift; path = Sources/Base/BridgeResourcesCache.swift; sourceTree = "<group>"; };
 		1BEF29EC17853DE8F9CF7722031D2C5C /* NestSDKProductResourceDataModel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NestSDKProductResourceDataModel.m; path = NestSDK/NestSDK/NestSDKProductResourceDataModel.m; sourceTree = "<group>"; };
 		1C356334A4A184E2B1532FBC2FF89682 /* NestSDKProductDataModel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NestSDKProductDataModel.h; path = NestSDK/NestSDK/NestSDKProductDataModel.h; sourceTree = "<group>"; };
+		1DECEC790941F9E4B8B18A66B02E96C8 /* zip.c */ = {isa = PBXFileReference; includeInIndex = 1; name = zip.c; path = Zip/minizip/zip.c; sourceTree = "<group>"; };
 		1E4D210D2C0CA5614CBAF76FD5A157F8 /* Rule.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Rule.swift; path = Sources/Base/BridgeResourceModels/Rule/Rule.swift; sourceTree = "<group>"; };
 		1E8B71ACF470FAE9A2B9F059A3D44CC2 /* AFNetworking-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "AFNetworking-prefix.pch"; sourceTree = "<group>"; };
 		1F0F702B2C8C7F41B632716A4AF3D936 /* ReachabilitySwift-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ReachabilitySwift-umbrella.h"; sourceTree = "<group>"; };
 		1FFB3C1D078ACC4CB427C9F45DFE359E /* Gloss.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Gloss.xcconfig; sourceTree = "<group>"; };
 		2034B2A0C25C6A48AB763280F99677DB /* CocoaAsyncSocket.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CocoaAsyncSocket.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		20C39AD5D1A2E2C30BE6E1887B2B803D /* ScannerDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ScannerDelegate.swift; path = Sources/BridgeServices/BridgeFinder/Scanner/ScannerDelegate.swift; sourceTree = "<group>"; };
+		211A8018C921B4FC496B7766C2320158 /* QuickZip.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = QuickZip.swift; path = Zip/QuickZip.swift; sourceTree = "<group>"; };
 		22FF2A212132BDCECD65EE9A14C93AFC /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
 		232D5341C45870C8EAEB9E8DC6234FA2 /* NestSDKDataManagerHelper.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NestSDKDataManagerHelper.m; path = NestSDK/NestSDK/NestSDKDataManagerHelper.m; sourceTree = "<group>"; };
 		2387138733740CEAAD7BB3D67BDD42C9 /* AFNetworking.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = AFNetworking.xcconfig; sourceTree = "<group>"; };
@@ -662,14 +662,12 @@
 		29815B9B50C73046A2C95E5B54C3519F /* IASKPSSliderSpecifierViewCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = IASKPSSliderSpecifierViewCell.m; path = InAppSettingsKit/Views/IASKPSSliderSpecifierViewCell.m; sourceTree = "<group>"; };
 		2A0FE5EAD895066DC1B4D61B12BD3426 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2A367CB5D03560EC9763F9E2D5C1A74A /* NestSDK-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "NestSDK-prefix.pch"; sourceTree = "<group>"; };
-		2A85D3D23110F5210B1A72F91FED760E /* ZipUtilities.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ZipUtilities.swift; path = Zip/ZipUtilities.swift; sourceTree = "<group>"; };
 		2AE894837056C19BE054E8A012C9AE60 /* Pods-Turn Touch iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Turn Touch iOS.release.xcconfig"; sourceTree = "<group>"; };
 		2B31F21F4D82490E50B6342DE249C4BD /* Alamofire-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Alamofire-umbrella.h"; sourceTree = "<group>"; };
 		2C9964B1E4C414829C58B7E9873012A1 /* NestSDKProductLocationDataModel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NestSDKProductLocationDataModel.h; path = NestSDK/NestSDK/NestSDKProductLocationDataModel.h; sourceTree = "<group>"; };
 		2CEC06F141C98DE1DD23BBC0BBC03B8E /* Validation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Validation.swift; path = Source/Validation.swift; sourceTree = "<group>"; };
 		2D1F8C19EB43D6D6A49B177F4E467A8B /* NestSDKMacroses.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NestSDKMacroses.h; path = NestSDK/NestSDK/NestSDKMacroses.h; sourceTree = "<group>"; };
 		2D91038C78DA95797F8624E18997B7C9 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Alamofire.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		2DC650502A3ACEDA78C3C07249D96141 /* zip.c */ = {isa = PBXFileReference; includeInIndex = 1; name = zip.c; path = Zip/minizip/zip.c; sourceTree = "<group>"; };
 		2DF419ED6857467D667D3891692F0009 /* SensorConfig.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SensorConfig.swift; path = Sources/Base/BridgeResourceModels/Sensors/SensorConfig.swift; sourceTree = "<group>"; };
 		2E12191F5E8477699897E3817229706A /* AFNetworkActivityIndicatorManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AFNetworkActivityIndicatorManager.m; path = "UIKit+AFNetworking/AFNetworkActivityIndicatorManager.m"; sourceTree = "<group>"; };
 		2E28FCF8447069C7FCCDC323E546D4F1 /* NestSDKWheresDataModel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NestSDKWheresDataModel.h; path = NestSDK/NestSDK/NestSDKWheresDataModel.h; sourceTree = "<group>"; };
@@ -685,7 +683,6 @@
 		321F4B6030E1321B937FEFE5F8DEE427 /* Zip.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Zip.framework; path = Zip.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		324493F3FF35F363BA37B3D9F3CB04AC /* IASKSettingsReader.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = IASKSettingsReader.h; path = InAppSettingsKit/Models/IASKSettingsReader.h; sourceTree = "<group>"; };
 		3319D790E70A9D2E3AB0842AE5A1A020 /* LoggerDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LoggerDelegate.swift; path = iOSDFULibrary/Classes/Utilities/Logging/LoggerDelegate.swift; sourceTree = "<group>"; };
-		36B4BB25B187E1D776066C6890B5A1B4 /* Zip.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Zip.swift; path = Zip/Zip.swift; sourceTree = "<group>"; };
 		37757034EB1F913E5B8910CF93DF7ABA /* OpenCloseSensorState.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OpenCloseSensorState.swift; path = Sources/Base/BridgeResourceModels/Sensors/OpenCloseSensor/OpenCloseSensorState.swift; sourceTree = "<group>"; };
 		37A8F29F12C75A1614222A5433613134 /* AFNetworking-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "AFNetworking-umbrella.h"; sourceTree = "<group>"; };
 		387397EB778DC992CFE31865DBB49BD3 /* GenericStatusSensor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GenericStatusSensor.swift; path = Sources/Base/BridgeResourceModels/Sensors/GenericStatusSensor/GenericStatusSensor.swift; sourceTree = "<group>"; };
@@ -708,6 +705,7 @@
 		42F20C3BE44AC5AA221911C5F86FB8FB /* IASKSwitch.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = IASKSwitch.m; path = InAppSettingsKit/Views/IASKSwitch.m; sourceTree = "<group>"; };
 		43A1770F983F10999C7E5361768A3C8E /* AFURLRequestSerialization.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AFURLRequestSerialization.h; path = AFNetworking/AFURLRequestSerialization.h; sourceTree = "<group>"; };
 		43BB05A1FCA70A2112C5AB678092F804 /* Utilities.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Utilities.swift; path = Sources/Base/Utilities.swift; sourceTree = "<group>"; };
+		442BE6369331E25B53E939FEB0C92EE5 /* Zip.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Zip.swift; path = Zip/Zip.swift; sourceTree = "<group>"; };
 		445C4FF755E3DCD629CAC4E504406E31 /* SecureDFUServiceInitiator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SecureDFUServiceInitiator.swift; path = iOSDFULibrary/Classes/Implementation/SecureDFU/DFU/SecureDFUServiceInitiator.swift; sourceTree = "<group>"; };
 		44AD0130CB897BCF7B2E1D0366448401 /* Reachability.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Reachability.swift; path = Reachability/Reachability.swift; sourceTree = "<group>"; };
 		460E3746E3A49CB503A398DB6DC9DBE1 /* IASKTextViewCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = IASKTextViewCell.m; path = InAppSettingsKit/Views/IASKTextViewCell.m; sourceTree = "<group>"; };
@@ -729,11 +727,11 @@
 		4D58CC77C3B33DAC1CD26F2FB16F24A3 /* JSONValueTransformer.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = JSONValueTransformer.m; path = JSONModel/JSONModelTransformations/JSONValueTransformer.m; sourceTree = "<group>"; };
 		4DA7B129F6050FFC63629117C45F958E /* NestSDKApplicationDelegate.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NestSDKApplicationDelegate.m; path = NestSDK/NestSDK/NestSDKApplicationDelegate.m; sourceTree = "<group>"; };
 		4EDF8C4620300131ED62F2DED55DB653 /* ja.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = ja.lproj; path = InAppSettingsKit/Resources/ja.lproj; sourceTree = "<group>"; };
-		503DCA8860108CB9D189126C79930267 /* Zip-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Zip-prefix.pch"; sourceTree = "<group>"; };
 		50466D749F4EE472D7C03C289AA4C6C8 /* ButtonlessDFU.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ButtonlessDFU.swift; path = iOSDFULibrary/Classes/Implementation/SecureDFU/Characteristics/ButtonlessDFU.swift; sourceTree = "<group>"; };
 		508C128F08E6EEE5A9430A205273BF86 /* BridgeResource.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BridgeResource.swift; path = Sources/Base/BridgeResourceModels/BridgeResource.swift; sourceTree = "<group>"; };
 		508ED378F1C129B844F719033BB944A6 /* Utilities.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Utilities.swift; path = "Source/Supporting Files/Utilities.swift"; sourceTree = "<group>"; };
 		5162B7B44BE74D359B7001ED5C53008E /* TemperatureSensor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TemperatureSensor.swift; path = Sources/Base/BridgeResourceModels/Sensors/TemperatureSensor/TemperatureSensor.swift; sourceTree = "<group>"; };
+		51D25BD2FAF19F894C95D71F35C57651 /* ioapi.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ioapi.h; path = Zip/minizip/ioapi.h; sourceTree = "<group>"; };
 		524FD9630C25AC68587F975D8EEB3565 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		52654E0D71B783A5784F274E47547359 /* UIButton+AFNetworking.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIButton+AFNetworking.m"; path = "UIKit+AFNetworking/UIButton+AFNetworking.m"; sourceTree = "<group>"; };
 		5270874C26975A214462CC43035CD5B4 /* NestSDKWheresDataModel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NestSDKWheresDataModel.m; path = NestSDK/NestSDK/NestSDKWheresDataModel.m; sourceTree = "<group>"; };
@@ -741,6 +739,7 @@
 		532CE8AC8E9C6AAB210FD2AA09B94918 /* Alamofire-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Alamofire-prefix.pch"; sourceTree = "<group>"; };
 		53FD20E3B0BC93C164B01622C898B451 /* NestSDKCameraDataModel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NestSDKCameraDataModel.h; path = NestSDK/NestSDK/NestSDKCameraDataModel.h; sourceTree = "<group>"; };
 		543030E9DF23052B3BB550BB230BC408 /* el.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = el.lproj; path = InAppSettingsKit/Resources/el.lproj; sourceTree = "<group>"; };
+		54AA81095E33A2477ED142C6C9E7E5E4 /* zip.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = zip.h; path = Zip/minizip/zip.h; sourceTree = "<group>"; };
 		54DE9DEDC136D946EB6618F8B3716279 /* DFUPeripheralSelector.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DFUPeripheralSelector.swift; path = iOSDFULibrary/Classes/Implementation/DFUPeripheralSelector.swift; sourceTree = "<group>"; };
 		55CA012E834669861E5D2924BCF0DC65 /* Log.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = Log.modulemap; sourceTree = "<group>"; };
 		560C635DAC331F1F9DA99259D906710C /* SSKeychain.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SSKeychain.xcconfig; sourceTree = "<group>"; };
@@ -757,7 +756,6 @@
 		5B3B75A8B7C92CA63C7608F9622D5F5B /* JSONKeyMapper.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JSONKeyMapper.h; path = JSONModel/JSONModelTransformations/JSONKeyMapper.h; sourceTree = "<group>"; };
 		5C2E5CDAFE8E3058D36A87578DE47257 /* pt-PT.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = "pt-PT.lproj"; path = "InAppSettingsKit/Resources/pt-PT.lproj"; sourceTree = "<group>"; };
 		5C68753DDC332E72D68476977B55F499 /* DFUServiceInitiator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DFUServiceInitiator.swift; path = iOSDFULibrary/Classes/Implementation/DFUServiceInitiator.swift; sourceTree = "<group>"; };
-		5C6D37703AC44BF5C5B14E6223DBF159 /* zip.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = zip.h; path = Zip/minizip/zip.h; sourceTree = "<group>"; };
 		5D2D598730ACE1BE8328B2EB949C2BDA /* NestSDKService.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NestSDKService.h; path = NestSDK/NestSDK/NestSDKService.h; sourceTree = "<group>"; };
 		5D496DE47F1E91052A9A1BE2D306D401 /* Themes.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Themes.swift; path = Source/Extensions/Themes.swift; sourceTree = "<group>"; };
 		5DFC704848B681E7A09629170422A629 /* DFUService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DFUService.swift; path = iOSDFULibrary/Classes/Implementation/GenericDFU/DFUService.swift; sourceTree = "<group>"; };
@@ -775,13 +773,13 @@
 		639C6D64642F1C6BD79620E99F528CD8 /* ReachabilitySwift.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = ReachabilitySwift.xcconfig; sourceTree = "<group>"; };
 		642B93324EECEB9694A53ABFB3835B4D /* SwiftyHue.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = SwiftyHue.modulemap; sourceTree = "<group>"; };
 		654E20EB6A4E76DC6ABFA2A65131D1DF /* NestSDKSmokeCOAlarm.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NestSDKSmokeCOAlarm.h; path = NestSDK/NestSDK/NestSDKSmokeCOAlarm.h; sourceTree = "<group>"; };
-		655605EED4F20CF8E7B102374F0790C5 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		65CC30D5CF9E976566309FDDEFE52516 /* Gloss-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Gloss-prefix.pch"; sourceTree = "<group>"; };
 		66A8E114306500FE0114A8CAB115A1B0 /* GCDAsyncSocket.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = GCDAsyncSocket.m; path = Source/GCD/GCDAsyncSocket.m; sourceTree = "<group>"; };
 		6781DA265D46243398C24469CB59AB31 /* NestSDKWheres.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NestSDKWheres.h; path = NestSDK/NestSDK/NestSDKWheres.h; sourceTree = "<group>"; };
 		67832206DAC82B919215223941308CED /* AFNetworkReachabilityManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AFNetworkReachabilityManager.h; path = AFNetworking/AFNetworkReachabilityManager.h; sourceTree = "<group>"; };
 		67A3A5E4B17A183CD79D53B765FF598D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		687229BC37FC8ACC2EED0970932A0F1D /* SwitchSensor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwitchSensor.swift; path = Sources/Base/BridgeResourceModels/Sensors/SwitchSensor/SwitchSensor.swift; sourceTree = "<group>"; };
+		6923D8BF591294684BBDF0DCD38114BE /* Zip-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Zip-umbrella.h"; sourceTree = "<group>"; };
 		694A278994CEB1D0AC71C526B4BCD32A /* UIColor+NestBlue.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIColor+NestBlue.m"; path = "NestSDK/NestSDK/UIColor+NestBlue.m"; sourceTree = "<group>"; };
 		698C65BF6F9D4A82DC291CB2331A6277 /* JSONModel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JSONModel.h; path = JSONModel/JSONModel/JSONModel.h; sourceTree = "<group>"; };
 		6B17026C4C6FCC16E9B4A4A6EEE705AA /* Log-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Log-dummy.m"; sourceTree = "<group>"; };
@@ -792,6 +790,7 @@
 		6F6E2704172B2228036E71AC72A71D5F /* NestSDKDataModel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NestSDKDataModel.m; path = NestSDK/NestSDK/NestSDKDataModel.m; sourceTree = "<group>"; };
 		6F848EA83C2CE9CD72F02963FC841712 /* Base.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = Base.lproj; path = InAppSettingsKit/Resources/Base.lproj; sourceTree = "<group>"; };
 		70ADF3CD12CDF56DEBB2E79A2C27E362 /* JSONModelError.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JSONModelError.h; path = JSONModel/JSONModel/JSONModelError.h; sourceTree = "<group>"; };
+		716DD40EE8D368D3019A7C7B65B8149F /* Zip-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Zip-dummy.m"; sourceTree = "<group>"; };
 		721B4AAC326339BBAC7C108E6B262D70 /* NestSDKThermostatDataModel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NestSDKThermostatDataModel.m; path = NestSDK/NestSDK/NestSDKThermostatDataModel.m; sourceTree = "<group>"; };
 		724C4BA9FDCCDA3AE54BFC9C606999ED /* Backup.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Backup.swift; path = Sources/Base/BridgeResourceModels/Backup.swift; sourceTree = "<group>"; };
 		72DD97A0A9C23F9E0098CE8D8E15D9FD /* IASKTextField.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = IASKTextField.h; path = InAppSettingsKit/Views/IASKTextField.h; sourceTree = "<group>"; };
@@ -816,10 +815,10 @@
 		7D6D5C3BAA767F70EC68DC10B1E0A790 /* ZipArchive.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ZipArchive.swift; path = iOSDFULibrary/Classes/Utilities/ZipArchive.swift; sourceTree = "<group>"; };
 		7D7AC65DB691B666EC8FBC6DB4A57CEF /* NestSDKConnectWithNestButton.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NestSDKConnectWithNestButton.h; path = NestSDK/NestSDK/NestSDKConnectWithNestButton.h; sourceTree = "<group>"; };
 		7E65209E13E420930B186AAF560396B5 /* HueBridge.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HueBridge.swift; path = Sources/BridgeServices/BridgeFinder/HueBridge.swift; sourceTree = "<group>"; };
-		7EA1A5E6176FDCE04159C83488BC0848 /* Zip-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Zip-umbrella.h"; sourceTree = "<group>"; };
 		8055F7CE9A986E460D9D804FB14A5D3A /* InAppSettingsKit-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "InAppSettingsKit-umbrella.h"; sourceTree = "<group>"; };
 		805A76067CEA304F3EEB3454C471D5D3 /* ReachabilitySwift-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ReachabilitySwift-prefix.pch"; sourceTree = "<group>"; };
 		809152DAB50567F910ABA66B31B03C70 /* SwiftyHue.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SwiftyHue.xcconfig; sourceTree = "<group>"; };
+		80D3EB85FD1DC692018DFF7FC474A694 /* unzip.c */ = {isa = PBXFileReference; includeInIndex = 1; name = unzip.c; path = Zip/minizip/unzip.c; sourceTree = "<group>"; };
 		80F1120C2E6B8334E3935870FCA57B1E /* ServerTrustPolicy.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ServerTrustPolicy.swift; path = Source/ServerTrustPolicy.swift; sourceTree = "<group>"; };
 		810A744B091C9740911D99769C15ABA3 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		810CE61C9DC9B78A67057029EE919405 /* ManifestFirmwareInfo.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ManifestFirmwareInfo.swift; path = iOSDFULibrary/Classes/Utilities/DFUPackage/Manifest/ManifestFirmwareInfo.swift; sourceTree = "<group>"; };
@@ -866,8 +865,10 @@
 		95819A89056C7EC022A30CC033953795 /* NestSDKConnectWithNestButton.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NestSDKConnectWithNestButton.m; path = NestSDK/NestSDK/NestSDKConnectWithNestButton.m; sourceTree = "<group>"; };
 		96E23E4A0ECD269105DD804CB9CD6B1E /* NestSDKProductResourceDataModel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NestSDKProductResourceDataModel.h; path = NestSDK/NestSDK/NestSDKProductResourceDataModel.h; sourceTree = "<group>"; };
 		9718159079263F6E281B031EB49B093D /* Benchmarker.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Benchmarker.swift; path = Source/Benchmarker.swift; sourceTree = "<group>"; };
+		9748803930E579FF526429EC13D914E2 /* Zip.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = Zip.modulemap; sourceTree = "<group>"; };
 		98992DE6B7C5D8BC4959C6C6864DDD1B /* IASKSpecifier.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = IASKSpecifier.m; path = InAppSettingsKit/Models/IASKSpecifier.m; sourceTree = "<group>"; };
 		9A360659307E9A9D421EB311F12AF41D /* DFUPeripheralDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DFUPeripheralDelegate.swift; path = iOSDFULibrary/Classes/Implementation/GenericDFU/DFUPeripheralDelegate.swift; sourceTree = "<group>"; };
+		9A486DFC73ECC9C6977C570234515BC6 /* Zip.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Zip.h; path = Zip/Zip.h; sourceTree = "<group>"; };
 		9A99C3874D3A375D887309C768D28813 /* SSKeychainQuery.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SSKeychainQuery.h; path = SSKeychain/SSKeychainQuery.h; sourceTree = "<group>"; };
 		9AB72722A5ADA580FF39D7DBE60076B8 /* IASKAppSettingsWebViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = IASKAppSettingsWebViewController.m; path = InAppSettingsKit/Controllers/IASKAppSettingsWebViewController.m; sourceTree = "<group>"; };
 		9ACFC17CDF7C43527682954F1529620E /* NestSDKProduct.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NestSDKProduct.h; path = NestSDK/NestSDK/NestSDKProduct.h; sourceTree = "<group>"; };
@@ -909,6 +910,7 @@
 		AD7DBA2E412C28E984266B2EE20E6EE8 /* JSONModelClassProperty.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = JSONModelClassProperty.m; path = JSONModel/JSONModel/JSONModelClassProperty.m; sourceTree = "<group>"; };
 		ADC66D56D39E71BF8E5A998651DECEE3 /* NestSDKProductSoftwareDataModel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NestSDKProductSoftwareDataModel.m; path = NestSDK/NestSDK/NestSDKProductSoftwareDataModel.m; sourceTree = "<group>"; };
 		AEE2D3F5DF8C2FBB4E4B44F51FDD3FAD /* Timeline.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Timeline.swift; path = Source/Timeline.swift; sourceTree = "<group>"; };
+		AF0DD765199C28EE07DAC8284D23187F /* Zip.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Zip.xcconfig; sourceTree = "<group>"; };
 		AFB23BA79F06284D9BB2C4221A7C4710 /* PresenceSensorConfig.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PresenceSensorConfig.swift; path = Sources/Base/BridgeResourceModels/Sensors/PresenceSensor/PresenceSensorConfig.swift; sourceTree = "<group>"; };
 		AFF18D4C0BEDCA1B91A64C00E3249EE7 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B03C06C1F2C9E21F0EDFEDBA8C7C9B4E /* Response.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Response.swift; path = Source/Response.swift; sourceTree = "<group>"; };
@@ -945,14 +947,13 @@
 		BEBF3C7CA9FF3099970394C897C13EFC /* DFUPacket.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DFUPacket.swift; path = iOSDFULibrary/Classes/Implementation/LegacyDFU/Characteristics/DFUPacket.swift; sourceTree = "<group>"; };
 		BEC48E677109C4CE7C3FA754B3D786B3 /* Double.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Double.swift; path = iOSDFULibrary/Classes/Utilities/Double.swift; sourceTree = "<group>"; };
 		BF03874994381F87349B464DAD821E19 /* SecureDFUPeripheral.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SecureDFUPeripheral.swift; path = iOSDFULibrary/Classes/Implementation/SecureDFU/Peripheral/SecureDFUPeripheral.swift; sourceTree = "<group>"; };
-		BF072ED15F3CD68C3053E19807344EE2 /* unzip.c */ = {isa = PBXFileReference; includeInIndex = 1; name = unzip.c; path = Zip/minizip/unzip.c; sourceTree = "<group>"; };
+		BFB1B8DFD755597752F76963C6B691C9 /* crypt.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = crypt.h; path = Zip/minizip/crypt.h; sourceTree = "<group>"; };
 		BFBC56C5406C738A2CA272A1DAC9731E /* SessionDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SessionDelegate.swift; path = Source/SessionDelegate.swift; sourceTree = "<group>"; };
 		C00111613F447C0E309B1374F3D4CAAA /* DFUServiceController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DFUServiceController.swift; path = iOSDFULibrary/Classes/Implementation/DFUServiceController.swift; sourceTree = "<group>"; };
 		C056801C00F9BB9BBAF6667D1E4F36F4 /* NestSDKFirebaseService.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NestSDKFirebaseService.h; path = NestSDK/NestSDK/NestSDKFirebaseService.h; sourceTree = "<group>"; };
 		C0CF345D62D0D0B18C11DA73BB4EAE77 /* IASKTextView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = IASKTextView.m; path = InAppSettingsKit/Views/IASKTextView.m; sourceTree = "<group>"; };
 		C0E02C95591E7860CC4BEA7811E9B17C /* Pods-Turn Touch iOS-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Turn Touch iOS-acknowledgements.plist"; sourceTree = "<group>"; };
 		C112FACAB5CA405FE14D213C8BDCF618 /* NestSDKStructureDataModel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NestSDKStructureDataModel.m; path = NestSDK/NestSDK/NestSDKStructureDataModel.m; sourceTree = "<group>"; };
-		C1440460461CEA7F03E9915322DAB033 /* Zip.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Zip.h; path = Zip/Zip.h; sourceTree = "<group>"; };
 		C210571427B5389B5D00E9F59DE4A04B /* JSONModel-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "JSONModel-prefix.pch"; sourceTree = "<group>"; };
 		C38417D040191D2B46A445FD88B9CB3C /* AFNetworking-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "AFNetworking-dummy.m"; sourceTree = "<group>"; };
 		C42070924836808EA4869F984B3420FC /* BridgeFinder.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BridgeFinder.swift; path = Sources/BridgeServices/BridgeFinder/BridgeFinder.swift; sourceTree = "<group>"; };
@@ -982,9 +983,8 @@
 		D11DCE2053EB3545B0CF57DF3B5D46E1 /* nl.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = nl.lproj; path = InAppSettingsKit/Resources/nl.lproj; sourceTree = "<group>"; };
 		D154F535A308D4133039AC20C59E9E63 /* IASKTextView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = IASKTextView.h; path = InAppSettingsKit/Views/IASKTextView.h; sourceTree = "<group>"; };
 		D169C8870AEE58743E66FA84B4712EDE /* IASKTextField.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = IASKTextField.m; path = InAppSettingsKit/Views/IASKTextField.m; sourceTree = "<group>"; };
+		D28DAC8C516C4125A3CD0D0782C573A4 /* ZipUtilities.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ZipUtilities.swift; path = Zip/ZipUtilities.swift; sourceTree = "<group>"; };
 		D3C027C68E91598CCC6F18ECB74DA18D /* IASKSpecifier.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = IASKSpecifier.h; path = InAppSettingsKit/Models/IASKSpecifier.h; sourceTree = "<group>"; };
-		D3D3D5237E44520349E0DB469BBF9F94 /* unzip.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = unzip.h; path = Zip/minizip/unzip.h; sourceTree = "<group>"; };
-		D58459B230B29C83C83F5F067F86AF2F /* crypt.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = crypt.h; path = Zip/minizip/crypt.h; sourceTree = "<group>"; };
 		D713571CCB6AE10B612CB8C57B326111 /* SSKeychain.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = SSKeychain.modulemap; sourceTree = "<group>"; };
 		D748CB777BB0802B49E008EE88435A57 /* AFNetworking.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = AFNetworking.modulemap; sourceTree = "<group>"; };
 		D790D6ECF2564622330CAA8CDF0BD899 /* iOSDFULibrary-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "iOSDFULibrary-prefix.pch"; sourceTree = "<group>"; };
@@ -998,7 +998,6 @@
 		DC42D700D2425516EA9BB7FDAD133B84 /* NestSDK.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NestSDK.h; path = NestSDK/NestSDK/NestSDK.h; sourceTree = "<group>"; };
 		DC60116B435A3710C7B6E74D3352AD1A /* GenericFlagSensor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GenericFlagSensor.swift; path = Sources/Base/BridgeResourceModels/Sensors/GenericFlagSensor/GenericFlagSensor.swift; sourceTree = "<group>"; };
 		DC7411FB8DD540118E851F6610698B64 /* LegacyDFUPeripheral.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LegacyDFUPeripheral.swift; path = iOSDFULibrary/Classes/Implementation/LegacyDFU/Peripherals/LegacyDFUPeripheral.swift; sourceTree = "<group>"; };
-		DD2E56415451669AE632E2450CBBC220 /* QuickZip.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = QuickZip.swift; path = Zip/QuickZip.swift; sourceTree = "<group>"; };
 		DD9E5DEF4407D3283232C91B6117B16E /* NestSDKDeviceDataModel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NestSDKDeviceDataModel.m; path = NestSDK/NestSDK/NestSDKDeviceDataModel.m; sourceTree = "<group>"; };
 		DDC1E9E972612D6A1880BC4F04C3D482 /* NestSDKProductLocationDataModel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NestSDKProductLocationDataModel.m; path = NestSDK/NestSDK/NestSDKProductLocationDataModel.m; sourceTree = "<group>"; };
 		DE496EC3BBB98C74D071F9006B63FB3F /* NestSDKError.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NestSDKError.h; path = NestSDK/NestSDK/NestSDKError.h; sourceTree = "<group>"; };
@@ -1007,6 +1006,7 @@
 		DECC956B46148212AC3F8F8B708FB497 /* IASKSettingsStoreUserDefaults.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = IASKSettingsStoreUserDefaults.m; path = InAppSettingsKit/Models/IASKSettingsStoreUserDefaults.m; sourceTree = "<group>"; };
 		DF0C0BA7867A80160ECB04C2BB56729A /* PresenceSensor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PresenceSensor.swift; path = Sources/Base/BridgeResourceModels/Sensors/PresenceSensor/PresenceSensor.swift; sourceTree = "<group>"; };
 		DFB1D5F798F343088DFE4FCA68731DAB /* NestSDKDataModel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NestSDKDataModel.h; path = NestSDK/NestSDK/NestSDKDataModel.h; sourceTree = "<group>"; };
+		DFE1797CD147D1A8E8D286DD8686C63C /* ioapi.c */ = {isa = PBXFileReference; includeInIndex = 1; name = ioapi.c; path = Zip/minizip/ioapi.c; sourceTree = "<group>"; };
 		E00C31F06859A087F764B7E7693FCEB1 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E0356C287DF9B06D3689ABD04E020BFD /* Gloss-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Gloss-dummy.m"; sourceTree = "<group>"; };
 		E0FC6AC803029495032BF265C2B3C2FB /* NestSDKAuthorizationManagerAuthorizationResult.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NestSDKAuthorizationManagerAuthorizationResult.h; path = NestSDK/NestSDK/NestSDKAuthorizationManagerAuthorizationResult.h; sourceTree = "<group>"; };
@@ -1014,19 +1014,20 @@
 		E255FAE26B43527DD8BCF0821EBCBE49 /* LegacyDFUPeripheralDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LegacyDFUPeripheralDelegate.swift; path = iOSDFULibrary/Classes/Implementation/LegacyDFU/Peripherals/LegacyDFUPeripheralDelegate.swift; sourceTree = "<group>"; };
 		E2E265807A214DC1AFCB0EF19C4F5703 /* UIRefreshControl+AFNetworking.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIRefreshControl+AFNetworking.h"; path = "UIKit+AFNetworking/UIRefreshControl+AFNetworking.h"; sourceTree = "<group>"; };
 		E349E1947C568EC3BB3DDD60EA48FD24 /* IASKSpecifierValuesViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = IASKSpecifierValuesViewController.m; path = InAppSettingsKit/Controllers/IASKSpecifierValuesViewController.m; sourceTree = "<group>"; };
-		E36DF862C7F48F955FBAAF978928CE57 /* ioapi.c */ = {isa = PBXFileReference; includeInIndex = 1; name = ioapi.c; path = Zip/minizip/ioapi.c; sourceTree = "<group>"; };
 		E3C3F6A44F02121772012822DA30AF91 /* Pods_Turn_Touch_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Turn_Touch_iOS.framework; path = "Pods-Turn Touch iOS.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4A0AE2D39492C8421E02678707E52ED /* NestSDKMetaData.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NestSDKMetaData.h; path = NestSDK/NestSDK/NestSDKMetaData.h; sourceTree = "<group>"; };
+		E4A351331C46C181351A6707B5665606 /* unzip.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = unzip.h; path = Zip/minizip/unzip.h; sourceTree = "<group>"; };
 		E537FFEF72A27D14658448DAFEEBE5E6 /* NestSDKDataManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NestSDKDataManager.h; path = NestSDK/NestSDK/NestSDKDataManager.h; sourceTree = "<group>"; };
-		E76063DEFC5E06FE5002333170C08D71 /* Zip.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = Zip.modulemap; sourceTree = "<group>"; };
 		E952416B20AF209C381B532DDC4DFABB /* GCDAsyncUdpSocket.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCDAsyncUdpSocket.h; path = Source/GCD/GCDAsyncUdpSocket.h; sourceTree = "<group>"; };
 		E9C21AB5D171858511333C1B0A88ED09 /* JSONModel.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = JSONModel.xcconfig; sourceTree = "<group>"; };
 		EA1082A0B1E544F1AE5910DFACC42F47 /* AFNetworking.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AFNetworking.h; path = AFNetworking/AFNetworking.h; sourceTree = "<group>"; };
 		EA9651159DBDD51E9095297B344A7693 /* SSKeychain.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SSKeychain.h; path = SSKeychain/SSKeychain.h; sourceTree = "<group>"; };
 		EC43E123EC0B4A1699CF2F43F15E9D53 /* SecureDFUControlPoint.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SecureDFUControlPoint.swift; path = iOSDFULibrary/Classes/Implementation/SecureDFU/Characteristics/SecureDFUControlPoint.swift; sourceTree = "<group>"; };
 		EC53F4138EE78ECDB3D49C4B533CE53B /* sv.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = sv.lproj; path = InAppSettingsKit/Resources/sv.lproj; sourceTree = "<group>"; };
+		EC5DCE3C77A05E08D9F869960D76658E /* Zip-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Zip-prefix.pch"; sourceTree = "<group>"; };
 		EC8B51543DED1CCDFEF87DC4874570E2 /* SWXMLHash.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SWXMLHash.xcconfig; sourceTree = "<group>"; };
 		ECBB74E6D94452A1DAD0128687ADCE2E /* AFNetworkReachabilityManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AFNetworkReachabilityManager.m; path = AFNetworking/AFNetworkReachabilityManager.m; sourceTree = "<group>"; };
+		ECEC4A2DB846BAC175016C6662D07C0D /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ECF9AA7FF4A64D2CA0AB25677A6CEC99 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ED29B21931C4EACA3486C32A971DE205 /* JSONModel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = JSONModel.framework; path = JSONModel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDCACF3C281E0CC13A47E1D923998A2D /* de.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = de.lproj; path = InAppSettingsKit/Resources/de.lproj; sourceTree = "<group>"; };
@@ -1058,7 +1059,6 @@
 		FBD3B848400A190BFB38901192D1843C /* NestSDKLogger.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NestSDKLogger.m; path = NestSDK/NestSDK/NestSDKLogger.m; sourceTree = "<group>"; };
 		FC2B0DDFDBB7941E59F1D0A97101D86B /* DFUServiceSelector.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DFUServiceSelector.swift; path = iOSDFULibrary/Classes/Implementation/DFUSelector/DFUServiceSelector.swift; sourceTree = "<group>"; };
 		FC560A2B6A0A7399A04DB9777B23F374 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/CFNetwork.framework; sourceTree = DEVELOPER_DIR; };
-		FCD784174A394931D6ED3EBF5710B87C /* Zip.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Zip.xcconfig; sourceTree = "<group>"; };
 		FD2ADB5605B3E4F8EE54023DF1A51184 /* NestSDKError.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NestSDKError.m; path = NestSDK/NestSDK/NestSDKError.m; sourceTree = "<group>"; };
 		FD40AFCC03823B12BA23579B2388A1A6 /* HumiditySensor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HumiditySensor.swift; path = Sources/Base/BridgeResourceModels/Sensors/HumiditySensor/HumiditySensor.swift; sourceTree = "<group>"; };
 		FDB8409F676754FB689A6C404FA7C110 /* AFURLSessionManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AFURLSessionManager.h; path = AFNetworking/AFURLSessionManager.h; sourceTree = "<group>"; };
@@ -1217,18 +1217,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		06FF383CFE6F4196A9908AECB17EF629 /* Support Files */ = {
+		08652C511B7F262FDDD333851BA79C1E /* Zip */ = {
 			isa = PBXGroup;
 			children = (
-				655605EED4F20CF8E7B102374F0790C5 /* Info.plist */,
-				E76063DEFC5E06FE5002333170C08D71 /* Zip.modulemap */,
-				FCD784174A394931D6ED3EBF5710B87C /* Zip.xcconfig */,
-				0CEDC17964BD56C8BADDCE88276EACE6 /* Zip-dummy.m */,
-				503DCA8860108CB9D189126C79930267 /* Zip-prefix.pch */,
-				7EA1A5E6176FDCE04159C83488BC0848 /* Zip-umbrella.h */,
+				BFB1B8DFD755597752F76963C6B691C9 /* crypt.h */,
+				DFE1797CD147D1A8E8D286DD8686C63C /* ioapi.c */,
+				51D25BD2FAF19F894C95D71F35C57651 /* ioapi.h */,
+				211A8018C921B4FC496B7766C2320158 /* QuickZip.swift */,
+				80D3EB85FD1DC692018DFF7FC474A694 /* unzip.c */,
+				E4A351331C46C181351A6707B5665606 /* unzip.h */,
+				1DECEC790941F9E4B8B18A66B02E96C8 /* zip.c */,
+				54AA81095E33A2477ED142C6C9E7E5E4 /* zip.h */,
+				9A486DFC73ECC9C6977C570234515BC6 /* Zip.h */,
+				442BE6369331E25B53E939FEB0C92EE5 /* Zip.swift */,
+				D28DAC8C516C4125A3CD0D0782C573A4 /* ZipUtilities.swift */,
+				2296888F85762CC2A717D881E67FD960 /* Support Files */,
 			);
-			name = "Support Files";
-			path = "../Target Support Files/Zip";
+			name = Zip;
+			path = Zip;
 			sourceTree = "<group>";
 		};
 		08B460E1EFDEEEF3051F6FFD7B344EC6 /* Resources */ = {
@@ -1347,6 +1353,20 @@
 			path = "../Target Support Files/SwiftyHue";
 			sourceTree = "<group>";
 		};
+		2296888F85762CC2A717D881E67FD960 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				ECEC4A2DB846BAC175016C6662D07C0D /* Info.plist */,
+				9748803930E579FF526429EC13D914E2 /* Zip.modulemap */,
+				AF0DD765199C28EE07DAC8284D23187F /* Zip.xcconfig */,
+				716DD40EE8D368D3019A7C7B65B8149F /* Zip-dummy.m */,
+				EC5DCE3C77A05E08D9F869960D76658E /* Zip-prefix.pch */,
+				6923D8BF591294684BBDF0DCD38114BE /* Zip-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/Zip";
+			sourceTree = "<group>";
+		};
 		237947399ECC399CDCFA00E22024DB64 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -1364,7 +1384,7 @@
 				B790E2B7D0F2AE0EA5F310E9732EC568 /* SSKeychain */,
 				EC0C12D303409410533FD12DEACB3099 /* SwiftyHue */,
 				86C67FFEDCE1AC5B55A5B4D3EE9CA36E /* SWXMLHash */,
-				FA25DE6DA3C97CB5DD2FBF358038C950 /* Zip */,
+				08652C511B7F262FDDD333851BA79C1E /* Zip */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -2056,26 +2076,6 @@
 			path = "../Target Support Files/InAppSettingsKit";
 			sourceTree = "<group>";
 		};
-		FA25DE6DA3C97CB5DD2FBF358038C950 /* Zip */ = {
-			isa = PBXGroup;
-			children = (
-				D58459B230B29C83C83F5F067F86AF2F /* crypt.h */,
-				E36DF862C7F48F955FBAAF978928CE57 /* ioapi.c */,
-				11870D340299BB9962B7638B17351FD4 /* ioapi.h */,
-				DD2E56415451669AE632E2450CBBC220 /* QuickZip.swift */,
-				BF072ED15F3CD68C3053E19807344EE2 /* unzip.c */,
-				D3D3D5237E44520349E0DB469BBF9F94 /* unzip.h */,
-				2DC650502A3ACEDA78C3C07249D96141 /* zip.c */,
-				C1440460461CEA7F03E9915322DAB033 /* Zip.h */,
-				5C6D37703AC44BF5C5B14E6223DBF159 /* zip.h */,
-				36B4BB25B187E1D776066C6890B5A1B4 /* Zip.swift */,
-				2A85D3D23110F5210B1A72F91FED760E /* ZipUtilities.swift */,
-				06FF383CFE6F4196A9908AECB17EF629 /* Support Files */,
-			);
-			name = Zip;
-			path = Zip;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -2152,19 +2152,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9E3B11EC54EA23BFBF3C6554161DCBE8 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				67B775CA7879DD54C05469989DF6CAA2 /* crypt.h in Headers */,
-				CC0AF1383226FC45CB3A3B7C1CC5C9DF /* ioapi.h in Headers */,
-				55BBC80EE019F2A32FB5A4B547FF57ED /* unzip.h in Headers */,
-				0946806167A04CDC73709FE86536BC1B /* Zip-umbrella.h in Headers */,
-				B7F73EF253E5BEECEB1AEA339C728489 /* zip.h in Headers */,
-				9193F47F8252B8BB75D248B49D888D78 /* Zip.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		9EF2136EDF3C5A6DE23E8ECD1C4B31E7 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -2229,6 +2216,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				F7BA99394ED391BC9CC0208DD1E94921 /* Gloss-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D7E5ACCD9439D9B4B93818039F858A33 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7E5A8BA2A7944437068EE379EDD9DF11 /* crypt.h in Headers */,
+				0A8CC78B7D5522AFDB7660C919492110 /* ioapi.h in Headers */,
+				51E9BD655294E26BAC914FA7C601E7A0 /* unzip.h in Headers */,
+				58C632C23C48C8DFE9E53A2C5E4BAEC5 /* Zip-umbrella.h in Headers */,
+				BACB9922ECE93352DFA4E17C4BB93AD9 /* Zip.h in Headers */,
+				3D78A91C00E60807EE6B3B67D33A6E21 /* zip.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2421,7 +2421,7 @@
 			buildPhases = (
 				7F8BFA09A2CE47432F43BEFA34547EF6 /* Sources */,
 				65256EE91631C3389C32CF9A5C33BFE0 /* Frameworks */,
-				9E3B11EC54EA23BFBF3C6554161DCBE8 /* Headers */,
+				D7E5ACCD9439D9B4B93818039F858A33 /* Headers */,
 			);
 			buildRules = (
 			);
@@ -3909,7 +3909,7 @@
 		};
 		8E8C492677633C3258744EB1B0B633C8 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FCD784174A394931D6ED3EBF5710B87C /* Zip.xcconfig */;
+			baseConfigurationReference = AF0DD765199C28EE07DAC8284D23187F /* Zip.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -4191,7 +4191,7 @@
 		};
 		D6B7422EC25A263E36F4B2C589311C6A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FCD784174A394931D6ED3EBF5710B87C /* Zip.xcconfig */;
+			baseConfigurationReference = AF0DD765199C28EE07DAC8284D23187F /* Zip.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";

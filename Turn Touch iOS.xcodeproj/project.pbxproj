@@ -1207,6 +1207,7 @@
 		FFB41B7D1CF52E5700CD5F09 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				FF534C421EB05D67002EE584 /* Turn Touch iOS.entitlements */,
 				FF534C471EB14E4B002EE584 /* Settings.bundle */,
 				FF0F10BF1CF5638D00CC1F29 /* Preferences.plist */,
 				FFF270A11CEE88E500E46575 /* Info.plist */,
@@ -1321,7 +1322,6 @@
 		FFF270921CEE88E500E46575 /* Turn Touch iOS */ = {
 			isa = PBXGroup;
 			children = (
-				FF534C421EB05D67002EE584 /* Turn Touch iOS.entitlements */,
 				FFF270931CEE88E500E46575 /* AppDelegate.swift */,
 				FFB41B7C1CEEA9E800CD5F09 /* Models */,
 				FFB41B701CEE9A3B00CD5F09 /* Views */,
@@ -1424,6 +1424,9 @@
 						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
 							com.apple.iCloud = {
 								enabled = 1;
 							};

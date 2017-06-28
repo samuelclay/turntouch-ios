@@ -61,7 +61,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   SwiftyHue:
-    :commit: cf2e129554b8cd3e55b59d98b86a1072b796a4fb
+    :commit: '009125ab1b9c68d48dfdcab6c61a7ec872868d87'
     :git: https://github.com/samuelclay/SwiftyHue.git
 
 SPEC CHECKSUMS:
@@ -77,7 +77,7 @@ SPEC CHECKSUMS:
   NestSDK: 0ede51652a4688767b1b07a8dbb159a0b52dc8ac
   ReachabilitySwift: f5b9bb30a0777fac8f09ce8b067e32faeb29bb64
   SSKeychain: 04c4ec40f4c3deda524e269bc76e5f30e638a174
-  SwiftyHue: 0684460dd34fcd060e2aab475682aa5773a946dc
+  SwiftyHue: '0684460dd34fcd060e2aab475682aa5773a946dc'
   SWXMLHash: 701f7d07c032089b9ff34e0352bd4fed1a24652a
   Zip: e34513299ac38c0686d5b24504da7ce343799ab9
 
