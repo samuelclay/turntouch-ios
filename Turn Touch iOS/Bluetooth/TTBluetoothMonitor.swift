@@ -275,21 +275,25 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
     
     func centralManager(_ central: CBCentralManager, willRestoreState dict: [String : Any]) {
         manager = central
-        let peripherals = dict[CBCentralManagerRestoredStatePeripheralsKey] as! [CBPeripheral]
-        if DEBUG_BLUETOOTH {
-            print(" ---> Restoring state: \(peripherals)")
-        }
-        for peripheral in peripherals {
-            peripheral.delegate = self
-            var device = foundDevices.deviceForPeripheral(peripheral)
-            if device == nil {
-                device = foundDevices.addPeripheral(peripheral)
+        if dict[CBCentralManagerRestoredStatePeripheralsKey] != nil {
+            let peripherals = dict[CBCentralManagerRestoredStatePeripheralsKey] as! [CBPeripheral]
+            if DEBUG_BLUETOOTH {
+                print(" ---> Restoring state: \(peripherals)")
             }
-            device?.state = .device_STATE_SEARCHING
-            manager.connect(peripheral, options: [CBCentralManagerOptionRestoreIdentifierKey: "TTcentralManageRestoreIdentifier",
-                CBConnectPeripheralOptionNotifyOnDisconnectionKey: true,
-                CBConnectPeripheralOptionNotifyOnConnectionKey: true,
-                CBConnectPeripheralOptionNotifyOnNotificationKey: true])
+            for peripheral in peripherals {
+                peripheral.delegate = self
+                var device = foundDevices.deviceForPeripheral(peripheral)
+                if device == nil {
+                    device = foundDevices.addPeripheral(peripheral)
+                }
+                device?.state = .device_STATE_SEARCHING
+                manager.connect(peripheral, options: [CBCentralManagerOptionRestoreIdentifierKey: "TTcentralManageRestoreIdentifier",
+                    CBConnectPeripheralOptionNotifyOnDisconnectionKey: true,
+                    CBConnectPeripheralOptionNotifyOnConnectionKey: true,
+                    CBConnectPeripheralOptionNotifyOnNotificationKey: true])
+            }
+        } else {
+            self.resetSearch()
         }
     }
     
@@ -792,6 +796,9 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
                 self.delegate?.pairingSuccess()
             }
         }
+        
+        self.disconnectUnpairedDevices()
+        self.resetSearch()
     }
     
     func disconnectUnpairedDevices() {
