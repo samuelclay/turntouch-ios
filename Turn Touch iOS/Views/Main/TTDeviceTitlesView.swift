@@ -71,6 +71,8 @@ class TTDeviceTitlesView: UIStackView {
         var deviceTitleConstraints: [NSLayoutConstraint] = []
         let devices = appDelegate().bluetoothMonitor.foundDevices.devices
         
+        print(" ---> Assembling device titles: \(devices)")
+
         self.removeConstraints(self.constraints)
         for subview in self.arrangedSubviews {
             subview.removeFromSuperview()
