@@ -328,7 +328,7 @@ class TTModeSonos: TTMode {
                     if coordinator && !foundDevice.isCoordinator {
                         for coordinatorDevice: SonosController in devices {
                             if coordinatorDevice.isCoordinator && coordinatorDevice.group == foundDevice.group {
-                                return foundDevice
+                                return coordinatorDevice
                             }
                         }
                     }
@@ -413,7 +413,7 @@ class TTModeSonos: TTMode {
     }
     
     func cancelConnectingToSonos() {
-        TTModeSonos.sonosState = .disconnected
+        TTModeSonos.sonosState = .connected
         delegate?.changeState(TTModeSonos.sonosState, mode: self)
     }
     
