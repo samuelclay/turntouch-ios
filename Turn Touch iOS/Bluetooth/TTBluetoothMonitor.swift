@@ -153,6 +153,10 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
         var knownDevicesStillDisconnected = false
         var isActivelyConnecting = false
         
+        if bluetoothState == .bt_STATE_SCANNING_UNKNOWN {
+            self.stopScan()
+        }
+        
         bluetoothState = .bt_STATE_SCANNING_KNOWN
         if DEBUG_BLUETOOTH {
             print(" ---> (\(bluetoothState)) Scanning known: \(self.knownPeripheralIdentifiers().count) remotes")
