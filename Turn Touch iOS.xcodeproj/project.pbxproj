@@ -102,6 +102,7 @@
 		FF458AB11DBEC98C003FD06B /* TTModeHueSceneLightsOffOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF458AB01DBEC98C003FD06B /* TTModeHueSceneLightsOffOptions.swift */; };
 		FF458AB31DBED8A8003FD06B /* TTModeHueSceneColorLoopOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF458AB21DBED8A8003FD06B /* TTModeHueSceneColorLoopOptions.swift */; };
 		FF458AB61DBEF1E9003FD06B /* SonosManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FF458AB51DBEF1E9003FD06B /* SonosManager.m */; };
+		FF4807391F649F3E00059828 /* HomeKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF4807381F649F3E00059828 /* HomeKit.framework */; };
 		FF4AF7AF1D2475B50009C777 /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = FF4AF7AB1D2475630009C777 /* libxml2.tbd */; };
 		FF4AF7B21D2486F90009C777 /* TTModeWemoOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4AF7B01D2486F90009C777 /* TTModeWemoOptions.swift */; };
 		FF4AF7B31D2486F90009C777 /* TTModeWemoOptions.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF4AF7B11D2486F90009C777 /* TTModeWemoOptions.xib */; };
@@ -422,6 +423,7 @@
 		FF458AB21DBED8A8003FD06B /* TTModeHueSceneColorLoopOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeHueSceneColorLoopOptions.swift; path = Modes/Hue/TTModeHueSceneColorLoopOptions.swift; sourceTree = "<group>"; };
 		FF458AB41DBEF1E9003FD06B /* SonosManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SonosManager.h; sourceTree = "<group>"; };
 		FF458AB51DBEF1E9003FD06B /* SonosManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SonosManager.m; sourceTree = "<group>"; };
+		FF4807381F649F3E00059828 /* HomeKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HomeKit.framework; path = System/Library/Frameworks/HomeKit.framework; sourceTree = SDKROOT; };
 		FF4AF7AB1D2475630009C777 /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
 		FF4AF7AD1D2475780009C777 /* libxml2.2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.2.tbd; path = usr/lib/libxml2.2.tbd; sourceTree = SDKROOT; };
 		FF4AF7B01D2486F90009C777 /* TTModeWemoOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeWemoOptions.swift; path = Modes/Wemo/TTModeWemoOptions.swift; sourceTree = "<group>"; };
@@ -667,6 +669,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FF4807391F649F3E00059828 /* HomeKit.framework in Frameworks */,
 				FF4AF7AF1D2475B50009C777 /* libxml2.tbd in Frameworks */,
 				85D8B548CD81B8F0353F6C06 /* Pods_Turn_Touch_iOS.framework in Frameworks */,
 			);
@@ -678,6 +681,7 @@
 		0F31B8744850402114AE49F7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FF4807381F649F3E00059828 /* HomeKit.framework */,
 				FFC4B0EC1D2C911E00A97C81 /* AudioToolbox.framework */,
 				FF4AF7AD1D2475780009C777 /* libxml2.2.tbd */,
 				FF4AF7AB1D2475630009C777 /* libxml2.tbd */,
@@ -1424,6 +1428,9 @@
 						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
+							com.apple.HomeKit = {
+								enabled = 1;
+							};
 							com.apple.Push = {
 								enabled = 1;
 							};
