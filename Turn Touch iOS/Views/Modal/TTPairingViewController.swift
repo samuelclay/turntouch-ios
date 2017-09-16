@@ -78,9 +78,15 @@ class TTPairingViewController: UIViewController, TTBluetoothMonitorDelegate {
         appDelegate().bluetoothMonitor.resetSearch()
     }
     
+    func checkBluetoothState() {
+        if appDelegate().bluetoothMonitor.manager.state != .poweredOn {
+            self.searchingFailure()
+        }
+    }
+    
     func changePairingState(_ state: TTPairingState) {
         pairingState = state
-    
+        
         if state == .searching {
             appDelegate().bluetoothMonitor.delegate = self
             appDelegate().bluetoothMonitor.scanUnknown()
@@ -131,6 +137,8 @@ class TTPairingViewController: UIViewController, TTBluetoothMonitorDelegate {
             searchingTimer?.invalidate()
             self.updateCountdown()
         }
+        
+        self.checkBluetoothState()
     }
     
     // MARK: Countdown timer

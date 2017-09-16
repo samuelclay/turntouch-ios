@@ -52,6 +52,7 @@ class TTModeMap: NSObject {
             "TTModeYoga",
             "TTModeCustom",
             "TTModeIfttt",
+            "TTModeHomeKit",
         ]
         
         super.init()

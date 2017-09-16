@@ -68,5 +68,22 @@ class TTPairingInfoViewController: UIViewController {
         }
         
         self.nextButton?.setPairingState(pairingState)
+        
+        self.checkBluetoothState()
+    }
+    
+    func checkBluetoothState() {
+        switch appDelegate().bluetoothMonitor.manager.state {
+        case .poweredOn:
+            return
+        case .unsupported:
+            self.subtitleLabel?.text = "This device doesn't support Bluetooth Low Energy."
+        case .unauthorized:
+            self.subtitleLabel?.text = "Turn Touch is not authorized to use Bluetooth Low Energy."
+        case .poweredOff:
+            self.subtitleLabel?.text = "Bluetooth is currently powered off."
+        default:
+            self.subtitleLabel?.text = "Bluetooth is powered off or isn't responding."
+        }
     }
 }
