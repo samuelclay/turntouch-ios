@@ -36,6 +36,8 @@ class TTModeHomeKit: TTMode, HMHomeManagerDelegate {
     
     required init() {
         super.init()
+        
+        delegate?.changeState(TTModeHomeKit.homeKitState, mode: self)
     }
     
     override class func title() -> String {
@@ -54,38 +56,38 @@ class TTModeHomeKit: TTMode, HMHomeManagerDelegate {
     
     override class func actions() -> [String] {
         return [
-            "TTModeHomeKitTriggerAction",
+            "TTModeHomeKitTriggerScene",
         ]
     }
     
     // MARK: Action titles
     
-    func titleTTModeHomeKitTriggerAction() -> String {
-        return "Trigger action"
+    func titleTTModeHomeKitTriggerScene() -> String {
+        return "Trigger scene"
     }
     
     // MARK: Action images
     
-    func imageTTModeHomeKitTriggerAction() -> String {
+    func imageTTModeHomeKitTriggerScene() -> String {
         return "trigger"
     }
     
     // MARK: Defaults
     
     override func defaultNorth() -> String {
-        return "TTModeHomeKitTriggerAction"
+        return "TTModeHomeKitTriggerScene"
     }
     
     override func defaultEast() -> String {
-        return "TTModeHomeKitTriggerAction"
+        return "TTModeHomeKitTriggerScene"
     }
     
     override func defaultWest() -> String {
-        return "TTModeHomeKitTriggerAction"
+        return "TTModeHomeKitTriggerScene"
     }
     
     override func defaultSouth() -> String {
-        return "TTModeHomeKitTriggerAction"
+        return "TTModeHomeKitTriggerScene"
     }
     
     // MARK: Action methods
@@ -94,7 +96,10 @@ class TTModeHomeKit: TTMode, HMHomeManagerDelegate {
         if homeManager == nil {
             homeManager = HMHomeManager()
             homeManager.delegate = self
+            TTModeHomeKit.homeKitState = .connecting
         }
+        
+        delegate?.changeState(TTModeHomeKit.homeKitState, mode: self)
     }
     
     override func deactivate() {
@@ -103,16 +108,22 @@ class TTModeHomeKit: TTMode, HMHomeManagerDelegate {
     
     func homeManagerDidUpdateHomes(_ manager: HMHomeManager) {
         print("HomeKit: \(String(describing: homeManager.primaryHome?.accessories))")
+        
+        TTModeHomeKit.homeKitState = .connected
+        delegate?.changeState(TTModeHomeKit.homeKitState, mode: self)
     }
     func homeManagerDidUpdatePrimaryHome(_ manager: HMHomeManager) {
         print("HomeKit: \(String(describing: homeManager.primaryHome?.accessories))")
+        
+        TTModeHomeKit.homeKitState = .connected
+        delegate?.changeState(TTModeHomeKit.homeKitState, mode: self)
     }
     
-    func runTTModeHomeKitTriggerAction() {
+    func runTTModeHomeKitTriggerScene() {
         self.trigger(doubleTap: false)
     }
     
-    func doubleRunTTModeHomeKitTriggerAction() {
+    func doubleRunTTModeHomeKitTriggerScene() {
         self.trigger(doubleTap: true)
     }
     

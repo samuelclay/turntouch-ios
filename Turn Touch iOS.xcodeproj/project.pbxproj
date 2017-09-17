@@ -102,7 +102,6 @@
 		FF458AB11DBEC98C003FD06B /* TTModeHueSceneLightsOffOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF458AB01DBEC98C003FD06B /* TTModeHueSceneLightsOffOptions.swift */; };
 		FF458AB31DBED8A8003FD06B /* TTModeHueSceneColorLoopOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF458AB21DBED8A8003FD06B /* TTModeHueSceneColorLoopOptions.swift */; };
 		FF458AB61DBEF1E9003FD06B /* SonosManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FF458AB51DBEF1E9003FD06B /* SonosManager.m */; };
-		FF4807391F649F3E00059828 /* HomeKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF4807381F649F3E00059828 /* HomeKit.framework */; };
 		FF4AF7AF1D2475B50009C777 /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = FF4AF7AB1D2475630009C777 /* libxml2.tbd */; };
 		FF4AF7B21D2486F90009C777 /* TTModeWemoOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4AF7B01D2486F90009C777 /* TTModeWemoOptions.swift */; };
 		FF4AF7B31D2486F90009C777 /* TTModeWemoOptions.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF4AF7B11D2486F90009C777 /* TTModeWemoOptions.xib */; };
@@ -281,8 +280,8 @@
 		FFB84B541D9202CB0037872C /* Dalton Maag - Effra Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FFB84B521D91FEED0037872C /* Dalton Maag - Effra Light.ttf */; };
 		FFB84B551D9202CB0037872C /* Dalton Maag - Effra Std Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FFB84B531D91FEED0037872C /* Dalton Maag - Effra Std Bold.ttf */; };
 		FFBFF0061F6CBAA300B3EDA7 /* TTModeHomeKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBFF0051F6CBAA300B3EDA7 /* TTModeHomeKit.swift */; };
-		FFBFF00C1F6CC3AA00B3EDA7 /* TTModeHomeKitTriggerActionOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBFF00A1F6CC3AA00B3EDA7 /* TTModeHomeKitTriggerActionOptions.swift */; };
-		FFBFF00D1F6CC3AA00B3EDA7 /* TTModeHomeKitTriggerActionOptions.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFBFF00B1F6CC3AA00B3EDA7 /* TTModeHomeKitTriggerActionOptions.xib */; };
+		FFBFF00C1F6CC3AA00B3EDA7 /* TTModeHomeKitTriggerSceneOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBFF00A1F6CC3AA00B3EDA7 /* TTModeHomeKitTriggerSceneOptions.swift */; };
+		FFBFF00D1F6CC3AA00B3EDA7 /* TTModeHomeKitTriggerSceneOptions.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFBFF00B1F6CC3AA00B3EDA7 /* TTModeHomeKitTriggerSceneOptions.xib */; };
 		FFBFF00F1F6CC97700B3EDA7 /* HomeKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFBFF00E1F6CC97700B3EDA7 /* HomeKit.framework */; };
 		FFC33C3B1EA173B600321EB9 /* east tone.wav in Resources */ = {isa = PBXBuildFile; fileRef = FFC33C371EA173B600321EB9 /* east tone.wav */; };
 		FFC33C3C1EA173B600321EB9 /* north tone.wav in Resources */ = {isa = PBXBuildFile; fileRef = FFC33C381EA173B600321EB9 /* north tone.wav */; };
@@ -427,7 +426,6 @@
 		FF458AB21DBED8A8003FD06B /* TTModeHueSceneColorLoopOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeHueSceneColorLoopOptions.swift; path = Modes/Hue/TTModeHueSceneColorLoopOptions.swift; sourceTree = "<group>"; };
 		FF458AB41DBEF1E9003FD06B /* SonosManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SonosManager.h; sourceTree = "<group>"; };
 		FF458AB51DBEF1E9003FD06B /* SonosManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SonosManager.m; sourceTree = "<group>"; };
-		FF4807381F649F3E00059828 /* HomeKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HomeKit.framework; path = System/Library/Frameworks/HomeKit.framework; sourceTree = SDKROOT; };
 		FF4AF7AB1D2475630009C777 /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
 		FF4AF7AD1D2475780009C777 /* libxml2.2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.2.tbd; path = usr/lib/libxml2.2.tbd; sourceTree = SDKROOT; };
 		FF4AF7B01D2486F90009C777 /* TTModeWemoOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeWemoOptions.swift; path = Modes/Wemo/TTModeWemoOptions.swift; sourceTree = "<group>"; };
@@ -612,8 +610,8 @@
 		FFB84B521D91FEED0037872C /* Dalton Maag - Effra Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Dalton Maag - Effra Light.ttf"; path = "Fonts/Dalton Maag - Effra Light.ttf"; sourceTree = "<group>"; };
 		FFB84B531D91FEED0037872C /* Dalton Maag - Effra Std Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Dalton Maag - Effra Std Bold.ttf"; path = "Fonts/Dalton Maag - Effra Std Bold.ttf"; sourceTree = "<group>"; };
 		FFBFF0051F6CBAA300B3EDA7 /* TTModeHomeKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeHomeKit.swift; path = Modes/HomeKit/TTModeHomeKit.swift; sourceTree = "<group>"; };
-		FFBFF00A1F6CC3AA00B3EDA7 /* TTModeHomeKitTriggerActionOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeHomeKitTriggerActionOptions.swift; path = Modes/HomeKit/TTModeHomeKitTriggerActionOptions.swift; sourceTree = "<group>"; };
-		FFBFF00B1F6CC3AA00B3EDA7 /* TTModeHomeKitTriggerActionOptions.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TTModeHomeKitTriggerActionOptions.xib; path = Modes/HomeKit/TTModeHomeKitTriggerActionOptions.xib; sourceTree = "<group>"; };
+		FFBFF00A1F6CC3AA00B3EDA7 /* TTModeHomeKitTriggerSceneOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeHomeKitTriggerSceneOptions.swift; path = Modes/HomeKit/TTModeHomeKitTriggerSceneOptions.swift; sourceTree = "<group>"; };
+		FFBFF00B1F6CC3AA00B3EDA7 /* TTModeHomeKitTriggerSceneOptions.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TTModeHomeKitTriggerSceneOptions.xib; path = Modes/HomeKit/TTModeHomeKitTriggerSceneOptions.xib; sourceTree = "<group>"; };
 		FFBFF00E1F6CC97700B3EDA7 /* HomeKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HomeKit.framework; path = System/Library/Frameworks/HomeKit.framework; sourceTree = SDKROOT; };
 		FFC33C371EA173B600321EB9 /* east tone.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "east tone.wav"; sourceTree = "<group>"; };
 		FFC33C381EA173B600321EB9 /* north tone.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "north tone.wav"; sourceTree = "<group>"; };
@@ -1273,8 +1271,8 @@
 			isa = PBXGroup;
 			children = (
 				FFBFF0051F6CBAA300B3EDA7 /* TTModeHomeKit.swift */,
-				FFBFF00A1F6CC3AA00B3EDA7 /* TTModeHomeKitTriggerActionOptions.swift */,
-				FFBFF00B1F6CC3AA00B3EDA7 /* TTModeHomeKitTriggerActionOptions.xib */,
+				FFBFF00A1F6CC3AA00B3EDA7 /* TTModeHomeKitTriggerSceneOptions.swift */,
+				FFBFF00B1F6CC3AA00B3EDA7 /* TTModeHomeKitTriggerSceneOptions.xib */,
 			);
 			name = HomeKit;
 			sourceTree = "<group>";
@@ -1509,7 +1507,7 @@
 				FFB84B411D90D4240037872C /* yoga_position_2.png in Resources */,
 				FFDA0FB61D3C4FEE0019859F /* cancel@2x.png in Resources */,
 				FF21F93D1E1C9F0000DFDBB4 /* TTModeNestConnecting.xib in Resources */,
-				FFBFF00D1F6CC3AA00B3EDA7 /* TTModeHomeKitTriggerActionOptions.xib in Resources */,
+				FFBFF00D1F6CC3AA00B3EDA7 /* TTModeHomeKitTriggerSceneOptions.xib in Resources */,
 				FF2023351D02147A005129E5 /* Icon-57@2x.png in Resources */,
 				FF20232D1D02147A005129E5 /* Icon-29@2x.png in Resources */,
 				FF20233C1D02147A005129E5 /* iTunesArtwork in Resources */,
@@ -1773,7 +1771,7 @@
 				FF21F9381E1C9EEC00DFDBB4 /* TTModeNestConnect.swift in Sources */,
 				FF7C14581DB3085E009CBA28 /* TTBatchActionHeaderView.swift in Sources */,
 				FFF270941CEE88E500E46575 /* AppDelegate.swift in Sources */,
-				FFBFF00C1F6CC3AA00B3EDA7 /* TTModeHomeKitTriggerActionOptions.swift in Sources */,
+				FFBFF00C1F6CC3AA00B3EDA7 /* TTModeHomeKitTriggerSceneOptions.swift in Sources */,
 				FF44876B1D08E1D600ED8099 /* TTPairingSpinner.swift in Sources */,
 				FFBFF0061F6CBAA300B3EDA7 /* TTModeHomeKit.swift in Sources */,
 				FFF46BDB1D10941500158751 /* DDAbstractDatabaseLogger.m in Sources */,

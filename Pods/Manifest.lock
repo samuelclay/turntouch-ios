@@ -19,7 +19,7 @@ PODS:
   - Firebase (1.2.3)
   - Gloss (1.2.4)
   - InAppSettingsKit (2.8.1)
-  - iOSDFULibrary (3.1.0):
+  - iOSDFULibrary (3.2.1):
     - Zip (~> 0.7)
   - JSONModel (1.2.0)
   - Log (1.0)
@@ -71,7 +71,7 @@ SPEC CHECKSUMS:
   Firebase: 7a1b6a0848467348672afebfb306c624a3510f04
   Gloss: 4e036074610fdb993abcb958ebcd7332588e2333
   InAppSettingsKit: 94d2fba3ccd700fc4e32c6d09fabcc0af2426744
-  iOSDFULibrary: 3b8a3014e3e4d1bec99b634b2f79fa856e28e556
+  iOSDFULibrary: f9544a7099c914eb5f1002dc58a5ff8c67dbc86d
   JSONModel: 12523685c4b623553ccf844bbbf7007624317b2c
   Log: 5e368c9528db07517d18d2d04ff5fe2b6f5a1e21
   NestSDK: 0ede51652a4688767b1b07a8dbb159a0b52dc8ac
