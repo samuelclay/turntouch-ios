@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Pluralize
 
 class TTModeHomeKitTriggerSceneOptions: TTOptionsDetailViewController, TTModeHomeKitDelegate, UITableViewDelegate, UITableViewDataSource {
 
@@ -133,15 +132,15 @@ class TTModeHomeKitTriggerSceneOptions: TTOptionsDetailViewController, TTModeHom
         } else if tableView == scenesTable {
             
         }
-        
-        if let devicesSelected = devicesSelected, devicesSelected.contains(cellDevice.location()) {
-            cell.accessoryType = .checkmark
-            cell.setSelected(true, animated: false)
-            self.devicesTable.selectRow(at: indexPath, animated: false, scrollPosition: .none)
-        } else {
-            cell.accessoryType = .none
-            cell.setSelected(false, animated: false)
-        }
+//        
+//        if let devicesSelected = devicesSelected, devicesSelected.contains(cellDevice.location()) {
+//            cell.accessoryType = .checkmark
+//            cell.setSelected(true, animated: false)
+//            self.devicesTable.selectRow(at: indexPath, animated: false, scrollPosition: .none)
+//        } else {
+//            cell.accessoryType = .none
+//            cell.setSelected(false, animated: false)
+//        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

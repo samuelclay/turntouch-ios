@@ -148,6 +148,7 @@
 		FF534C4D1EB2BC9F002EE584 /* TTModeIftttTriggerActionOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF534C4B1EB2BC9F002EE584 /* TTModeIftttTriggerActionOptions.swift */; };
 		FF534C4E1EB2BC9F002EE584 /* TTModeIftttTriggerActionOptions.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF534C4C1EB2BC9F002EE584 /* TTModeIftttTriggerActionOptions.xib */; };
 		FF6434881D5130BF00F2FAE6 /* mode_camera.png in Resources */ = {isa = PBXBuildFile; fileRef = FF6434871D5130BF00F2FAE6 /* mode_camera.png */; };
+		FF76F0381F7023230001247D /* mode_homekit.png in Resources */ = {isa = PBXBuildFile; fileRef = FF76F0371F7023230001247D /* mode_homekit.png */; };
 		FF7A235C1DFF7D21002B696D /* modal_failure.png in Resources */ = {isa = PBXBuildFile; fileRef = FF7A235B1DFF7D21002B696D /* modal_failure.png */; };
 		FF7C144F1DB2F2AB009CBA28 /* TTBatchActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7C144E1DB2F2AB009CBA28 /* TTBatchActions.swift */; };
 		FF7C14521DB2F2DD009CBA28 /* TTDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7C14501DB2F2DD009CBA28 /* TTDevice.swift */; };
@@ -477,6 +478,7 @@
 		FF534C4B1EB2BC9F002EE584 /* TTModeIftttTriggerActionOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TTModeIftttTriggerActionOptions.swift; sourceTree = "<group>"; };
 		FF534C4C1EB2BC9F002EE584 /* TTModeIftttTriggerActionOptions.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TTModeIftttTriggerActionOptions.xib; sourceTree = "<group>"; };
 		FF6434871D5130BF00F2FAE6 /* mode_camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mode_camera.png; sourceTree = "<group>"; };
+		FF76F0371F7023230001247D /* mode_homekit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mode_homekit.png; sourceTree = "<group>"; };
 		FF7A235B1DFF7D21002B696D /* modal_failure.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = modal_failure.png; sourceTree = "<group>"; };
 		FF7C144E1DB2F2AB009CBA28 /* TTBatchActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTBatchActions.swift; path = Models/TTBatchActions.swift; sourceTree = "<group>"; };
 		FF7C14501DB2F2DD009CBA28 /* TTDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTDevice.swift; path = Models/TTDevice.swift; sourceTree = "<group>"; };
@@ -1079,6 +1081,7 @@
 				FFB41AD31CEE9A3000CD5F09 /* mode_electricobjects.png */,
 				FFB41AD41CEE9A3000CD5F09 /* mode_fitness.png */,
 				FFB41AD51CEE9A3000CD5F09 /* mode_home.png */,
+				FF76F0371F7023230001247D /* mode_homekit.png */,
 				FFB41AD61CEE9A3000CD5F09 /* mode_hue.png */,
 				FF534C401EB03C93002EE584 /* mode_ifttt.png */,
 				FFB41AD71CEE9A3000CD5F09 /* mode_mac.png */,
@@ -1670,6 +1673,7 @@
 				FF534C481EB14E4B002EE584 /* Settings.bundle in Resources */,
 				FF0F10C01CF5638D00CC1F29 /* Preferences.plist in Resources */,
 				FFB84B4A1D90D4240037872C /* yoga_position_11.png in Resources */,
+				FF76F0381F7023230001247D /* mode_homekit.png in Resources */,
 				FFB41B531CEE9A3000CD5F09 /* itunes_library_icon.png in Resources */,
 				FFB84B401D90D4240037872C /* yoga_position_1.png in Resources */,
 				FFB41B6B1CEE9A3000CD5F09 /* modal_ftux_mode.png in Resources */,
