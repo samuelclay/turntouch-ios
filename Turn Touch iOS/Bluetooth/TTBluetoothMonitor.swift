@@ -178,7 +178,9 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
                     isActivelyConnecting = true
                 }
                 
-                if peripheral.state != CBPeripheralState.disconnected && foundDevice!.state != TTDeviceState.device_STATE_SEARCHING {
+                if peripheral.state != CBPeripheralState.disconnected &&
+                    (foundDevice!.state == TTDeviceState.device_STATE_CONNECTING ||
+                        foundDevice!.state == TTDeviceState.device_STATE_CONNECTED) {
                     if DEBUG_BLUETOOTH {
                         print(" ---> Already connected: \(foundDevice!)") 
                     }
