@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TTModeNestConnected: TTOptionsDetailViewController, UITextFieldDelegate, UIPopoverPresentationControllerDelegate, UIPickerViewDelegate, TTPickerViewControllerDelegate {
+class TTModeNestConnected: TTOptionsDetailViewController, UITextFieldDelegate, UIPopoverPresentationControllerDelegate, UIPickerViewDelegate, UIPickerViewDataSource, TTPickerViewControllerDelegate {
     
     var modeNest: TTModeNest!
     
@@ -102,6 +102,7 @@ class TTModeNestConnected: TTOptionsDetailViewController, UITextFieldDelegate, U
         pickerVC.modalPresentationStyle = .popover
         pickerVC.preferredContentSize = CGSize(width: 240, height: 180)
         pickerVC.picker.delegate = self
+        pickerVC.picker.dataSource = self
         
         popoverController = pickerVC.popoverPresentationController
         if let popover = popoverController {
@@ -140,7 +141,7 @@ class TTModeNestConnected: TTOptionsDetailViewController, UITextFieldDelegate, U
             return .none
     }
     
-    func numberOfComponentsInPickerView(_ pickerView: UIPickerView) -> Int {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
     

@@ -17,11 +17,11 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>0.8.1</string>
+	<string>0.9.0</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>14</string>
+	<string>16</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 	<key>LSRequiresIPhoneOS</key>
@@ -37,18 +37,18 @@
 	<string>Turn Touch uses Bluetooth to connect to your remotes</string>
 	<key>NSCameraUsageDescription</key>
 	<string>The Turn Touch camera app uses the camera to take photos</string>
+	<key>NSHomeKitUsageDescription</key>
+	<string>Turn Touch communicates with devices supported with Apple HomeKit</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Location is sparingly used to keep your remote always connected</string>
 	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Location is sparingly used to keep your remote always connected</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Location is sparingly used to keep your remote always connected</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>The Turn Touch camera app uses the microphone when recording video</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>The Turn Touch camera app saves photos to your photo library</string>
-	<key>NSHomeKitUsageDescription</key>
-	<string>Turn Touch communicates with devices supported with Apple HomeKit</string>
-	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>Location is sparingly used to keep your remote always connected</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Location is sparingly used to keep your remote always connected</string>
 	<key>NestProductID</key>
 	<string>8ac433c5-3fdf-419b-84e9-573c486e9c52</string>
 	<key>NestProductSecret</key>

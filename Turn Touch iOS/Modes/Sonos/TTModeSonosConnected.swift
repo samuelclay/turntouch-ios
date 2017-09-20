@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TTModeSonosConnected: TTOptionsDetailViewController, UITextFieldDelegate, UIPopoverPresentationControllerDelegate, UIPickerViewDelegate, TTPickerViewControllerDelegate, TTModeSonosDelegate {
+class TTModeSonosConnected: TTOptionsDetailViewController, UITextFieldDelegate, UIPopoverPresentationControllerDelegate, UIPickerViewDelegate, UIPickerViewDataSource, TTPickerViewControllerDelegate, TTModeSonosDelegate {
     
     var modeSonos: TTModeSonos!
     
@@ -113,6 +113,7 @@ class TTModeSonosConnected: TTOptionsDetailViewController, UITextFieldDelegate, 
         pickerVC.modalPresentationStyle = .popover
         pickerVC.preferredContentSize = CGSize(width: 240, height: 180)
         pickerVC.picker.delegate = self
+        pickerVC.picker.dataSource = self
         
         popoverController = pickerVC.popoverPresentationController
         if let popover = popoverController {
@@ -151,7 +152,7 @@ class TTModeSonosConnected: TTOptionsDetailViewController, UITextFieldDelegate, 
             return .none
     }
     
-    func numberOfComponentsInPickerView(_ pickerView: UIPickerView) -> Int {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
     

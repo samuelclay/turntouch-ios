@@ -19,7 +19,7 @@ fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
     }
 }
 
-class TTModeHuePicker: TTOptionsDetailViewController, UITextFieldDelegate, UIPopoverPresentationControllerDelegate, UIPickerViewDelegate, TTPickerViewControllerDelegate  {
+class TTModeHuePicker: TTOptionsDetailViewController, UITextFieldDelegate, UIPopoverPresentationControllerDelegate, UIPickerViewDelegate, UIPickerViewDataSource, TTPickerViewControllerDelegate  {
     var pickerVC: TTPickerViewController!
     var popoverController: UIPopoverPresentationController?
     var presented = false
@@ -172,6 +172,7 @@ class TTModeHuePicker: TTOptionsDetailViewController, UITextFieldDelegate, UIPop
         pickerVC.modalPresentationStyle = .popover
         pickerVC.preferredContentSize = CGSize(width: 240, height: 180)
         pickerVC.picker.delegate = self
+        pickerVC.picker.dataSource = self
         
         popoverController = pickerVC.popoverPresentationController
         if let popover = popoverController {
@@ -221,7 +222,7 @@ class TTModeHuePicker: TTOptionsDetailViewController, UITextFieldDelegate, UIPop
             return .none
     }
     
-    func numberOfComponentsInPickerView(_ pickerView: UIPickerView) -> Int {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
     
