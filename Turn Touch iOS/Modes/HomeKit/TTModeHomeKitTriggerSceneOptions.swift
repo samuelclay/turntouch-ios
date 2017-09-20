@@ -72,7 +72,10 @@ class TTModeHomeKitTriggerSceneOptions: TTOptionsDetailViewController, TTModeHom
     }
     
     func selectDevices() {
+        modeHomeKit.ensureHomeSelected()
+        modeHomeKit.ensureSceneSelected()
         
+        self.redrawTable()
     }
     
     func redrawTable() {
@@ -82,8 +85,8 @@ class TTModeHomeKitTriggerSceneOptions: TTOptionsDetailViewController, TTModeHom
         self.scenesTable.reloadData()
         self.scenesTable.layoutIfNeeded()
         
-        homesTableHeightConstraint.constant = self.homesTable.contentSize.height
-        scenesTableHeightConstraint.constant = self.scenesTable.contentSize.height
+        homesTableHeightConstraint.constant = max(44, self.homesTable.contentSize.height)
+        scenesTableHeightConstraint.constant = max(44, self.scenesTable.contentSize.height)
     }
     
     
@@ -93,7 +96,18 @@ class TTModeHomeKitTriggerSceneOptions: TTOptionsDetailViewController, TTModeHom
         if tableView == homesTable {
             return modeHomeKit.homeManager.homes.count
         } else if tableView == scenesTable {
-            return 0
+            if let home = modeHomeKit.selectedHome() {
+                let scenes = home.actionSets
+                if scenes.count > 0 {
+                    return scenes.count
+                } else {
+                    scenesNoticeLabel.text = "No scenes found..."
+                    return 0
+                }
+            } else {
+                scenesNoticeLabel.text = ""
+                return 0
+            }
         }
         
         return 0
@@ -117,8 +131,11 @@ class TTModeHomeKitTriggerSceneOptions: TTOptionsDetailViewController, TTModeHom
             cell.textLabel?.text = home.name
             cell.detailTextLabel?.text = "\(home.actionSets.count) scene" + (home.actionSets.count==1 ? "":"s") + " in \(home.rooms.count) room" + (home.rooms.count==1 ? "":"s")
         } else if tableView == scenesTable {
-//            cell.textLabel?.text = cellDevice.deviceName
-//            cell.detailTextLabel?.text = cellDevice.location()
+            if let home = modeHomeKit.selectedHome() {
+                let scene = home.actionSets[indexPath.row]
+                cell.textLabel?.text = scene.name
+                cell.detailTextLabel?.text = "\(scene.actions.count) actions" + (scene.actions.count==1 ? "":"s")
+            }
         }
         
         return cell
@@ -127,55 +144,52 @@ class TTModeHomeKitTriggerSceneOptions: TTOptionsDetailViewController, TTModeHom
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if tableView == homesTable {
             let home = modeHomeKit.homeManager.homes[indexPath.row]
-            let cellDevice = TTModeWemo.foundDevices[indexPath.row]
-            let devicesSelected = self.action.optionValue(TTModeWemoConstants.kWemoDeviceLocations) as? [String]
-        } else if tableView == scenesTable {
+            let homeSelected = self.action.optionValue(TTModeHomeKitConstants.kHomeKitHomeIdentifier) as? String
             
+            if homeSelected == home.uniqueIdentifier.uuidString {
+                cell.accessoryType = .checkmark
+                cell.setSelected(true, animated: false)
+                self.homesTable.selectRow(at: indexPath, animated: false, scrollPosition: .none)
+            } else {
+                cell.accessoryType = .none
+                cell.setSelected(false, animated: false)
+            }
+        } else if tableView == scenesTable {
+            if let home = modeHomeKit.selectedHome() {
+                let sceneSelected = self.action.optionValue(TTModeHomeKitConstants.kHomeKitSceneIdentifier) as? String
+                let scene = home.actionSets[indexPath.row]
+                
+                if sceneSelected == scene.uniqueIdentifier.uuidString {
+                    cell.accessoryType = .checkmark
+                    cell.setSelected(true, animated: false)
+                    self.scenesTable.selectRow(at: indexPath, animated: false, scrollPosition: .none)
+                } else {
+                    cell.accessoryType = .none
+                    cell.setSelected(false, animated: false)
+                }
+            }
         }
-//        
-//        if let devicesSelected = devicesSelected, devicesSelected.contains(cellDevice.location()) {
-//            cell.accessoryType = .checkmark
-//            cell.setSelected(true, animated: false)
-//            self.devicesTable.selectRow(at: indexPath, animated: false, scrollPosition: .none)
-//        } else {
-//            cell.accessoryType = .none
-//            cell.setSelected(false, animated: false)
-//        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("Selected: \(indexPath)")
-        if let cell = tableView.cellForRow(at: indexPath) {
-            cell.accessoryType = .checkmark
+        if tableView == homesTable {
+            let selectedIdentifier = modeHomeKit.homeManager.homes[indexPath.row].uniqueIdentifier.uuidString
+
+            self.action.changeActionOption(TTModeHomeKitConstants.kHomeKitHomeIdentifier, to: selectedIdentifier)
+            self.selectDevices()
+        } else if tableView == scenesTable {
+            if let home = modeHomeKit.selectedHome() {
+                let selectedIdentifier = home.actionSets[indexPath.row].uniqueIdentifier.uuidString
+                
+                self.action.changeActionOption(TTModeHomeKitConstants.kHomeKitSceneIdentifier, to: selectedIdentifier)
+                self.selectDevices()
+            }
         }
-        let selectedIdentifier = TTModeWemo.foundDevices[indexPath.row].location()
-        
-        var devicesSelected = self.action.optionValue(TTModeWemoConstants.kWemoDeviceLocations) as? [String]
-        if devicesSelected == nil {
-            devicesSelected = [selectedIdentifier]
-        } else if !devicesSelected!.contains(selectedIdentifier) {
-            devicesSelected!.append(selectedIdentifier)
-        }
-        
-        self.action.changeActionOption(TTModeWemoConstants.kWemoDeviceLocations, to: devicesSelected!)
     }
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        print("Deselected: \(indexPath)")
-        if let cell = tableView.cellForRow(at: indexPath) {
-            cell.accessoryType = .none
-        }
-        let selectedIdentifier = TTModeWemo.foundDevices[indexPath.row].location()
-        
-        var devicesSelected = self.action.optionValue(TTModeWemoConstants.kWemoDeviceLocations) as? [String]
-        if devicesSelected == nil {
-            devicesSelected = [selectedIdentifier]
-        } else if devicesSelected!.contains(selectedIdentifier) {
-            devicesSelected!.remove(at: devicesSelected!.index(of: selectedIdentifier)!)
-        }
-        
-        self.action.changeActionOption(TTModeWemoConstants.kWemoDeviceLocations, to: devicesSelected!)
+        self.selectDevices()
     }
-
-
+    
 }

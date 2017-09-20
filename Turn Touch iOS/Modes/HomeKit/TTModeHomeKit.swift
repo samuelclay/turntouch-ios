@@ -13,7 +13,8 @@ import SafariServices
 import Alamofire
 
 struct TTModeHomeKitConstants {
-    static let kHomeKitUserIdKey = "TT:HomeKit:shared_user_id"
+    static let kHomeKitHomeIdentifier = "homeIdentifier"
+    static let kHomeKitSceneIdentifier = "sceneIdentifier"
 }
 
 enum TTHomeKitState {
@@ -128,6 +129,8 @@ class TTModeHomeKit: TTMode, HMHomeManagerDelegate {
     }
     
     func trigger(doubleTap: Bool) {
+        self.ensureHomeSelected()
+        
 //        let modeName = type(of: self).title()
 //        let modeDirection = appDelegate().modeMap.directionName(self.modeDirection)
 //        let actionName = self.action.actionName
@@ -136,4 +139,82 @@ class TTModeHomeKit: TTMode, HMHomeManagerDelegate {
         
     }
     
+    func ensureHomeSelected() {
+        if homeManager.homes.count == 0 {
+            return
+        }
+        
+        let selectedHomeIdentifier = self.action.optionValue(TTModeHomeKitConstants.kHomeKitHomeIdentifier) as? String
+        if selectedHomeIdentifier == nil {
+            if let primaryHome = homeManager.primaryHome {
+                self.action.changeActionOption(TTModeHomeKitConstants.kHomeKitHomeIdentifier,
+                                               to: primaryHome.uniqueIdentifier.uuidString)
+            }
+        }
+    }
+    
+    func selectedHome() -> HMHome? {
+        self.ensureHomeSelected()
+        
+        if homeManager.homes.count == 0 {
+            return nil
+        }
+        
+        let selectedHomeIdentifier = self.action.optionValue(TTModeHomeKitConstants.kHomeKitHomeIdentifier) as? String
+        for home in homeManager.homes {
+            if home.uniqueIdentifier.uuidString == selectedHomeIdentifier {
+                return home
+            }
+        }
+        
+        return nil
+    }
+    
+    // If a scene either has not yet been chosen or the scene doesn't exist in the selected home,
+    // which can happen when switching homes, then choose the first scene.
+    func ensureSceneSelected() {
+        if homeManager.homes.count == 0 {
+            return
+        }
+        
+        var selectedSceneIdentifier = self.action.optionValue(TTModeHomeKitConstants.kHomeKitSceneIdentifier) as? String
+        if selectedSceneIdentifier != nil {
+            if let home = self.selectedHome() {
+                for scene in home.actionSets {
+                    if scene.uniqueIdentifier.uuidString == selectedSceneIdentifier {
+                        return
+                    }
+                }
+                
+                // If we made it this far then clear out the scene because it's not part of the home
+                selectedSceneIdentifier = nil
+            }
+        }
+        
+        if selectedSceneIdentifier == nil {
+            if let home = self.selectedHome() {
+                if home.actionSets.count > 0 {
+                    self.action.changeActionOption(TTModeHomeKitConstants.kHomeKitSceneIdentifier,
+                                                   to: home.actionSets[0].uniqueIdentifier.uuidString)
+                }
+            }
+        }
+    }
+    
+    func selectedScene() -> HMActionSet? {
+        self.ensureSceneSelected()
+        
+        guard let home = self.selectedHome() else {
+            return nil
+        }
+        
+        let selectedSceneIdentifier = self.action.optionValue(TTModeHomeKitConstants.kHomeKitSceneIdentifier) as? String
+        for scene in home.actionSets {
+            if scene.uniqueIdentifier.uuidString == selectedSceneIdentifier {
+                return scene
+            }
+        }
+        
+        return nil
+    }
 }
