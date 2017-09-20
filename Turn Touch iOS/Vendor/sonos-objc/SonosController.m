@@ -7,7 +7,7 @@
 //
 
 #import "SonosController.h"
-#import <AFNetworking/AFNetworking.h>
+#import <AFNetworking/AFHTTPSessionManager.h>
 #import "XMLReader.h"
 
 #if !defined MAX

@@ -1,10 +1,4 @@
 PODS:
-  - AFNetworking (3.1.0):
-    - AFNetworking/NSURLSession (= 3.1.0)
-    - AFNetworking/Reachability (= 3.1.0)
-    - AFNetworking/Security (= 3.1.0)
-    - AFNetworking/Serialization (= 3.1.0)
-    - AFNetworking/UIKit (= 3.1.0)
   - AFNetworking/NSURLSession (3.1.0):
     - AFNetworking/Reachability
     - AFNetworking/Security
@@ -12,8 +6,6 @@ PODS:
   - AFNetworking/Reachability (3.1.0)
   - AFNetworking/Security (3.1.0)
   - AFNetworking/Serialization (3.1.0)
-  - AFNetworking/UIKit (3.1.0):
-    - AFNetworking/NSURLSession
   - Alamofire (4.4.0)
   - CocoaAsyncSocket (7.6.1)
   - Firebase (1.2.3)
@@ -41,18 +33,18 @@ PODS:
     - CocoaAsyncSocket (~> 7.6.0)
     - Gloss (~> 1.2.4)
     - Log (~> 1.0)
-  - SWXMLHash (3.0.5)
+  - SWXMLHash (4.0.0)
   - Zip (0.7.0)
 
 DEPENDENCIES:
-  - AFNetworking (~> 3.1)
+  - AFNetworking/NSURLSession (~> 3.1)
   - CocoaAsyncSocket (~> 7.6.0)
   - InAppSettingsKit (~> 2.8)
-  - iOSDFULibrary (~> 3.1)
+  - iOSDFULibrary (~> 3.2)
   - NestSDK (= 0.1.5)
   - ReachabilitySwift (~> 3)
   - SwiftyHue (from `https://github.com/samuelclay/SwiftyHue.git`, branch `swift3`)
-  - SWXMLHash (~> 3.0.0)
+  - SWXMLHash (~> 4.0.0)
 
 EXTERNAL SOURCES:
   SwiftyHue:
@@ -78,9 +70,9 @@ SPEC CHECKSUMS:
   ReachabilitySwift: f5b9bb30a0777fac8f09ce8b067e32faeb29bb64
   SSKeychain: 04c4ec40f4c3deda524e269bc76e5f30e638a174
   SwiftyHue: '0684460dd34fcd060e2aab475682aa5773a946dc'
-  SWXMLHash: 701f7d07c032089b9ff34e0352bd4fed1a24652a
+  SWXMLHash: 6bbc0bf72975a18ceda469fb7d6a886a26d81694
   Zip: e34513299ac38c0686d5b24504da7ce343799ab9
 
-PODFILE CHECKSUM: 0b9ece48b9c304c6e1d0506a18bc91126b4b01fe
+PODFILE CHECKSUM: 141c179ae35a6c308c50c6202868d1322fe70486
 
 COCOAPODS: 1.2.1
