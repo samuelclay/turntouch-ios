@@ -140,7 +140,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         }
         
         if let settings = NSDictionary(contentsOfFile: settingsBundle.appendingPathComponent("Root.plist")) {
-            print(" ---> Settings: \(settings)")
+//            print(" ---> Settings: \(settings)")
             if let preferences = settings.object(forKey: "PreferenceSpecifiers") as? [[String: Any]] {
             
                 var defaultsToRegister = [String: Any](minimumCapacity: preferences.count)

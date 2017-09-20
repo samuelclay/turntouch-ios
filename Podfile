@@ -9,7 +9,7 @@ target "Turn Touch iOS" do
     pod "NestSDK", "0.1.5"
     
     # SwiftyHue
-    pod "SwiftyHue", :git => "https://github.com/samuelclay/SwiftyHue.git", :branch => "swift3"
+    pod "SwiftyHue", :git => "https://github.com/samuelclay/SwiftyHue.git"
     
     pod "iOSDFULibrary", "~> 3.2"
     pod "InAppSettingsKit", "~> 2.8"

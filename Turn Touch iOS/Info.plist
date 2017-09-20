@@ -45,6 +45,10 @@
 	<string>The Turn Touch camera app saves photos to your photo library</string>
 	<key>NSHomeKitUsageDescription</key>
 	<string>Turn Touch communicates with devices supported with Apple HomeKit</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Location is sparingly used to keep your remote always connected</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Location is sparingly used to keep your remote always connected</string>
 	<key>NestProductID</key>
 	<string>8ac433c5-3fdf-419b-84e9-573c486e9c52</string>
 	<key>NestProductSecret</key>

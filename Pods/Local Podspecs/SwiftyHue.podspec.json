@@ -1,6 +1,6 @@
 {
   "name": "SwiftyHue",
-  "version": "0.2.4",
+  "version": "0.2.6",
   "summary": "Philips Hue SDK written in swift.",
   "description": "Philips Hue SDK written in swift. Work in progress.",
   "homepage": "https://github.com/Spriter/SwiftyHue.git",
@@ -12,7 +12,7 @@
   },
   "source": {
     "git": "https://github.com/Spriter/SwiftyHue.git",
-    "tag": "0.2.4"
+    "tag": "0.2.6"
   },
   "platforms": {
     "ios": "9.0",

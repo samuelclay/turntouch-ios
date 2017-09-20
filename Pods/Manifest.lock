@@ -21,20 +21,20 @@ PODS:
     - SSKeychain (= 1.3.1)
   - ReachabilitySwift (3)
   - SSKeychain (1.3.1)
-  - SwiftyHue (0.2.4):
-    - SwiftyHue/Base (= 0.2.4)
-    - SwiftyHue/BridgeServices (= 0.2.4)
-  - SwiftyHue/Base (0.2.4):
+  - SwiftyHue (0.2.6):
+    - SwiftyHue/Base (= 0.2.6)
+    - SwiftyHue/BridgeServices (= 0.2.6)
+  - SwiftyHue/Base (0.2.6):
     - Alamofire (~> 4.4.0)
     - Gloss (~> 1.2.4)
     - Log (~> 1.0)
-  - SwiftyHue/BridgeServices (0.2.4):
+  - SwiftyHue/BridgeServices (0.2.6):
     - Alamofire (~> 4.4.0)
     - CocoaAsyncSocket (~> 7.6.0)
     - Gloss (~> 1.2.4)
     - Log (~> 1.0)
   - SWXMLHash (4.0.0)
-  - Zip (0.7.0)
+  - Zip (0.8.0)
 
 DEPENDENCIES:
   - AFNetworking/NSURLSession (~> 3.1)
@@ -43,17 +43,16 @@ DEPENDENCIES:
   - iOSDFULibrary (~> 3.2)
   - NestSDK (= 0.1.5)
   - ReachabilitySwift (~> 3)
-  - SwiftyHue (from `https://github.com/samuelclay/SwiftyHue.git`, branch `swift3`)
+  - SwiftyHue (from `https://github.com/samuelclay/SwiftyHue.git`)
   - SWXMLHash (~> 4.0.0)
 
 EXTERNAL SOURCES:
   SwiftyHue:
-    :branch: swift3
     :git: https://github.com/samuelclay/SwiftyHue.git
 
 CHECKOUT OPTIONS:
   SwiftyHue:
-    :commit: '009125ab1b9c68d48dfdcab6c61a7ec872868d87'
+    :commit: 1acb7bf621f1165ebd76806de2ea3eb46b3000e9
     :git: https://github.com/samuelclay/SwiftyHue.git
 
 SPEC CHECKSUMS:
@@ -69,10 +68,10 @@ SPEC CHECKSUMS:
   NestSDK: 0ede51652a4688767b1b07a8dbb159a0b52dc8ac
   ReachabilitySwift: f5b9bb30a0777fac8f09ce8b067e32faeb29bb64
   SSKeychain: 04c4ec40f4c3deda524e269bc76e5f30e638a174
-  SwiftyHue: '0684460dd34fcd060e2aab475682aa5773a946dc'
+  SwiftyHue: e6e2813729b23ff5f6eeeb6c8b48c3f29dcb7d6f
   SWXMLHash: 6bbc0bf72975a18ceda469fb7d6a886a26d81694
-  Zip: e34513299ac38c0686d5b24504da7ce343799ab9
+  Zip: bb7d8370de00e50699633d91e03f2ec84f1ee437
 
-PODFILE CHECKSUM: 326a241dff8da12214011879eabfb91d68f002e0
+PODFILE CHECKSUM: 44eb8320402dc10e28cd24b945453f5c8379e394
 
 COCOAPODS: 1.2.1

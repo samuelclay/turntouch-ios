@@ -1059,7 +1059,7 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
             let sceneIdentifier = self.sceneForAction(sceneName, moment: moment)
             if sceneIdentifier != nil {
                 if self.foundScenes.contains(sceneIdentifier!) {
-                    print(" ---> Scene already found: \(sceneName) \(String(describing: sceneIdentifier)) \(self.foundScenes)")
+//                    print(" ---> Scene already found: \(sceneName) \(String(describing: sceneIdentifier))")
                     TTModeHue.sceneCreateGroup.leave()
                     return
                 }
@@ -1123,8 +1123,8 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
                         print(" ---> Waited too long for created scenes to come back")
                     }
                     
-                    print(" TTModeHue.sceneCacheSemaphore: \(TTModeHue.sceneCacheSemaphore)")
-                    DispatchQueue.main.async {                        
+//                    print(" TTModeHue.sceneCacheSemaphore: \(TTModeHue.sceneCacheSemaphore)")
+                    DispatchQueue.main.async {
                         self.ensureScenesSelected()
                         TTModeHue.sceneCacheSemaphore.signal()
                     }
