@@ -89,11 +89,11 @@ class TTFTUXView: UIView {
         self.addConstraint(NSLayoutConstraint(item: subtitleLabel, attribute: .bottom, relatedBy: .equal,
             toItem: self, attribute: .bottom, multiplier: 1.0, constant: -24))
         
-        subtitleLabel.setContentHuggingPriority(UILayoutPriorityDefaultHigh, for: .vertical)
-        subtitleLabel.setContentCompressionResistancePriority(UILayoutPriorityDefaultHigh+1, for: .vertical)
-        titleLabel.setContentHuggingPriority(UILayoutPriorityDefaultLow, for: .vertical)
-        titleLabel.setContentCompressionResistancePriority(UILayoutPriorityDefaultHigh+1, for: .vertical)
-        imageView.setContentHuggingPriority(UILayoutPriorityDefaultLow, for: .vertical)
+        subtitleLabel.setContentHuggingPriority(UILayoutPriority.defaultHigh, for: .vertical)
+        subtitleLabel.setContentCompressionResistancePriority(UILayoutPriority(rawValue: UILayoutPriority.RawValue(Int(UILayoutPriority.defaultHigh.rawValue)+1)), for: .vertical)
+        titleLabel.setContentHuggingPriority(UILayoutPriority.defaultLow, for: .vertical)
+        titleLabel.setContentCompressionResistancePriority(UILayoutPriority(rawValue: UILayoutPriority.RawValue(Int(UILayoutPriority.defaultHigh.rawValue)+1)), for: .vertical)
+        imageView.setContentHuggingPriority(UILayoutPriority.defaultLow, for: .vertical)
         
         self.assemble()
     }

@@ -17,7 +17,7 @@ class TTBatchActionStackView: UIStackView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.setContentHuggingPriority(UILayoutPriorityDefaultHigh, for: .vertical)
+        self.setContentHuggingPriority(UILayoutPriority.defaultHigh, for: .vertical)
         self.translatesAutoresizingMaskIntoConstraints = false
         self.axis = .vertical
         self.spacing = 0

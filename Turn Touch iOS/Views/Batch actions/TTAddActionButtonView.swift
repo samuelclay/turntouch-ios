@@ -25,14 +25,14 @@ class TTAddActionButtonView: UIView {
         addButton.setImage(image, for: .normal)
         addButton.imageView?.contentMode = .scaleAspectFit
         addButton.setTitle("Add new action", for: UIControlState.normal)
-        addButton.imageView!.setContentHuggingPriority(UILayoutPriorityDefaultHigh, for: .horizontal)
+        addButton.imageView!.setContentHuggingPriority(UILayoutPriority.defaultHigh, for: .horizontal)
         addButton.titleLabel!.font = UIFont(name: "Effra", size: 13)
         addButton.titleLabel!.textColor = UIColor(hex: 0xA0A0A0)
         addButton.titleLabel!.lineBreakMode = NSLineBreakMode.byClipping
         addButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: -128, bottom: 0, right: -128)
         addButton.titleEdgeInsets = UIEdgeInsets(top: 0, left: -212, bottom: 0, right: 0)
         addButton.addTarget(self, action: #selector(self.showAddActionMenu(_:)), for: .touchUpInside)
-        addButton.setContentHuggingPriority(UILayoutPriorityDefaultHigh, for: .horizontal)
+        addButton.setContentHuggingPriority(UILayoutPriority.defaultHigh, for: .horizontal)
         self.addSubview(addButton)
 //        self.addConstraint(NSLayoutConstraint(item: addButton, attribute: .top, relatedBy: .equal,
 //                                              toItem: self.layoutMarginsGuide, attribute: .top, multiplier: 1.0, constant: 24))
@@ -89,7 +89,7 @@ class TTAddActionButtonView: UIView {
         line.stroke()
     }
     
-    func showAddActionMenu(_ sender: UIButton!) {
+    @objc func showAddActionMenu(_ sender: UIButton!) {
         addButton.setTitle("Cancel", for: .normal)
         addButton.setImage(UIImage(named: "button_x"), for: .normal)
         addButton.removeTarget(self, action: #selector(self.showAddActionMenu(_:)), for: .touchUpInside)
@@ -98,7 +98,7 @@ class TTAddActionButtonView: UIView {
         appDelegate().modeMap.openedAddActionChangeMenu = true
     }
 
-    func hideAddActionMenu(_ sender: UIButton!) {
+    @objc func hideAddActionMenu(_ sender: UIButton!) {
         addButton.setTitle("Add new action", for: .normal)
         addButton.setImage(UIImage(named: "button_plus"), for: .normal)
         addButton.removeTarget(self, action: #selector(self.hideAddActionMenu(_:)), for: .touchUpInside)

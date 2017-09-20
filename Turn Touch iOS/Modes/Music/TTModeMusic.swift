@@ -14,7 +14,7 @@ class TTModeMusic: TTMode {
     let ITUNES_VOLUME_CHANGE: Float = 0.06
     var observing = false
     var lastVolume: Float!
-    let musicPlayer = MPMusicPlayerController.systemMusicPlayer()
+    let musicPlayer = MPMusicPlayerController.systemMusicPlayer
     
     override class func title() -> String {
         return "Music"

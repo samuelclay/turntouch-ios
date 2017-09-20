@@ -86,7 +86,7 @@ class TTBatchActionHeaderView: UIView {
         self.addSubview(diamondView)
         let diamondLabelConstraint = NSLayoutConstraint(item: diamondView, attribute: .left, relatedBy: .greaterThanOrEqual,
                                                         toItem: modeLabel, attribute: .right, multiplier: 1.0, constant: 12)
-        diamondLabelConstraint.priority = UILayoutPriorityDefaultHigh
+        diamondLabelConstraint.priority = UILayoutPriority.defaultHigh
         self.addConstraint(diamondLabelConstraint)
         self.addConstraint(NSLayoutConstraint(item: diamondView, attribute: .centerY, relatedBy: .equal,
                                               toItem: self, attribute: .centerY, multiplier: 1.0, constant: 0))
@@ -142,7 +142,7 @@ class TTBatchActionHeaderView: UIView {
     
     // MARK: Actions
     
-    func pressDelete(_ sender: UIButton!) {
+    @objc func pressDelete(_ sender: UIButton!) {
         if let action = batchAction {
             appDelegate().modeMap.removeBatchAction(for: action.batchActionKey!)
             appDelegate().mainViewController.batchActionsStackView.hideBatchAction(batchActionKey: action.batchActionKey!)

@@ -100,7 +100,7 @@ class TTModeTitleView: UIView {
     
     // MARK: Actions
     
-    func pressChange(_ sender: UIButton!) {
+    @objc func pressChange(_ sender: UIButton!) {
         appDelegate().modeMap.openedModeChangeMenu = !appDelegate().modeMap.openedModeChangeMenu
         if appDelegate().modeMap.openedActionChangeMenu {
             appDelegate().modeMap.openedActionChangeMenu = false

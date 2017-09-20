@@ -140,14 +140,14 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
                                                    toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 0)
         scrollStackView.addConstraint(actionTitleConstraint)
         
-        optionsView.setContentCompressionResistancePriority(UILayoutPriorityDefaultHigh, for: .vertical)
+        optionsView.setContentCompressionResistancePriority(UILayoutPriority.defaultHigh, for: .vertical)
         scrollStackView.addArrangedSubview(optionsView)
         optionsConstraint = NSLayoutConstraint(item: optionsView, attribute: .height, relatedBy: .equal,
                                                toItem: nil, attribute: .notAnAttribute,
                                                multiplier: 1.0, constant: 0)
 //        scrollStackView.addConstraint(optionsConstraint)
         
-        batchActionsStackView.setContentCompressionResistancePriority(UILayoutPriorityDefaultHigh, for: .vertical)
+        batchActionsStackView.setContentCompressionResistancePriority(UILayoutPriority.defaultHigh, for: .vertical)
         scrollStackView.addArrangedSubview(batchActionsStackView)
         
         addActionMenuConstraint = NSLayoutConstraint(item: addActionMenu, attribute: .height, relatedBy: .equal,
@@ -162,7 +162,7 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
         scrollStackView.addArrangedSubview(addActionButtonView)
         scrollStackView.addConstraint(addActionButtonConstraint)
         
-        scrollView.setContentHuggingPriority(100, for: UILayoutConstraintAxis.vertical)
+        scrollView.setContentHuggingPriority(UILayoutPriority(rawValue: 100), for: UILayoutConstraintAxis.vertical)
         scrollView.alwaysBounceVertical = true
         scrollView.insertSubview(scrollStackView, at: 0)
         scrollView.backgroundColor = UIColor(hex: 0xF5F6F8)

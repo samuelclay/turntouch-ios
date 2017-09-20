@@ -723,7 +723,7 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
         self.ensureScenesSelected()
     }
     
-    func receiveHeartbeat(notification: NSNotification?) {
+    @objc func receiveHeartbeat(notification: NSNotification?) {
         let cache = TTModeHue.hueSdk.resourceCache
         
         if let notification = notification {
@@ -1124,8 +1124,10 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
                     }
                     
                     print(" TTModeHue.sceneCacheSemaphore: \(TTModeHue.sceneCacheSemaphore)")
-                    self.ensureScenesSelected()
-                    TTModeHue.sceneCacheSemaphore.signal()
+                    DispatchQueue.main.async {                        
+                        self.ensureScenesSelected()
+                        TTModeHue.sceneCacheSemaphore.signal()
+                    }
                     
                 }
             })

@@ -12,29 +12,29 @@ import Alamofire
 
 class TTModeMap: NSObject {
     
-    dynamic var activeModeDirection: TTModeDirection = .no_DIRECTION
-    dynamic var selectedModeDirection: TTModeDirection = .no_DIRECTION
-    dynamic var inspectingModeDirection: TTModeDirection = .no_DIRECTION
-    dynamic var hoverModeDirection: TTModeDirection = .no_DIRECTION
+    @objc dynamic var activeModeDirection: TTModeDirection = .no_DIRECTION
+    @objc dynamic var selectedModeDirection: TTModeDirection = .no_DIRECTION
+    @objc dynamic var inspectingModeDirection: TTModeDirection = .no_DIRECTION
+    @objc dynamic var hoverModeDirection: TTModeDirection = .no_DIRECTION
     
-    dynamic var tempModeName: String?
-    dynamic var openedModeChangeMenu: Bool = false
-    dynamic var openedActionChangeMenu: Bool = false
-    dynamic var openedAddActionChangeMenu: Bool = false
+    @objc dynamic var tempModeName: String?
+    @objc dynamic var openedModeChangeMenu: Bool = false
+    @objc dynamic var openedActionChangeMenu: Bool = false
+    @objc dynamic var openedAddActionChangeMenu: Bool = false
     
-    dynamic var selectedMode: TTMode = TTMode()
+    @objc dynamic var selectedMode: TTMode = TTMode()
     var northMode: TTMode!
     var eastMode: TTMode!
     var westMode: TTMode!
     var southMode: TTMode!
-    dynamic var tempMode: TTMode!
+    @objc dynamic var tempMode: TTMode!
     
     var batchActions = TTBatchActions()
     
-    dynamic var availableModes: [String] = []
-    dynamic var availableActions: [String] = []
-    dynamic var availableAddModes: [[String: Any]] = []
-    dynamic var availableAddActions: [[String: Any]] = []
+    @objc dynamic var availableModes: [String] = []
+    @objc dynamic var availableActions: [String] = []
+    @objc dynamic var availableAddModes: [[String: Any]] = []
+    @objc dynamic var availableAddActions: [[String: Any]] = []
     
     var waitingForDoubleClick = false
     var player: AVAudioPlayer?
@@ -385,7 +385,7 @@ class TTModeMap: NSObject {
         let prefs = UserDefaults.standard
         var batchActionKeys = self.batchActionKeys()
         let uuid = UUID().uuidString
-        let newActionKey = "\(tempMode.nameOfClass):\(actionName):\(uuid.substring(to: uuid.index(uuid.startIndex, offsetBy: 8)))"
+        let newActionKey = "\(tempMode.nameOfClass):\(actionName):\(uuid[..<uuid.index(uuid.startIndex, offsetBy: 8)])"
         batchActionKeys.append(newActionKey)
         prefs.set(batchActionKeys, forKey: self.batchKey())
         prefs.synchronize()
@@ -403,7 +403,7 @@ class TTModeMap: NSObject {
         let prefs = UserDefaults.standard
         var batchActionKeys = self.batchActionKeys(modeDirection: modeDirection, actionDirection: actionDirection)
         let uuid = UUID().uuidString
-        let newActionKey = "\(modeClassName):\(actionName):\(uuid.substring(to: uuid.index(uuid.startIndex, offsetBy: 8)))"
+        let newActionKey = "\(modeClassName):\(actionName):\(uuid[..<uuid.index(uuid.startIndex, offsetBy: 8)])"
         batchActionKeys.append(newActionKey)
         prefs.set(batchActionKeys, forKey: self.batchKey(modeDirection: modeDirection, actionDirection: actionDirection))
         prefs.synchronize()
@@ -544,7 +544,7 @@ class TTModeMap: NSObject {
         var uuid: NSUUID!
         let prefs = UserDefaults.standard
         
-        if let uuidString = NSUbiquitousKeyValueStore.default().string(forKey: TTModeIftttConstants.kIftttUserIdKey) {
+        if let uuidString = NSUbiquitousKeyValueStore.default.string(forKey: TTModeIftttConstants.kIftttUserIdKey) {
             uuid = NSUUID(uuidString: uuidString)
             
             prefs.set(uuid.uuidString, forKey: TTModeIftttConstants.kIftttUserIdKey)
@@ -552,16 +552,16 @@ class TTModeMap: NSObject {
         } else if let uuidString = prefs.string(forKey: TTModeIftttConstants.kIftttUserIdKey) {
             uuid = NSUUID(uuidString: uuidString)
             
-            NSUbiquitousKeyValueStore.default().set(uuid.uuidString, forKey: TTModeIftttConstants.kIftttUserIdKey)
-            NSUbiquitousKeyValueStore.default().synchronize()
+            NSUbiquitousKeyValueStore.default.set(uuid.uuidString, forKey: TTModeIftttConstants.kIftttUserIdKey)
+            NSUbiquitousKeyValueStore.default.synchronize()
         } else {
             uuid = NSUUID()
             
             prefs.set(uuid.uuidString, forKey: TTModeIftttConstants.kIftttUserIdKey)
             prefs.synchronize()
             
-            NSUbiquitousKeyValueStore.default().set(uuid.uuidString, forKey: TTModeIftttConstants.kIftttUserIdKey)
-            NSUbiquitousKeyValueStore.default().synchronize()
+            NSUbiquitousKeyValueStore.default.set(uuid.uuidString, forKey: TTModeIftttConstants.kIftttUserIdKey)
+            NSUbiquitousKeyValueStore.default.synchronize()
         }
         
         return uuid.uuidString

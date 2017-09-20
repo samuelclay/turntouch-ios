@@ -108,7 +108,7 @@ class TTActionTitleView: UIView {
     
     // MARK: Actions
     
-    func pressChange(_ sender: UIButton!) {
+    @objc func pressChange(_ sender: UIButton!) {
         appDelegate().modeMap.openedActionChangeMenu = !appDelegate().modeMap.openedActionChangeMenu
         self.setNeedsDisplay()
     }

@@ -393,7 +393,7 @@ class TTDiamondView: UIView {
         appDelegate().mainViewController.scrollView.isScrollEnabled = true
     }
     
-    func longPressed(sender: UILongPressGestureRecognizer) {
+    @objc func longPressed(sender: UILongPressGestureRecognizer) {
         if (sender.state == .began) {
             if diamondType != .interactive {
                 return

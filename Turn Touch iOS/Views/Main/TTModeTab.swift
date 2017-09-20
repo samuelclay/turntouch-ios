@@ -249,7 +249,7 @@ class TTModeTab: UIView {
         appDelegate().modeMap.switchMode(self.modeDirection, modeChangeType: .modeTab)
     }
     
-    func longPressed(sender: UILongPressGestureRecognizer) {
+    @objc func longPressed(sender: UILongPressGestureRecognizer) {
         if (sender.state == .began) {
             if appDelegate().modeMap.selectedModeDirection != self.modeDirection {
                 appDelegate().modeMap.switchMode(self.modeDirection, modeChangeType: .modeTab)

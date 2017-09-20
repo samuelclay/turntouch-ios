@@ -206,11 +206,11 @@ class TTDeviceTitleView: UIView, TTTitleMenuDelegate, DFUServiceDelegate, DFUPro
     
     // MARK: Actions
     
-    func pressSettings(_ sender: UIButton!) {
+    @objc func pressSettings(_ sender: UIButton!) {
         appDelegate().mainViewController.toggleDeviceMenu(sender, deviceTitleView: self, device: device)
     }
     
-    func pressUpgrade(_ sendor: UIButton!) {
+    @objc func pressUpgrade(_ sendor: UIButton!) {
         startDFUProcess()
     }
     

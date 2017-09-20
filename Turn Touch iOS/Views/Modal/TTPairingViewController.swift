@@ -64,7 +64,7 @@ class TTPairingViewController: UIViewController, TTBluetoothMonitorDelegate {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func close(_ sender: UIBarButtonItem!) {
+    @objc func close(_ sender: UIBarButtonItem!) {
         appDelegate().mainViewController.closePairingModal()
         appDelegate().bluetoothMonitor.delegate = nil
     }
@@ -143,7 +143,7 @@ class TTPairingViewController: UIViewController, TTBluetoothMonitorDelegate {
     
     // MARK: Countdown timer
     
-    func updateCountdown() {
+    @objc func updateCountdown() {
         let minusOneSecond = countdownIndicator.progress + 1/Float(secondsToPair)
         UIView.animate(withDuration: 1, animations: { () -> Void in
             self.countdownIndicator.setProgress(minusOneSecond, animated: true)
@@ -165,7 +165,7 @@ class TTPairingViewController: UIViewController, TTBluetoothMonitorDelegate {
         }
     }
     
-    func searchingFailure() {
+    @objc func searchingFailure() {
         searchingTimer?.invalidate()
         self.changePairingState(.failure)
     }

@@ -36,6 +36,7 @@ func >!< (object1: Any!, object2: Any!) -> Bool {
     return (object_getClassName(object1) == object_getClassName(object2))
 }
 
+@objcMembers
 class TTMode : NSObject, TTModeProtocol {
     var modeDirection: TTModeDirection = .no_DIRECTION
     var action: TTAction!

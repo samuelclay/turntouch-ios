@@ -67,7 +67,7 @@ class TTModeCameraReviewViewController: UIViewController {
         self.view.addGestureRecognizer(tapGesture)
     }
     
-    func imageTapped(_ gesture: UITapGestureRecognizer) {
+    @objc func imageTapped(_ gesture: UITapGestureRecognizer) {
         self.dismiss(animated: false, completion: nil)
     }
     

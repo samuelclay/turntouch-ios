@@ -261,7 +261,7 @@ class TTModeHuePicker: TTOptionsDetailViewController, UITextFieldDelegate, UIPop
     
     func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
         let titleData = pickerVC.textField == roomPicker ? rooms[row]["name"] : scenes[row]["name"]
-        let myTitle = NSAttributedString(string: titleData!, attributes: [NSFontAttributeName:UIFont(name: "Effra", size: 18.0)!,NSForegroundColorAttributeName:UIColor.blue])
+        let myTitle = NSAttributedString(string: titleData!, attributes: [NSAttributedStringKey.font:UIFont(name: "Effra", size: 18.0)!,NSAttributedStringKey.foregroundColor:UIColor.blue])
         return myTitle
     }
     
@@ -276,7 +276,7 @@ class TTModeHuePicker: TTOptionsDetailViewController, UITextFieldDelegate, UIPop
             }
         }
         let titleData = pickerVC.textField == roomPicker ? rooms[row]["name"] : scenes[row]["name"]
-        let myTitle = NSAttributedString(string: titleData!, attributes: [NSFontAttributeName:UIFont(name: "Effra", size: 18.0)!,NSForegroundColorAttributeName:UIColor.black])
+        let myTitle = NSAttributedString(string: titleData!, attributes: [NSAttributedStringKey.font:UIFont(name: "Effra", size: 18.0)!,NSAttributedStringKey.foregroundColor:UIColor.black])
         pickerLabel!.attributedText = myTitle
         pickerLabel!.textAlignment = .center
         

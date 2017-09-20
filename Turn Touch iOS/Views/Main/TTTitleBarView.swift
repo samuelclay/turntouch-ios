@@ -84,7 +84,7 @@ class TTTitleBarView: UIView, TTTitleMenuDelegate {
     
     // MARK: Events
     
-    func pressSettings(_ sender: UIButton!) {
+    @objc func pressSettings(_ sender: UIButton!) {
         appDelegate().mainViewController.toggleTitleMenu(sender)
     }
     

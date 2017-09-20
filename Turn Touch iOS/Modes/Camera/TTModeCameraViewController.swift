@@ -36,7 +36,7 @@ class TTModeCameraViewController: UIViewController {
         super.viewDidLoad()
         self.view.translatesAutoresizingMaskIntoConstraints = false
         
-        camera = LLSimpleCamera(quality: AVCaptureSessionPresetHigh,
+        camera = LLSimpleCamera(quality: AVCaptureSession.Preset.high.rawValue,
                                 position: LLCameraPositionRear,
                                 videoEnabled: false)
         camera.attach(to: self, withFrame: self.view.frame)
@@ -206,7 +206,7 @@ class TTModeCameraViewController: UIViewController {
         return UIInterfaceOrientation.portrait
     }
     
-    func segmentedControlChanged(_ control: UISegmentedControl) {
+    @objc func segmentedControlChanged(_ control: UISegmentedControl) {
         print("Photo to video to photo")
     }
     
@@ -222,7 +222,7 @@ class TTModeCameraViewController: UIViewController {
         self.switchButtonPressed(switchButton)
     }
     
-    func switchButtonPressed(_ button: UIButton) {
+    @objc func switchButtonPressed(_ button: UIButton) {
         camera.togglePosition()
     }
     
@@ -230,7 +230,7 @@ class TTModeCameraViewController: UIViewController {
         return FileManager.default.urls(for: FileManager.SearchPathDirectory.documentDirectory, in: FileManager.SearchPathDomainMask.userDomainMask).last
     }
     
-    func flashButtonPressed(_ button: UIButton) {
+    @objc func flashButtonPressed(_ button: UIButton) {
         if camera.flash == LLCameraFlashOff {
             let done = camera.updateFlashMode(LLCameraFlashOn)
             if done {
@@ -246,7 +246,7 @@ class TTModeCameraViewController: UIViewController {
         }
     }
     
-    func closeButtonPressed(_ button: UIButton) {
+    @objc func closeButtonPressed(_ button: UIButton) {
         self.modeCamera.closeCamera()
     }
     

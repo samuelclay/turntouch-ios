@@ -100,8 +100,8 @@ class TTModeWemoMulticastServer: NSObject, GCDAsyncUdpSocketDelegate {
         for line: String in data.components(separatedBy: "\r\n") {
             if let match = line.range(of: ":") {
                 if line.characters.count > line.distance(from: line.startIndex, to: match.lowerBound) + 2 {
-                    let key = line.substring(to: match.lowerBound).lowercased()
-                    let value = line.substring(from: line.index(match.lowerBound, offsetBy: 2)).trimmingCharacters(in: CharacterSet.whitespaces)
+                    let key = line[..<match.lowerBound].lowercased()
+                    let value = line[line.index(match.lowerBound, offsetBy: 2)...].trimmingCharacters(in: CharacterSet.whitespaces)
                     headers[key] = value
                 }
             }

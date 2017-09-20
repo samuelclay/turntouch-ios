@@ -113,7 +113,7 @@ class TTModeWemo: TTMode, TTModeWemoMulticastDelegate, TTModeWemoDeviceDelegate 
         return "Turn off"
     }
     
-    func titleTTModeWemoDeviceToggle() -> String {
+    @objc func titleTTModeWemoDeviceToggle() -> String {
         return "Toggle device"
     }
     

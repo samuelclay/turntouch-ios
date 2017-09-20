@@ -39,7 +39,7 @@ class TTPairingInfoViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func close(_ sender: UIBarButtonItem!) {
+    @objc func close(_ sender: UIBarButtonItem!) {
         appDelegate().mainViewController.closePairingModal()
         appDelegate().bluetoothMonitor.delegate = nil
     }

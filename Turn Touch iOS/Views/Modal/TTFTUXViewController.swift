@@ -93,7 +93,7 @@ class TTFTUXViewController: UIViewController, UIScrollViewDelegate {
         
     }
     
-    func close(_ sender: UIBarButtonItem!) {
+    @objc func close(_ sender: UIBarButtonItem!) {
         appDelegate().mainViewController.closeFtuxModal()
     }
     
