@@ -131,12 +131,12 @@ class TTModeHomeKit: TTMode, HMHomeManagerDelegate {
     func trigger(doubleTap: Bool) {
         self.ensureHomeSelected()
         
-//        let modeName = type(of: self).title()
-//        let modeDirection = appDelegate().modeMap.directionName(self.modeDirection)
-//        let actionName = self.action.actionName
-//        let actionTitle = self.actionTitleForAction(actionName!, buttonMoment: .button_MOMENT_PRESSUP)!
-//        let actionDirection = appDelegate().modeMap.directionName(self.action.direction)
-        
+        if let home = self.selectedHome(),
+            let scene = self.selectedScene() {
+            home.executeActionSet(scene, completionHandler: { (error) in
+                print(" ---> Executed action set. (\(String(describing: error)))")
+            })
+        }
     }
     
     func ensureHomeSelected() {

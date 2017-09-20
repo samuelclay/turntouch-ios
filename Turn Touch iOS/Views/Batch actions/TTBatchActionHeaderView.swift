@@ -146,6 +146,8 @@ class TTBatchActionHeaderView: UIView {
         if let action = batchAction {
             appDelegate().modeMap.removeBatchAction(for: action.batchActionKey!)
             appDelegate().mainViewController.batchActionsStackView.hideBatchAction(batchActionKey: action.batchActionKey!)
+            
+            appDelegate().modeMap.recordUsage(additionalParams: ["moment": "change:remove-batch-action:\(action.batchActionKey!)"])
         }
     }
 }

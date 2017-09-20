@@ -58,6 +58,15 @@ class TTModeHomeKitTriggerSceneOptions: TTOptionsDetailViewController, TTModeHom
     
     // MARK: Actions
     
+    @IBAction func refresh(_ sender: UIButton) {
+        spinner.forEach({ $0.isHidden = false })
+        spinner.forEach { $0.startAnimating() }
+        refreshButton.forEach({ $0.isHidden = true })
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(1)) {
+            self.modeHomeKit.activate()
+        }
+    }
+    
     func changeState(_ state: TTHomeKitState, mode: TTModeHomeKit) {
         if state == .connected {
             spinner.forEach({ $0.isHidden = true })

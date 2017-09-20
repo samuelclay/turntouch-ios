@@ -8,6 +8,7 @@
 
 import UIKit
 
+@objcMembers
 class TTBatchActions: NSObject {
     
     var modeDirection: TTModeDirection = .no_DIRECTION

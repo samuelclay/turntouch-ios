@@ -144,19 +144,28 @@ class TTModeMenuCell: UICollectionViewCell {
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         isHighlighted = false
+        let selectedMode = appDelegate().modeMap.selectedMode.nameOfClass
+        
         if let touch = touches.first {
             if self.bounds.contains(touch.location(in: self)) {
                 if menuType == .menu_MODE {
                     appDelegate().modeMap.changeDirection(appDelegate().modeMap.selectedModeDirection, toMode:modeName)
+                    
+                    appDelegate().modeMap.recordUsage(additionalParams: ["moment": "change:mode:\(selectedMode)"])
                 } else if menuType == .menu_ACTION {
                     appDelegate().modeMap.changeDirection(appDelegate().modeMap.inspectingModeDirection, toAction:modeName)
                     // Update the action diamond
                     appDelegate().modeMap.selectedModeDirection = appDelegate().modeMap.selectedModeDirection
                     // Update the mode menu
                     appDelegate().modeMap.inspectingModeDirection = appDelegate().modeMap.inspectingModeDirection
+                    
+                    let actionName = appDelegate().modeMap.selectedMode.actionNameInDirection(appDelegate().modeMap.inspectingModeDirection)
+                    appDelegate().modeMap.recordUsage(additionalParams: ["moment": "change:action:\(selectedMode):\(actionName)"])
                 } else if menuType == .menu_ADD_MODE {
                     appDelegate().modeMap.provisionTempMode(name: modeName)
                     appDelegate().mainViewController.scrollToBottom()
+                    
+                    appDelegate().modeMap.recordUsage(additionalParams: ["moment": "change:add-batch-mode:\(selectedMode)"])
                 } else if menuType == .menu_ADD_ACTION {
                     appDelegate().modeMap.addBatchAction(for: modeName)
                     appDelegate().mainViewController.addActionButtonView.hideAddActionMenu(nil)

@@ -108,6 +108,8 @@ class TTFTUXViewController: UIViewController, UIScrollViewDelegate {
         scrollView.setContentOffset(CGPoint(x: CGFloat(ftuxPage.rawValue) * scrollView.frame.width, y: 0),
                                     animated: true)
         nextButton.ftuxPage = ftuxPage
+        
+        appDelegate().modeMap.recordUsage(additionalParams: ["moment": "ftux-\(ftuxPage)"])
     }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {

@@ -323,7 +323,7 @@ class TTModeMap: NSObject {
         Alamofire.request("https://turntouch.com/usage/record", method: .post,
                           parameters: params, encoding: JSONEncoding.default).responseJSON
             { response in
-                print(" ---> Usage: \(response)")
+                print(" ---> Usage: \(params) \(response)")
             }
     }
     
@@ -396,6 +396,8 @@ class TTModeMap: NSObject {
         tempModeName = nil
         
         self.didChangeValue(forKey: "inspectingModeDirection")
+        
+        self.recordUsage(additionalParams: ["moment": "change:add-batch-action:\(selectedMode.nameOfClass):\(actionName)"])
     }
     
     func addBatchAction(modeDirection: TTModeDirection, actionDirection: TTModeDirection, modeClassName: String, actionName: String) -> String {
@@ -536,6 +538,10 @@ class TTModeMap: NSObject {
         } else {
             self.inspectingModeDirection = direction
         }
+        
+        let modeName = self.selectedMode.nameOfClass
+        let actionName = self.selectedMode.actionNameInDirection(self.inspectingModeDirection)
+        appDelegate().modeMap.recordUsage(additionalParams: ["moment": "tap:inspect-action:\(modeName):\(actionName)"])
     }
 
     // MARK: Device info

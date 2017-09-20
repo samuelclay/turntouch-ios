@@ -88,15 +88,23 @@ class TTPairingViewController: UIViewController, TTBluetoothMonitorDelegate {
         pairingState = state
         
         if state == .searching {
+            appDelegate().modeMap.recordUsage(additionalParams: ["moment": "pairing-search"])
+
             appDelegate().bluetoothMonitor.delegate = self
             appDelegate().bluetoothMonitor.scanUnknown()
             self.changedDeviceCount()
         } else if state == .pairing {
+            appDelegate().modeMap.recordUsage(additionalParams: ["moment": "pairing-buttons"])
+
             self.changedDeviceCount()
         } else if state == .failure && self.navigationController?.visibleViewController == self {
+            appDelegate().modeMap.recordUsage(additionalParams: ["moment": "pairing-failure"])
+
             let pairingInfoViewController = TTPairingInfoViewController(pairingState: .failure)
             self.navigationController?.pushViewController(pairingInfoViewController, animated: true)
         } else if state == .success {
+            appDelegate().modeMap.recordUsage(additionalParams: ["moment": "pairing-success"])
+
             let pairingInfoViewController = TTPairingInfoViewController(pairingState: .success)
             self.navigationController?.pushViewController(pairingInfoViewController, animated: true)
         }
@@ -123,12 +131,16 @@ class TTPairingViewController: UIViewController, TTBluetoothMonitorDelegate {
             countdownTimer?.invalidate()
             countdownTimer = nil
         } else if connecting && !connected {
+            appDelegate().modeMap.recordUsage(additionalParams: ["moment": "pairing-connecting"])
+
             countdownIndicator.isHidden = true
             spinnerScanning.isHidden = false
             titleLabel.text = "Pairing your Turn Touch"
             subtitleLabel.text = "Connecting..."
             searchingTimer?.invalidate()
         } else if connected {
+            appDelegate().modeMap.recordUsage(additionalParams: ["moment": "pairing-buttons"])
+
             countdownIndicator.isHidden = false
             countdownIndicator.progress = 0
             spinnerScanning.isHidden = true

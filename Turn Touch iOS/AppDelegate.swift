@@ -50,10 +50,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         
         DispatchQueue.main.async {
             if self.bluetoothMonitor.noKnownDevices() {
-//                appDelegate().mainViewController.showPairingModal()
+                appDelegate().mainViewController.showPairingModal()
             }
-            
-            appDelegate().modeMap.recordUsage(additionalParams: ["moment": "launch"])
         }
         
         DispatchQueue.main.async {
@@ -74,6 +72,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
         print(" ---> applicationDidEnterBackground")
+        
+        self.recordState()
 //        let prefs = UserDefaults.standardUserDefaults()
 //        prefs.synchronize()
     }
@@ -89,6 +89,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         
         bluetoothMonitor.countDevices()
         bluetoothMonitor.resetSearch()
+        
+        self.recordState()
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
@@ -97,6 +99,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         bluetoothMonitor.terminate()
         let prefs = UserDefaults.standard
         prefs.synchronize()
+    }
+    
+    func recordState() {
+        switch (UIApplication.shared.applicationState) {
+        case .active:
+            modeMap.recordUsage(additionalParams: ["moment": "launch"])
+        case .background:
+            modeMap.recordUsage(additionalParams: ["moment": "launch-background"])
+        case .inactive:
+            modeMap.recordUsage(additionalParams: ["moment": "launch-inactive"])
+        }
     }
     
     func erasePreferences() {

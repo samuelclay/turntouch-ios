@@ -247,6 +247,9 @@ class TTModeTab: UIView {
     
     func switchMode() {
         appDelegate().modeMap.switchMode(self.modeDirection, modeChangeType: .modeTab)
+        
+        let selectedMode = appDelegate().modeMap.selectedMode.nameOfClass
+        appDelegate().modeMap.recordUsage(additionalParams: ["moment": "tap:mode-tab:\(selectedMode)"])
     }
     
     @objc func longPressed(sender: UILongPressGestureRecognizer) {
@@ -255,6 +258,9 @@ class TTModeTab: UIView {
                 appDelegate().modeMap.switchMode(self.modeDirection, modeChangeType: .modeTab)
             }
             appDelegate().mainViewController.modeTitleView.pressChange(nil)
+
+            let selectedMode = appDelegate().modeMap.selectedMode.nameOfClass
+            appDelegate().modeMap.recordUsage(additionalParams: ["moment": "long-press:mode-tab:\(selectedMode)"])
         }
     }
 }
