@@ -752,14 +752,17 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
 
         if data.length > 32 {
             var dataString = String(data: data as Data, encoding: String.Encoding.utf8)
-            dataString = dataString?.substring(to: dataString!.characters.index(dataString!.startIndex, offsetBy: 32))
+            let substringSuffixIndex = dataString!.characters.index(dataString!.startIndex, offsetBy: 32)
+            dataString = "\(dataString?[..<substringSuffixIndex] ?? "")"
+//            dataString = dataString?.substring(to: substringSuffixIndex)
             var maxLength = min(32, dataString!.characters.count)
             
             while maxLength > 0 {
                 let encodedLength = dataString?.lengthOfBytes(using: String.Encoding.utf8)
                 if encodedLength > 32 || encodedLength == 0 {
                     maxLength -= 1
-                    dataString = dataString?.substring(to: dataString!.characters.index(dataString!.startIndex, offsetBy: maxLength))
+                    let substringSuffixIndex = dataString!.characters.index(dataString!.startIndex, offsetBy: maxLength)
+                    dataString = "\(dataString?[..<substringSuffixIndex] ?? "")"
                 } else {
                     break
                 }

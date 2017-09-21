@@ -2,7 +2,7 @@ platform :ios, "9.0"
 use_frameworks!
 
 target "Turn Touch iOS" do
-    pod "CocoaAsyncSocket", "~> 7.6.0"
+    pod "CocoaAsyncSocket", :git => "https://github.com/robbiehanson/CocoaAsyncSocket.git"
     pod "AFNetworking/NSURLSession", "~> 3.1"
     pod "SWXMLHash", "~> 4.0.0"
     pod "ReachabilitySwift", "~> 3"
@@ -11,7 +11,7 @@ target "Turn Touch iOS" do
     # SwiftyHue
     pod "SwiftyHue", :git => "https://github.com/samuelclay/SwiftyHue.git"
     
-    pod "iOSDFULibrary", "~> 3.2"
+    pod "iOSDFULibrary", :git => "https://github.com/NordicSemiconductor/IOS-Pods-DFU-Library.git", :branch => "swift4"
     pod "InAppSettingsKit", "~> 2.8"
 end
 
@@ -20,6 +20,7 @@ post_install do |installer|
     installer.pods_project.targets.each do |target|
         target.build_configurations.each do |config|
             config.build_settings['SWIFT_VERSION'] = '3.2'
+            config.build_settings['SWIFT_OPTIMIZATION_LEVEL'] = '-Owholemodule'
         end
     end
 end
