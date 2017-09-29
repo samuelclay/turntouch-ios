@@ -148,18 +148,18 @@ class TTModeMusic: TTMode {
     }
     
     func runTTModeMusicVolumeUp() {
-        if lastVolume == nil {
+//        if lastVolume == nil {
             lastVolume = AVAudioSession.sharedInstance().outputVolume
-        }
+//        }
         lastVolume = min(1, lastVolume + ITUNES_VOLUME_CHANGE)
         volumeSlider.setValue(lastVolume, animated: false)
         
     }
     
     func runTTModeMusicVolumeDown() {
-        if lastVolume == nil {
+//        if lastVolume == nil {
             lastVolume = AVAudioSession.sharedInstance().outputVolume
-        }
+//        }
         lastVolume = max(0, lastVolume - ITUNES_VOLUME_CHANGE)
         volumeSlider.setValue(lastVolume, animated: false)
     }
