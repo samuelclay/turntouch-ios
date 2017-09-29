@@ -113,35 +113,39 @@ class TTModeSonos: TTMode {
     // MARK: Action images
     
     func imageTTModeSonosVolumeUp() -> String {
-        return "Volume up"
+        return "music_volume_up.png"
     }
     
     func imageTTModeSonosVolumeDown() -> String {
-        return "Volume down"
+        return "music_volume_down.png"
     }
     
     func imageTTModeSonosVolumeMute() -> String {
-        return "Mute"
+        return "music_volume_mute.png"
+    }
+    
+    func imageTTModeSonosVolumeJump() -> String {
+        return "music_volume_up.png"
     }
     
     func imageTTModeSonosPlayPause() -> String {
-        return "Play/pause"
+        return "music_play.png"
     }
     
     func imageTTModeSonosPlay() -> String {
-        return "Play"
+        return "music_play.png"
     }
     
     func imageTTModeSonosPause() -> String {
-        return "Pause"
+        return "music_pause.png"
     }
     
     func imageTTModeSonosNextTrack() -> String {
-        return "Next track"
+        return "music_ff.png"
     }
     
     func imageTTModeSonosPreviousTrack() -> String {
-        return "Previous track"
+        return "music_rewind.png"
     }
     
     // MARK: Defaults

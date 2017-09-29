@@ -38,7 +38,8 @@ class TTModeMusic: TTMode {
         "TTModeMusicPlayPause",
         "TTModeMusicPlay",
         "TTModeMusicPause",
-        "TTModeMusicNextTrack"]
+        "TTModeMusicNextTrack",
+        "TTModeMusicPreviousTrack"]
     }
     
     func titleTTModeMusicVolumeUp() -> String {
@@ -91,6 +92,26 @@ class TTModeMusic: TTMode {
         return "music_volume_up.png"
     }
     
+    func imageTTModeMusicPlayPause() -> String {
+        return "music_play.png"
+    }
+    
+    func imageTTModeMusicPlay() -> String {
+        return "music_play.png"
+    }
+    
+    func imageTTModeMusicPause() -> String {
+        return "music_pause.png"
+    }
+    
+    func imageTTModeMusicNextTrack() -> String {
+        return "music_ff.png"
+    }
+
+    func imageTTModeMusicPreviousTrack() -> String {
+        return "music_rewind.png"
+    }
+
     // MARK: Defaults
     
     override func defaultNorth() -> String {
@@ -202,5 +223,9 @@ class TTModeMusic: TTMode {
                 break
             }
         }
+    }
+    
+    func runTTModeMusicPreviousTrack() {
+        musicPlayer.skipToPreviousItem()
     }
 }
