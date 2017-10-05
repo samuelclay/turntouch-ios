@@ -218,10 +218,14 @@ class TTDeviceTitleView: UIView, TTTitleMenuDelegate, DFUServiceDelegate, DFUPro
     
     func menuOptions() -> [[String : String]] {
         return [
-            ["title": device.batteryPct != nil ? "Battery: \(device.batteryPct!)%" : "> Not connected"],
-            ["title": device.firmwareVersion != nil ? "Firmware: v\(device.firmwareVersion!)" : "—"],
-            ["title": "Rename remote"],
-            ["title": "Forget this remote"],
+            ["title": device.batteryPct != nil ? "Battery: \(device.batteryPct!)%" : "> Not connected",
+             "image": "battery"],
+            ["title": device.firmwareVersion != nil ? "Firmware: v\(device.firmwareVersion!)" : "—",
+             "image": "versions"],
+            ["title": "Rename remote",
+             "image": "rename"],
+            ["title": "Forget this remote",
+             "image": "remove"],
         ]
     }
     

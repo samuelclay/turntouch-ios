@@ -92,11 +92,16 @@ class TTTitleBarView: UIView, TTTitleMenuDelegate {
     
     func menuOptions() -> [[String : String]] {
         return [
-            ["title": "Add a new remote"],
-            ["title": "Settings"],
-            ["title": "How it works"],
-            ["title": "Contact support"],
-            ["title": "About Turn Touch"],
+            ["title": "Add a new remote",
+             "image": "add"],
+            ["title": "Settings",
+             "image": "preferences"],
+            ["title": "How it works",
+             "image": "how_it_works"],
+            ["title": "Contact support",
+             "image": "support"],
+            ["title": "About Turn Touch",
+             "image": "about"],
         ]
     }
     

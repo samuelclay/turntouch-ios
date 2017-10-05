@@ -87,8 +87,10 @@ class TTModeWemoDeviceSwitchOptions: TTOptionsDetailViewController, UITableViewD
     
     func menuOptions() -> [[String : String]] {
         return [
-            ["title": "Search for new devices..."],
-            ["title": "Remove all and search..."],
+            ["title": "Search for new devices...",
+             "image": "search"],
+            ["title": "Remove all and search...",
+             "image": "remove"],
         ]
     }
     

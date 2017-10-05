@@ -199,6 +199,16 @@
 		FF8B75831F86DD1C00D7867C /* camera_reverse.png in Resources */ = {isa = PBXBuildFile; fileRef = FF8B75811F86DD1500D7867C /* camera_reverse.png */; };
 		FF8B75841F86DD1C00D7867C /* camera_shoot.png in Resources */ = {isa = PBXBuildFile; fileRef = FF8B757E1F86DD1500D7867C /* camera_shoot.png */; };
 		FF8B75851F86DD1C00D7867C /* camera_video.png in Resources */ = {isa = PBXBuildFile; fileRef = FF8B757F1F86DD1500D7867C /* camera_video.png */; };
+		FF8B758B1F86E0BC00D7867C /* about.png in Resources */ = {isa = PBXBuildFile; fileRef = FF8B75871F86E0B700D7867C /* about.png */; };
+		FF8B758C1F86E0BC00D7867C /* add.png in Resources */ = {isa = PBXBuildFile; fileRef = FF8B75861F86E0B600D7867C /* add.png */; };
+		FF8B758D1F86E0BC00D7867C /* how_it_works.png in Resources */ = {isa = PBXBuildFile; fileRef = FF8B75881F86E0B700D7867C /* how_it_works.png */; };
+		FF8B758E1F86E0BC00D7867C /* preferences.png in Resources */ = {isa = PBXBuildFile; fileRef = FF8B75891F86E0B700D7867C /* preferences.png */; };
+		FF8B758F1F86E0BC00D7867C /* support.png in Resources */ = {isa = PBXBuildFile; fileRef = FF8B758A1F86E0B800D7867C /* support.png */; };
+		FF8B759E1F86EDC400D7867C /* battery.png in Resources */ = {isa = PBXBuildFile; fileRef = FF8B759A1F86EDBE00D7867C /* battery.png */; };
+		FF8B759F1F86EDC400D7867C /* remove.png in Resources */ = {isa = PBXBuildFile; fileRef = FF8B759B1F86EDBE00D7867C /* remove.png */; };
+		FF8B75A01F86EDC400D7867C /* rename.png in Resources */ = {isa = PBXBuildFile; fileRef = FF8B759C1F86EDBE00D7867C /* rename.png */; };
+		FF8B75A11F86EDC400D7867C /* versions.png in Resources */ = {isa = PBXBuildFile; fileRef = FF8B759D1F86EDBF00D7867C /* versions.png */; };
+		FF8B75A31F86EE6F00D7867C /* search.png in Resources */ = {isa = PBXBuildFile; fileRef = FF8B75A21F86EE6E00D7867C /* search.png */; };
 		FFB41B231CEE9A3000CD5F09 /* app_music.png in Resources */ = {isa = PBXBuildFile; fileRef = FFB41AC11CEE9A3000CD5F09 /* app_music.png */; };
 		FFB41B241CEE9A3000CD5F09 /* button_chevron.png in Resources */ = {isa = PBXBuildFile; fileRef = FFB41AC21CEE9A3000CD5F09 /* button_chevron.png */; };
 		FFB41B251CEE9A3000CD5F09 /* button_dash.png in Resources */ = {isa = PBXBuildFile; fileRef = FFB41AC31CEE9A3000CD5F09 /* button_dash.png */; };
@@ -554,6 +564,16 @@
 		FF8B757F1F86DD1500D7867C /* camera_video.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camera_video.png; sourceTree = "<group>"; };
 		FF8B75801F86DD1500D7867C /* camera_flash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camera_flash.png; sourceTree = "<group>"; };
 		FF8B75811F86DD1500D7867C /* camera_reverse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camera_reverse.png; sourceTree = "<group>"; };
+		FF8B75861F86E0B600D7867C /* add.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = add.png; sourceTree = "<group>"; };
+		FF8B75871F86E0B700D7867C /* about.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = about.png; sourceTree = "<group>"; };
+		FF8B75881F86E0B700D7867C /* how_it_works.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = how_it_works.png; sourceTree = "<group>"; };
+		FF8B75891F86E0B700D7867C /* preferences.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = preferences.png; sourceTree = "<group>"; };
+		FF8B758A1F86E0B800D7867C /* support.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = support.png; sourceTree = "<group>"; };
+		FF8B759A1F86EDBE00D7867C /* battery.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = battery.png; sourceTree = "<group>"; };
+		FF8B759B1F86EDBE00D7867C /* remove.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = remove.png; sourceTree = "<group>"; };
+		FF8B759C1F86EDBE00D7867C /* rename.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rename.png; sourceTree = "<group>"; };
+		FF8B759D1F86EDBF00D7867C /* versions.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = versions.png; sourceTree = "<group>"; };
+		FF8B75A21F86EE6E00D7867C /* search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search.png; sourceTree = "<group>"; };
 		FFB41AC11CEE9A3000CD5F09 /* app_music.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = app_music.png; sourceTree = "<group>"; };
 		FFB41AC21CEE9A3000CD5F09 /* button_chevron.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_chevron.png; sourceTree = "<group>"; };
 		FFB41AC31CEE9A3000CD5F09 /* button_dash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_dash.png; sourceTree = "<group>"; };
@@ -1077,6 +1097,16 @@
 		FFB41AAD1CEE9A3000CD5F09 /* actions */ = {
 			isa = PBXGroup;
 			children = (
+				FF8B75871F86E0B700D7867C /* about.png */,
+				FF8B75861F86E0B600D7867C /* add.png */,
+				FF8B75881F86E0B700D7867C /* how_it_works.png */,
+				FF8B75891F86E0B700D7867C /* preferences.png */,
+				FF8B758A1F86E0B800D7867C /* support.png */,
+				FF8B75A21F86EE6E00D7867C /* search.png */,
+				FF8B759A1F86EDBE00D7867C /* battery.png */,
+				FF8B759B1F86EDBE00D7867C /* remove.png */,
+				FF8B759C1F86EDBE00D7867C /* rename.png */,
+				FF8B759D1F86EDBF00D7867C /* versions.png */,
 				FF8B75531F86D4CE00D7867C /* alarm_off.png */,
 				FF8B75321F86D4CA00D7867C /* alarm_snooze.png */,
 				FF8B75801F86DD1500D7867C /* camera_flash.png */,
@@ -1737,6 +1767,16 @@
 				FFB41B6B1CEE9A3000CD5F09 /* modal_ftux_mode.png in Resources */,
 				FFDA0FB11D3C4FEE0019859F /* camera-flash.png in Resources */,
 				FFB41B651CEE9A3000CD5F09 /* title@2x.png in Resources */,
+				FF8B758B1F86E0BC00D7867C /* about.png in Resources */,
+				FF8B75A31F86EE6F00D7867C /* search.png in Resources */,
+				FF8B758C1F86E0BC00D7867C /* add.png in Resources */,
+				FF8B758D1F86E0BC00D7867C /* how_it_works.png in Resources */,
+				FF8B759E1F86EDC400D7867C /* battery.png in Resources */,
+				FF8B759F1F86EDC400D7867C /* remove.png in Resources */,
+				FF8B75A01F86EDC400D7867C /* rename.png in Resources */,
+				FF8B75A11F86EDC400D7867C /* versions.png in Resources */,
+				FF8B758E1F86E0BC00D7867C /* preferences.png in Resources */,
+				FF8B758F1F86E0BC00D7867C /* support.png in Resources */,
 				FF8B75821F86DD1C00D7867C /* camera_flash.png in Resources */,
 				FF8B75831F86DD1C00D7867C /* camera_reverse.png in Resources */,
 				FF8B75841F86DD1C00D7867C /* camera_shoot.png in Resources */,
