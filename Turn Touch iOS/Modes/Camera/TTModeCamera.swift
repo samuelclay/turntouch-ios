@@ -94,19 +94,19 @@ class TTModeCamera: TTMode {
     // MARK: Action images
     
     func imageTTModeCameraShoot() -> String {
-        return ""
+        return "camera_shoot"
     }
     
     func imageTTModeCameraSwitchPhotoVideo() -> String {
-        return ""
+        return "camera_video"
     }
     
     func imageTTModeCameraSwitchView() -> String {
-        return ""
+        return "camera_reverse"
     }
     
     func imageTTModeCameraSwitchFlash() -> String {
-        return ""
+        return "camera_flash"
     }
     
     // MARK: Defaults

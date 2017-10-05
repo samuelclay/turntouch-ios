@@ -74,6 +74,10 @@ class TTModeMusic: TTMode {
         return "Next track"
     }
     
+    func titleTTModeMusicPreviousTrack() -> String {
+        return "Previous track"
+    }
+    
     // MARK: Action images
     
     func imageTTModeMusicVolumeUp() -> String {
@@ -93,7 +97,7 @@ class TTModeMusic: TTMode {
     }
     
     func imageTTModeMusicPlayPause() -> String {
-        return "music_play.png"
+        return "music_play_pause.png"
     }
     
     func imageTTModeMusicPlay() -> String {

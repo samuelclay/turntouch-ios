@@ -70,7 +70,7 @@ class TTModeHomeKit: TTMode, HMHomeManagerDelegate {
     // MARK: Action images
     
     func imageTTModeHomeKitTriggerScene() -> String {
-        return "trigger"
+        return "lightning"
     }
     
     // MARK: Defaults

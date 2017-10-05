@@ -120,15 +120,15 @@ class TTModeWemo: TTMode, TTModeWemoMulticastDelegate, TTModeWemoDeviceDelegate 
     // MARK: Action images
     
     func imageTTModeWemoDeviceStart() -> String {
-        return "next_story.png"
+        return "electrical_connected"
     }
     
     func imageTTModeWemoDeviceOff() -> String {
-        return "next_site.png"
+        return "electrical_disconnected"
     }
     
     func imageTTModeWemoDeviceToggle() -> String {
-        return "previous_story.png"
+        return "electrical"
     }
     
     

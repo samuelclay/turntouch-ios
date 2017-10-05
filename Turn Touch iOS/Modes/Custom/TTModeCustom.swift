@@ -30,7 +30,7 @@ class TTModeCustom: TTMode {
     }
     
     override class func imageName() -> String {
-        return "mode_web.png"
+        return "mode_custom.png"
     }
     
     // MARK: Actions
@@ -50,7 +50,7 @@ class TTModeCustom: TTMode {
     // MARK: Action images
     
     func imageTTModeCustomURL() -> String {
-        return "music_play.png"
+        return "webhook"
     }
     
     // MARK: Defaults

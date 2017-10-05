@@ -129,7 +129,7 @@ class TTModeSonos: TTMode {
     }
     
     func imageTTModeSonosPlayPause() -> String {
-        return "music_play.png"
+        return "music_play_pause.png"
     }
     
     func imageTTModeSonosPlay() -> String {

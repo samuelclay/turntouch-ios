@@ -71,7 +71,7 @@ class TTModeIfttt: TTMode {
     // MARK: Action images
     
     func imageTTModeIftttTriggerAction() -> String {
-        return "trigger"
+        return "lightning"
     }
     
     // MARK: Defaults

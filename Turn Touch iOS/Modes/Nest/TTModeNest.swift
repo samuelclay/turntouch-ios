@@ -84,15 +84,15 @@ class TTModeNest: TTMode, NestSDKAuthorizationViewControllerDelegate {
     // MARK: Action images
     
     func imageTTModeNestRaiseTemp() -> String {
-        return "Volume up"
+        return "temperature_up"
     }
     
     func imageTTModeNestLowerTemp() -> String {
-        return "Volume down"
+        return "temperature_down"
     }
     
     func imageTTModeNestSetTemp() -> String {
-        return "Mute"
+        return "temperature"
     }
     
     // MARK: Defaults
