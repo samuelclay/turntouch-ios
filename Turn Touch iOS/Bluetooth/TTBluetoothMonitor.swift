@@ -315,6 +315,9 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
                         CBConnectPeripheralOptionNotifyOnNotificationKey: true])
                 } else if peripheral.services == nil {
                     self.centralManager(central, didConnect: peripheral)
+                } else {
+                    device?.state = .device_STATE_CONNECTED
+                    self.countDevices()
                 }
             }
         } else {
@@ -329,11 +332,12 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
             print(" ---> (\(bluetoothState)) centralManagerDidUpdateState: \(central.state.rawValue) -> \(manager.state.rawValue)")
         }
         manager = central
-        self.updateBluetoothState()
         
         if manager.state == .poweredOn && restoredState != nil {
             self.centralManager(manager, willRestoreState: restoredState!)
             restoredState = nil
+        } else {
+            self.updateBluetoothState()
         }
     }
     
