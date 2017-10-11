@@ -1,8 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -29,33 +32,51 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to Turn Touch" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="62h-DM-WNF">
-                    <fontDescription key="fontDescription" name="Effra-Regular" family="Effra" pointSize="24"/>
-                    <color key="textColor" red="0.23795303249999999" green="0.236803501" blue="0.2391025641" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Beautiful Control" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eZF-s1-Zb8">
-                    <fontDescription key="fontDescription" name="Effra-Light" family="Effra" pointSize="18"/>
-                    <color key="textColor" red="0.23795303249999999" green="0.236803501" blue="0.2391025641" alpha="1" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="modal_remote_hero.png" translatesAutoresizingMaskIntoConstraints="NO" id="aEt-jd-Sqv">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Po6-NL-NNy">
+                    <rect key="frame" x="36" y="165" width="303" height="337"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to Turn Touch" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="62h-DM-WNF">
+                            <rect key="frame" x="26" y="264" width="252" height="28"/>
+                            <fontDescription key="fontDescription" name="Effra-Regular" family="Effra" pointSize="24"/>
+                            <color key="textColor" red="0.23795303249999999" green="0.236803501" blue="0.2391025641" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="modal_remote_hero.png" translatesAutoresizingMaskIntoConstraints="NO" id="aEt-jd-Sqv">
+                            <rect key="frame" x="31.5" y="0.0" width="240" height="240"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="240" id="Eq4-Bz-V9v"/>
+                                <constraint firstAttribute="width" secondItem="aEt-jd-Sqv" secondAttribute="height" multiplier="1:1" id="IId-Ry-wjU"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Beautiful Control" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eZF-s1-Zb8">
+                            <rect key="frame" x="8" y="316" width="287" height="21"/>
+                            <fontDescription key="fontDescription" name="Effra-Light" family="Effra" pointSize="18"/>
+                            <color key="textColor" red="0.23795303249999999" green="0.236803501" blue="0.2391025641" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="240" id="Eq4-Bz-V9v"/>
-                        <constraint firstAttribute="width" secondItem="aEt-jd-Sqv" secondAttribute="height" multiplier="1:1" id="IId-Ry-wjU"/>
+                        <constraint firstAttribute="trailingMargin" secondItem="eZF-s1-Zb8" secondAttribute="trailing" id="577-FX-sGf"/>
+                        <constraint firstItem="62h-DM-WNF" firstAttribute="top" secondItem="aEt-jd-Sqv" secondAttribute="bottom" constant="24" id="GoN-8e-qmW"/>
+                        <constraint firstItem="62h-DM-WNF" firstAttribute="centerX" secondItem="Po6-NL-NNy" secondAttribute="centerX" id="Leo-mC-lsb"/>
+                        <constraint firstItem="aEt-jd-Sqv" firstAttribute="centerX" secondItem="Po6-NL-NNy" secondAttribute="centerX" id="NPC-j0-ghF"/>
+                        <constraint firstItem="eZF-s1-Zb8" firstAttribute="top" secondItem="62h-DM-WNF" secondAttribute="bottom" constant="24" id="PMy-wn-Eom"/>
+                        <constraint firstAttribute="bottom" secondItem="eZF-s1-Zb8" secondAttribute="bottom" id="XYO-OG-KN0"/>
+                        <constraint firstItem="eZF-s1-Zb8" firstAttribute="centerX" secondItem="Po6-NL-NNy" secondAttribute="centerX" id="iM0-I5-t3d"/>
+                        <constraint firstItem="aEt-jd-Sqv" firstAttribute="top" secondItem="Po6-NL-NNy" secondAttribute="top" id="iX1-mT-gfj"/>
+                        <constraint firstItem="eZF-s1-Zb8" firstAttribute="leading" secondItem="Po6-NL-NNy" secondAttribute="leadingMargin" id="oqM-LP-fNG"/>
                     </constraints>
-                </imageView>
+                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="eZF-s1-Zb8" firstAttribute="top" secondItem="62h-DM-WNF" secondAttribute="bottom" constant="16" id="P1U-6N-fUY"/>
-                <constraint firstItem="62h-DM-WNF" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="hYg-zQ-0pT"/>
-                <constraint firstItem="eZF-s1-Zb8" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="lm9-B9-hM2"/>
-                <constraint firstItem="aEt-jd-Sqv" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="peR-RQ-Ajk"/>
-                <constraint firstItem="62h-DM-WNF" firstAttribute="top" secondItem="aEt-jd-Sqv" secondAttribute="bottom" constant="38" id="q7k-sg-S3M"/>
-                <constraint firstItem="aEt-jd-Sqv" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="topMargin" constant="96" id="yAF-AB-7Yw"/>
+                <constraint firstAttribute="trailingMargin" secondItem="Po6-NL-NNy" secondAttribute="trailing" constant="20" id="JoA-lE-r8M"/>
+                <constraint firstItem="Po6-NL-NNy" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="L4W-hX-QLF"/>
+                <constraint firstItem="Po6-NL-NNy" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leadingMargin" constant="20" id="Ta9-ni-Gme"/>
+                <constraint firstItem="Po6-NL-NNy" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="tdZ-9z-3XV"/>
             </constraints>
-            <point key="canvasLocation" x="368" y="287.25"/>
+            <point key="canvasLocation" x="367.5" y="286.5"/>
         </view>
     </objects>
     <resources>

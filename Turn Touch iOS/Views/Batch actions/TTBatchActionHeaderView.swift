@@ -53,15 +53,15 @@ class TTBatchActionHeaderView: UIView {
         deleteButton.titleLabel!.lineBreakMode = NSLineBreakMode.byClipping
         deleteButton.addTarget(self, action: #selector(self.pressDelete), for: .touchUpInside)
         self.addSubview(deleteButton)
-        self.addConstraint(NSLayoutConstraint(item: deleteButton, attribute: .trailing, relatedBy: .equal,
-                                              toItem: self, attribute: .trailing, multiplier: 1.0, constant: -24))
+        self.addConstraint(NSLayoutConstraint(item: deleteButton, attribute: .trailingMargin, relatedBy: .equal,
+                                              toItem: self, attribute: .trailingMargin, multiplier: 1.0, constant: -24))
         self.addConstraint(NSLayoutConstraint(item: deleteButton, attribute: .centerY, relatedBy: .equal,
                                               toItem: self, attribute: .centerY, multiplier: 1.0, constant: 0))
         
         modeImageView.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(modeImageView)
-        self.addConstraint(NSLayoutConstraint(item: modeImageView, attribute: .leading, relatedBy: .equal,
-                                              toItem: self, attribute: .leading, multiplier: 1.0, constant: 24))
+        self.addConstraint(NSLayoutConstraint(item: modeImageView, attribute: .leadingMargin, relatedBy: .equal,
+                                              toItem: self, attribute: .leadingMargin, multiplier: 1.0, constant: 24))
         self.addConstraint(NSLayoutConstraint(item: modeImageView, attribute: .centerY, relatedBy: .equal,
                                               toItem: self, attribute: .centerY, multiplier: 1.0, constant: 0))
         modeImageView.addConstraint(NSLayoutConstraint(item: modeImageView, attribute: .width, relatedBy: .equal,

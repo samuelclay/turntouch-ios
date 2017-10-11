@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -29,7 +29,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iog-HM-7hP">
-                    <rect key="frame" x="558" y="29" width="20" height="20"/>
+                    <rect key="frame" x="558" y="33" width="20" height="20"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="20" id="8gs-3s-jIe"/>
                         <constraint firstAttribute="height" constant="20" id="uSj-wo-Nbf"/>
@@ -40,16 +40,16 @@
                     </connections>
                 </button>
                 <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="QKb-ZA-FuH">
-                    <rect key="frame" x="558" y="29" width="20" height="20"/>
+                    <rect key="frame" x="558" y="33" width="20" height="20"/>
                 </activityIndicatorView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Speakers" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9BV-EW-maG">
-                    <rect key="frame" x="22" y="22" width="52" height="35"/>
+                    <rect key="frame" x="22" y="22" width="55" height="43"/>
                     <fontDescription key="fontDescription" name="Effra-Regular" family="Effra" pointSize="13"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1tn-dT-3g7">
-                    <rect key="frame" x="96" y="24" width="440" height="30"/>
+                    <rect key="frame" x="99" y="28" width="437" height="30"/>
                     <fontDescription key="fontDescription" name="Effra-Regular" family="Effra" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                     <connections>
@@ -63,10 +63,10 @@
                 <constraint firstItem="1tn-dT-3g7" firstAttribute="leading" secondItem="9BV-EW-maG" secondAttribute="trailing" constant="22" id="H3o-JY-aC2"/>
                 <constraint firstItem="Iog-HM-7hP" firstAttribute="centerX" secondItem="QKb-ZA-FuH" secondAttribute="centerX" id="QM7-0f-3YM"/>
                 <constraint firstItem="Iog-HM-7hP" firstAttribute="leading" secondItem="1tn-dT-3g7" secondAttribute="trailing" constant="22" id="QvG-7w-xDG"/>
-                <constraint firstAttribute="trailing" secondItem="Iog-HM-7hP" secondAttribute="trailing" constant="22" id="RZd-3i-usn"/>
+                <constraint firstAttribute="trailingMargin" secondItem="Iog-HM-7hP" secondAttribute="trailing" constant="2" id="RZd-3i-usn"/>
                 <constraint firstItem="QKb-ZA-FuH" firstAttribute="centerY" secondItem="Iog-HM-7hP" secondAttribute="centerY" id="eEi-7P-e7i"/>
                 <constraint firstAttribute="bottomMargin" secondItem="9BV-EW-maG" secondAttribute="bottom" constant="22" id="fJO-Bk-0Ou"/>
-                <constraint firstItem="9BV-EW-maG" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="22" id="gDz-cJ-Syq"/>
+                <constraint firstItem="9BV-EW-maG" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leadingMargin" constant="2" id="gDz-cJ-Syq"/>
                 <constraint firstItem="QKb-ZA-FuH" firstAttribute="trailing" secondItem="Iog-HM-7hP" secondAttribute="trailing" constant="-2" id="gfv-uT-7Dd"/>
                 <constraint firstItem="Iog-HM-7hP" firstAttribute="centerY" secondItem="QKb-ZA-FuH" secondAttribute="centerY" id="jgb-Bu-BcP"/>
                 <constraint firstItem="1tn-dT-3g7" firstAttribute="centerY" secondItem="9BV-EW-maG" secondAttribute="centerY" id="nNl-32-4gr"/>

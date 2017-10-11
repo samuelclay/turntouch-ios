@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -55,7 +56,7 @@
                     </connections>
                 </tableView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No WeMo devices found" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xEe-HV-oGe">
-                    <rect key="frame" x="22" y="20" width="186.5" height="22"/>
+                    <rect key="frame" x="22" y="20" width="198" height="22"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="22" id="pQj-3q-AFB"/>
                     </constraints>
@@ -67,16 +68,16 @@
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="WqU-XV-hBv" secondAttribute="bottom" constant="20" id="60j-BD-OxO"/>
-                <constraint firstItem="xEe-HV-oGe" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="22" id="8is-YH-JYx"/>
+                <constraint firstItem="xEe-HV-oGe" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leadingMargin" constant="2" id="8is-YH-JYx"/>
                 <constraint firstItem="xEe-HV-oGe" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="20" id="Gda-Br-pXe"/>
                 <constraint firstItem="c6u-gn-l11" firstAttribute="leading" secondItem="WqU-XV-hBv" secondAttribute="trailing" constant="20" id="bz5-TE-aNI"/>
                 <constraint firstItem="WqU-XV-hBv" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="20" id="c0A-BL-4cN"/>
                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="xEe-HV-oGe" secondAttribute="bottom" constant="20" id="fNJ-3h-WHD"/>
                 <constraint firstItem="4Hd-ra-HFv" firstAttribute="centerX" secondItem="c6u-gn-l11" secondAttribute="centerX" id="n83-Dr-Bty"/>
                 <constraint firstItem="c6u-gn-l11" firstAttribute="top" secondItem="WqU-XV-hBv" secondAttribute="top" id="olX-eg-gnB"/>
-                <constraint firstAttribute="trailing" secondItem="c6u-gn-l11" secondAttribute="trailing" constant="20" id="pvO-tr-meE"/>
+                <constraint firstAttribute="trailingMargin" secondItem="c6u-gn-l11" secondAttribute="trailing" id="pvO-tr-meE"/>
                 <constraint firstItem="4Hd-ra-HFv" firstAttribute="centerY" secondItem="c6u-gn-l11" secondAttribute="centerY" id="sZ4-NE-mjF"/>
-                <constraint firstItem="WqU-XV-hBv" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="yIb-LF-xff"/>
+                <constraint firstItem="WqU-XV-hBv" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leadingMargin" id="yIb-LF-xff"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="199" y="107"/>

@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -57,15 +58,15 @@
                 <constraint firstItem="GA4-5f-JhT" firstAttribute="centerY" secondItem="irs-FR-kmS" secondAttribute="centerY" id="3LZ-ms-Smb"/>
                 <constraint firstItem="GA4-5f-JhT" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="20" id="63k-C3-k9u"/>
                 <constraint firstAttribute="bottom" secondItem="1ca-Ql-SOX" secondAttribute="bottom" constant="20" id="Aak-et-afc"/>
-                <constraint firstAttribute="trailing" secondItem="GA4-5f-JhT" secondAttribute="trailing" constant="20" id="HoZ-Po-tu1"/>
+                <constraint firstAttribute="trailingMargin" secondItem="GA4-5f-JhT" secondAttribute="trailingMargin" constant="8" id="HoZ-Po-tu1"/>
                 <constraint firstItem="1ca-Ql-SOX" firstAttribute="top" secondItem="GA4-5f-JhT" secondAttribute="bottom" constant="20" id="NgV-lR-Epy"/>
                 <constraint firstItem="1ca-Ql-SOX" firstAttribute="leading" secondItem="1yc-PJ-p3e" secondAttribute="trailing" constant="20" id="OCZ-UP-WKJ"/>
                 <constraint firstItem="y4n-pF-yAc" firstAttribute="centerY" secondItem="1yc-PJ-p3e" secondAttribute="centerY" id="Oz3-gU-aie"/>
                 <constraint firstItem="y4n-pF-yAc" firstAttribute="leading" secondItem="1ca-Ql-SOX" secondAttribute="trailing" constant="8" id="UaR-3B-OCx"/>
                 <constraint firstItem="GA4-5f-JhT" firstAttribute="centerY" secondItem="irs-FR-kmS" secondAttribute="centerY" id="XCb-kr-BSo"/>
-                <constraint firstAttribute="trailing" secondItem="y4n-pF-yAc" secondAttribute="trailing" constant="20" id="Y19-4X-Ktw"/>
-                <constraint firstItem="1yc-PJ-p3e" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="cBI-Uw-xlm"/>
-                <constraint firstItem="irs-FR-kmS" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="eZt-RD-Feb"/>
+                <constraint firstItem="1yc-PJ-p3e" firstAttribute="leading" secondItem="irs-FR-kmS" secondAttribute="leading" id="Z3B-m3-jv9"/>
+                <constraint firstItem="y4n-pF-yAc" firstAttribute="trailing" secondItem="GA4-5f-JhT" secondAttribute="trailing" id="bTL-9q-d5N"/>
+                <constraint firstItem="irs-FR-kmS" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leadingMargin" id="eZt-RD-Feb"/>
                 <constraint firstItem="GA4-5f-JhT" firstAttribute="leading" secondItem="1ca-Ql-SOX" secondAttribute="leading" id="pJd-qA-43G"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

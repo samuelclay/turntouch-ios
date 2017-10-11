@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -44,36 +45,36 @@
                     <rect key="frame" x="492" y="18" width="20" height="20"/>
                 </activityIndicatorView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thermostat" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bd1-fL-FoJ">
-                    <rect key="frame" x="20" y="20" width="68" height="16"/>
+                    <rect key="frame" x="20" y="20" width="66.5" height="16"/>
                     <fontDescription key="fontDescription" name="Effra-Regular" family="Effra" pointSize="13"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Room temperature" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xUY-1P-NtR">
-                    <rect key="frame" x="113" y="75" width="107" height="16"/>
+                    <rect key="frame" x="112" y="76.5" width="109.5" height="16"/>
                     <fontDescription key="fontDescription" name="Effra-Regular" family="Effra" pointSize="13"/>
                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Temperature set to" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wv1-2k-arM">
-                    <rect key="frame" x="312" y="75" width="108" height="16"/>
+                    <rect key="frame" x="311.5" y="76.5" width="109" height="16"/>
                     <fontDescription key="fontDescription" name="Effra-Regular" family="Effra" pointSize="13"/>
                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZrU-DT-fBt">
-                    <rect key="frame" x="110" y="4" width="360" height="47"/>
+                    <rect key="frame" x="108.5" y="2.5" width="361.5" height="50"/>
                     <fontDescription key="fontDescription" name="Effra-Regular" family="Effra" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="123°F" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yws-cr-XME">
-                    <rect key="frame" x="120" y="99" width="93" height="45"/>
+                    <rect key="frame" x="117.5" y="100.5" width="98" height="43.5"/>
                     <fontDescription key="fontDescription" name="Effra-Regular" family="Effra" pointSize="37"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="123°F" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5HU-ip-UUZ">
-                    <rect key="frame" x="320" y="99" width="93" height="45"/>
+                    <rect key="frame" x="317.5" y="100.5" width="98" height="43.5"/>
                     <fontDescription key="fontDescription" name="Effra-Regular" family="Effra" pointSize="37"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
@@ -82,7 +83,7 @@
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="5HU-ip-UUZ" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" constant="100" id="2lt-uO-FMc"/>
-                <constraint firstItem="bd1-fL-FoJ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="3tM-vG-86A"/>
+                <constraint firstItem="bd1-fL-FoJ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leadingMargin" id="3tM-vG-86A"/>
                 <constraint firstItem="D51-2l-faF" firstAttribute="leading" secondItem="ZrU-DT-fBt" secondAttribute="trailing" constant="22" id="7Mr-9b-KNa"/>
                 <constraint firstItem="Yws-cr-XME" firstAttribute="top" secondItem="xUY-1P-NtR" secondAttribute="bottom" constant="8" id="Ms7-7X-BhZ"/>
                 <constraint firstItem="5HU-ip-UUZ" firstAttribute="centerX" secondItem="wv1-2k-arM" secondAttribute="centerX" id="QIy-nq-GJZ"/>
@@ -92,7 +93,7 @@
                 <constraint firstItem="xUY-1P-NtR" firstAttribute="top" secondItem="ZrU-DT-fBt" secondAttribute="bottom" constant="24" id="YSD-F7-6tk"/>
                 <constraint firstItem="5HU-ip-UUZ" firstAttribute="top" secondItem="wv1-2k-arM" secondAttribute="bottom" constant="8" id="ZCy-ui-AwL"/>
                 <constraint firstItem="ZrU-DT-fBt" firstAttribute="leading" secondItem="bd1-fL-FoJ" secondAttribute="trailing" constant="22" id="dW4-oP-uFv"/>
-                <constraint firstAttribute="trailing" secondItem="D51-2l-faF" secondAttribute="trailing" constant="20" id="esl-G5-Ma1"/>
+                <constraint firstAttribute="trailing" secondItem="D51-2l-faF" secondAttribute="trailingMargin" constant="28" id="esl-G5-Ma1"/>
                 <constraint firstItem="Yws-cr-XME" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" constant="-100" id="f7c-gg-edr"/>
                 <constraint firstItem="s8W-zx-ygX" firstAttribute="centerY" secondItem="D51-2l-faF" secondAttribute="centerY" id="pFR-3f-qu9"/>
                 <constraint firstAttribute="bottom" secondItem="Yws-cr-XME" secondAttribute="bottom" constant="24" id="qGI-rL-Aw2"/>

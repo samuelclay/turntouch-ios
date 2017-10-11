@@ -1,8 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -26,6 +29,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N1L-Zw-odV" userLabel="Refresh Button">
+                    <rect key="frame" x="564" y="22" width="20" height="20"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="20" id="db2-EW-HPp"/>
                         <constraint firstAttribute="width" constant="20" id="hBO-WB-QYr"/>
@@ -36,6 +40,7 @@
                     </connections>
                 </button>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ZrH-Wt-oFd">
+                    <rect key="frame" x="16" y="50" width="568" height="206"/>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="206" id="UOv-39-Xmz"/>
@@ -46,6 +51,7 @@
                     </connections>
                 </tableView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please select a Hue bridge" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PyA-AU-hJU">
+                    <rect key="frame" x="16" y="24" width="155.5" height="16"/>
                     <fontDescription key="fontDescription" name="Effra-Regular" family="Effra" pointSize="13"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
@@ -54,13 +60,13 @@
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="PyA-AU-hJU" firstAttribute="centerY" secondItem="N1L-Zw-odV" secondAttribute="centerY" id="5rH-3w-tKa"/>
-                <constraint firstItem="PyA-AU-hJU" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="16" id="94e-NI-T1Q"/>
+                <constraint firstItem="PyA-AU-hJU" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leadingMargin" constant="-4" id="94e-NI-T1Q"/>
                 <constraint firstItem="N1L-Zw-odV" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="22" id="EXB-2e-eMX"/>
-                <constraint firstItem="ZrH-Wt-oFd" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="16" id="IK4-i9-kxz"/>
                 <constraint firstItem="ZrH-Wt-oFd" firstAttribute="top" secondItem="N1L-Zw-odV" secondAttribute="bottom" constant="8" id="OSf-Nh-o4c"/>
-                <constraint firstAttribute="trailing" secondItem="N1L-Zw-odV" secondAttribute="trailing" constant="16" id="Xd5-Xh-H3b"/>
+                <constraint firstAttribute="trailingMargin" secondItem="N1L-Zw-odV" secondAttribute="trailing" constant="-4" id="Xd5-Xh-H3b"/>
+                <constraint firstItem="N1L-Zw-odV" firstAttribute="trailing" secondItem="ZrH-Wt-oFd" secondAttribute="trailing" id="afp-CB-4oB"/>
+                <constraint firstItem="ZrH-Wt-oFd" firstAttribute="leading" secondItem="PyA-AU-hJU" secondAttribute="leading" id="bt3-ZP-DKR"/>
                 <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="ZrH-Wt-oFd" secondAttribute="bottom" constant="16" id="fCP-hq-ijE"/>
-                <constraint firstAttribute="trailing" secondItem="ZrH-Wt-oFd" secondAttribute="trailing" constant="16" id="v3p-ff-V8l"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="378" y="483"/>

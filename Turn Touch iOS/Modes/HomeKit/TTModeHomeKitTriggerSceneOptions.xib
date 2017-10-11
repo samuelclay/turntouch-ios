@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -109,8 +110,8 @@
             <constraints>
                 <constraint firstItem="Xzx-J5-b5m" firstAttribute="top" secondItem="h9G-vU-By8" secondAttribute="top" constant="-10" id="00Z-1W-K06"/>
                 <constraint firstItem="Din-va-ZEU" firstAttribute="leading" secondItem="Xzx-J5-b5m" secondAttribute="trailing" constant="20" id="0U8-50-ZfI"/>
-                <constraint firstAttribute="trailing" secondItem="2e7-d1-HmG" secondAttribute="trailing" constant="20" id="CLF-D5-KM7"/>
-                <constraint firstItem="h9G-vU-By8" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="DYI-TT-iqq"/>
+                <constraint firstAttribute="trailingMargin" secondItem="2e7-d1-HmG" secondAttribute="trailing" id="CLF-D5-KM7"/>
+                <constraint firstItem="h9G-vU-By8" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leadingMargin" id="DYI-TT-iqq"/>
                 <constraint firstItem="2e7-d1-HmG" firstAttribute="centerX" secondItem="Din-va-ZEU" secondAttribute="centerX" id="IZC-8U-N5u"/>
                 <constraint firstItem="zXx-oz-srb" firstAttribute="width" secondItem="Xzx-J5-b5m" secondAttribute="width" id="JFq-Yp-VMy"/>
                 <constraint firstItem="pOR-ed-GcL" firstAttribute="top" secondItem="Xzx-J5-b5m" secondAttribute="top" id="NTq-dk-UMd"/>

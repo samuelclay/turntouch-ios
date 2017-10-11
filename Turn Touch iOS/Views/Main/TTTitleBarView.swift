@@ -47,8 +47,8 @@ class TTTitleBarView: UIView, TTTitleMenuDelegate {
             toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: SETTINGS_ICON_SIZE+20))
         self.addConstraint(NSLayoutConstraint(item: settingsButton, attribute: .width, relatedBy: .equal,
             toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: SETTINGS_ICON_SIZE+40))
-        self.addConstraint(NSLayoutConstraint(item: settingsButton, attribute: NSLayoutAttribute.right, relatedBy: .equal,
-            toItem: self, attribute: .right, multiplier: 1.0, constant: 0))
+        self.addConstraint(NSLayoutConstraint(item: settingsButton, attribute: .trailingMargin, relatedBy: .equal,
+            toItem: self, attribute: .trailingMargin, multiplier: 1.0, constant: 0))
         self.addConstraint(NSLayoutConstraint(item: settingsButton, attribute: NSLayoutAttribute.centerY, relatedBy: .equal,
             toItem: self, attribute: .centerY, multiplier: 1.0, constant: 0))
         

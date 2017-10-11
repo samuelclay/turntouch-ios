@@ -37,6 +37,7 @@ class TTActionDiamondView: UIView {
         self.registerAsObserver()
         
         diamondView = TTDiamondView(frame: frame, diamondType: diamondType)
+        diamondView.setContentCompressionResistancePriority(.required, for: .horizontal)
         if diamondType == .interactive {
             diamondView.showOutline = true
             diamondView.ignoreSelectedMode = true
@@ -53,8 +54,13 @@ class TTActionDiamondView: UIView {
         widthRegularConstraint = NSLayoutConstraint(item: diamondView, attribute: .width, relatedBy: .equal,
                                                     toItem: nil, attribute: .notAnAttribute,
                                                     multiplier: 1.0, constant: 525)
+        widthRegularConstraint.priority = .defaultHigh
         widthCompactConstraint = NSLayoutConstraint(item: diamondView, attribute: .width, relatedBy: .equal,
                                                     toItem: self, attribute: .width, multiplier: 0.8, constant: 0)
+        widthCompactConstraint.priority = .defaultHigh
+        let maxWidthConstraint = NSLayoutConstraint(item: diamondView, attribute: .width, relatedBy: .lessThanOrEqual, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 420)
+        maxWidthConstraint.priority = .required
+        self.addConstraint(maxWidthConstraint)
         
         self.addSubview(northLabel)
         self.addConstraint(NSLayoutConstraint(item: northLabel, attribute: .centerX, relatedBy: .equal,

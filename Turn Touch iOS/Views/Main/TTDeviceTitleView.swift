@@ -32,8 +32,8 @@ class TTDeviceTitleView: UIView, TTTitleMenuDelegate, DFUServiceDelegate, DFUPro
 
         deviceImageView.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(deviceImageView)
-        self.addConstraint(NSLayoutConstraint(item: deviceImageView, attribute: .leading, relatedBy: .equal,
-            toItem: self, attribute: .leading, multiplier: 1.0, constant: 24))
+        self.addConstraint(NSLayoutConstraint(item: deviceImageView, attribute: .leadingMargin, relatedBy: .equal,
+            toItem: self, attribute: .leadingMargin, multiplier: 1.0, constant: 24))
         self.addConstraint(NSLayoutConstraint(item: deviceImageView, attribute: .centerY, relatedBy: .equal,
             toItem: self, attribute: .centerY, multiplier: 1.0, constant: 0))
         deviceImageView.addConstraint(NSLayoutConstraint(item: deviceImageView, attribute: .width, relatedBy: .equal,
@@ -61,8 +61,8 @@ class TTDeviceTitleView: UIView, TTTitleMenuDelegate, DFUServiceDelegate, DFUPro
             toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: SETTINGS_ICON_SIZE))
         self.addConstraint(NSLayoutConstraint(item: settingsButton, attribute: .width, relatedBy: .equal,
             toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: SETTINGS_ICON_SIZE))
-        self.addConstraint(NSLayoutConstraint(item: settingsButton, attribute: NSLayoutAttribute.right, relatedBy: .equal,
-            toItem: self, attribute: .right, multiplier: 1.0, constant: -18))
+        self.addConstraint(NSLayoutConstraint(item: settingsButton, attribute: .trailingMargin, relatedBy: .equal,
+            toItem: self, attribute: .trailingMargin, multiplier: 1.0, constant: -18))
         self.addConstraint(NSLayoutConstraint(item: settingsButton, attribute: NSLayoutAttribute.centerY, relatedBy: .equal,
             toItem: self, attribute: .centerY, multiplier: 1.0, constant: 0))
         
