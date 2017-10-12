@@ -44,7 +44,7 @@ class TTOptionsView: UIView {
         if keyPath == "selectedModeDirection" {
             self.drawModeOptions()
         } else if keyPath == "inspectingModeDirection" {
-//            self.redrawOptions()
+            self.redrawOptions()
 //        } else if keyPath == "activeModeDirection" {
 //            self.setNeedsDisplay()
         }
