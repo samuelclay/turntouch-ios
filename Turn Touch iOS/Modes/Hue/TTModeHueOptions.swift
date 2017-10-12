@@ -12,17 +12,17 @@ import SwiftyHue
 class TTModeHueOptions: TTOptionsDetailViewController, TTModeHueDelegate {
     
     var modeHue: TTModeHue!
-    var connectViewController: TTModeHueConnect? = TTModeHueConnect()
-    var connectingViewController: TTModeHueConnecting? = TTModeHueConnecting()
-    var connectedViewController: TTModeHueConnected? = TTModeHueConnected()
-    var pushlinkViewController: TTModeHuePushlink? = TTModeHuePushlink()
-    var bridgeViewController: TTModeHueBridge? = TTModeHueBridge()
+    var connectViewController: TTModeHueConnect?
+    var connectingViewController: TTModeHueConnecting?
+    var connectedViewController: TTModeHueConnected?
+    var pushlinkViewController: TTModeHuePushlink?
+    var bridgeViewController: TTModeHueBridge?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.modeHue = appDelegate().modeMap.selectedMode as! TTModeHue
-        self.modeHue.delegate = self
+        self.modeHue = self.mode as! TTModeHue
+        TTModeHue.delegates.add(delegate: self)
         self.view.clipsToBounds = true
 
         if TTModeHue.hueState == .notConnected {
@@ -37,7 +37,8 @@ class TTModeHueOptions: TTOptionsDetailViewController, TTModeHueDelegate {
     }
 
     func changeState(_ hueState: TTHueState, mode: TTModeHue, message: Any?) {
-        print(" ---> Changing hue state: \(hueState) - \(message ?? "nil")")
+        print(" ---> Changing hue state: \(hueState) - \(message ?? "")")
+        
         switch hueState {
         case .notConnected:
             self.drawConnectViewController()

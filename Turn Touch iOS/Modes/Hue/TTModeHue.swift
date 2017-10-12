@@ -82,16 +82,15 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
     static var waitingOnScenes: Bool = false
     static var ensuringScenes: Bool = false
 //    var bridgeSearch: PHBridgeSearching!
-    var bridgeFinder: BridgeFinder!
-    var bridgeAuthenticator: BridgeAuthenticator!
-    var latestBridge: HueBridge?
-    var delegate: TTModeHueDelegate?
-    var sceneDelegate: TTModeHueSceneDelegate?
-    var bridgeToken: Int = 0
-    var bridgesTried: [String] = []
-    var foundBridges: [HueBridge] = [] // Only used during bridge choosing
-    var foundScenes: [String] = []
-    var sceneUploadProgress: Float = -1
+    static var bridgeFinder: BridgeFinder!
+    static var bridgeAuthenticator: BridgeAuthenticator!
+    static var latestBridge: HueBridge?
+    static var delegates: MulticastDelegate<TTModeHueDelegate?> = MulticastDelegate<TTModeHueDelegate?>()
+    static var sceneDelegates: MulticastDelegate<TTModeHueSceneDelegate?> = MulticastDelegate<TTModeHueSceneDelegate?>()
+    static var bridgesTried: [String] = []
+    static var foundBridges: [HueBridge] = [] // Only used during bridge choosing
+    static var foundScenes: [String] = []
+    static var sceneUploadProgress: Float = -1
 
     required init() {
         super.init()
@@ -160,6 +159,15 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
                 "TTModeHueSceneColorLoop",
                 "TTModeHueSleep",
                 "TTModeHueRandom"]
+    }
+    
+    override func shouldOverrideActionOption(_ action: String) -> Bool {
+        let connected = TTModeHue.hueState == .connected
+        if !connected {
+            return true
+        }
+        
+        return false
     }
     
     func titleTTModeHueSceneEarlyEvening() -> String {
@@ -538,10 +546,12 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
         }
         
         TTModeHue.hueState = .connecting
-        self.delegate?.changeState(TTModeHue.hueState, mode: self, message: "Connecting to Hue...")
+        TTModeHue.delegates.invoke { (delegate) in
+            delegate?.changeState(TTModeHue.hueState, mode: self, message: "Connecting to Hue...")
+        }
 
         if reset {
-            bridgesTried = []
+            TTModeHue.bridgesTried = []
         }
         
         let prefs = UserDefaults.standard
@@ -549,7 +559,7 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
         
         var bridgeUntried = false
         for savedBridge in savedBridges {
-            if bridgesTried.contains(savedBridge["serialNumber"]!) {
+            if TTModeHue.bridgesTried.contains(savedBridge["serialNumber"]!) {
                 continue
             }
             
@@ -562,8 +572,8 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
                                    UDN: savedBridge["UDN"]!,
                                    icons: [])
             bridgeUntried = true
-            latestBridge = bridge
-            bridgesTried.append(savedBridge["serialNumber"]!)
+            TTModeHue.latestBridge = bridge
+            TTModeHue.bridgesTried.append(savedBridge["serialNumber"]!)
             
             if DEBUG_HUE {
                 print(" ---> Connecting to bridge: \(savedBridge)")
@@ -572,12 +582,12 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
                 self.authenticateBridge(username: username)
             } else {
                 // New bridge hasn't been pushlinked yet
-                bridgeAuthenticator = BridgeAuthenticator(bridge: bridge,
-                                                          uniqueIdentifier: "TurnTouchHue#\(UIDevice.current.name)",
-                                                          pollingInterval: 1,
-                                                          timeout: 30)
-                bridgeAuthenticator.delegate = self
-                bridgeAuthenticator.start()
+                TTModeHue.bridgeAuthenticator = BridgeAuthenticator(bridge: bridge,
+                                                                    uniqueIdentifier: "TurnTouchHue#\(UIDevice.current.name)",
+                                                                    pollingInterval: 1,
+                                                                    timeout: 30)
+                TTModeHue.bridgeAuthenticator.delegate = self
+                TTModeHue.bridgeAuthenticator.start()
             }
             
             break
@@ -590,11 +600,13 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
     
     func findBridges() {
         TTModeHue.hueState = .connecting
-        self.delegate?.changeState(TTModeHue.hueState, mode: self, message: "Searching for a Hue bridge...")
+        TTModeHue.delegates.invoke { (delegate) in
+            delegate?.changeState(TTModeHue.hueState, mode: self, message: "Searching for a Hue bridge...")
+        }
 
-        bridgeFinder = BridgeFinder()
-        bridgeFinder.delegate = self
-        bridgeFinder.start()
+        TTModeHue.bridgeFinder = BridgeFinder()
+        TTModeHue.bridgeFinder.delegate = self
+        TTModeHue.bridgeFinder.start()
     }
     
     func watchReachability() {
@@ -629,8 +641,10 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
     func bridgeFinder(_ finder: BridgeFinder, didFinishWithResult bridges: [HueBridge]) {
         if bridges.count > 0 {
             TTModeHue.hueState = .bridgeSelect
-            foundBridges = bridges
-            self.delegate?.changeState(TTModeHue.hueState, mode: self, message: nil)
+            TTModeHue.foundBridges = bridges
+            TTModeHue.delegates.invoke { (delegate) in
+                delegate?.changeState(TTModeHue.hueState, mode: self, message: nil)
+            }
         } else {
             self.showNoBridgesFoundDialog()
         }
@@ -640,7 +654,7 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
         print(" ---> Selected bridge: \(bridge)")
         let prefs = UserDefaults.standard
 
-        latestBridge = bridge
+        TTModeHue.latestBridge = bridge
         self.saveRecentBridge()
         prefs.synchronize()
 
@@ -665,14 +679,18 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
     func showNoConnectionDialog() {
         NSLog(" ---> Connection to bridge lost")
         TTModeHue.hueState = .notConnected
-        self.delegate?.changeState(TTModeHue.hueState, mode: self, message: "Connection to Hue bridge lost")
+        TTModeHue.delegates.invoke { (delegate) in
+            delegate?.changeState(TTModeHue.hueState, mode: self, message: "Connection to Hue bridge lost")
+        }
     }
 
     func showNoBridgesFoundDialog() {
         // Insert retry logic here
         NSLog(" ---> Could not find bridge")
         TTModeHue.hueState = .notConnected
-        self.delegate?.changeState(TTModeHue.hueState, mode: self, message: "Could not find any Hue bridges")
+        TTModeHue.delegates.invoke { (delegate) in
+            delegate?.changeState(TTModeHue.hueState, mode: self, message: "Could not find any Hue bridges")
+        }
     }
 
     // MARK: - Hue Authenticator
@@ -689,12 +707,14 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
         NSLog(" ---> Pushlink button not pressed within 30 sec")
         
         // Remove server from saved servers so it isn't automatically reconnected
-        if let serialNumber = latestBridge?.serialNumber {
+        if let serialNumber = TTModeHue.latestBridge?.serialNumber {
             self.removeSavedBridge(serialNumber: serialNumber)
         }
         
         TTModeHue.hueState = .notConnected
-        self.delegate?.changeState(TTModeHue.hueState, mode: self, message: "Pushlink button not pressed within 30 seconds")
+        TTModeHue.delegates.invoke { (delegate) in
+            delegate?.changeState(TTModeHue.hueState, mode: self, message: "Pushlink button not pressed within 30 seconds")
+        }
     }
     
     func bridgeAuthenticatorRequiresLinkButtonPress(_ authenticator: BridgeAuthenticator, secondsLeft: TimeInterval) {
@@ -702,7 +722,9 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
         //        let progressPercentage: Int = (dict["progressPercentage"] as! Int)
         TTModeHue.hueState = .pushlink
         let progress = Int(secondsLeft * (100/30.0))
-        self.delegate?.changeState(TTModeHue.hueState, mode: self, message: progress)
+        TTModeHue.delegates.invoke { (delegate) in
+            delegate?.changeState(TTModeHue.hueState, mode: self, message: progress)
+        }
     }
     
     func authenticateBridge(username: String) {
@@ -718,7 +740,9 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
     }
     
     func updateHueConfig() {
-        self.delegate?.changeState(TTModeHue.hueState, mode: self, message: nil)
+        TTModeHue.delegates.invoke { (delegate) in
+            delegate?.changeState(TTModeHue.hueState, mode: self, message: nil)
+        }
         self.ensureScenes()
         self.ensureScenesSelected()
     }
@@ -766,16 +790,16 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
     func saveRecentBridge(username: String? = nil) {
         let prefs = UserDefaults.standard
         
-        guard let latestBridge = latestBridge else {
+        guard let latestBridge = TTModeHue.latestBridge else {
             print(" ---> ERROR: No latest bridge? How did we get here?")
             return
         }
-        bridgesTried = []
+        TTModeHue.bridgesTried = []
         
-        var foundBridges = prefs.array(forKey: TTModeHueConstants.kHueSavedBridges) as? [[String: String]] ?? []
+        var previouslyFoundBridges = prefs.array(forKey: TTModeHueConstants.kHueSavedBridges) as? [[String: String]] ?? []
         var oldIndex: Int = -1
         var oldBridge: [String: String]?
-        for (i, bridge) in foundBridges.enumerated() {
+        for (i, bridge) in previouslyFoundBridges.enumerated() {
             if bridge["serialNumber"] == latestBridge.serialNumber {
                 oldIndex = i
                 oldBridge = bridge
@@ -783,7 +807,7 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
         }
         
         if oldIndex != -1 {
-            foundBridges.remove(at: oldIndex)
+            previouslyFoundBridges.remove(at: oldIndex)
         }
         var newBridge = ["ip": latestBridge.ip,
                          "deviceType": latestBridge.deviceType,
@@ -797,32 +821,32 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
         } else if let username = oldBridge?["username"] {
             newBridge["username"] = username
         }
-        foundBridges.insert(newBridge, at: 0)
+        previouslyFoundBridges.insert(newBridge, at: 0)
         
-        prefs.set(foundBridges, forKey: TTModeHueConstants.kHueSavedBridges)
+        prefs.set(previouslyFoundBridges, forKey: TTModeHueConstants.kHueSavedBridges)
         prefs.synchronize()
         
         if DEBUG_HUE {
-            print(" ---> Saved bridges (username: \(String(describing: username))): \(foundBridges)")
+            print(" ---> Saved bridges (username: \(String(describing: username))): \(previouslyFoundBridges)")
         }
     }
     
     func removeSavedBridge(serialNumber: String) {
         let prefs = UserDefaults.standard
         
-        var foundBridges = prefs.array(forKey: TTModeHueConstants.kHueSavedBridges) as? [[String: String]] ?? []
-        foundBridges = foundBridges.filter({ (bridge) -> Bool in
+        var previouslyFoundBridges = prefs.array(forKey: TTModeHueConstants.kHueSavedBridges) as? [[String: String]] ?? []
+        previouslyFoundBridges = previouslyFoundBridges.filter({ (bridge) -> Bool in
             bridge["serialNumber"] != serialNumber
         })
         
-        prefs.set(foundBridges, forKey: TTModeHueConstants.kHueSavedBridges)
+        prefs.set(previouslyFoundBridges, forKey: TTModeHueConstants.kHueSavedBridges)
         prefs.synchronize()
         
-        print(" ---> Removed bridge \(serialNumber): \(foundBridges)")
+        print(" ---> Removed bridge \(serialNumber): \(previouslyFoundBridges)")
     }
     
     func startHueHeartbeat(username: String) {
-        guard let latestBridge = latestBridge else {
+        guard let latestBridge = TTModeHue.latestBridge else {
             print(" ---> Error: No latest bridge...")
             return
         }
@@ -885,16 +909,18 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
             }
             
             // Collect scene ids to check against
-            self.foundScenes = []
+            TTModeHue.foundScenes = []
             if !force {
                 for (_, scene) in scenes {
-                    self.foundScenes.append(scene.identifier)
+                    TTModeHue.foundScenes.append(scene.identifier)
                 }
             }
 
             DispatchQueue.main.async {
-                self.sceneUploadProgress = 0
-                self.sceneDelegate?.sceneUploadProgress()
+                TTModeHue.sceneUploadProgress = 0
+                TTModeHue.sceneDelegates.invoke { (sceneDelegate) in
+                    sceneDelegate?.sceneUploadProgress()
+                }
             }
 
             self.ensureScene(sceneName: "TTModeHueSceneEarlyEvening", moment: .button_MOMENT_PRESSUP) { (light: Light, index: Int) in
@@ -1030,8 +1056,10 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
                 DispatchQueue.main.async {
                     print(" ---> DONE uploading scenes")
                     TTModeHue.ensuringScenes = false
-                    self.sceneUploadProgress = -1
-                    self.sceneDelegate?.sceneUploadProgress()
+                    TTModeHue.sceneUploadProgress = -1
+                    TTModeHue.sceneDelegates.invoke { (sceneDelegate) in
+                        sceneDelegate?.sceneUploadProgress()
+                    }
                 }
             })
         }
@@ -1058,13 +1086,13 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
         DispatchQueue.global().async {
             let sceneIdentifier = self.sceneForAction(sceneName, moment: moment)
             if sceneIdentifier != nil {
-                if self.foundScenes.contains(sceneIdentifier!) {
+                if TTModeHue.foundScenes.contains(sceneIdentifier!) {
 //                    print(" ---> Scene already found: \(sceneName) \(String(describing: sceneIdentifier))")
                     TTModeHue.sceneCreateGroup.leave()
                     return
                 }
             } else {
-//                    print(" ---> Scene not found: \(sceneName) [\(roomLights)] \(self.foundScenes)")
+//                    print(" ---> Scene not found: \(sceneName) [\(roomLights)] \(TTModeHue.foundScenes)")
             }
             
             if case .timedOut = TTModeHue.sceneSemaphore.wait(timeout: DispatchTime.now() + DispatchTimeInterval.seconds(30)) {
@@ -1084,8 +1112,10 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
                 }
                 print(" ---> Created scene \(sceneTitle): \(sceneIdentifier)")
                 DispatchQueue.main.async {
-                    self.sceneUploadProgress = 0.5
-                    self.sceneDelegate?.sceneUploadProgress()
+                    TTModeHue.sceneUploadProgress = 0.5
+                    TTModeHue.sceneDelegates.invoke { (sceneDelegate) in
+                        sceneDelegate?.sceneUploadProgress()
+                    }
                 }
 
                 DispatchQueue.global().async {
@@ -1098,8 +1128,10 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
                         bridgeSendAPI.updateLightStateInScene(sceneIdentifier, lightIdentifier: light.identifier, withLightState: lightState, completionHandler: { (errors) in
                             print(" ---> Hue light done \(sceneIdentifier) #\(index): \(sceneName) \(String(describing: errors))")
                             DispatchQueue.main.async {
-                                self.sceneUploadProgress = Float(index)/Float(lights.count)
-                                self.sceneDelegate?.sceneUploadProgress()
+                                TTModeHue.sceneUploadProgress = Float(index)/Float(lights.count)
+                                TTModeHue.sceneDelegates.invoke { (sceneDelegate) in
+                                    sceneDelegate?.sceneUploadProgress()
+                                }
                             }
                             TTModeHue.lightSemaphore.signal()
     //                                self.delegate?.changeState(TTModeHue.hueState, mode: self, message: nil)
@@ -1152,8 +1184,10 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
         }
         
         DispatchQueue.main.async {
-            self.sceneUploadProgress = 1
-            self.sceneDelegate?.sceneUploadProgress()
+            TTModeHue.sceneUploadProgress = 1
+            TTModeHue.sceneDelegates.invoke { (sceneDelegate) in
+                sceneDelegate?.sceneUploadProgress()
+            }
         }
         
         var sceneCount = 0
@@ -1174,8 +1208,10 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
                     TTModeHue.sceneSemaphore.signal()
                     DispatchQueue.main.async {
                         deleteCount += 1
-                        self.sceneUploadProgress = Float(sceneCount - deleteCount)/Float(sceneCount)
-                        self.sceneDelegate?.sceneUploadProgress()
+                        TTModeHue.sceneUploadProgress = Float(sceneCount - deleteCount)/Float(sceneCount)
+                        TTModeHue.sceneDelegates.invoke { (sceneDelegate) in
+                            sceneDelegate?.sceneUploadProgress()
+                        }
                     }
                 })
             }
@@ -1189,7 +1225,7 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
         
         TTModeHue.sceneSemaphore.signal()
         TTModeHue.createdScenes = []
-        foundScenes = []
+        TTModeHue.foundScenes = []
         self.updateScenes()
     }
     
@@ -1211,7 +1247,7 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
         
         DispatchQueue.global().async {            
             DispatchQueue.main.sync {
-                self.foundScenes = []
+                TTModeHue.foundScenes = []
                 TTModeHue.hueSdk.startHeartbeat()
             }
         }

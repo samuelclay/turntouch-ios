@@ -22,8 +22,8 @@ class TTModeHueConnected: TTOptionsDetailViewController, TTModeHueSceneDelegate 
         
         self.countLights()
 
-        self.modeHue = appDelegate().modeMap.selectedMode as! TTModeHue
-        self.modeHue.sceneDelegate = self
+        self.modeHue = self.mode as! TTModeHue
+        TTModeHue.sceneDelegates.add(delegate: self)
         
         self.sceneUploadProgress()
     }
@@ -51,7 +51,7 @@ class TTModeHueConnected: TTOptionsDetailViewController, TTModeHueSceneDelegate 
     }
     
     func sceneUploadProgress() {
-        let progress = self.modeHue.sceneUploadProgress
+        let progress = TTModeHue.sceneUploadProgress
         // return
         if progress >= 0 {
             spinner.isHidden = false

@@ -32,7 +32,7 @@ class TTModeHueBridge: TTOptionsDetailViewController, UITableViewDelegate, UITab
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.setBridges(self.modeHue.foundBridges)
+        self.setBridges(TTModeHue.foundBridges)
     }
     
     override func viewDidAppear(_ animated: Bool) {

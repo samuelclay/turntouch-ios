@@ -44,7 +44,7 @@ class TTOptionsView: UIView {
         if keyPath == "selectedModeDirection" {
             self.drawModeOptions()
         } else if keyPath == "inspectingModeDirection" {
-            self.redrawOptions()
+//            self.redrawOptions()
 //        } else if keyPath == "activeModeDirection" {
 //            self.setNeedsDisplay()
         }
@@ -60,8 +60,8 @@ class TTOptionsView: UIView {
         context?.fill(self.bounds);
     }
     
-    func redrawOptions() {
-        if appDelegate().modeMap.inspectingModeDirection == .no_DIRECTION {
+    func redrawOptions(forceMode: Bool = false) {
+        if appDelegate().modeMap.inspectingModeDirection == .no_DIRECTION || forceMode {
             self.drawModeOptions()
         } else {
             self.drawActionOptions()

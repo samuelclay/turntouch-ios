@@ -50,24 +50,38 @@ class TTBatchActionStackView: UIStackView {
             self.addConstraint(constraint)
             actionConstraints[batchAction.batchActionKey!] = constraint
             
-            let actionOptionsViewControllerName = "Turn_Touch_iOS.\(batchAction.actionName!)Options"
-            let actionOptionsClass: AnyClass? = NSClassFromString(actionOptionsViewControllerName)
-            var actionOptionsViewController: TTOptionsDetailViewController
-            if actionOptionsClass == nil {
-                actionOptionsViewController = TTOptionsDetailViewController()
-                actionOptionsViewController.view.translatesAutoresizingMaskIntoConstraints = false
+            var actionOptionsViewController: TTOptionsDetailViewController!
+            if batchAction.mode.shouldOverrideActionOption(batchAction.actionName!) {
+                let modeName = batchAction.mode.nameOfClass
+                let modeOptionsViewControllerName = "Turn_Touch_iOS.\(modeName)Options"
+                let modeOptionsClass: AnyClass? = NSClassFromString(modeOptionsViewControllerName)
+                if modeOptionsClass == nil {
+                    actionOptionsViewController = TTOptionsDetailViewController()
+                } else {
+                    actionOptionsViewController = (modeOptionsClass as! TTOptionsDetailViewController.Type).init(nibName: "\(modeName)Options", bundle: nil)
+                }
+                
+                actionOptionsViewController.menuType = TTMenuType.menu_MODE
             } else {
-                actionOptionsViewController = (actionOptionsClass as! TTOptionsDetailViewController.Type).init(nibName: actionOptionsViewControllerName, bundle: Bundle.main)
+                let actionOptionsViewControllerName = "Turn_Touch_iOS.\(batchAction.actionName!)Options"
+                let actionOptionsClass: AnyClass? = NSClassFromString(actionOptionsViewControllerName)
+                if actionOptionsClass == nil {
+                    actionOptionsViewController = TTOptionsDetailViewController()
+                    actionOptionsViewController.view.translatesAutoresizingMaskIntoConstraints = false
+                } else {
+                    let actionClassType = actionOptionsClass as! TTOptionsDetailViewController.Type
+                    actionOptionsViewController = actionClassType.init(nibName: actionOptionsViewControllerName, bundle: Bundle.main)
+                }
             }
             
             actionOptionsViewController.menuType = TTMenuType.menu_ACTION
             actionOptionsViewController.action = batchAction
             actionOptionsViewController.mode = batchAction.mode
+            actionOptionsViewController.view.translatesAutoresizingMaskIntoConstraints = false
             self.addArrangedSubview(actionOptionsViewController.view)
             actionOptionsViewControllers.append(actionOptionsViewController) // Cache so it doesn't lose reference in xib
             actionViews[batchAction.batchActionKey!] = [batchActionHeaderView,
                                                         actionOptionsViewController.view]
-            
         }
         
         // tempMode on bottom

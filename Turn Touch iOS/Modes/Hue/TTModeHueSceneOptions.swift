@@ -18,6 +18,7 @@ class TTModeHueSceneOptions: TTModeHuePicker {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
     }
     
     override func drawScenes() {

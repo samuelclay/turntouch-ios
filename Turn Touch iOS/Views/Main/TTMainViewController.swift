@@ -497,6 +497,10 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
     func closePairingModal() {
         modalNavController.dismiss(animated: true, completion: nil)
         modalNavController = nil
+        
+        DispatchQueue.main.async {
+            appDelegate().beginLocationUpdates()
+        }
     }
     
     func showFtuxModal() {

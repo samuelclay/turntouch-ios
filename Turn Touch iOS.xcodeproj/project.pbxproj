@@ -136,6 +136,7 @@
 		FF52EBCD1F8EE54E002D0EF1 /* TTModePhoneVolumeJumpOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF52EBCB1F8EE54E002D0EF1 /* TTModePhoneVolumeJumpOptions.swift */; };
 		FF52EBCE1F8EE54E002D0EF1 /* TTModePhoneVolumeJumpOptions.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF52EBCC1F8EE54E002D0EF1 /* TTModePhoneVolumeJumpOptions.xib */; };
 		FF52EBD01F8EE774002D0EF1 /* TTModePhone.plist in Resources */ = {isa = PBXBuildFile; fileRef = FF52EBCF1F8EE774002D0EF1 /* TTModePhone.plist */; };
+		FF52EBD21F8F05E3002D0EF1 /* MulticastDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF52EBD11F8F05E2002D0EF1 /* MulticastDelegate.swift */; };
 		FF534C371EB0351A002EE584 /* TTModeIfttt.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF534C2E1EB0351A002EE584 /* TTModeIfttt.swift */; };
 		FF534C381EB0351A002EE584 /* TTModeIftttConnect.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF534C2F1EB0351A002EE584 /* TTModeIftttConnect.swift */; };
 		FF534C391EB0351A002EE584 /* TTModeIftttConnect.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF534C301EB0351A002EE584 /* TTModeIftttConnect.xib */; };
@@ -503,6 +504,7 @@
 		FF52EBCB1F8EE54E002D0EF1 /* TTModePhoneVolumeJumpOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TTModePhoneVolumeJumpOptions.swift; path = Modes/Phone/TTModePhoneVolumeJumpOptions.swift; sourceTree = "<group>"; };
 		FF52EBCC1F8EE54E002D0EF1 /* TTModePhoneVolumeJumpOptions.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = TTModePhoneVolumeJumpOptions.xib; path = Modes/Phone/TTModePhoneVolumeJumpOptions.xib; sourceTree = "<group>"; };
 		FF52EBCF1F8EE774002D0EF1 /* TTModePhone.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = TTModePhone.plist; path = Modes/Phone/TTModePhone.plist; sourceTree = "<group>"; };
+		FF52EBD11F8F05E2002D0EF1 /* MulticastDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MulticastDelegate.swift; sourceTree = "<group>"; };
 		FF534C2E1EB0351A002EE584 /* TTModeIfttt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TTModeIfttt.swift; sourceTree = "<group>"; };
 		FF534C2F1EB0351A002EE584 /* TTModeIftttConnect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TTModeIftttConnect.swift; sourceTree = "<group>"; };
 		FF534C301EB0351A002EE584 /* TTModeIftttConnect.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TTModeIftttConnect.xib; sourceTree = "<group>"; };
@@ -1518,6 +1520,7 @@
 			children = (
 				FFF46BED1D10E6A300158751 /* TTOptionsView.swift */,
 				FFF46BEF1D10E6D400158751 /* TTOptionsDetailViewController.swift */,
+				FF52EBD11F8F05E2002D0EF1 /* MulticastDelegate.swift */,
 			);
 			name = Options;
 			path = Views/Options;
@@ -2029,6 +2032,7 @@
 				FF458AB11DBEC98C003FD06B /* TTModeHueSceneLightsOffOptions.swift in Sources */,
 				FF37EDEB1D137A210026F70D /* TTModeHueSceneOptions.swift in Sources */,
 				FF0F10DC1CF669BE00CC1F29 /* TTDiamondLabel.swift in Sources */,
+				FF52EBD21F8F05E3002D0EF1 /* MulticastDelegate.swift in Sources */,
 				FF4AF7D61D24ECF60009C777 /* SonosDiscover.m in Sources */,
 				FF4AF7C91D248AD00009C777 /* TTModeWemoDeviceOffOptions.swift in Sources */,
 				FFC4B0F01D2DBF3E00A97C81 /* TTPairingInfoViewController.swift in Sources */,

@@ -260,6 +260,10 @@ class TTMode : NSObject, TTModeProtocol {
         return immediate.boolValue
     }
     
+    func shouldOverrideActionOption(_ action: String) -> Bool {
+        return false
+    }
+    
     // MARK: Mode options
     
     func modeOptionValue(_ optionName: String, modeDirection: TTModeDirection) -> Any? {

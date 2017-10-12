@@ -168,6 +168,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     // MARK: Location
     
     func beginLocationUpdates() {
+        if bluetoothMonitor.foundDevices.count() == 0 {
+            // Wait until remotes are found before requesting location
+            return
+        }
+        
         switch CLLocationManager.authorizationStatus() {
         case .authorizedAlways:
             self.startSignificantChangeUpdates()
