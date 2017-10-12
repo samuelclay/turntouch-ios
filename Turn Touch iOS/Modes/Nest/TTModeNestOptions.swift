@@ -20,7 +20,7 @@ class TTModeNestOptions: TTOptionsDetailViewController, TTModeNestDelegate {
         super.viewDidLoad()
         
         self.modeNest = self.mode as! TTModeNest
-        self.modeNest.delegate = self
+        TTModeNest.delegates.add(delegate: self)
         
         self.changeState(TTModeNest.nestState, mode: self.modeNest)
     }

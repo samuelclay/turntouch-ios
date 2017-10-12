@@ -31,7 +31,7 @@ protocol TTModeNestDelegate {
 class TTModeNest: TTMode, NestSDKAuthorizationViewControllerDelegate {
     
     static var reachability: Reachability!
-    var delegate: TTModeNestDelegate!
+    static var delegates: MulticastDelegate<TTModeNestDelegate?> = MulticastDelegate<TTModeNestDelegate?>()
     static var nestState = TTNestState.disconnected
     
     static var dataManager: NestSDKDataManager = NestSDKDataManager()
@@ -211,7 +211,9 @@ class TTModeNest: TTMode, NestSDKAuthorizationViewControllerDelegate {
         }
         
         TTModeNest.nestState = .connecting
-        delegate?.changeState(TTModeNest.nestState, mode: self)
+        TTModeNest.delegates.invoke { (delegate) in
+            delegate?.changeState(TTModeNest.nestState, mode: self)
+        }
     }
     
     func authorizeNest() {
@@ -240,13 +242,17 @@ class TTModeNest: TTMode, NestSDKAuthorizationViewControllerDelegate {
             self.observeStructures()
         } else {
             TTModeNest.nestState = .disconnected
-            delegate?.changeState(TTModeNest.nestState, mode: self)
+            TTModeNest.delegates.invoke { (delegate) in
+                delegate?.changeState(TTModeNest.nestState, mode: self)
+            }
         }
     }
     
     func nestReady() {
         TTModeNest.nestState = .connected
-        delegate?.changeState(TTModeNest.nestState, mode: self)
+        TTModeNest.delegates.invoke { (delegate) in
+            delegate?.changeState(TTModeNest.nestState, mode: self)
+        }
         self.observeStructures()
     }
     
@@ -309,8 +315,10 @@ class TTModeNest: TTMode, NestSDKAuthorizationViewControllerDelegate {
                 if let thermostat = thermostat {
                     self.logMessage("Thermostat \(thermostat.name) updated, temperature now: \(thermostat.ambientTemperatureF)°F")
                     TTModeNest.thermostats[thermostatId] = thermostat
-                    self.delegate.changeState(TTNestState.connected, mode: self)
-                    self.delegate.updateThermostat(thermostat)
+                    TTModeNest.delegates.invoke { (delegate) in
+                        delegate?.changeState(TTNestState.connected, mode: self)
+                        delegate?.updateThermostat(thermostat)
+                    }
                 }
             })
             

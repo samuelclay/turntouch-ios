@@ -17,7 +17,12 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TTModeNestSetTempOptions" customModule="Turn_Touch_iOS" customModuleProvider="target">
             <connections>
+                <outlet property="singlePicker" destination="GA4-5f-JhT" id="TfI-gy-BQO"/>
+                <outlet property="tempLabel" destination="y4n-pF-yAc" id="YfQ-f3-X3e"/>
+                <outlet property="tempSlider" destination="1ca-Ql-SOX" id="oRy-yy-tb9"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outletCollection property="refreshButton" destination="goJ-kg-ehX" collectionClass="NSMutableArray" id="o41-iI-uQ8"/>
+                <outletCollection property="spinner" destination="hgd-ob-nNF" collectionClass="NSMutableArray" id="oKd-G0-Ybg"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -26,7 +31,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thermostat" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="irs-FR-kmS">
-                    <rect key="frame" x="20" y="31" width="68" height="16"/>
+                    <rect key="frame" x="20" y="31" width="66.5" height="16"/>
                     <fontDescription key="fontDescription" name="Effra-Regular" family="Effra" pointSize="13"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
@@ -38,19 +43,39 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="123°F" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y4n-pF-yAc">
-                    <rect key="frame" x="418" y="84" width="33" height="16"/>
+                    <rect key="frame" x="361" y="84" width="50" height="16"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="50" id="783-vL-Re5"/>
+                    </constraints>
                     <fontDescription key="fontDescription" name="Effra-Regular" family="Effra" pointSize="13"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GA4-5f-JhT">
-                    <rect key="frame" x="113" y="20" width="338" height="37"/>
+                    <rect key="frame" x="113" y="20" width="298" height="37"/>
                     <fontDescription key="fontDescription" name="Effra-Regular" family="Effra" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
-                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="1ca-Ql-SOX">
-                    <rect key="frame" x="111" y="77" width="301" height="31"/>
+                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="68" minValue="0.0" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="1ca-Ql-SOX">
+                    <rect key="frame" x="111" y="77" width="244" height="31"/>
+                    <connections>
+                        <action selector="changeSliderWithSender:" destination="-1" eventType="valueChanged" id="NnH-PH-iPA"/>
+                    </connections>
                 </slider>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="goJ-kg-ehX">
+                    <rect key="frame" x="431" y="28.5" width="20" height="20"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="20" id="4wm-Ak-v0N"/>
+                        <constraint firstAttribute="width" constant="20" id="qcB-4J-TIY"/>
+                    </constraints>
+                    <state key="normal" image="refresh.png"/>
+                    <connections>
+                        <action selector="refreshDevices:" destination="-1" eventType="touchUpInside" id="098-De-IYs"/>
+                    </connections>
+                </button>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="hgd-ob-nNF">
+                    <rect key="frame" x="431" y="28.5" width="20" height="20"/>
+                </activityIndicatorView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
@@ -58,7 +83,8 @@
                 <constraint firstItem="GA4-5f-JhT" firstAttribute="centerY" secondItem="irs-FR-kmS" secondAttribute="centerY" id="3LZ-ms-Smb"/>
                 <constraint firstItem="GA4-5f-JhT" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="20" id="63k-C3-k9u"/>
                 <constraint firstAttribute="bottom" secondItem="1ca-Ql-SOX" secondAttribute="bottom" constant="20" id="Aak-et-afc"/>
-                <constraint firstAttribute="trailingMargin" secondItem="GA4-5f-JhT" secondAttribute="trailingMargin" constant="8" id="HoZ-Po-tu1"/>
+                <constraint firstAttribute="trailingMargin" secondItem="goJ-kg-ehX" secondAttribute="trailing" id="CU7-m5-IW4"/>
+                <constraint firstItem="goJ-kg-ehX" firstAttribute="centerX" secondItem="hgd-ob-nNF" secondAttribute="centerX" id="GKD-Jm-08J"/>
                 <constraint firstItem="1ca-Ql-SOX" firstAttribute="top" secondItem="GA4-5f-JhT" secondAttribute="bottom" constant="20" id="NgV-lR-Epy"/>
                 <constraint firstItem="1ca-Ql-SOX" firstAttribute="leading" secondItem="1yc-PJ-p3e" secondAttribute="trailing" constant="20" id="OCZ-UP-WKJ"/>
                 <constraint firstItem="y4n-pF-yAc" firstAttribute="centerY" secondItem="1yc-PJ-p3e" secondAttribute="centerY" id="Oz3-gU-aie"/>
@@ -67,10 +93,16 @@
                 <constraint firstItem="1yc-PJ-p3e" firstAttribute="leading" secondItem="irs-FR-kmS" secondAttribute="leading" id="Z3B-m3-jv9"/>
                 <constraint firstItem="y4n-pF-yAc" firstAttribute="trailing" secondItem="GA4-5f-JhT" secondAttribute="trailing" id="bTL-9q-d5N"/>
                 <constraint firstItem="irs-FR-kmS" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leadingMargin" id="eZt-RD-Feb"/>
+                <constraint firstItem="goJ-kg-ehX" firstAttribute="leading" secondItem="GA4-5f-JhT" secondAttribute="trailing" constant="20" id="juv-6h-2cg"/>
                 <constraint firstItem="GA4-5f-JhT" firstAttribute="leading" secondItem="1ca-Ql-SOX" secondAttribute="leading" id="pJd-qA-43G"/>
+                <constraint firstItem="goJ-kg-ehX" firstAttribute="centerY" secondItem="hgd-ob-nNF" secondAttribute="centerY" id="w7b-My-Jba"/>
+                <constraint firstItem="goJ-kg-ehX" firstAttribute="centerY" secondItem="GA4-5f-JhT" secondAttribute="centerY" id="yke-ry-H11"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="153.5" y="-238.5"/>
         </view>
     </objects>
+    <resources>
+        <image name="refresh.png" width="128" height="128"/>
+    </resources>
 </document>
