@@ -6,10 +6,17 @@
 //  Copyright © 2016 Turn Touch. All rights reserved.
 //
 
+import MediaPlayer
 import UIKit
 
-class TTModePhone: TTMode {
+struct TTModePhoneConstants {
+    static let jumpVolume = "jumpVolume"
+}
 
+class TTModePhone: TTMode {
+    
+    static var volumeMuted: Float?
+    
     override class func title() -> String {
         return "Phone"
     }
@@ -81,5 +88,66 @@ class TTModePhone: TTMode {
     
     override func defaultSouth() -> String {
         return "TTModePhoneVolumeDown"
+    }
+    
+    // MARK: Actions
+    
+    func volumeSlider() -> UISlider? {
+        let volumeSlider = (MPVolumeView().subviews.filter{NSStringFromClass($0.classForCoder) == "MPVolumeSlider"}.first as? UISlider)
+        
+        return volumeSlider
+    }
+    
+    func currentVolume() -> Float? {
+        let audioSession = AVAudioSession.sharedInstance()
+        var volume: Float?
+        do {
+            try audioSession.setActive(true)
+            volume = audioSession.outputVolume
+        } catch {
+            print("Error Setting Up Audio Session")
+        }
+        
+        return volume
+    }
+    
+    func runTTModePhoneVolumeUp() {
+        let volumeSlider = self.volumeSlider()
+        
+        if let volume = self.currentVolume() {
+            volumeSlider?.setValue(min(volume+0.0625, 1), animated: false)
+        }
+    }
+    
+    func runTTModePhoneVolumeDown() {
+        let volumeSlider = self.volumeSlider()
+     
+        if let volume = self.currentVolume() {
+            volumeSlider?.setValue(max(volume-0.0625, 0), animated: false)
+        }
+    }
+    
+    func runTTModePhoneVolumeMute() {
+        let volumeSlider = self.volumeSlider()
+        
+        if let volume = self.currentVolume() {
+            if volume == 0 {
+                if let volumeMuted = TTModePhone.volumeMuted {
+                    volumeSlider?.setValue(max(volumeMuted, 0), animated: false)
+                } else {
+                    volumeSlider?.setValue(max(0.0625*2, 0), animated: false)
+                }
+            } else {
+                TTModePhone.volumeMuted = volume
+                volumeSlider?.setValue(0, animated: false)
+            }
+        }
+    }
+    
+    func runTTModePhoneVolumeJump() {
+        let jump = self.action.optionValue(TTModePhoneConstants.jumpVolume) as! Int
+        let volumeSlider = self.volumeSlider()
+
+        volumeSlider?.setValue(Float(jump) / 100, animated: false)
     }
 }
