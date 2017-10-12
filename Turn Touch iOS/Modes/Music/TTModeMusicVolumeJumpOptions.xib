@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Effra_Rg.ttf">
+            <string>Effra-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TTModeMusicVolumeJumpOptions" customModule="Turn_Touch_iOS" customModuleProvider="target">
+            <connections>
+                <outlet property="jumpLabel" destination="CQB-2O-6GM" id="YNc-mJ-bqr"/>
+                <outlet property="slider" destination="3TH-Ka-Ruf" id="OrH-gt-pHX"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="3TH-Ka-Ruf">
+                    <rect key="frame" x="18" y="40" width="255" height="608"/>
+                    <connections>
+                        <action selector="changeSliderWithSender:" destination="-1" eventType="valueChanged" id="9B3-Jw-p70"/>
+                    </connections>
+                </slider>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="50%" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CQB-2O-6GM">
+                    <rect key="frame" x="291" y="333" width="64" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="64" id="NW4-ZB-bYb"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Effra-Regular" family="Effra" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="CQB-2O-6GM" secondAttribute="trailing" constant="20" id="7DM-Ul-bcf"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="3TH-Ka-Ruf" secondAttribute="bottom" constant="20" id="H2w-bb-Yeg"/>
+                <constraint firstItem="3TH-Ka-Ruf" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="20" id="ciM-xV-c1o"/>
+                <constraint firstItem="3TH-Ka-Ruf" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="lUF-Yq-88w"/>
+                <constraint firstItem="CQB-2O-6GM" firstAttribute="leading" secondItem="3TH-Ka-Ruf" secondAttribute="trailing" constant="20" id="qwU-kZ-05z"/>
+                <constraint firstItem="CQB-2O-6GM" firstAttribute="centerY" secondItem="3TH-Ka-Ruf" secondAttribute="centerY" id="udC-Sr-xa2"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+        </view>
+    </objects>
+</document>

@@ -9,6 +9,10 @@
 import UIKit
 import MediaPlayer
 
+struct TTModeMusicConstants {
+    static let jumpVolume = "jumpVolume"
+}
+
 class TTModeMusic: TTMode {
     
     let ITUNES_VOLUME_CHANGE: Float = 0.06
@@ -231,5 +235,11 @@ class TTModeMusic: TTMode {
     
     func runTTModeMusicPreviousTrack() {
         musicPlayer.skipToPreviousItem()
+    }
+    
+    func runTTModeMusicVolumeJump() {
+        let jump = self.action.optionValue(TTModeMusicConstants.jumpVolume) as! Int
+        
+        volumeSlider.setValue(Float(jump)/100, animated: false)
     }
 }

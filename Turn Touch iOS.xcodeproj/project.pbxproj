@@ -160,6 +160,12 @@
 		FF7C14551DB30836009CBA28 /* TTBatchActionStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7C14541DB30836009CBA28 /* TTBatchActionStackView.swift */; };
 		FF7C14581DB3085E009CBA28 /* TTBatchActionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7C14571DB3085E009CBA28 /* TTBatchActionHeaderView.swift */; };
 		FF7C145A1DB3088B009CBA28 /* TTAddActionButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7C14591DB3088B009CBA28 /* TTAddActionButtonView.swift */; };
+		FF8680151F90288A00D9A0B3 /* TTModeSonos.plist in Resources */ = {isa = PBXBuildFile; fileRef = FF8680141F90288A00D9A0B3 /* TTModeSonos.plist */; };
+		FF8680181F9028BA00D9A0B3 /* TTModeSonosVolumeJumpOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8680161F9028BA00D9A0B3 /* TTModeSonosVolumeJumpOptions.swift */; };
+		FF8680191F9028BA00D9A0B3 /* TTModeSonosVolumeJumpOptions.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF8680171F9028BA00D9A0B3 /* TTModeSonosVolumeJumpOptions.xib */; };
+		FF86801C1F90296800D9A0B3 /* TTModeMusicVolumeJumpOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF86801A1F90296800D9A0B3 /* TTModeMusicVolumeJumpOptions.swift */; };
+		FF86801D1F90296800D9A0B3 /* TTModeMusicVolumeJumpOptions.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF86801B1F90296800D9A0B3 /* TTModeMusicVolumeJumpOptions.xib */; };
+		FF86801F1F90297600D9A0B3 /* TTModeMusic.plist in Resources */ = {isa = PBXBuildFile; fileRef = FF86801E1F90297600D9A0B3 /* TTModeMusic.plist */; };
 		FF8B75561F86D4EF00D7867C /* alarm_off.png in Resources */ = {isa = PBXBuildFile; fileRef = FF8B75531F86D4CE00D7867C /* alarm_off.png */; };
 		FF8B75571F86D4EF00D7867C /* alarm_snooze.png in Resources */ = {isa = PBXBuildFile; fileRef = FF8B75321F86D4CA00D7867C /* alarm_snooze.png */; };
 		FF8B75581F86D4EF00D7867C /* chevron_east.png in Resources */ = {isa = PBXBuildFile; fileRef = FF8B752A1F86D4C800D7867C /* chevron_east.png */; };
@@ -530,6 +536,12 @@
 		FF7C14541DB30836009CBA28 /* TTBatchActionStackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTBatchActionStackView.swift; path = "Views/Batch actions/TTBatchActionStackView.swift"; sourceTree = "<group>"; };
 		FF7C14571DB3085E009CBA28 /* TTBatchActionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTBatchActionHeaderView.swift; path = "Views/Batch actions/TTBatchActionHeaderView.swift"; sourceTree = "<group>"; };
 		FF7C14591DB3088B009CBA28 /* TTAddActionButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTAddActionButtonView.swift; path = "Views/Batch actions/TTAddActionButtonView.swift"; sourceTree = "<group>"; };
+		FF8680141F90288A00D9A0B3 /* TTModeSonos.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = TTModeSonos.plist; path = Modes/Sonos/TTModeSonos.plist; sourceTree = "<group>"; };
+		FF8680161F9028BA00D9A0B3 /* TTModeSonosVolumeJumpOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TTModeSonosVolumeJumpOptions.swift; path = Modes/Sonos/TTModeSonosVolumeJumpOptions.swift; sourceTree = "<group>"; };
+		FF8680171F9028BA00D9A0B3 /* TTModeSonosVolumeJumpOptions.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = TTModeSonosVolumeJumpOptions.xib; path = Modes/Sonos/TTModeSonosVolumeJumpOptions.xib; sourceTree = "<group>"; };
+		FF86801A1F90296800D9A0B3 /* TTModeMusicVolumeJumpOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TTModeMusicVolumeJumpOptions.swift; path = Modes/Music/TTModeMusicVolumeJumpOptions.swift; sourceTree = "<group>"; };
+		FF86801B1F90296800D9A0B3 /* TTModeMusicVolumeJumpOptions.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = TTModeMusicVolumeJumpOptions.xib; path = Modes/Music/TTModeMusicVolumeJumpOptions.xib; sourceTree = "<group>"; };
+		FF86801E1F90297600D9A0B3 /* TTModeMusic.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = TTModeMusic.plist; path = Modes/Music/TTModeMusic.plist; sourceTree = "<group>"; };
 		FF8B751C1F86D4C500D7867C /* music_ff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = music_ff.png; sourceTree = "<group>"; };
 		FF8B751D1F86D4C500D7867C /* next_site.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = next_site.png; sourceTree = "<group>"; };
 		FF8B751E1F86D4C600D7867C /* music_volume_down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = music_volume_down.png; sourceTree = "<group>"; };
@@ -820,7 +832,10 @@
 		FF0F10C81CF63F1C00CC1F29 /* Music */ = {
 			isa = PBXGroup;
 			children = (
+				FF86801E1F90297600D9A0B3 /* TTModeMusic.plist */,
 				FF0F10C61CF63F1600CC1F29 /* TTModeMusic.swift */,
+				FF86801A1F90296800D9A0B3 /* TTModeMusicVolumeJumpOptions.swift */,
+				FF86801B1F90296800D9A0B3 /* TTModeMusicVolumeJumpOptions.xib */,
 			);
 			name = Music;
 			sourceTree = "<group>";
@@ -1041,6 +1056,7 @@
 		FF4AF7DD1D24F93B0009C777 /* Sonos */ = {
 			isa = PBXGroup;
 			children = (
+				FF8680141F90288A00D9A0B3 /* TTModeSonos.plist */,
 				FF4AF7DB1D24F9370009C777 /* TTModeSonos.swift */,
 				FF4AF7E51D24F9E70009C777 /* TTModeSonosOptions.swift */,
 				FF4AF7E61D24F9E70009C777 /* TTModeSonosOptions.xib */,
@@ -1050,6 +1066,8 @@
 				FF4AF7E31D24F9E70009C777 /* TTModeSonosConnecting.xib */,
 				FF4AF7E01D24F9E70009C777 /* TTModeSonosConnected.swift */,
 				FF4AF7E11D24F9E70009C777 /* TTModeSonosConnected.xib */,
+				FF8680161F9028BA00D9A0B3 /* TTModeSonosVolumeJumpOptions.swift */,
+				FF8680171F9028BA00D9A0B3 /* TTModeSonosVolumeJumpOptions.xib */,
 			);
 			name = Sonos;
 			sourceTree = "<group>";
@@ -1634,6 +1652,7 @@
 				FF20232D1D02147A005129E5 /* Icon-29@2x.png in Resources */,
 				FF20233C1D02147A005129E5 /* iTunesArtwork in Resources */,
 				FFC33C3B1EA173B600321EB9 /* east tone.wav in Resources */,
+				FF86801F1F90297600D9A0B3 /* TTModeMusic.plist in Resources */,
 				FFB41B241CEE9A3000CD5F09 /* button_chevron.png in Resources */,
 				FFDA0FB31D3C4FEE0019859F /* camera-switch.png in Resources */,
 				FFB84B451D90D4240037872C /* yoga_position_6.png in Resources */,
@@ -1670,6 +1689,7 @@
 				FFB41B601CEE9A3000CD5F09 /* logo_64.png in Resources */,
 				FFB41B681CEE9A3000CD5F09 /* modal_ftux_change_action.png in Resources */,
 				FF534C3F1EB0351A002EE584 /* TTModeIftttOptions.xib in Resources */,
+				FF8680151F90288A00D9A0B3 /* TTModeSonos.plist in Resources */,
 				FFF270A01CEE88E500E46575 /* LaunchScreen.storyboard in Resources */,
 				FF52EBCE1F8EE54E002D0EF1 /* TTModePhoneVolumeJumpOptions.xib in Resources */,
 				FF37EDEC1D137A210026F70D /* TTModeHueSceneOptions.xib in Resources */,
@@ -1709,6 +1729,7 @@
 				FFB41B641CEE9A3000CD5F09 /* title.png in Resources */,
 				FF2023331D02147A005129E5 /* Icon-50@2x.png in Resources */,
 				FF534C411EB03C93002EE584 /* mode_ifttt.png in Resources */,
+				FF86801D1F90296800D9A0B3 /* TTModeMusicVolumeJumpOptions.xib in Resources */,
 				FFB41B301CEE9A3000CD5F09 /* icon_movie.png in Resources */,
 				FFB41B401CEE9A3000CD5F09 /* mode_presentation.png in Resources */,
 				FFF46BE91D10DB2D00158751 /* TTModeHue.plist in Resources */,
@@ -1774,6 +1795,7 @@
 				FFB41B5C1CEE9A3000CD5F09 /* logo_16.png in Resources */,
 				FF534C3B1EB0351A002EE584 /* TTModeIftttConnected.xib in Resources */,
 				FFB41B4F1CEE9A3000CD5F09 /* vinyl.png in Resources */,
+				FF8680191F9028BA00D9A0B3 /* TTModeSonosVolumeJumpOptions.xib in Resources */,
 				FFB41B501CEE9A3000CD5F09 /* itunes_audiobook_icon.png in Resources */,
 				FF534C481EB14E4B002EE584 /* Settings.bundle in Resources */,
 				FF0F10C01CF5638D00CC1F29 /* Preferences.plist in Resources */,
@@ -1929,6 +1951,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FF8680181F9028BA00D9A0B3 /* TTModeSonosVolumeJumpOptions.swift in Sources */,
 				FF0F10E91CFFAD6100CC1F29 /* TTModeMenuCell.swift in Sources */,
 				FF458AAF1DBEB1BE003FD06B /* TTModeHuePicker.swift in Sources */,
 				FF4AF7B61D248A180009C777 /* TTModeWemoConnect.swift in Sources */,
@@ -2015,6 +2038,7 @@
 				FF0F10E31CFFAC5300CC1F29 /* TTModeMenuContainer.swift in Sources */,
 				FFB41B841CF5342100CD5F09 /* TTModeMap.swift in Sources */,
 				FF37EDEE1D13823F0026F70D /* TTModeHueSceneEarlyEveningOptions.swift in Sources */,
+				FF86801C1F90296800D9A0B3 /* TTModeMusicVolumeJumpOptions.swift in Sources */,
 				FFF46BE01D10941500158751 /* ContextFilterLogFormatter.m in Sources */,
 				FF4AF7C71D248A860009C777 /* TTModeWemoDeviceStartOptions.swift in Sources */,
 				FFDA0FA91D3C4F1C0019859F /* UIImage+FixOrientation.m in Sources */,

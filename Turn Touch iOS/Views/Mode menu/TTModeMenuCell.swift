@@ -102,6 +102,9 @@ class TTModeMenuCell: UICollectionViewCell {
                 imageView.image = UIImage(named:imageName)
             }
         } else if menuType == .menu_ACTION || menuType == .menu_ADD_ACTION {
+            if activeMode == nil {
+                return
+            }
             if menuType == .menu_ACTION {
                 isSelected = activeMode.actionNameInDirection(appDelegate().modeMap.inspectingModeDirection) == modeName
             }

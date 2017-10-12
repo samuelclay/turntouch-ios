@@ -22,7 +22,6 @@ class TTModeHueConnected: TTOptionsDetailViewController, TTModeHueSceneDelegate 
         
         self.countLights()
 
-        self.modeHue = self.mode as! TTModeHue
         TTModeHue.sceneDelegates.add(delegate: self)
         
         self.sceneUploadProgress()

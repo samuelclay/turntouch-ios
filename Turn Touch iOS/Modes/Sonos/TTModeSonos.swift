@@ -24,6 +24,7 @@ fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
 struct TTModeSonosConstants {
     static let kSonosDeviceId = "sonosDeviceUUID"
     static let kSonosCachedDevices = "sonosCachedDevices"
+    static let jumpVolume = "jumpVolume"
 }
 
 enum TTSonosState {
@@ -67,12 +68,21 @@ class TTModeSonos: TTMode {
         return ["TTModeSonosVolumeUp",
                 "TTModeSonosVolumeDown",
                 "TTModeSonosVolumeMute",
+                "TTModeSonosVolumeJump",
                 "TTModeSonosPlayPause",
                 "TTModeSonosPlay",
                 "TTModeSonosPause",
                 "TTModeSonosNextTrack",
                 "TTModeSonosPreviousTrack",
         ]
+    }
+    
+    override func shouldOverrideActionOption(_ action: String) -> Bool {
+        if action == "TTModeSonosVolumeJump" {
+            return false
+        }
+
+        return true
     }
     
     // MARK: Action titles
@@ -87,6 +97,10 @@ class TTModeSonos: TTMode {
     
     func titleTTModeSonosVolumeMute() -> String {
         return "Mute"
+    }
+    
+    func titleTTModeSonosVolumeJump() -> String {
+        return "Jump to volume"
     }
     
     func titleTTModeSonosPlayPause() -> String {
@@ -218,6 +232,17 @@ class TTModeSonos: TTMode {
                 device.setMute(!mute, completion: { (speakers, error) in
                     print(" ---> Muted volume: \(mute) (\(String(describing: error)), \(String(describing: speakers))")
                 })
+            })
+        } else {
+            self.beginConnectingToSonos()
+        }
+    }
+    
+    func runTTModeSonosVolumeJump() {
+        if let device = self.selectedDevice() {
+            let jump = self.action.optionValue(TTModeSonosConstants.jumpVolume) as! Int
+            device.setVolume(jump, mergeRequests: true, completion: { (speakers, error) in
+                
             })
         } else {
             self.beginConnectingToSonos()
