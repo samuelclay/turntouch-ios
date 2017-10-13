@@ -124,6 +124,8 @@ class TTModeHuePicker: TTOptionsDetailViewController, UITextFieldDelegate, UIPop
             return a["name"] < b["name"]
         }
         
+        appDelegate().mainViewController.actionDiamondView.redraw()
+        appDelegate().mainViewController.actionTitleView.setNeedsDisplay()
     }
     
     func pickerDismissed(_ row: Int, textField: UITextField) {

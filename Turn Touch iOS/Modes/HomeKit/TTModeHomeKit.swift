@@ -64,6 +64,16 @@ class TTModeHomeKit: TTMode, HMHomeManagerDelegate {
     // MARK: Action titles
     
     func titleTTModeHomeKitTriggerScene() -> String {
+        return self.titleTTModeHomeKitTriggerScene(direction: NSNumber(integerLiteral: TTModeDirection.no_DIRECTION.rawValue))
+    }
+    
+    func titleTTModeHomeKitTriggerScene(direction: NSNumber) -> String {
+        let direction = TTModeDirection(rawValue: direction.intValue)!
+        if direction != .no_DIRECTION {
+            let scene = self.selectedScene(in: direction)
+            return scene?.name ?? "Trigger scene"
+        }
+        
         return "Trigger scene"
     }
     
@@ -144,6 +154,11 @@ class TTModeHomeKit: TTMode, HMHomeManagerDelegate {
             return
         }
         
+        if self.action == nil {
+            // Used when retrieving title of action
+            return
+        }
+        
         let selectedHomeIdentifier = self.action.optionValue(TTModeHomeKitConstants.kHomeKitHomeIdentifier) as? String
         if selectedHomeIdentifier == nil {
             if let primaryHome = homeManager.primaryHome {
@@ -153,14 +168,21 @@ class TTModeHomeKit: TTMode, HMHomeManagerDelegate {
         }
     }
     
-    func selectedHome() -> HMHome? {
+    func selectedHome(_ direction: TTModeDirection = .no_DIRECTION) -> HMHome? {
         self.ensureHomeSelected()
         
         if homeManager.homes.count == 0 {
             return nil
         }
-        
-        let selectedHomeIdentifier = self.action.optionValue(TTModeHomeKitConstants.kHomeKitHomeIdentifier) as? String
+
+        let selectedHomeIdentifier: String?
+        if direction == .no_DIRECTION {
+             selectedHomeIdentifier = self.action.optionValue(TTModeHomeKitConstants.kHomeKitHomeIdentifier) as? String
+        } else {
+            let actionName = self.actionNameInDirection(direction)
+            selectedHomeIdentifier = self.actionOptionValue(TTModeHomeKitConstants.kHomeKitHomeIdentifier,
+                                                            actionName: actionName, direction: direction) as? String
+        }
         for home in homeManager.homes {
             if home.uniqueIdentifier.uuidString == selectedHomeIdentifier {
                 return home
@@ -177,6 +199,10 @@ class TTModeHomeKit: TTMode, HMHomeManagerDelegate {
             return
         }
         
+        if self.action == nil {
+            return
+        }
+
         var selectedSceneIdentifier = self.action.optionValue(TTModeHomeKitConstants.kHomeKitSceneIdentifier) as? String
         if selectedSceneIdentifier != nil {
             if let home = self.selectedHome() {
@@ -209,6 +235,22 @@ class TTModeHomeKit: TTMode, HMHomeManagerDelegate {
         }
         
         let selectedSceneIdentifier = self.action.optionValue(TTModeHomeKitConstants.kHomeKitSceneIdentifier) as? String
+        for scene in home.actionSets {
+            if scene.uniqueIdentifier.uuidString == selectedSceneIdentifier {
+                return scene
+            }
+        }
+        
+        return nil
+    }
+    
+    func selectedScene(in direction: TTModeDirection) -> HMActionSet? {
+        guard let home = self.selectedHome(direction) else {
+            return nil
+        }
+        
+        let actionName = self.actionNameInDirection(direction)
+        let selectedSceneIdentifier = self.actionOptionValue(TTModeHomeKitConstants.kHomeKitSceneIdentifier, actionName: actionName, direction: direction) as? String
         for scene in home.actionSets {
             if scene.uniqueIdentifier.uuidString == selectedSceneIdentifier {
                 return scene

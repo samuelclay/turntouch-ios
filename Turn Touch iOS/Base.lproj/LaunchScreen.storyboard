@@ -25,7 +25,7 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" insetsLayoutMarginsFromSafeArea="NO" image="splash_background.png" translatesAutoresizingMaskIntoConstraints="NO" id="Iha-oZ-oPx">
                                 <rect key="frame" x="0.0" y="-20" width="375" height="832"/>
                             </imageView>
-                            <imageView autoresizesSubviews="NO" clearsContextBeforeDrawing="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" verticalHuggingPriority="249" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" image="logo_white_with_title" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ml2-XM-w5v">
+                            <imageView autoresizesSubviews="NO" clearsContextBeforeDrawing="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" verticalHuggingPriority="249" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" image="logo_white_with_title.png" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ml2-XM-w5v">
                                 <rect key="frame" x="60" y="258.33333333333337" width="255" height="255.33333333333337"/>
                                 <constraints>
                                     <constraint firstAttribute="width" priority="999" constant="512" id="6Gw-RI-J0D"/>
@@ -54,7 +54,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="logo_white_with_title" width="16" height="16"/>
+        <image name="logo_white_with_title.png" width="1024" height="1024"/>
         <image name="splash_background.png" width="512" height="512"/>
     </resources>
 </document>

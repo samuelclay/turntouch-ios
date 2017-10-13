@@ -116,8 +116,7 @@ class TTActionDiamondView: UIView {
     override func observeValue(forKeyPath keyPath: String?, of object: Any?,
                                          change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if keyPath == "selectedModeDirection" {
-            self.setMode(appDelegate().modeMap.selectedMode)
-            self.setNeedsLayout()
+            self.redraw()
         }
     }
     
@@ -127,6 +126,11 @@ class TTActionDiamondView: UIView {
     
     // MARK: Drawing
 
+    func redraw() {    
+        self.setMode(appDelegate().modeMap.selectedMode)
+        self.setNeedsLayout()
+    }
+    
     func setMode(_ mode: TTMode) {
         diamondMode = mode
         self.setNeedsLayout()

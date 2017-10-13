@@ -161,6 +161,17 @@ class TTMode : NSObject, TTModeProtocol {
             print(" ---> Set title for \(direction)")
             return "Set \(direction)"
         }
+
+        var funcAction = "title"
+        if buttonMoment == .button_MOMENT_DOUBLE {
+            funcAction = "doubleTitle"
+        }
+
+        // runAction:direction
+        let titleSelector = Selector("\(funcAction)\(actionName)WithDirection:")
+        if self.responds(to: titleSelector) {
+            return self.perform(titleSelector, with: NSNumber(value: direction.rawValue)).takeUnretainedValue() as! String
+        }
         
         return self.titleForAction(actionName, buttonMoment:buttonMoment)
     }

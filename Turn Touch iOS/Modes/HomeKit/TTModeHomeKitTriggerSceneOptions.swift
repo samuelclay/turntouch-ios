@@ -85,6 +85,9 @@ class TTModeHomeKitTriggerSceneOptions: TTOptionsDetailViewController, TTModeHom
         modeHomeKit.ensureSceneSelected()
         
         self.redrawTable()
+        
+        appDelegate().mainViewController.actionDiamondView.redraw()
+        appDelegate().mainViewController.actionTitleView.setNeedsDisplay()
     }
     
     func redrawTable() {

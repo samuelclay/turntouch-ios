@@ -211,7 +211,25 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
     }
     
     func titleTTModeHueSceneCustom() -> String {
-        return "Custom scene"
+        return self.titleTTModeHueSceneCustom(direction: NSNumber(integerLiteral: TTModeDirection.no_DIRECTION.rawValue))
+    }
+    
+    func titleTTModeHueSceneCustom(direction: NSNumber) -> String {
+        let direction = TTModeDirection(rawValue: direction.intValue)!
+        if direction != .no_DIRECTION {
+            let actionName = self.actionNameInDirection(direction)
+            let sceneIdentifier = self.actionOptionValue(TTModeHueConstants.kHueScene,
+                                                         actionName: actionName, direction: direction) as? String
+            if let scenes = TTModeHue.hueSdk.resourceCache?.scenes {
+                for (_, scene) in scenes {
+                    if scene.identifier == sceneIdentifier {
+                        return scene.name
+                    }
+                }
+            }
+        }
+        
+        return "Trigger scene"
     }
     
     func doubleTitleTTModeHueSceneCustom() -> String {
