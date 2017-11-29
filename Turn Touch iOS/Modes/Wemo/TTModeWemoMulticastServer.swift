@@ -99,7 +99,7 @@ class TTModeWemoMulticastServer: NSObject, GCDAsyncUdpSocketDelegate {
         
         for line: String in data.components(separatedBy: "\r\n") {
             if let match = line.range(of: ":") {
-                if line.characters.count > line.distance(from: line.startIndex, to: match.lowerBound) + 2 {
+                if line.count > line.distance(from: line.startIndex, to: match.lowerBound) + 2 {
                     let key = line[..<match.lowerBound].lowercased()
                     let value = line[line.index(match.lowerBound, offsetBy: 2)...].trimmingCharacters(in: CharacterSet.whitespaces)
                     headers[key] = value

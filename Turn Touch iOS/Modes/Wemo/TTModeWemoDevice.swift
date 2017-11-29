@@ -33,7 +33,7 @@ class TTModeWemoDevice: NSObject {
     }
     
     override var description: String {
-        return "\(deviceName) (\(self.location())/\(serialNumber))"
+        return "\(deviceName ?? "") (\(self.location())/\(serialNumber ?? ""))"
     }
     
     func isEqualToDevice(_ device: TTModeWemoDevice) -> Bool {
@@ -89,7 +89,7 @@ class TTModeWemoDevice: NSObject {
         macAddress = doc["root"]["device"]["macAddress"].element?.text
 
         if deviceName != nil {
-            print(" ---> Found wemo: \(deviceName ?? "[no device name]") (\(self.location()))")
+            print(" ---> Found wemo: \(self)")
         } else {
             print(" ---> Error: could not find friendlyName for Wemo")
             deviceName = "Wemo device (\(self.location()))"

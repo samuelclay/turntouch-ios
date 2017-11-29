@@ -164,39 +164,45 @@ class TTModeWemoDeviceSwitchOptions: TTOptionsDetailViewController, UITableViewD
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("Selected: \(indexPath)")
+        var selectedSerials: [String] = []
         if let cell = tableView.cellForRow(at: indexPath) {
             cell.accessoryType = .checkmark
         }
         
-        if let selectedIdentifier = TTModeWemo.foundDevices[indexPath.row].serialNumber {
-            var devicesSelected = self.action.optionValue(TTModeWemoConstants.kWemoSelectedSerials) as? [String]
-            if devicesSelected == nil {
-                devicesSelected = [selectedIdentifier]
-            } else if !devicesSelected!.contains(selectedIdentifier) {
-                devicesSelected!.append(selectedIdentifier)
-            }
-            
-            self.action.changeActionOption(TTModeWemoConstants.kWemoSelectedSerials, to: devicesSelected!)
-        }
         
+        if let selectedIdentifier = TTModeWemo.foundDevices[indexPath.row].serialNumber {
+            if let devicesSelected = self.action.optionValue(TTModeWemoConstants.kWemoSelectedSerials) as? [String] {
+                for device in devicesSelected {
+                    if device != selectedIdentifier {
+                        selectedSerials.append(device)
+                    }
+                }
+            }
+            selectedSerials.append(selectedIdentifier)
+        }
+
+        self.action.changeActionOption(TTModeWemoConstants.kWemoSelectedSerials, to: selectedSerials)
     }
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         print("Deselected: \(indexPath)")
+        var selectedSerials: [String] = []
+
         if let cell = tableView.cellForRow(at: indexPath) {
             cell.accessoryType = .none
         }
         
-        if let selectedIdentifier = TTModeWemo.foundDevices[indexPath.row].serialNumber {
-            var devicesSelected = self.action.optionValue(TTModeWemoConstants.kWemoSelectedSerials) as? [String]
-            if devicesSelected == nil {
-                devicesSelected = [selectedIdentifier]
-            } else if devicesSelected!.contains(selectedIdentifier) {
-                devicesSelected!.remove(at: devicesSelected!.index(of: selectedIdentifier)!)
+        if let selectedIdentifier = TTModeWemo.foundDevices[indexPath.row].serialNumber,
+            let devicesSelected = self.action.optionValue(TTModeWemoConstants.kWemoSelectedSerials) as? [String] {
+            for device in devicesSelected {
+                if device != selectedIdentifier {
+                    selectedSerials.append(device)
+                }
             }
             
-            self.action.changeActionOption(TTModeWemoConstants.kWemoSelectedSerials, to: devicesSelected!)
         }
+
+        self.action.changeActionOption(TTModeWemoConstants.kWemoSelectedSerials, to: selectedSerials)
     }
     
 }
