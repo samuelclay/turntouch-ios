@@ -57,7 +57,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   CocoaAsyncSocket:
-    :commit: b6f98791995ab7c7ef6faee4726102a711431f58
+    :commit: c20bd9b7cc34ccf09fbe8299f9bf976158394b86
     :git: https://github.com/robbiehanson/CocoaAsyncSocket.git
   iOSDFULibrary:
     :commit: c2258b3139947ae7a44aa6650391e4a69b8a115f
@@ -85,4 +85,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: ed2fe7b4ad3e79dc1a8ba145f8d8dc1cb7743b70
 
-COCOAPODS: 1.3.1
+COCOAPODS: 1.2.1
