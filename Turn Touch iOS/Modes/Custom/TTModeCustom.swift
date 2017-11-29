@@ -122,7 +122,7 @@ class TTModeCustom: TTMode {
             return
         }
 
-        if customUrlString.characters.count == 0 {
+        if customUrlString.count == 0 {
             print(" ---> No URL specified")
             callback("No URL specified", false)
             return
@@ -132,7 +132,7 @@ class TTModeCustom: TTMode {
             DispatchQueue.global().async {
                 do {
                     let urlContents = try String(contentsOf: customURL)
-                    print(" ---> URL returned: \(urlContents.characters.count) bytes")
+                    print(" ---> URL returned: \(urlContents.count) bytes")
                     callback(urlContents, true)
                 } catch {
                     print(" ---> URL threw: \(error)")

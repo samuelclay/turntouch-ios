@@ -280,10 +280,14 @@ class TTModeWemo: TTMode, TTModeWemoMulticastDelegate, TTModeWemoDeviceDelegate 
     func deviceReady(_ device: TTModeWemoDevice) {
         let prefs = UserDefaults.standard
         
-        if !TTModeWemo.foundDevices.contains(device) {
-            TTModeWemo.foundDevices.append(device)
+        for foundDevice in TTModeWemo.foundDevices {
+            if foundDevice.isEqualToDevice(device) {
+                return
+            }
         }
-        
+
+        TTModeWemo.foundDevices.append(device)
+
         TTModeWemo.foundDevices = TTModeWemo.foundDevices.sorted {
             (a, b) -> Bool in
             return a.deviceName?.lowercased() < b.deviceName?.lowercased()
