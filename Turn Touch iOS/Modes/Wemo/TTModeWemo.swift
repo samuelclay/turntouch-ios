@@ -21,10 +21,9 @@ fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
 
 
 struct TTModeWemoConstants {
-    static let kWemoDeviceLocation = "wemoDeviceLocation"
-    static let kWemoDeviceLocations = "wemoDeviceLocations"
-    static let kWemoFoundDevices = "wemoFoundDevices"
-    static let kWemoSeenDevices = "wemoSeenDevices"
+    static let kWemoSelectedSerials = "wemoSelectedSerials"
+    static let kWemoFoundDevices = "wemoFoundDevicesV2"
+    static let kWemoSeenDevices = "wemoSeenDevicesV2"
 }
 
 enum TTWemoState {
@@ -77,7 +76,12 @@ class TTModeWemo: TTMode, TTModeWemoMulticastDelegate, TTModeWemoDeviceDelegate 
 
         if let foundDevices = prefs.array(forKey: TTModeWemoConstants.kWemoFoundDevices) as? [[String: AnyObject]] {
             for device in foundDevices {
-                let newDevice = self.foundDevice([:], host: device["ipaddress"] as! String, port: device["port"] as! Int, name: device["name"] as! String?, live: false)
+                let newDevice = self.foundDevice([:], host: device["ipaddress"] as! String,
+                                                 port: device["port"] as! Int,
+                                                 name: device["name"] as! String?,
+                                                 serialNumber: device["serialNumber"] as! String?,
+                                                 macAddress: device["macAddress"] as! String?,
+                                                 live: false)
                 print(" ---> Loading wemo: \(newDevice.deviceName!) (\(newDevice.location()))")
             }
         }
@@ -197,9 +201,9 @@ class TTModeWemo: TTMode, TTModeWemoMulticastDelegate, TTModeWemoDeviceDelegate 
             return devices
         }
         
-        if let deviceLocations = self.action.optionValue(TTModeWemoConstants.kWemoDeviceLocations) as? [String] {
+        if let selectedSerials = self.action.optionValue(TTModeWemoConstants.kWemoSelectedSerials) as? [String] {
             for foundDevice in TTModeWemo.foundDevices {
-                if deviceLocations.contains(foundDevice.location()) {
+                if selectedSerials.contains(foundDevice.serialNumber) {
                     devices.append(foundDevice)
                 }
             }
@@ -230,13 +234,18 @@ class TTModeWemo: TTMode, TTModeWemoMulticastDelegate, TTModeWemoDeviceDelegate 
     
     // MARK: Multicast delegate
     
-    func foundDevice(_ headers: [String: String], host ipAddress: String, port: Int, name: String?, live: Bool) -> TTModeWemoDevice {
+    func foundDevice(_ headers: [String: String], host ipAddress: String, port: Int, name: String?, serialNumber: String?, macAddress: String?, live: Bool) -> TTModeWemoDevice {
         let newDevice = TTModeWemoDevice(ipAddress: ipAddress, port: port)
         newDevice.delegate = self
-        if name != nil {
-            newDevice.deviceName = name!
-        } else {
-            newDevice.deviceName = newDevice.location()
+        
+        if let name = name {
+            newDevice.deviceName = name
+        }
+        if let serialNumber = serialNumber {
+            newDevice.serialNumber = serialNumber
+        }
+        if let macAddress = macAddress {
+            newDevice.macAddress = macAddress
         }
         
         for device in TTModeWemo.foundDevices {
@@ -251,7 +260,9 @@ class TTModeWemo: TTMode, TTModeWemoMulticastDelegate, TTModeWemoDeviceDelegate 
             }
         }
         
-        TTModeWemo.foundDevices.append(newDevice)
+        if newDevice.deviceName != nil && newDevice.serialNumber != nil {
+            TTModeWemo.foundDevices.append(newDevice)
+        }
         TTModeWemo.recentlyFoundDevices.append(newDevice)
 
         newDevice.requestDeviceInfo()
@@ -268,24 +279,29 @@ class TTModeWemo: TTMode, TTModeWemoMulticastDelegate, TTModeWemoDeviceDelegate 
     
     func deviceReady(_ device: TTModeWemoDevice) {
         let prefs = UserDefaults.standard
-
+        
+        if !TTModeWemo.foundDevices.contains(device) {
+            TTModeWemo.foundDevices.append(device)
+        }
+        
         TTModeWemo.foundDevices = TTModeWemo.foundDevices.sorted {
             (a, b) -> Bool in
             return a.deviceName?.lowercased() < b.deviceName?.lowercased()
         }
         
         var foundDevices: [[String: Any]] = []
-        var foundIps: [String] = []
+        var foundSerials: [String] = []
         for device in TTModeWemo.foundDevices {
             if device.deviceName == nil {
                 continue
             }
-            if !foundIps.contains(device.location()) {
-                foundIps.append(device.location())
+            if !foundSerials.contains(device.serialNumber) {
+                foundSerials.append(device.serialNumber)
             } else {
                 continue
             }
-            foundDevices.append(["ipaddress": device.ipAddress, "port": device.port, "name": device.deviceName])
+            foundDevices.append(["ipaddress": device.ipAddress, "port": device.port, "name": device.deviceName,
+                                 "serialNumber": device.serialNumber, "macAddress": device.macAddress])
         }
         prefs.set(foundDevices, forKey: TTModeWemoConstants.kWemoFoundDevices)
         prefs.synchronize()
@@ -304,18 +320,18 @@ class TTModeWemo: TTMode, TTModeWemoMulticastDelegate, TTModeWemoDeviceDelegate 
         if TTModeWemo.foundDevices.count == 0 {
             return
         }
-        let deviceLocations = self.action.optionValue(TTModeWemoConstants.kWemoDeviceLocations) as? [String]
-        if let deviceLocations = deviceLocations {
-            if deviceLocations.count > 0 {
+        let selectedSerials = self.action.optionValue(TTModeWemoConstants.kWemoSelectedSerials) as? [String]
+        if let selectedSerials = selectedSerials {
+            if selectedSerials.count > 0 {
                 return;
             }
         }
         
         // Nothing selected, so select everything
-        let locations = TTModeWemo.foundDevices.map { (device) -> String in
-            return device.location()
+        let serialNumbers = TTModeWemo.foundDevices.map { (device) -> String in
+            return device.serialNumber
         }
-        self.action.changeActionOption(TTModeWemoConstants.kWemoDeviceLocations, to: locations)
+        self.action.changeActionOption(TTModeWemoConstants.kWemoSelectedSerials, to: serialNumbers)
     }
 
 }

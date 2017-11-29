@@ -118,7 +118,7 @@ class TTModeWemoDeviceSwitchOptions: TTOptionsDetailViewController, UITableViewD
     
     func purgeDevices() {
         self.modeWemo.resetKnownDevices()
-//        self.action.removeActionOption(TTModeWemoConstants.kWemoDeviceLocations) // Keep selections in case they're useful
+//        self.action.removeActionOption(TTModeWemoConstants.kWemoSelectedSerials) // Keep selections in case they're useful
         self.selectDevices()
         self.refreshDevices()
     }
@@ -150,9 +150,9 @@ class TTModeWemoDeviceSwitchOptions: TTOptionsDetailViewController, UITableViewD
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let cellDevice = TTModeWemo.foundDevices[indexPath.row]
-        let devicesSelected = self.action.optionValue(TTModeWemoConstants.kWemoDeviceLocations) as? [String]
+        let devicesSelected = self.action.optionValue(TTModeWemoConstants.kWemoSelectedSerials) as? [String]
 
-        if let devicesSelected = devicesSelected, devicesSelected.contains(cellDevice.location()) {
+        if let devicesSelected = devicesSelected, devicesSelected.contains(cellDevice.serialNumber) {
             cell.accessoryType = .checkmark
             cell.setSelected(true, animated: false)
             self.devicesTable.selectRow(at: indexPath, animated: false, scrollPosition: .none)
@@ -167,16 +167,18 @@ class TTModeWemoDeviceSwitchOptions: TTOptionsDetailViewController, UITableViewD
         if let cell = tableView.cellForRow(at: indexPath) {
             cell.accessoryType = .checkmark
         }
-        let selectedIdentifier = TTModeWemo.foundDevices[indexPath.row].location()
         
-        var devicesSelected = self.action.optionValue(TTModeWemoConstants.kWemoDeviceLocations) as? [String]
-        if devicesSelected == nil {
-            devicesSelected = [selectedIdentifier]
-        } else if !devicesSelected!.contains(selectedIdentifier) {
-            devicesSelected!.append(selectedIdentifier)
+        if let selectedIdentifier = TTModeWemo.foundDevices[indexPath.row].serialNumber {
+            var devicesSelected = self.action.optionValue(TTModeWemoConstants.kWemoSelectedSerials) as? [String]
+            if devicesSelected == nil {
+                devicesSelected = [selectedIdentifier]
+            } else if !devicesSelected!.contains(selectedIdentifier) {
+                devicesSelected!.append(selectedIdentifier)
+            }
+            
+            self.action.changeActionOption(TTModeWemoConstants.kWemoSelectedSerials, to: devicesSelected!)
         }
         
-        self.action.changeActionOption(TTModeWemoConstants.kWemoDeviceLocations, to: devicesSelected!)
     }
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
@@ -184,16 +186,17 @@ class TTModeWemoDeviceSwitchOptions: TTOptionsDetailViewController, UITableViewD
         if let cell = tableView.cellForRow(at: indexPath) {
             cell.accessoryType = .none
         }
-        let selectedIdentifier = TTModeWemo.foundDevices[indexPath.row].location()
         
-        var devicesSelected = self.action.optionValue(TTModeWemoConstants.kWemoDeviceLocations) as? [String]
-        if devicesSelected == nil {
-            devicesSelected = [selectedIdentifier]
-        } else if devicesSelected!.contains(selectedIdentifier) {
-            devicesSelected!.remove(at: devicesSelected!.index(of: selectedIdentifier)!)
+        if let selectedIdentifier = TTModeWemo.foundDevices[indexPath.row].serialNumber {
+            var devicesSelected = self.action.optionValue(TTModeWemoConstants.kWemoSelectedSerials) as? [String]
+            if devicesSelected == nil {
+                devicesSelected = [selectedIdentifier]
+            } else if devicesSelected!.contains(selectedIdentifier) {
+                devicesSelected!.remove(at: devicesSelected!.index(of: selectedIdentifier)!)
+            }
+            
+            self.action.changeActionOption(TTModeWemoConstants.kWemoSelectedSerials, to: devicesSelected!)
         }
-        
-        self.action.changeActionOption(TTModeWemoConstants.kWemoDeviceLocations, to: devicesSelected!)
     }
     
 }

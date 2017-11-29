@@ -20,6 +20,8 @@ protocol TTModeWemoDeviceDelegate {
 
 class TTModeWemoDevice: NSObject {
     var deviceName: String!
+    var serialNumber: String!
+    var macAddress: String!
     var ipAddress: String
     var port: Int
     var deviceState: TTModeWemoDeviceState!
@@ -30,7 +32,15 @@ class TTModeWemoDevice: NSObject {
         self.port = port
     }
     
+    override var description: String {
+        return "\(deviceName) (\(self.location())/\(serialNumber))"
+    }
+    
     func isEqualToDevice(_ device: TTModeWemoDevice) -> Bool {
+        return serialNumber == device.serialNumber
+    }
+    
+    func isSameDeviceDifferentLocation(_ device: TTModeWemoDevice) -> Bool {
         let sameAddress = ipAddress == device.ipAddress
         let samePort = port == device.port
         
@@ -75,6 +85,8 @@ class TTModeWemoDevice: NSObject {
         let doc = SWXMLHash.parse(xmlData)
 //        print(" ---> Wemo data: \(String(data: xmlData, encoding: .utf8))")
         deviceName = doc["root"]["device"]["friendlyName"].element?.text
+        serialNumber = doc["root"]["device"]["serialNumber"].element?.text
+        macAddress = doc["root"]["device"]["macAddress"].element?.text
 
         if deviceName != nil {
             print(" ---> Found wemo: \(deviceName ?? "[no device name]") (\(self.location()))")

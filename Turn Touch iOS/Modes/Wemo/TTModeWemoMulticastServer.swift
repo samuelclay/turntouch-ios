@@ -12,7 +12,7 @@ import CocoaAsyncSocket
 let MULTICAST_GROUP_IP = "239.255.255.250"
 
 protocol TTModeWemoMulticastDelegate {
-    func foundDevice(_ headers: [String: String], host: String, port: Int, name: String?, live: Bool) -> TTModeWemoDevice
+    func foundDevice(_ headers: [String: String], host: String, port: Int, name: String?, serialNumber: String?, macAddress: String?,  live: Bool) -> TTModeWemoDevice
     func finishScanning()
 }
 
@@ -116,7 +116,7 @@ class TTModeWemoMulticastServer: NSObject, GCDAsyncUdpSocketDelegate {
                     let locationPort = (setupXmlUrl as NSURL?)?.port?.intValue
                     
                     if locationHost != nil && locationPort != nil {
-                        _ = delegate?.foundDevice(headers, host: locationHost!, port: locationPort!, name: nil, live: true)
+                        _ = delegate?.foundDevice(headers, host: locationHost!, port: locationPort!, name: nil, serialNumber: nil, macAddress: nil, live: true)
                     }
                 }
             }
