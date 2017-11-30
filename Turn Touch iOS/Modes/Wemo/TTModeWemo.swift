@@ -256,7 +256,7 @@ class TTModeWemo: TTMode, TTModeWemoMulticastDelegate, TTModeWemoDeviceDelegate 
         }
         for device in TTModeWemo.recentlyFoundDevices {
             if device.isEqualToDevice(newDevice) {
-                return device
+//                return device
             }
         }
         

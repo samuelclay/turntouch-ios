@@ -53,7 +53,8 @@ class TTModeWemoDevice: NSObject {
     
     func requestDeviceInfo(_ attemptsLeft: Int = 5) {
         if attemptsLeft == 0 {
-            print(" ---> Error, could not find wemo setup.xml: \(self.location())")
+            print(" ---> Error, could not find wemo setup.xml: \(self)")
+            return
         }
         
         let attemptsLeft = attemptsLeft - 1
@@ -72,6 +73,8 @@ class TTModeWemoDevice: NSObject {
                             print(" ---> Retrying setup.xml fetch...")
                             self.requestDeviceInfo(attemptsLeft)
                         }
+                    } else {
+                        print(" ---> Wemo \(self) setup.xml error: \(httpResponse.statusCode)")
                     }
                 }
             } else {

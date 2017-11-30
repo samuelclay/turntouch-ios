@@ -52,7 +52,7 @@ class TTModeWemoMulticastServer: NSObject, GCDAsyncUdpSocketDelegate {
             udpSocket = GCDAsyncUdpSocket(delegate: self, delegateQueue: DispatchQueue.main)
             
             do {
-                try udpSocket.bind(toPort: 7600)
+                try udpSocket.bind(toPort: 7700)
             } catch let e {
                 print(" ---> Error binding to port: \(e)")
             }
