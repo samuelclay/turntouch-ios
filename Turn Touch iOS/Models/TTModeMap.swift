@@ -323,7 +323,7 @@ class TTModeMap: NSObject {
         Alamofire.request("https://turntouch.com/usage/record", method: .post,
                           parameters: params, encoding: JSONEncoding.default).responseJSON
             { response in
-                print(" ---> Usage: \(params) \(response)")
+//                print(" ---> Usage: \(params) \(response)")
             }
     }
     

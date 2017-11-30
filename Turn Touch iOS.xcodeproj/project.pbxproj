@@ -24,6 +24,10 @@
 		FF0F10E51CFFAD1B00CC1F29 /* TTModeMenuBordersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0F10E41CFFAD1B00CC1F29 /* TTModeMenuBordersView.swift */; };
 		FF0F10E91CFFAD6100CC1F29 /* TTModeMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0F10E81CFFAD6100CC1F29 /* TTModeMenuCell.swift */; };
 		FF0F10EB1CFFB4A800CC1F29 /* TTModeMenuCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0F10EA1CFFB4A800CC1F29 /* TTModeMenuCollectionView.swift */; };
+		FF1A84FB1FCFB56F005D8ADE /* TTModeHueBrightnessOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1A84F91FCFB56F005D8ADE /* TTModeHueBrightnessOptions.swift */; };
+		FF1A84FC1FCFB56F005D8ADE /* TTModeHueBrightnessOptions.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF1A84FA1FCFB56F005D8ADE /* TTModeHueBrightnessOptions.xib */; };
+		FF1A84FE1FCFB593005D8ADE /* TTModeHueRaiseBrightnessOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1A84FD1FCFB593005D8ADE /* TTModeHueRaiseBrightnessOptions.swift */; };
+		FF1A85001FCFB5AF005D8ADE /* TTModeHueLowerBrightnessOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1A84FF1FCFB5AF005D8ADE /* TTModeHueLowerBrightnessOptions.swift */; };
 		FF20232B1D02147A005129E5 /* Icon-120.png in Resources */ = {isa = PBXBuildFile; fileRef = FF2023181D02147A005129E5 /* Icon-120.png */; };
 		FF20232C1D02147A005129E5 /* Icon-29.png in Resources */ = {isa = PBXBuildFile; fileRef = FF2023191D02147A005129E5 /* Icon-29.png */; };
 		FF20232D1D02147A005129E5 /* Icon-29@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FF20231A1D02147A005129E5 /* Icon-29@2x.png */; };
@@ -393,6 +397,10 @@
 		FF0F10E41CFFAD1B00CC1F29 /* TTModeMenuBordersView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeMenuBordersView.swift; path = "Views/Mode menu/TTModeMenuBordersView.swift"; sourceTree = "<group>"; };
 		FF0F10E81CFFAD6100CC1F29 /* TTModeMenuCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeMenuCell.swift; path = "Views/Mode menu/TTModeMenuCell.swift"; sourceTree = "<group>"; };
 		FF0F10EA1CFFB4A800CC1F29 /* TTModeMenuCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeMenuCollectionView.swift; path = "Views/Mode menu/TTModeMenuCollectionView.swift"; sourceTree = "<group>"; };
+		FF1A84F91FCFB56F005D8ADE /* TTModeHueBrightnessOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TTModeHueBrightnessOptions.swift; path = Modes/Hue/TTModeHueBrightnessOptions.swift; sourceTree = "<group>"; };
+		FF1A84FA1FCFB56F005D8ADE /* TTModeHueBrightnessOptions.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = TTModeHueBrightnessOptions.xib; path = Modes/Hue/TTModeHueBrightnessOptions.xib; sourceTree = "<group>"; };
+		FF1A84FD1FCFB593005D8ADE /* TTModeHueRaiseBrightnessOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TTModeHueRaiseBrightnessOptions.swift; path = Modes/Hue/TTModeHueRaiseBrightnessOptions.swift; sourceTree = "<group>"; };
+		FF1A84FF1FCFB5AF005D8ADE /* TTModeHueLowerBrightnessOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTModeHueLowerBrightnessOptions.swift; sourceTree = "<group>"; };
 		FF2023181D02147A005129E5 /* Icon-120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-120.png"; sourceTree = "<group>"; };
 		FF2023191D02147A005129E5 /* Icon-29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-29.png"; sourceTree = "<group>"; };
 		FF20231A1D02147A005129E5 /* Icon-29@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-29@2x.png"; sourceTree = "<group>"; };
@@ -882,6 +890,10 @@
 				FF254F631D1B2C6B00E96378 /* TTModeHueSleepOptions.xib */,
 				FF37EDFB1D1B23B70026F70D /* TTModeHueRandomOptions.swift */,
 				FF254F621D1B2C6B00E96378 /* TTModeHueRandomOptions.xib */,
+				FF1A84F91FCFB56F005D8ADE /* TTModeHueBrightnessOptions.swift */,
+				FF1A84FD1FCFB593005D8ADE /* TTModeHueRaiseBrightnessOptions.swift */,
+				FF1A84FF1FCFB5AF005D8ADE /* TTModeHueLowerBrightnessOptions.swift */,
+				FF1A84FA1FCFB56F005D8ADE /* TTModeHueBrightnessOptions.xib */,
 				FF3036581DB9BF0900728920 /* press_smartbridgeV2.png */,
 			);
 			name = Hue;
@@ -1801,6 +1813,7 @@
 				FF0F10C01CF5638D00CC1F29 /* Preferences.plist in Resources */,
 				FFB84B4A1D90D4240037872C /* yoga_position_11.png in Resources */,
 				FF76F0381F7023230001247D /* mode_homekit.png in Resources */,
+				FF1A84FC1FCFB56F005D8ADE /* TTModeHueBrightnessOptions.xib in Resources */,
 				FFB41B531CEE9A3000CD5F09 /* itunes_library_icon.png in Resources */,
 				FFB84B401D90D4240037872C /* yoga_position_1.png in Resources */,
 				FFB41B6B1CEE9A3000CD5F09 /* modal_ftux_mode.png in Resources */,
@@ -1967,9 +1980,11 @@
 				FF4AF7E91D24F9E70009C777 /* TTModeSonosConnected.swift in Sources */,
 				FF458AB31DBED8A8003FD06B /* TTModeHueSceneColorLoopOptions.swift in Sources */,
 				FFC4B0F71D2DE3DB00A97C81 /* UIView+nib.swift in Sources */,
+				FF1A84FE1FCFB593005D8ADE /* TTModeHueRaiseBrightnessOptions.swift in Sources */,
 				FFF46BDC1D10941500158751 /* DDASLLogger.m in Sources */,
 				FF4AF7D51D24ECF60009C777 /* SonosController.m in Sources */,
 				FF0F10D71CF6697A00CC1F29 /* TTDiamondView.swift in Sources */,
+				FF1A85001FCFB5AF005D8ADE /* TTModeHueLowerBrightnessOptions.swift in Sources */,
 				FF4487781D09367000ED8099 /* TTButtonState.swift in Sources */,
 				FF0F10D01CF63F6100CC1F29 /* TTModeAlarmClock.swift in Sources */,
 				FFB41B881CF536BB00CD5F09 /* TTActionMap.swift in Sources */,
@@ -2009,6 +2024,7 @@
 				FF4AF7C51D248A630009C777 /* TTModeWemoDeviceToggleOptions.swift in Sources */,
 				FFF46BF01D10E6D400158751 /* TTOptionsDetailViewController.swift in Sources */,
 				FF4AF7BE1D248A3A0009C777 /* TTModeWemoConnected.swift in Sources */,
+				FF1A84FB1FCFB56F005D8ADE /* TTModeHueBrightnessOptions.swift in Sources */,
 				FF534C381EB0351A002EE584 /* TTModeIftttConnect.swift in Sources */,
 				FF4AF7D81D24ECF60009C777 /* XMLReader.m in Sources */,
 				FF21F9301E172BC300DFDBB4 /* TTModeNest.swift in Sources */,

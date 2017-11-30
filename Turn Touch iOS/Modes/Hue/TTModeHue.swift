@@ -67,7 +67,6 @@ protocol TTModeHueSceneDelegate {
 
 class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, ResourceCacheHeartbeatProcessorDelegate {
     
-//    static var phHueSdk: PHHueSDK!
     static var hueSdk: SwiftyHue!
     static var reachability: Reachability!
     static var hueState: TTHueState = TTHueState.notConnected
@@ -81,7 +80,6 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
     static var lightSemaphore = DispatchSemaphore(value: 1)
     static var waitingOnScenes: Bool = false
     static var ensuringScenes: Bool = false
-//    var bridgeSearch: PHBridgeSearching!
     static var bridgeFinder: BridgeFinder!
     static var bridgeAuthenticator: BridgeAuthenticator!
     static var latestBridge: HueBridge?
@@ -99,11 +97,6 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
         
         self.initializeHue()
         self.watchReachability()
-    }
-    
-    deinit {
-//        self.disableLocalHeartbeat()
-//        TTModeHue.phHueSdk.stop()
     }
     
     override func activate() {
@@ -150,7 +143,11 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
     // MARK: Actions
     
     override class func actions() -> [String] {
-        return ["TTModeHueSceneEarlyEvening",
+        return ["TTModeHueRaiseBrightness",
+                "TTModeHueLowerBrightness",
+                "TTModeHueShiftColorLeft",
+                "TTModeHueShiftColorRight",
+                "TTModeHueSceneEarlyEvening",
                 "TTModeHueSceneLateEvening",
                 "TTModeHueSceneMorning",
                 "TTModeHueSceneMidnightOil",
@@ -168,6 +165,22 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
         }
         
         return false
+    }
+    
+    func titleTTModeHueRaiseBrightness() -> String {
+        return "Raise brightness"
+    }
+    
+    func titleTTModeHueLowerBrightness() -> String {
+        return "Lower brightness"
+    }
+    
+    func titleTTModeHueShiftColorLeft() -> String {
+        return "Shift color left"
+    }
+    
+    func titleTTModeHueShiftColorRight() -> String {
+        return "Shift color right"
     }
     
     func titleTTModeHueSceneEarlyEvening() -> String {
@@ -499,23 +512,8 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
             return
         }
         
-        var roomLights: [String]? = []
-        if let rooms = cache?.groups,
-            let roomIdentifier = roomIdentifier {
-            if roomIdentifier == "all" {
-                roomLights = cache?.lights.map({ (key: String, value: Light) -> String in
-                    return value.identifier
-                })
-            } else {
-                for (_, room) in rooms {
-                    if room.identifier == roomIdentifier {
-                        roomLights = room.lightIdentifiers
-                        break
-                    }
-                }
-            }
-        }
-        
+        let roomLights = self.roomLights(for: roomIdentifier)
+
         for (_, light) in lights {
             if roomIdentifier != nil && roomLights?.contains(light.identifier) == false {
                 continue
@@ -555,6 +553,120 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
         }
     }
     
+    func roomLights(for roomIdentifier: String?, lights: [String: Light]? = nil) -> [String]? {
+        let cache = TTModeHue.hueSdk.resourceCache
+        let lights = lights ?? cache?.lights
+        var roomLights: [String]? = []
+        
+        if let rooms = cache?.groups,
+            let roomIdentifier = roomIdentifier {
+            if roomIdentifier == "all" || roomIdentifier == "" || roomIdentifier == "0" {
+                roomLights = lights?.map({ (key: String, value: Light) -> String in
+                    return value.identifier
+                })
+            } else {
+                for (_, room) in rooms {
+                    if room.identifier == roomIdentifier {
+                        roomLights = room.lightIdentifiers
+                        break
+                    }
+                }
+            }
+        }
+        
+        return roomLights
+    }
+    
+    func runTTModeHueRaiseBrightness() {
+        self.changeBrightness(amount: 25)
+    }
+
+    func doubleRunTTModeHueRaiseBrightness() {
+        self.changeBrightness(amount: 50)
+    }
+
+    func runTTModeHueLowerBrightness() {
+        self.changeBrightness(amount: -25)
+    }
+    
+    func doubleRunTTModeHueLowerBrightness() {
+        self.changeBrightness(amount: -50)
+    }
+
+    func changeBrightness(amount: Int) {
+        let resourceAPI = TTModeHue.hueSdk.resourceAPI
+        resourceAPI.fetchLights { result in
+            
+            var roomIdentifier = self.action.optionValue(TTModeHueConstants.kHueRoom) as? String ?? "all"
+            let bridgeSendAPI = TTModeHue.hueSdk.bridgeSendAPI
+            let cache = TTModeHue.hueSdk.resourceCache
+            var lights = result.value
+            if lights == nil {
+                lights = cache?.lights
+            }
+            let roomLights = self.roomLights(for: roomIdentifier, lights: lights)
+            if roomIdentifier == "all" {
+                roomIdentifier = "0"
+            }
+            
+            var sameColor = true
+            var lastColor: Int = 0
+            for (_, light) in lights! {
+                if roomLights?.contains(light.identifier) == false {
+                    continue
+                }
+                
+                if let hue = light.state.hue {
+                    if lastColor == 0 {
+                        lastColor = hue
+                    } else if abs(hue - lastColor) > 25 {
+                        sameColor = false
+                        break
+                    }
+                }
+            }
+            
+            if sameColor {
+                var lightState: LightState? = nil
+                for (_, light) in lights! {
+                    lightState = light.state
+                    break
+                }
+                if let state = lightState {
+                    var lightState = LightState()
+                    lightState.brightness = max(min((state.brightness ?? 0) + amount, 254), 0)
+                    DispatchQueue.main.async {
+                        bridgeSendAPI.setLightStateForGroupWithId(roomIdentifier, withLightState: lightState, completionHandler: { (error) in
+                            print(" ---> Hue brightness same color complete: \(lightState)")
+                        })
+                    }
+                }
+            } else {
+                for (_, light) in lights! {
+                    if roomLights?.contains(light.identifier) == false {
+                        continue
+                    }
+                    
+                    var lightState = LightState()
+                    lightState.brightness = (light.state.brightness ?? 0) + amount
+                    DispatchQueue.main.async {
+                        bridgeSendAPI.updateLightStateForId(light.identifier, withLightState: lightState, completionHandler: { (error) in
+                            print(" ---> Hue brightness complete: \(lightState)")
+                        })
+                    }
+                }
+            }
+        }
+    }
+    
+    
+    func runTTModeHueShiftColorLeft() {
+        
+    }
+    
+    func runTTModeHueShiftColorRight() {
+        
+    }
     // MARK: - Hue Bridge
     
     
@@ -888,7 +1000,7 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
     
     func resourceCacheUpdated(_ resourceCache: BridgeResourcesCache) {
         TTModeHue.hueSdk.resourceCache = resourceCache
-//        print(" ---> Updated resource cache: \(resourceCache) \(TTModeHue.waitingOnScenes ? "Waiting on scenes, here they are!" : "") (\(resourceCache.scenes.count) scenes)")
+        print(" ---> Updated resource cache: \(resourceCache) \(TTModeHue.waitingOnScenes ? "Waiting on scenes, here they are!" : "") (\(resourceCache.scenes.count) scenes)")
     }
     
     // MARK: - Scenes and Rooms
