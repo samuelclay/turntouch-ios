@@ -648,7 +648,7 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
                     }
                     
                     var lightState = LightState()
-                    lightState.brightness = (light.state.brightness ?? 0) + amount
+                    lightState.brightness = max(min((light.state.brightness ?? 0) + amount, 254), 0)
                     DispatchQueue.main.async {
                         bridgeSendAPI.updateLightStateForId(light.identifier, withLightState: lightState, completionHandler: { (error) in
                             print(" ---> Hue brightness complete: \(lightState)")
@@ -661,12 +661,87 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
     
     
     func runTTModeHueShiftColorLeft() {
-        
+        self.shiftColor(amount: -2500)
     }
     
-    func runTTModeHueShiftColorRight() {
-        
+    func doubleRunTTModeHueShiftColorLeft() {
+        self.shiftColor(amount: -5000)
     }
+
+    func runTTModeHueShiftColorRight() {
+        self.shiftColor(amount: 2500)
+    }
+    
+    func doubleRunTTModeHueShiftColorRight() {
+        self.shiftColor(amount: 5000)
+    }
+    
+    func shiftColor(amount: Int) {
+        let resourceAPI = TTModeHue.hueSdk.resourceAPI
+        resourceAPI.fetchLights { result in
+            
+            var roomIdentifier = self.action.optionValue(TTModeHueConstants.kHueRoom) as? String ?? "all"
+            let bridgeSendAPI = TTModeHue.hueSdk.bridgeSendAPI
+            let cache = TTModeHue.hueSdk.resourceCache
+            var lights = result.value
+            if lights == nil {
+                lights = cache?.lights
+            }
+            let roomLights = self.roomLights(for: roomIdentifier, lights: lights)
+            if roomIdentifier == "all" {
+                roomIdentifier = "0"
+            }
+            
+            var sameColor = true
+            var lastColor: Int = 0
+            for (_, light) in lights! {
+                if roomLights?.contains(light.identifier) == false {
+                    continue
+                }
+                
+                if let hue = light.state.hue {
+                    if lastColor == 0 {
+                        lastColor = hue
+                    } else if abs(hue - lastColor) > 25 {
+                        sameColor = false
+                        break
+                    }
+                }
+            }
+            
+            if sameColor {
+                var lightState: LightState? = nil
+                for (_, light) in lights! {
+                    lightState = light.state
+                    break
+                }
+                if let state = lightState {
+                    var lightState = LightState()
+                    lightState.hue = max(min((state.hue ?? 0) + amount, 65535), 0)
+                    DispatchQueue.main.async {
+                        bridgeSendAPI.setLightStateForGroupWithId(roomIdentifier, withLightState: lightState, completionHandler: { (error) in
+                            print(" ---> Hue brightness same color complete: \(lightState)")
+                        })
+                    }
+                }
+            } else {
+                for (_, light) in lights! {
+                    if roomLights?.contains(light.identifier) == false {
+                        continue
+                    }
+                    
+                    var lightState = LightState()
+                    lightState.hue = max(min((light.state.hue ?? 0) + amount, 65535), 0)
+                    DispatchQueue.main.async {
+                        bridgeSendAPI.updateLightStateForId(light.identifier, withLightState: lightState, completionHandler: { (error) in
+                            print(" ---> Hue brightness complete: \(lightState)")
+                        })
+                    }
+                }
+            }
+        }
+    }
+    
     // MARK: - Hue Bridge
     
     
