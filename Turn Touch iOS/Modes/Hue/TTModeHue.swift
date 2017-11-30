@@ -36,8 +36,8 @@ enum TTHueRandomSaturation: Int {
     case high
 }
 
-let MAX_HUE: UInt32 = 65535
-let MAX_BRIGHTNESS: UInt32 = 254
+let MAX_HUE = 65535
+let MAX_BRIGHTNESS = 255
 let DEBUG_HUE = true
 
 struct TTModeHueConstants {
@@ -504,7 +504,7 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
             TTModeHueConstants.kDoubleTapRandomBrightness : TTModeHueConstants.kRandomBrightness)) as! Int))
         let randomSaturation = TTHueRandomSaturation(rawValue: (self.action.optionValue((doubleTap ?
             TTModeHueConstants.kDoubleTapRandomSaturation : TTModeHueConstants.kRandomSaturation)) as! Int))
-        let randomColor: Int = Int(arc4random_uniform(MAX_HUE))
+        let randomColor: Int = Int(arc4random_uniform(UInt32(MAX_HUE)))
         let roomIdentifier = self.action.optionValue(TTModeHueConstants.kHueRoom) as? String
         
         guard let lights = cache?.lights else {
@@ -526,23 +526,23 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
             if (randomColors == .allSame) || (randomColors == .someDifferent && arc4random() % 10 > 5) {
                 lightState.hue = randomColor
             } else {
-                lightState.hue = Int(arc4random() % MAX_HUE)
+                lightState.hue = Int(arc4random() % UInt32(MAX_HUE))
             }
             
             if randomBrightnesses == .low {
                 lightState.brightness = Int(arc4random() % 100)
             } else if randomBrightnesses == .varied {
-                lightState.brightness = Int(arc4random() % MAX_BRIGHTNESS)
+                lightState.brightness = Int(arc4random() % UInt32(MAX_BRIGHTNESS))
             } else if randomBrightnesses == .high {
-                lightState.brightness = Int(254)
+                lightState.brightness = Int(MAX_BRIGHTNESS)
             }
             
             if randomSaturation == .low {
                 lightState.saturation = Int(174)
             } else if randomSaturation == .varied {
-                lightState.saturation = Int(254 - Int(arc4random_uniform(80)))
+                lightState.saturation = Int(MAX_BRIGHTNESS - Int(arc4random_uniform(80)))
             } else if randomSaturation == .high {
-                lightState.saturation = Int(254)
+                lightState.saturation = Int(MAX_BRIGHTNESS)
             }
             
             DispatchQueue.main.async {
@@ -634,7 +634,7 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
                 }
                 if let state = lightState {
                     var lightState = LightState()
-                    lightState.brightness = max(min((state.brightness ?? 0) + amount, 254), 0)
+                    lightState.brightness = max(min((state.brightness ?? 0) + amount, MAX_BRIGHTNESS), 0)
                     DispatchQueue.main.async {
                         bridgeSendAPI.setLightStateForGroupWithId(roomIdentifier, withLightState: lightState, completionHandler: { (error) in
                             print(" ---> Hue brightness same color complete: \(lightState)")
@@ -648,7 +648,7 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
                     }
                     
                     var lightState = LightState()
-                    lightState.brightness = max(min((light.state.brightness ?? 0) + amount, 254), 0)
+                    lightState.brightness = max(min((light.state.brightness ?? 0) + amount, MAX_BRIGHTNESS), 0)
                     DispatchQueue.main.async {
                         bridgeSendAPI.updateLightStateForId(light.identifier, withLightState: lightState, completionHandler: { (error) in
                             print(" ---> Hue brightness complete: \(lightState)")
@@ -661,19 +661,19 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
     
     
     func runTTModeHueShiftColorLeft() {
-        self.shiftColor(amount: -2500)
+        self.shiftColor(amount: -1000)
     }
     
     func doubleRunTTModeHueShiftColorLeft() {
-        self.shiftColor(amount: -5000)
+        self.shiftColor(amount: -2000)
     }
 
     func runTTModeHueShiftColorRight() {
-        self.shiftColor(amount: 2500)
+        self.shiftColor(amount: 1000)
     }
     
     func doubleRunTTModeHueShiftColorRight() {
-        self.shiftColor(amount: 5000)
+        self.shiftColor(amount: 2000)
     }
     
     func shiftColor(amount: Int) {
@@ -713,14 +713,21 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
                 var lightState: LightState? = nil
                 for (_, light) in lights! {
                     lightState = light.state
-                    break
+                    if light.state.hue != nil {
+                        break
+                    }
                 }
                 if let state = lightState {
                     var lightState = LightState()
-                    lightState.hue = max(min((state.hue ?? 0) + amount, 65535), 0)
+                    lightState.hue = max(min((state.hue ?? 0) + amount, MAX_HUE), 0)
+                    if lightState.hue == 0 && amount < 0 {
+                        lightState.hue = MAX_HUE
+                    } else if lightState.hue == MAX_HUE && amount > 0 {
+                        lightState.hue = 0
+                    }
                     DispatchQueue.main.async {
                         bridgeSendAPI.setLightStateForGroupWithId(roomIdentifier, withLightState: lightState, completionHandler: { (error) in
-                            print(" ---> Hue brightness same color complete: \(lightState)")
+                            print(" ---> Hue brightness same color complete: \(lightState) (from: \(state))")
                         })
                     }
                 }
@@ -731,10 +738,15 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
                     }
                     
                     var lightState = LightState()
-                    lightState.hue = max(min((light.state.hue ?? 0) + amount, 65535), 0)
+                    lightState.hue = max(min((light.state.hue ?? 0) + amount, MAX_HUE), 0)
+                    if lightState.hue == 0 && amount < 0 {
+                        lightState.hue = MAX_HUE
+                    } else if lightState.hue == MAX_HUE && amount > 0 {
+                        lightState.hue = 0
+                    }
                     DispatchQueue.main.async {
                         bridgeSendAPI.updateLightStateForId(light.identifier, withLightState: lightState, completionHandler: { (error) in
-                            print(" ---> Hue brightness complete: \(lightState)")
+                            print(" ---> Hue brightness complete: \(lightState) (from: \(light.state))")
                         })
                     }
                 }
