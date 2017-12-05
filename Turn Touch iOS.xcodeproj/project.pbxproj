@@ -359,6 +359,10 @@
 		FFDA0FB61D3C4FEE0019859F /* cancel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FFDA0FAF1D3C4FEE0019859F /* cancel@2x.png */; };
 		FFDA0FB71D3C4FEE0019859F /* cancel@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = FFDA0FB01D3C4FEE0019859F /* cancel@3x.png */; };
 		FFDA0FBA1D3C55930019859F /* TTModeCameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDA0FB81D3C55930019859F /* TTModeCameraViewController.swift */; };
+		FFDC9F691FD74B0800261B76 /* hue_shift_right.png in Resources */ = {isa = PBXBuildFile; fileRef = FFDC9F651FD74B0800261B76 /* hue_shift_right.png */; };
+		FFDC9F6A1FD74B0800261B76 /* hue_brightness_up.png in Resources */ = {isa = PBXBuildFile; fileRef = FFDC9F661FD74B0800261B76 /* hue_brightness_up.png */; };
+		FFDC9F6B1FD74B0800261B76 /* hue_shift_left.png in Resources */ = {isa = PBXBuildFile; fileRef = FFDC9F671FD74B0800261B76 /* hue_shift_left.png */; };
+		FFDC9F6C1FD74B0800261B76 /* hue_brightness_down.png in Resources */ = {isa = PBXBuildFile; fileRef = FFDC9F681FD74B0800261B76 /* hue_brightness_down.png */; };
 		FFF270941CEE88E500E46575 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF270931CEE88E500E46575 /* AppDelegate.swift */; };
 		FFF2709D1CEE88E500E46575 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FFF2709C1CEE88E500E46575 /* Assets.xcassets */; };
 		FFF270A01CEE88E500E46575 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFF2709E1CEE88E500E46575 /* LaunchScreen.storyboard */; };
@@ -744,6 +748,10 @@
 		FFDA0FAF1D3C4FEE0019859F /* cancel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cancel@2x.png"; sourceTree = "<group>"; };
 		FFDA0FB01D3C4FEE0019859F /* cancel@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cancel@3x.png"; sourceTree = "<group>"; };
 		FFDA0FB81D3C55930019859F /* TTModeCameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeCameraViewController.swift; path = Modes/Camera/TTModeCameraViewController.swift; sourceTree = "<group>"; };
+		FFDC9F651FD74B0800261B76 /* hue_shift_right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hue_shift_right.png; sourceTree = "<group>"; };
+		FFDC9F661FD74B0800261B76 /* hue_brightness_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hue_brightness_up.png; sourceTree = "<group>"; };
+		FFDC9F671FD74B0800261B76 /* hue_shift_left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hue_shift_left.png; sourceTree = "<group>"; };
+		FFDC9F681FD74B0800261B76 /* hue_brightness_down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hue_brightness_down.png; sourceTree = "<group>"; };
 		FFF270901CEE88E500E46575 /* Turn Touch iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Turn Touch iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFF270931CEE88E500E46575 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FFF2709C1CEE88E500E46575 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -1169,6 +1177,10 @@
 				FF8B75361F86D4CB00D7867C /* hue_random.png */,
 				FF8B75231F86D4C700D7867C /* hue_sleep.png */,
 				FF8B75541F86D4CE00D7867C /* hue_sunset.png */,
+				FFDC9F681FD74B0800261B76 /* hue_brightness_down.png */,
+				FFDC9F661FD74B0800261B76 /* hue_brightness_up.png */,
+				FFDC9F671FD74B0800261B76 /* hue_shift_left.png */,
+				FFDC9F651FD74B0800261B76 /* hue_shift_right.png */,
 				FF8B75331F86D4CA00D7867C /* lightning.png */,
 				FF8B75241F86D4C700D7867C /* menu.png */,
 				FF8B751C1F86D4C500D7867C /* music_ff.png */,
@@ -1684,6 +1696,7 @@
 				FF7A235C1DFF7D21002B696D /* modal_failure.png in Resources */,
 				FF37EDD81D1117670026F70D /* TTModeHueConnecting.xib in Resources */,
 				FFB84B511D91FDC40037872C /* TTModeYogaViewController.xib in Resources */,
+				FFDC9F6B1FD74B0800261B76 /* hue_shift_left.png in Resources */,
 				FFB41B3A1CEE9A3000CD5F09 /* mode_meditation.png in Resources */,
 				FFB41B291CEE9A3000CD5F09 /* clock.png in Resources */,
 				FFB41B671CEE9A3000CD5F09 /* modal_ftux_action.png in Resources */,
@@ -1817,6 +1830,7 @@
 				FFB41B531CEE9A3000CD5F09 /* itunes_library_icon.png in Resources */,
 				FFB84B401D90D4240037872C /* yoga_position_1.png in Resources */,
 				FFB41B6B1CEE9A3000CD5F09 /* modal_ftux_mode.png in Resources */,
+				FFDC9F691FD74B0800261B76 /* hue_shift_right.png in Resources */,
 				FFDA0FB11D3C4FEE0019859F /* camera-flash.png in Resources */,
 				FFB41B651CEE9A3000CD5F09 /* title@2x.png in Resources */,
 				FF8B758B1F86E0BC00D7867C /* about.png in Resources */,
@@ -1851,6 +1865,7 @@
 				FF8B75631F86D4EF00D7867C /* hue_sunset.png in Resources */,
 				FF8B75641F86D4EF00D7867C /* lightning.png in Resources */,
 				FF8B75651F86D4EF00D7867C /* menu.png in Resources */,
+				FFDC9F6C1FD74B0800261B76 /* hue_brightness_down.png in Resources */,
 				FF8B75661F86D4EF00D7867C /* music_ff.png in Resources */,
 				FF8B75671F86D4EF00D7867C /* music_pause.png in Resources */,
 				FF8B75681F86D4EF00D7867C /* music_play_pause.png in Resources */,
@@ -1859,6 +1874,7 @@
 				FF8B756B1F86D4EF00D7867C /* music_rewind.png in Resources */,
 				FF8B756C1F86D4EF00D7867C /* music_volume_down.png in Resources */,
 				FF8B756D1F86D4EF00D7867C /* music_volume_mute.png in Resources */,
+				FFDC9F6A1FD74B0800261B76 /* hue_brightness_up.png in Resources */,
 				FF8B756E1F86D4EF00D7867C /* music_volume_up.png in Resources */,
 				FF8B756F1F86D4EF00D7867C /* music_volume.png in Resources */,
 				FF8B75701F86D4EF00D7867C /* next_site.png in Resources */,

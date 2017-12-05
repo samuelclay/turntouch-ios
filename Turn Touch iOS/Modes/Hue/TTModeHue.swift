@@ -303,6 +303,22 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
         return "hue_random.png"
     }
     
+    func imageTTModeHueRaiseBrightness() -> String {
+        return "hue_brightness_up.png"
+    }
+    
+    func imageTTModeHueLowerBrightness() -> String {
+        return "hue_brightness_down.png"
+    }
+    
+    func imageTTModeHueShiftColorLeft() -> String {
+        return "hue_shift_left.png"
+    }
+    
+    func imageTTModeHueShiftColorRight() -> String {
+        return "hue_shift_right.png"
+    }
+    
     // MARK: Defaults
     
     override func defaultNorth() -> String {
@@ -634,6 +650,7 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
                 }
                 if let state = lightState {
                     var lightState = LightState()
+                    lightState.on = true
                     lightState.brightness = max(min((state.brightness ?? 0) + amount, MAX_BRIGHTNESS), 0)
                     DispatchQueue.main.async {
                         bridgeSendAPI.setLightStateForGroupWithId(roomIdentifier, withLightState: lightState, completionHandler: { (error) in
@@ -648,6 +665,7 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
                     }
                     
                     var lightState = LightState()
+                    lightState.on = true
                     lightState.brightness = max(min((light.state.brightness ?? 0) + amount, MAX_BRIGHTNESS), 0)
                     DispatchQueue.main.async {
                         bridgeSendAPI.updateLightStateForId(light.identifier, withLightState: lightState, completionHandler: { (error) in
@@ -719,6 +737,7 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
                 }
                 if let state = lightState {
                     var lightState = LightState()
+                    lightState.on = true
                     lightState.hue = max(min((state.hue ?? 0) + amount, MAX_HUE), 0)
                     if lightState.hue == 0 && amount < 0 {
                         lightState.hue = MAX_HUE
@@ -738,6 +757,7 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
                     }
                     
                     var lightState = LightState()
+                    lightState.on = true
                     lightState.hue = max(min((light.state.hue ?? 0) + amount, MAX_HUE), 0)
                     if lightState.hue == 0 && amount < 0 {
                         lightState.hue = MAX_HUE
