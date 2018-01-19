@@ -430,7 +430,7 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
             device = foundDevices.addPeripheral(peripheral)
         }
         bluetoothState = .bt_STATE_CONNECTING_UNKNOWN
-        let localName = advertisementData[CBAdvertisementDataLocalNameKey] as! String
+        let localName = advertisementData[CBAdvertisementDataLocalNameKey] as? String ?? "[unknown]"
         if DEBUG_BLUETOOTH {
             print(" ---> (\(bluetoothState)) Found bluetooth peripheral, connecting: \(localName)/\(device!) (\(RSSI))")
         }
@@ -853,7 +853,11 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
     }
     
     func characteristicInPeripheral(_ peripheral: CBPeripheral, serviceUUID: String, characteristicUUID: String) -> CBCharacteristic? {
-        for service: CBService in peripheral.services! {
+        guard let services = peripheral.services else {
+            return nil
+        }
+        
+        for service: CBService in services {
             if service.uuid.isEqual(CBUUID(string: serviceUUID)) {
                 for characteristic: CBCharacteristic in service.characteristics! {
                     if characteristic.uuid.isEqual(CBUUID(string: characteristicUUID)) {

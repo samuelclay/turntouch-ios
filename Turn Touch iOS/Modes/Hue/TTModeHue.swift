@@ -347,7 +347,7 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
         
         let bridgeSendAPI = TTModeHue.hueSdk.bridgeSendAPI
         let sceneIdentifier: String? = self.action.optionValue(doubleTap ? TTModeHueConstants.kDoubleTapHueScene : TTModeHueConstants.kHueScene) as? String
-        var roomIdentifier = self.action.optionValue(TTModeHueConstants.kHueRoom) as! String
+        var roomIdentifier = self.action.optionValue(TTModeHueConstants.kHueRoom) as? String ?? "all"
         if roomIdentifier == "all" {
             roomIdentifier = "0"
         }
@@ -619,6 +619,9 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
             var lights = result.value
             if lights == nil {
                 lights = cache?.lights
+            }
+            if lights == nil {
+                return
             }
             let roomLights = self.roomLights(for: roomIdentifier, lights: lights)
             if roomIdentifier == "all" {
