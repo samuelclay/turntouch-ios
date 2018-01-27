@@ -31,7 +31,7 @@ class TTBluetoothManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
     override init() {
         super.init()
         
-        manager = CBCentralManager(delegate: self, queue: dispatch_queue_create("TT.bluetooth.queue", DISPATCH_QUEUE_SERIAL),
+        manager = CBCentralManager(delegate: self, queue: DispatchQueue(label: "TT.bluetooth.queue", attributes: []),
                                    options: [CBCentralManagerOptionRestoreIdentifierKey: "TTcentralManageRestoreIdentifier",
                                     CBConnectPeripheralOptionNotifyOnDisconnectionKey: true,
                                     CBConnectPeripheralOptionNotifyOnConnectionKey: true,
@@ -40,11 +40,11 @@ class TTBluetoothManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
     
     func knownPeripheralIdentifiers() -> [NSUUID] {
         var identifiers: [NSUUID] = []
-        let preferences = NSUserDefaults.standardUserDefaults()
-        let pairedDevices = preferences.arrayForKey("TT:devices:paired") as! [String]?
+        let preferences = UserDefaults.standard
+        let pairedDevices = preferences.array(forKey: "TT:devices:paired") as! [String]?
         if pairedDevices != nil {
             for identifier: String in pairedDevices! {
-                identifiers.append(NSUUID(UUIDString: identifier)!)
+                identifiers.append(NSUUID(uuidString: identifier)!)
             }
         }
         return identifiers
@@ -53,45 +53,47 @@ class TTBluetoothManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
     func isLECapableHardware() -> Bool {
         var state: String? = nil
         switch manager.state {
-        case .Unsupported:
+        case .unsupported:
             state = "The platform/hardware doesn't support Bluetooth Low Energy."
-        case .Unauthorized:
+        case .unauthorized:
             state = "The app is not authorized to use Bluetooth Low Energy."
-        case .PoweredOff:
+        case .poweredOff:
             state = "Bluetooth is currently powered off."
-        case .PoweredOn:
+        case .poweredOn:
             return true
-        case .Unknown:
+        case .unknown:
             state = "Bluetooth in unknown state."
-        case .Resetting:
+        case .resetting:
             state = "Bluetooth in resetting state."
         }
         
-        print(" ---> Central manager state: \(state) - \(manager)/\(manager.state)", state!, manager, manager.state)
+        print(" ---> Central manager state: \(String(describing: state)) - \(manager)/\(manager.state)", state!, manager, manager.state)
         return false
     }
     
-    func centralManager(central: CBCentralManager, willRestoreState dict: [String : AnyObject]) {
+    func centralManager(_ central: CBCentralManager, willRestoreState state: [String : Any]) {
         manager = central
-        let peripherals = dict[CBCentralManagerRestoredStatePeripheralsKey] as! [CBPeripheral]
-        print(" ---> Restoring state: \(peripherals)")
+        if state[CBCentralManagerRestoredStatePeripheralsKey] != nil {
+            let peripherals = state[CBCentralManagerRestoredStatePeripheralsKey] as! [CBPeripheral]
+            print(" ---> Restoring state: \(peripherals)")
+        }
     }
     
     
-    func centralManagerDidUpdateState(central: CBCentralManager) {
+    func centralManagerDidUpdateState(_ central: CBCentralManager) {
         print(" ---> centralManagerDidUpdateState: \(central)/\(manager) - \(central.state) -> \(manager.state)")
         manager = central
         
         if self.isLECapableHardware() {
             
-            let peripherals = manager.retrievePeripheralsWithIdentifiers(self.knownPeripheralIdentifiers())
-            let connectedPeripherals = manager.retrieveConnectedPeripheralsWithServices([CBUUID(string:"1523")])
+            let peripherals = manager.retrievePeripherals(withIdentifiers: self.knownPeripheralIdentifiers() as [UUID])
+            let connectedPeripherals = manager.retrieveConnectedPeripherals(withServices: [CBUUID(string:"1523")])
             
             for peripheralGroup: [CBPeripheral] in [connectedPeripherals, peripherals] {
                 for peripheral: CBPeripheral in peripheralGroup {
                     if foundPeripherals.contains(peripheral) {
-                        if peripheral.state == CBPeripheralState.Disconnected {
-                            foundPeripherals.removeAtIndex(foundPeripherals.indexOf(peripheral)!)
+                        if peripheral.state == CBPeripheralState.disconnected {
+                            foundPeripherals.remove(at: foundPeripherals.index(of: peripheral)!)
                         } else {
                             print(" ---> Already discovered peripheral: \(peripheral)")
                             return
@@ -100,7 +102,7 @@ class TTBluetoothManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
                     
                     foundPeripherals.append(peripheral)
 
-                    manager.connectPeripheral(peripheral, options: [CBCentralManagerOptionRestoreIdentifierKey: "TTcentralManageRestoreIdentifier",
+                    manager.connect(peripheral, options: [CBCentralManagerOptionRestoreIdentifierKey: "TTcentralManageRestoreIdentifier",
                         CBConnectPeripheralOptionNotifyOnDisconnectionKey: true,
                         CBConnectPeripheralOptionNotifyOnConnectionKey: true,
                         CBConnectPeripheralOptionNotifyOnNotificationKey: true])
@@ -108,14 +110,14 @@ class TTBluetoothManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
             }
             
 //            if peripherals.count == 0 && connectedPeripherals.count == 0 {
-                manager.scanForPeripheralsWithServices([CBUUID(string: DEVICE_V2_SERVICE_BUTTON_UUID),
+            manager.scanForPeripherals(withServices: [CBUUID(string: DEVICE_V2_SERVICE_BUTTON_UUID),
                     CBUUID(string:"1523")], options: nil)
 //            }
         }
 
     }
-    func centralManager(central: CBCentralManager, didDiscoverPeripheral peripheral: CBPeripheral,
-                        advertisementData: [String : AnyObject], RSSI: NSNumber) {
+    func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral,
+                        advertisementData: [String : Any], rssi RSSI: NSNumber) {
         if foundPeripherals.contains(peripheral) {
             print(" ---> Already discovered peripheral: \(peripheral)")
             return
@@ -125,13 +127,13 @@ class TTBluetoothManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
         
         let localName = advertisementData[CBAdvertisementDataLocalNameKey] as! String
         print(" ---> Found bluetooth peripheral, connecting: \(localName)/\(peripheral) (\(RSSI))")
-        manager.connectPeripheral(peripheral, options: [CBCentralManagerOptionRestoreIdentifierKey: "TTcentralManageRestoreIdentifier",
+        manager.connect(peripheral, options: [CBCentralManagerOptionRestoreIdentifierKey: "TTcentralManageRestoreIdentifier",
             CBConnectPeripheralOptionNotifyOnDisconnectionKey: true,
             CBConnectPeripheralOptionNotifyOnConnectionKey: true,
             CBConnectPeripheralOptionNotifyOnNotificationKey: true])
     }
     
-    func centralManager(central: CBCentralManager, didConnectPeripheral peripheral: CBPeripheral) {
+    func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
         print(" ---> Connected: \(peripheral)")
         peripheral.delegate = self
         
@@ -139,82 +141,82 @@ class TTBluetoothManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
             CBUUID(string: DEVICE_V2_SERVICE_BATTERY_UUID),
             CBUUID(string:"1523")])
         
-        let preferences = NSUserDefaults.standardUserDefaults()
-        var pairedDevices = preferences.arrayForKey("TT:devices:paired") as! [String]?
+        let preferences = UserDefaults.standard
+        var pairedDevices = preferences.array(forKey: "TT:devices:paired") as! [String]?
         if pairedDevices == nil {
             pairedDevices = []
         }
-        pairedDevices?.append(peripheral.identifier.UUIDString)
-        preferences.setObject(pairedDevices, forKey: "TT:devices:paired")
+        pairedDevices?.append(peripheral.identifier.uuidString)
+        preferences.set(pairedDevices, forKey: "TT:devices:paired")
         preferences.synchronize()
     }
     
-    func centralManager(central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: NSError?) {
+    func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
         print(" ---> Disconnected device: \(peripheral)")
-        foundPeripherals.removeAtIndex(foundPeripherals.indexOf(peripheral)!)
+        foundPeripherals.remove(at: foundPeripherals.index(of: peripheral)!)
         self.centralManagerDidUpdateState(central)
     }
     
-    func centralManager(central: CBCentralManager, didFailToConnectPeripheral peripheral: CBPeripheral, error: NSError?) {
-        print(" ---> Failed connect to device: \(peripheral): \(error?.localizedDescription)")
+    func centralManager(_ central: CBCentralManager, didFailToConnect peripheral: CBPeripheral, error: Error?) {
+        print(" ---> Failed connect to device: \(peripheral): \(error?.localizedDescription ?? "none")")
     }
     
     // MARK: CBPeripheral delegate
     
-    func peripheral(peripheral: CBPeripheral, didDiscoverServices error: NSError?) {
+    func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
         if peripheral.services == nil {
             print(" ---> Nil services: \(peripheral)")
             return
         }
         
         for service: CBService in peripheral.services! {
-            if service.UUID.isEqual(CBUUID(string: DEVICE_V2_SERVICE_BUTTON_UUID)) {
+            if service.uuid.isEqual(CBUUID(string: DEVICE_V2_SERVICE_BUTTON_UUID)) {
                 peripheral.discoverCharacteristics([CBUUID(string: DEVICE_V2_CHARACTERISTIC_BUTTON_STATUS_UUID),
-                    CBUUID(string: DEVICE_V2_CHARACTERISTIC_NICKNAME_UUID)], forService: service)
+                                                    CBUUID(string: DEVICE_V2_CHARACTERISTIC_NICKNAME_UUID)], for: service)
             }
-            if service.UUID.isEqual(CBUUID(string: DEVICE_V2_SERVICE_BATTERY_UUID)) {
-                peripheral.discoverCharacteristics([CBUUID(string: DEVICE_V2_CHARACTERISTIC_BATTERY_LEVEL_UUID)], forService: service)
+            if service.uuid.isEqual(CBUUID(string: DEVICE_V2_SERVICE_BATTERY_UUID)) {
+                peripheral.discoverCharacteristics([CBUUID(string: DEVICE_V2_CHARACTERISTIC_BATTERY_LEVEL_UUID)], for: service)
             }
         }
     }
     
-    func peripheral(peripheral: CBPeripheral, didDiscoverCharacteristicsForService service: CBService, error: NSError?) {
+    func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
         if service.characteristics == nil {
             print(" ---> Nil characteristics: \(peripheral)")
             return
         }
         
-        if service.UUID.isEqual(CBUUID(string: DEVICE_V2_SERVICE_BUTTON_UUID)) {
+        if service.uuid.isEqual(CBUUID(string: DEVICE_V2_SERVICE_BUTTON_UUID)) {
             for characteristic: CBCharacteristic in service.characteristics! {
-                if characteristic.UUID.isEqual(CBUUID(string: DEVICE_V2_CHARACTERISTIC_BUTTON_STATUS_UUID)) {
-                    peripheral.setNotifyValue(true, forCharacteristic: characteristic)
-                } else if characteristic.UUID.isEqual(CBUUID(string: DEVICE_V2_CHARACTERISTIC_NICKNAME_UUID)) {
-                    peripheral.readValueForCharacteristic(characteristic)
+                if characteristic.uuid.isEqual(CBUUID(string: DEVICE_V2_CHARACTERISTIC_BUTTON_STATUS_UUID)) {
+                    peripheral.setNotifyValue(true, for: characteristic)
+                } else if characteristic.uuid.isEqual(CBUUID(string: DEVICE_V2_CHARACTERISTIC_NICKNAME_UUID)) {
+                    peripheral.readValue(for: characteristic)
                 }
             }
         }
         
-        if service.UUID.isEqual(CBUUID(string: DEVICE_V2_SERVICE_BATTERY_UUID)) {
+        if service.uuid.isEqual(CBUUID(string: DEVICE_V2_SERVICE_BATTERY_UUID)) {
             for characteristic: CBCharacteristic in service.characteristics! {
-                if characteristic.UUID.isEqual(CBUUID(string: DEVICE_V2_CHARACTERISTIC_BATTERY_LEVEL_UUID)) {
-                    peripheral.readValueForCharacteristic(characteristic)
+                if characteristic.uuid.isEqual(CBUUID(string: DEVICE_V2_CHARACTERISTIC_BATTERY_LEVEL_UUID)) {
+                    peripheral.readValue(for: characteristic)
                 }
             }
         }
     }
     
-    func peripheral(peripheral: CBPeripheral, didUpdateNotificationStateForCharacteristic characteristic: CBCharacteristic, error: NSError?) {
-        if characteristic.UUID.isEqual(CBUUID(string: DEVICE_V2_CHARACTERISTIC_BUTTON_STATUS_UUID)) {
+    func peripheral(_ peripheral: CBPeripheral, didUpdateNotificationStateFor characteristic: CBCharacteristic, error: Error?) {
+        if characteristic.uuid.isEqual(CBUUID(string: DEVICE_V2_CHARACTERISTIC_BUTTON_STATUS_UUID)) {
             print(" ---> Subscribed to \(peripheral)")
         }
     }
     
-    func peripheral(peripheral: CBPeripheral, didUpdateValueForCharacteristic characteristic: CBCharacteristic, error: NSError?) {
-        print(" ---> Value: \(characteristic.value)")
+    func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
+        print(" ---> Value: \(String(describing: characteristic.value))")
         
-        if characteristic.UUID.isEqual(CBUUID(string: DEVICE_V2_CHARACTERISTIC_BUTTON_STATUS_UUID)) {
+        if characteristic.uuid.isEqual(CBUUID(string: DEVICE_V2_CHARACTERISTIC_BUTTON_STATUS_UUID)) {
             if characteristic.value != nil {
-                print(" ---> Button press: \(characteristic.value)")
+                print(" ---> Button press: \(String(describing: characteristic.value))")
                 if lastVolume == nil || lastVolume == 0.75 {
                     lastVolume = 0.25
                 } else {
@@ -222,21 +224,21 @@ class TTBluetoothManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
                 }
                 volumeSlider.setValue(lastVolume, animated: false)
             } else {
-                print(" ---> Characteristic error: \(error?.localizedDescription)")
+                print(" ---> Characteristic error: \(String(describing: error?.localizedDescription))")
             }
-        } else if characteristic.UUID.isEqual(CBUUID(string: DEVICE_V2_CHARACTERISTIC_NICKNAME_UUID)) {
-            if (characteristic.value == nil) || (characteristic.value!.length == 0) {
+        } else if characteristic.uuid.isEqual(CBUUID(string: DEVICE_V2_CHARACTERISTIC_NICKNAME_UUID)) {
+            if (characteristic.value == nil) || (characteristic.value!.count == 0) {
                 print(" ---> No nickname: \(characteristic)")
             } else {
-                print(" ---> Nickname: \(characteristic.value)")
+                print(" ---> Nickname: \(String(describing: characteristic.value))")
             }
             
             print(" ---> Hello: \(peripheral)")
         }
     }
     
-    func peripheral(peripheral: CBPeripheral, didWriteValueForCharacteristic characteristic: CBCharacteristic, error: NSError?) {
-        print("peripheral did write: \(characteristic.value)")
+    func peripheral(_ peripheral: CBPeripheral, didWriteValueFor characteristic: CBCharacteristic, error: Error?) {
+        print("peripheral did write: \(String(describing: characteristic.value))")
     }
 
 
