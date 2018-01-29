@@ -111,7 +111,7 @@ class TTBluetoothManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
             
 //            if peripherals.count == 0 && connectedPeripherals.count == 0 {
             manager.scanForPeripherals(withServices: [CBUUID(string: DEVICE_V2_SERVICE_BUTTON_UUID),
-                    CBUUID(string:"1523")], options: nil)
+                                                      CBUUID(string:"1523")], options: [CBCentralManagerScanOptionAllowDuplicatesKey: false])
 //            }
         }
 
@@ -127,10 +127,7 @@ class TTBluetoothManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
         
         let localName = advertisementData[CBAdvertisementDataLocalNameKey] as! String
         print(" ---> Found bluetooth peripheral, connecting: \(localName)/\(peripheral) (\(RSSI))")
-        manager.connect(peripheral, options: [CBCentralManagerOptionRestoreIdentifierKey: "TTcentralManageRestoreIdentifier",
-            CBConnectPeripheralOptionNotifyOnDisconnectionKey: true,
-            CBConnectPeripheralOptionNotifyOnConnectionKey: true,
-            CBConnectPeripheralOptionNotifyOnNotificationKey: true])
+        manager.connect(peripheral, options: [CBCentralManagerOptionRestoreIdentifierKey: "TTcentralManageRestoreIdentifier"])
     }
     
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {

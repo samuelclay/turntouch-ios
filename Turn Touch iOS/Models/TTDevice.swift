@@ -47,8 +47,8 @@ class TTDevice: NSObject {
         let connected = self.stateLabel()
         let paired = isPaired ? "PAIRED" : "unpaired"
         let uuidSubstr = NSString(string: uuid).substring(to: 8)
-        
-        return "\(uuidSubstr) / \(nickname ?? "[no nickname yet]") (\(connected)-\(paired)) (\(peripheral))"
+
+        return "\(uuidSubstr) / \(nickname ?? "[no nickname yet]") (\(connected)-\(paired)) (\(peripheral.description))"
     }
     
     func stateLabel() -> String {
