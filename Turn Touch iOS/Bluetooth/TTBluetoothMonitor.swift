@@ -161,7 +161,8 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
         }
         
         let peripherals = manager.retrievePeripherals(withIdentifiers: self.knownPeripheralIdentifiers())
-        let connectedPeripherals = manager.retrieveConnectedPeripherals(withServices: [CBUUID(string:"1523")])
+        let connectedPeripherals = manager.retrieveConnectedPeripherals(withServices: [CBUUID(string: DEVICE_V2_SERVICE_BUTTON_UUID),
+                                                                                       CBUUID(string:"1523")])
 
         for peripheralGroup: [CBPeripheral] in [connectedPeripherals, peripherals] {
             for peripheral: CBPeripheral in peripheralGroup {
@@ -276,7 +277,8 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
             print(" ---> (\(bluetoothState)) Scanning unknown")
         }
         
-        manager.scanForPeripherals(withServices: [CBUUID(string:"1523")],
+        manager.scanForPeripherals(withServices: [CBUUID(string: DEVICE_V2_SERVICE_BUTTON_UUID),
+                                                  CBUUID(string:"1523")],
                                    options: [CBCentralManagerScanOptionAllowDuplicatesKey: false])
     }
     
@@ -499,9 +501,9 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
         }
         
         peripheral.discoverServices([CBUUID(string: DEVICE_V2_SERVICE_BUTTON_UUID),
-            CBUUID(string: DEVICE_V2_SERVICE_BATTERY_UUID),
-            CBUUID(string: DEVICE_V2_SERVICE_FIRMWARE_UUID),
-            CBUUID(string:"1523")])
+                                     CBUUID(string: DEVICE_V2_SERVICE_BATTERY_UUID),
+                                     CBUUID(string: DEVICE_V2_SERVICE_FIRMWARE_UUID),
+                                     CBUUID(string:"1523")])
     }
     
     func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
