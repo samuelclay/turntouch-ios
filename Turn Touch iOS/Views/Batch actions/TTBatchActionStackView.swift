@@ -51,7 +51,7 @@ class TTBatchActionStackView: UIStackView {
             actionConstraints[batchAction.batchActionKey!] = constraint
             
             var actionOptionsViewController: TTOptionsDetailViewController!
-            if batchAction.mode.shouldOverrideActionOption(batchAction.actionName!) {
+            if batchAction.mode.shouldUseModeOptionsFor(batchAction.actionName!) {
                 let modeName = batchAction.mode.nameOfClass
                 let modeOptionsViewControllerName = "Turn_Touch_iOS.\(modeName)Options"
                 let modeOptionsClass: AnyClass? = NSClassFromString(modeOptionsViewControllerName)

@@ -348,8 +348,7 @@ class TTModeNest: TTMode, NestSDKAuthorizationViewControllerDelegate {
     }
     
     func selectedThermostat() -> NestSDKThermostat? {
-        if let deviceSelected = self.modeOptionValue(TTModeNestConstants.kNestThermostatIdentifier,
-                                                     modeDirection: appDelegate().modeMap.selectedModeDirection) as? String {
+        if let deviceSelected = self.modeOptionValue(TTModeNestConstants.kNestThermostatIdentifier) as? String {
             let thermostat = TTModeNest.thermostats[deviceSelected]
             return thermostat
         } else if TTModeNest.thermostats.count >= 1 {

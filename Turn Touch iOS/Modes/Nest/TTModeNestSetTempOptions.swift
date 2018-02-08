@@ -79,8 +79,7 @@ class TTModeNestSetTempOptions: TTOptionsDetailViewController, UITextFieldDelega
     func selectDevice() {
         devices = []
         pickerVC?.picker.reloadAllComponents()
-        var deviceSelected = self.mode.modeOptionValue(TTModeNestConstants.kNestThermostatIdentifier,
-                                                       modeDirection: appDelegate().modeMap.selectedModeDirection) as? String
+        var deviceSelected = self.mode.modeOptionValue(TTModeNestConstants.kNestThermostatIdentifier) as? String
         
         for (_, thermostat) in TTModeNest.thermostats {
             devices.append(["name": thermostat.name, "identifier": thermostat.deviceId])
@@ -150,8 +149,7 @@ class TTModeNestSetTempOptions: TTOptionsDetailViewController, UITextFieldDelega
             
             var deviceSelected: String?
             if textField == singlePicker {
-                deviceSelected = self.mode.modeOptionValue(TTModeNestConstants.kNestThermostatIdentifier,
-                                                           modeDirection: appDelegate().modeMap.selectedModeDirection) as? String
+                deviceSelected = self.mode.modeOptionValue(TTModeNestConstants.kNestThermostatIdentifier) as? String
             }
             var currentRow: Int = 0
             for (i, device) in devices.enumerated() {

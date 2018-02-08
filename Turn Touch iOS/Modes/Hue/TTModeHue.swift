@@ -158,7 +158,7 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
                 "TTModeHueRandom"]
     }
     
-    override func shouldOverrideActionOption(_ action: String) -> Bool {
+    override func shouldUseModeOptionsFor(_ action: String) -> Bool {
         let connected = TTModeHue.hueState == .connected
         if !connected {
             return true

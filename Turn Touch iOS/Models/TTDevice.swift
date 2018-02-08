@@ -54,7 +54,8 @@ class TTDevice: NSObject {
     func stateLabel() -> String {
         return state == .device_STATE_CONNECTED ? (self.isPaired ? "connected" : "pairing") :
             state == .device_STATE_SEARCHING ? "searching" :
-            state == .device_STATE_CONNECTING ? "connecting" : "X"
+            state == .device_STATE_CONNECTING ? "connecting" :
+            state == .device_STATE_DISCONNECTED ? "disconnected" : "X"
     }
     
     func setNicknameData(_ nicknameData: Data) {

@@ -42,8 +42,7 @@ class TTModeSonosConnected: TTOptionsDetailViewController, UITextFieldDelegate, 
     func selectDevice() {
         devices = []
         pickerVC?.picker.reloadAllComponents()
-        var deviceSelected = self.mode.modeOptionValue(TTModeSonosConstants.kSonosDeviceId,
-                                                       modeDirection: appDelegate().modeMap.selectedModeDirection) as? String
+        var deviceSelected = self.mode.modeOptionValue(TTModeSonosConstants.kSonosDeviceId) as? String
         //        var doubleSceneSelected = self.action.optionValue(TTModeHueConstants.kDoubleTapHueScene,
         //                                                          direction: appDelegate().modeMap.inspectingModeDirection) as? String
         
@@ -126,8 +125,7 @@ class TTModeSonosConnected: TTOptionsDetailViewController, UITextFieldDelegate, 
             
             var deviceSelected: String?
             if textField == singlePicker {
-                deviceSelected = self.mode.modeOptionValue(TTModeSonosConstants.kSonosDeviceId,
-                                                           modeDirection: appDelegate().modeMap.selectedModeDirection) as? String
+                deviceSelected = self.mode.modeOptionValue(TTModeSonosConstants.kSonosDeviceId) as? String
                 //            } else if textField == doublePicker {
                 //                sceneSelected = self.action.optionValue(TTModeHueConstants.kDoubleTapHueScene,
                 //                                                        direction: appDelegate().modeMap.inspectingModeDirection) as? String

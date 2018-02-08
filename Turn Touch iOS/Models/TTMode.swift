@@ -271,13 +271,13 @@ class TTMode : NSObject, TTModeProtocol {
         return immediate.boolValue
     }
     
-    func shouldOverrideActionOption(_ action: String) -> Bool {
+    func shouldUseModeOptionsFor(_ action: String) -> Bool {
         return false
     }
     
     // MARK: Mode options
     
-    func modeOptionValue(_ optionName: String, modeDirection: TTModeDirection) -> Any? {
+    func modeOptionValue(_ optionName: String) -> Any? {
         let prefs = UserDefaults.standard
         let modeDirectionName = appDelegate().modeMap.directionName(modeDirection)
         
@@ -299,7 +299,15 @@ class TTMode : NSObject, TTModeProtocol {
             }
         }
         
-        let optionKey = "TT:mode:\(self.nameOfClass)-\(modeDirectionName):option:\(optionName)"
+        var optionKey = "TT:mode:\(self.nameOfClass)-\(modeDirectionName):option:\(optionName)"
+        
+        if let action = self.action,
+           let batchActionKey = action.batchActionKey {
+            let modeDirectionName = appDelegate().modeMap.directionName(modeDirection)
+            let actionDirectionName = appDelegate().modeMap.directionName(self.action.direction)
+            optionKey = "TT:mode:\(modeDirectionName):action:\(actionDirectionName):batchactions:\(batchActionKey):modeoption:\(optionName)"
+        }
+        
         if let pref = prefs.object(forKey: optionKey) {
             if DEBUG_PREFS {
                 print(" -> Getting mode options \(optionKey): \(pref)")
@@ -333,7 +341,15 @@ class TTMode : NSObject, TTModeProtocol {
         }
         let prefs = UserDefaults.standard
         let modeDirectionName = appDelegate().modeMap.directionName(modeDirection)
-        let optionKey = "TT:mode:\(self.nameOfClass)-\(modeDirectionName):option:\(optionName)"
+        var optionKey = "TT:mode:\(self.nameOfClass)-\(modeDirectionName):option:\(optionName)"
+        
+        if let action = self.action,
+            let batchActionKey = action.batchActionKey {
+            let modeDirectionName = appDelegate().modeMap.directionName(modeDirection)
+            let actionDirectionName = appDelegate().modeMap.directionName(self.action.direction)
+            optionKey = "TT:mode:\(modeDirectionName):action:\(actionDirectionName):batchactions:\(batchActionKey):modeoption:\(optionName)"
+        }
+        
         let pref = prefs.object(forKey: optionKey)
         print(" -> Setting mode option \(optionKey) from (\(String(describing: pref))) to (\(optionValue))")
         

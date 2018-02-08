@@ -116,9 +116,17 @@ class TTOptionsView: UIView {
     func drawActionOptions() {
         self.clearOptionDetailViews()
         
-        let actionName = appDelegate().modeMap.selectedMode.actionNameInDirection(appDelegate().modeMap.inspectingModeDirection)
-        let actionOptionsViewControllerName = "Turn_Touch_iOS.\(actionName)Options"
-        let actionOptionsClass: AnyClass? = NSClassFromString(actionOptionsViewControllerName)
+        let selectedMode = appDelegate().modeMap.selectedMode
+        let inspectingModeDirection = appDelegate().modeMap.inspectingModeDirection
+        let actionName = selectedMode.actionNameInDirection(inspectingModeDirection)
+        var actionOptionsViewControllerName = "Turn_Touch_iOS.\(actionName)Options"
+        var actionOptionsClass: AnyClass? = NSClassFromString(actionOptionsViewControllerName)
+
+        if selectedMode.shouldUseModeOptionsFor(actionName) {
+            actionOptionsViewControllerName = "\(selectedMode.nameOfClass)Options"
+            actionOptionsClass = NSClassFromString("Turn_Touch_iOS.\(actionOptionsViewControllerName)")
+        }
+
         if actionOptionsClass == nil {
             actionOptionsViewController = TTOptionsDetailViewController()
             actionOptionsViewController.view.translatesAutoresizingMaskIntoConstraints = false
@@ -127,10 +135,10 @@ class TTOptionsView: UIView {
         }
         
         actionOptionsViewController.menuType = TTMenuType.menu_ACTION
-        actionOptionsViewController.action = TTAction(actionName: actionName, direction: appDelegate().modeMap.inspectingModeDirection)
-        actionOptionsViewController.mode = appDelegate().modeMap.selectedMode
+        actionOptionsViewController.action = TTAction(actionName: actionName, direction: inspectingModeDirection)
+        actionOptionsViewController.mode = selectedMode
         actionOptionsViewController.mode.action = actionOptionsViewController.action
-        actionOptionsViewController.action.mode = appDelegate().modeMap.selectedMode // To parallel batch actions
+        actionOptionsViewController.action.mode = selectedMode // To parallel batch actions
         actionOptionsViewController.view.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(actionOptionsViewController.view)
         

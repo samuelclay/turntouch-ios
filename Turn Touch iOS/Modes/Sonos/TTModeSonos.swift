@@ -77,7 +77,7 @@ class TTModeSonos: TTMode {
         ]
     }
     
-    override func shouldOverrideActionOption(_ action: String) -> Bool {
+    override func shouldUseModeOptionsFor(_ action: String) -> Bool {
         if action == "TTModeSonosVolumeJump" {
             return false
         }
@@ -349,8 +349,7 @@ class TTModeSonos: TTMode {
             return nil
         }
         
-        if let deviceId = self.action.mode.modeOptionValue(TTModeSonosConstants.kSonosDeviceId,
-                                                           modeDirection: appDelegate().modeMap.selectedModeDirection) as? String {
+        if let deviceId = self.modeOptionValue(TTModeSonosConstants.kSonosDeviceId) as? String {
             for foundDevice: SonosController in devices {
                 if foundDevice.uuid == deviceId {
                     // Find the coordinator in the same group as the device
