@@ -67,9 +67,9 @@ class TTActionTitleView: UIView {
         self.addConstraint(NSLayoutConstraint(item: renameButton, attribute: .centerY, relatedBy: .equal,
                                               toItem: titleLabel, attribute: .centerY, multiplier: 1, constant: 0))
         self.addConstraint(NSLayoutConstraint(item: renameButton, attribute: .width, relatedBy: .equal,
-                                              toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 24))
+                                              toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 18))
         self.addConstraint(NSLayoutConstraint(item: renameButton, attribute: .height, relatedBy: .equal,
-                                              toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 24))
+                                              toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 18))
 
         self.registerAsObserver()
     }
