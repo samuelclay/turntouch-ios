@@ -14,6 +14,7 @@ class TTActionTitleView: UIView {
     var modeImage: UIImage = UIImage()
     var modeTitle: String = ""
     var titleLabel: UILabel = UILabel()
+    var renameButton: UIButton = UIButton()
     var diamondView: TTDiamondView!
     
     override init(frame: CGRect) {
@@ -56,6 +57,20 @@ class TTActionTitleView: UIView {
         self.addConstraint(NSLayoutConstraint(item: titleLabel, attribute: .centerY, relatedBy: .equal,
             toItem: self, attribute: .centerY, multiplier: 1.0, constant: 0))
         
+        renameButton.translatesAutoresizingMaskIntoConstraints = false
+        renameButton.setImage(UIImage(named: "pencil"), for: .normal)
+        renameButton.isHidden = true
+        renameButton.addTarget(self, action: #selector(self.pressRename), for: .touchUpInside)
+        self.addSubview(renameButton)
+        self.addConstraint(NSLayoutConstraint(item: renameButton, attribute: .leading, relatedBy: .equal,
+                                              toItem: titleLabel, attribute: .trailing, multiplier: 1, constant: 24))
+        self.addConstraint(NSLayoutConstraint(item: renameButton, attribute: .centerY, relatedBy: .equal,
+                                              toItem: titleLabel, attribute: .centerY, multiplier: 1, constant: 0))
+        self.addConstraint(NSLayoutConstraint(item: renameButton, attribute: .width, relatedBy: .equal,
+                                              toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 24))
+        self.addConstraint(NSLayoutConstraint(item: renameButton, attribute: .height, relatedBy: .equal,
+                                              toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 24))
+
         self.registerAsObserver()
     }
     
@@ -85,8 +100,10 @@ class TTActionTitleView: UIView {
     override func draw(_ rect: CGRect) {
         if appDelegate().modeMap.openedActionChangeMenu {
             changeButton.setTitle("Done", for: UIControlState())
+            renameButton.isHidden = false
         } else {
             changeButton.setTitle("Change", for: UIControlState())
+            renameButton.isHidden = true
         }
         
         let direction = appDelegate().modeMap.inspectingModeDirection
@@ -112,5 +129,33 @@ class TTActionTitleView: UIView {
         appDelegate().modeMap.openedActionChangeMenu = !appDelegate().modeMap.openedActionChangeMenu
         self.setNeedsDisplay()
     }
-
+    
+    @objc func pressRename(_ sender: UIButton!) {
+        let direction = appDelegate().modeMap.inspectingModeDirection
+        let renameAlert = UIAlertController(title: "Rename action", message: nil, preferredStyle: .alert)
+        let renameAction = UIAlertAction(title: "Rename", style: .default, handler: { (action) in
+            let newActionTitle = renameAlert.textFields![0].text!
+            print(" ---> New action title: \(newActionTitle)")
+            
+            appDelegate().modeMap.selectedMode.setCustomTitle(newActionTitle, direction: direction)
+            appDelegate().mainViewController.actionDiamondView.redraw()
+            self.setNeedsDisplay()
+        })
+        
+        renameAlert.addTextField { (textfield) in
+            if direction != .no_DIRECTION {
+                textfield.text = appDelegate().modeMap.selectedMode.titleInDirection(direction, buttonMoment: .button_MOMENT_PRESSUP)
+            }
+            NotificationCenter.default.addObserver(forName: NSNotification.Name.UITextFieldTextDidChange, object: textfield, queue: OperationQueue.main) { (notification) in
+                renameAction.isEnabled = textfield.text != ""
+            }
+        }
+        renameAlert.addAction(UIAlertAction(title: "Reset to default", style: .cancel, handler: { (action) in
+            appDelegate().modeMap.selectedMode.setCustomTitle(nil, direction: direction)
+            appDelegate().mainViewController.actionDiamondView.redraw()
+            self.setNeedsDisplay()
+        }))
+        renameAlert.addAction(renameAction)
+        appDelegate().mainViewController.present(renameAlert, animated: true, completion: nil)
+    }
 }

@@ -154,6 +154,21 @@ class TTMode : NSObject, TTModeProtocol {
         return success
     }
     
+    func setCustomTitle(_ title: String?, direction: TTModeDirection) {
+        let prefs = UserDefaults.standard
+        let modeDirectionName = appDelegate().modeMap.directionName(modeDirection)
+        let actionDirectionName = appDelegate().modeMap.directionName(direction)
+        let actionName = self.actionNameInDirection(direction)
+        let prefKey = "TT:\(self.nameOfClass)-\(modeDirectionName):action:\(actionName)-\(actionDirectionName):customTitle"
+        
+        if title == nil {
+            prefs.removeObject(forKey: prefKey)
+        } else {
+            prefs.set(title, forKey: prefKey)
+        }
+        prefs.synchronize()
+    }
+    
     func titleInDirection(_ direction: TTModeDirection, buttonMoment: TTButtonMoment) -> String {
         let actionName = self.actionNameInDirection(direction)
         
@@ -161,7 +176,16 @@ class TTMode : NSObject, TTModeProtocol {
             print(" ---> Set title for \(direction)")
             return "Set \(direction)"
         }
-
+        
+        // First check if given custom title
+        let prefs = UserDefaults.standard
+        let modeDirectionName = appDelegate().modeMap.directionName(modeDirection)
+        let actionDirectionName = appDelegate().modeMap.directionName(direction)
+        let prefKey = "TT:\(self.nameOfClass)-\(modeDirectionName):action:\(actionName)-\(actionDirectionName):customTitle"
+        if let customTitle = prefs.string(forKey: prefKey) {
+            return customTitle
+        }
+        
         var funcAction = "title"
         if buttonMoment == .button_MOMENT_DOUBLE {
             funcAction = "doubleTitle"

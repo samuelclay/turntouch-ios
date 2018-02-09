@@ -224,6 +224,7 @@
 		FF8B75A11F86EDC400D7867C /* versions.png in Resources */ = {isa = PBXBuildFile; fileRef = FF8B759D1F86EDBF00D7867C /* versions.png */; };
 		FF8B75A31F86EE6F00D7867C /* search.png in Resources */ = {isa = PBXBuildFile; fileRef = FF8B75A21F86EE6E00D7867C /* search.png */; };
 		FF8FB1F41F8F19620085B994 /* TTModeNest.plist in Resources */ = {isa = PBXBuildFile; fileRef = FF8FB1F31F8F19620085B994 /* TTModeNest.plist */; };
+		FF9D5E11202D2DA900009A8F /* pencil.png in Resources */ = {isa = PBXBuildFile; fileRef = FF9D5E10202D2DA900009A8F /* pencil.png */; };
 		FFB41B231CEE9A3000CD5F09 /* app_music.png in Resources */ = {isa = PBXBuildFile; fileRef = FFB41AC11CEE9A3000CD5F09 /* app_music.png */; };
 		FFB41B241CEE9A3000CD5F09 /* button_chevron.png in Resources */ = {isa = PBXBuildFile; fileRef = FFB41AC21CEE9A3000CD5F09 /* button_chevron.png */; };
 		FFB41B251CEE9A3000CD5F09 /* button_dash.png in Resources */ = {isa = PBXBuildFile; fileRef = FFB41AC31CEE9A3000CD5F09 /* button_dash.png */; };
@@ -608,6 +609,7 @@
 		FF8B759D1F86EDBF00D7867C /* versions.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = versions.png; sourceTree = "<group>"; };
 		FF8B75A21F86EE6E00D7867C /* search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search.png; sourceTree = "<group>"; };
 		FF8FB1F31F8F19620085B994 /* TTModeNest.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = TTModeNest.plist; path = Modes/Nest/TTModeNest.plist; sourceTree = "<group>"; };
+		FF9D5E10202D2DA900009A8F /* pencil.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pencil.png; sourceTree = "<group>"; };
 		FFB41AC11CEE9A3000CD5F09 /* app_music.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = app_music.png; sourceTree = "<group>"; };
 		FFB41AC21CEE9A3000CD5F09 /* button_chevron.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_chevron.png; sourceTree = "<group>"; };
 		FFB41AC31CEE9A3000CD5F09 /* button_dash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_dash.png; sourceTree = "<group>"; };
@@ -1261,6 +1263,7 @@
 				FFB41AE31CEE9A3000CD5F09 /* mode_web.png */,
 				FFB41AE41CEE9A3000CD5F09 /* mode_wemo.png */,
 				FFB41AE51CEE9A3000CD5F09 /* newspaper-3.png */,
+				FF9D5E10202D2DA900009A8F /* pencil.png */,
 				FFB41AE61CEE9A3000CD5F09 /* presentation-chart.png */,
 				FF37EDE71D13610B0026F70D /* press_smartbridge.png */,
 				FF37EDE51D12563D0026F70D /* refresh.png */,
@@ -1871,6 +1874,7 @@
 				FF8B75681F86D4EF00D7867C /* music_play_pause.png in Resources */,
 				FF8B75691F86D4EF00D7867C /* music_play.png in Resources */,
 				FF8B756A1F86D4EF00D7867C /* music_playlist.png in Resources */,
+				FF9D5E11202D2DA900009A8F /* pencil.png in Resources */,
 				FF8B756B1F86D4EF00D7867C /* music_rewind.png in Resources */,
 				FF8B756C1F86D4EF00D7867C /* music_volume_down.png in Resources */,
 				FF8B756D1F86D4EF00D7867C /* music_volume_mute.png in Resources */,

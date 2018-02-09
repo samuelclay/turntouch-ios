@@ -84,7 +84,8 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
                                     CBConnectPeripheralOptionNotifyOnDisconnectionKey: true,
                                     CBConnectPeripheralOptionNotifyOnConnectionKey: true,
                                     CBConnectPeripheralOptionNotifyOnNotificationKey: true])
-
+        
+        self.disconnectUnpairedDevices()
         buttonTimer.resetPairingState()
     }
     
@@ -197,10 +198,10 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
 
                     // Commenting out below because devices can be in state 'connecting' before we
                     // connect to them thanks to corebluetooth's out-of-app memory
-//                    if foundDevice!.peripheral.state != .disconnected {
-//                        manager.cancelPeripheralConnection(peripheral)
-//                        continue
-//                    }
+                    if foundDevice!.peripheral.state != .disconnected {
+                        manager.cancelPeripheralConnection(peripheral)
+                        continue
+                    }
                     
                     foundDevice!.state = .device_STATE_SEARCHING
                     manager.connect(peripheral, options: [CBCentralManagerOptionRestoreIdentifierKey: "TTCentralManagerRestoreIdentifier",
@@ -356,6 +357,8 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
         self.scanKnown()
         if !self.isLECapableHardware() {
             self.countDevices()
+        } else {
+            self.disconnectUnpairedDevices()
         }
         
     }
