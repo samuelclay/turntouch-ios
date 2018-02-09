@@ -4,7 +4,7 @@ use_frameworks!
 target "Turn Touch iOS" do
     pod "CocoaAsyncSocket", "~> 7.6"
     pod "AFNetworking/NSURLSession", "~> 3.1"
-    pod "SWXMLHash", "~> 4.0.0"
+    pod "SWXMLHash", "~> 4.4"
     pod "ReachabilitySwift", "~> 3"
     pod "NestSDK", "0.1.5"
     

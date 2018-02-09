@@ -1,5 +1,6 @@
 //
 //  SWXMLHash.swift
+//  SWXMLHash
 //
 //  Copyright (c) 2014 David Mohundro
 //
@@ -20,6 +21,7 @@
 //  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
+//
 
 // swiftlint exceptions:
 // - Disabled file_length because there are a number of users that still pull the
@@ -41,6 +43,16 @@ public class SWXMLHashOptions {
     /// determines whether to parse XML namespaces or not (forwards to
     /// `XMLParser.shouldProcessNamespaces`)
     public var shouldProcessNamespaces = false
+
+    /// Matching element names, element values, attribute names, attribute values
+    /// will be case insensitive. This will not affect parsing (data does not change)
+    public var caseInsensitive = false
+
+    /// Encoding used for XML parsing. Default is set to UTF8
+    public var encoding = String.Encoding.utf8
+
+    /// Any contextual information set by the user for encoding
+    public var userInfo = [CodingUserInfoKey: Any]()
 }
 
 /// Simple XML parser
@@ -74,7 +86,10 @@ public class SWXMLHash {
     - returns: an `XMLIndexer` instance that can be iterated over
     */
     public func parse(_ xml: String) -> XMLIndexer {
-        return parse(xml.data(using: String.Encoding.utf8)!)
+        guard let data = xml.data(using: options.encoding) else {
+            return .xmlError(.encoding)
+        }
+        return parse(data)
     }
 
     /**
@@ -197,7 +212,7 @@ extension XMLParserDelegate {
                 didStartElement elementName: String,
                 namespaceURI: String?,
                 qualifiedName qName: String?,
-                attributes attributeDict: [String : String]) { }
+                attributes attributeDict: [String: String]) { }
 
     func parser(_ parser: Foundation.XMLParser,
                 didEndElement elementName: String,
@@ -238,11 +253,12 @@ extension XMLParserDelegate {
 /// The implementation of XMLParserDelegate and where the lazy parsing actually happens.
 class LazyXMLParser: NSObject, SimpleXmlParser, XMLParserDelegate {
     required init(_ options: SWXMLHashOptions) {
+        root = XMLElement(name: rootElementName, options: options)
         self.options = options
         super.init()
     }
 
-    var root = XMLElement(name: rootElementName)
+    let root: XMLElement
     var parentStack = Stack<XMLElement>()
     var elementStack = Stack<String>()
 
@@ -259,7 +275,6 @@ class LazyXMLParser: NSObject, SimpleXmlParser, XMLParserDelegate {
         // clear any prior runs of parse... expected that this won't be necessary,
         // but you never know
         parentStack.removeAll()
-        root = XMLElement(name: rootElementName)
         parentStack.push(root)
 
         self.ops = ops
@@ -280,9 +295,10 @@ class LazyXMLParser: NSObject, SimpleXmlParser, XMLParserDelegate {
         if !onMatch() {
             return
         }
+
         let currentNode = parentStack
             .top()
-            .addElement(elementName, withAttributes: attributeDict)
+            .addElement(elementName, withAttributes: attributeDict, caseInsensitive: self.options.caseInsensitive)
         parentStack.push(currentNode)
     }
 
@@ -294,6 +310,18 @@ class LazyXMLParser: NSObject, SimpleXmlParser, XMLParserDelegate {
         let current = parentStack.top()
 
         current.addText(string)
+    }
+
+    func parser(_ parser: XMLParser, foundCDATA CDATABlock: Data) {
+        if !onMatch() {
+            return
+        }
+
+        if let cdataText = String(data: CDATABlock, encoding: String.Encoding.utf8) {
+            let current = parentStack.top()
+
+            current.addText(cdataText)
+        }
     }
 
     func parser(_ parser: Foundation.XMLParser,
@@ -324,11 +352,12 @@ class LazyXMLParser: NSObject, SimpleXmlParser, XMLParserDelegate {
 /// The implementation of XMLParserDelegate and where the parsing actually happens.
 class FullXMLParser: NSObject, SimpleXmlParser, XMLParserDelegate {
     required init(_ options: SWXMLHashOptions) {
+        root = XMLElement(name: rootElementName, options: options)
         self.options = options
         super.init()
     }
 
-    var root = XMLElement(name: rootElementName)
+    let root: XMLElement
     var parentStack = Stack<XMLElement>()
     let options: SWXMLHashOptions
 
@@ -352,9 +381,11 @@ class FullXMLParser: NSObject, SimpleXmlParser, XMLParserDelegate {
                 namespaceURI: String?,
                 qualifiedName qName: String?,
                 attributes attributeDict: [String: String]) {
+
         let currentNode = parentStack
             .top()
-            .addElement(elementName, withAttributes: attributeDict)
+            .addElement(elementName, withAttributes: attributeDict, caseInsensitive: self.options.caseInsensitive)
+
         parentStack.push(currentNode)
     }
 
@@ -370,6 +401,14 @@ class FullXMLParser: NSObject, SimpleXmlParser, XMLParserDelegate {
                 qualifiedName qName: String?) {
 
         parentStack.drop()
+    }
+
+    func parser(_ parser: XMLParser, foundCDATA CDATABlock: Data) {
+        if let cdataText = String(data: CDATABlock, encoding: String.Encoding.utf8) {
+            let current = parentStack.top()
+
+            current.addText(cdataText)
+        }
     }
 }
 
@@ -433,6 +472,7 @@ public enum IndexingError: Error {
     case key(key: String)
     case index(idx: Int)
     case initialize(instance: AnyObject)
+    case encoding
     case error
 
 // swiftlint:disable identifier_name
@@ -527,15 +567,58 @@ public enum XMLIndexer {
         }
     }
 
+    public func filter(_ included: (_ elem: XMLElement, _ index: Int) -> Bool) -> XMLIndexer {
+        switch self {
+        case .list(let list):
+            return handleFilteredResults(list: list, included: included)
+
+        case .element(let elem):
+            return handleFilteredResults(list: elem.xmlChildren, included: included)
+
+        case .stream(let ops):
+            let found = ops.findElements()
+
+            let list: [XMLElement]
+            if found.all.count == 1 {
+                list = found.children.map { $0.element! }
+            } else {
+                list = found.all.map { $0.element! }
+            }
+
+            return handleFilteredResults(list: list, included: included)
+
+        default:
+            return .list([])
+        }
+    }
+
+    private func handleFilteredResults(list: [XMLElement],
+                                       included: (_ elem: XMLElement, _ index: Int) -> Bool) -> XMLIndexer {
+        let results = zip(list.indices, list).filter { included($1, $0) }.map { $1 }
+        if results.count == 1 {
+            return .element(results.first!)
+        }
+        return .list(results)
+    }
+
     /// All child elements from the currently indexed level
     public var children: [XMLIndexer] {
         var list = [XMLIndexer]()
-        for elem in all.map({ $0.element! }).flatMap({ $0 }) {
+        for elem in all.flatMap({ $0.element }) {
             for elem in elem.xmlChildren {
                 list.append(XMLIndexer(elem))
             }
         }
         return list
+    }
+
+    public var userInfo: [CodingUserInfoKey: Any] {
+        switch self {
+        case .element(let elem):
+            return elem.userInfo
+        default:
+            return [:]
+        }
     }
 
     /**
@@ -553,12 +636,14 @@ public enum XMLIndexer {
             let match = opStream.findElements()
             return try match.withAttribute(attr, value)
         case .list(let list):
-            if let elem = list.filter({$0.attribute(by: attr)?.text == value}).first {
+            if let elem = list.first(where: {
+                value.compare($0.attribute(by: attr)?.text, $0.caseInsensitive)
+            }) {
                 return .element(elem)
             }
             throw IndexingError.attributeValue(attr: attr, value: value)
         case .element(let elem):
-            if elem.attribute(by: attr)?.text == value {
+            if value.compare(elem.attribute(by: attr)?.text, elem.caseInsensitive) {
                 return .element(elem)
             }
             throw IndexingError.attributeValue(attr: attr, value: value)
@@ -611,7 +696,9 @@ public enum XMLIndexer {
             opStream.ops.append(op)
             return .stream(opStream)
         case .element(let elem):
-            let match = elem.xmlChildren.filter({ $0.name == key })
+            let match = elem.xmlChildren.filter({
+                $0.name.compare(key, $0.caseInsensitive)
+            })
             if !match.isEmpty {
                 if match.count == 1 {
                     return .element(match[0])
@@ -619,7 +706,7 @@ public enum XMLIndexer {
                     return .list(match)
                 }
             }
-            fallthrough
+            throw IndexingError.key(key: key)
         default:
             throw IndexingError.key(key: key)
         }
@@ -654,7 +741,7 @@ public enum XMLIndexer {
             opStream.ops[opStream.ops.count - 1].index = index
             return .stream(opStream)
         case .list(let list):
-            if index <= list.count {
+            if index < list.count {
                 return .element(list[index])
             }
             return .xmlError(IndexingError.index(idx: index))
@@ -662,7 +749,7 @@ public enum XMLIndexer {
             if index == 0 {
                 return .element(elem)
             }
-            fallthrough
+            return .xmlError(IndexingError.index(idx: index))
         default:
             return .xmlError(IndexingError.index(idx: index))
         }
@@ -692,10 +779,10 @@ extension XMLIndexer: CustomStringConvertible {
     public var description: String {
         switch self {
         case .list(let list):
-            return list.map { $0.description }.joined(separator: "")
+            return list.reduce("", { $0 + $1.description })
         case .element(let elem):
             if elem.name == rootElementName {
-                return elem.children.map { $0.description }.joined(separator: "")
+                return elem.children.reduce("", { $0 + $1.description })
             }
 
             return elem.description
@@ -719,6 +806,8 @@ extension IndexingError: CustomStringConvertible {
             return "XML Element Error: Incorrect index [\"\(index)\"]"
         case .initialize(let instance):
             return "XML Indexer Error: initialization with Object [\"\(instance)\"]"
+        case .encoding:
+            return "String Encoding Error"
         case .error:
             return "Unknown Error"
         }
@@ -751,19 +840,35 @@ public class XMLElement: XMLContent {
     /// The name of the element
     public let name: String
 
+    /// Whether the element is case insensitive or not
+    public var caseInsensitive: Bool {
+        return options.caseInsensitive
+    }
+
+    var userInfo: [CodingUserInfoKey: Any] {
+        return options.userInfo
+    }
+
     /// All attributes
     public var allAttributes = [String: XMLAttribute]()
 
+    /// Find an attribute by name
     public func attribute(by name: String) -> XMLAttribute? {
+        if caseInsensitive {
+            return allAttributes.first(where: { $0.key.compare(name, true) })?.value
+        }
         return allAttributes[name]
     }
 
     /// The inner text of the element, if it exists
     public var text: String {
-        return children
-            .map({ $0 as? TextElement })
-            .flatMap({ $0 })
-            .reduce("", { $0 + $1.text })
+        return children.reduce("", {
+            if let element = $1 as? TextElement {
+                return $0 + element.text
+            }
+
+            return $0
+        })
     }
 
     /// The inner text of the element and its children
@@ -781,11 +886,13 @@ public class XMLElement: XMLContent {
 
     /// All child elements (text or XML)
     public var children = [XMLContent]()
+
     var count: Int = 0
     var index: Int
+    let options: SWXMLHashOptions
 
     var xmlChildren: [XMLElement] {
-        return children.map { $0 as? XMLElement }.flatMap { $0 }
+        return children.flatMap { $0 as? XMLElement }
     }
 
     /**
@@ -794,10 +901,12 @@ public class XMLElement: XMLContent {
     - parameters:
         - name: The name of the element to be initialized
         - index: The index of the element to be initialized
+        - options: The SWXMLHash options
     */
-    init(name: String, index: Int = 0) {
+    init(name: String, index: Int = 0, options: SWXMLHashOptions) {
         self.name = name
         self.index = index
+        self.options = options
     }
 
     /**
@@ -808,8 +917,9 @@ public class XMLElement: XMLContent {
         - withAttributes: The attributes dictionary for the element being added
     - returns: The XMLElement that has now been added
     */
-    func addElement(_ name: String, withAttributes attributes: [String: String]) -> XMLElement {
-        let element = XMLElement(name: name, index: count)
+
+    func addElement(_ name: String, withAttributes attributes: [String: String], caseInsensitive: Bool) -> XMLElement {
+        let element = XMLElement(name: name, index: count, options: options)
         count += 1
 
         children.append(element)
@@ -845,10 +955,7 @@ extension XMLAttribute: CustomStringConvertible {
 extension XMLElement: CustomStringConvertible {
     /// The tag, attributes and content for a `XMLElement` instance (<elem id="foo">content</elem>)
     public var description: String {
-        var attributesString = allAttributes.map { $0.1.description }.joined(separator: " ")
-        if !attributesString.isEmpty {
-            attributesString = " " + attributesString
-        }
+        let attributesString = allAttributes.reduce("", { $0 + " " + $1.1.description })
 
         if !children.isEmpty {
             var xmlReturn = [String]()
@@ -874,3 +981,16 @@ extension SWXMLHash {
 }
 
 public typealias SWXMLHashXMLElement = XMLElement
+
+fileprivate extension String {
+    func compare(_ str2: String?, _ insensitive: Bool) -> Bool {
+        guard let str2 = str2 else {
+            return false
+        }
+        let str1 = self
+        if insensitive {
+            return str1.caseInsensitiveCompare(str2) == .orderedSame
+        }
+        return str1 == str2
+    }
+}
