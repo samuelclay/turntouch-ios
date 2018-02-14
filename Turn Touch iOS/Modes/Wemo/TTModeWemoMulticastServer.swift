@@ -110,7 +110,8 @@ class TTModeWemoMulticastServer: NSObject, GCDAsyncUdpSocketDelegate {
         if let userAgent = headers["x-user-agent"] {
             if userAgent.contains("redsonic") {
                 // redsonic = belkin
-                if let setupXmlLocation = headers["location"] {
+                if let setupXmlLocation = headers["location"],
+                    setupXmlLocation.range(of: "setup.xml") != nil {
                     let setupXmlUrl = URL(string: setupXmlLocation)
                     let locationHost = setupXmlUrl?.host
                     let locationPort = (setupXmlUrl as NSURL?)?.port?.intValue

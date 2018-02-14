@@ -16,6 +16,7 @@ enum TTModeWemoDeviceState {
 
 protocol TTModeWemoDeviceDelegate {
     func deviceReady(_ device: TTModeWemoDevice)
+    func deviceFailed(_ device: TTModeWemoDevice)
 }
 
 class TTModeWemoDevice: NSObject {
@@ -40,11 +41,17 @@ class TTModeWemoDevice: NSObject {
         return serialNumber == device.serialNumber
     }
     
-    func isSameDeviceDifferentLocation(_ device: TTModeWemoDevice) -> Bool {
+    func isSameAddress(_ device: TTModeWemoDevice) -> Bool {
         let sameAddress = ipAddress == device.ipAddress
         let samePort = port == device.port
         
         return sameAddress && samePort
+    }
+    
+    func isSameDeviceDifferentLocation(_ device: TTModeWemoDevice) -> Bool {
+        print(" ---> Comparing wemo devices: \(self) vs \(device)")
+        
+        return self.isEqualToDevice(device) && !self.isSameAddress(device)
     }
     
     func location() -> String {
@@ -53,7 +60,7 @@ class TTModeWemoDevice: NSObject {
     
     func requestDeviceInfo(_ attemptsLeft: Int = 5) {
         if attemptsLeft == 0 {
-            print(" ---> Error, could not find wemo setup.xml: \(self)")
+            print(" ---> Wemo Error, could not find wemo setup.xml: \(self)")
             return
         }
         
@@ -68,9 +75,10 @@ class TTModeWemoDevice: NSObject {
                 if let httpResponse = response as? HTTPURLResponse {
                     if httpResponse.statusCode == 200 {
                         if let responseData = data {
+                            print(" ---> Parsing wemo setup.xml for \(self)...")
                             self.parseSetupXml(responseData)
                         } else {
-                            print(" ---> Retrying setup.xml fetch...")
+                            print(" ---> Retrying wemo setup.xml fetch...")
                             self.requestDeviceInfo(attemptsLeft)
                         }
                     } else {
@@ -79,6 +87,8 @@ class TTModeWemoDevice: NSObject {
                 }
             } else {
                 print(" ---> Wemo REST error: \(String(describing: connectionError))")
+                
+                self.delegate.deviceFailed(self)
             }
         }
         task.resume()
@@ -143,6 +153,8 @@ class TTModeWemoDevice: NSObject {
                 }
             } else {
                 print(" ---> Wemo REST error: \(String(describing: connectionError))")
+                
+                self.delegate.deviceFailed(self)
             }
         }
         task.resume()
@@ -193,6 +205,8 @@ class TTModeWemoDevice: NSObject {
                 }
             } else {
                 print(" ---> Wemo REST error: \(String(describing: connectionError))")
+                
+                self.delegate.deviceFailed(self)
             }
         }
         task.resume()

@@ -42,6 +42,7 @@ class TTModeWemo: TTMode, TTModeWemoMulticastDelegate, TTModeWemoDeviceDelegate 
     static var wemoState = TTWemoState.disconnected
     static var multicastServer = TTModeWemoMulticastServer()
     static var foundDevices: [TTModeWemoDevice] = []
+    static var failedDevices: [TTModeWemoDevice] = []
     static var recentlyFoundDevices: [TTModeWemoDevice] = []
     
     required init() {
@@ -278,16 +279,27 @@ class TTModeWemo: TTMode, TTModeWemoMulticastDelegate, TTModeWemoDeviceDelegate 
     // MARK: Device delegate
     
     func deviceReady(_ device: TTModeWemoDevice) {
-        let prefs = UserDefaults.standard
-        
         for foundDevice in TTModeWemo.foundDevices {
-            if foundDevice.isEqualToDevice(device) {
+            if foundDevice.isSameAddress(device) {
                 return
+            } else if foundDevice.isEqualToDevice(device) &&
+                foundDevice.isSameDeviceDifferentLocation(device) {
+                // Wemo device changed IPs (very common), so correct all references and
+                // store new IP in place of old
+                
+                break
             }
         }
 
         TTModeWemo.foundDevices.append(device)
 
+        self.storeFoundDevices()
+
+        TTModeWemo.wemoState = .connected
+        delegate?.changeState(TTModeWemo.wemoState, mode: self)
+    }
+    
+    func storeFoundDevices() {
         TTModeWemo.foundDevices = TTModeWemo.foundDevices.sorted {
             (a, b) -> Bool in
             return a.deviceName?.lowercased() < b.deviceName?.lowercased()
@@ -304,14 +316,35 @@ class TTModeWemo: TTMode, TTModeWemoMulticastDelegate, TTModeWemoDeviceDelegate 
             } else {
                 continue
             }
+            
+            for (index, failedDevices) in TTModeWemo.failedDevices.enumerated() {
+                if failedDevices.isSameDeviceDifferentLocation(device) {
+                    TTModeWemo.failedDevices.remove(at: index)
+                    break;
+                }
+            }
+            
             foundDevices.append(["ipaddress": device.ipAddress, "port": device.port, "name": device.deviceName,
                                  "serialNumber": device.serialNumber, "macAddress": device.macAddress])
         }
+        
+        let prefs = UserDefaults.standard
         prefs.set(foundDevices, forKey: TTModeWemoConstants.kWemoFoundDevices)
         prefs.synchronize()
-
-        TTModeWemo.wemoState = .connected
-        delegate?.changeState(TTModeWemo.wemoState, mode: self)
+    }
+    
+    func deviceFailed(_ device: TTModeWemoDevice) {
+        print(" ---> Wemo device failed, searching for new IP...")
+        
+        if TTModeWemo.failedDevices.contains(device) {
+            print(" ---> Wemo device already failed, ignoring.")
+        }
+        
+        DispatchQueue.main.async {
+            appDelegate().modeMap.recordUsageMoment("wemoDeviceFailed")
+            TTModeWemo.failedDevices.append(device)
+            self.refreshDevices()
+        }
     }
     
     // MARK: Device selection

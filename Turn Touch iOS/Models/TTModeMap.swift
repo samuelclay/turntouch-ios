@@ -309,13 +309,17 @@ class TTModeMap: NSObject {
         self.recordUsage(additionalParams: ["button_actions": presses])
     }
     
+    func recordUsageMoment(_ moment: String) {
+        self.recordUsage(additionalParams: ["moment": moment])
+    }
+    
     func recordUsage(additionalParams: [String: Any]) {
         let prefs = UserDefaults.standard
         if !prefs.bool(forKey: "TT:pref:share_usage_stats") {
             return
         }
-        var params = self.deviceAttrs()
         
+        var params = self.deviceAttrs()
         for (k, v) in additionalParams {
             params[k] = v
         }
