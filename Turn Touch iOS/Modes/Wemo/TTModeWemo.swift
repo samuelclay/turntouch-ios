@@ -279,6 +279,7 @@ class TTModeWemo: TTMode, TTModeWemoMulticastDelegate, TTModeWemoDeviceDelegate 
     // MARK: Device delegate
     
     func deviceReady(_ device: TTModeWemoDevice) {
+        var replaceDevice: TTModeWemoDevice? = nil
         for foundDevice in TTModeWemo.foundDevices {
             if foundDevice.isSameAddress(device) {
                 return
@@ -286,12 +287,19 @@ class TTModeWemo: TTMode, TTModeWemoMulticastDelegate, TTModeWemoDeviceDelegate 
                 foundDevice.isSameDeviceDifferentLocation(device) {
                 // Wemo device changed IPs (very common), so correct all references and
                 // store new IP in place of old
-                
+                replaceDevice = foundDevice
                 break
             }
         }
 
-        TTModeWemo.foundDevices.append(device)
+        if let foundDevice = replaceDevice {
+            // Change device to new location
+            print(" ---> Re-assigning wemo device from \(foundDevice.location()) to \(device.location())")
+            foundDevice.ipAddress = device.ipAddress
+            foundDevice.port = device.port
+        } else {
+            TTModeWemo.foundDevices.append(device)
+        }
 
         self.storeFoundDevices()
 

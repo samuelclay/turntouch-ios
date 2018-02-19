@@ -49,9 +49,10 @@ class TTModeWemoDevice: NSObject {
     }
     
     func isSameDeviceDifferentLocation(_ device: TTModeWemoDevice) -> Bool {
-        print(" ---> Comparing wemo devices: \(self) vs \(device)")
+        let same = self.isEqualToDevice(device) && !self.isSameAddress(device)
+        print(" ---> Comparing wemo devices: \(self) vs \(device): \(same)")
         
-        return self.isEqualToDevice(device) && !self.isSameAddress(device)
+        return same
     }
     
     func location() -> String {
