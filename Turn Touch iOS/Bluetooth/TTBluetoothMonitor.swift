@@ -171,9 +171,13 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
             for peripheral: CBPeripheral in peripheralGroup {
                 var foundDevice = foundDevices.deviceForPeripheral(peripheral)
                 if foundDevice == nil {
-                    foundDevice = foundDevices.addPeripheral(peripheral)
-                    if DEBUG_BLUETOOTH {
-                        print(" ---> (\(bluetoothState)) Adding known device: \(foundDevice!)")
+                    if self.knownPeripheralIdentifiers().contains(peripheral.identifier) {
+                        foundDevice = foundDevices.addPeripheral(peripheral)
+                        if DEBUG_BLUETOOTH {
+                            print(" ---> (\(bluetoothState)) Adding known device: \(foundDevice!)")
+                        }
+                    } else {
+                        continue
                     }
                 } else if foundDevice!.state == TTDeviceState.device_STATE_CONNECTING {
                     isActivelyConnecting = true
@@ -264,7 +268,7 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
                     if DEBUG_BLUETOOTH {
                         print(" ---> (\(bluetoothState)) [Scanning unknown] Canceling peripheral connection: \(device)")
                     }
-//                    manager.cancelPeripheralConnection(device.peripheral)
+                    manager.cancelPeripheralConnection(device.peripheral)
                 }
             }
             if DEBUG_BLUETOOTH {
@@ -280,7 +284,8 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
             print(" ---> (\(bluetoothState)) Scanning unknown")
         }
         
-        manager.scanForPeripherals(withServices: [CBUUID(string: DEVICE_V2_SERVICE_BUTTON_UUID)],
+        manager.scanForPeripherals(withServices: [CBUUID(string: DEVICE_V2_SERVICE_BUTTON_UUID),
+                                                  CBUUID(string:"1523")],
                                    options: [CBCentralManagerScanOptionAllowDuplicatesKey: false])
     }
     
@@ -384,8 +389,8 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
             if DEBUG_BLUETOOTH {
                 print(" ---> Disconnect \(peripheral)")
             }
-            manager.cancelPeripheralConnection(peripheral)
             foundDevices.removeDevice(device)
+            manager.cancelPeripheralConnection(peripheral)
             self.countDevices()
         }
     }
@@ -402,11 +407,11 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
             if DEBUG_BLUETOOTH {
                 print(" ---> Terminating, canceling: \(peripheral)")
             }
-            manager.cancelPeripheralConnection(peripheral)
             let device = foundDevices.deviceForPeripheral(peripheral)
             if device != nil {
                 foundDevices.removeDevice(device!)
             }
+            manager.cancelPeripheralConnection(peripheral)
         }
         
         foundDevices = TTDeviceList()
@@ -437,7 +442,9 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
                         advertisementData: [String : Any], rssi RSSI: NSNumber) {
         var device = foundDevices.deviceForPeripheral(peripheral)
         if device == nil {
-            if bluetoothState == .bt_STATE_PAIRING_UNKNOWN {
+            if bluetoothState == .bt_STATE_PAIRING_UNKNOWN ||
+                bluetoothState == .bt_STATE_SCANNING_UNKNOWN ||
+                bluetoothState == .bt_STATE_CONNECTING_UNKNOWN {
                 device = foundDevices.addPeripheral(peripheral)
                  print(" ---> (\(bluetoothState)) Discovered unknown peripheral: \(peripheral.name ?? "[none]") ")
                 device = foundDevices.addPeripheral(peripheral)
@@ -531,6 +538,8 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
         } else {
             self.scanKnown()
         
+            // You'll be tempted to uncomment the below lines that delay a scanKnown. Don't do it.
+            // If a peripheral is connecting after disconnection, you need to handle it.
 //            dispatch_once(&onceKnownToken) {
 //                let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(2 * Double(NSEC_PER_SEC)))
 //                dispatch_after(delayTime, dispatch_get_main_queue(), {
@@ -864,6 +873,7 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
     func disconnectUnpairedDevices() {
         for device in foundDevices.devices {
             if !device.isPaired {
+                foundDevices.removeDevice(device)
                 manager.cancelPeripheralConnection(device.peripheral)
             }
         }

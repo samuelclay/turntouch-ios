@@ -101,14 +101,14 @@ class TTDeviceList: NSObject {
             if foundDevice.uuid != removeDevice?.uuid {
                 updatedDevices.append(foundDevice)
             } else {
-                foundDevice.peripheral.delegate = nil
-                foundDevice.peripheral = nil
+                // Don't null out the peripheral since you need to keep a reference
+//                foundDevice.peripheral.delegate = nil
+//                foundDevice.peripheral = nil
                 foundDevice.state = .device_STATE_DISCONNECTED
             }
         }
         
         devices = updatedDevices
-        removeDevice = nil;
     }
     
     func ensureDevicesConnected() {
