@@ -8,6 +8,7 @@
 
 import UIKit
 import InAppSettingsKit
+import SafariServices
 
 enum TTModalState {
     case app
@@ -18,7 +19,7 @@ enum TTModalState {
     case support
 }
 
-class TTMainViewController: UIViewController, UIPopoverPresentationControllerDelegate, IASKSettingsDelegate {
+class TTMainViewController: UIViewController, UIPopoverPresentationControllerDelegate, IASKSettingsDelegate, SFSafariViewControllerDelegate {
     
     var stackView = UIStackView()
     var scrollStackView = UIStackView()
@@ -56,6 +57,8 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
     var pairingViewController: TTPairingViewController?
     var pairingInfoViewController: TTPairingInfoViewController?
     var settingsViewController: IASKAppSettingsViewController!
+    var supportViewController: SFSafariViewController!
+    var aboutViewController: TTAboutViewController!
     var ftuxViewController: TTFTUXViewController?
     var modalNavController: UINavigationController!
     
@@ -538,7 +541,7 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
             return
         }
         
-        titleMenu.dismiss(animated: true , completion: nil)
+        titleMenu.dismiss(animated: true, completion: nil)
         settingsViewController = IASKAppSettingsViewController()
         settingsViewController.showCreditsFooter = false
         settingsViewController.delegate = self
@@ -548,7 +551,47 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
         self.present(modalNavController, animated: true, completion: nil)
     }
     
-    func closeSettingsModal() {
+    func showSupportModal() {
+        if modalNavController != nil {
+            print(" ---> Don't show support modal, already showing it")
+            return
+        }
+        
+        titleMenu.dismiss(animated: false, completion: nil)
+
+        if let supportUrl = URL(string: "https://forum.turntouch.com") {
+            supportViewController = SFSafariViewController(url: supportUrl)
+            supportViewController.delegate = self
+            supportViewController.modalPresentationStyle = .formSheet
+            self.present(supportViewController, animated: true, completion: nil)
+        }
+    }
+    
+    func safariViewControllerDidFinish(_ controller: SFSafariViewController) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    func safariViewController(_ controller: SFSafariViewController, didCompleteInitialLoad didLoadSuccessfully: Bool) {
+        if didLoadSuccessfully == false {
+            self.dismiss(animated: true, completion: nil)
+        }
+    }
+    
+    func showAboutModal() {
+        if modalNavController != nil {
+            print(" ---> Don't show about modal, already showing it")
+            return
+        }
+        
+        titleMenu.dismiss(animated: true, completion: nil)
+
+        aboutViewController = TTAboutViewController()
+        modalNavController = UINavigationController(rootViewController: aboutViewController)
+        modalNavController.modalPresentationStyle = .formSheet
+        self.present(modalNavController, animated: true, completion: nil)
+    }
+
+    func closeModal() {
         modalNavController.dismiss(animated: true, completion: nil)
         modalNavController = nil
     }
@@ -557,6 +600,6 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
     
     func settingsViewControllerDidEnd(_ sender: IASKAppSettingsViewController!) {
         sender.synchronizeSettings()
-        self.closeSettingsModal()
+        self.closeModal()
     }
 }

@@ -58,6 +58,9 @@
 	<key>UIAppFonts</key>
 	<array>
 		<string>Effra_Rg.ttf</string>
+		<string>effra-lightitalic.ttf</string>
+		<string>Dalton Maag - Effra Light</string>
+		<string>Dalton Maag - Effra Std Bold</string>
 	</array>
 	<key>UIBackgroundModes</key>
 	<array>

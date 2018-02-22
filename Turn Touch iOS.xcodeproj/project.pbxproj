@@ -155,6 +155,9 @@
 		FF534C4A1EB18AC0002EE584 /* TTModeIfttt.plist in Resources */ = {isa = PBXBuildFile; fileRef = FF534C491EB18AC0002EE584 /* TTModeIfttt.plist */; };
 		FF534C4D1EB2BC9F002EE584 /* TTModeIftttTriggerActionOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF534C4B1EB2BC9F002EE584 /* TTModeIftttTriggerActionOptions.swift */; };
 		FF534C4E1EB2BC9F002EE584 /* TTModeIftttTriggerActionOptions.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF534C4C1EB2BC9F002EE584 /* TTModeIftttTriggerActionOptions.xib */; };
+		FF58FC4E203CFA42005F547B /* TTAboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF58FC4D203CFA42005F547B /* TTAboutViewController.swift */; };
+		FF58FC52203CFAAA005F547B /* TTAboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF58FC51203CFAAA005F547B /* TTAboutViewController.xib */; };
+		FF58FC56203E536F005F547B /* effra-lightitalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FF58FC55203E479B005F547B /* effra-lightitalic.ttf */; };
 		FF6434881D5130BF00F2FAE6 /* mode_camera.png in Resources */ = {isa = PBXBuildFile; fileRef = FF6434871D5130BF00F2FAE6 /* mode_camera.png */; };
 		FF76F0381F7023230001247D /* mode_homekit.png in Resources */ = {isa = PBXBuildFile; fileRef = FF76F0371F7023230001247D /* mode_homekit.png */; };
 		FF7A235C1DFF7D21002B696D /* modal_failure.png in Resources */ = {isa = PBXBuildFile; fileRef = FF7A235B1DFF7D21002B696D /* modal_failure.png */; };
@@ -540,6 +543,9 @@
 		FF534C491EB18AC0002EE584 /* TTModeIfttt.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = TTModeIfttt.plist; sourceTree = "<group>"; };
 		FF534C4B1EB2BC9F002EE584 /* TTModeIftttTriggerActionOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TTModeIftttTriggerActionOptions.swift; sourceTree = "<group>"; };
 		FF534C4C1EB2BC9F002EE584 /* TTModeIftttTriggerActionOptions.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TTModeIftttTriggerActionOptions.xib; sourceTree = "<group>"; };
+		FF58FC4D203CFA42005F547B /* TTAboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TTAboutViewController.swift; path = Views/Modal/TTAboutViewController.swift; sourceTree = "<group>"; };
+		FF58FC51203CFAAA005F547B /* TTAboutViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = TTAboutViewController.xib; path = Views/Modal/TTAboutViewController.xib; sourceTree = "<group>"; };
+		FF58FC55203E479B005F547B /* effra-lightitalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "effra-lightitalic.ttf"; path = "Fonts/effra-lightitalic.ttf"; sourceTree = "<group>"; };
 		FF6434871D5130BF00F2FAE6 /* mode_camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mode_camera.png; sourceTree = "<group>"; };
 		FF76F0371F7023230001247D /* mode_homekit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mode_homekit.png; sourceTree = "<group>"; };
 		FF7A235B1DFF7D21002B696D /* modal_failure.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = modal_failure.png; sourceTree = "<group>"; };
@@ -1045,6 +1051,8 @@
 				FF44876A1D08E1D600ED8099 /* TTPairingSpinner.swift */,
 				FFC4B0F81D2F5E3B00A97C81 /* TTFTUXViewController.swift */,
 				FFC4B1071D3717D500A97C81 /* TTFTUXView.swift */,
+				FF58FC4D203CFA42005F547B /* TTAboutViewController.swift */,
+				FF58FC51203CFAAA005F547B /* TTAboutViewController.xib */,
 			);
 			name = Modal;
 			sourceTree = "<group>";
@@ -1402,6 +1410,7 @@
 			children = (
 				FFB84B521D91FEED0037872C /* Dalton Maag - Effra Light.ttf */,
 				FFB84B531D91FEED0037872C /* Dalton Maag - Effra Std Bold.ttf */,
+				FF58FC55203E479B005F547B /* effra-lightitalic.ttf */,
 				FF0F10D41CF6430E00CC1F29 /* Effra_Rg.ttf */,
 			);
 			name = Fonts;
@@ -1649,11 +1658,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FF58FC56203E536F005F547B /* effra-lightitalic.ttf in Resources */,
 				FF21F9351E1C9E1500DFDBB4 /* TTModeNestOptions.xib in Resources */,
 				FFB84B541D9202CB0037872C /* Dalton Maag - Effra Light.ttf in Resources */,
 				FF2E1C491E43C30800CFBEE0 /* TTModeNestSetTempOptions.xib in Resources */,
 				FFB84B551D9202CB0037872C /* Dalton Maag - Effra Std Bold.ttf in Resources */,
 				FF2023411D021605005129E5 /* Icon-60@3x.png in Resources */,
+				FF58FC52203CFAAA005F547B /* TTAboutViewController.xib in Resources */,
 				FFB41B2C1CEE9A3000CD5F09 /* equalizer-1.png in Resources */,
 				FFB41B411CEE9A3000CD5F09 /* mode_smartlock.png in Resources */,
 				FFB41B5D1CEE9A3000CD5F09 /* logo_256.png in Resources */,
@@ -1994,6 +2005,7 @@
 				FF3032C11DB828B100728920 /* TTModeHueSceneMorningOptions.swift in Sources */,
 				FF0F10E51CFFAD1B00CC1F29 /* TTModeMenuBordersView.swift in Sources */,
 				FF0F10C71CF63F1600CC1F29 /* TTModeMusic.swift in Sources */,
+				FF58FC4E203CFA42005F547B /* TTAboutViewController.swift in Sources */,
 				FF37EDDF1D11179E0026F70D /* TTModeHuePushlink.swift in Sources */,
 				FF4487661D08CE7900ED8099 /* TTPairingViewController.swift in Sources */,
 				FFF46BEE1D10E6A300158751 /* TTOptionsView.swift in Sources */,

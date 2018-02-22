@@ -15,7 +15,6 @@ class TTTitleMenuCell: UITableViewCell {
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        self.contentView.translatesAutoresizingMaskIntoConstraints = false
         menuImageView.translatesAutoresizingMaskIntoConstraints = false
         menuTitle.translatesAutoresizingMaskIntoConstraints = false
         

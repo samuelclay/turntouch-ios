@@ -113,6 +113,10 @@ class TTTitleBarView: UIView, TTTitleMenuDelegate {
             appDelegate().mainViewController.showSettingsModal()
         case 2:
             appDelegate().mainViewController.showFtuxModal()
+        case 3:
+            appDelegate().mainViewController.showSupportModal()
+        case 4:
+            appDelegate().mainViewController.showAboutModal()
         default:
             break
         }
