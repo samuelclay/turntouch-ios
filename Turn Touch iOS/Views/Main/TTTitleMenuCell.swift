@@ -18,9 +18,12 @@ class TTTitleMenuCell: UITableViewCell {
         menuImageView.translatesAutoresizingMaskIntoConstraints = false
         menuTitle.translatesAutoresizingMaskIntoConstraints = false
         
-        textLabel?.font = UIFont(name: "Effra", size: 12)
+        textLabel?.font = UIFont(name: "Effra", size: 14)
         textLabel?.textColor = UIColor(hex: 0x404A60)
-    }
+
+        detailTextLabel?.font = UIFont(name: "Effra", size: 14)
+        detailTextLabel?.textColor = UIColor(hex: 0x808AA0)
+}
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)

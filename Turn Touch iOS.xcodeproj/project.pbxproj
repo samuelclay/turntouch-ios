@@ -367,6 +367,10 @@
 		FFDC9F6A1FD74B0800261B76 /* hue_brightness_up.png in Resources */ = {isa = PBXBuildFile; fileRef = FFDC9F661FD74B0800261B76 /* hue_brightness_up.png */; };
 		FFDC9F6B1FD74B0800261B76 /* hue_shift_left.png in Resources */ = {isa = PBXBuildFile; fileRef = FFDC9F671FD74B0800261B76 /* hue_shift_left.png */; };
 		FFDC9F6C1FD74B0800261B76 /* hue_brightness_down.png in Resources */ = {isa = PBXBuildFile; fileRef = FFDC9F681FD74B0800261B76 /* hue_brightness_down.png */; };
+		FFECC40A203E7891007AB343 /* twitter-samuelclay.png in Resources */ = {isa = PBXBuildFile; fileRef = FFECC408203E7891007AB343 /* twitter-samuelclay.png */; };
+		FFECC40B203E7891007AB343 /* twitter-turntouch.png in Resources */ = {isa = PBXBuildFile; fileRef = FFECC409203E7891007AB343 /* twitter-turntouch.png */; };
+		FFECC40E203E7B27007AB343 /* twitter-buy.png in Resources */ = {isa = PBXBuildFile; fileRef = FFECC40C203E7B27007AB343 /* twitter-buy.png */; };
+		FFECC40F203E7B27007AB343 /* twitter-review.png in Resources */ = {isa = PBXBuildFile; fileRef = FFECC40D203E7B27007AB343 /* twitter-review.png */; };
 		FFF270941CEE88E500E46575 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF270931CEE88E500E46575 /* AppDelegate.swift */; };
 		FFF2709D1CEE88E500E46575 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FFF2709C1CEE88E500E46575 /* Assets.xcassets */; };
 		FFF270A01CEE88E500E46575 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFF2709E1CEE88E500E46575 /* LaunchScreen.storyboard */; };
@@ -760,6 +764,10 @@
 		FFDC9F661FD74B0800261B76 /* hue_brightness_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hue_brightness_up.png; sourceTree = "<group>"; };
 		FFDC9F671FD74B0800261B76 /* hue_shift_left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hue_shift_left.png; sourceTree = "<group>"; };
 		FFDC9F681FD74B0800261B76 /* hue_brightness_down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hue_brightness_down.png; sourceTree = "<group>"; };
+		FFECC408203E7891007AB343 /* twitter-samuelclay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "twitter-samuelclay.png"; sourceTree = "<group>"; };
+		FFECC409203E7891007AB343 /* twitter-turntouch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "twitter-turntouch.png"; sourceTree = "<group>"; };
+		FFECC40C203E7B27007AB343 /* twitter-buy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "twitter-buy.png"; sourceTree = "<group>"; };
+		FFECC40D203E7B27007AB343 /* twitter-review.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "twitter-review.png"; sourceTree = "<group>"; };
 		FFF270901CEE88E500E46575 /* Turn Touch iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Turn Touch iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFF270931CEE88E500E46575 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FFF2709C1CEE88E500E46575 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -1222,6 +1230,10 @@
 		FFB41AC01CEE9A3000CD5F09 /* icons */ = {
 			isa = PBXGroup;
 			children = (
+				FFECC40C203E7B27007AB343 /* twitter-buy.png */,
+				FFECC40D203E7B27007AB343 /* twitter-review.png */,
+				FFECC408203E7891007AB343 /* twitter-samuelclay.png */,
+				FFECC409203E7891007AB343 /* twitter-turntouch.png */,
 				FFB41AC11CEE9A3000CD5F09 /* app_music.png */,
 				FFB41AC21CEE9A3000CD5F09 /* button_chevron.png */,
 				FFB41AC31CEE9A3000CD5F09 /* button_dash.png */,
@@ -1674,6 +1686,7 @@
 				FFB84B4C1D90D4240037872C /* yoga_position_13.png in Resources */,
 				FFB41B571CEE9A3000CD5F09 /* itunes_podcast_icon.png in Resources */,
 				FFB41B2B1CEE9A3000CD5F09 /* double_tap.png in Resources */,
+				FFECC40B203E7891007AB343 /* twitter-turntouch.png in Resources */,
 				FF20232E1D02147A005129E5 /* Icon-29@3x.png in Resources */,
 				FFB41B521CEE9A3000CD5F09 /* itunes_itunesu_icon.png in Resources */,
 				FF534C391EB0351A002EE584 /* TTModeIftttConnect.xib in Resources */,
@@ -1731,6 +1744,7 @@
 				FF8680151F90288A00D9A0B3 /* TTModeSonos.plist in Resources */,
 				FFF270A01CEE88E500E46575 /* LaunchScreen.storyboard in Resources */,
 				FF52EBCE1F8EE54E002D0EF1 /* TTModePhoneVolumeJumpOptions.xib in Resources */,
+				FFECC40A203E7891007AB343 /* twitter-samuelclay.png in Resources */,
 				FF37EDEC1D137A210026F70D /* TTModeHueSceneOptions.xib in Resources */,
 				FF4AF7EC1D24F9E70009C777 /* TTModeSonosConnecting.xib in Resources */,
 				FF4AF7EF1D24F9E70009C777 /* TTModeSonosOptions.xib in Resources */,
@@ -1738,6 +1752,7 @@
 				FFC33C3D1EA173B600321EB9 /* south tone.wav in Resources */,
 				FFB41B481CEE9A3000CD5F09 /* presentation-chart.png in Resources */,
 				FFB41B471CEE9A3000CD5F09 /* newspaper-3.png in Resources */,
+				FFECC40E203E7B27007AB343 /* twitter-buy.png in Resources */,
 				FF2023401D021605005129E5 /* Icon-60@2x.png in Resources */,
 				FFB41B431CEE9A3000CD5F09 /* mode_timer.png in Resources */,
 				FFB41B4E1CEE9A3000CD5F09 /* television.png in Resources */,
@@ -1900,6 +1915,7 @@
 				FF8B75751F86D4EF00D7867C /* script.png in Resources */,
 				FF8B75761F86D4EF00D7867C /* scroll_down.png in Resources */,
 				FF8B75771F86D4EF00D7867C /* scroll_up.png in Resources */,
+				FFECC40F203E7B27007AB343 /* twitter-review.png in Resources */,
 				FF8B75781F86D4EF00D7867C /* temperature_down.png in Resources */,
 				FF8B75791F86D4EF00D7867C /* temperature_up.png in Resources */,
 				FF8FB1F41F8F19620085B994 /* TTModeNest.plist in Resources */,
