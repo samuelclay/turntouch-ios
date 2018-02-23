@@ -424,7 +424,7 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
     func toggleDeviceMenu(_ sender: UIButton, deviceTitleView: TTDeviceTitleView, device: TTDevice) {
         deviceMenu.delegate = deviceTitleView
         deviceMenu.modalPresentationStyle = .popover
-        deviceMenu.preferredContentSize = CGSize(width: 264,
+        deviceMenu.preferredContentSize = CGSize(width: 204,
                                                  height: deviceMenu.delegate.menuHeight * deviceMenu.delegate.menuOptions().count)
         let popoverViewController = deviceMenu.popoverPresentationController
         popoverViewController!.permittedArrowDirections = .down
