@@ -7,8 +7,9 @@
 //
 
 import Foundation
+import SafariServices
 
-class TTAboutViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class TTAboutViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, SFSafariViewControllerDelegate {
     
     let CellReuseIdentifier = "TTTitleMenuCell"
     @IBOutlet var twitterTable: UITableView!
@@ -41,16 +42,20 @@ class TTAboutViewController: UIViewController, UITableViewDelegate, UITableViewD
         return [
             ["title": "Follow @turntouch on Twitter",
              "subtitle": "Announcements and updates",
-             "image": "twitter-turntouch"],
+             "image": "twitter-turntouch",
+             "url": "https://twitter.com/turntouch"],
             ["title": "Follow @samuelclay on Twitter",
-             "subtitle": "Designer and Maker",
-             "image": "twitter-samuelclay"],
+             "subtitle": "Designer and builder",
+             "image": "twitter-samuelclay",
+             "url": "https://twitter.com/samuelclay"],
             ["title": "Buy a Turn Touch",
-             "subtitle": "turntouch.com",
-             "image": "twitter-buy"],
-            ["title": "Rate Turn Touch on the App Store",
-             "subtitle": "iTunes App Store",
-             "image": "twitter-review"],
+             "subtitle": "Only at turntouch.com",
+             "image": "twitter-buy",
+             "url": "https://shop.turntouch.com"],
+            ["title": "Review on the App Store",
+             "subtitle": "Rate this app",
+             "image": "twitter-review",
+             "url": "itms-apps://itunes.apple.com/us/app/itunes-u/id1152075244?action=write-review"],
         ]
     }
     
@@ -59,7 +64,11 @@ class TTAboutViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 0
+        return CGFloat.leastNonzeroMagnitude
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return nil
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -78,7 +87,7 @@ class TTAboutViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         cell!.textLabel?.text = self.menuOptions()[(indexPath as NSIndexPath).row]["title"]
         cell!.imageView?.image = UIImage(named: self.menuOptions()[(indexPath as NSIndexPath).row]["image"] ?? "alarm_snooze")
-        cell!.detailTextLabel?.text = self.menuOptions()[(indexPath as NSIndexPath).row]["subtitle"]
+        cell!.detailTextLabel?.text = self.menuOptions()[(indexPath as NSIndexPath).row]["subtitle"]?.uppercased()
         
         let itemSize:CGSize = CGSize(width: 32, height: 32)
         UIGraphicsBeginImageContextWithOptions(itemSize, false, UIScreen.main.scale)
@@ -92,11 +101,26 @@ class TTAboutViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         return cell!
     }
-//    
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        tableView.deselectRow(at: indexPath, animated: true)
-//        
-//        self.selectMenuOption((indexPath as NSIndexPath).row)
-//    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        guard let url = self.menuOptions()[indexPath.row]["url"] else {
+            return
+        }
+        
+        if url.starts(with: "itms"), let reviewURL = URL(string: url) {
+            if #available(iOS 10.0, *) {
+                UIApplication.shared.open(reviewURL, options: [:], completionHandler: nil)
+            } else {
+                UIApplication.shared.openURL(reviewURL)
+            }
+        } else {
+            if let twitterUrl = URL(string: url) {
+                let supportViewController = SFSafariViewController(url: twitterUrl)
+                supportViewController.delegate = self
+                self.navigationController?.present(supportViewController, animated: true, completion: nil)
+            }
+        }
+    }
 
 }

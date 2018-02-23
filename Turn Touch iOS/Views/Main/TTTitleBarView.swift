@@ -12,6 +12,8 @@ let CORNER_RADIUS: CGFloat = 8.0
 let SETTINGS_ICON_SIZE: CGFloat = 22.0
 
 class TTTitleBarView: UIView, TTTitleMenuDelegate {
+    var menuHeight: Int = 42
+    
     @IBInspectable var startColor: UIColor = UIColor.white
     @IBInspectable var endColor: UIColor = UIColor(hex: 0xE7E7E7)
 

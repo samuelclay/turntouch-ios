@@ -10,6 +10,7 @@ import UIKit
 
 class TTModeIftttTriggerActionOptions: TTOptionsDetailViewController, TTTitleMenuDelegate {
 
+    var menuHeight: Int = 42
     var modeIfttt: TTModeIfttt!
 
     required init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {

@@ -11,7 +11,8 @@ import CoreBluetooth
 import iOSDFULibrary
 
 class TTDeviceTitleView: UIView, TTTitleMenuDelegate, DFUServiceDelegate, DFUProgressDelegate, LoggerDelegate, UIAlertViewDelegate {
-
+    
+    var menuHeight: Int = 42
     var device: TTDevice!
     var titleLabel: UILabel = UILabel()
     var stateLabel: UILabel = UILabel()

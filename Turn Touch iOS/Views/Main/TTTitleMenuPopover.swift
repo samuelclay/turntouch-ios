@@ -11,6 +11,7 @@ import UIKit
 protocol TTTitleMenuDelegate {
     func menuOptions() -> [[String: String]]
     func selectMenuOption(_ row: Int)
+    var menuHeight: Int { get }
 }
 
 class TTTitleMenuPopover: UIViewController, UITableViewDelegate, UITableViewDataSource {
@@ -53,7 +54,7 @@ class TTTitleMenuPopover: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 32
+        return CGFloat(delegate.menuHeight)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

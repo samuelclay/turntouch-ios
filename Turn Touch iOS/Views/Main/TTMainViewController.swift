@@ -409,7 +409,7 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
         titleMenu.delegate = titleBarView
         titleMenu.modalPresentationStyle = .popover
         titleMenu.preferredContentSize = CGSize(width: 204,
-                                                height: 32 * titleMenu.delegate.menuOptions().count)
+                                                height: titleMenu.delegate.menuHeight * titleMenu.delegate.menuOptions().count)
         if let popoverViewController = titleMenu.popoverPresentationController {
             popoverViewController.permittedArrowDirections = .up
             popoverViewController.delegate = self
@@ -424,8 +424,8 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
     func toggleDeviceMenu(_ sender: UIButton, deviceTitleView: TTDeviceTitleView, device: TTDevice) {
         deviceMenu.delegate = deviceTitleView
         deviceMenu.modalPresentationStyle = .popover
-        deviceMenu.preferredContentSize = CGSize(width: 204,
-                                                 height: 32 * deviceMenu.delegate.menuOptions().count)
+        deviceMenu.preferredContentSize = CGSize(width: 264,
+                                                 height: deviceMenu.delegate.menuHeight * deviceMenu.delegate.menuOptions().count)
         let popoverViewController = deviceMenu.popoverPresentationController
         popoverViewController!.permittedArrowDirections = .down
         popoverViewController!.delegate = self
@@ -439,8 +439,8 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
     func toggleModeOptionsMenu(_ sender: UIButton, delegate: TTTitleMenuDelegate) {
         modeOptionsMenu.delegate = delegate
         modeOptionsMenu.modalPresentationStyle = .popover
-        modeOptionsMenu.preferredContentSize = CGSize(width: 204,
-                                               height: 32 * modeOptionsMenu.delegate.menuOptions().count)
+        modeOptionsMenu.preferredContentSize = CGSize(width: 264,
+                                               height: modeOptionsMenu.delegate.menuHeight * modeOptionsMenu.delegate.menuOptions().count)
         let popoverViewController = modeOptionsMenu.popoverPresentationController
         popoverViewController!.permittedArrowDirections = .down
         popoverViewController!.delegate = self

@@ -11,6 +11,7 @@ import UIKit
 class TTModeWemoDeviceSwitchOptions: TTOptionsDetailViewController, UITableViewDelegate, UITableViewDataSource, TTModeWemoDelegate, TTTitleMenuDelegate {
     
     var modeWemo: TTModeWemo!
+    var menuHeight: Int = 42
     
     @IBOutlet var spinner: [UIActivityIndicatorView]!
     @IBOutlet var settingsButton: [UIButton]!
