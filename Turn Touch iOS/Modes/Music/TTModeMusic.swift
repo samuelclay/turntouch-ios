@@ -18,7 +18,7 @@ class TTModeMusic: TTMode {
     let ITUNES_VOLUME_CHANGE: Float = 0.06
     var observing = false
     var lastVolume: Float!
-    let musicPlayer = MPMusicPlayerController.systemMusicPlayer
+    var musicPlayer: MPMusicPlayerController!
     
     override class func title() -> String {
         return "Music"
@@ -141,6 +141,10 @@ class TTModeMusic: TTMode {
     // MARK: Initialize
     
     override func activate() {
+        if musicPlayer == nil {
+            musicPlayer = MPMusicPlayerController.systemMusicPlayer
+        }
+        
         if !observing {
             AVAudioSession.sharedInstance().addObserver(self, forKeyPath: "outputVolume", options: [], context: nil)
             musicPlayer.addObserver(self, forKeyPath: "nowPlayingItem", options: [], context: nil)
