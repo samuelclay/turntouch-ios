@@ -95,7 +95,7 @@ class TTDeviceList: NSObject {
     }
     
     func removeDevice(_ device: TTDevice) {
-        var removeDevice: TTDevice? = device
+        let removeDevice: TTDevice? = device
         var updatedDevices: [TTDevice] = []
         for foundDevice: TTDevice in devices {
             if foundDevice.uuid != removeDevice?.uuid {

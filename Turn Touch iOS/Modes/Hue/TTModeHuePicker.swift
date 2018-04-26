@@ -269,21 +269,21 @@ class TTModeHuePicker: TTOptionsDetailViewController, UITextFieldDelegate, UIPop
     }
     
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
-        var pickerLabel = view as! UILabel!
+        var pickerLabel = view as! UILabel
         if view == nil {  //if no label there yet
             pickerLabel = UILabel()
             //color the label's background
             if pickerVC.textField == singlePicker || pickerVC.textField == doublePicker {
                 let hue = CGFloat(row)/CGFloat(scenes.count)
-                pickerLabel?.backgroundColor = UIColor(hue: hue, saturation: 1.0, brightness: 1.0, alpha: 1.0)
+                pickerLabel.backgroundColor = UIColor(hue: hue, saturation: 1.0, brightness: 1.0, alpha: 1.0)
             }
         }
         let titleData = pickerVC.textField == roomPicker ? rooms[row]["name"] : scenes[row]["name"]
         let myTitle = NSAttributedString(string: titleData!, attributes: [NSAttributedStringKey.font:UIFont(name: "Effra", size: 18.0)!,NSAttributedStringKey.foregroundColor:UIColor.black])
-        pickerLabel!.attributedText = myTitle
-        pickerLabel!.textAlignment = .center
+        pickerLabel.attributedText = myTitle
+        pickerLabel.textAlignment = .center
         
-        return pickerLabel!
+        return pickerLabel
         
     }
     

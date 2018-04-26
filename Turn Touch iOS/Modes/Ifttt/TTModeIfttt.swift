@@ -179,7 +179,7 @@ class TTModeIfttt: TTMode {
     
     func authorizeIfttt() {
         let attrs = appDelegate().modeMap.deviceAttrs() as! [String: String]
-        let params = (attrs.flatMap({ (key, value) -> String in
+        let params = (attrs.compactMap({ (key, value) -> String in
             return "\(key)=\(value.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!)"
         }) as Array).joined(separator: "&")
         let url = "https://turntouch.com/ifttt/begin?\(params)"
@@ -196,7 +196,7 @@ class TTModeIfttt: TTMode {
         attrs["app_direction"] = modeDirection
         attrs["button_direction"] = actionDirection
 
-        let params = (attrs.flatMap({ (key, value) -> String in
+        let params = (attrs.compactMap({ (key, value) -> String in
             return "\(key)=\(value.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!)"
         }) as Array).joined(separator: "&")
         let url = "https://turntouch.com/ifttt/open_recipe?\(params)"

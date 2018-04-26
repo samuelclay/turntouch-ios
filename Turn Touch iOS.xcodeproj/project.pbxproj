@@ -1625,7 +1625,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0900;
+				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "Turn Touch";
 				TargetAttributes = {
 					FFF2708F1CEE88E500E46575 = {
