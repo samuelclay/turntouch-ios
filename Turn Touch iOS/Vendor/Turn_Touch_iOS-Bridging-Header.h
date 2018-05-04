@@ -15,6 +15,6 @@
 #import <sonos-objc/SonosDiscover.h>
 #import <LLSimpleCamera/LLSimpleCamera.h>
 #import <NestSDK/NestSDK.h>
-
+#import <SpotifyAppRemote/SpotifyAppRemote.h>
 
 #endif /* TTBridgingHeader_h */

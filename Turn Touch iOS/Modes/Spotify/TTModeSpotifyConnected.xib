@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Effra_Rg.ttf">
+            <string>Effra-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TTModeSpotifyConnected" customModule="Turn_Touch_iOS" customModuleProvider="target">
+            <connections>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outletCollection property="refreshButton" destination="Iog-HM-7hP" collectionClass="NSMutableArray" id="AF7-eA-kS4"/>
+                <outletCollection property="spinner" destination="QKb-ZA-FuH" collectionClass="NSMutableArray" id="oGm-1e-Q8X"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="87"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iog-HM-7hP">
+                    <rect key="frame" x="558" y="33" width="20" height="20"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="20" id="8gs-3s-jIe"/>
+                        <constraint firstAttribute="height" constant="20" id="uSj-wo-Nbf"/>
+                    </constraints>
+                    <state key="normal" image="refresh.png"/>
+                    <connections>
+                        <action selector="refreshDevices:" destination="-1" eventType="touchUpInside" id="4Nu-iv-eoa"/>
+                    </connections>
+                </button>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="QKb-ZA-FuH">
+                    <rect key="frame" x="558" y="33" width="20" height="20"/>
+                </activityIndicatorView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Speakers" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9BV-EW-maG">
+                    <rect key="frame" x="22" y="22" width="52" height="43"/>
+                    <fontDescription key="fontDescription" name="Effra-Regular" family="Effra" pointSize="13"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="Iog-HM-7hP" firstAttribute="centerX" secondItem="QKb-ZA-FuH" secondAttribute="centerX" id="QM7-0f-3YM"/>
+                <constraint firstAttribute="trailingMargin" secondItem="Iog-HM-7hP" secondAttribute="trailing" constant="2" id="RZd-3i-usn"/>
+                <constraint firstItem="QKb-ZA-FuH" firstAttribute="centerY" secondItem="Iog-HM-7hP" secondAttribute="centerY" id="eEi-7P-e7i"/>
+                <constraint firstAttribute="bottomMargin" secondItem="9BV-EW-maG" secondAttribute="bottom" constant="22" id="fJO-Bk-0Ou"/>
+                <constraint firstItem="9BV-EW-maG" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leadingMargin" constant="2" id="gDz-cJ-Syq"/>
+                <constraint firstItem="QKb-ZA-FuH" firstAttribute="trailing" secondItem="Iog-HM-7hP" secondAttribute="trailing" constant="-2" id="gfv-uT-7Dd"/>
+                <constraint firstItem="Iog-HM-7hP" firstAttribute="centerY" secondItem="QKb-ZA-FuH" secondAttribute="centerY" id="jgb-Bu-BcP"/>
+                <constraint firstItem="9BV-EW-maG" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="22" id="pCB-on-pDE"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="eEi-7P-e7i"/>
+                    <exclude reference="gfv-uT-7Dd"/>
+                </mask>
+            </variation>
+            <point key="canvasLocation" x="349" y="144.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="refresh.png" width="128" height="128"/>
+    </resources>
+</document>
