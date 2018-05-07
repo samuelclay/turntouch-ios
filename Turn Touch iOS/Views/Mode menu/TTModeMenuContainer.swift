@@ -17,7 +17,7 @@ enum TTMenuType {
 
 class TTModeMenuContainer: UIView {
     @IBInspectable var MENU_HEIGHT: CGFloat = 100
-    @IBInspectable var MENU_WIDTH: CGFloat = 176
+    @IBInspectable var MENU_WIDTH: CGFloat = 136
     
     var menuType: TTMenuType = .menu_MODE
     var bordersView = TTModeMenuBordersView()
