@@ -1,8 +1,5 @@
-//
-//  ExtensionJSONDecodable.swift
-//  Gloss
-//
-// Copyright © 2017 kampro
+// AFCompatibilityMacros.h
+// Copyright (c) 2011–2016 Alamofire Software Foundation ( http://alamofire.org/ )
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -22,26 +19,19 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-import Foundation
+#ifndef AFCompatibilityMacros_h
+#define AFCompatibilityMacros_h
 
-public extension JSONDecodable {
-    
-    /**
-     Initializes array of model objects from provided data.
-     
-     - parameter data:       Raw JSON data.
-     - parameter serializer: Serializer to use when creating JSON from data.
-     - parameter ooptions:   Options for reading the JSON data.
-     
-     - returns: Object or nil.
-     */
-    init?(data: Data, serializer: JSONSerializer = GlossJSONSerializer(), options: JSONSerialization.ReadingOptions = .mutableContainers) {
-        if let json = serializer.json(from: data, options: options) {
-            self.init(json: json)
-            return
-        }
-        
-        return nil
-    }
-    
-}
+#ifdef API_UNAVAILABLE
+    #define AF_API_UNAVAILABLE(x) API_UNAVAILABLE(x)
+#else
+    #define AF_API_UNAVAILABLE(x)
+#endif // API_UNAVAILABLE
+
+#if __has_warning("-Wunguarded-availability-new")
+    #define AF_CAN_USE_AT_AVAILABLE 1
+#else
+    #define AF_CAN_USE_AT_AVAILABLE 0
+#endif
+
+#endif /* AFCompatibilityMacros_h */

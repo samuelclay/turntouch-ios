@@ -148,6 +148,11 @@ The available options at this time are:
   * See
     [Codable's userInfo docs](https://developer.apple.com/documentation/swift/encoder/2894907-userinfo)
   * The default is [:]
+* `detectParsingErrors`
+  * This setting attempts to detect XML parsing errors. `parse` will return an
+    `XMLIndexer.parsingError` if any parsing issues are found.
+  * Defaults to `false` (because of backwards compatibility and because many
+    users attempt to parse HTML with this library)
 
 ## Examples
 
@@ -349,10 +354,10 @@ of the `XMLElement` class or by index as well.
 
 ```swift
 let subIndexer = xml!["root"]["catalog"]["book"]
-    .filter { elem, _ in elem.attribute(by: "id")!.text == "bk102" }
-    .filter { _, index in index >= 1 && index <= 3 }
+    .filterAll { elem, _ in elem.attribute(by: "id")!.text == "bk102" }
+    .filterChildren { _, index in index >= 1 && index <= 3 }
 
-print(subIndexer[0].element?.text)
+print(subIndexer.children[0].element?.text)
 ```
 
 ### Error Handling
