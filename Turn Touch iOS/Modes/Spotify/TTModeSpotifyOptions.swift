@@ -35,6 +35,10 @@ class TTModeSpotifyOptions: TTOptionsDetailViewController, TTModeSpotifyDelegate
         }
     }
     
+    func presentError(alert: UIAlertController) {
+        self.present(alert, animated: true, completion: nil)
+    }
+    
     // MARK: View connectrollers
     
     func clearViewConnectrollers() {

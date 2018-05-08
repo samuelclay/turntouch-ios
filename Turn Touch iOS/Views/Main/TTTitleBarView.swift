@@ -17,8 +17,7 @@ class TTTitleBarView: UIView, TTTitleMenuDelegate {
     @IBInspectable var startColor: UIColor = UIColor.white
     @IBInspectable var endColor: UIColor = UIColor(hex: 0xE7E7E7)
 
-    let titleImageView: UIImageView = UIImageView()
-    let settingsButton: UIButton = UIButton()
+    let titleImageView = UIImageView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -40,6 +39,7 @@ class TTTitleBarView: UIView, TTTitleMenuDelegate {
             toItem: self, attribute: .centerY, multiplier: 1.0, constant: 0))
         
         let settingsImage = UIImage(named: "settings")
+        let settingsButton = UIButton(type: .custom)
         settingsButton.setImage(settingsImage, for: UIControlState())
         settingsButton.imageEdgeInsets = UIEdgeInsetsMake(10, 20, 10, 20)
         settingsButton.translatesAutoresizingMaskIntoConstraints = false

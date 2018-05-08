@@ -8,6 +8,7 @@
 
 import Foundation
 import ReachabilitySwift
+import MediaPlayer
 
 struct TTModeSpotifyConstants {
     static let kSpotifyAccessToken = "spotifyAccessToken"
@@ -20,8 +21,17 @@ enum TTSpotifyState {
     case connected
 }
 
+enum TTSpotifyConnectNextAction {
+    case play
+    case pause
+    case playPause
+    case nextTrack
+    case previousTrack
+}
+
 protocol TTModeSpotifyDelegate {
     func changeState(_ state: TTSpotifyState, mode: TTModeSpotify)
+    func presentError(alert: UIAlertController)
 }
 
 class TTModeSpotifyAppDelegate : NSObject, SPTAppRemoteDelegate {
@@ -46,6 +56,12 @@ class TTModeSpotifyAppDelegate : NSObject, SPTAppRemoteDelegate {
 class TTModeSpotify : TTMode, SPTAppRemotePlayerStateDelegate {
 
     static var reachability: Reachability!
+    var musicPlayer: MPMusicPlayerController!
+    var observing = false
+    var lastVolume: Float?
+    let ITUNES_VOLUME_CHANGE: Float = 0.06
+    static var nextAction: TTSpotifyConnectNextAction?
+
     var delegate: TTModeSpotifyDelegate!
     static var spotifyState = TTSpotifyState.disconnected
     static var spotifyAppRemoteDelegate = TTModeSpotifyAppDelegate()
@@ -53,13 +69,14 @@ class TTModeSpotify : TTMode, SPTAppRemotePlayerStateDelegate {
         let connectionParams = SPTAppRemoteConnectionParams(clientIdentifier: "a459d5bab5b04ed5ae41f79f9174ab1b",
                                                             redirectURI: "turntouch://callback/",
                                                             name: "Turn Touch",
-                                                            accessToken: nil,
+                                                            accessToken: TTModeSpotify.accessToken,
                                                             defaultImageSize: CGSize.zero,
                                                             imageFormat: .any)
         let appRemote = SPTAppRemote(connectionParameters: connectionParams, logLevel: .debug)
         appRemote.delegate = TTModeSpotify.spotifyAppRemoteDelegate
         return appRemote
     }()
+    
     class var accessToken: String? {
         get {
             return UserDefaults.standard.string(forKey: TTModeSpotifyConstants.kSpotifyAccessToken)
@@ -211,6 +228,17 @@ class TTModeSpotify : TTMode, SPTAppRemotePlayerStateDelegate {
     // MARK: Action methods
     
     override func activate() {
+        if musicPlayer == nil {
+            musicPlayer = MPMusicPlayerController.systemMusicPlayer
+        }
+        
+        if !observing {
+            AVAudioSession.sharedInstance().addObserver(self, forKeyPath: "outputVolume", options: [], context: nil)
+            musicPlayer.addObserver(self, forKeyPath: "nowPlayingItem", options: [], context: nil)
+            musicPlayer.beginGeneratingPlaybackNotifications()
+            observing = true
+        }
+        
         TTModeSpotify.accessToken = UserDefaults.standard.string(forKey: TTModeSpotifyConstants.kSpotifyAccessToken)
 
         if !TTModeSpotify.appRemote.isConnected {
@@ -219,53 +247,55 @@ class TTModeSpotify : TTMode, SPTAppRemotePlayerStateDelegate {
             TTModeSpotify.spotifyState = .connected
         }
         delegate?.changeState(TTModeSpotify.spotifyState, mode: self)
+        
+        TTModeSpotify.appRemote.playerAPI?.delegate = self
     }
     
     override func deactivate() {
-        
+        if observing {
+            AVAudioSession.sharedInstance().removeObserver(self, forKeyPath: "outputVolume")
+            musicPlayer.removeObserver(self, forKeyPath: "nowPlayingItem")
+            observing = false
+        }
     }
     
-    func adjustVolume(volume: Int, left: Int) {
-        if left == 0 {
-            return
+    var volumeSlider: UISlider {
+        get {
+            return (MPVolumeView().subviews.filter { NSStringFromClass($0.classForCoder) == "MPVolumeSlider" }.first as! UISlider)
         }
-        let adjust = left > 0 ? 1 : -1
-//        device.setVolume(volume + adjust, mergeRequests: true, completion: { (speakers, error) in
-//            print(" ---> Turned volume: \(volume)+\(adjust) (\(String(describing: error)), \(String(describing: speakers))")
-//            self.adjustVolume(device: device, volume: volume+adjust, left: left - adjust)
-//        })
+    }
+    
+    func adjustVolume(volume: Int) {
+        if volume == 0 && volumeSlider.value != 0 {
+            lastVolume = volumeSlider.value
+            volumeSlider.setValue(0, animated: false)
+        } else {
+            if lastVolume == nil {
+                lastVolume = AVAudioSession.sharedInstance().outputVolume
+            }
+            lastVolume = min(1, lastVolume! + (Float(volume) * ITUNES_VOLUME_CHANGE))
+            volumeSlider.setValue(lastVolume!, animated: false)
+        }
+    }
+    
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        if keyPath == "outputVolume" {
+            lastVolume = AVAudioSession.sharedInstance().outputVolume
+        } else if keyPath == "nowPlayingInfo" {
+            print(" Now playing info: \(String(describing: musicPlayer.nowPlayingItem))")
+        }
     }
     
     func runTTModeSpotifyVolumeUp() {
-//        if let device = self.selectedDevice() {
-//            device.getVolume(TimeInterval(60*60), completion: { (volume, speakers, error) in
-//                self.adjustVolume(device: device, volume: volume, left: 2)
-//            })
-//        } else {
-//            self.beginConnectingToSpotify()
-//        }
+        self.adjustVolume(volume: 1)
     }
     
     func runTTModeSpotifyVolumeDown() {
-//        if let device = self.selectedDevice() {
-//            device.getVolume(TimeInterval(60*60), completion: { (volume, speakers, error) in
-//                self.adjustVolume(device: device, volume: volume, left: -2)
-//            })
-//        } else {
-//            self.beginConnectingToSpotify()
-//        }
+        self.adjustVolume(volume: -1)
     }
     
     func runTTModeSpotifyVolumeMute() {
-//        if let device = self.selectedDevice() {
-//            device.getMute({ (mute, speakers, error) in
-//                device.setMute(!mute, completion: { (speakers, error) in
-//                    print(" ---> Muted volume: \(mute) (\(String(describing: error)), \(String(describing: speakers))")
-//                })
-//            })
-//        } else {
-//            self.beginConnectingToSpotify()
-//        }
+        self.adjustVolume(volume: 0)
     }
     
     func runTTModeSpotifyVolumeJump() {
@@ -280,18 +310,26 @@ class TTModeSpotify : TTMode, SPTAppRemotePlayerStateDelegate {
     }
     
     func runTTModeSpotifyPlayPause() {
-        if !TTModeSpotify.appRemote.authorizeAndPlayURI("") {
+        print(" ---> Toggled Spotify ")
+        if !TTModeSpotify.appRemote.isConnected {
             self.beginConnectingToSpotify()
+            TTModeSpotify.nextAction = .playPause
         } else {
-            print(" ---> Toggled Spotify ")
+            TTModeSpotify.appRemote.playerAPI?.getPlayerState({ (result, error) in
+                if let result = result {
+                    let playerState = result as! SPTAppRemotePlayerState
+                    if playerState.isPaused {
+                        TTModeSpotify.appRemote.playerAPI?.resume(self.defaultCallback)
+                    } else {
+                        TTModeSpotify.appRemote.playerAPI?.pause(self.defaultCallback)
+                    }
+                }
+                if error != nil {
+                    self.beginConnectingToSpotify()
+                    TTModeSpotify.nextAction = .playPause
+                }
+            })
         }
-//        if let device = self.selectedDevice(coordinator: true) {
-//            device.togglePlayback({ (playing, speakers, error) in
-//                print(" ---> Toggled Spotify playback \(playing): \(String(describing: speakers)) \(String(describing: error))")
-//            })
-//        } else {
-//            self.beginConnectingToSpotify()
-//        }
     }
     
     func doubleRunTTModeSpotifyPlayPause() {
@@ -299,22 +337,7 @@ class TTModeSpotify : TTMode, SPTAppRemotePlayerStateDelegate {
     }
     
     func runTTModeSpotifyPlay() {
-//        if let device = self.selectedDevice(coordinator: true) {
-//            device.playbackStatus({ (playing, body, error) in
-//                if !playing {
-//                    device.togglePlayback({ (playing, body, errors) in
-//                        print(" ---> Paused Spotify playback \(playing): \(String(describing: body)) \(String(describing: error))")
-//                        if !playing {
-//                            device.togglePlayback({ (playing, body, errors) in
-//                                print(" ---> Paused Spotify playback twice \(playing): \(String(describing: body)) \(String(describing: error))")
-//                            })
-//                        }
-//                    })
-//                }
-//            })
-//        } else {
-//            self.beginConnectingToSpotify()
-//        }
+
     }
     
     func doubleRunTTModeSpotifyPlay() {
@@ -322,17 +345,6 @@ class TTModeSpotify : TTMode, SPTAppRemotePlayerStateDelegate {
     }
     
     func runTTModeSpotifyPause() {
-//        if let device = self.selectedDevice(coordinator: true) {
-//            device.playbackStatus({ (playing, body, error) in
-//                if playing {
-//                    device.togglePlayback({ (playing, body, errors) in
-//                        print(" ---> Paused Spotify playback \(playing): \(String(describing: body)) \(String(describing: error))")
-//                    })
-//                }
-//            })
-//        } else {
-//            self.beginConnectingToSpotify()
-//        }
     }
     
     func doubleRunTTModeSpotifyPause() {
@@ -340,37 +352,44 @@ class TTModeSpotify : TTMode, SPTAppRemotePlayerStateDelegate {
     }
     
     func runTTModeSpotifyNextTrack() {
-//        if let device = self.selectedDevice(coordinator: true) {
-//            device.next({ (body, error) in
-//                print((" ---> Next track: \(String(describing: body)) \(String(describing: error))"))
-//            })
-//        } else {
-//            self.beginConnectingToSpotify()
-//        }
+        if !TTModeSpotify.appRemote.isConnected {
+            self.beginConnectingToSpotify()
+            TTModeSpotify.nextAction = .nextTrack
+        }
+        
+        TTModeSpotify.appRemote.playerAPI?.getPlayerState({ (result, error) in
+            if let _ = result {
+                TTModeSpotify.appRemote.playerAPI?.skip(toNext: self.defaultCallback)
+            }
+            if error != nil {
+                self.beginConnectingToSpotify()
+                TTModeSpotify.nextAction = .nextTrack
+            }
+        })
+
     }
     
     func runTTModeSpotifyPreviousTrack() {
-//        if let device = self.selectedDevice(coordinator: true) {
-//            device.previous({ (body, error) in
-//                print((" ---> Previous track: \(String(describing: body)) \(String(describing: error))"))
-//
-//                // Spotify pauses when going to the preview track for some reason
-//                self.runTTModeSpotifyPlay()
-//            })
-//        } else {
-//            self.beginConnectingToSpotify()
-//        }
+        if !TTModeSpotify.appRemote.isConnected {
+            self.beginConnectingToSpotify()
+            TTModeSpotify.nextAction = .previousTrack
+        }
+
+        TTModeSpotify.appRemote.playerAPI?.getPlayerState({ (result, error) in
+            if let _ = result {
+                TTModeSpotify.appRemote.playerAPI?.skip(toPrevious: self.defaultCallback)
+            }
+            if error != nil {
+                self.beginConnectingToSpotify()
+                TTModeSpotify.nextAction = .previousTrack
+            }
+        })
     }
     
     // Spotify Connection
     
     func beginConnectingToSpotify(ensureConnection : Bool = false) {
         TTModeSpotifyAppDelegate.recentSpotify = self
-
-        if TTModeSpotify.spotifyState == .connecting {
-            print(" ---> Already connecting to Spotify...")
-            return
-        }
         
         TTModeSpotify.spotifyState = .connecting
         delegate?.changeState(TTModeSpotify.spotifyState, mode: self)
@@ -384,7 +403,25 @@ class TTModeSpotify : TTMode, SPTAppRemotePlayerStateDelegate {
     
     func didEstablishConnection() {
         TTModeSpotify.spotifyState = .connected
-        delegate?.changeState(TTModeSpotify.spotifyState, mode: self)        
+        delegate?.changeState(TTModeSpotify.spotifyState, mode: self)
+        
+        if !TTModeSpotify.appRemote.isConnected {
+            TTModeSpotify.appRemote.connect()
+        }
+        
+        if let nextAction = TTModeSpotify.nextAction {
+            switch nextAction {
+            case .playPause:
+                self.runTTModeSpotifyPlayPause()
+            case .nextTrack:
+                self.runTTModeSpotifyNextTrack()
+            case .previousTrack:
+                self.runTTModeSpotifyPreviousTrack()
+            default:
+                self.runTTModeSpotifyPlayPause()
+            }
+            TTModeSpotify.nextAction = nil
+        }
     }
     
     func cancelConnectingToSpotify(error: String? = nil) {
@@ -424,6 +461,33 @@ class TTModeSpotify : TTMode, SPTAppRemotePlayerStateDelegate {
     }
     
     // MARK: Spotify Protocol
+
+    
+    fileprivate var playerState: SPTAppRemotePlayerState?
+    fileprivate var subscribedToPlayerState: Bool = false
+    
+    
+    var defaultCallback: SPTAppRemoteCallback {
+        get {
+            return {[unowned self] _, error in
+                if let error = error {
+                    self.displayError(error as NSError)
+                }
+            }
+        }
+    }
+    
+    fileprivate func displayError(_ error: NSError?) {
+        if let error = error {
+            presentAlert(title: "Error", message: error.description)
+        }
+    }
+    
+    fileprivate func presentAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+        self.delegate?.presentError(alert: alert)
+    }
 
     func playerStateDidChange(_ playerState: SPTAppRemotePlayerState) {
         

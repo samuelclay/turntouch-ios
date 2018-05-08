@@ -52,4 +52,7 @@ class TTModeSpotifyConnected: TTOptionsDetailViewController, TTModeSpotifyDelega
         }
     }
     
+    func presentError(alert: UIAlertController) {
+        self.present(alert, animated: true, completion: nil)
+    }
 }
