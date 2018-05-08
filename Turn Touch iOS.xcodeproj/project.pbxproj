@@ -155,6 +155,38 @@
 		FF534C4A1EB18AC0002EE584 /* TTModeIfttt.plist in Resources */ = {isa = PBXBuildFile; fileRef = FF534C491EB18AC0002EE584 /* TTModeIfttt.plist */; };
 		FF534C4D1EB2BC9F002EE584 /* TTModeIftttTriggerActionOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF534C4B1EB2BC9F002EE584 /* TTModeIftttTriggerActionOptions.swift */; };
 		FF534C4E1EB2BC9F002EE584 /* TTModeIftttTriggerActionOptions.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF534C4C1EB2BC9F002EE584 /* TTModeIftttTriggerActionOptions.xib */; };
+		FF55B61920A2315000967BB6 /* TTModeBoseConnect.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF55B60E20A2315000967BB6 /* TTModeBoseConnect.swift */; };
+		FF55B61A20A2315000967BB6 /* TTModeBoseConnect.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF55B60F20A2315000967BB6 /* TTModeBoseConnect.xib */; };
+		FF55B61B20A2315000967BB6 /* TTModeBoseConnecting.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF55B61020A2315000967BB6 /* TTModeBoseConnecting.xib */; };
+		FF55B61C20A2315000967BB6 /* TTModeBoseVolumeJumpOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF55B61120A2315000967BB6 /* TTModeBoseVolumeJumpOptions.swift */; };
+		FF55B61D20A2315000967BB6 /* TTModeBoseConnected.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF55B61220A2315000967BB6 /* TTModeBoseConnected.swift */; };
+		FF55B61E20A2315000967BB6 /* TTModeBoseOptions.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF55B61320A2315000967BB6 /* TTModeBoseOptions.xib */; };
+		FF55B61F20A2315000967BB6 /* TTModeBoseConnected.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF55B61420A2315000967BB6 /* TTModeBoseConnected.xib */; };
+		FF55B62020A2315000967BB6 /* TTModeBoseConnecting.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF55B61520A2315000967BB6 /* TTModeBoseConnecting.swift */; };
+		FF55B62120A2315000967BB6 /* TTModeBoseVolumeJumpOptions.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF55B61620A2315000967BB6 /* TTModeBoseVolumeJumpOptions.xib */; };
+		FF55B62220A2315000967BB6 /* TTModeBoseOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF55B61720A2315000967BB6 /* TTModeBoseOptions.swift */; };
+		FF55B62320A2315000967BB6 /* TTModeBose.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF55B61820A2315000967BB6 /* TTModeBose.swift */; };
+		FF55B63C20A2320100967BB6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF55B62520A2320100967BB6 /* ViewController.swift */; };
+		FF55B63D20A2320100967BB6 /* sa5.png in Resources */ = {isa = PBXBuildFile; fileRef = FF55B62620A2320100967BB6 /* sa5.png */; };
+		FF55B63E20A2320100967BB6 /* soundtouch_30.png in Resources */ = {isa = PBXBuildFile; fileRef = FF55B62720A2320100967BB6 /* soundtouch_30.png */; };
+		FF55B63F20A2320100967BB6 /* soundtouch_20.png in Resources */ = {isa = PBXBuildFile; fileRef = FF55B62820A2320100967BB6 /* soundtouch_20.png */; };
+		FF55B64020A2320100967BB6 /* SWXMLHash.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF55B62920A2320100967BB6 /* SWXMLHash.swift */; };
+		FF55B64120A2320100967BB6 /* abstract.png in Resources */ = {isa = PBXBuildFile; fileRef = FF55B62A20A2320100967BB6 /* abstract.png */; };
+		FF55B64220A2320100967BB6 /* wave_soundtouch.png in Resources */ = {isa = PBXBuildFile; fileRef = FF55B62B20A2320100967BB6 /* wave_soundtouch.png */; };
+		FF55B64320A2320100967BB6 /* icon_120.png in Resources */ = {isa = PBXBuildFile; fileRef = FF55B62C20A2320100967BB6 /* icon_120.png */; };
+		FF55B64420A2320100967BB6 /* PresetButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF55B62D20A2320100967BB6 /* PresetButtonView.swift */; };
+		FF55B64520A2320100967BB6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF55B62E20A2320100967BB6 /* Assets.xcassets */; };
+		FF55B64620A2320100967BB6 /* EDProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF55B62F20A2320100967BB6 /* EDProgressView.swift */; };
+		FF55B64720A2320100967BB6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF55B63020A2320100967BB6 /* LaunchScreen.storyboard */; };
+		FF55B64820A2320100967BB6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF55B63220A2320100967BB6 /* Main.storyboard */; };
+		FF55B64920A2320100967BB6 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF55B63420A2320100967BB6 /* Extensions.swift */; };
+		FF55B64A20A2320100967BB6 /* smthumb.png in Resources */ = {isa = PBXBuildFile; fileRef = FF55B63520A2320100967BB6 /* smthumb.png */; };
+		FF55B64B20A2320100967BB6 /* lifestyle.png in Resources */ = {isa = PBXBuildFile; fileRef = FF55B63620A2320100967BB6 /* lifestyle.png */; };
+		FF55B64C20A2320100967BB6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF55B63720A2320100967BB6 /* AppDelegate.swift */; };
+		FF55B64D20A2320100967BB6 /* soundtouch_10.png in Resources */ = {isa = PBXBuildFile; fileRef = FF55B63820A2320100967BB6 /* soundtouch_10.png */; };
+		FF55B64E20A2320100967BB6 /* TitleConstructor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF55B63920A2320100967BB6 /* TitleConstructor.swift */; };
+		FF55B64F20A2320100967BB6 /* GenericTileDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF55B63A20A2320100967BB6 /* GenericTileDisplay.swift */; };
+		FF55B65020A2320100967BB6 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FF55B63B20A2320100967BB6 /* Info.plist */; };
 		FF58FC4E203CFA42005F547B /* TTAboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF58FC4D203CFA42005F547B /* TTAboutViewController.swift */; };
 		FF58FC52203CFAAA005F547B /* TTAboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF58FC51203CFAAA005F547B /* TTAboutViewController.xib */; };
 		FF58FC56203E536F005F547B /* effra-lightitalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FF58FC55203E479B005F547B /* effra-lightitalic.ttf */; };
@@ -559,6 +591,38 @@
 		FF534C491EB18AC0002EE584 /* TTModeIfttt.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = TTModeIfttt.plist; sourceTree = "<group>"; };
 		FF534C4B1EB2BC9F002EE584 /* TTModeIftttTriggerActionOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TTModeIftttTriggerActionOptions.swift; sourceTree = "<group>"; };
 		FF534C4C1EB2BC9F002EE584 /* TTModeIftttTriggerActionOptions.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TTModeIftttTriggerActionOptions.xib; sourceTree = "<group>"; };
+		FF55B60E20A2315000967BB6 /* TTModeBoseConnect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TTModeBoseConnect.swift; sourceTree = "<group>"; };
+		FF55B60F20A2315000967BB6 /* TTModeBoseConnect.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TTModeBoseConnect.xib; sourceTree = "<group>"; };
+		FF55B61020A2315000967BB6 /* TTModeBoseConnecting.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TTModeBoseConnecting.xib; sourceTree = "<group>"; };
+		FF55B61120A2315000967BB6 /* TTModeBoseVolumeJumpOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TTModeBoseVolumeJumpOptions.swift; sourceTree = "<group>"; };
+		FF55B61220A2315000967BB6 /* TTModeBoseConnected.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TTModeBoseConnected.swift; sourceTree = "<group>"; };
+		FF55B61320A2315000967BB6 /* TTModeBoseOptions.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TTModeBoseOptions.xib; sourceTree = "<group>"; };
+		FF55B61420A2315000967BB6 /* TTModeBoseConnected.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TTModeBoseConnected.xib; sourceTree = "<group>"; };
+		FF55B61520A2315000967BB6 /* TTModeBoseConnecting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TTModeBoseConnecting.swift; sourceTree = "<group>"; };
+		FF55B61620A2315000967BB6 /* TTModeBoseVolumeJumpOptions.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TTModeBoseVolumeJumpOptions.xib; sourceTree = "<group>"; };
+		FF55B61720A2315000967BB6 /* TTModeBoseOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TTModeBoseOptions.swift; sourceTree = "<group>"; };
+		FF55B61820A2315000967BB6 /* TTModeBose.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TTModeBose.swift; sourceTree = "<group>"; };
+		FF55B62520A2320100967BB6 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		FF55B62620A2320100967BB6 /* sa5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sa5.png; sourceTree = "<group>"; };
+		FF55B62720A2320100967BB6 /* soundtouch_30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = soundtouch_30.png; sourceTree = "<group>"; };
+		FF55B62820A2320100967BB6 /* soundtouch_20.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = soundtouch_20.png; sourceTree = "<group>"; };
+		FF55B62920A2320100967BB6 /* SWXMLHash.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SWXMLHash.swift; sourceTree = "<group>"; };
+		FF55B62A20A2320100967BB6 /* abstract.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = abstract.png; sourceTree = "<group>"; };
+		FF55B62B20A2320100967BB6 /* wave_soundtouch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wave_soundtouch.png; sourceTree = "<group>"; };
+		FF55B62C20A2320100967BB6 /* icon_120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_120.png; sourceTree = "<group>"; };
+		FF55B62D20A2320100967BB6 /* PresetButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresetButtonView.swift; sourceTree = "<group>"; };
+		FF55B62E20A2320100967BB6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		FF55B62F20A2320100967BB6 /* EDProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EDProgressView.swift; sourceTree = "<group>"; };
+		FF55B63120A2320100967BB6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		FF55B63320A2320100967BB6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		FF55B63420A2320100967BB6 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		FF55B63520A2320100967BB6 /* smthumb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smthumb.png; sourceTree = "<group>"; };
+		FF55B63620A2320100967BB6 /* lifestyle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lifestyle.png; sourceTree = "<group>"; };
+		FF55B63720A2320100967BB6 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		FF55B63820A2320100967BB6 /* soundtouch_10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = soundtouch_10.png; sourceTree = "<group>"; };
+		FF55B63920A2320100967BB6 /* TitleConstructor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleConstructor.swift; sourceTree = "<group>"; };
+		FF55B63A20A2320100967BB6 /* GenericTileDisplay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericTileDisplay.swift; sourceTree = "<group>"; };
+		FF55B63B20A2320100967BB6 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FF58FC4D203CFA42005F547B /* TTAboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TTAboutViewController.swift; path = Views/Modal/TTAboutViewController.swift; sourceTree = "<group>"; };
 		FF58FC51203CFAAA005F547B /* TTAboutViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = TTAboutViewController.xib; path = Views/Modal/TTAboutViewController.xib; sourceTree = "<group>"; };
 		FF58FC55203E479B005F547B /* effra-lightitalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "effra-lightitalic.ttf"; path = "Fonts/effra-lightitalic.ttf"; sourceTree = "<group>"; };
@@ -883,6 +947,7 @@
 				FF21F9311E172BC700DFDBB4 /* Nest */,
 				FF534C2D1EB0351A002EE584 /* Ifttt */,
 				FFBFF0071F6CBAB800B3EDA7 /* HomeKit */,
+				FF55B60D20A2315000967BB6 /* Bose */,
 				FFE11F39209BCFE90013D299 /* Spotify */,
 			);
 			name = Modes;
@@ -1165,6 +1230,52 @@
 			);
 			name = Ifttt;
 			path = Modes/Ifttt;
+			sourceTree = "<group>";
+		};
+		FF55B60D20A2315000967BB6 /* Bose */ = {
+			isa = PBXGroup;
+			children = (
+				FF55B61820A2315000967BB6 /* TTModeBose.swift */,
+				FF55B61720A2315000967BB6 /* TTModeBoseOptions.swift */,
+				FF55B61320A2315000967BB6 /* TTModeBoseOptions.xib */,
+				FF55B60E20A2315000967BB6 /* TTModeBoseConnect.swift */,
+				FF55B60F20A2315000967BB6 /* TTModeBoseConnect.xib */,
+				FF55B61520A2315000967BB6 /* TTModeBoseConnecting.swift */,
+				FF55B61020A2315000967BB6 /* TTModeBoseConnecting.xib */,
+				FF55B61220A2315000967BB6 /* TTModeBoseConnected.swift */,
+				FF55B61420A2315000967BB6 /* TTModeBoseConnected.xib */,
+				FF55B61120A2315000967BB6 /* TTModeBoseVolumeJumpOptions.swift */,
+				FF55B61620A2315000967BB6 /* TTModeBoseVolumeJumpOptions.xib */,
+			);
+			path = Bose;
+			sourceTree = "<group>";
+		};
+		FF55B62420A2320100967BB6 /* STBonjour */ = {
+			isa = PBXGroup;
+			children = (
+				FF55B62520A2320100967BB6 /* ViewController.swift */,
+				FF55B62620A2320100967BB6 /* sa5.png */,
+				FF55B62720A2320100967BB6 /* soundtouch_30.png */,
+				FF55B62820A2320100967BB6 /* soundtouch_20.png */,
+				FF55B62920A2320100967BB6 /* SWXMLHash.swift */,
+				FF55B62A20A2320100967BB6 /* abstract.png */,
+				FF55B62B20A2320100967BB6 /* wave_soundtouch.png */,
+				FF55B62C20A2320100967BB6 /* icon_120.png */,
+				FF55B62D20A2320100967BB6 /* PresetButtonView.swift */,
+				FF55B62E20A2320100967BB6 /* Assets.xcassets */,
+				FF55B62F20A2320100967BB6 /* EDProgressView.swift */,
+				FF55B63020A2320100967BB6 /* LaunchScreen.storyboard */,
+				FF55B63220A2320100967BB6 /* Main.storyboard */,
+				FF55B63420A2320100967BB6 /* Extensions.swift */,
+				FF55B63520A2320100967BB6 /* smthumb.png */,
+				FF55B63620A2320100967BB6 /* lifestyle.png */,
+				FF55B63720A2320100967BB6 /* AppDelegate.swift */,
+				FF55B63820A2320100967BB6 /* soundtouch_10.png */,
+				FF55B63920A2320100967BB6 /* TitleConstructor.swift */,
+				FF55B63A20A2320100967BB6 /* GenericTileDisplay.swift */,
+				FF55B63B20A2320100967BB6 /* Info.plist */,
+			);
+			path = STBonjour;
 			sourceTree = "<group>";
 		};
 		FF7C14561DB3083A009CBA28 /* Batch actions */ = {
@@ -1590,6 +1701,7 @@
 		FFF46BC81D10941500158751 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				FF55B62420A2320100967BB6 /* STBonjour */,
 				FFDA0FA01D3C4F1C0019859F /* LLSimpleCamera */,
 				FF254FDB1D22F26500E96378 /* XPathQuery */,
 				FFF46BCA1D10941500158751 /* Lumberjack */,
@@ -1719,14 +1831,17 @@
 				FF21F9351E1C9E1500DFDBB4 /* TTModeNestOptions.xib in Resources */,
 				FFB84B541D9202CB0037872C /* Dalton Maag - Effra Light.ttf in Resources */,
 				FF2E1C491E43C30800CFBEE0 /* TTModeNestSetTempOptions.xib in Resources */,
+				FF55B64D20A2320100967BB6 /* soundtouch_10.png in Resources */,
 				FFB84B551D9202CB0037872C /* Dalton Maag - Effra Std Bold.ttf in Resources */,
 				FF2023411D021605005129E5 /* Icon-60@3x.png in Resources */,
 				FF58FC52203CFAAA005F547B /* TTAboutViewController.xib in Resources */,
+				FF55B63D20A2320100967BB6 /* sa5.png in Resources */,
 				FFB41B2C1CEE9A3000CD5F09 /* equalizer-1.png in Resources */,
 				FFB41B411CEE9A3000CD5F09 /* mode_smartlock.png in Resources */,
 				FFB41B5D1CEE9A3000CD5F09 /* logo_256.png in Resources */,
 				FFB84B4D1D90D4240037872C /* yoga_position_14.png in Resources */,
 				FFB41B3B1CEE9A3000CD5F09 /* mode_morning.png in Resources */,
+				FF55B61E20A2315000967BB6 /* TTModeBoseOptions.xib in Resources */,
 				FFB41B611CEE9A3000CD5F09 /* logo_white.png in Resources */,
 				FFB84B4C1D90D4240037872C /* yoga_position_13.png in Resources */,
 				FFB41B571CEE9A3000CD5F09 /* itunes_podcast_icon.png in Resources */,
@@ -1764,6 +1879,7 @@
 				FFB41B6F1CEE9A3000CD5F09 /* modal_success.png in Resources */,
 				FFB41B4D1CEE9A3000CD5F09 /* sun.png in Resources */,
 				FF534C4A1EB18AC0002EE584 /* TTModeIfttt.plist in Resources */,
+				FF55B65020A2320100967BB6 /* Info.plist in Resources */,
 				FFB84B4B1D90D4240037872C /* yoga_position_12.png in Resources */,
 				FF7A235C1DFF7D21002B696D /* modal_failure.png in Resources */,
 				FF37EDD81D1117670026F70D /* TTModeHueConnecting.xib in Resources */,
@@ -1795,6 +1911,7 @@
 				FF4AF7EF1D24F9E70009C777 /* TTModeSonosOptions.xib in Resources */,
 				FFB41B261CEE9A3000CD5F09 /* button_plus.png in Resources */,
 				FFC33C3D1EA173B600321EB9 /* south tone.wav in Resources */,
+				FF55B64520A2320100967BB6 /* Assets.xcassets in Resources */,
 				FFB41B481CEE9A3000CD5F09 /* presentation-chart.png in Resources */,
 				FFB41B471CEE9A3000CD5F09 /* newspaper-3.png in Resources */,
 				FFECC40E203E7B27007AB343 /* twitter-buy.png in Resources */,
@@ -1830,13 +1947,17 @@
 				FF2023331D02147A005129E5 /* Icon-50@2x.png in Resources */,
 				FF534C411EB03C93002EE584 /* mode_ifttt.png in Resources */,
 				FF86801D1F90296800D9A0B3 /* TTModeMusicVolumeJumpOptions.xib in Resources */,
+				FF55B61B20A2315000967BB6 /* TTModeBoseConnecting.xib in Resources */,
 				FFB41B301CEE9A3000CD5F09 /* icon_movie.png in Resources */,
 				FFB41B401CEE9A3000CD5F09 /* mode_presentation.png in Resources */,
+				FF55B64A20A2320100967BB6 /* smthumb.png in Resources */,
 				FFF46BE91D10DB2D00158751 /* TTModeHue.plist in Resources */,
+				FF55B64320A2320100967BB6 /* icon_120.png in Resources */,
 				FFB41B421CEE9A3000CD5F09 /* mode_spotify.png in Resources */,
 				FFB84B441D90D4240037872C /* yoga_position_5.png in Resources */,
 				FFB41B6D1CEE9A3000CD5F09 /* modal_remote_hero.png in Resources */,
 				FFB41B451CEE9A3000CD5F09 /* mode_web.png in Resources */,
+				FF55B64120A2320100967BB6 /* abstract.png in Resources */,
 				FFB41B621CEE9A3000CD5F09 /* logo_white_with_title.png in Resources */,
 				FFB41B3F1CEE9A3000CD5F09 /* mode_pandora.png in Resources */,
 				FF4AF7BB1D248A290009C777 /* TTModeWemoConnecting.xib in Resources */,
@@ -1844,16 +1965,21 @@
 				FFB41B731CEE9C8000CD5F09 /* logo_180.png in Resources */,
 				FF37EDDC1D11178D0026F70D /* TTModeHueBridge.xib in Resources */,
 				FFB41B661CEE9A3000CD5F09 /* modal_bar_button_chevron.png in Resources */,
+				FF55B61A20A2315000967BB6 /* TTModeBoseConnect.xib in Resources */,
 				FFB41B4C1CEE9A3000CD5F09 /* speaker.png in Resources */,
 				FF37EDE81D13610B0026F70D /* press_smartbridge.png in Resources */,
 				FFB84B431D90D4240037872C /* yoga_position_4.png in Resources */,
 				FFB41B371CEE9A3000CD5F09 /* mode_home.png in Resources */,
 				FF254F641D1B2C6B00E96378 /* TTModeHueRandomOptions.xib in Resources */,
+				FF55B64820A2320100967BB6 /* Main.storyboard in Resources */,
+				FF55B61F20A2315000967BB6 /* TTModeBoseConnected.xib in Resources */,
 				FF2023301D02147A005129E5 /* Icon-40@2x.png in Resources */,
 				FFB41B3D1CEE9A3000CD5F09 /* mode_nest.png in Resources */,
 				FFB41B5B1CEE9A3000CD5F09 /* logo_128.png in Resources */,
 				FF37EDD01D1113C10026F70D /* TTModeHueOptions.xib in Resources */,
+				FF55B63E20A2320100967BB6 /* soundtouch_30.png in Resources */,
 				FF20232C1D02147A005129E5 /* Icon-29.png in Resources */,
+				FF55B63F20A2320100967BB6 /* soundtouch_20.png in Resources */,
 				FFB41B6C1CEE9A3000CD5F09 /* modal_remote_failed.png in Resources */,
 				FFE11F47209C0EC00013D299 /* TTModeSpotifyConnecting.xib in Resources */,
 				FFC33C3C1EA173B600321EB9 /* north tone.wav in Resources */,
@@ -1917,6 +2043,7 @@
 				FF8B759E1F86EDC400D7867C /* battery.png in Resources */,
 				FF8B759F1F86EDC400D7867C /* remove.png in Resources */,
 				FF8B75A01F86EDC400D7867C /* rename.png in Resources */,
+				FF55B64720A2320100967BB6 /* LaunchScreen.storyboard in Resources */,
 				FF8B75A11F86EDC400D7867C /* versions.png in Resources */,
 				FF8B758E1F86E0BC00D7867C /* preferences.png in Resources */,
 				FF8B758F1F86E0BC00D7867C /* support.png in Resources */,
@@ -1927,9 +2054,11 @@
 				FF8B757D1F86D51900D7867C /* mode_custom.png in Resources */,
 				FF4AF7B31D2486F90009C777 /* TTModeWemoOptions.xib in Resources */,
 				FF8B75561F86D4EF00D7867C /* alarm_off.png in Resources */,
+				FF55B64B20A2320100967BB6 /* lifestyle.png in Resources */,
 				FF8B75571F86D4EF00D7867C /* alarm_snooze.png in Resources */,
 				FF8B75581F86D4EF00D7867C /* chevron_east.png in Resources */,
 				FF8B75591F86D4EF00D7867C /* chevron_north.png in Resources */,
+				FF55B62120A2315000967BB6 /* TTModeBoseVolumeJumpOptions.xib in Resources */,
 				FF8B755A1F86D4EF00D7867C /* chevron_south.png in Resources */,
 				FF8B755B1F86D4EF00D7867C /* chevron_west.png in Resources */,
 				FF8B755C1F86D4EF00D7867C /* electrical_connected.png in Resources */,
@@ -1962,6 +2091,7 @@
 				FF8B75741F86D4EF00D7867C /* previous.png in Resources */,
 				FF8B75751F86D4EF00D7867C /* script.png in Resources */,
 				FFE11F4C209C0EC00013D299 /* TTModeSpotifyConnected.xib in Resources */,
+				FF55B64220A2320100967BB6 /* wave_soundtouch.png in Resources */,
 				FFE11F49209C0EC00013D299 /* TTModeSpotifyConnect.xib in Resources */,
 				FF8B75761F86D4EF00D7867C /* scroll_down.png in Resources */,
 				FF8B75771F86D4EF00D7867C /* scroll_up.png in Resources */,
@@ -2081,8 +2211,10 @@
 				FFF46BDC1D10941500158751 /* DDASLLogger.m in Sources */,
 				FF4AF7D51D24ECF60009C777 /* SonosController.m in Sources */,
 				FF0F10D71CF6697A00CC1F29 /* TTDiamondView.swift in Sources */,
+				FF55B64F20A2320100967BB6 /* GenericTileDisplay.swift in Sources */,
 				FF1A85001FCFB5AF005D8ADE /* TTModeHueLowerBrightnessOptions.swift in Sources */,
 				FF4487781D09367000ED8099 /* TTButtonState.swift in Sources */,
+				FF55B63C20A2320100967BB6 /* ViewController.swift in Sources */,
 				FF0F10D01CF63F6100CC1F29 /* TTModeAlarmClock.swift in Sources */,
 				FFB41B881CF536BB00CD5F09 /* TTActionMap.swift in Sources */,
 				FF2E1C461E42D92000CFBEE0 /* TTModeNestSetTempOptions.swift in Sources */,
@@ -2100,6 +2232,7 @@
 				FFE11F46209C0EC00013D299 /* TTModeSpotifyConnected.swift in Sources */,
 				FFB41B7B1CEEA9E300CD5F09 /* TTModeDirection.swift in Sources */,
 				FF21F9381E1C9EEC00DFDBB4 /* TTModeNestConnect.swift in Sources */,
+				FF55B61920A2315000967BB6 /* TTModeBoseConnect.swift in Sources */,
 				FF7C14581DB3085E009CBA28 /* TTBatchActionHeaderView.swift in Sources */,
 				FFF270941CEE88E500E46575 /* AppDelegate.swift in Sources */,
 				FFBFF00C1F6CC3AA00B3EDA7 /* TTModeHomeKitTriggerSceneOptions.swift in Sources */,
@@ -2109,6 +2242,7 @@
 				FFF46BDB1D10941500158751 /* DDAbstractDatabaseLogger.m in Sources */,
 				FF3032BF1DB8289600728920 /* TTModeHueSceneMidnightOilOptions.swift in Sources */,
 				FFC9FE991D02520300038817 /* NSObject+Class.swift in Sources */,
+				FF55B62320A2315000967BB6 /* TTModeBose.swift in Sources */,
 				FFB41B821CF5341700CD5F09 /* TTMode.swift in Sources */,
 				FF4AF7CB1D24C65A0009C777 /* TTPickerViewController.swift in Sources */,
 				FF37EDDB1D11178D0026F70D /* TTModeHueBridge.swift in Sources */,
@@ -2126,6 +2260,7 @@
 				FF4AF7BE1D248A3A0009C777 /* TTModeWemoConnected.swift in Sources */,
 				FF1A84FB1FCFB56F005D8ADE /* TTModeHueBrightnessOptions.swift in Sources */,
 				FF534C381EB0351A002EE584 /* TTModeIftttConnect.swift in Sources */,
+				FF55B61D20A2315000967BB6 /* TTModeBoseConnected.swift in Sources */,
 				FF4AF7D81D24ECF60009C777 /* XMLReader.m in Sources */,
 				FF21F9301E172BC300DFDBB4 /* TTModeNest.swift in Sources */,
 				FF7C14521DB2F2DD009CBA28 /* TTDevice.swift in Sources */,
@@ -2141,14 +2276,20 @@
 				FFF46BC51D0E58C000158751 /* TTDeviceTitleView.swift in Sources */,
 				FF4AF7C21D248A4D0009C777 /* TTModeWemoDeviceSwitchOptions.swift in Sources */,
 				FF37EDFD1D1B23B70026F70D /* TTModeHueRandomOptions.swift in Sources */,
+				FF55B64920A2320100967BB6 /* Extensions.swift in Sources */,
 				FFC9FE951D021A0400038817 /* TTActionDiamondView.swift in Sources */,
 				FF458AB61DBEF1E9003FD06B /* SonosManager.m in Sources */,
 				FF44875F1D078FAC00ED8099 /* TTActionTitleView.swift in Sources */,
+				FF55B61C20A2315000967BB6 /* TTModeBoseVolumeJumpOptions.swift in Sources */,
 				FF21F9401E1C9F0F00DFDBB4 /* TTModeNestConnected.swift in Sources */,
 				FF7C145A1DB3088B009CBA28 /* TTAddActionButtonView.swift in Sources */,
+				FF55B64E20A2320100967BB6 /* TitleConstructor.swift in Sources */,
 				FF37EDD71D1117670026F70D /* TTModeHueConnecting.swift in Sources */,
+				FF55B64020A2320100967BB6 /* SWXMLHash.swift in Sources */,
+				FF55B64620A2320100967BB6 /* EDProgressView.swift in Sources */,
 				FF37EDF61D1B1A310026F70D /* TTModeHueSceneLateEveningOptions.swift in Sources */,
 				FF534C3E1EB0351A002EE584 /* TTModeIftttOptions.swift in Sources */,
+				FF55B64420A2320100967BB6 /* PresetButtonView.swift in Sources */,
 				FFF46BE11D10941500158751 /* DispatchQueueLogFormatter.m in Sources */,
 				FF254F8E1D21CAF100E96378 /* TTModeWemoMulticastServer.swift in Sources */,
 				FF37EDF91D1B23750026F70D /* TTModeHueSleepOptions.swift in Sources */,
@@ -2163,12 +2304,14 @@
 				FF4AF7BA1D248A290009C777 /* TTModeWemoConnecting.swift in Sources */,
 				FF4AF7EE1D24F9E70009C777 /* TTModeSonosOptions.swift in Sources */,
 				FF0F10C21CF60C3D00CC1F29 /* TTTitleBarView.swift in Sources */,
+				FF55B62020A2315000967BB6 /* TTModeBoseConnecting.swift in Sources */,
 				FF0F10CA1CF63F3B00CC1F29 /* TTModePhone.swift in Sources */,
 				FF4487741D09300B00ED8099 /* NSData+Hex.swift in Sources */,
 				FFB84B2D1D90CE0A0037872C /* TTModeYogaViewController.swift in Sources */,
 				FF4487641D08AA8800ED8099 /* TTTitleMenuCell.swift in Sources */,
 				FF21F93C1E1C9F0000DFDBB4 /* TTModeNestConnecting.swift in Sources */,
 				FF534C3C1EB0351A002EE584 /* TTModeIftttConnecting.swift in Sources */,
+				FF55B64C20A2320100967BB6 /* AppDelegate.swift in Sources */,
 				FFB41B791CEEA8E500CD5F09 /* TTModeTab.swift in Sources */,
 				FF0F10BE1CF55A9000CC1F29 /* UIColor+hex.swift in Sources */,
 				FF37EDD31D11174C0026F70D /* TTModeHueConnect.swift in Sources */,
@@ -2180,6 +2323,7 @@
 				FF52EBD21F8F05E3002D0EF1 /* MulticastDelegate.swift in Sources */,
 				FF4AF7D61D24ECF60009C777 /* SonosDiscover.m in Sources */,
 				FF4AF7C91D248AD00009C777 /* TTModeWemoDeviceOffOptions.swift in Sources */,
+				FF55B62220A2315000967BB6 /* TTModeBoseOptions.swift in Sources */,
 				FFE11F48209C0EC00013D299 /* TTModeSpotifyOptions.swift in Sources */,
 				FFC4B0F01D2DBF3E00A97C81 /* TTPairingInfoViewController.swift in Sources */,
 				FFDA0FBA1D3C55930019859F /* TTModeCameraViewController.swift in Sources */,
@@ -2197,6 +2341,22 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		FF55B63020A2320100967BB6 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FF55B63120A2320100967BB6 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		FF55B63220A2320100967BB6 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FF55B63320A2320100967BB6 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
 		FFF2709E1CEE88E500E46575 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
