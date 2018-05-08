@@ -389,16 +389,19 @@ class TTModeSpotify : TTMode, SPTAppRemotePlayerStateDelegate {
     // Spotify Connection
     
     func beginConnectingToSpotify(ensureConnection : Bool = false) {
-        TTModeSpotifyAppDelegate.recentSpotify = self
-        
-        TTModeSpotify.spotifyState = .connecting
-        delegate?.changeState(TTModeSpotify.spotifyState, mode: self)
-        
-        if !TTModeSpotify.appRemote.isConnected && ensureConnection {
-            TTModeSpotify.appRemote.authorizeAndPlayURI("")
-        } else {
-            TTModeSpotify.appRemote.connect()
+        DispatchQueue.main.async {
+            TTModeSpotifyAppDelegate.recentSpotify = self
+            
+            TTModeSpotify.spotifyState = .connecting
+            self.delegate?.changeState(TTModeSpotify.spotifyState, mode: self)
+
+            if !TTModeSpotify.appRemote.isConnected && ensureConnection {
+                TTModeSpotify.appRemote.authorizeAndPlayURI("")
+            } else {
+                TTModeSpotify.appRemote.connect()
+            }
         }
+        
     }
     
     func didEstablishConnection() {
@@ -471,7 +474,8 @@ class TTModeSpotify : TTMode, SPTAppRemotePlayerStateDelegate {
         get {
             return {[unowned self] _, error in
                 if let error = error {
-                    self.displayError(error as NSError)
+//                    self.displayError()
+                    self.cancelConnectingToSpotify(error: error.localizedDescription)
                 }
             }
         }
