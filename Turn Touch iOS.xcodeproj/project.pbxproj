@@ -351,6 +351,8 @@
 		FFC4B1081D3717D500A97C81 /* TTFTUXView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC4B1071D3717D500A97C81 /* TTFTUXView.swift */; };
 		FFC9FE951D021A0400038817 /* TTActionDiamondView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC9FE941D021A0400038817 /* TTActionDiamondView.swift */; };
 		FFC9FE991D02520300038817 /* NSObject+Class.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC9FE981D02520300038817 /* NSObject+Class.swift */; };
+		FFD653FB20AE9229004E9DFC /* TTModeBoseDeviceSpeakerOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD653F920AE9229004E9DFC /* TTModeBoseDeviceSpeakerOptions.swift */; };
+		FFD653FC20AE9229004E9DFC /* TTModeBoseDeviceSpeakerOptions.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFD653FA20AE9229004E9DFC /* TTModeBoseDeviceSpeakerOptions.xib */; };
 		FFD88F1020AE7A9F00E0C5CC /* TTModeBoseMulticastServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD88F0320AE7A9F00E0C5CC /* TTModeBoseMulticastServer.swift */; };
 		FFD88F1120AE7A9F00E0C5CC /* TTModeBoseConnect.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD88F0420AE7A9F00E0C5CC /* TTModeBoseConnect.swift */; };
 		FFD88F1220AE7A9F00E0C5CC /* TTModeBoseConnect.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFD88F0520AE7A9F00E0C5CC /* TTModeBoseConnect.xib */; };
@@ -770,6 +772,8 @@
 		FFC4B1071D3717D500A97C81 /* TTFTUXView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTFTUXView.swift; path = Views/Modal/TTFTUXView.swift; sourceTree = "<group>"; };
 		FFC9FE941D021A0400038817 /* TTActionDiamondView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTActionDiamondView.swift; path = "Views/Action diamond/TTActionDiamondView.swift"; sourceTree = "<group>"; };
 		FFC9FE981D02520300038817 /* NSObject+Class.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSObject+Class.swift"; path = "Categories/NSObject+Class.swift"; sourceTree = "<group>"; };
+		FFD653F920AE9229004E9DFC /* TTModeBoseDeviceSpeakerOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTModeBoseDeviceSpeakerOptions.swift; sourceTree = "<group>"; };
+		FFD653FA20AE9229004E9DFC /* TTModeBoseDeviceSpeakerOptions.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TTModeBoseDeviceSpeakerOptions.xib; sourceTree = "<group>"; };
 		FFD88F0320AE7A9F00E0C5CC /* TTModeBoseMulticastServer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TTModeBoseMulticastServer.swift; sourceTree = "<group>"; };
 		FFD88F0420AE7A9F00E0C5CC /* TTModeBoseConnect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TTModeBoseConnect.swift; sourceTree = "<group>"; };
 		FFD88F0520AE7A9F00E0C5CC /* TTModeBoseConnect.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TTModeBoseConnect.xib; sourceTree = "<group>"; };
@@ -1555,6 +1559,8 @@
 				FFD88F0B20AE7A9F00E0C5CC /* TTModeBoseConnected.xib */,
 				FFD88F0720AE7A9F00E0C5CC /* TTModeBoseVolumeJumpOptions.swift */,
 				FFD88F0D20AE7A9F00E0C5CC /* TTModeBoseVolumeJumpOptions.xib */,
+				FFD653F920AE9229004E9DFC /* TTModeBoseDeviceSpeakerOptions.swift */,
+				FFD653FA20AE9229004E9DFC /* TTModeBoseDeviceSpeakerOptions.xib */,
 			);
 			name = Bose;
 			path = Modes/Bose;
@@ -1967,6 +1973,7 @@
 				FF8B758C1F86E0BC00D7867C /* add.png in Resources */,
 				FF8B758D1F86E0BC00D7867C /* how_it_works.png in Resources */,
 				FF8B759E1F86EDC400D7867C /* battery.png in Resources */,
+				FFD653FC20AE9229004E9DFC /* TTModeBoseDeviceSpeakerOptions.xib in Resources */,
 				FF8B759F1F86EDC400D7867C /* remove.png in Resources */,
 				FF8B75A01F86EDC400D7867C /* rename.png in Resources */,
 				FF8B75A11F86EDC400D7867C /* versions.png in Resources */,
@@ -2202,6 +2209,7 @@
 				FFC9FE951D021A0400038817 /* TTActionDiamondView.swift in Sources */,
 				FF458AB61DBEF1E9003FD06B /* SonosManager.m in Sources */,
 				FF44875F1D078FAC00ED8099 /* TTActionTitleView.swift in Sources */,
+				FFD653FB20AE9229004E9DFC /* TTModeBoseDeviceSpeakerOptions.swift in Sources */,
 				FF21F9401E1C9F0F00DFDBB4 /* TTModeNestConnected.swift in Sources */,
 				FF7C145A1DB3088B009CBA28 /* TTAddActionButtonView.swift in Sources */,
 				FF37EDD71D1117670026F70D /* TTModeHueConnecting.swift in Sources */,

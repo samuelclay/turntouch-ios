@@ -21,7 +21,7 @@ class TTModeBoseOptions: TTOptionsDetailViewController, TTModeBoseDelegate {
         self.modeBose = self.mode as! TTModeBose
         self.modeBose.delegate = self
         
-        self.changeState(TTModeBose.BoseState, mode: self.modeBose)
+        self.changeState(TTModeBose.boseState, mode: self.modeBose)
     }
     
     func changeState(_ state: TTBoseState, mode: TTModeBose) {

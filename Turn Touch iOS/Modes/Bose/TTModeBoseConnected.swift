@@ -8,51 +8,33 @@
 
 import UIKit
 
-class TTModeBoseConnected: TTOptionsDetailViewController, TTModeBoseDelegate {
+class TTModeBoseConnected: TTOptionsDetailViewController {
     
     var modeBose: TTModeBose!
-    
-    var pickerVC: TTPickerViewController!
-    var popoverController: UIPopoverPresentationController?
-    var textField: UITextField!
-    var presented = false
-    
-    @IBOutlet var spinner: [UIActivityIndicatorView]!
-    @IBOutlet var refreshButton: [UIButton]!
-    //    @IBOutlet var doublePicker: UITextField!
-    
-    var devices: [[String: String]] = []
+    @IBOutlet var connectedLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.translatesAutoresizingMaskIntoConstraints = false
-        
-        self.modeBose = self.mode as! TTModeBose
-        self.modeBose.delegate = self
-        //        doublePicker.delegate = self
-        
-        spinner.forEach({ $0.isHidden = true })
-        refreshButton.forEach({ $0.isHidden = false })
+        self.updateConnected()
     }
     
-    @IBAction func refreshDevices(_ sender: AnyObject) {
-        spinner.forEach({ $0.isHidden = false })
-        refreshButton.forEach({ $0.isHidden = true })
-        spinner.forEach { (s) in
-            s.startAnimating()
+    func updateConnected(message: String? = nil) {
+        if message != nil {
+            connectedLabel.text = message
+            return
         }
         
-        self.modeBose.beginConnectingToBose()
-    }
-    
-    func changeState(_ state: TTBoseState, mode: TTModeBose) {
-        if state == .connected {
-            spinner.forEach({ $0.isHidden = true })
-            refreshButton.forEach({ $0.isHidden = false })
+        let count = TTModeBose.foundDevices.count
+        let deviceCount = count == 1 ? "speaker" : "speakers"
+        if count > 0 {
+            connectedLabel.text = "Connected to \(count) Bose \(deviceCount)"
+        } else {
+            connectedLabel.text = "No Bose speakers found"
         }
     }
     
-    func presentError(alert: UIAlertController) {
-        self.present(alert, animated: true, completion: nil)
+    @IBAction func scanForDevices(sender: UIButton) {
+        modeBose.beginConnectingToBose()
     }
 }

@@ -7,11 +7,19 @@
 //
 
 import UIKit
+import CoreFoundation
 import SWXMLHash
 
-enum TTModeBoseDeviceState {
-    case on
-    case off
+enum TTModeBoseButton: String {
+    case play = "PLAY"
+    case pause = "PAUSE"
+    case play_pause = "PLAY_PAUSE"
+    case next_track = "NEXT_TRACK"
+    case previous_track = "PREV_TRACK"
+    case mute = "MUTE"
+    case shuffle_on = "SHUFFLE_ON"
+    case shuffle_off = "SHUFFLE_OFF"
+    case bookmark = "BOOKMARK"
 }
 
 protocol TTModeBoseDeviceDelegate {
@@ -20,17 +28,19 @@ protocol TTModeBoseDeviceDelegate {
 }
 
 class TTModeBoseDevice: NSObject {
-    var deviceName: String!
-    var serialNumber: String!
-    var macAddress: String!
+    var deviceName: String?
+    var serialNumber: String?
+    var macAddress: String?
     var ipAddress: String
     var port: Int
-    var deviceState: TTModeBoseDeviceState!
+    var setupUrl: String
+//    var deviceState: TTModeBoseDeviceState!
     var delegate: TTModeBoseDeviceDelegate!
     
-    init(ipAddress: String, port: Int) {
+    init(ipAddress: String, port: Int, setupUrl: String) {
         self.ipAddress = ipAddress
         self.port = port
+        self.setupUrl = setupUrl
     }
     
     override var description: String {
@@ -56,7 +66,8 @@ class TTModeBoseDevice: NSObject {
     }
     
     func location() -> String {
-        return "\(ipAddress):\(port)"
+        return "\(ipAddress):8090"
+//        return url
     }
     
     func requestDeviceInfo(_ attemptsLeft: Int = 5) {
@@ -66,9 +77,11 @@ class TTModeBoseDevice: NSObject {
         }
         
         let attemptsLeft = attemptsLeft - 1
-        let url = URL(string: "http://\(self.location())/setup.xml")
+        let url = URL(string: "\(self.setupUrl)")
         var request = URLRequest(url: url!)
-Bose
+        let session = URLSession.shared
+        request.httpMethod = "GET"
+
         let task = session.dataTask(with: request) { (data, response, connectionError) in
             if connectionError == nil {
                 if let httpResponse = response as? HTTPURLResponse {
@@ -97,8 +110,13 @@ Bose
         let doc = SWXMLHash.parse(xmlData)
 //        print(" ---> Bose data: \(String(data: xmlData, encoding: .utf8))")
         deviceName = doc["root"]["device"]["friendlyName"].element?.text
-        serialNumber = doc["root"]["device"]["serialNumber"].element?.text
-        macAddress = doc["root"]["device"]["macAddress"].element?.text
+
+        if let serial = doc["root"]["device"]["serialNumber"].element?.text {
+            serialNumber = serial as! String
+        }
+        if let mac = doc["root"]["device"]["UDN"].element?.text {
+            macAddress = mac as! String
+        }
 
         if deviceName != nil {
             print(" ---> Found Bose: \(self)")
@@ -151,7 +169,7 @@ Bose
                     }
                 }
             } else {
-                print(" ---> Bose REST error: \(String(describing: connectionError))")
+                print(" ---> Bose REST error: \(String(describing: connectionError))\n")
                 
                 self.delegate.deviceFailed(self)
             }
@@ -162,48 +180,49 @@ Bose
     func parseBasicEventXml(_ data: Data, _ callback: () -> Void) {
         let doc = SWXMLHash.parse(data)
 //        let results = doc["root"]["device"]["friendlyName"].element?.text
-        if let stateString = doc["s:Envelope"]["s:Body"]["u:GetBinaryStateResponse"]["BinaryState"].element?.text {
-            if stateString == "1" || stateString == "8" {
-                deviceState = .on
-            } else if stateString == "0" {
-                deviceState = .off
-            }
-            print(" ---> Bose state: \(deviceName!) \(stateString)/\(deviceState!)")
-            callback()
-        } else {
-            print(" ---> Error: could not get binary state for Bose")
-            deviceName = "Bose device (\(self.location()))"
-        }
+//        if let stateString = doc["s:Envelope"]["s:Body"]["u:GetBinaryStateResponse"]["BinaryState"].element?.text {
+//            if stateString == "1" || stateString == "8" {
+//                deviceState = .on
+//            } else if stateString == "0" {
+//                deviceState = .off
+//            }
+//            print(" ---> Bose state: \(deviceName!) \(stateString)/\(deviceState!)")
+//            callback()
+//        } else {
+//            print(" ---> Error: could not get binary state for Bose")
+//            deviceName = "Bose device (\(self.location()))"
+//        }
     }
     
-    func changeDeviceState(_ state: TTModeBoseDeviceState) {
-        let url = URL(string: "http://\(self.location())/upnp/control/basicevent1")
-        let body = ["<?xml version=\"1.0\" encoding=\"utf-8\"?>",
-            "<s:Envelope xmlns:s=\"http://schemas.xmlsoap.org/soap/envelope/\" s:encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\">",
-            "<s:Body>",
-            "<u:SetBinaryState xmlns:u=\"urn:Belkin:service:basicevent:1\">",
-            "<BinaryState>\(state == .off ? "0" : "1")</BinaryState>",
-            "</u:SetBinaryState>",
-            "</s:Body>",
-            "</s:Envelope>"].joined(separator: "\r\n").data(using: String.Encoding.utf8)
+    func pressSpeakerButton(_ button: TTModeBoseButton) {
+        let url = URL(string: "http://\(self.location())/key")
+        let body = ["<?xml version=\"1.0\" ?>",
+            "<key state=\"press\" sender=\"Gabbo\">",
+            "\(button.rawValue)",
+            "</key>"].joined(separator: "")
+        let bodyData = body.data(using: String.Encoding.utf8)
         var request = URLRequest(url: url!)
         let session = URLSession.shared
         request.httpMethod = "POST"
-        request.setValue("\"urn:Belkin:service:basicevent:1#SetBinaryState\"", forHTTPHeaderField: "SOAPACTION")
-        request.setValue("text/xml", forHTTPHeaderField: "Content-Type")
-        request.httpBody = body
+//        request.setValue("\"urn:Belkin:service:basicevent:1#SetBinaryState\"", forHTTPHeaderField: "SOAPACTION")
+//        request.setValue("text/xml", forHTTPHeaderField: "Content-Type")
+        request.httpBody = bodyData
         
         let task = session.dataTask(with: request) { (data, response, connectionError) in
             if connectionError == nil {
                 if let httpResponse = response as? HTTPURLResponse {
                     if httpResponse.statusCode == 200 {
                         if data != nil {
-//                            print(" ---> Bose basicevent: \(responseData)")
+                            print(" ---> Bose basicevent: \(String(describing: data))")
                         }
+                    } else {
+                        print(" ---> Bose REST status code error: \(httpResponse.statusCode)\n")
+                        
+                        self.delegate.deviceFailed(self)
                     }
                 }
             } else {
-                print(" ---> Bose REST error: \(String(describing: connectionError))")
+                print(" ---> Bose REST error: \(String(describing: connectionError))\n")
                 
                 self.delegate.deviceFailed(self)
             }

@@ -50,6 +50,7 @@ class TTModeMap: NSObject {
             "TTModeSonos",
             "TTModeNest",
 //            "TTModeAlarmClock",
+            "TTModeBose",
             "TTModeYoga",
             "TTModeCustom",
             "TTModeIfttt",

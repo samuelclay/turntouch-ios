@@ -49,7 +49,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         }
         
         DispatchQueue.main.async {
-            if self.bluetoothMonitor.noKnownDevices() {
+            let isSimulator = ProcessInfo.processInfo.environment["SIMULATOR_DEVICE_NAME"] != nil
+            if self.bluetoothMonitor.noKnownDevices() && !isSimulator {
                 appDelegate().mainViewController.showPairingModal()
             }
         }

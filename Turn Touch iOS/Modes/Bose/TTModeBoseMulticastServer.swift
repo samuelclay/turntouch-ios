@@ -9,10 +9,8 @@
 import UIKit
 import CocoaAsyncSocket
 
-let MULTICAST_GROUP_IP = "239.255.255.250"
-
 protocol TTModeBoseMulticastDelegate {
-    func foundDevice(_ headers: [String: String], host: String, port: Int, name: String?, serialNumber: String?, macAddress: String?,  live: Bool) -> TTModeBoseDevice
+    func foundDevice(_ headers: [String: String], host: String, port: Int, setupUrl: String, name: String?, serialNumber: String?, macAddress: String?,  live: Bool) -> TTModeBoseDevice
     func finishScanning()
 }
 
@@ -87,7 +85,7 @@ class TTModeBoseMulticastServer: NSObject, GCDAsyncUdpSocketDelegate {
                 return
             }
             self.attemptsLeft -= 1
-            print(" ---> Attempting BoseBose search, \(self.attemptsLeft) attempts left...")
+            print(" ---> Attempting Bose search, \(self.attemptsLeft) attempts left...")
             self.createMulticastReceiver()
         }
     }
@@ -106,19 +104,16 @@ class TTModeBoseMulticastServer: NSObject, GCDAsyncUdpSocketDelegate {
                 }
             }
         }
-        
-        if let userAgent = headers["x-user-agent"] {
-            if userAgent.contains("redsonic") {
-                // redsonic = belkin
-                if let setupXmlLocation = headers["location"],
-                    setupXmlLocation.range(of: "setup.xml") != nil {
-                    let setupXmlUrl = URL(string: setupXmlLocation)
-                    let locationHost = setupXmlUrl?.host
-                    let locationPort = (setupXmlUrl as NSURL?)?.port?.intValue
-                    
-                    if locationHost != nil && locationPort != nil {
-                        _ = delegate?.foundDevice(headers, host: locationHost!, port: locationPort!, name: nil, serialNumber: nil, macAddress: nil, live: true)
-                    }
+
+        if let setupXmlLocation = headers["location"] {
+            if setupXmlLocation.contains("BO5E") {
+                // BO5E = BOSE
+                let setupXmlUrl = URL(string: setupXmlLocation)
+                let locationHost = setupXmlUrl?.host
+                let locationPort = (setupXmlUrl as NSURL?)?.port?.intValue
+                
+                if locationHost != nil && locationPort != nil {
+                    _ = delegate?.foundDevice(headers, host: locationHost!, port: locationPort!, setupUrl: setupXmlLocation, name: nil, serialNumber: nil, macAddress: nil, live: true)
                 }
             }
         }

@@ -11,8 +11,8 @@ import ReachabilitySwift
 import MediaPlayer
 
 struct TTModeBoseConstants {
-    static let kBoseAccessToken = "BoseAccessToken"
     static let jumpVolume = "jumpVolume"
+    static let kBoseSelectedSerials = "boseSelectedSerials"
     static let kBoseFoundDevices = "boseFoundDevicesV2"
     static let kBoseSeenDevices = "boseSeenDevicesV2"
 }
@@ -33,49 +33,62 @@ enum TTBoseConnectNextAction {
 
 protocol TTModeBoseDelegate {
     func changeState(_ state: TTBoseState, mode: TTModeBose)
-    func presentError(alert: UIAlertController)
 }
 
-class TTModeBose : TTMode {
+class TTModeBose : TTMode, TTModeBoseMulticastDelegate, TTModeBoseDeviceDelegate {
 
-    static var reachability: Reachability!
-    var musicPlayer: MPMusicPlayerController!
-    var observing = false
     var lastVolume: Float?
     let ITUNES_VOLUME_CHANGE: Float = 0.06
-    static var nextAction: TTBoseConnectNextAction?
 
-    var delegate: TTModeBoseDelegate!
-    static var BoseState = TTBoseState.disconnected
-    static var BoseAppRemoteDelegate = TTModeBoseAppDelegate()
-    static var appRemote: SPTAppRemote = {
-        let connectionParams = SPTAppRemoteConnectionParams(clientIdentifier: "a459d5bab5b04ed5ae41f79f9174ab1b",
-                                                            redirectURI: "turntouch://callback/",
-                                                            name: "Turn Touch",
-                                                            accessToken: TTModeBose.accessToken,
-                                                            defaultImageSize: CGSize.zero,
-                                                            imageFormat: .any)
-        let appRemote = SPTAppRemote(connectionParameters: connectionParams, logLevel: .debug)
-        appRemote.delegate = TTModeBose.BoseAppRemoteDelegate
-        return appRemote
-    }()
-    
-    class var accessToken: String? {
-        get {
-            return UserDefaults.standard.string(forKey: TTModeBoseConstants.kBoseAccessToken)
-        }
-        set {
-            let prefs = UserDefaults.standard
-            
-            prefs.set(newValue, forKey: TTModeBoseConstants.kBoseAccessToken)
-            prefs.synchronize()
-        }
-    }
-    
+    var delegate: TTModeBoseDelegate?
+    static var boseState = TTBoseState.disconnected
+    static var multicastServer = TTModeBoseMulticastServer()
+    static var foundDevices: [TTModeBoseDevice] = []
+    static var failedDevices: [TTModeBoseDevice] = []
+    static var recentlyFoundDevices: [TTModeBoseDevice] = []
+
     required init() {
         super.init()
         
-        self.watchReachability()
+        TTModeBose.multicastServer.delegate = self
+        
+        if TTModeBose.foundDevices.count == 0 {
+            self.assembleFoundDevices()
+        }
+        
+        if TTModeBose.foundDevices.count == 0 {
+            TTModeBose.boseState = .connecting
+            self.beginConnectingToBose()
+        } else {
+            TTModeBose.boseState = .connected
+        }
+        delegate?.changeState(TTModeBose.boseState, mode: self)
+    }
+    
+    func resetKnownDevices() {
+        let prefs = UserDefaults.standard
+        prefs.removeObject(forKey: TTModeBoseConstants.kBoseFoundDevices)
+        prefs.synchronize()
+        
+        self.assembleFoundDevices()
+    }
+    
+    func assembleFoundDevices() {
+        let prefs = UserDefaults.standard
+        TTModeBose.foundDevices = []
+        
+        if let foundDevices = prefs.array(forKey: TTModeBoseConstants.kBoseFoundDevices) as? [[String: AnyObject]] {
+            for device in foundDevices {
+                let newDevice = self.foundDevice([:], host: device["ipaddress"] as! String,
+                                                 port: device["port"] as! Int,
+                                                 setupUrl: device["setupUrl"] as! String,
+                                                 name: device["name"] as! String?,
+                                                 serialNumber: device["serialNumber"] as! String?,
+                                                 macAddress: device["macAddress"] as! String?,
+                                                 live: false)
+                print(" ---> Loading Bose: \(newDevice.deviceName!) (\(newDevice.location()))")
+            }
+        }
     }
    
     override class func title() -> String {
@@ -211,35 +224,11 @@ class TTModeBose : TTMode {
     // MARK: Action methods
     
     override func activate() {
-        if musicPlayer == nil {
-            musicPlayer = MPMusicPlayerController.systemMusicPlayer
-        }
-        
-        if !observing {
-            AVAudioSession.sharedInstance().addObserver(self, forKeyPath: "outputVolume", options: [], context: nil)
-            musicPlayer.addObserver(self, forKeyPath: "nowPlayingItem", options: [], context: nil)
-            musicPlayer.beginGeneratingPlaybackNotifications()
-            observing = true
-        }
-        
-        TTModeBose.accessToken = UserDefaults.standard.string(forKey: TTModeBoseConstants.kBoseAccessToken)
-
-        if !TTModeBose.appRemote.isConnected {
-            self.beginConnectingToBose()
-        } else {
-            TTModeBose.BoseState = .connected
-        }
-        delegate?.changeState(TTModeBose.BoseState, mode: self)
-        
-        TTModeBose.appRemote.playerAPI?.delegate = self
+        delegate?.changeState(TTModeBose.boseState, mode: self)
     }
     
     override func deactivate() {
-        if observing {
-            AVAudioSession.sharedInstance().removeObserver(self, forKeyPath: "outputVolume")
-            musicPlayer.removeObserver(self, forKeyPath: "nowPlayingItem")
-            observing = false
-        }
+        TTModeBose.multicastServer.deactivate()
     }
     
     var volumeSlider: UISlider {
@@ -265,7 +254,7 @@ class TTModeBose : TTMode {
         if keyPath == "outputVolume" {
             lastVolume = AVAudioSession.sharedInstance().outputVolume
         } else if keyPath == "nowPlayingInfo" {
-            print(" Now playing info: \(String(describing: musicPlayer.nowPlayingItem))")
+            print(" Now playing info: \(String(describing: keyPath))")
         }
     }
     
@@ -292,193 +281,249 @@ class TTModeBose : TTMode {
 //        }
     }
     
-    func runTTModeBosePlayPause() {
-        print(" ---> Toggled Bose ")
-        if !TTModeBose.appRemote.isConnected {
-            self.beginConnectingToBose()
-            TTModeBose.nextAction = .playPause
-        } else {
-            TTModeBose.appRemote.playerAPI?.getPlayerState({ (result, error) in
-                if let result = result {
-                    let playerState = result as! SPTAppRemotePlayerState
-                    if playerState.isPaused {
-                        TTModeBose.appRemote.playerAPI?.resume(self.defaultCallback)
-                    } else {
-                        TTModeBose.appRemote.playerAPI?.pause(self.defaultCallback)
-                    }
-                }
-                if error != nil {
-                    self.beginConnectingToBose()
-                    TTModeBose.nextAction = .playPause
-                }
-            })
+    func runTTModeBosePlayPause(direction: NSNumber) {
+        let devices = self.selectedDevices(TTModeDirection(rawValue: direction.intValue)!)
+        for device in devices {
+            device.pressSpeakerButton(.play_pause)
         }
     }
     
-    func doubleRunTTModeBosePlayPause() {
-        self.runTTModeBosePreviousTrack()
+    func doubleRunTTModeBosePlayPause(direction: NSNumber) {
+        self.runTTModeBosePreviousTrack(direction: direction)
     }
     
-    func runTTModeBosePlay() {
-
+    func runTTModeBosePlay(direction: NSNumber) {
+        let devices = self.selectedDevices(TTModeDirection(rawValue: direction.intValue)!)
+        for device in devices {
+            device.pressSpeakerButton(.play)
+        }
     }
     
-    func doubleRunTTModeBosePlay() {
-        self.runTTModeBosePreviousTrack()
+    func doubleRunTTModeBosePlay(direction: NSNumber) {
+        self.runTTModeBosePreviousTrack(direction: direction)
     }
     
-    func runTTModeBosePause() {
+    func runTTModeBosePause(direction: NSNumber) {
+        let devices = self.selectedDevices(TTModeDirection(rawValue: direction.intValue)!)
+        for device in devices {
+            device.pressSpeakerButton(.pause)
+        }
     }
     
-    func doubleRunTTModeBosePause() {
-        self.runTTModeBosePreviousTrack()
+    func doubleRunTTModeBosePause(direction: NSNumber) {
+        self.runTTModeBosePreviousTrack(direction: direction)
     }
     
-    func runTTModeBoseNextTrack() {
-        if !TTModeBose.appRemote.isConnected {
-            self.beginConnectingToBose()
-            TTModeBose.nextAction = .nextTrack
+    func runTTModeBoseNextTrack(direction: NSNumber) {
+        let devices = self.selectedDevices(TTModeDirection(rawValue: direction.intValue)!)
+        for device in devices {
+            device.pressSpeakerButton(.next_track)
+        }
+    }
+    
+    func runTTModeBosePreviousTrack(direction: NSNumber) {
+        let devices = self.selectedDevices(TTModeDirection(rawValue: direction.intValue)!)
+        for device in devices {
+            device.pressSpeakerButton(.previous_track)
+        }
+    }
+    
+    // MARK: Bose devices
+    
+    func selectedDevices(_ direction: TTModeDirection) -> [TTModeBoseDevice] {
+        self.ensureDevicesSelected()
+        var devices: [TTModeBoseDevice] = []
+        
+        if TTModeBose.foundDevices.count == 0 {
+            return devices
         }
         
-        TTModeBose.appRemote.playerAPI?.getPlayerState({ (result, error) in
-            if let _ = result {
-                TTModeBose.appRemote.playerAPI?.skip(toNext: self.defaultCallback)
+        if let selectedSerials = self.action.optionValue(TTModeBoseConstants.kBoseSelectedSerials) as? [String] {
+            for foundDevice in TTModeBose.foundDevices {
+                if selectedSerials.contains(foundDevice.serialNumber!) {
+                    devices.append(foundDevice)
+                }
             }
-            if error != nil {
-                self.beginConnectingToBose()
-                TTModeBose.nextAction = .nextTrack
-            }
-        })
-
+        }
+        
+        return devices
     }
     
-    func runTTModeBosePreviousTrack() {
-        if !TTModeBose.appRemote.isConnected {
-            self.beginConnectingToBose()
-            TTModeBose.nextAction = .previousTrack
-        }
-
-        TTModeBose.appRemote.playerAPI?.getPlayerState({ (result, error) in
-            if let _ = result {
-                TTModeBose.appRemote.playerAPI?.skip(toPrevious: self.defaultCallback)
-            }
-            if error != nil {
-                self.beginConnectingToBose()
-                TTModeBose.nextAction = .previousTrack
-            }
-        })
+    func refreshDevices() {
+        TTModeBose.recentlyFoundDevices = []
+        self.beginConnectingToBose()
     }
     
     // Bose Connection
     
     func beginConnectingToBose(ensureConnection : Bool = false) {
-        DispatchQueue.main.async {
-            TTModeBoseAppDelegate.recentBose = self
-            
-            TTModeBose.BoseState = .connecting
-            self.delegate?.changeState(TTModeBose.BoseState, mode: self)
-
-            if !TTModeBose.appRemote.isConnected && ensureConnection {
-                TTModeBose.appRemote.authorizeAndPlayURI("")
-            } else {
-                TTModeBose.appRemote.connect()
-            }
-        }
+        TTModeBose.boseState = .connecting
+        delegate?.changeState(TTModeBose.boseState, mode: self)
         
-    }
-    
-    func didEstablishConnection() {
-        TTModeBose.BoseState = .connected
-        delegate?.changeState(TTModeBose.BoseState, mode: self)
-        
-        if !TTModeBose.appRemote.isConnected {
-            TTModeBose.appRemote.connect()
-        }
-        
-        if let nextAction = TTModeBose.nextAction {
-            switch nextAction {
-            case .playPause:
-                self.runTTModeBosePlayPause()
-            case .nextTrack:
-                self.runTTModeBoseNextTrack()
-            case .previousTrack:
-                self.runTTModeBosePreviousTrack()
-            default:
-                self.runTTModeBosePlayPause()
-            }
-            TTModeBose.nextAction = nil
-        }
+        TTModeBose.multicastServer.delegate = self
+        TTModeBose.multicastServer.beginBroadcast()
     }
     
     func cancelConnectingToBose(error: String? = nil) {
-        TTModeBose.BoseState = .disconnected
-        delegate?.changeState(TTModeBose.BoseState, mode: self)
+        TTModeBose.boseState = .connected
+        delegate?.changeState(TTModeBose.boseState, mode: self)
+        
+        TTModeBose.multicastServer.deactivate()
     }
     
-    // MARK: Reachability
+    // MARK: Multicast delegate
     
-    func watchReachability() {
-        if TTModeBose.reachability != nil {
+    func foundDevice(_ headers: [String: String], host ipAddress: String, port: Int, setupUrl: String, name: String?, serialNumber: String?, macAddress: String?, live: Bool) -> TTModeBoseDevice {
+        let newDevice = TTModeBoseDevice(ipAddress: ipAddress, port: port, setupUrl: setupUrl)
+        newDevice.delegate = self
+        
+        if let name = name {
+            newDevice.deviceName = name
+        }
+        if let serialNumber = serialNumber {
+            newDevice.serialNumber = serialNumber
+        }
+        if let macAddress = macAddress {
+            newDevice.macAddress = macAddress
+        }
+        
+        for device in TTModeBose.foundDevices {
+            if device.isEqualToDevice(newDevice) {
+                // Already found
+                return device
+            }
+        }
+        for device in TTModeBose.recentlyFoundDevices {
+            if device.isEqualToDevice(newDevice) {
+                //                return device
+            }
+        }
+        
+        if newDevice.deviceName != nil && newDevice.serialNumber != nil {
+            TTModeBose.foundDevices.append(newDevice)
+        }
+        TTModeBose.recentlyFoundDevices.append(newDevice)
+        
+        newDevice.requestDeviceInfo()
+        
+        return newDevice
+    }
+    
+    func finishScanning() {
+        TTModeBose.boseState = .connected
+        delegate?.changeState(TTModeBose.boseState, mode: self)
+    }
+    
+    // MARK: Device delegate
+    
+    func deviceReady(_ device: TTModeBoseDevice) {
+        var replaceDevice: TTModeBoseDevice? = nil
+        for foundDevice in TTModeBose.foundDevices {
+            if foundDevice.isSameAddress(device) {
+                return
+            } else if foundDevice.isEqualToDevice(device) &&
+                foundDevice.isSameDeviceDifferentLocation(device) {
+                // Bose device changed IPs (very Bose), so correct all references and
+                // store new IP in place of old
+                replaceDevice = foundDevice
+                break
+            }
+        }
+        
+        if let foundDevice = replaceDevice {
+            // Change device to new location
+            print(" ---> Re-assigning Bose device from \(foundDevice.location()) to \(device.location())")
+            foundDevice.ipAddress = device.ipAddress
+            foundDevice.port = device.port
+        } else {
+            TTModeBose.foundDevices.append(device)
+        }
+        
+        self.storeFoundDevices()
+        
+        TTModeBose.boseState = .connected
+        delegate?.changeState(TTModeBose.boseState, mode: self)
+    }
+    
+    func storeFoundDevices() {
+        TTModeBose.foundDevices = TTModeBose.foundDevices.sorted {
+            (a, b) -> Bool in
+            return a.description.lowercased() < b.description.lowercased()
+        }
+        
+        var foundDevices: [[String: Any]] = []
+        var foundSerials: [String] = []
+        for device in TTModeBose.foundDevices {
+            if device.deviceName == nil {
+                continue
+            }
+            if let serialNumber = device.serialNumber {
+                if !foundSerials.contains(serialNumber) {
+                    foundSerials.append(serialNumber)
+                } else {
+                    continue
+                }
+            } else {
+                continue
+            }
+            
+            for (index, failedDevices) in TTModeBose.failedDevices.enumerated() {
+                if failedDevices.isSameDeviceDifferentLocation(device) {
+                    TTModeBose.failedDevices.remove(at: index)
+                    break;
+                }
+            }
+            
+            foundDevices.append(["ipaddress": device.ipAddress, "port": device.port, "setupUrl": device.setupUrl,
+                                 "name": device.deviceName!,
+                                 "serialNumber": device.serialNumber!,
+                                 "macAddress": device.macAddress!])
+        }
+        
+        let prefs = UserDefaults.standard
+        prefs.set(foundDevices, forKey: TTModeBoseConstants.kBoseFoundDevices)
+        prefs.synchronize()
+    }
+    
+    func deviceFailed(_ device: TTModeBoseDevice) {
+        print(" ---> Bose device failed, searching for new IP...")
+        
+        if TTModeBose.failedDevices.contains(device) {
+            print(" ---> Bose device already failed, ignoring.")
             return
         }
         
-        TTModeBose.reachability = Reachability()
-        
-        TTModeBose.reachability.whenReachable = { reachability in
-            DispatchQueue.main.async {
-                if TTModeBose.BoseState != .connected {
-                    print(" ---> Reachable, re-connecting to Bose...")
-                    self.beginConnectingToBose()
-                }
-            }
-        }
-        
-        TTModeBose.reachability.whenUnreachable = { reachability in
-            if TTModeBose.BoseState != .connected {
-                print(" ---> Unreachable, not connected")
-            }
-        }
-        
-        do {
-            try TTModeBose.reachability.startNotifier()
-        } catch {
-            print("Unable to start notifier")
+        DispatchQueue.main.async {
+            appDelegate().modeMap.recordUsageMoment("boseDeviceFailed")
+            TTModeBose.failedDevices.append(device)
+            self.refreshDevices()
         }
     }
     
-    // MARK: Bose Protocol
-
+    // MARK: Device selection
     
-    fileprivate var playerState: SPTAppRemotePlayerState?
-    fileprivate var subscribedToPlayerState: Bool = false
-    
-    
-    var defaultCallback: SPTAppRemoteCallback {
-        get {
-            return {[unowned self] _, error in
-                if let error = error {
-//                    self.displayError()
-                    self.cancelConnectingToBose(error: error.localizedDescription)
-                }
+    func ensureDevicesSelected() {
+        //        let sameMode = appDelegate().modeMap.modeInDirection(self.modeDirection).nameOfClass == self.nameOfClass
+        //        if !sameMode {
+        //            return
+        //        }
+        if TTModeBose.foundDevices.count == 0 {
+            return
+        }
+        let selectedSerials = self.action.optionValue(TTModeBoseConstants.kBoseSelectedSerials) as? [String]
+        if let selectedSerials = selectedSerials {
+            if selectedSerials.count > 0 {
+                return;
             }
         }
-    }
-    
-    fileprivate func displayError(_ error: NSError?) {
-        if let error = error {
-            presentAlert(title: "Error", message: error.description)
+        
+        // Nothing selected, so select everything
+        let serialNumbers = TTModeBose.foundDevices.map { (device) -> String in
+            return device.serialNumber!
         }
-    }
-    
-    fileprivate func presentAlert(title: String, message: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-        self.delegate?.presentError(alert: alert)
+        self.action.changeActionOption(TTModeBoseConstants.kBoseSelectedSerials, to: serialNumbers)
     }
 
-    func playerStateDidChange(_ playerState: SPTAppRemotePlayerState) {
-        
-    }
     
 }
 
