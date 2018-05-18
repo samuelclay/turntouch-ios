@@ -353,6 +353,7 @@
 		FFC9FE991D02520300038817 /* NSObject+Class.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC9FE981D02520300038817 /* NSObject+Class.swift */; };
 		FFD653FB20AE9229004E9DFC /* TTModeBoseDeviceSpeakerOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD653F920AE9229004E9DFC /* TTModeBoseDeviceSpeakerOptions.swift */; };
 		FFD653FC20AE9229004E9DFC /* TTModeBoseDeviceSpeakerOptions.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFD653FA20AE9229004E9DFC /* TTModeBoseDeviceSpeakerOptions.xib */; };
+		FFD653FE20AE9D06004E9DFC /* mode_bose.png in Resources */ = {isa = PBXBuildFile; fileRef = FFD653FD20AE9D06004E9DFC /* mode_bose.png */; };
 		FFD88F1020AE7A9F00E0C5CC /* TTModeBoseMulticastServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD88F0320AE7A9F00E0C5CC /* TTModeBoseMulticastServer.swift */; };
 		FFD88F1120AE7A9F00E0C5CC /* TTModeBoseConnect.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD88F0420AE7A9F00E0C5CC /* TTModeBoseConnect.swift */; };
 		FFD88F1220AE7A9F00E0C5CC /* TTModeBoseConnect.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFD88F0520AE7A9F00E0C5CC /* TTModeBoseConnect.xib */; };
@@ -774,6 +775,7 @@
 		FFC9FE981D02520300038817 /* NSObject+Class.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSObject+Class.swift"; path = "Categories/NSObject+Class.swift"; sourceTree = "<group>"; };
 		FFD653F920AE9229004E9DFC /* TTModeBoseDeviceSpeakerOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTModeBoseDeviceSpeakerOptions.swift; sourceTree = "<group>"; };
 		FFD653FA20AE9229004E9DFC /* TTModeBoseDeviceSpeakerOptions.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TTModeBoseDeviceSpeakerOptions.xib; sourceTree = "<group>"; };
+		FFD653FD20AE9D06004E9DFC /* mode_bose.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mode_bose.png; sourceTree = "<group>"; };
 		FFD88F0320AE7A9F00E0C5CC /* TTModeBoseMulticastServer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TTModeBoseMulticastServer.swift; sourceTree = "<group>"; };
 		FFD88F0420AE7A9F00E0C5CC /* TTModeBoseConnect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TTModeBoseConnect.swift; sourceTree = "<group>"; };
 		FFD88F0520AE7A9F00E0C5CC /* TTModeBoseConnect.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TTModeBoseConnect.xib; sourceTree = "<group>"; };
@@ -1317,6 +1319,7 @@
 				FFB41AD01CEE9A3000CD5F09 /* imac.png */,
 				FFB41AD11CEE9A3000CD5F09 /* macbookpro.png */,
 				FFB41AD21CEE9A3000CD5F09 /* mode_alarm.png */,
+				FFD653FD20AE9D06004E9DFC /* mode_bose.png */,
 				FF6434871D5130BF00F2FAE6 /* mode_camera.png */,
 				FF8B757C1F86D51500D7867C /* mode_custom.png */,
 				FFB41AD31CEE9A3000CD5F09 /* mode_electricobjects.png */,
@@ -1817,6 +1820,7 @@
 				FFB41B631CEE9A3000CD5F09 /* logo_with_title.png in Resources */,
 				FF2023381D02147A005129E5 /* Icon-72.png in Resources */,
 				FFB41B6F1CEE9A3000CD5F09 /* modal_success.png in Resources */,
+				FFD653FE20AE9D06004E9DFC /* mode_bose.png in Resources */,
 				FFB41B4D1CEE9A3000CD5F09 /* sun.png in Resources */,
 				FF534C4A1EB18AC0002EE584 /* TTModeIfttt.plist in Resources */,
 				FFB84B4B1D90D4240037872C /* yoga_position_12.png in Resources */,

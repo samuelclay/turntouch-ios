@@ -96,11 +96,11 @@ class TTModeBose : TTMode, TTModeBoseMulticastDelegate, TTModeBoseDeviceDelegate
     }
     
     override class func subtitle() -> String {
-        return "Control Bose music"
+        return "Control Bose speakers"
     }
     
     override class func imageName() -> String {
-        return "mode_Bose.png"
+        return "mode_bose.png"
     }
     
     // MARK: Actions
