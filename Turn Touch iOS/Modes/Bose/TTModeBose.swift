@@ -13,6 +13,8 @@ import MediaPlayer
 struct TTModeBoseConstants {
     static let kBoseAccessToken = "BoseAccessToken"
     static let jumpVolume = "jumpVolume"
+    static let kBoseFoundDevices = "boseFoundDevicesV2"
+    static let kBoseSeenDevices = "boseSeenDevicesV2"
 }
 
 enum TTBoseState {
@@ -34,26 +36,7 @@ protocol TTModeBoseDelegate {
     func presentError(alert: UIAlertController)
 }
 
-class TTModeBoseAppDelegate : NSObject, SPTAppRemoteDelegate {
-    
-    static var recentBose: TTModeBose?
-    
-    func appRemoteDidEstablishConnection(_ appRemote: SPTAppRemote) {
-        TTModeBose.appRemote = appRemote
-        TTModeBoseAppDelegate.recentBose?.didEstablishConnection()
-    }
-    
-    func appRemote(_ appRemote: SPTAppRemote, didFailConnectionAttemptWithError error: Error?) {
-        TTModeBoseAppDelegate.recentBose?.cancelConnectingToBose()
-    }
-    
-    func appRemote(_ appRemote: SPTAppRemote, didDisconnectWithError error: Error?) {
-        TTModeBoseAppDelegate.recentBose?.cancelConnectingToBose()
-    }
-    
-}
-
-class TTModeBose : TTMode, SPTAppRemotePlayerStateDelegate {
+class TTModeBose : TTMode {
 
     static var reachability: Reachability!
     var musicPlayer: MPMusicPlayerController!
