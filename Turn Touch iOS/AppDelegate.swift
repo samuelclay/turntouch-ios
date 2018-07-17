@@ -190,11 +190,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         }
         
         switch CLLocationManager.authorizationStatus() {
-        case .authorizedAlways:
+        case .authorizedAlways, .authorizedWhenInUse:
             self.startSignificantChangeUpdates()
         case .notDetermined:
             locationManager.requestAlwaysAuthorization()
-        case .authorizedWhenInUse, .restricted, .denied:
+        case .restricted, .denied:
             let alertController = UIAlertController(
                 title: "Background Location Access Disabled",
                 message: "In order to have your remote automatically connect, please open this app's settings and set location access to 'Always'.",
@@ -220,6 +220,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     }
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        bluetoothMonitor.scanKnown()
+    }
+    
+    func monitorRegionAtLocation(center: CLLocationCoordinate2D, identifier: String) {
+        if CLLocationManager.authorizationStatus() == .authorizedAlways {
+            if CLLocationManager.isMonitoringAvailable(for: CLCircularRegion.self) {
+                let maxDistance = locationManager.maximumRegionMonitoringDistance
+                let region = CLCircularRegion(center: center,
+                                              radius: maxDistance, identifier: identifier)
+                region.notifyOnEntry = true
+                region.notifyOnExit = false
+                
+                locationManager.startMonitoring(for: region)
+            }
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
+        bluetoothMonitor.scanKnown()
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
         bluetoothMonitor.scanKnown()
     }
     

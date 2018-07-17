@@ -13,12 +13,25 @@ struct TTModeMusicConstants {
     static let jumpVolume = "jumpVolume"
 }
 
+extension MPVolumeView {
+    static func setVolume(_ volume: Float) {
+        let volumeView = MPVolumeView()
+        let slider = volumeView.subviews.first(where: { $0 is UISlider }) as? UISlider
+        
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.01) {
+            slider?.value = volume;
+        }
+    }
+}
+
 class TTModeMusic: TTMode {
     
     let ITUNES_VOLUME_CHANGE: Float = 0.06
     var observing = false
     var lastVolume: Float!
     var musicPlayer: MPMusicPlayerController!
+    private let containerView = UIView()
+    private let volumeView = MPVolumeView(frame: CGRect(x: 100, y: 100, width: 100, height: 100))
     
     override class func title() -> String {
         return "Music"
@@ -143,14 +156,26 @@ class TTModeMusic: TTMode {
     override func activate() {
         if musicPlayer == nil {
             musicPlayer = MPMusicPlayerController.systemMusicPlayer
+            containerView.addSubview(volumeView)
         }
         
         if !observing {
+            NotificationCenter.default.addObserver(self, selector: #selector(self.volumeDidChange(notification:)), name: NSNotification.Name(rawValue: "AVSystemController_SystemVolumeDidChangeNotification"), object: nil)
+
             AVAudioSession.sharedInstance().addObserver(self, forKeyPath: "outputVolume", options: [], context: nil)
             musicPlayer.addObserver(self, forKeyPath: "nowPlayingItem", options: [], context: nil)
             musicPlayer.beginGeneratingPlaybackNotifications()
             observing = true
         }
+    }
+    
+    @objc func volumeDidChange(notification: NSNotification) {
+        print("VOLUME CHANGING", AVAudioSession.sharedInstance().outputVolume)
+        
+        let volume = notification.userInfo!["AVSystemController_AudioVolumeNotificationParameter"] as! Float
+        print("Device Volume:\(volume)")
+        
+        lastVolume = volume
     }
     
     override func deactivate() {
@@ -176,25 +201,26 @@ class TTModeMusic: TTMode {
     
     var volumeSlider: UISlider {
         get {
-            return (MPVolumeView().subviews.filter { NSStringFromClass($0.classForCoder) == "MPVolumeSlider" }.first as! UISlider)
+            return (volumeView.subviews.filter { NSStringFromClass($0.classForCoder) == "MPVolumeSlider" }.first as! UISlider)
         }
     }
     
     func runTTModeMusicVolumeUp() {
-//        if lastVolume == nil {
+        if lastVolume == nil {
             lastVolume = AVAudioSession.sharedInstance().outputVolume
-//        }
-        lastVolume = min(1, lastVolume + ITUNES_VOLUME_CHANGE)
-        volumeSlider.setValue(lastVolume, animated: false)
-        
+        }
+        lastVolume = min(1, lastVolume + self.ITUNES_VOLUME_CHANGE)
+        print(" ---> Volume up: \(lastVolume)")
+        self.volumeSlider.setValue(lastVolume, animated: false)
     }
     
     func runTTModeMusicVolumeDown() {
-//        if lastVolume == nil {
+        if lastVolume == nil {
             lastVolume = AVAudioSession.sharedInstance().outputVolume
-//        }
-        lastVolume = max(0, lastVolume - ITUNES_VOLUME_CHANGE)
-        volumeSlider.setValue(lastVolume, animated: false)
+        }
+        lastVolume = max(0, lastVolume - self.ITUNES_VOLUME_CHANGE)
+        print(" ---> Volume down: \(lastVolume)")
+        self.volumeSlider.setValue(lastVolume, animated: false)
     }
     
     func runTTModeMusicPlayPause() {

@@ -112,10 +112,10 @@ class TTModeBoseDevice: NSObject {
         deviceName = doc["root"]["device"]["friendlyName"].element?.text
 
         if let serial = doc["root"]["device"]["serialNumber"].element?.text {
-            serialNumber = serial as! String
+            serialNumber = serial
         }
         if let mac = doc["root"]["device"]["UDN"].element?.text {
-            macAddress = mac as! String
+            macAddress = mac
         }
 
         if deviceName != nil {
@@ -178,7 +178,7 @@ class TTModeBoseDevice: NSObject {
     }
     
     func parseBasicEventXml(_ data: Data, _ callback: () -> Void) {
-        let doc = SWXMLHash.parse(data)
+        _ = SWXMLHash.parse(data)
 //        let results = doc["root"]["device"]["friendlyName"].element?.text
 //        if let stateString = doc["s:Envelope"]["s:Body"]["u:GetBinaryStateResponse"]["BinaryState"].element?.text {
 //            if stateString == "1" || stateString == "8" {
