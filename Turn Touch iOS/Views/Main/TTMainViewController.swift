@@ -59,6 +59,7 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
     var settingsViewController: IASKAppSettingsViewController!
     var supportViewController: SFSafariViewController!
     var aboutViewController: TTAboutViewController!
+    var geofencingViewController: TTGeofencingViewController!
     var ftuxViewController: TTFTUXViewController?
     var modalNavController: UINavigationController!
     
@@ -587,6 +588,20 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
 
         aboutViewController = TTAboutViewController()
         modalNavController = UINavigationController(rootViewController: aboutViewController)
+        modalNavController.modalPresentationStyle = .formSheet
+        self.present(modalNavController, animated: true, completion: nil)
+    }
+    
+    func showGeofencingModal() {
+        if modalNavController != nil {
+            print(" ---> Don't show about modal, already showing it")
+            return
+        }
+        
+        titleMenu.dismiss(animated: true, completion: nil)
+        
+        geofencingViewController = TTGeofencingViewController()
+        modalNavController = UINavigationController(rootViewController: geofencingViewController)
         modalNavController.modalPresentationStyle = .formSheet
         self.present(modalNavController, animated: true, completion: nil)
     }

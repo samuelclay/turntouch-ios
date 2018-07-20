@@ -341,10 +341,10 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
     // MARK: CBCentralManager delegate
     
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
+        manager = central
         if DEBUG_BLUETOOTH {
             print(" ---> (\(bluetoothState)) centralManagerDidUpdateState: \(central.state.rawValue) -> \(manager.state.rawValue)")
         }
-        manager = central
         
         if manager.state == .poweredOn && restoredState != nil {
             self.centralManager(manager, willRestoreState: restoredState!)

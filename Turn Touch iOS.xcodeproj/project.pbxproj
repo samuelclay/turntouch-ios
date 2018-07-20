@@ -226,8 +226,11 @@
 		FF8B75A01F86EDC400D7867C /* rename.png in Resources */ = {isa = PBXBuildFile; fileRef = FF8B759C1F86EDBE00D7867C /* rename.png */; };
 		FF8B75A11F86EDC400D7867C /* versions.png in Resources */ = {isa = PBXBuildFile; fileRef = FF8B759D1F86EDBF00D7867C /* versions.png */; };
 		FF8B75A31F86EE6F00D7867C /* search.png in Resources */ = {isa = PBXBuildFile; fileRef = FF8B75A21F86EE6E00D7867C /* search.png */; };
+		FF8BDF1D2100EBA100FAAED5 /* gps.png in Resources */ = {isa = PBXBuildFile; fileRef = FF8BDF1C2100EBA000FAAED5 /* gps.png */; };
 		FF8FB1F41F8F19620085B994 /* TTModeNest.plist in Resources */ = {isa = PBXBuildFile; fileRef = FF8FB1F31F8F19620085B994 /* TTModeNest.plist */; };
 		FF9D5E11202D2DA900009A8F /* pencil.png in Resources */ = {isa = PBXBuildFile; fileRef = FF9D5E10202D2DA900009A8F /* pencil.png */; };
+		FFB2750F20FEB60200FBE13E /* TTGeofencingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB2750D20FEB60200FBE13E /* TTGeofencingViewController.swift */; };
+		FFB2751020FEB60200FBE13E /* TTGeofencingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFB2750E20FEB60200FBE13E /* TTGeofencingViewController.xib */; };
 		FFB41B231CEE9A3000CD5F09 /* app_music.png in Resources */ = {isa = PBXBuildFile; fileRef = FFB41AC11CEE9A3000CD5F09 /* app_music.png */; };
 		FFB41B241CEE9A3000CD5F09 /* button_chevron.png in Resources */ = {isa = PBXBuildFile; fileRef = FFB41AC21CEE9A3000CD5F09 /* button_chevron.png */; };
 		FFB41B251CEE9A3000CD5F09 /* button_dash.png in Resources */ = {isa = PBXBuildFile; fileRef = FFB41AC31CEE9A3000CD5F09 /* button_dash.png */; };
@@ -646,8 +649,11 @@
 		FF8B759C1F86EDBE00D7867C /* rename.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rename.png; sourceTree = "<group>"; };
 		FF8B759D1F86EDBF00D7867C /* versions.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = versions.png; sourceTree = "<group>"; };
 		FF8B75A21F86EE6E00D7867C /* search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search.png; sourceTree = "<group>"; };
+		FF8BDF1C2100EBA000FAAED5 /* gps.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gps.png; sourceTree = "<group>"; };
 		FF8FB1F31F8F19620085B994 /* TTModeNest.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = TTModeNest.plist; path = Modes/Nest/TTModeNest.plist; sourceTree = "<group>"; };
 		FF9D5E10202D2DA900009A8F /* pencil.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pencil.png; sourceTree = "<group>"; };
+		FFB2750D20FEB60200FBE13E /* TTGeofencingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TTGeofencingViewController.swift; path = Views/Modal/TTGeofencingViewController.swift; sourceTree = "<group>"; };
+		FFB2750E20FEB60200FBE13E /* TTGeofencingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = TTGeofencingViewController.xib; path = Views/Modal/TTGeofencingViewController.xib; sourceTree = "<group>"; };
 		FFB41AC11CEE9A3000CD5F09 /* app_music.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = app_music.png; sourceTree = "<group>"; };
 		FFB41AC21CEE9A3000CD5F09 /* button_chevron.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_chevron.png; sourceTree = "<group>"; };
 		FFB41AC31CEE9A3000CD5F09 /* button_dash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_dash.png; sourceTree = "<group>"; };
@@ -1121,6 +1127,8 @@
 				FFC4B1071D3717D500A97C81 /* TTFTUXView.swift */,
 				FF58FC4D203CFA42005F547B /* TTAboutViewController.swift */,
 				FF58FC51203CFAAA005F547B /* TTAboutViewController.xib */,
+				FFB2750D20FEB60200FBE13E /* TTGeofencingViewController.swift */,
+				FFB2750E20FEB60200FBE13E /* TTGeofencingViewController.xib */,
 			);
 			name = Modal;
 			sourceTree = "<group>";
@@ -1290,6 +1298,7 @@
 		FFB41AC01CEE9A3000CD5F09 /* icons */ = {
 			isa = PBXGroup;
 			children = (
+				FF8BDF1C2100EBA000FAAED5 /* gps.png */,
 				FFECC40C203E7B27007AB343 /* twitter-buy.png */,
 				FFECC40D203E7B27007AB343 /* twitter-review.png */,
 				FFECC408203E7891007AB343 /* twitter-samuelclay.png */,
@@ -1812,6 +1821,7 @@
 				FFB84B451D90D4240037872C /* yoga_position_6.png in Resources */,
 				FF20232F1D02147A005129E5 /* Icon-40.png in Resources */,
 				FFB41B541CEE9A3000CD5F09 /* itunes_movies_icon.png in Resources */,
+				FF8BDF1D2100EBA100FAAED5 /* gps.png in Resources */,
 				FFB41B461CEE9A3000CD5F09 /* mode_wemo.png in Resources */,
 				FFB41B6A1CEE9A3000CD5F09 /* modal_ftux_doubletap.png in Resources */,
 				FFB41B251CEE9A3000CD5F09 /* button_dash.png in Resources */,
@@ -1831,6 +1841,7 @@
 				FFB41B3A1CEE9A3000CD5F09 /* mode_meditation.png in Resources */,
 				FFB41B291CEE9A3000CD5F09 /* clock.png in Resources */,
 				FFB41B671CEE9A3000CD5F09 /* modal_ftux_action.png in Resources */,
+				FFB2751020FEB60200FBE13E /* TTGeofencingViewController.xib in Resources */,
 				FFB84B461D90D4240037872C /* yoga_position_7.png in Resources */,
 				FF37EDD41D11174C0026F70D /* TTModeHueConnect.xib in Resources */,
 				FFB41B4A1CEE9A3000CD5F09 /* settings.png in Resources */,
@@ -2129,6 +2140,7 @@
 				FF458AAF1DBEB1BE003FD06B /* TTModeHuePicker.swift in Sources */,
 				FF4AF7B61D248A180009C777 /* TTModeWemoConnect.swift in Sources */,
 				FFF46BDD1D10941500158751 /* DDFileLogger.m in Sources */,
+				FFB2750F20FEB60200FBE13E /* TTGeofencingViewController.swift in Sources */,
 				FFD88F1520AE7A9F00E0C5CC /* TTModeBoseConnected.swift in Sources */,
 				FFE11F4D209C0EC00013D299 /* TTModeSpotifyConnecting.swift in Sources */,
 				FFDA0FA81D3C4F1C0019859F /* LLSimpleCamera.m in Sources */,

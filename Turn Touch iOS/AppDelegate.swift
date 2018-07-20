@@ -184,17 +184,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     // MARK: Location
     
     func beginLocationUpdates() {
+        // Wait until remotes are found before requesting location
         if bluetoothMonitor.foundDevices.count() == 0 {
-            // Wait until remotes are found before requesting location
+            mainViewController.showGeofencingModal()
+
             return
         }
         
         switch CLLocationManager.authorizationStatus() {
-        case .authorizedAlways, .authorizedWhenInUse:
+        case .authorizedAlways:
             self.startSignificantChangeUpdates()
         case .notDetermined:
             locationManager.requestAlwaysAuthorization()
-        case .restricted, .denied:
+        case .authorizedWhenInUse, .restricted, .denied:
             let alertController = UIAlertController(
                 title: "Background Location Access Disabled",
                 message: "In order to have your remote automatically connect, please open this app's settings and set location access to 'Always'.",
@@ -217,12 +219,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     func startSignificantChangeUpdates() {
         locationManager.delegate = self
         locationManager.startMonitoringSignificantLocationChanges()
+        locationManager.distanceFilter = kCLLocationAccuracyNearestTenMeters
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        
+        mainViewController.showGeofencingModal()
+        // for all regions: self.monitorRegionAtLocation(region)
     }
 
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        bluetoothMonitor.scanKnown()
-    }
-    
     func monitorRegionAtLocation(center: CLLocationCoordinate2D, identifier: String) {
         if CLLocationManager.authorizationStatus() == .authorizedAlways {
             if CLLocationManager.isMonitoringAvailable(for: CLCircularRegion.self) {
@@ -235,6 +238,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
                 locationManager.startMonitoring(for: region)
             }
         }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        bluetoothMonitor.scanKnown()
     }
     
     func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
