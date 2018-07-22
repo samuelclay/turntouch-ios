@@ -27,6 +27,9 @@ class TTModeMap: NSObject {
     var eastMode: TTMode!
     var westMode: TTMode!
     var southMode: TTMode!
+    var singleMode = TTMode()
+    var doubleMode = TTMode()
+    var holdMode = TTMode()
     @objc dynamic var tempMode: TTMode!
     
     enum TTButtonAppMode: String {
@@ -84,6 +87,17 @@ class TTModeMap: NSObject {
     
     // MARK: Actions
     
+    func buttonAppMode() -> TTButtonAppMode {
+        let prefs = UserDefaults.standard
+        
+        if let appModePref = prefs.string(forKey: "TT:buttonAppMode"),
+            let appMode: TTButtonAppMode = TTButtonAppMode(rawValue: appModePref) {
+            return appMode
+        }
+        
+        return .FourApps
+    }
+    
     func reset() {
         inspectingModeDirection = .no_DIRECTION
         hoverModeDirection = .no_DIRECTION
@@ -139,10 +153,10 @@ class TTModeMap: NSObject {
         self.reset()
 
         self.selectedModeDirection = direction
+        self.selectedMode = self.modeInDirection(direction)
+        self.recordButtonMoment(direction, .button_MOMENT_HELD)
 
         if [.north, .east, .west, .south, .info].contains(direction) {
-            self.selectedMode = self.modeInDirection(direction)
-            self.recordButtonMoment(direction, .button_MOMENT_HELD)
             if modeChangeType == .remoteButton {
                 self.notifyModeChange(direction: direction)
             }
@@ -492,7 +506,6 @@ class TTModeMap: NSObject {
     
     // MARK: Direction helpers
     
-    
     func modeInDirection(_ direction: TTModeDirection) -> (TTMode) {
         switch direction {
         case .north:
@@ -503,6 +516,12 @@ class TTModeMap: NSObject {
             return self.westMode
         case .south:
             return self.southMode
+        case .single:
+            return self.singleMode
+        case .double:
+            return self.doubleMode
+        case .hold:
+            return self.holdMode
         default:
             return self.northMode
         }
@@ -518,6 +537,12 @@ class TTModeMap: NSObject {
             return "west"
         case .south:
             return "south"
+        case .single:
+            return "single tap"
+        case .double:
+            return "double tap"
+        case .hold:
+            return "hold"
         default:
             return ""
         }
@@ -614,6 +639,13 @@ class TTModeMap: NSObject {
         prefs.set(buttonAppMode.rawValue, forKey: "TT:buttonAppMode")
         prefs.synchronize()
         
+        switch buttonAppMode {
+        case .FourApps:
+            self.selectedModeDirection = .north
+        case .OneApp:
+            self.selectedModeDirection = .single
+        }
+
         self.setupModes()
         self.activateModes()
     }

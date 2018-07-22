@@ -78,7 +78,11 @@ class TTModeTab: UIView {
             break
         }
         
-        self.modeTitle = type(of: self.mode).title()
+        if appDelegate().modeMap.buttonAppMode() == .FourApps {
+            self.modeTitle = type(of: self.mode).title()
+        } else {
+            self.modeTitle = appDelegate().modeMap.directionName(modeDirection)
+        }
     }
     
     override class var requiresConstraintBasedLayout : Bool {

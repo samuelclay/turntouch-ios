@@ -96,12 +96,20 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
                                                 multiplier: 1.0, constant: 44)
         stackView.addConstraint(titleBarConstraint)
         
-        modeTabs = [
-            TTModeTab(modeDirection:.north),
-            TTModeTab(modeDirection:.east),
-            TTModeTab(modeDirection:.west),
-            TTModeTab(modeDirection:.south),
-        ]
+        if appDelegate().modeMap.buttonAppMode() == .FourApps {
+            modeTabs = [
+                TTModeTab(modeDirection:.north),
+                TTModeTab(modeDirection:.east),
+                TTModeTab(modeDirection:.west),
+                TTModeTab(modeDirection:.south),
+            ]
+        } else {
+            modeTabs = [
+                TTModeTab(modeDirection: .single),
+                TTModeTab(modeDirection: .double),
+                TTModeTab(modeDirection: .hold)
+            ]
+        }
         modeTabsView = UIStackView(arrangedSubviews: modeTabs)
         modeTabsView.axis = .horizontal
         modeTabsView.distribution = .fillEqually

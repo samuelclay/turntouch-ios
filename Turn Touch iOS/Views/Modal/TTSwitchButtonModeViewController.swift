@@ -23,6 +23,18 @@ class TTSwitchButtonModeViewController: UIViewController {
         self.navigationItem.title = "Switch button mode"
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if appDelegate().modeMap.buttonAppMode() == .FourApps {
+            fourAppSwitch.isOn = true
+            oneAppSwitch.isOn = false
+        } else {
+            oneAppSwitch.isOn = true
+            fourAppSwitch.isOn = false
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
