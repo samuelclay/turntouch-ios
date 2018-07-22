@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		85D8B548CD81B8F0353F6C06 /* Pods_Turn_Touch_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACFD869DD1D0B508AA8C9258 /* Pods_Turn_Touch_iOS.framework */; };
 		FF08A2331D501ABD00D433A5 /* TTModeCameraReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF08A2321D501ABD00D433A5 /* TTModeCameraReviewViewController.swift */; };
+		FF0EDD992105329400F3D5C3 /* switch_mode.png in Resources */ = {isa = PBXBuildFile; fileRef = FF0EDD982105329300F3D5C3 /* switch_mode.png */; };
+		FF0EDD9C2105333800F3D5C3 /* TTSwitchButtonModeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0EDD9A2105333800F3D5C3 /* TTSwitchButtonModeViewController.swift */; };
+		FF0EDD9D2105333800F3D5C3 /* TTSwitchButtonModeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF0EDD9B2105333800F3D5C3 /* TTSwitchButtonModeViewController.xib */; };
 		FF0F10BE1CF55A9000CC1F29 /* UIColor+hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0F10BD1CF55A9000CC1F29 /* UIColor+hex.swift */; };
 		FF0F10C01CF5638D00CC1F29 /* Preferences.plist in Resources */ = {isa = PBXBuildFile; fileRef = FF0F10BF1CF5638D00CC1F29 /* Preferences.plist */; };
 		FF0F10C21CF60C3D00CC1F29 /* TTTitleBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0F10C11CF60C3D00CC1F29 /* TTTitleBarView.swift */; };
@@ -425,6 +428,9 @@
 		87558F01A91A74C470B9149B /* Pods-Turn Touch iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Turn Touch iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-Turn Touch iOS/Pods-Turn Touch iOS.release.xcconfig"; sourceTree = "<group>"; };
 		ACFD869DD1D0B508AA8C9258 /* Pods_Turn_Touch_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Turn_Touch_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF08A2321D501ABD00D433A5 /* TTModeCameraReviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeCameraReviewViewController.swift; path = Modes/Camera/TTModeCameraReviewViewController.swift; sourceTree = "<group>"; };
+		FF0EDD982105329300F3D5C3 /* switch_mode.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = switch_mode.png; sourceTree = "<group>"; };
+		FF0EDD9A2105333800F3D5C3 /* TTSwitchButtonModeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TTSwitchButtonModeViewController.swift; path = Views/Modal/TTSwitchButtonModeViewController.swift; sourceTree = "<group>"; };
+		FF0EDD9B2105333800F3D5C3 /* TTSwitchButtonModeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = TTSwitchButtonModeViewController.xib; path = Views/Modal/TTSwitchButtonModeViewController.xib; sourceTree = "<group>"; };
 		FF0F10BD1CF55A9000CC1F29 /* UIColor+hex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIColor+hex.swift"; path = "Categories/UIColor+hex.swift"; sourceTree = "<group>"; };
 		FF0F10BF1CF5638D00CC1F29 /* Preferences.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Preferences.plist; sourceTree = "<group>"; };
 		FF0F10C11CF60C3D00CC1F29 /* TTTitleBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTTitleBarView.swift; path = Views/Main/TTTitleBarView.swift; sourceTree = "<group>"; };
@@ -1129,6 +1135,8 @@
 				FF58FC51203CFAAA005F547B /* TTAboutViewController.xib */,
 				FFB2750D20FEB60200FBE13E /* TTGeofencingViewController.swift */,
 				FFB2750E20FEB60200FBE13E /* TTGeofencingViewController.xib */,
+				FF0EDD9A2105333800F3D5C3 /* TTSwitchButtonModeViewController.swift */,
+				FF0EDD9B2105333800F3D5C3 /* TTSwitchButtonModeViewController.xib */,
 			);
 			name = Modal;
 			sourceTree = "<group>";
@@ -1298,6 +1306,7 @@
 		FFB41AC01CEE9A3000CD5F09 /* icons */ = {
 			isa = PBXGroup;
 			children = (
+				FF0EDD982105329300F3D5C3 /* switch_mode.png */,
 				FF8BDF1C2100EBA000FAAED5 /* gps.png */,
 				FFECC40C203E7B27007AB343 /* twitter-buy.png */,
 				FFECC40D203E7B27007AB343 /* twitter-review.png */,
@@ -1792,6 +1801,7 @@
 				FFB41B411CEE9A3000CD5F09 /* mode_smartlock.png in Resources */,
 				FFB41B5D1CEE9A3000CD5F09 /* logo_256.png in Resources */,
 				FFB84B4D1D90D4240037872C /* yoga_position_14.png in Resources */,
+				FF0EDD9D2105333800F3D5C3 /* TTSwitchButtonModeViewController.xib in Resources */,
 				FFB41B3B1CEE9A3000CD5F09 /* mode_morning.png in Resources */,
 				FFD88F1620AE7A9F00E0C5CC /* TTModeBoseOptions.xib in Resources */,
 				FFB41B611CEE9A3000CD5F09 /* logo_white.png in Resources */,
@@ -2021,6 +2031,7 @@
 				FF8B75661F86D4EF00D7867C /* music_ff.png in Resources */,
 				FF8B75671F86D4EF00D7867C /* music_pause.png in Resources */,
 				FF8B75681F86D4EF00D7867C /* music_play_pause.png in Resources */,
+				FF0EDD992105329400F3D5C3 /* switch_mode.png in Resources */,
 				FF8B75691F86D4EF00D7867C /* music_play.png in Resources */,
 				FF8B756A1F86D4EF00D7867C /* music_playlist.png in Resources */,
 				FF9D5E11202D2DA900009A8F /* pencil.png in Resources */,
@@ -2164,6 +2175,7 @@
 				FF4487781D09367000ED8099 /* TTButtonState.swift in Sources */,
 				FF0F10D01CF63F6100CC1F29 /* TTModeAlarmClock.swift in Sources */,
 				FFB41B881CF536BB00CD5F09 /* TTActionMap.swift in Sources */,
+				FF0EDD9C2105333800F3D5C3 /* TTSwitchButtonModeViewController.swift in Sources */,
 				FF2E1C461E42D92000CFBEE0 /* TTModeNestSetTempOptions.swift in Sources */,
 				FF534C4D1EB2BC9F002EE584 /* TTModeIftttTriggerActionOptions.swift in Sources */,
 				FF534C371EB0351A002EE584 /* TTModeIfttt.swift in Sources */,

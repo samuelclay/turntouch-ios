@@ -98,6 +98,8 @@ class TTTitleBarView: UIView, TTTitleMenuDelegate {
              "image": "add"],
             ["title": "Settings",
              "image": "preferences"],
+            ["title": "Switch button mode",
+             "image": "switch_mode"],
             ["title": "How it works",
              "image": "how_it_works"],
             ["title": "Contact support",
@@ -114,10 +116,12 @@ class TTTitleBarView: UIView, TTTitleMenuDelegate {
         case 1:
             appDelegate().mainViewController.showSettingsModal()
         case 2:
-            appDelegate().mainViewController.showFtuxModal()
+            appDelegate().mainViewController.showSwitchButtonModeModal()
         case 3:
-            appDelegate().mainViewController.showSupportModal()
+            appDelegate().mainViewController.showFtuxModal()
         case 4:
+            appDelegate().mainViewController.showSupportModal()
+        case 5:
             appDelegate().mainViewController.showAboutModal()
         default:
             break

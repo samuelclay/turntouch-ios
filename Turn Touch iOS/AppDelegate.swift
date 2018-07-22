@@ -185,8 +185,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     
     func beginLocationUpdates() {
         // Wait until remotes are found before requesting location
-        if bluetoothMonitor.foundDevices.count() == 0 {
-            mainViewController.showGeofencingModal()
+        if bluetoothMonitor.foundDevices.count() > 0 {
+//            mainViewController.showGeofencingModal()
 
             return
         }
@@ -222,7 +222,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         locationManager.distanceFilter = kCLLocationAccuracyNearestTenMeters
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         
-        mainViewController.showGeofencingModal()
+//        mainViewController.showGeofencingModal()
         // for all regions: self.monitorRegionAtLocation(region)
     }
 

@@ -57,6 +57,7 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
     var pairingViewController: TTPairingViewController?
     var pairingInfoViewController: TTPairingInfoViewController?
     var settingsViewController: IASKAppSettingsViewController!
+    var switchButtonModeViewController: TTSwitchButtonModeViewController!
     var supportViewController: SFSafariViewController!
     var aboutViewController: TTAboutViewController!
     var geofencingViewController: TTGeofencingViewController!
@@ -409,7 +410,7 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
     func toggleTitleMenu(_ sender: UIButton) {
         titleMenu.delegate = titleBarView
         titleMenu.modalPresentationStyle = .popover
-        titleMenu.preferredContentSize = CGSize(width: 204,
+        titleMenu.preferredContentSize = CGSize(width: 224,
                                                 height: titleMenu.delegate.menuHeight * titleMenu.delegate.menuOptions().count)
         if let popoverViewController = titleMenu.popoverPresentationController {
             popoverViewController.permittedArrowDirections = .up
@@ -548,6 +549,20 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
         settingsViewController.delegate = self
         
         modalNavController = UINavigationController(rootViewController: settingsViewController)
+        modalNavController.modalPresentationStyle = .formSheet
+        self.present(modalNavController, animated: true, completion: nil)
+    }
+    
+    func showSwitchButtonModeModal() {
+        if modalNavController != nil {
+            print(" ---> Don't show switch button mode modal, already showing it")
+            return
+        }
+        
+        titleMenu.dismiss(animated: true, completion: nil)
+        switchButtonModeViewController = TTSwitchButtonModeViewController()
+        
+        modalNavController = UINavigationController(rootViewController: switchButtonModeViewController)
         modalNavController.modalPresentationStyle = .formSheet
         self.present(modalNavController, animated: true, completion: nil)
     }
