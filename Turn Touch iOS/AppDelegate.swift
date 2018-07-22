@@ -117,6 +117,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         return true
     }
     
+    func redrawMainLayout() {
+        mainViewController = TTMainViewController()
+        window?.rootViewController = mainViewController
+        window?.makeKeyAndVisible()
+        modeMap.activateModes()
+    }
+    
     func recordState() {
         switch (UIApplication.shared.applicationState) {
         case .active:
