@@ -35,6 +35,12 @@ class TTSwitchButtonModeViewController: UIViewController {
         }
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        appDelegate().redrawMainLayout()
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -65,7 +71,6 @@ class TTSwitchButtonModeViewController: UIViewController {
         oneAppSwitch.isOn = false
         
         appDelegate().modeMap.switchButtonAppMode(.FourApps)
-        appDelegate().redrawMainLayout()
     }
     
     func switchOneApp() {
@@ -73,6 +78,5 @@ class TTSwitchButtonModeViewController: UIViewController {
         fourAppSwitch.isOn = false
         
         appDelegate().modeMap.switchButtonAppMode(.OneApp)
-        appDelegate().redrawMainLayout()
     }
 }
