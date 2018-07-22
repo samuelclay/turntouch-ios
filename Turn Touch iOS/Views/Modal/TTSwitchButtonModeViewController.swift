@@ -51,10 +51,14 @@ class TTSwitchButtonModeViewController: UIViewController {
     func switchFourApp() {
         fourAppSwitch.isOn = true
         oneAppSwitch.isOn = false
+        
+        appDelegate().modeMap.switchButtonMode(.FourApps)
     }
     
     func switchOneApp() {
         oneAppSwitch.isOn = true
         fourAppSwitch.isOn = false
+        
+        appDelegate().modeMap.switchButtonMode(.OneApp)
     }
 }

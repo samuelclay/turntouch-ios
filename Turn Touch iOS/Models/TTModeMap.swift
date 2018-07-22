@@ -29,6 +29,11 @@ class TTModeMap: NSObject {
     var southMode: TTMode!
     @objc dynamic var tempMode: TTMode!
     
+    enum TTButtonAppMode: String {
+        case FourApps = "four_apps"
+        case OneApp = "one_app"
+    }
+    
     var batchActions = TTBatchActions()
     
     @objc dynamic var availableModes: [String] = []
@@ -597,4 +602,15 @@ class TTModeMap: NSObject {
         return uuid.uuidString
     }
 
+    // Mark: Button App Modes
+    
+    func switchButtonAppMode(_ buttonAppMode: TTButtonAppMode) {
+        let prefs = UserDefaults.standard
+        
+        prefs.set(buttonAppMode.rawValue, forKey: "TT:buttonAppMode")
+        prefs.synchronize()
+        
+        self.setupModes()
+        self.activateModes()
+    }
 }
