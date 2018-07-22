@@ -41,10 +41,6 @@ class TTGeofencingViewController: UIViewController, MKMapViewDelegate, CLLocatio
             locationManager.delegate = self
             locationManager.desiredAccuracy = kCLLocationAccuracyBest
             locationManager.requestAlwaysAuthorization()
-            
-            DispatchQueue.main.async {
-                self.locationManager.startUpdatingLocation()
-            }
         }
     }
 
@@ -53,21 +49,32 @@ class TTGeofencingViewController: UIViewController, MKMapViewDelegate, CLLocatio
         // Dispose of any resources that can be recreated.
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        DispatchQueue.main.async {
+            self.locationManager.startUpdatingLocation()
+        }
+    }
+    
 
     @objc func close(_ sender: UIBarButtonItem!) {
         appDelegate().mainViewController.closeModal()
     }
     
     @objc func save(_ sender: UIBarButtonItem!) {
+        
         appDelegate().mainViewController.closeModal()
     }
     
     // MARK: MapKit
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        if !regionHasBeenCentered {
-            regionHasBeenCentered = true
-            self.zoomIn(self.mapView)
+        if let lastLocation = locations.last, lastLocation.timestamp.timeIntervalSinceNow > -5.0 {
+            if !regionHasBeenCentered {
+                regionHasBeenCentered = true
+                self.zoomIn(self.mapView)
+            }
         }
     }
     
@@ -135,7 +142,5 @@ class TTGeofencingViewController: UIViewController, MKMapViewDelegate, CLLocatio
             self.redrawGeofence(coordinate: userLocation)
         }
     }
-    
-    
 
 }
