@@ -16,6 +16,9 @@ enum TTModeDirection: Int {
     case west = 3
     case south = 4
     case info = 5
+    case single = 6
+    case double = 7
+    case hold = 8
 }
 
 enum TTButtonMoment: Int {

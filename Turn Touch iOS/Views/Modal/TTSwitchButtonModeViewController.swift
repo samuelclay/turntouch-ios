@@ -52,7 +52,7 @@ class TTSwitchButtonModeViewController: UIViewController {
         fourAppSwitch.isOn = true
         oneAppSwitch.isOn = false
         
-        appDelegate().modeMap.switchButtonMode(.FourApps)
+        appDelegate().modeMap.switchButtonAppMode(.FourApps)
         appDelegate().redrawMainLayout()
     }
     
@@ -60,7 +60,7 @@ class TTSwitchButtonModeViewController: UIViewController {
         oneAppSwitch.isOn = true
         fourAppSwitch.isOn = false
         
-        appDelegate().modeMap.switchButtonMode(.OneApp)
+        appDelegate().modeMap.switchButtonAppMode(.OneApp)
         appDelegate().redrawMainLayout()
     }
 }

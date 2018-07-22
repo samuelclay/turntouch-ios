@@ -136,23 +136,33 @@ class TTModeMap: NSObject {
 
         batchActions.deactivate()
         self.selectedMode.deactivate()
-        
-        if direction != .no_DIRECTION {
+        self.reset()
+
+        self.selectedModeDirection = direction
+
+        if [.north, .east, .west, .south, .info].contains(direction) {
             self.selectedMode = self.modeInDirection(direction)
+            self.recordButtonMoment(direction, .button_MOMENT_HELD)
+            if modeChangeType == .remoteButton {
+                self.notifyModeChange(direction: direction)
+            }
+            self.availableActions = type(of: selectedMode).actions()
+            self.selectedMode.modeChangeType = modeChangeType
+            self.selectedMode.activate(direction)
+            batchActions.assemble(modeDirection: direction)
+        } else if [.single, .double, .hold].contains(direction) {
+
         } else {
 //            let className = "Turn_Touch_iOS.\(modeName)"
 //            let modeClass = NSClassFromString(className) as! TTMode.Type
             print(" ---> Can't switch into non-direciton mode. Easy fix right here...")
         }
+    }
+    
+    func notifyModeChange(direction: TTModeDirection) {
+        let prefs = UserDefaults.standard
         
-        self.availableActions = type(of: selectedMode).actions()
-        self.selectedMode.modeChangeType = modeChangeType
-        self.selectedMode.activate(direction)
-        self.reset()
-        self.selectedModeDirection = direction
-        batchActions.assemble(modeDirection: direction)
-        
-        var url: URL!
+        var url: URL?
         switch direction {
         case .north:
             url = Bundle.main.url(forResource: "north tone", withExtension: "wav")!
@@ -163,61 +173,55 @@ class TTModeMap: NSObject {
         case .south:
             url = Bundle.main.url(forResource: "south tone", withExtension: "wav")!
         default:
-            url = Bundle.main.url(forResource: "south tone", withExtension: "wav")!
+            url = nil
         }
         
-        
-        if modeChangeType == .remoteButton {
-            let prefs = UserDefaults.standard
-            
-            if prefs.bool(forKey: "TT:pref:sound_on_app_change") {
+        if prefs.bool(forKey: "TT:pref:sound_on_app_change") {
+            do {
+                try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback, with: .mixWithOthers)
                 do {
-                    try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback, with: .mixWithOthers)
-                    do {
-                        try AVAudioSession.sharedInstance().setActive(true)
-                    } catch {
-                        print(" ---> Audio active error: \(error.localizedDescription)")
-                    }
+                    try AVAudioSession.sharedInstance().setActive(true)
                 } catch {
-                    print(" ---> Audio category error: \(error.localizedDescription)")
+                    print(" ---> Audio active error: \(error.localizedDescription)")
                 }
-                
-                do {
-                    player = try AVAudioPlayer(contentsOf: url)
+            } catch {
+                print(" ---> Audio category error: \(error.localizedDescription)")
+            }
+            
+            do {
+                if let audioUrl = url {
+                    player = try AVAudioPlayer(contentsOf: audioUrl)
                     guard let player = player else { return }
                     
                     player.prepareToPlay()
                     player.play()
-                } catch let error {
-                    print(error.localizedDescription)
                 }
+            } catch let error {
+                print(error.localizedDescription)
             }
-            
-            // Doesn't work in background
-//            if prefs.bool(forKey: "TT:pref:sound_on_app_change") {
-//                var soundId: SystemSoundID = 0
-//                AudioServicesCreateSystemSoundID(url as CFURL, &soundId)
-//                AudioServicesPlaySystemSoundWithCompletion(soundId, { 
-//                    AudioServicesDisposeSystemSoundID(soundId)
-//                })
-//            }
-
-            if prefs.bool(forKey: "TT:pref:vibrate_on_app_change") {
-                if #available(iOS 10.0, *) {
-                    // does nothing on iPhone 6s
-//                    if UIApplication.shared.applicationState == .active {
-//                        let generator = UINotificationFeedbackGenerator()
-//                        generator.notificationOccurred(.success)
-//                    } else {
-                        AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
-//                    }
-                } else {
-                    AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
-                }
+        }
+        
+        // Doesn't work in background
+        //            if prefs.bool(forKey: "TT:pref:sound_on_app_change") {
+        //                var soundId: SystemSoundID = 0
+        //                AudioServicesCreateSystemSoundID(url as CFURL, &soundId)
+        //                AudioServicesPlaySystemSoundWithCompletion(soundId, {
+        //                    AudioServicesDisposeSystemSoundID(soundId)
+        //                })
+        //            }
+        
+        if prefs.bool(forKey: "TT:pref:vibrate_on_app_change") {
+            if #available(iOS 10.0, *) {
+                // does nothing on iPhone 6s
+                //                    if UIApplication.shared.applicationState == .active {
+                //                        let generator = UINotificationFeedbackGenerator()
+                //                        generator.notificationOccurred(.success)
+                //                    } else {
+                AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
+                //                    }
+            } else {
+                AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
             }
-            
-
-            self.recordButtonMoment(.no_DIRECTION, .button_MOMENT_HELD)
         }
     }
     
