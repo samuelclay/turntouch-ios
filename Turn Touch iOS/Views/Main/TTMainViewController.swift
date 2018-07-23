@@ -269,7 +269,7 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
         appDelegate().modeMap.addObserver(self, forKeyPath: "openedModeChangeMenu", options: [], context: nil)
         appDelegate().modeMap.addObserver(self, forKeyPath: "openedActionChangeMenu", options: [], context: nil)
         appDelegate().modeMap.addObserver(self, forKeyPath: "openedAddActionChangeMenu", options: [], context: nil)
-        appDelegate().modeMap.addObserver(self, forKeyPath: "selectedMode", options: [], context: nil)
+        appDelegate().modeMap.addObserver(self, forKeyPath: "selectedModeDirection", options: [], context: nil)
         appDelegate().modeMap.addObserver(self, forKeyPath: "inspectingModeDirection", options: [], context: nil)
         appDelegate().modeMap.addObserver(self, forKeyPath: "tempMode", options: [], context: nil)
         appDelegate().bluetoothMonitor.addObserver(self, forKeyPath: "nicknamedConnectedCount", options: [], context: nil)
@@ -284,7 +284,7 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
             self.toggleActionMenu()
         } else if keyPath == "openedAddActionChangeMenu" {
             self.toggleAddActionMenu()
-        } else if keyPath == "selectedMode" {
+        } else if keyPath == "selectedModeDirection" {
             self.resetPosition()
         } else if keyPath == "inspectingModeDirection" {
             self.toggleActionView()
@@ -304,7 +304,7 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
         appDelegate().modeMap.removeObserver(self, forKeyPath: "openedModeChangeMenu")
         appDelegate().modeMap.removeObserver(self, forKeyPath: "openedActionChangeMenu")
         appDelegate().modeMap.removeObserver(self, forKeyPath: "openedAddActionChangeMenu")
-        appDelegate().modeMap.removeObserver(self, forKeyPath: "selectedMode")
+        appDelegate().modeMap.removeObserver(self, forKeyPath: "selectedModeDirection")
         appDelegate().modeMap.removeObserver(self, forKeyPath: "inspectingModeDirection")
         appDelegate().modeMap.removeObserver(self, forKeyPath: "tempMode")
         appDelegate().bluetoothMonitor.removeObserver(self, forKeyPath: "nicknamedConnectedCount")

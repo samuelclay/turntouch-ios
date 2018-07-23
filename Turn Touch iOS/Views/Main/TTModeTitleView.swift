@@ -92,7 +92,11 @@ class TTModeTitleView: UIView {
             changeButton.setTitle("Change", for: .normal)
         }
         
-        titleLabel.text = type(of: appDelegate().modeMap.selectedMode).subtitle()
+        if appDelegate().modeMap.buttonAppMode() == .FourApps {
+            titleLabel.text = type(of: appDelegate().modeMap.selectedMode).subtitle()
+        } else {
+            titleLabel.text = type(of: appDelegate().modeMap.selectedMode).title()
+        }
         modeImageView.image = UIImage(named:type(of: appDelegate().modeMap.selectedMode).imageName())
         
         super.draw(rect)
@@ -108,7 +112,9 @@ class TTModeTitleView: UIView {
         if appDelegate().modeMap.openedAddActionChangeMenu {
             appDelegate().modeMap.openedAddActionChangeMenu = false
         }
-        appDelegate().modeMap.inspectingModeDirection = .no_DIRECTION
+        if appDelegate().modeMap.buttonAppMode() == .FourApps {
+            appDelegate().modeMap.inspectingModeDirection = .no_DIRECTION
+        }
 
         self.setNeedsDisplay()
     }

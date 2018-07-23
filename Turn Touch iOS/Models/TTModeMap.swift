@@ -159,7 +159,15 @@ class TTModeMap: NSObject {
     func activateOneAppMode(_ direction: TTModeDirection) {
         switch (direction) {
         case .north:
-            
+            self.selectedMode = self.northMode
+        case .east:
+            self.selectedMode = self.eastMode
+        case .west:
+            self.selectedMode = self.westMode
+        case .south:
+            self.selectedMode = self.southMode
+        default:
+            break
         }
     }
     
