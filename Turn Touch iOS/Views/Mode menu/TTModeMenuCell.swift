@@ -94,7 +94,7 @@ class TTModeMenuCell: UICollectionViewCell {
         
         if menuType == .menu_MODE || menuType == .menu_ADD_MODE {
             if menuType == .menu_MODE {
-                isSelected = activeMode >!< appDelegate().modeMap.selectedMode
+                isSelected = modeClass == type(of: appDelegate().modeMap.selectedMode)
             }
             titleLabel.text = modeClass.title().uppercased()
             let imageName = modeClass.imageName()
