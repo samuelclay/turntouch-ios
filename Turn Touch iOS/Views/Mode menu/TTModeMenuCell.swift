@@ -148,14 +148,14 @@ class TTModeMenuCell: UICollectionViewCell {
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         isHighlighted = false
         let selectedMode = appDelegate().modeMap.selectedMode.nameOfClass
-        
+        let inspectingModeDirection = appDelegate().modeMap.inspectingModeDirection
+
         if let touch = touches.first {
             if self.bounds.contains(touch.location(in: self)) {
                 if menuType == .menu_MODE {
                     if appDelegate().modeMap.buttonAppMode() == .FourApps {
                         appDelegate().modeMap.changeDirection(appDelegate().modeMap.selectedModeDirection, toMode:modeName)
                     } else {
-                        let inspectingModeDirection = appDelegate().modeMap.inspectingModeDirection
                         appDelegate().modeMap.changeDirection(inspectingModeDirection, toMode:modeName)
                         appDelegate().modeMap.inspectingModeDirection = inspectingModeDirection
                     }
@@ -165,7 +165,11 @@ class TTModeMenuCell: UICollectionViewCell {
                     // Update the action diamond
                     appDelegate().modeMap.selectedModeDirection = appDelegate().modeMap.selectedModeDirection
                     // Update the mode menu
-                    appDelegate().modeMap.inspectingModeDirection = appDelegate().modeMap.inspectingModeDirection
+                    if appDelegate().modeMap.buttonAppMode() == .FourApps {
+                        appDelegate().modeMap.inspectingModeDirection = appDelegate().modeMap.inspectingModeDirection
+                    } else {
+                        appDelegate().modeMap.inspectingModeDirection = inspectingModeDirection
+                    }
                     
                     let actionName = appDelegate().modeMap.selectedMode.actionNameInDirection(appDelegate().modeMap.inspectingModeDirection)
                     appDelegate().modeMap.recordUsage(additionalParams: ["moment": "change:action:\(selectedMode):\(actionName)"])

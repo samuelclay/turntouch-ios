@@ -94,10 +94,12 @@ class TTModeTitleView: UIView {
         
         if appDelegate().modeMap.buttonAppMode() == .FourApps {
             titleLabel.text = type(of: appDelegate().modeMap.selectedMode).subtitle()
+            modeImageView.image = UIImage(named:type(of: appDelegate().modeMap.selectedMode).imageName())
         } else {
-            titleLabel.text = type(of: appDelegate().modeMap.selectedMode).title()
+            let inspectingModeDirection = appDelegate().modeMap.inspectingModeDirection
+            titleLabel.text = type(of: appDelegate().modeMap.modeInDirection(inspectingModeDirection)).title()
+            modeImageView.image = UIImage(named:type(of: appDelegate().modeMap.modeInDirection(inspectingModeDirection)).imageName())
         }
-        modeImageView.image = UIImage(named:type(of: appDelegate().modeMap.selectedMode).imageName())
         
         super.draw(rect)
     }

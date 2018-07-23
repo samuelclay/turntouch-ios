@@ -106,7 +106,8 @@ class TTModeMap: NSObject {
 
     func setupModes() {
         let prefs = UserDefaults.standard
-
+        let buttonAppMode = self.buttonAppMode()
+        
         for direction: String in ["north", "east", "west", "south"] {
             if let directionModeName = prefs.string(forKey: "TT:\(self.modeRoot()):\(direction)") {
                 let className = "Turn_Touch_iOS.\(directionModeName)"
@@ -114,16 +115,16 @@ class TTModeMap: NSObject {
                 switch (direction) {
                 case "north":
                     northMode = modeClass.init()
-                    northMode.modeDirection = .north
+                    northMode.modeDirection = buttonAppMode == .FourApps ? .north : self.selectedModeDirection
                 case "east":
                     eastMode = modeClass.init()
-                    eastMode.modeDirection = .east
+                    eastMode.modeDirection = buttonAppMode == .FourApps ? .east : self.selectedModeDirection
                 case "west":
                     westMode = modeClass.init()
-                    westMode.modeDirection = .west
+                    westMode.modeDirection = buttonAppMode == .FourApps ? .west : self.selectedModeDirection
                 case "south":
                     southMode = modeClass.init()
-                    southMode.modeDirection = .south
+                    southMode.modeDirection = buttonAppMode == .FourApps ? .south : self.selectedModeDirection
                 default:
                     break
                 }
@@ -541,6 +542,9 @@ class TTModeMap: NSObject {
         
         self.setupModes()
         self.activateModes()
+        if buttonAppMode() == .OneApp {
+            self.activateOneAppMode(direction)
+        }
     }
     
     func changeDirection(_ direction: TTModeDirection, toAction actionClassName: String) {
@@ -631,6 +635,11 @@ class TTModeMap: NSObject {
         let modeName = self.selectedMode.nameOfClass
         let actionName = self.selectedMode.actionNameInDirection(self.inspectingModeDirection)
         appDelegate().modeMap.recordUsage(additionalParams: ["moment": "tap:inspect-action:\(modeName):\(actionName)"])
+    }
+    
+    func toggleOpenedActionChangeMenu() {
+        self.availableActions = type(of: selectedMode).actions()
+        self.openedActionChangeMenu = !self.openedActionChangeMenu
     }
 
     // MARK: Device info

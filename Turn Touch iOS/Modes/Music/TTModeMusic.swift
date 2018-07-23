@@ -60,11 +60,11 @@ class TTModeMusic: TTMode {
     }
     
     func titleTTModeMusicVolumeUp() -> String {
-        return "Music volume up"
+        return "Volume up"
     }
     
     func titleTTModeMusicVolumeDown() -> String {
-        return "Music volume down"
+        return "Volume down"
     }
     
     func titleTTModeMusicVolumeMute() -> String {

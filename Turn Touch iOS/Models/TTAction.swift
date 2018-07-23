@@ -17,7 +17,7 @@ class TTAction: NSObject {
     
     init(actionName: String, direction: TTModeDirection) {
         super.init()
-        mode = appDelegate().modeMap.selectedMode
+        mode = appDelegate().modeMap.modeInDirection(direction)
         self.actionName = actionName
         self.direction = direction
     }

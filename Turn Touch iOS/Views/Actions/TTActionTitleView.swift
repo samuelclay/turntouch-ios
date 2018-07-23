@@ -82,17 +82,21 @@ class TTActionTitleView: UIView {
     
     func registerAsObserver() {
         appDelegate().modeMap.addObserver(self, forKeyPath: "inspectingModeDirection", options: [], context: nil)
+        appDelegate().modeMap.addObserver(self, forKeyPath: "openedActionChangeMenu", options: [], context: nil)
     }
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?,
                                          change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if keyPath == "inspectingModeDirection" {
             self.setNeedsDisplay()
+        } else if keyPath == "openedActionChangeMenu" {
+            self.setNeedsDisplay()
         }
     }
     
     deinit {
         appDelegate().modeMap.removeObserver(self, forKeyPath: "inspectingModeDirection")
+        appDelegate().modeMap.removeObserver(self, forKeyPath: "openedActionChangeMenu")
     }
     
     // MARK: Drawing
@@ -126,7 +130,13 @@ class TTActionTitleView: UIView {
     // MARK: Actions
     
     @objc func pressChange(_ sender: UIButton!) {
-        appDelegate().modeMap.openedActionChangeMenu = !appDelegate().modeMap.openedActionChangeMenu
+        appDelegate().modeMap.toggleOpenedActionChangeMenu()
+        if appDelegate().modeMap.openedModeChangeMenu {
+            appDelegate().modeMap.openedModeChangeMenu = false
+        }
+        if appDelegate().modeMap.openedAddActionChangeMenu {
+            appDelegate().modeMap.openedAddActionChangeMenu = false
+        }
         self.setNeedsDisplay()
     }
     
