@@ -47,7 +47,7 @@ class TTMode : NSObject, TTModeProtocol {
 //        NSLog("Initializing mode: \(self)")
     }
     
-    init(modeDirection: TTModeDirection) {
+     init(modeDirection: TTModeDirection) {
         super.init()
         self.modeDirection = modeDirection
     }
@@ -174,9 +174,29 @@ class TTMode : NSObject, TTModeProtocol {
         prefs.synchronize()
     }
     
+    func modeInDirection(_ direction: TTModeDirection) -> TTMode {
+        var mode = self
+        if appDelegate().modeMap.buttonAppMode() == .OneApp {
+            switch direction {
+            case .north:
+                mode = appDelegate().modeMap.northMode
+            case .east:
+                mode = appDelegate().modeMap.eastMode
+            case .west:
+                mode = appDelegate().modeMap.westMode
+            case .south:
+                mode = appDelegate().modeMap.southMode
+            default:
+                mode = self
+            }
+        }
+        
+        return mode
+    }
+    
     func titleInDirection(_ direction: TTModeDirection, buttonMoment: TTButtonMoment) -> String {
         let actionName = self.actionNameInDirection(direction)
-        
+        let mode = self.modeInDirection(direction)
         if actionName == "" {
             print(" ---> Set title for \(direction)")
             return "Set \(direction)"
@@ -186,7 +206,7 @@ class TTMode : NSObject, TTModeProtocol {
         let prefs = UserDefaults.standard
         let modeDirectionName = appDelegate().modeMap.directionName(modeDirection)
         let actionDirectionName = appDelegate().modeMap.directionName(direction)
-        let prefKey = "TT:\(self.nameOfClass)-\(modeDirectionName):action:\(actionName)-\(actionDirectionName):customTitle"
+        let prefKey = "TT:\(mode.nameOfClass)-\(modeDirectionName):action:\(actionName)-\(actionDirectionName):customTitle"
         if let customTitle = prefs.string(forKey: prefKey) {
             return customTitle
         }
@@ -198,11 +218,11 @@ class TTMode : NSObject, TTModeProtocol {
         
         // runAction:direction
         let titleSelector = Selector("\(funcAction)\(actionName)WithDirection:")
-        if self.responds(to: titleSelector) {
-            return self.perform(titleSelector, with: NSNumber(value: direction.rawValue)).takeUnretainedValue() as! String
+        if mode.responds(to: titleSelector) {
+            return mode.perform(titleSelector, with: NSNumber(value: direction.rawValue)).takeUnretainedValue() as! String
         }
         
-        return self.titleForAction(actionName, buttonMoment:buttonMoment)
+        return mode.titleForAction(actionName, buttonMoment:buttonMoment)
     }
     
     func titleForAction(_ actionName: String, buttonMoment: TTButtonMoment) -> String {
@@ -227,16 +247,17 @@ class TTMode : NSObject, TTModeProtocol {
     }
     
     func actionTitleForAction(_ actionName: String, buttonMoment: TTButtonMoment) -> String? {
+        let mode = self
         var runAction = "actionTitle"
         if buttonMoment == .button_MOMENT_DOUBLE {
             runAction = "doubleActionTitle"
         }
         let titleSelector = NSSelectorFromString("\(runAction)\(actionName)")
-        if !self.responds(to: titleSelector) {
-            return self.titleForAction(actionName, buttonMoment: buttonMoment)
+        if !mode.responds(to: titleSelector) {
+            return mode.titleForAction(actionName, buttonMoment: buttonMoment)
         }
         
-        let actionTitle = self.perform(titleSelector, with: self).takeUnretainedValue() as! String
+        let actionTitle = mode.perform(titleSelector, with: mode).takeUnretainedValue() as! String
         return actionTitle
     }
     
@@ -247,24 +268,25 @@ class TTMode : NSObject, TTModeProtocol {
         
         let prefs = UserDefaults.standard
         
+        let mode = self.modeInDirection(direction)
         let modeDirectionName = appDelegate().modeMap.directionName(modeDirection)
         let actionDirectionName = appDelegate().modeMap.directionName(direction)
-        let prefKey = "TT:\(self.nameOfClass)-\(modeDirectionName):action:\(actionDirectionName)"
+        let prefKey = "TT:\(mode.nameOfClass)-\(modeDirectionName):action:\(actionDirectionName)"
         let prefDirectionAction = prefs.string(forKey: prefKey)
         var directionAction: String!
         
         if prefDirectionAction == nil {
             switch direction {
             case .north:
-                directionAction = self.defaultNorth()
+                directionAction = mode.defaultNorth()
             case .east:
-                directionAction = self.defaultEast()
+                directionAction = mode.defaultEast()
             case .west:
-                directionAction = self.defaultWest()
+                directionAction = mode.defaultWest()
             case .south:
-                directionAction = self.defaultSouth()
+                directionAction = mode.defaultSouth()
             case .info:
-                directionAction = self.defaultInfo()
+                directionAction = mode.defaultInfo()
             default:
                 directionAction = ""
             }

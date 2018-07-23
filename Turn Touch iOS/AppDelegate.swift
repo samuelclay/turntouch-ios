@@ -118,10 +118,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     }
     
     func redrawMainLayout() {
-        mainViewController = TTMainViewController()
-        window?.rootViewController = mainViewController
-        window?.makeKeyAndVisible()
+        guard let window = UIApplication.shared.keyWindow else {
+            return
+        }
+        
+        let newMainViewController = TTMainViewController()
         modeMap.activateModes()
+        UIView.transition(with: window, duration: 1.3, options: .transitionCrossDissolve, animations: {
+            window.rootViewController = newMainViewController
+        }, completion: { completed in
+            self.mainViewController = newMainViewController
+        })
     }
     
     func recordState() {

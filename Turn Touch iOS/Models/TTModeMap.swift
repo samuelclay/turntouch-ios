@@ -81,6 +81,7 @@ class TTModeMap: NSObject {
         if keyPath == "selectedModeDirection" {
             let prefs = UserDefaults.standard
             prefs.set(self.selectedModeDirection.rawValue, forKey: "TT:selectedModeDirection")
+            print(" ---> Saving pref TT:selectedModeDirection: \(self.selectedModeDirection.rawValue)")
             prefs.synchronize()
         }
     }
@@ -105,9 +106,23 @@ class TTModeMap: NSObject {
 
     func setupModes() {
         let prefs = UserDefaults.standard
-
+        var buttonAppMode = "mode"
+        if self.buttonAppMode() == .OneApp {
+            var buttonAppModeName: String
+            switch (self.savedSelectedModeDirection()) {
+            case .single:
+                buttonAppModeName = "single"
+            case .double:
+                buttonAppModeName = "double"
+            case .hold:
+                buttonAppModeName = "hold"
+            default:
+                buttonAppModeName = ""
+            }
+            buttonAppMode = "mode-\(buttonAppModeName)"
+        }
         for direction: String in ["north", "east", "west", "south"] {
-            if let directionModeName = prefs.string(forKey: "TT:mode:\(direction)") {
+            if let directionModeName = prefs.string(forKey: "TT:\(buttonAppMode):\(direction)") {
                 let className = "Turn_Touch_iOS.\(directionModeName)"
                 let modeClass = NSClassFromString(className) as! TTMode.Type
                 switch (direction) {
@@ -130,11 +145,22 @@ class TTModeMap: NSObject {
         }
     }
     
-    func activateModes() {
+    func savedSelectedModeDirection() -> TTModeDirection {
         let prefs = UserDefaults.standard
 
-        let direction = TTModeDirection(rawValue: prefs.integer(forKey: "TT:selectedModeDirection"))!
+        return TTModeDirection(rawValue: prefs.integer(forKey: "TT:selectedModeDirection"))!
+    }
+    
+    func activateModes() {
+        let direction = self.savedSelectedModeDirection()
         self.switchMode(direction)
+    }
+    
+    func activateOneAppMode(_ direction: TTModeDirection) {
+        switch (direction) {
+        case .north:
+            
+        }
     }
     
     func activateTimers() {
@@ -155,6 +181,12 @@ class TTModeMap: NSObject {
         self.selectedModeDirection = direction
         self.selectedMode = self.modeInDirection(direction)
 
+        // In 12-button mode, each button needs a new mode setup, but
+        // only after selectedModeDirection is set.
+        if buttonAppMode() == .OneApp {
+            self.setupModes()
+        }
+        
         if [.north, .east, .west, .south, .info].contains(direction) {
             if modeChangeType == .remoteButton {
                 self.notifyModeChange(direction: direction)
@@ -169,7 +201,7 @@ class TTModeMap: NSObject {
         } else {
 //            let className = "Turn_Touch_iOS.\(modeName)"
 //            let modeClass = NSClassFromString(className) as! TTMode.Type
-            print(" ---> Can't switch into non-direciton mode. Easy fix right here...")
+            print(" ---> Can't switch into non-direction mode. Easy fix right here...")
         }
     }
     
@@ -575,8 +607,14 @@ class TTModeMap: NSObject {
                 self.openedAddActionChangeMenu = false
             }
             self.inspectingModeDirection = .no_DIRECTION
+            if buttonAppMode() == .OneApp {
+                self.activateModes()
+            }
         } else {
             self.inspectingModeDirection = direction
+            if buttonAppMode() == .OneApp {
+                self.activateOneAppMode(direction)
+            }
         }
         
         let modeName = self.selectedMode.nameOfClass

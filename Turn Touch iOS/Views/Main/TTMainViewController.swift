@@ -122,16 +122,18 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
                                                 toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 92.0)
         stackView.addConstraint(modeTabsConstraint)
         
-        stackView.addArrangedSubview(modeTitleView)
-        modeTitleConstraint = NSLayoutConstraint(item: modeTitleView, attribute: .height, relatedBy: .equal,
-                                                 toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 64)
-        stackView.addConstraint(modeTitleConstraint)
+        if appDelegate().modeMap.buttonAppMode() == .FourApps {
+            stackView.addArrangedSubview(modeTitleView)
+            modeTitleConstraint = NSLayoutConstraint(item: modeTitleView, attribute: .height, relatedBy: .equal,
+                                                     toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 64)
+            stackView.addConstraint(modeTitleConstraint)
+            
+            stackView.addArrangedSubview(modeMenuView)
+            modeMenuConstaint = NSLayoutConstraint(item: modeMenuView, attribute: .height, relatedBy: .equal,
+                                                   toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 1.0)
+            stackView.addConstraint(modeMenuConstaint)
+        }
         
-        stackView.addArrangedSubview(modeMenuView)
-        modeMenuConstaint = NSLayoutConstraint(item: modeMenuView, attribute: .height, relatedBy: .equal,
-                                               toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 1.0)
-        stackView.addConstraint(modeMenuConstaint)
-
         scrollStackView.translatesAutoresizingMaskIntoConstraints = false
         scrollStackView.axis = .vertical
         scrollStackView.distribution = .fill
@@ -141,7 +143,20 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
         actionDiamondConstraint = NSLayoutConstraint(item: actionDiamondView, attribute: .height, relatedBy: .equal,
                                                      toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 270)
         scrollStackView.addConstraint(actionDiamondConstraint)
-
+        
+        if appDelegate().modeMap.buttonAppMode() == .OneApp {
+            modeTitleView.alpha = 0
+            scrollStackView.addArrangedSubview(modeTitleView)
+            modeTitleConstraint = NSLayoutConstraint(item: modeTitleView, attribute: .height, relatedBy: .equal,
+                                                     toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 0)
+            scrollStackView.addConstraint(modeTitleConstraint)
+            
+            scrollStackView.addArrangedSubview(modeMenuView)
+            modeMenuConstaint = NSLayoutConstraint(item: modeMenuView, attribute: .height, relatedBy: .equal,
+                                                   toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 1.0)
+            scrollStackView.addConstraint(modeMenuConstaint)
+        }
+        
         scrollStackView.addArrangedSubview(actionMenuView)
         actionMenuConstaint = NSLayoutConstraint(item: actionMenuView, attribute: .height, relatedBy: .equal,
                                                  toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 1.0)
@@ -219,14 +234,26 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
+        let buttonAppMode = appDelegate().modeMap.buttonAppMode()
+        
         if self.traitCollection.verticalSizeClass == UIUserInterfaceSizeClass.compact {
             titleBarConstraint.constant = 28
             modeTabsConstraint.constant = 70
-            modeTitleConstraint.constant = 48
+            switch buttonAppMode {
+            case .FourApps:
+                modeTitleConstraint.constant = 48
+            case .OneApp:
+                modeTitleConstraint.constant = 0
+            }
         } else {
             titleBarConstraint.constant = 44
             modeTabsConstraint.constant = 92
-            modeTitleConstraint.constant = 64
+            switch buttonAppMode {
+            case .FourApps:
+                modeTitleConstraint.constant = 64
+            case .OneApp:
+                modeTitleConstraint.constant = 0
+            }
         }
         
         if self.traitCollection.horizontalSizeClass == .compact {
@@ -320,11 +347,17 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
     }
     
     func toggleActionView() {
+        if appDelegate().modeMap.buttonAppMode() == .OneApp {
+            modeTitleConstraint.constant = appDelegate().modeMap.inspectingModeDirection == .no_DIRECTION ? 0 : 64
+        }
         actionTitleConstraint.constant = appDelegate().modeMap.inspectingModeDirection == .no_DIRECTION ? 0 : 48
         
         UIView.animate(withDuration: 0.24, animations: {
             self.view.layoutIfNeeded()
             self.actionTitleView.alpha = appDelegate().modeMap.inspectingModeDirection == .no_DIRECTION ? 0 : 1
+            if appDelegate().modeMap.buttonAppMode() == .OneApp {
+                self.modeTitleView.alpha = appDelegate().modeMap.inspectingModeDirection == .no_DIRECTION ? 0 : 1
+            }
         }) 
     }
     

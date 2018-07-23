@@ -141,6 +141,21 @@ class TTModeTab: UIView {
         if appDelegate().modeMap.selectedModeDirection == self.modeDirection {
             UIColor(hex: 0xFFFFFF).set()
             context?.fill(self.bounds);
+            if appDelegate().modeMap.buttonAppMode() == .OneApp {
+                let colors = [UIColor(hex: 0xF5F6F8).cgColor, UIColor(hex: 0xFFFFFF).cgColor]
+                let colorSpace = CGColorSpaceCreateDeviceRGB()
+                let colorLocations:[CGFloat] = [0.0, 1.0]
+                let gradient = CGGradient(colorsSpace: colorSpace,
+                                          colors: colors as CFArray,
+                                          locations: colorLocations)
+                let startPoint = CGPoint(x:0, y:self.bounds.height)
+                let endPoint = CGPoint(x:0, y:self.bounds.height*(7/10))
+                
+                context?.drawLinearGradient(gradient!,
+                                            start: startPoint,
+                                            end: endPoint,
+                                            options: [])
+            }
         } else {
             let colors = [startColor.cgColor, endColor.cgColor]
             let colorSpace = CGColorSpaceCreateDeviceRGB()
