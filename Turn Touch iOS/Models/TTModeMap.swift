@@ -27,9 +27,9 @@ class TTModeMap: NSObject {
     var eastMode: TTMode!
     var westMode: TTMode!
     var southMode: TTMode!
-    var singleMode = TTMode()
-    var doubleMode = TTMode()
-    var holdMode = TTMode()
+    var singleMode = TTMode(modeDirection: .single)
+    var doubleMode = TTMode(modeDirection: .double)
+    var holdMode = TTMode(modeDirection: .hold)
     @objc dynamic var tempMode: TTMode!
     
     enum TTButtonAppMode: String {
@@ -154,7 +154,6 @@ class TTModeMap: NSObject {
 
         self.selectedModeDirection = direction
         self.selectedMode = self.modeInDirection(direction)
-        self.recordButtonMoment(direction, .button_MOMENT_HELD)
 
         if [.north, .east, .west, .south, .info].contains(direction) {
             if modeChangeType == .remoteButton {
@@ -164,6 +163,7 @@ class TTModeMap: NSObject {
             self.selectedMode.modeChangeType = modeChangeType
             self.selectedMode.activate(direction)
             batchActions.assemble(modeDirection: direction)
+            self.recordButtonMoment(direction, .button_MOMENT_HELD)
         } else if [.single, .double, .hold].contains(direction) {
 
         } else {
@@ -538,9 +538,9 @@ class TTModeMap: NSObject {
         case .south:
             return "south"
         case .single:
-            return "single tap"
+            return "single"
         case .double:
-            return "double tap"
+            return "double"
         case .hold:
             return "hold"
         default:

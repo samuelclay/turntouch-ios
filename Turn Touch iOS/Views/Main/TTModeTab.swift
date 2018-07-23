@@ -129,7 +129,11 @@ class TTModeTab: UIView {
         let textColor = (appDelegate().modeMap.selectedModeDirection != self.modeDirection && !self.highlighted) ?
             UIColor(hex: 0x808388) : UIColor(hex: 0x404A60)
         self.titleLabel.textColor = textColor
-        self.titleLabel.text = self.modeTitle.uppercased()
+        if [.single, .double].contains(modeDirection) {
+            self.titleLabel.text = "\(self.modeTitle) tap".uppercased()
+        } else {
+            self.titleLabel.text = self.modeTitle.uppercased()
+        }
     }
     
     func drawBackground() {

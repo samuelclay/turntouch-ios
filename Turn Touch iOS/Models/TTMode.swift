@@ -47,6 +47,11 @@ class TTMode : NSObject, TTModeProtocol {
 //        NSLog("Initializing mode: \(self)")
     }
     
+    init(modeDirection: TTModeDirection) {
+        super.init()
+        self.modeDirection = modeDirection
+    }
+    
     func deactivate() {
         
     }
@@ -190,7 +195,7 @@ class TTMode : NSObject, TTModeProtocol {
         if buttonMoment == .button_MOMENT_DOUBLE {
             funcAction = "doubleTitle"
         }
-
+        
         // runAction:direction
         let titleSelector = Selector("\(funcAction)\(actionName)WithDirection:")
         if self.responds(to: titleSelector) {
@@ -266,7 +271,7 @@ class TTMode : NSObject, TTModeProtocol {
         } else {
             directionAction = prefDirectionAction!
         }
-//        print("Direction action: \(prefKey) - \(directionAction)")
+        print(" ---> Direction action: \(prefKey) - \(directionAction)")
         
         return directionAction
     }
@@ -351,8 +356,8 @@ class TTMode : NSObject, TTModeProtocol {
         let actionDirectionName = appDelegate().modeMap.directionName(direction)
         let prefKey = "TT:\(self.nameOfClass)-\(modeDirectionName):action:\(actionDirectionName)"
 
-//        let directionAction = prefs.stringForKey(prefKey)
-//        print("Direction action: \(prefKey) - \(directionAction) to \(actionClassName)")
+        let directionAction = prefs.string(forKey: prefKey)
+        print(" ---> Change direction action: \(prefKey) - \(String(describing: directionAction)) to \(actionClassName)")
         
         prefs.set(actionClassName, forKey: prefKey)
         prefs.synchronize()
