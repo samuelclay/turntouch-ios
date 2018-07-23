@@ -152,8 +152,13 @@ class TTModeMenuCell: UICollectionViewCell {
         if let touch = touches.first {
             if self.bounds.contains(touch.location(in: self)) {
                 if menuType == .menu_MODE {
-                    appDelegate().modeMap.changeDirection(appDelegate().modeMap.selectedModeDirection, toMode:modeName)
-                    
+                    if appDelegate().modeMap.buttonAppMode() == .FourApps {
+                        appDelegate().modeMap.changeDirection(appDelegate().modeMap.selectedModeDirection, toMode:modeName)
+                    } else {
+                        let inspectingModeDirection = appDelegate().modeMap.inspectingModeDirection
+                        appDelegate().modeMap.changeDirection(inspectingModeDirection, toMode:modeName)
+                        appDelegate().modeMap.inspectingModeDirection = inspectingModeDirection
+                    }
                     appDelegate().modeMap.recordUsage(additionalParams: ["moment": "change:mode:\(selectedMode)"])
                 } else if menuType == .menu_ACTION {
                     appDelegate().modeMap.changeDirection(appDelegate().modeMap.inspectingModeDirection, toAction:modeName)

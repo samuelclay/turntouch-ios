@@ -106,23 +106,9 @@ class TTModeMap: NSObject {
 
     func setupModes() {
         let prefs = UserDefaults.standard
-        var buttonAppMode = "mode"
-        if self.buttonAppMode() == .OneApp {
-            var buttonAppModeName: String
-            switch (self.savedSelectedModeDirection()) {
-            case .single:
-                buttonAppModeName = "single"
-            case .double:
-                buttonAppModeName = "double"
-            case .hold:
-                buttonAppModeName = "hold"
-            default:
-                buttonAppModeName = ""
-            }
-            buttonAppMode = "mode-\(buttonAppModeName)"
-        }
+
         for direction: String in ["north", "east", "west", "south"] {
-            if let directionModeName = prefs.string(forKey: "TT:\(buttonAppMode):\(direction)") {
+            if let directionModeName = prefs.string(forKey: "TT:\(self.modeRoot()):\(direction)") {
                 let className = "Turn_Touch_iOS.\(directionModeName)"
                 let modeClass = NSClassFromString(className) as! TTMode.Type
                 switch (direction) {
@@ -143,6 +129,23 @@ class TTModeMap: NSObject {
                 }
             }
         }
+    }
+    
+    func modeRoot() -> String {
+        if self.buttonAppMode() == .OneApp {
+            switch (self.savedSelectedModeDirection()) {
+            case .single:
+                return "mode-single"
+            case .double:
+                return "mode-double"
+            case .hold:
+                return "mode-hold"
+            default:
+                break
+            }
+        }
+        
+        return "mode"
     }
     
     func savedSelectedModeDirection() -> TTModeDirection {
@@ -521,7 +524,7 @@ class TTModeMap: NSObject {
     func batchKey(modeDirection: TTModeDirection? = nil, actionDirection: TTModeDirection? = nil) -> String {
         let modeDirectionName = self.directionName(modeDirection ?? selectedModeDirection)
         let actionDirectionName = self.directionName(actionDirection ?? inspectingModeDirection)
-        let batchKey = "TT:mode:\(modeDirectionName):action:\(actionDirectionName):batchactions"
+        let batchKey = "TT:\(self.modeRoot()):\(modeDirectionName):action:\(actionDirectionName):batchactions"
         
         return batchKey
     }
@@ -531,7 +534,7 @@ class TTModeMap: NSObject {
     func changeDirection(_ direction: TTModeDirection, toMode modeClassName: String) {
         let prefs = UserDefaults.standard
         let directionName = self.directionName(direction)
-        let prefKey = "TT:mode:\(directionName)"
+        let prefKey = "TT:\(self.modeRoot()):\(directionName)"
         
         prefs.set(modeClassName, forKey: prefKey)
         prefs.synchronize()
