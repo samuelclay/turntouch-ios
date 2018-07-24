@@ -204,8 +204,8 @@ class TTModeMap: NSObject {
         self.selectedMode.deactivate()
         self.reset()
 
-        self.selectedModeDirection = direction
         self.selectedMode = self.modeInDirection(direction)
+        self.selectedModeDirection = direction
         
         if [.north, .east, .west, .south, .info].contains(direction) {
             if modeChangeType == .remoteButton {
