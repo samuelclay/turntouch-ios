@@ -27,7 +27,7 @@
 	<key>TT:mode-hold:south</key>
 	<string>TTModeWemo</string>
 	<key>TT:buttonAppMode</key>
-	<string>four_apps</string>
+	<string>sixteen_buttons</string>
 	<key>TT:firmware:version</key>
 	<string>6</string>
 	<key>TT:mode:north</key>

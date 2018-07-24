@@ -80,9 +80,12 @@ class TTModeMap: NSObject {
                                          change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if keyPath == "selectedModeDirection" {
             let prefs = UserDefaults.standard
-            prefs.set(self.selectedModeDirection.rawValue, forKey: "TT:selectedModeDirection")
-            print(" ---> Saving pref TT:selectedModeDirection: \(self.selectedModeDirection.rawValue)")
-            prefs.synchronize()
+            let original = prefs.integer(forKey: "TT:selectedModeDirection")
+            if original != self.selectedModeDirection.rawValue {
+                prefs.set(self.selectedModeDirection.rawValue, forKey: "TT:selectedModeDirection")
+                print(" ---> Saving pref TT:selectedModeDirection: \(self.selectedModeDirection.rawValue)")
+                prefs.synchronize()
+            }
         }
     }
     
@@ -151,8 +154,19 @@ class TTModeMap: NSObject {
     
     func savedSelectedModeDirection() -> TTModeDirection {
         let prefs = UserDefaults.standard
-
-        return TTModeDirection(rawValue: prefs.integer(forKey: "TT:selectedModeDirection"))!
+        let direction = TTModeDirection(rawValue: prefs.integer(forKey: "TT:selectedModeDirection"))!
+        
+        if buttonAppMode() == .SixteenButtons {
+            if ![.north, .east, .west, .south].contains(direction) {
+                return .north
+            }
+        } else {
+            if ![.single, .double, .hold].contains(direction) {
+                return .single
+            }
+        }
+        
+        return direction
     }
     
     func activateModes() {
