@@ -192,12 +192,6 @@ class TTModeMap: NSObject {
 
         self.selectedModeDirection = direction
         self.selectedMode = self.modeInDirection(direction)
-
-        // In 12-button mode, each button needs a new mode setup, but
-        // only after selectedModeDirection is set.
-        if buttonAppMode() == .OneApp {
-            self.setupModes()
-        }
         
         if [.north, .east, .west, .south, .info].contains(direction) {
             if modeChangeType == .remoteButton {
@@ -209,7 +203,8 @@ class TTModeMap: NSObject {
             batchActions.assemble(modeDirection: direction)
             self.recordButtonMoment(direction, .button_MOMENT_HELD)
         } else if [.single, .double, .hold].contains(direction) {
-
+            self.setupModes()
+            batchActions.assemble(modeDirection: direction)
         } else {
 //            let className = "Turn_Touch_iOS.\(modeName)"
 //            let modeClass = NSClassFromString(className) as! TTMode.Type
@@ -456,11 +451,13 @@ class TTModeMap: NSObject {
     func addBatchAction(for actionName: String) {
         // Adding batch action using the menu, selecting and inspecting directions
         let prefs = UserDefaults.standard
+        let batchKey = self.batchKey()
         var batchActionKeys = self.batchActionKeys()
         let uuid = UUID().uuidString
         let newActionKey = "\(tempMode.nameOfClass):\(actionName):\(uuid[..<uuid.index(uuid.startIndex, offsetBy: 8)])"
         batchActionKeys.append(newActionKey)
-        prefs.set(batchActionKeys, forKey: self.batchKey())
+        print(" ---> Adding batch action to \(batchKey): \(batchActionKeys)")
+        prefs.set(batchActionKeys, forKey: batchKey)
         prefs.synchronize()
         
         batchActions.assemble(modeDirection: self.selectedModeDirection)
@@ -525,8 +522,9 @@ class TTModeMap: NSObject {
     func batchKey(modeDirection: TTModeDirection? = nil, actionDirection: TTModeDirection? = nil) -> String {
         let modeDirectionName = self.directionName(modeDirection ?? selectedModeDirection)
         let actionDirectionName = self.directionName(actionDirection ?? inspectingModeDirection)
-        let batchKey = "TT:\(self.modeRoot()):\(modeDirectionName):action:\(actionDirectionName):batchactions"
+        let batchKey = "TT:mode:\(modeDirectionName):action:\(actionDirectionName):batchactions"
         
+        print(" ---> batchKey: \(batchKey)")
         return batchKey
     }
     
