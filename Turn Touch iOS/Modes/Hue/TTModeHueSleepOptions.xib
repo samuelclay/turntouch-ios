@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -38,13 +38,13 @@
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Single tap" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FLT-Da-zeL">
-                    <rect key="frame" x="62" y="86" width="64" height="16"/>
+                    <rect key="frame" x="62" y="86" width="62" height="16"/>
                     <fontDescription key="fontDescription" name="Effra-Regular" family="Effra" pointSize="13"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Double tap" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XgR-3t-wco">
-                    <rect key="frame" x="62" y="140" width="64" height="16"/>
+                    <rect key="frame" x="62" y="140" width="62" height="16"/>
                     <fontDescription key="fontDescription" name="Effra-Regular" family="Effra" pointSize="13"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
@@ -57,13 +57,13 @@
                     </constraints>
                 </imageView>
                 <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="30" minValue="0.0" maxValue="60" translatesAutoresizingMaskIntoConstraints="NO" id="Dag-yf-WNu">
-                    <rect key="frame" x="146" y="78.5" width="131" height="31"/>
+                    <rect key="frame" x="142" y="78.5" width="135" height="31"/>
                     <connections>
                         <action selector="changeDuration:" destination="-1" eventType="valueChanged" id="cjj-nw-NWA"/>
                     </connections>
                 </slider>
                 <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="5" minValue="0.0" maxValue="60" translatesAutoresizingMaskIntoConstraints="NO" id="XDH-50-361">
-                    <rect key="frame" x="146" y="132.5" width="131" height="31"/>
+                    <rect key="frame" x="142" y="132.5" width="135" height="31"/>
                     <connections>
                         <action selector="changeDuration:" destination="-1" eventType="valueChanged" id="a8T-Yn-EtF"/>
                     </connections>
@@ -84,12 +84,12 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="skr-0w-Hzm">
-                    <rect key="frame" x="148" y="22" width="223" height="30"/>
+                    <rect key="frame" x="144" y="20" width="227" height="30"/>
                     <fontDescription key="fontDescription" name="Effra-Regular" family="Effra" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="249" text="Room" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uSj-Pe-mCl">
-                    <rect key="frame" x="62" y="12" width="35" height="50"/>
+                    <rect key="frame" x="62" y="8" width="62" height="54"/>
                     <fontDescription key="fontDescription" name="Effra-Regular" family="Effra" pointSize="13"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
@@ -103,25 +103,30 @@
                 <constraint firstItem="FLT-Da-zeL" firstAttribute="leading" secondItem="uSj-Pe-mCl" secondAttribute="leading" id="40U-tu-zKU"/>
                 <constraint firstItem="spW-B6-Q0n" firstAttribute="trailing" secondItem="skr-0w-Hzm" secondAttribute="trailing" id="532-ZO-ncZ"/>
                 <constraint firstItem="mm0-KL-wAm" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leadingMargin" constant="2" id="6Zf-Ll-GMp"/>
+                <constraint firstItem="XgR-3t-wco" firstAttribute="width" secondItem="uSj-Pe-mCl" secondAttribute="width" id="78R-XV-iS1"/>
+                <constraint firstItem="skr-0w-Hzm" firstAttribute="leading" secondItem="XDH-50-361" secondAttribute="leading" id="BhD-gN-4ux"/>
                 <constraint firstItem="XgR-3t-wco" firstAttribute="width" secondItem="FLT-Da-zeL" secondAttribute="width" id="GaL-c1-VK9"/>
-                <constraint firstItem="Dag-yf-WNu" firstAttribute="leading" secondItem="FLT-Da-zeL" secondAttribute="trailing" constant="22" id="I03-ms-6mQ"/>
                 <constraint firstItem="FLT-Da-zeL" firstAttribute="centerY" secondItem="mm0-KL-wAm" secondAttribute="centerY" id="Ixw-Ea-aAs"/>
                 <constraint firstItem="XgR-3t-wco" firstAttribute="centerY" secondItem="mrV-Gn-ich" secondAttribute="centerY" id="K4L-yN-uHU"/>
                 <constraint firstAttribute="trailingMargin" secondItem="skr-0w-Hzm" secondAttribute="trailing" constant="2" id="MPZ-XR-Y5p"/>
                 <constraint firstItem="Dag-yf-WNu" firstAttribute="centerY" secondItem="FLT-Da-zeL" secondAttribute="centerY" id="OJ3-50-BYq"/>
                 <constraint firstItem="mrV-Gn-ich" firstAttribute="leading" secondItem="mm0-KL-wAm" secondAttribute="leading" id="OmR-GH-ZuB"/>
+                <constraint firstItem="skr-0w-Hzm" firstAttribute="leading" secondItem="uSj-Pe-mCl" secondAttribute="trailing" constant="20" id="PNi-Qc-JOa"/>
+                <constraint firstItem="FLT-Da-zeL" firstAttribute="leading" secondItem="uSj-Pe-mCl" secondAttribute="leading" id="PWw-dW-fhj"/>
                 <constraint firstItem="PgQ-H7-AJF" firstAttribute="centerY" secondItem="XgR-3t-wco" secondAttribute="centerY" id="TGf-2y-NtC"/>
                 <constraint firstItem="PgQ-H7-AJF" firstAttribute="leading" secondItem="XDH-50-361" secondAttribute="trailing" constant="22" id="g8l-zr-nSk"/>
                 <constraint firstItem="PgQ-H7-AJF" firstAttribute="trailing" secondItem="skr-0w-Hzm" secondAttribute="trailing" id="h2C-fM-3yU"/>
-                <constraint firstItem="XDH-50-361" firstAttribute="leading" secondItem="XgR-3t-wco" secondAttribute="trailing" constant="22" id="hrw-xV-IPx"/>
                 <constraint firstItem="skr-0w-Hzm" firstAttribute="centerY" secondItem="uSj-Pe-mCl" secondAttribute="centerY" id="jbB-dg-hZN"/>
+                <constraint firstItem="FLT-Da-zeL" firstAttribute="width" secondItem="uSj-Pe-mCl" secondAttribute="width" id="ko8-Cq-x4A"/>
+                <constraint firstItem="Dag-yf-WNu" firstAttribute="leading" secondItem="XDH-50-361" secondAttribute="leading" id="kuo-6J-O0P"/>
                 <constraint firstItem="mrV-Gn-ich" firstAttribute="top" secondItem="mm0-KL-wAm" secondAttribute="bottom" constant="24" id="o0f-vu-a4u"/>
                 <constraint firstAttribute="bottomMargin" secondItem="mrV-Gn-ich" secondAttribute="bottom" constant="22" id="qD5-cU-xgN"/>
                 <constraint firstItem="Dag-yf-WNu" firstAttribute="leading" secondItem="skr-0w-Hzm" secondAttribute="leading" id="swz-HB-iEw"/>
                 <constraint firstItem="XgR-3t-wco" firstAttribute="leading" secondItem="mrV-Gn-ich" secondAttribute="trailing" constant="8" id="t0y-Lw-KNV"/>
+                <constraint firstItem="XgR-3t-wco" firstAttribute="leading" secondItem="uSj-Pe-mCl" secondAttribute="leading" id="uKX-eR-Ega"/>
                 <constraint firstItem="XDH-50-361" firstAttribute="centerY" secondItem="XgR-3t-wco" secondAttribute="centerY" id="w1Q-Mt-mwj"/>
                 <constraint firstItem="FLT-Da-zeL" firstAttribute="top" secondItem="uSj-Pe-mCl" secondAttribute="bottom" constant="24" id="xtt-tg-csw"/>
-                <constraint firstItem="skr-0w-Hzm" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="22" id="yKZ-W6-tPx"/>
+                <constraint firstItem="skr-0w-Hzm" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="20" id="yKZ-W6-tPx"/>
                 <constraint firstItem="spW-B6-Q0n" firstAttribute="centerY" secondItem="FLT-Da-zeL" secondAttribute="centerY" id="znc-PG-3RN"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
