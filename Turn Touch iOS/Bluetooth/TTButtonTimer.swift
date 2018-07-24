@@ -259,8 +259,9 @@ class TTButtonTimer : NSObject {
             appDelegate().modeMap.activeModeDirection = direction
             if !self.skipButtonActions {
                 appDelegate().modeMap.runActiveButton()
+            } else {
+                appDelegate().modeMap.activeModeDirection = .no_DIRECTION
             }
-            appDelegate().modeMap.activeModeDirection = .no_DIRECTION
             
     //        let actionnNme = appDelegate().modeMap.selectedMode.actionNameInDirection(direction)
     //        appDelegate().hudController.toastActiveAction(actionName, direction: direction)

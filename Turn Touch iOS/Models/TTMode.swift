@@ -131,25 +131,26 @@ class TTMode : NSObject, TTModeProtocol {
     func runAction(_ actionName: String, direction: TTModeDirection, funcAction: String) -> Bool {
         var success = false
         print(" ---> Running \(direction.rawValue): \(funcAction)\(actionName)")
-        if self.action == nil || self.action.batchActionKey == nil {
-            self.action = TTAction(actionName: actionName, direction: direction)
+        let mode = self.modeInDirection(direction)
+        if mode.action == nil || mode.action.batchActionKey == nil {
+            mode.action = TTAction(actionName: actionName, direction: direction)
         }
         
         // runAction:direction
         let titleSelector = Selector("\(funcAction)\(actionName)WithDirection:")
-        if self.responds(to: titleSelector) {
-            self.perform(titleSelector, with: NSNumber(value: direction.rawValue))
+        if mode.responds(to: titleSelector) {
+            mode.perform(titleSelector, with: NSNumber(value: direction.rawValue))
             success = true
         } else {
             // runAction
             let titleSelector = NSSelectorFromString("\(funcAction)\(actionName)")
-            if self.responds(to: titleSelector) {
-                self.perform(titleSelector)
+            if mode.responds(to: titleSelector) {
+                mode.perform(titleSelector)
                 success = true
             }
         }
         
-        if self.action.batchActionKey == nil {
+        if mode.action.batchActionKey == nil {
 //            self.action = nil
         }
         

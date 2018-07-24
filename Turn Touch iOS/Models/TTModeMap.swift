@@ -294,9 +294,8 @@ class TTModeMap: NSObject {
     
     func runActiveButton() {
         let direction = activeModeDirection
-        activeModeDirection = .no_DIRECTION
         
-        if selectedMode.shouldIgnoreSingleBeforeDouble(direction) {
+        if buttonAppMode() == .SixteenButtons && selectedMode.shouldIgnoreSingleBeforeDouble(direction) {
             waitingForDoubleClick = true
             let delayTime = DispatchTime.now() + Double(Int64(DOUBLE_CLICK_ACTION_DURATION * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
             DispatchQueue.main.asyncAfter(deadline: delayTime, execute: {
@@ -312,7 +311,7 @@ class TTModeMap: NSObject {
     }
     
     func runDirection(_ direction: TTModeDirection) {
-        if !selectedMode.shouldFireImmediateOnPress(direction) {
+        if buttonAppMode() == .TwelveButtons || !selectedMode.shouldFireImmediateOnPress(direction) {
 //            selectedMode.action = TTAction(actionName: selectedMode.actionNameInDirection(direction), direction: direction)
             selectedMode.runDirection(direction)
         }
