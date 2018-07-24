@@ -293,7 +293,7 @@ class TTMode : NSObject, TTModeProtocol {
         } else {
             directionAction = prefDirectionAction!
         }
-        print(" ---> Direction action: \(prefKey) - \(directionAction ?? "nil")")
+//        print(" ---> Direction action: \(prefKey) - \(directionAction ?? "nil")")
         
         return directionAction
     }

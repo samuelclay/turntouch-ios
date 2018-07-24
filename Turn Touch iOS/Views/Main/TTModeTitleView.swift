@@ -67,6 +67,7 @@ class TTModeTitleView: UIView {
     func registerAsObserver() {
         appDelegate().modeMap.addObserver(self, forKeyPath: "selectedModeDirection", options: [], context: nil)
         appDelegate().modeMap.addObserver(self, forKeyPath: "openedModeChangeMenu", options: [], context: nil)
+        appDelegate().modeMap.addObserver(self, forKeyPath: "inspectingModeDirection", options: [], context: nil)
     }
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?,
@@ -75,12 +76,15 @@ class TTModeTitleView: UIView {
             self.setNeedsDisplay()
         } else if keyPath == "openedModeChangeMenu" {
             self.setNeedsDisplay()
+        } else if keyPath == "inspectingModeDirection" {
+            self.setNeedsDisplay()
         }
     }
     
     deinit {
         appDelegate().modeMap.removeObserver(self, forKeyPath: "selectedModeDirection")
         appDelegate().modeMap.removeObserver(self, forKeyPath: "openedModeChangeMenu")
+        appDelegate().modeMap.removeObserver(self, forKeyPath: "inspectingModeDirection")
     }
     
     // MARK: Drawing
