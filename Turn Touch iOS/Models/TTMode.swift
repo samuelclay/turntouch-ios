@@ -176,7 +176,7 @@ class TTMode : NSObject, TTModeProtocol {
     
     func modeInDirection(_ direction: TTModeDirection) -> TTMode {
         var mode = self
-        if appDelegate().modeMap.buttonAppMode() == .OneApp {
+        if appDelegate().modeMap.buttonAppMode() == .TwelveButtons {
             switch direction {
             case .north:
                 mode = appDelegate().modeMap.northMode

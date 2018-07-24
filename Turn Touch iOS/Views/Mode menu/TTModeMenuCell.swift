@@ -153,7 +153,7 @@ class TTModeMenuCell: UICollectionViewCell {
         if let touch = touches.first {
             if self.bounds.contains(touch.location(in: self)) {
                 if menuType == .menu_MODE {
-                    if appDelegate().modeMap.buttonAppMode() == .FourApps {
+                    if appDelegate().modeMap.buttonAppMode() == .SixteenButtons {
                         appDelegate().modeMap.changeDirection(appDelegate().modeMap.selectedModeDirection, toMode:modeName)
                     } else {
                         appDelegate().modeMap.changeDirection(inspectingModeDirection, toMode:modeName)
@@ -165,7 +165,7 @@ class TTModeMenuCell: UICollectionViewCell {
                     // Update the action diamond
                     appDelegate().modeMap.selectedModeDirection = appDelegate().modeMap.selectedModeDirection
                     // Update the mode menu
-                    if appDelegate().modeMap.buttonAppMode() == .FourApps {
+                    if appDelegate().modeMap.buttonAppMode() == .SixteenButtons {
                         appDelegate().modeMap.inspectingModeDirection = appDelegate().modeMap.inspectingModeDirection
                     } else {
                         appDelegate().modeMap.inspectingModeDirection = inspectingModeDirection

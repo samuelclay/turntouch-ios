@@ -78,7 +78,7 @@ class TTModeTab: UIView {
             break
         }
         
-        if appDelegate().modeMap.buttonAppMode() == .FourApps {
+        if appDelegate().modeMap.buttonAppMode() == .SixteenButtons {
             self.modeTitle = type(of: self.mode).title()
         } else {
             self.modeTitle = appDelegate().modeMap.directionName(modeDirection)
@@ -141,7 +141,7 @@ class TTModeTab: UIView {
         if appDelegate().modeMap.selectedModeDirection == self.modeDirection {
             UIColor(hex: 0xFFFFFF).set()
             context?.fill(self.bounds);
-            if appDelegate().modeMap.buttonAppMode() == .OneApp {
+            if appDelegate().modeMap.buttonAppMode() == .TwelveButtons {
                 let colors = [UIColor(hex: 0xF5F6F8).cgColor, UIColor(hex: 0xFFFFFF).cgColor]
                 let colorSpace = CGColorSpaceCreateDeviceRGB()
                 let colorLocations:[CGFloat] = [0.0, 1.0]

@@ -96,7 +96,7 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
                                                 multiplier: 1.0, constant: 44)
         stackView.addConstraint(titleBarConstraint)
         
-        if appDelegate().modeMap.buttonAppMode() == .FourApps {
+        if appDelegate().modeMap.buttonAppMode() == .SixteenButtons {
             modeTabs = [
                 TTModeTab(modeDirection:.north),
                 TTModeTab(modeDirection:.east),
@@ -122,7 +122,7 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
                                                 toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 92.0)
         stackView.addConstraint(modeTabsConstraint)
         
-        if appDelegate().modeMap.buttonAppMode() == .FourApps {
+        if appDelegate().modeMap.buttonAppMode() == .SixteenButtons {
             stackView.addArrangedSubview(modeTitleView)
             modeTitleConstraint = NSLayoutConstraint(item: modeTitleView, attribute: .height, relatedBy: .equal,
                                                      toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 64)
@@ -144,7 +144,7 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
                                                      toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 270)
         scrollStackView.addConstraint(actionDiamondConstraint)
         
-        if appDelegate().modeMap.buttonAppMode() == .OneApp {
+        if appDelegate().modeMap.buttonAppMode() == .TwelveButtons {
             modeTitleView.alpha = 0
             scrollStackView.addArrangedSubview(modeTitleView)
             modeTitleConstraint = NSLayoutConstraint(item: modeTitleView, attribute: .height, relatedBy: .equal,
@@ -240,18 +240,18 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
             titleBarConstraint.constant = 28
             modeTabsConstraint.constant = 70
             switch buttonAppMode {
-            case .FourApps:
+            case .SixteenButtons:
                 modeTitleConstraint.constant = 48
-            case .OneApp:
+            case .TwelveButtons:
                 modeTitleConstraint.constant = 0
             }
         } else {
             titleBarConstraint.constant = 44
             modeTabsConstraint.constant = 92
             switch buttonAppMode {
-            case .FourApps:
+            case .SixteenButtons:
                 modeTitleConstraint.constant = 64
-            case .OneApp:
+            case .TwelveButtons:
                 modeTitleConstraint.constant = 0
             }
         }
@@ -347,7 +347,7 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
     }
     
     func toggleActionView() {
-        if appDelegate().modeMap.buttonAppMode() == .OneApp {
+        if appDelegate().modeMap.buttonAppMode() == .TwelveButtons {
             modeTitleConstraint.constant = appDelegate().modeMap.inspectingModeDirection == .no_DIRECTION ? 0 : 64
         }
         actionTitleConstraint.constant = appDelegate().modeMap.inspectingModeDirection == .no_DIRECTION ? 0 : 48
@@ -355,7 +355,7 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
         UIView.animate(withDuration: 0.24, animations: {
             self.view.layoutIfNeeded()
             self.actionTitleView.alpha = appDelegate().modeMap.inspectingModeDirection == .no_DIRECTION ? 0 : 1
-            if appDelegate().modeMap.buttonAppMode() == .OneApp {
+            if appDelegate().modeMap.buttonAppMode() == .TwelveButtons {
                 self.modeTitleView.alpha = appDelegate().modeMap.inspectingModeDirection == .no_DIRECTION ? 0 : 1
             }
         }) 

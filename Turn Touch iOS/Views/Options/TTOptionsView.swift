@@ -118,7 +118,7 @@ class TTOptionsView: UIView {
         
         let inspectingModeDirection = appDelegate().modeMap.inspectingModeDirection
         var selectedMode = appDelegate().modeMap.selectedMode
-        if appDelegate().modeMap.buttonAppMode() == .OneApp {
+        if appDelegate().modeMap.buttonAppMode() == .TwelveButtons {
             selectedMode = appDelegate().modeMap.modeInDirection(inspectingModeDirection)
         }
         let actionName = selectedMode.actionNameInDirection(inspectingModeDirection)

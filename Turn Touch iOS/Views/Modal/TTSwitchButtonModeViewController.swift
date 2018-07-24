@@ -26,7 +26,7 @@ class TTSwitchButtonModeViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if appDelegate().modeMap.buttonAppMode() == .FourApps {
+        if appDelegate().modeMap.buttonAppMode() == .SixteenButtons {
             fourAppSwitch.isOn = true
             oneAppSwitch.isOn = false
         } else {
@@ -70,13 +70,13 @@ class TTSwitchButtonModeViewController: UIViewController {
         fourAppSwitch.isOn = true
         oneAppSwitch.isOn = false
         
-        appDelegate().modeMap.switchButtonAppMode(.FourApps)
+        appDelegate().modeMap.switchButtonAppMode(.SixteenButtons)
     }
     
     func switchOneApp() {
         oneAppSwitch.isOn = true
         fourAppSwitch.isOn = false
         
-        appDelegate().modeMap.switchButtonAppMode(.OneApp)
+        appDelegate().modeMap.switchButtonAppMode(.TwelveButtons)
     }
 }

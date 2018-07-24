@@ -96,7 +96,7 @@ class TTModeTitleView: UIView {
             changeButton.setTitle("Change", for: .normal)
         }
         
-        if appDelegate().modeMap.buttonAppMode() == .FourApps {
+        if appDelegate().modeMap.buttonAppMode() == .SixteenButtons {
             titleLabel.text = type(of: appDelegate().modeMap.selectedMode).subtitle()
             modeImageView.image = UIImage(named:type(of: appDelegate().modeMap.selectedMode).imageName())
         } else {
@@ -118,7 +118,7 @@ class TTModeTitleView: UIView {
         if appDelegate().modeMap.openedAddActionChangeMenu {
             appDelegate().modeMap.openedAddActionChangeMenu = false
         }
-        if appDelegate().modeMap.buttonAppMode() == .FourApps {
+        if appDelegate().modeMap.buttonAppMode() == .SixteenButtons {
             appDelegate().modeMap.inspectingModeDirection = .no_DIRECTION
         }
 

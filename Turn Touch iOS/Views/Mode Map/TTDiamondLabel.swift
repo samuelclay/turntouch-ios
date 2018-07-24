@@ -70,7 +70,7 @@ class TTDiamondLabel: UIView {
                                                                                buttonMoment: .button_MOMENT_PRESSUP)
         titleLabel.text = actionString
         
-        if appDelegate().modeMap.buttonAppMode() == .FourApps {
+        if appDelegate().modeMap.buttonAppMode() == .SixteenButtons {
             iconView.isHidden = true
         } else {
             let imageName = type(of: appDelegate().modeMap.modeInDirection(labelDirection)).imageName()

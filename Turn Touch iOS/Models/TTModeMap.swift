@@ -33,8 +33,8 @@ class TTModeMap: NSObject {
     @objc dynamic var tempMode: TTMode!
     
     enum TTButtonAppMode: String {
-        case FourApps = "four_apps"
-        case OneApp = "one_app"
+        case SixteenButtons = "16_buttons"
+        case TwelveButtons = "12_buttons"
     }
     
     var batchActions = TTBatchActions()
@@ -96,7 +96,7 @@ class TTModeMap: NSObject {
             return appMode
         }
         
-        return .FourApps
+        return .SixteenButtons
     }
     
     func reset() {
@@ -115,16 +115,16 @@ class TTModeMap: NSObject {
                 switch (direction) {
                 case "north":
                     northMode = modeClass.init()
-                    northMode.modeDirection = buttonAppMode == .FourApps ? .north : self.selectedModeDirection
+                    northMode.modeDirection = buttonAppMode == .SixteenButtons ? .north : self.selectedModeDirection
                 case "east":
                     eastMode = modeClass.init()
-                    eastMode.modeDirection = buttonAppMode == .FourApps ? .east : self.selectedModeDirection
+                    eastMode.modeDirection = buttonAppMode == .SixteenButtons ? .east : self.selectedModeDirection
                 case "west":
                     westMode = modeClass.init()
-                    westMode.modeDirection = buttonAppMode == .FourApps ? .west : self.selectedModeDirection
+                    westMode.modeDirection = buttonAppMode == .SixteenButtons ? .west : self.selectedModeDirection
                 case "south":
                     southMode = modeClass.init()
-                    southMode.modeDirection = buttonAppMode == .FourApps ? .south : self.selectedModeDirection
+                    southMode.modeDirection = buttonAppMode == .SixteenButtons ? .south : self.selectedModeDirection
                 default:
                     break
                 }
@@ -133,7 +133,7 @@ class TTModeMap: NSObject {
     }
     
     func modeRoot() -> String {
-        if self.buttonAppMode() == .OneApp {
+        if self.buttonAppMode() == .TwelveButtons {
             switch (self.savedSelectedModeDirection()) {
             case .single:
                 return "mode-single"
@@ -540,7 +540,7 @@ class TTModeMap: NSObject {
         
         self.setupModes()
         self.activateModes()
-        if buttonAppMode() == .OneApp {
+        if buttonAppMode() == .TwelveButtons {
             self.activateOneAppMode(direction)
         }
     }
@@ -620,12 +620,12 @@ class TTModeMap: NSObject {
                 self.openedAddActionChangeMenu = false
             }
             self.inspectingModeDirection = .no_DIRECTION
-            if buttonAppMode() == .OneApp {
+            if buttonAppMode() == .TwelveButtons {
                 self.activateModes()
             }
         } else {
             self.inspectingModeDirection = direction
-            if buttonAppMode() == .OneApp {
+            if buttonAppMode() == .TwelveButtons {
                 self.activateOneAppMode(direction)
             }
         }
@@ -696,9 +696,9 @@ class TTModeMap: NSObject {
         prefs.synchronize()
         
         switch buttonAppMode {
-        case .FourApps:
+        case .SixteenButtons:
             self.selectedModeDirection = .north
-        case .OneApp:
+        case .TwelveButtons:
             self.selectedModeDirection = .single
         }
 
