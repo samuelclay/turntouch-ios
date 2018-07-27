@@ -123,6 +123,12 @@ class TTMode : NSObject, TTModeProtocol {
         }
     }
     
+    func runHoldDirection(_ direction: TTModeDirection) {
+        if !self.runDirection(direction, funcAction: "holdRun") {
+            self.runDirection(direction)
+        }
+    }
+    
     func runDirection(_ direction: TTModeDirection, funcAction: String) -> Bool {
         let actionName = self.actionNameInDirection(direction)
         return self.runAction(actionName, direction: direction, funcAction: funcAction)
@@ -313,6 +319,10 @@ class TTMode : NSObject, TTModeProtocol {
     
     // Run a button's action on press *down* and not on standard press *up*
     func shouldFireImmediateOnPress(_ direction: TTModeDirection) -> Bool {
+        if appDelegate().modeMap.buttonAppMode() == .TwelveButtons {
+            return false
+        }
+        
         let actionName = self.actionNameInDirection(direction)
         let titleSelector = NSSelectorFromString("shouldFireImmediate\(actionName)")
         if !self.responds(to: titleSelector) {

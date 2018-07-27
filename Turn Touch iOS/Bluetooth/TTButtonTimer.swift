@@ -20,7 +20,7 @@ enum TTHUDMenuState {
     case active
 }
 
-let DOUBLE_CLICK_ACTION_DURATION = 0.25
+let DOUBLE_CLICK_ACTION_DURATION = 0.29
 
 class TTButtonTimer : NSObject {
     
@@ -103,16 +103,16 @@ class TTButtonTimer : NSObject {
             if state == 0x01 {
                 // Don't fire action on button release
                 previousButtonState.north = false
-                self.activateMode(.north)
+                self.fireHoldButton(.north)
             } else if state == 0x02 {
                 previousButtonState.east = false
-                self.activateMode(.east)
+                self.fireHoldButton(.east)
             } else if state == 0x04 {
                 previousButtonState.west = false
-                self.activateMode(.west)
+                self.fireHoldButton(.west)
             } else if state == 0x08 {
                 previousButtonState.south = false
-                self.activateMode(.south)
+                self.fireHoldButton(.south)
             }
             self.activateButton(.no_DIRECTION)
         } else if anyButtonPressed {
@@ -194,14 +194,18 @@ class TTButtonTimer : NSObject {
             } else if doubleState != 0xF && doubleState != 0x0 {
                 // Firmware v3 has hardware support for double-click
                 self.fireDoubleButton(buttonPressedDirection)
+                
+                lastButtonPressStart = nil
+                lastButtonPressedDirection = .no_DIRECTION
             } else {
                 lastButtonPressedDirection = buttonPressedDirection
-                lastButtonPressStart = Date()
-                
-                self.fireButton(buttonPressedDirection)
+                lastButtonPressStart = Date()                
                 
                 let delayTime = DispatchTime.now() + Double(Int64(DOUBLE_CLICK_ACTION_DURATION * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
                 DispatchQueue.main.asyncAfter(deadline: delayTime, execute: {
+                    if self.lastButtonPressStart != nil && self.lastButtonPressedDirection != .no_DIRECTION {
+                        self.fireButton(buttonPressedDirection)
+                    }
                     self.lastButtonPressStart = nil
                     self.lastButtonPressedDirection = .no_DIRECTION
                 })
@@ -228,9 +232,18 @@ class TTButtonTimer : NSObject {
         holdToastStart = nil
     }
     
-    func activateMode(_ direction: TTModeDirection) {
+    func fireHoldButton(_ direction: TTModeDirection) {
         DispatchQueue.main.async(execute: {
-            appDelegate().modeMap.switchMode(direction, modeChangeType: .remoteButton)
+            if appDelegate().modeMap.buttonAppMode() == .SixteenButtons {
+                appDelegate().modeMap.switchMode(direction, modeChangeType: .remoteButton)
+            } else {
+                appDelegate().modeMap.activeModeDirection = direction
+                if !self.skipButtonActions {
+                    appDelegate().modeMap.runHoldButton(direction)
+                } else {
+                    appDelegate().modeMap.activeModeDirection = .no_DIRECTION
+                }
+            }
     //        appDelegate().hudController.holdToastActiveMode(true)
         })
     }

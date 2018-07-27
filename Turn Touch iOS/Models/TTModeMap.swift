@@ -299,6 +299,10 @@ class TTModeMap: NSObject {
     func runActiveButton() {
         let direction = activeModeDirection
         
+        if buttonAppMode() == .TwelveButtons {
+            self.switchMode(.single, modeChangeType: .remoteButton)
+        }
+        
         if buttonAppMode() == .SixteenButtons && selectedMode.shouldIgnoreSingleBeforeDouble(direction) {
             waitingForDoubleClick = true
             let delayTime = DispatchTime.now() + Double(Int64(DOUBLE_CLICK_ACTION_DURATION * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
@@ -312,6 +316,47 @@ class TTModeMap: NSObject {
         }
         
         activeModeDirection = .no_DIRECTION
+    }
+    
+    func runDoubleButton(_ direction: TTModeDirection) {
+        waitingForDoubleClick = false
+        activeModeDirection = .no_DIRECTION
+        if selectedMode.shouldFireImmediateOnPress(direction) {
+            return
+        }
+        
+        if buttonAppMode() == .TwelveButtons {
+            self.switchMode(.double, modeChangeType: .remoteButton)
+        }
+        
+        selectedMode.runDoubleDirection(direction)
+        
+        // Batch actions
+        let actions = self.selectedModeBatchActions(in: direction)
+        for batchAction: TTAction in actions {
+            batchAction.mode.runDoubleDirection(direction)
+        }
+        
+        self.recordButtonMoment(direction, .button_MOMENT_DOUBLE)
+    }
+    
+    func runHoldButton(_ direction: TTModeDirection) {
+        waitingForDoubleClick = false
+        activeModeDirection = .no_DIRECTION
+        
+        if self.selectedModeDirection != .hold {
+            self.switchMode(.hold, modeChangeType: .remoteButton)
+        }
+
+        selectedMode.runHoldDirection(direction)
+        
+        // Batch actions
+        let actions = self.selectedModeBatchActions(in: direction)
+        for batchAction: TTAction in actions {
+            batchAction.mode.runHoldDirection(direction)
+        }
+        
+        self.recordButtonMoment(direction, .button_MOMENT_DOUBLE)
     }
     
     func runDirection(_ direction: TTModeDirection) {
@@ -342,24 +387,6 @@ class TTModeMap: NSObject {
         }
         
         self.recordButtonMoment(direction, .button_MOMENT_PRESSUP)
-    }
-    
-    func runDoubleButton(_ direction: TTModeDirection) {
-        waitingForDoubleClick = false
-        activeModeDirection = .no_DIRECTION
-        if selectedMode.shouldFireImmediateOnPress(direction) {
-            return
-        }
-        
-        selectedMode.runDoubleDirection(direction)
-        
-        // Batch actions
-        let actions = self.selectedModeBatchActions(in: direction)
-        for batchAction: TTAction in actions {
-            batchAction.mode.runDoubleDirection(direction)
-        }
-        
-        self.recordButtonMoment(direction, .button_MOMENT_DOUBLE)
     }
     
     func recordButtonMoment(_ direction: TTModeDirection, _ buttonMoment: TTButtonMoment) {
