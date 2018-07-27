@@ -218,6 +218,10 @@ class TTModeMap: NSObject {
             self.recordButtonMoment(direction, .button_MOMENT_HELD)
         } else if [.single, .double, .hold].contains(direction) {
             self.setupModes()
+            self.northMode.activate(direction)
+            self.eastMode.activate(direction)
+            self.westMode.activate(direction)
+            self.southMode.activate(direction)
             batchActions.assemble(modeDirection: direction)
         } else {
 //            let className = "Turn_Touch_iOS.\(modeName)"
