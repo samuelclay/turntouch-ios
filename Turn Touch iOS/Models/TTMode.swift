@@ -9,7 +9,7 @@
 import Foundation
 
 let DEBUG_PREFS = true
-let DEBUG_PREFS_NIL = false
+let DEBUG_PREFS_NIL = true
 
 enum ActionLayout {
     case action_LAYOUT_TITLE
@@ -499,6 +499,9 @@ class TTMode : NSObject, TTModeProtocol {
     func defaultOption(_ optionName: String) -> Any? {
         let defaultPrefsFile = Bundle.main.path(forResource: self.nameOfClass, ofType: "plist")
         if defaultPrefsFile == nil {
+            if DEBUG_PREFS_NIL {
+                print(" -> Getting mode option default \(optionName): can't find default prefs file: \(self.nameOfClass).plist")
+            }
             return nil
         }
         let modeDefaults: Dictionary<String, Any>? = NSDictionary(contentsOfFile: defaultPrefsFile!) as? Dictionary<String, Any>

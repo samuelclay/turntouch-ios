@@ -28,7 +28,7 @@ class TTModeMap: NSObject {
     var westMode: TTMode!
     var southMode: TTMode!
     var singleMode = TTMode(modeDirection: .single)
-    var doubleMode = TTMode(modeDirection: .double)
+    var doubleMode = TTModeDouble(modeDirection: .double)
     var holdMode = TTMode(modeDirection: .hold)
     @objc dynamic var tempMode: TTMode!
     
@@ -326,10 +326,14 @@ class TTModeMap: NSObject {
         }
         
         if buttonAppMode() == .TwelveButtons {
-            self.switchMode(.double, modeChangeType: .remoteButton)
+            if !(self.doubleMode.modeOptionValue(TTModeDoubleConstants.TTModeDoubleEnabled) as! Bool) {
+                self.switchMode(.single, modeChangeType: .remoteButton)
+            } else {
+                self.switchMode(.double, modeChangeType: .remoteButton)
+            }
         }
         
-        selectedMode.runDoubleDirection(direction)
+        selectedMode.runDoubleDirection(direction)        
         
         // Batch actions
         let actions = self.selectedModeBatchActions(in: direction)

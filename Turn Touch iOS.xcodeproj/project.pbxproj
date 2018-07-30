@@ -27,6 +27,10 @@
 		FF0F10E51CFFAD1B00CC1F29 /* TTModeMenuBordersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0F10E41CFFAD1B00CC1F29 /* TTModeMenuBordersView.swift */; };
 		FF0F10E91CFFAD6100CC1F29 /* TTModeMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0F10E81CFFAD6100CC1F29 /* TTModeMenuCell.swift */; };
 		FF0F10EB1CFFB4A800CC1F29 /* TTModeMenuCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0F10EA1CFFB4A800CC1F29 /* TTModeMenuCollectionView.swift */; };
+		FF189C6B210F578B000B49F7 /* TTModeDoubleOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF189C69210F578B000B49F7 /* TTModeDoubleOptions.swift */; };
+		FF189C6C210F578B000B49F7 /* TTModeDoubleOptions.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF189C6A210F578B000B49F7 /* TTModeDoubleOptions.xib */; };
+		FF189C6E210F5B7C000B49F7 /* TTModeDouble.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF189C6D210F5B7C000B49F7 /* TTModeDouble.swift */; };
+		FF189C70210F5D83000B49F7 /* TTModeDouble.plist in Resources */ = {isa = PBXBuildFile; fileRef = FF189C6F210F5D83000B49F7 /* TTModeDouble.plist */; };
 		FF1A84FB1FCFB56F005D8ADE /* TTModeHueBrightnessOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1A84F91FCFB56F005D8ADE /* TTModeHueBrightnessOptions.swift */; };
 		FF1A84FC1FCFB56F005D8ADE /* TTModeHueBrightnessOptions.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF1A84FA1FCFB56F005D8ADE /* TTModeHueBrightnessOptions.xib */; };
 		FF1A84FE1FCFB593005D8ADE /* TTModeHueRaiseBrightnessOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1A84FD1FCFB593005D8ADE /* TTModeHueRaiseBrightnessOptions.swift */; };
@@ -446,6 +450,10 @@
 		FF0F10E41CFFAD1B00CC1F29 /* TTModeMenuBordersView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeMenuBordersView.swift; path = "Views/Mode menu/TTModeMenuBordersView.swift"; sourceTree = "<group>"; };
 		FF0F10E81CFFAD6100CC1F29 /* TTModeMenuCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeMenuCell.swift; path = "Views/Mode menu/TTModeMenuCell.swift"; sourceTree = "<group>"; };
 		FF0F10EA1CFFB4A800CC1F29 /* TTModeMenuCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeMenuCollectionView.swift; path = "Views/Mode menu/TTModeMenuCollectionView.swift"; sourceTree = "<group>"; };
+		FF189C69210F578B000B49F7 /* TTModeDoubleOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTModeDoubleOptions.swift; sourceTree = "<group>"; };
+		FF189C6A210F578B000B49F7 /* TTModeDoubleOptions.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TTModeDoubleOptions.xib; sourceTree = "<group>"; };
+		FF189C6D210F5B7C000B49F7 /* TTModeDouble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTModeDouble.swift; sourceTree = "<group>"; };
+		FF189C6F210F5D83000B49F7 /* TTModeDouble.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = TTModeDouble.plist; sourceTree = "<group>"; };
 		FF1A84F91FCFB56F005D8ADE /* TTModeHueBrightnessOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TTModeHueBrightnessOptions.swift; path = Modes/Hue/TTModeHueBrightnessOptions.swift; sourceTree = "<group>"; };
 		FF1A84FA1FCFB56F005D8ADE /* TTModeHueBrightnessOptions.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = TTModeHueBrightnessOptions.xib; path = Modes/Hue/TTModeHueBrightnessOptions.xib; sourceTree = "<group>"; };
 		FF1A84FD1FCFB593005D8ADE /* TTModeHueRaiseBrightnessOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TTModeHueRaiseBrightnessOptions.swift; path = Modes/Hue/TTModeHueRaiseBrightnessOptions.swift; sourceTree = "<group>"; };
@@ -1710,6 +1718,10 @@
 				FFF46BED1D10E6A300158751 /* TTOptionsView.swift */,
 				FFF46BEF1D10E6D400158751 /* TTOptionsDetailViewController.swift */,
 				FF52EBD11F8F05E2002D0EF1 /* MulticastDelegate.swift */,
+				FF189C6D210F5B7C000B49F7 /* TTModeDouble.swift */,
+				FF189C69210F578B000B49F7 /* TTModeDoubleOptions.swift */,
+				FF189C6F210F5D83000B49F7 /* TTModeDouble.plist */,
+				FF189C6A210F578B000B49F7 /* TTModeDoubleOptions.xib */,
 			);
 			name = Options;
 			path = Views/Options;
@@ -1962,6 +1974,7 @@
 				FF37EDE01D11179E0026F70D /* TTModeHuePushlink.xib in Resources */,
 				FFB84B3F1D90D4240037872C /* yoga_background.jpg in Resources */,
 				FF0F10D51CF6430E00CC1F29 /* Effra_Rg.ttf in Resources */,
+				FF189C70210F5D83000B49F7 /* TTModeDouble.plist in Resources */,
 				FF534C3D1EB0351A002EE584 /* TTModeIftttConnecting.xib in Resources */,
 				FFDA0FB41D3C4FEE0019859F /* camera-switch@2x.png in Resources */,
 				FFF2709D1CEE88E500E46575 /* Assets.xcassets in Resources */,
@@ -2034,6 +2047,7 @@
 				FF0EDD992105329400F3D5C3 /* switch_mode.png in Resources */,
 				FF8B75691F86D4EF00D7867C /* music_play.png in Resources */,
 				FF8B756A1F86D4EF00D7867C /* music_playlist.png in Resources */,
+				FF189C6C210F578B000B49F7 /* TTModeDoubleOptions.xib in Resources */,
 				FF9D5E11202D2DA900009A8F /* pencil.png in Resources */,
 				FF8B756B1F86D4EF00D7867C /* music_rewind.png in Resources */,
 				FF8B756C1F86D4EF00D7867C /* music_volume_down.png in Resources */,
@@ -2201,6 +2215,7 @@
 				FFF46BDB1D10941500158751 /* DDAbstractDatabaseLogger.m in Sources */,
 				FF3032BF1DB8289600728920 /* TTModeHueSceneMidnightOilOptions.swift in Sources */,
 				FFC9FE991D02520300038817 /* NSObject+Class.swift in Sources */,
+				FF189C6B210F578B000B49F7 /* TTModeDoubleOptions.swift in Sources */,
 				FFB41B821CF5341700CD5F09 /* TTMode.swift in Sources */,
 				FF4AF7CB1D24C65A0009C777 /* TTPickerViewController.swift in Sources */,
 				FF37EDDB1D11178D0026F70D /* TTModeHueBridge.swift in Sources */,
@@ -2231,6 +2246,7 @@
 				FFE11F4B209C0EC00013D299 /* TTModeSpotifyConnect.swift in Sources */,
 				FF37EDCB1D1102620026F70D /* TTTabView.swift in Sources */,
 				FF4487621D08986200ED8099 /* TTTitleMenuPopover.swift in Sources */,
+				FF189C6E210F5B7C000B49F7 /* TTModeDouble.swift in Sources */,
 				FFF46BC51D0E58C000158751 /* TTDeviceTitleView.swift in Sources */,
 				FF4AF7C21D248A4D0009C777 /* TTModeWemoDeviceSwitchOptions.swift in Sources */,
 				FF37EDFD1D1B23B70026F70D /* TTModeHueRandomOptions.swift in Sources */,
