@@ -74,8 +74,9 @@ class TTButtonTimer : NSObject {
         latestButtonState.east = (state & (1 << 1)) != 0x0
         latestButtonState.west = (state & (1 << 2)) != 0x0
         latestButtonState.south = (state & (1 << 3)) != 0x0
+        latestButtonState.double = (doubleState != 0xF && doubleState != 0x0)
         
-//        print(" ---> Bluetooth data: \(data) (\(doubleState)/\(state)/\(heldState)) was:\(previousButtonState) is:\(latestButtonState)")
+        print(" ---> Bluetooth data: \(data) (\(doubleState)/\(state)/\(heldState)) was:\(previousButtonState) is:\(latestButtonState)")
         
         var i = latestButtonState.count
         while i > 0 {
@@ -93,6 +94,7 @@ class TTButtonTimer : NSObject {
         let anyButtonHeld = !latestButtonState.inMultitouch() && !menuHysteresis && heldState
         let anyButtonPressed = !menuHysteresis && latestButtonState.anyPressedDown()
         let anyButtonLifted = !previousButtonState.inMultitouch() && !menuHysteresis && buttonLifted >= 0
+        let anyDoubleTapped = doubleState != 0xF && doubleState != 0x0
         
         if anyButtonHeld {
             // Hold button down
@@ -174,7 +176,7 @@ class TTButtonTimer : NSObject {
 //            print(" ---> Lift button\(previousButtonState.inMultitouch() ? " (multi-touch)" : ""): \(buttonPressedDirection)")
             
             if menuState == .active {
-                if buttonPressedDirection == .north {
+                if buttonPressedDirection == .north || buttonPressedDirection == .south {
                     // Fired on button down
                 } else if buttonPressedDirection == .east {
                     self.fireMenuButton(.east)
@@ -183,23 +185,30 @@ class TTButtonTimer : NSObject {
                 } else if state == 0x00 {
                     self.activateButton(.no_DIRECTION)
                 }
-            } else if (doubleState == 0xF &&
+            } else if (!anyDoubleTapped &&
                        lastButtonPressedDirection != .no_DIRECTION &&
                        buttonPressedDirection == lastButtonPressedDirection &&
                        Date().timeIntervalSince(lastButtonPressStart) < DOUBLE_CLICK_ACTION_DURATION) {
-                // Double click detected
+                // Double tap detected by timing in software
                 self.fireDoubleButton(buttonPressedDirection)
                 lastButtonPressedDirection = .no_DIRECTION
                 lastButtonPressStart = nil
-            } else if doubleState != 0xF && doubleState != 0x0 {
-                // Firmware v3 has hardware support for double-click
+            } else if anyDoubleTapped {
+                // Double tap detected by hardware (firmware v3+)
                 self.fireDoubleButton(buttonPressedDirection)
                 
                 lastButtonPressStart = nil
                 lastButtonPressedDirection = .no_DIRECTION
             } else {
-                lastButtonPressedDirection = buttonPressedDirection
-                lastButtonPressStart = Date()                
+                let buttonAppMode = appDelegate().modeMap.buttonAppMode()
+                if buttonAppMode == .TwelveButtons && !(appDelegate().modeMap.doubleMode.modeOptionValue(TTModeDoubleConstants.TTModeDoubleEnabled) as! Bool) {
+                    self.fireButton(buttonPressedDirection)
+                } else if buttonAppMode == .SixteenButtons && !appDelegate().modeMap.selectedMode.shouldIgnoreSingleBeforeDouble(buttonPressedDirection) {
+                    self.fireButton(buttonPressedDirection)
+                } else {
+                    lastButtonPressedDirection = buttonPressedDirection
+                    lastButtonPressStart = Date()
+                }
                 
                 let delayTime = DispatchTime.now() + Double(Int64(DOUBLE_CLICK_ACTION_DURATION * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
                 DispatchQueue.main.asyncAfter(deadline: delayTime, execute: {

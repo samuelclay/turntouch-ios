@@ -44,7 +44,6 @@ class TTModeMap: NSObject {
     @objc dynamic var availableAddModes: [[String: Any]] = []
     @objc dynamic var availableAddActions: [[String: Any]] = []
     
-    var waitingForDoubleClick = false
     var player: AVAudioPlayer?
 
     override init() {
@@ -303,24 +302,14 @@ class TTModeMap: NSObject {
             self.switchMode(.single, modeChangeType: .remoteButton)
         }
         
-        if buttonAppMode() == .SixteenButtons && selectedMode.shouldIgnoreSingleBeforeDouble(direction) {
-            waitingForDoubleClick = true
-            let delayTime = DispatchTime.now() + Double(Int64(DOUBLE_CLICK_ACTION_DURATION * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
-            DispatchQueue.main.asyncAfter(deadline: delayTime, execute: {
-                if self.waitingForDoubleClick {
-                    self.runDirection(direction)
-                }
-            })
-        } else {
-            self.runDirection(direction)
-        }
+        self.runDirection(direction)
         
         activeModeDirection = .no_DIRECTION
     }
     
     func runDoubleButton(_ direction: TTModeDirection) {
-        waitingForDoubleClick = false
         activeModeDirection = .no_DIRECTION
+
         if selectedMode.shouldFireImmediateOnPress(direction) {
             return
         }
@@ -333,7 +322,7 @@ class TTModeMap: NSObject {
             }
         }
         
-        selectedMode.runDoubleDirection(direction)        
+        selectedMode.runDoubleDirection(direction)
         
         // Batch actions
         let actions = self.selectedModeBatchActions(in: direction)
@@ -345,7 +334,6 @@ class TTModeMap: NSObject {
     }
     
     func runHoldButton(_ direction: TTModeDirection) {
-        waitingForDoubleClick = false
         activeModeDirection = .no_DIRECTION
         
         if self.selectedModeDirection != .hold {

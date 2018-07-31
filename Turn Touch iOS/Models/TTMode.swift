@@ -308,13 +308,15 @@ class TTMode : NSObject, TTModeProtocol {
     // Don't run a button's single tap action until confirmed that it's not a double tap
     func shouldIgnoreSingleBeforeDouble(_ direction: TTModeDirection) -> Bool {
         let actionName = self.actionNameInDirection(direction)
-        let titleSelector = NSSelectorFromString("shouldIgnoreSingleBeforeDouble\(actionName)")
-        if !self.responds(to: titleSelector) {
-            return false
+        let titleSelectorWithDirection = NSSelectorFromString("doubleRun\(actionName)WithDirection:")
+        if !self.responds(to: titleSelectorWithDirection) {
+            let titleSelector = NSSelectorFromString("doubleRun\(actionName)")
+            if !self.responds(to: titleSelector) {
+                return false
+            }
         }
         
-        let ignore = self.perform(titleSelector).takeUnretainedValue() as! NSNumber
-        return ignore.boolValue
+        return true
     }
     
     // Run a button's action on press *down* and not on standard press *up*

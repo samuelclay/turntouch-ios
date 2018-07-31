@@ -29,11 +29,11 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="435"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="8" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Qj-jz-TCD">
-                    <rect key="frame" x="20" y="48.5" width="335" height="366.5"/>
-                    <string key="text">Disabling double tap allows you to use single taps in rapid succession (changing volume, for example) without triggering a double tap action. 
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="16" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Qj-jz-TCD">
+                    <rect key="frame" x="20" y="48" width="335" height="367"/>
+                    <string key="text">Disabling double tap allows you to use single taps in rapid succession (for example, changing volume) without triggering this double tap action. 
 
-Additionally, some single tap actions have a double t built in that will only work if this double-tap mode is disabled.</string>
+Additionally, some single tap actions have a double tap action built in that will only work if this double-tap mode is disabled (for example, play/pause will go to the previous track on double tap).</string>
                     <fontDescription key="fontDescription" name="Effra-Regular" family="Effra" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>

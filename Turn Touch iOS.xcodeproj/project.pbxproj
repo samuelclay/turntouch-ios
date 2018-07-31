@@ -31,6 +31,8 @@
 		FF189C6C210F578B000B49F7 /* TTModeDoubleOptions.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF189C6A210F578B000B49F7 /* TTModeDoubleOptions.xib */; };
 		FF189C6E210F5B7C000B49F7 /* TTModeDouble.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF189C6D210F5B7C000B49F7 /* TTModeDouble.swift */; };
 		FF189C70210F5D83000B49F7 /* TTModeDouble.plist in Resources */ = {isa = PBXBuildFile; fileRef = FF189C6F210F5D83000B49F7 /* TTModeDouble.plist */; };
+		FF189C73210FA71A000B49F7 /* TTModeMusicPlayPauseOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF189C71210FA71A000B49F7 /* TTModeMusicPlayPauseOptions.swift */; };
+		FF189C74210FA71A000B49F7 /* TTModeMusicPlayPauseOptions.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF189C72210FA71A000B49F7 /* TTModeMusicPlayPauseOptions.xib */; };
 		FF1A84FB1FCFB56F005D8ADE /* TTModeHueBrightnessOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1A84F91FCFB56F005D8ADE /* TTModeHueBrightnessOptions.swift */; };
 		FF1A84FC1FCFB56F005D8ADE /* TTModeHueBrightnessOptions.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF1A84FA1FCFB56F005D8ADE /* TTModeHueBrightnessOptions.xib */; };
 		FF1A84FE1FCFB593005D8ADE /* TTModeHueRaiseBrightnessOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1A84FD1FCFB593005D8ADE /* TTModeHueRaiseBrightnessOptions.swift */; };
@@ -454,6 +456,8 @@
 		FF189C6A210F578B000B49F7 /* TTModeDoubleOptions.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TTModeDoubleOptions.xib; sourceTree = "<group>"; };
 		FF189C6D210F5B7C000B49F7 /* TTModeDouble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTModeDouble.swift; sourceTree = "<group>"; };
 		FF189C6F210F5D83000B49F7 /* TTModeDouble.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = TTModeDouble.plist; sourceTree = "<group>"; };
+		FF189C71210FA71A000B49F7 /* TTModeMusicPlayPauseOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TTModeMusicPlayPauseOptions.swift; path = Modes/Music/TTModeMusicPlayPauseOptions.swift; sourceTree = "<group>"; };
+		FF189C72210FA71A000B49F7 /* TTModeMusicPlayPauseOptions.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = TTModeMusicPlayPauseOptions.xib; path = Modes/Music/TTModeMusicPlayPauseOptions.xib; sourceTree = "<group>"; };
 		FF1A84F91FCFB56F005D8ADE /* TTModeHueBrightnessOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TTModeHueBrightnessOptions.swift; path = Modes/Hue/TTModeHueBrightnessOptions.swift; sourceTree = "<group>"; };
 		FF1A84FA1FCFB56F005D8ADE /* TTModeHueBrightnessOptions.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = TTModeHueBrightnessOptions.xib; path = Modes/Hue/TTModeHueBrightnessOptions.xib; sourceTree = "<group>"; };
 		FF1A84FD1FCFB593005D8ADE /* TTModeHueRaiseBrightnessOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TTModeHueRaiseBrightnessOptions.swift; path = Modes/Hue/TTModeHueRaiseBrightnessOptions.swift; sourceTree = "<group>"; };
@@ -946,6 +950,8 @@
 			children = (
 				FF86801E1F90297600D9A0B3 /* TTModeMusic.plist */,
 				FF0F10C61CF63F1600CC1F29 /* TTModeMusic.swift */,
+				FF189C71210FA71A000B49F7 /* TTModeMusicPlayPauseOptions.swift */,
+				FF189C72210FA71A000B49F7 /* TTModeMusicPlayPauseOptions.xib */,
 				FF86801A1F90296800D9A0B3 /* TTModeMusicVolumeJumpOptions.swift */,
 				FF86801B1F90296800D9A0B3 /* TTModeMusicVolumeJumpOptions.xib */,
 			);
@@ -1914,6 +1920,7 @@
 				FFB41B5A1CEE9A3000CD5F09 /* logo - 1024.png in Resources */,
 				FFB41B561CEE9A3000CD5F09 /* itunes_playlist_icon.png in Resources */,
 				FFC4B0F11D2DBF3E00A97C81 /* TTPairingInfoViewController.xib in Resources */,
+				FF189C74210FA71A000B49F7 /* TTModeMusicPlayPauseOptions.xib in Resources */,
 				FF383F881E0254D200D3F15C /* DFU in Resources */,
 				FF2023311D02147A005129E5 /* Icon-40@3x.png in Resources */,
 				FF4AF7EA1D24F9E70009C777 /* TTModeSonosConnected.xib in Resources */,
@@ -2225,6 +2232,7 @@
 				FF254F6B1D21C2CF00E96378 /* TTModeWemo.swift in Sources */,
 				FF37EDE31D1117B20026F70D /* TTModeHueConnected.swift in Sources */,
 				FF254FDE1D22F26500E96378 /* XPathQuery.m in Sources */,
+				FF189C73210FA71A000B49F7 /* TTModeMusicPlayPauseOptions.swift in Sources */,
 				FFF46BC71D0E5C8400158751 /* TTDeviceTitlesView.swift in Sources */,
 				FF254FDA1D21EF1200E96378 /* TTModeWemoDevice.swift in Sources */,
 				FFD88F1C20AE7A9F00E0C5CC /* TTModeBose.swift in Sources */,
