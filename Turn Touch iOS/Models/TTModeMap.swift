@@ -267,7 +267,7 @@ class TTModeMap: NSObject {
                     player.play()
                 }
             } catch let error {
-                print(error.localizedDescription)
+                print(" ---> Audio error: \(error.localizedDescription))")
             }
         }
         

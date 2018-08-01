@@ -27,10 +27,10 @@ extension MPVolumeView {
 class TTModeMusic: TTMode {
     
     let ITUNES_VOLUME_CHANGE: Float = 0.06
-    var observing = false
+    static var observing = false
     static var lastVolume: Float!
     static var musicPlayer: MPMusicPlayerController!
-    private let containerView = UIView()
+    static private let containerView = UIView()
     static let volumeView = MPVolumeView(frame: CGRect(x: 100, y: 100, width: 100, height: 100))
     
     override class func title() -> String {
@@ -156,17 +156,33 @@ class TTModeMusic: TTMode {
     override func activate() {
         if TTModeMusic.musicPlayer == nil {
             TTModeMusic.musicPlayer = MPMusicPlayerController.systemMusicPlayer
-            containerView.addSubview(TTModeMusic.volumeView)
+            TTModeMusic.containerView.addSubview(TTModeMusic.volumeView)
         }
         
-        if !observing {
+        if !TTModeMusic.observing {
             NotificationCenter.default.addObserver(self, selector: #selector(self.volumeDidChange(notification:)), name: NSNotification.Name(rawValue: "AVSystemController_SystemVolumeDidChangeNotification"), object: nil)
 
             AVAudioSession.sharedInstance().addObserver(self, forKeyPath: "outputVolume", options: [], context: nil)
             TTModeMusic.musicPlayer.addObserver(self, forKeyPath: "nowPlayingItem", options: [], context: nil)
             TTModeMusic.musicPlayer.beginGeneratingPlaybackNotifications()
-            observing = true
+            TTModeMusic.observing = true
         }
+    }
+    
+    deinit {
+        if TTModeMusic.observing {
+            AVAudioSession.sharedInstance().removeObserver(self, forKeyPath: "outputVolume")
+            TTModeMusic.musicPlayer.removeObserver(self, forKeyPath: "nowPlayingItem")
+            TTModeMusic.observing = false
+        }
+    }
+    override func deactivate() {
+        // Don't remove the mjusic observer on deactivate
+//        if TTModeMusic.observing {
+//            AVAudioSession.sharedInstance().removeObserver(self, forKeyPath: "outputVolume")
+//            TTModeMusic.musicPlayer.removeObserver(self, forKeyPath: "nowPlayingItem")
+//            TTModeMusic.observing = false
+//        }
     }
     
     @objc func volumeDidChange(notification: NSNotification) {
@@ -176,14 +192,6 @@ class TTModeMusic: TTMode {
         print("Device Volume:\(volume)")
         
         TTModeMusic.lastVolume = volume
-    }
-    
-    override func deactivate() {
-        if observing {
-            AVAudioSession.sharedInstance().removeObserver(self, forKeyPath: "outputVolume")
-            TTModeMusic.musicPlayer.removeObserver(self, forKeyPath: "nowPlayingItem")
-            observing = false
-        }
     }
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {

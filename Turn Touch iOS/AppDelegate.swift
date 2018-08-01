@@ -118,19 +118,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     }
     
     func redrawMainLayout() {
-        guard let window = UIApplication.shared.keyWindow else {
-            return
-        }
-
         modeMap.setupModes()
-
-        let newMainViewController = TTMainViewController()
-        UIView.transition(with: window, duration: 1.3, options: .transitionCrossDissolve, animations: {
-            window.rootViewController = newMainViewController
-        }, completion: { completed in
-            self.mainViewController = newMainViewController
-        })
-
+        mainViewController.layoutStackview()
         modeMap.activateModes()
     }
     

@@ -25,11 +25,11 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
     var scrollStackView = UIStackView()
     var scrollView = UIScrollView()
     var titleBarView: TTTitleBarView = TTTitleBarView()
-    var modeTabsView: UIStackView!
+    var modeTabsView = UIStackView()
     var modeTabs: [TTModeTab] = []
     var titleBarConstraint: NSLayoutConstraint!
     var modeTabsConstraint: NSLayoutConstraint!
-    var modeTitleView: TTModeTitleView = TTModeTitleView()
+    var modeTitleView: TTModeTitleView!
     var modeTitleConstraint = NSLayoutConstraint()
     var modeMenuView: TTModeMenuContainer = TTModeMenuContainer(menuType: TTMenuType.menu_MODE)
     var modeMenuConstaint: NSLayoutConstraint!
@@ -71,24 +71,43 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
         
         self.view.backgroundColor = UIColor.white
         
+        self.layoutStackview()
+
+        self.registerAsObserver()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+    
+    func layoutStackview() {
+        modeTabsView.arrangedSubviews.forEach { $0.removeFromSuperview() }
+        scrollStackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
+        stackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
+        scrollView.subviews.forEach { $0.removeFromSuperview() }
+        scrollStackView.constraints.forEach { scrollStackView.removeConstraint($0) }
+        scrollView.constraints.forEach { scrollView.removeConstraint($0) }
+        stackView.constraints.forEach { stackView.removeConstraint($0) }
+
+        modeTitleView = TTModeTitleView()
+
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
         stackView.distribution = .fill
         stackView.alignment = .fill
         stackView.spacing = 0
-//        stackView.contentMode = .ScaleToFill
+        //        stackView.contentMode = .ScaleToFill
         self.view.addSubview(stackView)
         self.view.addConstraint(NSLayoutConstraint(item: stackView, attribute: .width,
-            relatedBy: .equal, toItem: self.view, attribute: .width, multiplier: 1.0, constant: 0.0))
+                                                   relatedBy: .equal, toItem: self.view, attribute: .width, multiplier: 1.0, constant: 0.0))
         self.view.addConstraint(NSLayoutConstraint(item: stackView, attribute: .top,
-            relatedBy: .equal, toItem: self.topLayoutGuide, attribute: .bottom, multiplier: 1.0, constant: 0.0))
+                                                   relatedBy: .equal, toItem: self.topLayoutGuide, attribute: .bottom, multiplier: 1.0, constant: 0.0))
         self.view.addConstraint(NSLayoutConstraint(item: stackView, attribute: .bottom,
-            relatedBy: .equal, toItem: self.view, attribute: .bottom, multiplier: 1.0, constant: 0.0))
+                                                   relatedBy: .equal, toItem: self.view, attribute: .bottom, multiplier: 1.0, constant: 0.0))
         self.view.addConstraint(NSLayoutConstraint(item: stackView, attribute: .left,
-            relatedBy: .equal, toItem: self.view, attribute: .left, multiplier: 1.0, constant: 0.0))
+                                                   relatedBy: .equal, toItem: self.view, attribute: .left, multiplier: 1.0, constant: 0.0))
         self.view.addConstraint(NSLayoutConstraint(item: stackView, attribute: .right,
-            relatedBy: .equal, toItem: self.view, attribute: .right, multiplier: 1.0, constant: 0.0))
-        
+                                                   relatedBy: .equal, toItem: self.view, attribute: .right, multiplier: 1.0, constant: 0.0))
         
         stackView.addArrangedSubview(titleBarView)
         titleBarConstraint = NSLayoutConstraint(item: titleBarView, attribute: .height,
@@ -110,7 +129,9 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
                 TTModeTab(modeDirection: .hold)
             ]
         }
-        modeTabsView = UIStackView(arrangedSubviews: modeTabs)
+        for view in modeTabs {
+            modeTabsView.addArrangedSubview(view)
+        }
         modeTabsView.axis = .horizontal
         modeTabsView.distribution = .fillEqually
         modeTabsView.alignment = .fill
@@ -161,7 +182,7 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
         actionMenuConstaint = NSLayoutConstraint(item: actionMenuView, attribute: .height, relatedBy: .equal,
                                                  toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 1.0)
         scrollStackView.addConstraint(actionMenuConstaint)
-
+        
         actionTitleView.alpha = 0
         scrollStackView.addArrangedSubview(actionTitleView)
         actionTitleConstraint = NSLayoutConstraint(item: actionTitleView, attribute: .height, relatedBy: .equal,
@@ -173,7 +194,7 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
         optionsConstraint = NSLayoutConstraint(item: optionsView, attribute: .height, relatedBy: .equal,
                                                toItem: nil, attribute: .notAnAttribute,
                                                multiplier: 1.0, constant: 0)
-//        scrollStackView.addConstraint(optionsConstraint)
+        //        scrollStackView.addConstraint(optionsConstraint)
         
         batchActionsStackView.setContentCompressionResistancePriority(UILayoutPriority.defaultHigh, for: .vertical)
         scrollStackView.addArrangedSubview(batchActionsStackView)
@@ -223,13 +244,7 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
         deviceTitlesConstraint = NSLayoutConstraint(item: deviceTitlesView, attribute: .height,
                                                     relatedBy: .equal, toItem: nil, attribute: .notAnAttribute,
                                                     multiplier: 1.0, constant: 0)
-//        stackView.addConstraint(deviceTitlesConstraint)
-
-        self.registerAsObserver()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+        //        stackView.addConstraint(deviceTitlesConstraint)
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
@@ -276,6 +291,17 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
         appDelegate().bluetoothMonitor.addObserver(self, forKeyPath: "pairedDevicesCount", options: [], context: nil)
     }
     
+    deinit {
+        appDelegate().modeMap.removeObserver(self, forKeyPath: "openedModeChangeMenu")
+        appDelegate().modeMap.removeObserver(self, forKeyPath: "openedActionChangeMenu")
+        appDelegate().modeMap.removeObserver(self, forKeyPath: "openedAddActionChangeMenu")
+        appDelegate().modeMap.removeObserver(self, forKeyPath: "selectedModeDirection")
+        appDelegate().modeMap.removeObserver(self, forKeyPath: "inspectingModeDirection")
+        appDelegate().modeMap.removeObserver(self, forKeyPath: "tempMode")
+        appDelegate().bluetoothMonitor.removeObserver(self, forKeyPath: "nicknamedConnectedCount")
+        appDelegate().bluetoothMonitor.removeObserver(self, forKeyPath: "pairedDevicesCount")
+    }
+    
     override func observeValue(forKeyPath keyPath: String?, of object: Any?,
                                          change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if keyPath == "openedModeChangeMenu" {
@@ -298,17 +324,6 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
         } else if keyPath == "tempMode" {
             self.adjustBatchActions()
         }
-    }
-    
-    deinit {
-        appDelegate().modeMap.removeObserver(self, forKeyPath: "openedModeChangeMenu")
-        appDelegate().modeMap.removeObserver(self, forKeyPath: "openedActionChangeMenu")
-        appDelegate().modeMap.removeObserver(self, forKeyPath: "openedAddActionChangeMenu")
-        appDelegate().modeMap.removeObserver(self, forKeyPath: "selectedModeDirection")
-        appDelegate().modeMap.removeObserver(self, forKeyPath: "inspectingModeDirection")
-        appDelegate().modeMap.removeObserver(self, forKeyPath: "tempMode")
-        appDelegate().bluetoothMonitor.removeObserver(self, forKeyPath: "nicknamedConnectedCount")
-        appDelegate().bluetoothMonitor.removeObserver(self, forKeyPath: "pairedDevicesCount")
     }
     
     // MARK: Drawing
