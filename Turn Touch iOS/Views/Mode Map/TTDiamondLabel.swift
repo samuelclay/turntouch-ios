@@ -14,7 +14,7 @@ class TTDiamondLabel: UIView {
     var diamondType: TTDiamondType!
     var labelDirection = TTModeDirection.no_DIRECTION
     var titleLabel: UILabel!
-//    let iconView: UIImageView!
+    var iconView = UIImageView()
     
     
     init(inDirection: TTModeDirection, diamondType: TTDiamondType = .interactive) {
@@ -45,6 +45,18 @@ class TTDiamondLabel: UIView {
             toItem: self, attribute: .height, multiplier: 1.0, constant: 0))
         self.addConstraint(NSLayoutConstraint(item: titleLabel, attribute: .width, relatedBy: .equal,
             toItem: self, attribute: .width, multiplier: 1.0, constant: 0))
+        
+        iconView.image = UIImage(named: "title")
+        iconView.translatesAutoresizingMaskIntoConstraints = false
+        self.addSubview(iconView)
+        self.addConstraint(NSLayoutConstraint(item: iconView, attribute: .centerX, relatedBy: .equal,
+                                              toItem: self, attribute: .centerX, multiplier: 1.0, constant: 0))
+        self.addConstraint(NSLayoutConstraint(item: iconView, attribute: .centerY, relatedBy: .equal,
+                                              toItem: self, attribute: .centerY, multiplier: 1.0, constant: -24))
+        self.addConstraint(NSLayoutConstraint(item: iconView, attribute: .height, relatedBy: .equal,
+                                              toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 18))
+        self.addConstraint(NSLayoutConstraint(item: iconView, attribute: .width, relatedBy: .equal,
+                                              toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 18))
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -57,6 +69,16 @@ class TTDiamondLabel: UIView {
         let actionString = appDelegate().modeMap.selectedMode.titleInDirection(labelDirection,
                                                                                buttonMoment: .button_MOMENT_PRESSUP)
         titleLabel.text = actionString
+        
+        if appDelegate().modeMap.buttonAppMode() == .SixteenButtons {
+            iconView.isHidden = true
+        } else {
+            let imageName = type(of: appDelegate().modeMap.modeInDirection(labelDirection)).imageName()
+            if imageName != "" {
+                iconView.image = UIImage(named: imageName)
+                iconView.isHidden = false
+            }
+        }
     }
     
     func setMode(_ mode: TTMode) {

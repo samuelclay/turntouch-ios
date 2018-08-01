@@ -2,6 +2,32 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>TT:mode-single:north</key>
+	<string>TTModeMusic</string>
+	<key>TT:mode-double:north</key>
+	<string>TTModeHue</string>
+	<key>TT:mode-hold:north</key>
+	<string>TTModeWemo</string>
+	<key>TT:mode-single:east</key>
+	<string>TTModeMusic</string>
+	<key>TT:mode-double:east</key>
+	<string>TTModeHue</string>
+	<key>TT:mode-hold:east</key>
+	<string>TTModeWemo</string>
+	<key>TT:mode-single:west</key>
+	<string>TTModeMusic</string>
+	<key>TT:mode-double:west</key>
+	<string>TTModeHue</string>
+	<key>TT:mode-hold:west</key>
+	<string>TTModeWemo</string>
+	<key>TT:mode-single:south</key>
+	<string>TTModeMusic</string>
+	<key>TT:mode-double:south</key>
+	<string>TTModeHue</string>
+	<key>TT:mode-hold:south</key>
+	<string>TTModeWemo</string>
+	<key>TT:buttonAppMode</key>
+	<string>sixteen_buttons</string>
 	<key>TT:firmware:version</key>
 	<string>6</string>
 	<key>TT:mode:north</key>

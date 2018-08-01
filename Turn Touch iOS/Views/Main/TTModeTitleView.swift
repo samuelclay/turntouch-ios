@@ -67,6 +67,7 @@ class TTModeTitleView: UIView {
     func registerAsObserver() {
         appDelegate().modeMap.addObserver(self, forKeyPath: "selectedModeDirection", options: [], context: nil)
         appDelegate().modeMap.addObserver(self, forKeyPath: "openedModeChangeMenu", options: [], context: nil)
+        appDelegate().modeMap.addObserver(self, forKeyPath: "inspectingModeDirection", options: [], context: nil)
     }
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?,
@@ -75,12 +76,15 @@ class TTModeTitleView: UIView {
             self.setNeedsDisplay()
         } else if keyPath == "openedModeChangeMenu" {
             self.setNeedsDisplay()
+        } else if keyPath == "inspectingModeDirection" {
+            self.setNeedsDisplay()
         }
     }
     
     deinit {
         appDelegate().modeMap.removeObserver(self, forKeyPath: "selectedModeDirection")
         appDelegate().modeMap.removeObserver(self, forKeyPath: "openedModeChangeMenu")
+        appDelegate().modeMap.removeObserver(self, forKeyPath: "inspectingModeDirection")
     }
     
     // MARK: Drawing
@@ -92,8 +96,14 @@ class TTModeTitleView: UIView {
             changeButton.setTitle("Change", for: .normal)
         }
         
-        titleLabel.text = type(of: appDelegate().modeMap.selectedMode).subtitle()
-        modeImageView.image = UIImage(named:type(of: appDelegate().modeMap.selectedMode).imageName())
+        if appDelegate().modeMap.buttonAppMode() == .SixteenButtons {
+            titleLabel.text = type(of: appDelegate().modeMap.selectedMode).subtitle()
+            modeImageView.image = UIImage(named:type(of: appDelegate().modeMap.selectedMode).imageName())
+        } else {
+            let inspectingModeDirection = appDelegate().modeMap.inspectingModeDirection
+            titleLabel.text = type(of: appDelegate().modeMap.modeInDirection(inspectingModeDirection)).title()
+            modeImageView.image = UIImage(named:type(of: appDelegate().modeMap.modeInDirection(inspectingModeDirection)).imageName())
+        }
         
         super.draw(rect)
     }
@@ -108,7 +118,9 @@ class TTModeTitleView: UIView {
         if appDelegate().modeMap.openedAddActionChangeMenu {
             appDelegate().modeMap.openedAddActionChangeMenu = false
         }
-        appDelegate().modeMap.inspectingModeDirection = .no_DIRECTION
+        if appDelegate().modeMap.buttonAppMode() == .SixteenButtons {
+            appDelegate().modeMap.inspectingModeDirection = .no_DIRECTION
+        }
 
         self.setNeedsDisplay()
     }

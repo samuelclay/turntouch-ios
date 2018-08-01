@@ -28,7 +28,8 @@ class TTBatchActions: NSObject {
     func assembleBatchAction(in direction: TTModeDirection) -> [TTAction] {
         let prefs = UserDefaults.standard
         var batchActions: [TTAction] = []
-        let batchActionKeys: [String]? = prefs.object(forKey: self.batchActionKey(in: direction)) as? [String]
+        let key = self.batchActionKey(in: direction)
+        let batchActionKeys: [String]? = prefs.object(forKey: key) as? [String]
         
         if let keys = batchActionKeys {
             for batchActionKey in keys {
@@ -49,6 +50,7 @@ class TTBatchActions: NSObject {
         let actionDirectionName = appDelegate().modeMap.directionName(actionDirection)
         let batchKey = "TT:mode:\(modeDirectionName):action:\(actionDirectionName):batchactions"
         
+        print(" ---> modeBatchActionKey: \(batchKey)")
         return batchKey
     }
     

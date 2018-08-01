@@ -422,29 +422,6 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
         self.runTTModeHueSleep(duration: sceneDuration)
     }
     
-    func shouldIgnoreSingleBeforeDoubleTTModeHueSceneEarlyEvening() -> NSNumber {
-        return NSNumber(value: true)
-    }
-    
-    func shouldIgnoreSingleBeforeDoubleTTModeHueSceneLateEvening() -> NSNumber {
-        return NSNumber(value: true)
-    }
-    
-    func shouldIgnoreSingleBeforeDoubleTTModeHueSceneMorning() -> NSNumber {
-        return NSNumber(value: true)
-    }
-    
-    func shouldIgnoreSingleBeforeDoubleTTModeHueSceneMidnightOil() -> NSNumber {
-        return NSNumber(value: true)
-    }
-    
-    func shouldIgnoreSingleBeforeDoubleTTModeHueSleep() -> NSNumber {
-        return NSNumber(value: true)
-    }
-    
-    func shouldIgnoreSingleBeforeDoubleTTModeHueRandom() -> NSNumber {
-        return NSNumber(value: true)
-    }
     
     func runTTModeHueSleep(duration sceneDuration: Int) {
         if TTModeHue.hueState != .connected {

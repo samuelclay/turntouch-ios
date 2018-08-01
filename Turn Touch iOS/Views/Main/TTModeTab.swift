@@ -78,7 +78,11 @@ class TTModeTab: UIView {
             break
         }
         
-        self.modeTitle = type(of: self.mode).title()
+        if appDelegate().modeMap.buttonAppMode() == .SixteenButtons {
+            self.modeTitle = type(of: self.mode).title()
+        } else {
+            self.modeTitle = appDelegate().modeMap.directionName(modeDirection)
+        }
     }
     
     override class var requiresConstraintBasedLayout : Bool {
@@ -88,8 +92,8 @@ class TTModeTab: UIView {
     // MARK: KVO
     
     func registerAsObserver() {
-        appDelegate().modeMap.addObserver(self, forKeyPath: "selectedModeDirection", options: .initial, context: nil)
-        appDelegate().modeMap.addObserver(self, forKeyPath: "activeModeDirection", options: .initial, context: nil)
+        appDelegate().modeMap.addObserver(self, forKeyPath: "selectedModeDirection", options: [], context: nil)
+        appDelegate().modeMap.addObserver(self, forKeyPath: "activeModeDirection", options: [], context: nil)
     }
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?,
@@ -125,7 +129,11 @@ class TTModeTab: UIView {
         let textColor = (appDelegate().modeMap.selectedModeDirection != self.modeDirection && !self.highlighted) ?
             UIColor(hex: 0x808388) : UIColor(hex: 0x404A60)
         self.titleLabel.textColor = textColor
-        self.titleLabel.text = self.modeTitle.uppercased()
+        if [.single, .double].contains(modeDirection) {
+            self.titleLabel.text = "\(self.modeTitle) tap".uppercased()
+        } else {
+            self.titleLabel.text = self.modeTitle.uppercased()
+        }
     }
     
     func drawBackground() {
@@ -133,6 +141,21 @@ class TTModeTab: UIView {
         if appDelegate().modeMap.selectedModeDirection == self.modeDirection {
             UIColor(hex: 0xFFFFFF).set()
             context?.fill(self.bounds);
+            if appDelegate().modeMap.buttonAppMode() == .TwelveButtons {
+                let colors = [UIColor(hex: 0xF5F6F8).cgColor, UIColor(hex: 0xFFFFFF).cgColor]
+                let colorSpace = CGColorSpaceCreateDeviceRGB()
+                let colorLocations:[CGFloat] = [0.0, 1.0]
+                let gradient = CGGradient(colorsSpace: colorSpace,
+                                          colors: colors as CFArray,
+                                          locations: colorLocations)
+                let startPoint = CGPoint(x:0, y:self.bounds.height)
+                let endPoint = CGPoint(x:0, y:self.bounds.height*(7/10))
+                
+                context?.drawLinearGradient(gradient!,
+                                            start: startPoint,
+                                            end: endPoint,
+                                            options: [])
+            }
         } else {
             let colors = [startColor.cgColor, endColor.cgColor]
             let colorSpace = CGColorSpaceCreateDeviceRGB()

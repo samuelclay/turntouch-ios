@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import AVFoundation
 import AudioToolbox
 import Alamofire
 
@@ -27,7 +28,15 @@ class TTModeMap: NSObject {
     var eastMode: TTMode!
     var westMode: TTMode!
     var southMode: TTMode!
+    var singleMode = TTMode(modeDirection: .single)
+    var doubleMode = TTModeDouble(modeDirection: .double)
+    var holdMode = TTMode(modeDirection: .hold)
     @objc dynamic var tempMode: TTMode!
+    
+    enum TTButtonAppMode: String {
+        case SixteenButtons = "16_buttons"
+        case TwelveButtons = "12_buttons"
+    }
     
     var batchActions = TTBatchActions()
     
@@ -36,8 +45,7 @@ class TTModeMap: NSObject {
     @objc dynamic var availableAddModes: [[String: Any]] = []
     @objc dynamic var availableAddActions: [[String: Any]] = []
     
-    var waitingForDoubleClick = false
-    var player: AVAudioPlayer?
+    var audioPlayer: AVAudioPlayer?
 
     override init() {
         self.availableModes = [
@@ -72,12 +80,27 @@ class TTModeMap: NSObject {
                                          change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if keyPath == "selectedModeDirection" {
             let prefs = UserDefaults.standard
-            prefs.set(self.selectedModeDirection.rawValue, forKey: "TT:selectedModeDirection")
-            prefs.synchronize()
+            let original = prefs.integer(forKey: "TT:selectedModeDirection")
+            if original != self.selectedModeDirection.rawValue {
+                prefs.set(self.selectedModeDirection.rawValue, forKey: "TT:selectedModeDirection")
+                print(" ---> Saving pref TT:selectedModeDirection: \(self.selectedModeDirection.rawValue)")
+                prefs.synchronize()
+            }
         }
     }
     
     // MARK: Actions
+    
+    func buttonAppMode() -> TTButtonAppMode {
+        let prefs = UserDefaults.standard
+        
+        if let appModePref = prefs.string(forKey: "TT:buttonAppMode"),
+            let appMode: TTButtonAppMode = TTButtonAppMode(rawValue: appModePref) {
+            return appMode
+        }
+        
+        return .SixteenButtons
+    }
     
     func reset() {
         inspectingModeDirection = .no_DIRECTION
@@ -86,24 +109,25 @@ class TTModeMap: NSObject {
 
     func setupModes() {
         let prefs = UserDefaults.standard
-
+        let buttonAppMode = self.buttonAppMode()
+        
         for direction: String in ["north", "east", "west", "south"] {
-            if let directionModeName = prefs.string(forKey: "TT:mode:\(direction)") {
+            if let directionModeName = prefs.string(forKey: "TT:\(self.modeRoot()):\(direction)") {
                 let className = "Turn_Touch_iOS.\(directionModeName)"
                 let modeClass = NSClassFromString(className) as! TTMode.Type
                 switch (direction) {
                 case "north":
                     northMode = modeClass.init()
-                    northMode.modeDirection = .north
+                    northMode.modeDirection = buttonAppMode == .SixteenButtons ? .north : self.selectedModeDirection
                 case "east":
                     eastMode = modeClass.init()
-                    eastMode.modeDirection = .east
+                    eastMode.modeDirection = buttonAppMode == .SixteenButtons ? .east : self.selectedModeDirection
                 case "west":
                     westMode = modeClass.init()
-                    westMode.modeDirection = .west
+                    westMode.modeDirection = buttonAppMode == .SixteenButtons ? .west : self.selectedModeDirection
                 case "south":
                     southMode = modeClass.init()
-                    southMode.modeDirection = .south
+                    southMode.modeDirection = buttonAppMode == .SixteenButtons ? .south : self.selectedModeDirection
                 default:
                     break
                 }
@@ -111,11 +135,58 @@ class TTModeMap: NSObject {
         }
     }
     
-    func activateModes() {
+    func modeRoot() -> String {
+        if self.buttonAppMode() == .TwelveButtons {
+            switch (self.savedSelectedModeDirection()) {
+            case .single:
+                return "mode-single"
+            case .double:
+                return "mode-double"
+            case .hold:
+                return "mode-hold"
+            default:
+                break
+            }
+        }
+        
+        return "mode"
+    }
+    
+    func savedSelectedModeDirection() -> TTModeDirection {
         let prefs = UserDefaults.standard
-
         let direction = TTModeDirection(rawValue: prefs.integer(forKey: "TT:selectedModeDirection"))!
+        
+        if buttonAppMode() == .SixteenButtons {
+            if ![.north, .east, .west, .south].contains(direction) {
+                return .north
+            }
+        } else {
+            if ![.single, .double, .hold].contains(direction) {
+                return .single
+            }
+        }
+        
+        return direction
+    }
+    
+    func activateModes() {
+        let direction = self.savedSelectedModeDirection()
         self.switchMode(direction)
+    }
+    
+    func activateOneAppMode(_ direction: TTModeDirection) {
+        switch (direction) {
+        case .north:
+            self.selectedMode = self.northMode
+        case .east:
+            self.selectedMode = self.eastMode
+        case .west:
+            self.selectedMode = self.westMode
+        case .south:
+            self.selectedMode = self.southMode
+        default:
+            break
+        }
     }
     
     func activateTimers() {
@@ -131,23 +202,38 @@ class TTModeMap: NSObject {
 
         batchActions.deactivate()
         self.selectedMode.deactivate()
+        self.reset()
+
+        self.selectedMode = self.modeInDirection(direction)
+        self.selectedModeDirection = direction
         
-        if direction != .no_DIRECTION {
-            self.selectedMode = self.modeInDirection(direction)
+        if [.north, .east, .west, .south, .info].contains(direction) {
+            if modeChangeType == .remoteButton {
+                self.notifyModeChange(direction: direction)
+            }
+            self.availableActions = type(of: selectedMode).actions()
+            self.selectedMode.modeChangeType = modeChangeType
+            self.selectedMode.activate(direction)
+            batchActions.assemble(modeDirection: direction)
+            self.recordButtonMoment(direction, .button_MOMENT_HELD)
+        } else if [.single, .double, .hold].contains(direction) {
+            self.setupModes()
+            self.northMode.activate(direction)
+            self.eastMode.activate(direction)
+            self.westMode.activate(direction)
+            self.southMode.activate(direction)
+            batchActions.assemble(modeDirection: direction)
         } else {
 //            let className = "Turn_Touch_iOS.\(modeName)"
 //            let modeClass = NSClassFromString(className) as! TTMode.Type
-            print(" ---> Can't switch into non-direciton mode. Easy fix right here...")
+            print(" ---> Can't switch into non-direction mode. Easy fix right here...")
         }
+    }
+    
+    func notifyModeChange(direction: TTModeDirection) {
+        let prefs = UserDefaults.standard
         
-        self.availableActions = type(of: selectedMode).actions()
-        self.selectedMode.modeChangeType = modeChangeType
-        self.selectedMode.activate(direction)
-        self.reset()
-        self.selectedModeDirection = direction
-        batchActions.assemble(modeDirection: direction)
-        
-        var url: URL!
+        var url: URL?
         switch direction {
         case .north:
             url = Bundle.main.url(forResource: "north tone", withExtension: "wav")!
@@ -158,118 +244,84 @@ class TTModeMap: NSObject {
         case .south:
             url = Bundle.main.url(forResource: "south tone", withExtension: "wav")!
         default:
-            url = Bundle.main.url(forResource: "south tone", withExtension: "wav")!
+            url = nil
         }
         
-        
-        if modeChangeType == .remoteButton {
-            let prefs = UserDefaults.standard
-            
-            if prefs.bool(forKey: "TT:pref:sound_on_app_change") {
+        if prefs.bool(forKey: "TT:pref:sound_on_app_change") {
+            do {
+                try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback, with: .mixWithOthers)
                 do {
-                    try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback, with: .mixWithOthers)
-                    do {
-                        try AVAudioSession.sharedInstance().setActive(true)
-                    } catch {
-                        print(" ---> Audio active error: \(error.localizedDescription)")
-                    }
+                    try AVAudioSession.sharedInstance().setActive(true)
                 } catch {
-                    print(" ---> Audio category error: \(error.localizedDescription)")
+                    print(" ---> Audio active error: \(error.localizedDescription)")
                 }
-                
-                do {
-                    player = try AVAudioPlayer(contentsOf: url)
-                    guard let player = player else { return }
-                    
-                    player.prepareToPlay()
-                    player.play()
-                } catch let error {
-                    print(error.localizedDescription)
-                }
+            } catch {
+                print(" ---> Audio category error: \(error.localizedDescription)")
             }
             
-            // Doesn't work in background
-//            if prefs.bool(forKey: "TT:pref:sound_on_app_change") {
-//                var soundId: SystemSoundID = 0
-//                AudioServicesCreateSystemSoundID(url as CFURL, &soundId)
-//                AudioServicesPlaySystemSoundWithCompletion(soundId, { 
-//                    AudioServicesDisposeSystemSoundID(soundId)
-//                })
-//            }
+            do {
+                if let audioUrl = url {
+                    audioPlayer = try AVAudioPlayer(contentsOf: audioUrl, fileTypeHint: AVFileType.mp3.rawValue)
 
-            if prefs.bool(forKey: "TT:pref:vibrate_on_app_change") {
-                if #available(iOS 10.0, *) {
-                    // does nothing on iPhone 6s
-//                    if UIApplication.shared.applicationState == .active {
-//                        let generator = UINotificationFeedbackGenerator()
-//                        generator.notificationOccurred(.success)
-//                    } else {
-                        AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
-//                    }
-                } else {
-                    AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
+                    audioPlayer!.prepareToPlay()
+                    audioPlayer!.play()
+                    audioPlayer!.stop()
+                    audioPlayer!.play()
                 }
+            } catch let error {
+                print(" ---> Audio error: \(error.localizedDescription))")
             }
-            
-
-            self.recordButtonMoment(.no_DIRECTION, .button_MOMENT_HELD)
+        }
+        
+        // Doesn't work in background
+        //            if prefs.bool(forKey: "TT:pref:sound_on_app_change") {
+        //                var soundId: SystemSoundID = 0
+        //                AudioServicesCreateSystemSoundID(url as CFURL, &soundId)
+        //                AudioServicesPlaySystemSoundWithCompletion(soundId, {
+        //                    AudioServicesDisposeSystemSoundID(soundId)
+        //                })
+        //            }
+        
+        if prefs.bool(forKey: "TT:pref:vibrate_on_app_change") {
+            if #available(iOS 10.0, *) {
+                // does nothing on iPhone 6s
+                //                    if UIApplication.shared.applicationState == .active {
+                //                        let generator = UINotificationFeedbackGenerator()
+                //                        generator.notificationOccurred(.success)
+                //                    } else {
+                AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
+                //                    }
+            } else {
+                AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
+            }
         }
     }
     
     func runActiveButton() {
         let direction = activeModeDirection
-        activeModeDirection = .no_DIRECTION
         
-        if selectedMode.shouldIgnoreSingleBeforeDouble(direction) {
-            waitingForDoubleClick = true
-            let delayTime = DispatchTime.now() + Double(Int64(DOUBLE_CLICK_ACTION_DURATION * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
-            DispatchQueue.main.asyncAfter(deadline: delayTime, execute: {
-                if self.waitingForDoubleClick {
-                    self.runDirection(direction)
-                }
-            })
-        } else {
-            self.runDirection(direction)
+        if buttonAppMode() == .TwelveButtons {
+            self.switchMode(.single, modeChangeType: .remoteButton)
         }
+        
+        self.runDirection(direction)
         
         activeModeDirection = .no_DIRECTION
-    }
-    
-    func runDirection(_ direction: TTModeDirection) {
-        if !selectedMode.shouldFireImmediateOnPress(direction) {
-//            selectedMode.action = TTAction(actionName: selectedMode.actionNameInDirection(direction), direction: direction)
-            selectedMode.runDirection(direction)
-        }
-        
-        // Batch actions
-        let batchActions = self.selectedModeBatchActions(in: direction)
-        for batchAction in batchActions {
-            batchAction.mode.runDirection(direction)
-        }
-        
-        let prefs = UserDefaults.standard
-        if prefs.bool(forKey: "TT:pref:vibrate_on_action") {
-            if #available(iOS 10.0, *) {
-                // does nothing on iPhone 6s
-//                if UIApplication.shared.applicationState == .active {
-//                    let generator = UIImpactFeedbackGenerator(style: .heavy)
-//                    generator.impactOccurred()
-//                } else {
-                    AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
-//                }
-            } else {
-                AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
-            }
-        }
-        
-        self.recordButtonMoment(direction, .button_MOMENT_PRESSUP)
     }
     
     func runDoubleButton(_ direction: TTModeDirection) {
-        waitingForDoubleClick = false
         activeModeDirection = .no_DIRECTION
+
         if selectedMode.shouldFireImmediateOnPress(direction) {
             return
+        }
+        
+        if buttonAppMode() == .TwelveButtons {
+            if !(self.doubleMode.modeOptionValue(TTModeDoubleConstants.TTModeDoubleEnabled) as! Bool) {
+                self.switchMode(.single, modeChangeType: .remoteButton)
+            } else {
+                self.switchMode(.double, modeChangeType: .remoteButton)
+            }
         }
         
         selectedMode.runDoubleDirection(direction)
@@ -281,6 +333,57 @@ class TTModeMap: NSObject {
         }
         
         self.recordButtonMoment(direction, .button_MOMENT_DOUBLE)
+    }
+    
+    func runHoldButton(_ direction: TTModeDirection) {
+        activeModeDirection = .no_DIRECTION
+        
+        if self.selectedModeDirection != .hold {
+            self.switchMode(.hold, modeChangeType: .remoteButton)
+        }
+
+        selectedMode.runHoldDirection(direction)
+        
+        // Batch actions
+        let actions = self.selectedModeBatchActions(in: direction)
+        for batchAction: TTAction in actions {
+            batchAction.mode.runHoldDirection(direction)
+        }
+        
+        self.recordButtonMoment(direction, .button_MOMENT_DOUBLE)
+    }
+    
+    func runDirection(_ direction: TTModeDirection) {
+        if buttonAppMode() == .TwelveButtons || !selectedMode.shouldFireImmediateOnPress(direction) {
+//            selectedMode.action = TTAction(actionName: selectedMode.actionNameInDirection(direction), direction: direction)
+            selectedMode.runDirection(direction)
+        }
+        
+        // Batch actions
+        let batchActions = self.selectedModeBatchActions(in: direction)
+        for batchAction in batchActions {
+            batchAction.mode.runDirection(direction)
+        }
+        
+        self.vibrate()
+        self.recordButtonMoment(direction, .button_MOMENT_PRESSUP)
+    }
+    
+    func vibrate() {
+        let prefs = UserDefaults.standard
+        if prefs.bool(forKey: "TT:pref:vibrate_on_action") {
+            if #available(iOS 10.0, *) {
+                // does nothing on iPhone 6s
+                //                if UIApplication.shared.applicationState == .active {
+                //                    let generator = UIImpactFeedbackGenerator(style: .heavy)
+                //                    generator.impactOccurred()
+                //                } else {
+                AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
+                //                }
+            } else {
+                AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
+            }
+        }
     }
     
     func recordButtonMoment(_ direction: TTModeDirection, _ buttonMoment: TTButtonMoment) {
@@ -389,11 +492,13 @@ class TTModeMap: NSObject {
     func addBatchAction(for actionName: String) {
         // Adding batch action using the menu, selecting and inspecting directions
         let prefs = UserDefaults.standard
+        let batchKey = self.batchKey()
         var batchActionKeys = self.batchActionKeys()
         let uuid = UUID().uuidString
         let newActionKey = "\(tempMode.nameOfClass):\(actionName):\(uuid[..<uuid.index(uuid.startIndex, offsetBy: 8)])"
         batchActionKeys.append(newActionKey)
-        prefs.set(batchActionKeys, forKey: self.batchKey())
+        print(" ---> Adding batch action to \(batchKey): \(batchActionKeys)")
+        prefs.set(batchActionKeys, forKey: batchKey)
         prefs.synchronize()
         
         batchActions.assemble(modeDirection: self.selectedModeDirection)
@@ -460,6 +565,7 @@ class TTModeMap: NSObject {
         let actionDirectionName = self.directionName(actionDirection ?? inspectingModeDirection)
         let batchKey = "TT:mode:\(modeDirectionName):action:\(actionDirectionName):batchactions"
         
+        print(" ---> batchKey: \(batchKey)")
         return batchKey
     }
     
@@ -468,13 +574,16 @@ class TTModeMap: NSObject {
     func changeDirection(_ direction: TTModeDirection, toMode modeClassName: String) {
         let prefs = UserDefaults.standard
         let directionName = self.directionName(direction)
-        let prefKey = "TT:mode:\(directionName)"
+        let prefKey = "TT:\(self.modeRoot()):\(directionName)"
         
         prefs.set(modeClassName, forKey: prefKey)
         prefs.synchronize()
         
         self.setupModes()
         self.activateModes()
+        if buttonAppMode() == .TwelveButtons {
+            self.activateOneAppMode(direction)
+        }
     }
     
     func changeDirection(_ direction: TTModeDirection, toAction actionClassName: String) {
@@ -482,7 +591,6 @@ class TTModeMap: NSObject {
     }
     
     // MARK: Direction helpers
-    
     
     func modeInDirection(_ direction: TTModeDirection) -> (TTMode) {
         switch direction {
@@ -494,6 +602,12 @@ class TTModeMap: NSObject {
             return self.westMode
         case .south:
             return self.southMode
+        case .single:
+            return self.singleMode
+        case .double:
+            return self.doubleMode
+        case .hold:
+            return self.holdMode
         default:
             return self.northMode
         }
@@ -509,6 +623,12 @@ class TTModeMap: NSObject {
             return "west"
         case .south:
             return "south"
+        case .single:
+            return "single"
+        case .double:
+            return "double"
+        case .hold:
+            return "hold"
         default:
             return ""
         }
@@ -541,13 +661,24 @@ class TTModeMap: NSObject {
                 self.openedAddActionChangeMenu = false
             }
             self.inspectingModeDirection = .no_DIRECTION
+            if buttonAppMode() == .TwelveButtons {
+                self.activateModes()
+            }
         } else {
             self.inspectingModeDirection = direction
+            if buttonAppMode() == .TwelveButtons {
+                self.activateOneAppMode(direction)
+            }
         }
         
         let modeName = self.selectedMode.nameOfClass
         let actionName = self.selectedMode.actionNameInDirection(self.inspectingModeDirection)
         appDelegate().modeMap.recordUsage(additionalParams: ["moment": "tap:inspect-action:\(modeName):\(actionName)"])
+    }
+    
+    func toggleOpenedActionChangeMenu() {
+        self.availableActions = type(of: selectedMode).actions()
+        self.openedActionChangeMenu = !self.openedActionChangeMenu
     }
 
     // MARK: Device info
@@ -597,4 +728,23 @@ class TTModeMap: NSObject {
         return uuid.uuidString
     }
 
+    // Mark: Button App Modes
+    
+    func switchButtonAppMode(_ buttonAppMode: TTButtonAppMode) {
+        let prefs = UserDefaults.standard
+        
+        prefs.set(buttonAppMode.rawValue, forKey: "TT:buttonAppMode")
+        prefs.synchronize()
+        
+        switch buttonAppMode {
+        case .SixteenButtons:
+            self.selectedModeDirection = .north
+        case .TwelveButtons:
+            self.selectedModeDirection = .single
+        }
+
+        self.setupModes()
+        self.activateModes()
+    }
+    
 }

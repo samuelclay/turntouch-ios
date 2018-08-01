@@ -116,8 +116,11 @@ class TTOptionsView: UIView {
     func drawActionOptions() {
         self.clearOptionDetailViews()
         
-        let selectedMode = appDelegate().modeMap.selectedMode
         let inspectingModeDirection = appDelegate().modeMap.inspectingModeDirection
+        var selectedMode = appDelegate().modeMap.selectedMode
+        if appDelegate().modeMap.buttonAppMode() == .TwelveButtons {
+            selectedMode = appDelegate().modeMap.modeInDirection(inspectingModeDirection)
+        }
         let actionName = selectedMode.actionNameInDirection(inspectingModeDirection)
         var actionOptionsViewControllerName = "Turn_Touch_iOS.\(actionName)Options"
         var actionOptionsClass: AnyClass? = NSClassFromString(actionOptionsViewControllerName)

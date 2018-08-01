@@ -14,6 +14,7 @@ class TTButtonState : NSObject {
     var east = false
     var west = false
     var south = false
+    var double = false
     var count = 4
     
     override var description: String {
@@ -57,6 +58,7 @@ class TTButtonState : NSObject {
         east = false
         west = false
         south = false
+        double = false
     }
     
     func anyPressedDown() -> Bool {

@@ -94,7 +94,7 @@ class TTModeMenuCell: UICollectionViewCell {
         
         if menuType == .menu_MODE || menuType == .menu_ADD_MODE {
             if menuType == .menu_MODE {
-                isSelected = activeMode >!< appDelegate().modeMap.selectedMode
+                isSelected = modeClass == type(of: appDelegate().modeMap.selectedMode)
             }
             titleLabel.text = modeClass.title().uppercased()
             let imageName = modeClass.imageName()
@@ -148,19 +148,28 @@ class TTModeMenuCell: UICollectionViewCell {
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         isHighlighted = false
         let selectedMode = appDelegate().modeMap.selectedMode.nameOfClass
-        
+        let inspectingModeDirection = appDelegate().modeMap.inspectingModeDirection
+
         if let touch = touches.first {
             if self.bounds.contains(touch.location(in: self)) {
                 if menuType == .menu_MODE {
-                    appDelegate().modeMap.changeDirection(appDelegate().modeMap.selectedModeDirection, toMode:modeName)
-                    
+                    if appDelegate().modeMap.buttonAppMode() == .SixteenButtons {
+                        appDelegate().modeMap.changeDirection(appDelegate().modeMap.selectedModeDirection, toMode:modeName)
+                    } else {
+                        appDelegate().modeMap.changeDirection(inspectingModeDirection, toMode:modeName)
+                        appDelegate().modeMap.inspectingModeDirection = inspectingModeDirection
+                    }
                     appDelegate().modeMap.recordUsage(additionalParams: ["moment": "change:mode:\(selectedMode)"])
                 } else if menuType == .menu_ACTION {
                     appDelegate().modeMap.changeDirection(appDelegate().modeMap.inspectingModeDirection, toAction:modeName)
                     // Update the action diamond
                     appDelegate().modeMap.selectedModeDirection = appDelegate().modeMap.selectedModeDirection
                     // Update the mode menu
-                    appDelegate().modeMap.inspectingModeDirection = appDelegate().modeMap.inspectingModeDirection
+                    if appDelegate().modeMap.buttonAppMode() == .SixteenButtons {
+                        appDelegate().modeMap.inspectingModeDirection = appDelegate().modeMap.inspectingModeDirection
+                    } else {
+                        appDelegate().modeMap.inspectingModeDirection = inspectingModeDirection
+                    }
                     
                     let actionName = appDelegate().modeMap.selectedMode.actionNameInDirection(appDelegate().modeMap.inspectingModeDirection)
                     appDelegate().modeMap.recordUsage(additionalParams: ["moment": "change:action:\(selectedMode):\(actionName)"])

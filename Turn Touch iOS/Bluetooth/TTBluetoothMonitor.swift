@@ -46,7 +46,7 @@ protocol TTBluetoothMonitorDelegate {
     func pairingSuccess()
 }
 
-let DEBUG_BLUETOOTH = true
+let DEBUG_BLUETOOTH = false
 
 class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
     
@@ -682,11 +682,15 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
                     print(" ---> (\(bluetoothState)) Button press: \(characteristic.value?.hexadecimalString ?? "nil")")
                 }
                 if device.isPaired {
-                    buttonTimer.readBluetoothData(characteristic.value!)
+                    DispatchQueue.main.async {
+                        self.buttonTimer.readBluetoothData(characteristic.value!)
+                    }
                 } else {
-                    buttonTimer.readBluetoothDataDuringPairing(characteristic.value!)
-                    if buttonTimer.isDevicePaired() {
-                        self.pairDeviceSuccess(peripheral)
+                    DispatchQueue.main.async {
+                        self.buttonTimer.readBluetoothDataDuringPairing(characteristic.value!)
+                        if self.buttonTimer.isDevicePaired() {
+                            self.pairDeviceSuccess(peripheral)
+                        }
                     }
                 }
                 device.lastActionDate = Date()

@@ -51,7 +51,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         DispatchQueue.main.async {
             let isSimulator = ProcessInfo.processInfo.environment["SIMULATOR_DEVICE_NAME"] != nil
             if self.bluetoothMonitor.noKnownDevices() && !isSimulator {
-                appDelegate().mainViewController.showPairingModal()
+                self.mainViewController.showPairingModal()
             }
         }
         
@@ -115,6 +115,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         }
         
         return true
+    }
+    
+    func redrawMainLayout() {
+        modeMap.setupModes()
+        mainViewController.layoutStackview()
+        modeMap.activateModes()
     }
     
     func recordState() {
@@ -185,8 +191,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     
     func beginLocationUpdates() {
         // Wait until remotes are found before requesting location
-        if bluetoothMonitor.foundDevices.count() == 0 {
-            mainViewController.showGeofencingModal()
+        if bluetoothMonitor.foundDevices.count() > 0 {
+//            mainViewController.showGeofencingModal()
 
             return
         }
@@ -222,7 +228,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         locationManager.distanceFilter = kCLLocationAccuracyNearestTenMeters
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         
-        mainViewController.showGeofencingModal()
+//        mainViewController.showGeofencingModal()
         // for all regions: self.monitorRegionAtLocation(region)
     }
 

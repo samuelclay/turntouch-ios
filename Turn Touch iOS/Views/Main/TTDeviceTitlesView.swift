@@ -29,10 +29,6 @@ class TTDeviceTitlesView: UIStackView {
     // MARK: KVO
     
     func registerAsObserver() {
-        appDelegate().modeMap.addObserver(self, forKeyPath: "openedModeChangeMenu", options: [], context: nil)
-        appDelegate().modeMap.addObserver(self, forKeyPath: "openedActionChangeMenu", options: [], context: nil)
-        appDelegate().modeMap.addObserver(self, forKeyPath: "selectedMode", options: [], context: nil)
-        appDelegate().modeMap.addObserver(self, forKeyPath: "inspectingModeDirection", options: [], context: nil)
         appDelegate().bluetoothMonitor.addObserver(self, forKeyPath: "nicknamedConnectedCount", options: [], context: nil)
         appDelegate().bluetoothMonitor.addObserver(self, forKeyPath: "pairedDevicesCount", options: [], context: nil)
         appDelegate().bluetoothMonitor.addObserver(self, forKeyPath: "knownDevicesCount", options: [], context: nil)
@@ -52,10 +48,6 @@ class TTDeviceTitlesView: UIStackView {
     }
     
     deinit {
-        appDelegate().modeMap.removeObserver(self, forKeyPath: "openedModeChangeMenu")
-        appDelegate().modeMap.removeObserver(self, forKeyPath: "openedActionChangeMenu")
-        appDelegate().modeMap.removeObserver(self, forKeyPath: "selectedMode")
-        appDelegate().modeMap.removeObserver(self, forKeyPath: "inspectingModeDirection")
         appDelegate().bluetoothMonitor.removeObserver(self, forKeyPath: "nicknamedConnectedCount")
         appDelegate().bluetoothMonitor.removeObserver(self, forKeyPath: "pairedDevicesCount")
         appDelegate().bluetoothMonitor.removeObserver(self, forKeyPath: "knownDevicesCount")

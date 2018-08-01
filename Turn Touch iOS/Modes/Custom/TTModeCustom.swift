@@ -42,11 +42,7 @@ class TTModeCustom: TTMode {
     func titleTTModeCustomURL() -> String {
         return "Custom URL"
     }
-    
-    override func shouldIgnoreSingleBeforeDouble(_ direction: TTModeDirection) -> Bool {
-        return true;
-    }
-    
+        
     // MARK: Action images
     
     func imageTTModeCustomURL() -> String {
