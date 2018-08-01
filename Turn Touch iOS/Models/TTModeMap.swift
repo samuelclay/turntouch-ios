@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import AVFoundation
 import AudioToolbox
 import Alamofire
 
@@ -44,7 +45,7 @@ class TTModeMap: NSObject {
     @objc dynamic var availableAddModes: [[String: Any]] = []
     @objc dynamic var availableAddActions: [[String: Any]] = []
     
-    var player: AVAudioPlayer?
+    var audioPlayer: AVAudioPlayer?
 
     override init() {
         self.availableModes = [
@@ -260,11 +261,12 @@ class TTModeMap: NSObject {
             
             do {
                 if let audioUrl = url {
-                    player = try AVAudioPlayer(contentsOf: audioUrl)
-                    guard let player = player else { return }
-                    
-                    player.prepareToPlay()
-                    player.play()
+                    audioPlayer = try AVAudioPlayer(contentsOf: audioUrl, fileTypeHint: AVFileType.mp3.rawValue)
+
+                    audioPlayer!.prepareToPlay()
+                    audioPlayer!.play()
+                    audioPlayer!.stop()
+                    audioPlayer!.play()
                 }
             } catch let error {
                 print(" ---> Audio error: \(error.localizedDescription))")
@@ -744,4 +746,5 @@ class TTModeMap: NSObject {
         self.setupModes()
         self.activateModes()
     }
+    
 }
