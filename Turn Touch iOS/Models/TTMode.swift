@@ -136,10 +136,13 @@ class TTMode : NSObject, TTModeProtocol {
     
     func runAction(_ actionName: String, direction: TTModeDirection, funcAction: String) -> Bool {
         var success = false
-        print(" ---> Running \(direction.rawValue): \(funcAction)\(actionName)")
         let mode = self.modeInDirection(direction)
+
+        print(" ---> Running \(mode.nameOfClass): \(funcAction)\(actionName)")
+
         if mode.action == nil || mode.action.batchActionKey == nil {
             mode.action = TTAction(actionName: actionName, direction: direction)
+            mode.action.mode = mode
         }
         
         // runAction:direction

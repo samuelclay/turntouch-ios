@@ -51,7 +51,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         DispatchQueue.main.async {
             let isSimulator = ProcessInfo.processInfo.environment["SIMULATOR_DEVICE_NAME"] != nil
             if self.bluetoothMonitor.noKnownDevices() && !isSimulator {
-                appDelegate().mainViewController.showPairingModal()
+                self.mainViewController.showPairingModal()
             }
         }
         
@@ -121,14 +121,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         guard let window = UIApplication.shared.keyWindow else {
             return
         }
-        
+
+        modeMap.setupModes()
+
         let newMainViewController = TTMainViewController()
-        modeMap.activateModes()
         UIView.transition(with: window, duration: 1.3, options: .transitionCrossDissolve, animations: {
             window.rootViewController = newMainViewController
         }, completion: { completed in
             self.mainViewController = newMainViewController
         })
+
+        modeMap.activateModes()
     }
     
     func recordState() {

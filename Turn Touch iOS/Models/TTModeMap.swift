@@ -363,22 +363,25 @@ class TTModeMap: NSObject {
             batchAction.mode.runDirection(direction)
         }
         
+        self.vibrate()
+        self.recordButtonMoment(direction, .button_MOMENT_PRESSUP)
+    }
+    
+    func vibrate() {
         let prefs = UserDefaults.standard
         if prefs.bool(forKey: "TT:pref:vibrate_on_action") {
             if #available(iOS 10.0, *) {
                 // does nothing on iPhone 6s
-//                if UIApplication.shared.applicationState == .active {
-//                    let generator = UIImpactFeedbackGenerator(style: .heavy)
-//                    generator.impactOccurred()
-//                } else {
-                    AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
-//                }
+                //                if UIApplication.shared.applicationState == .active {
+                //                    let generator = UIImpactFeedbackGenerator(style: .heavy)
+                //                    generator.impactOccurred()
+                //                } else {
+                AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
+                //                }
             } else {
                 AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
             }
         }
-        
-        self.recordButtonMoment(direction, .button_MOMENT_PRESSUP)
     }
     
     func recordButtonMoment(_ direction: TTModeDirection, _ buttonMoment: TTButtonMoment) {

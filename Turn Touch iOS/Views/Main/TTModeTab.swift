@@ -92,8 +92,8 @@ class TTModeTab: UIView {
     // MARK: KVO
     
     func registerAsObserver() {
-        appDelegate().modeMap.addObserver(self, forKeyPath: "selectedModeDirection", options: .initial, context: nil)
-        appDelegate().modeMap.addObserver(self, forKeyPath: "activeModeDirection", options: .initial, context: nil)
+        appDelegate().modeMap.addObserver(self, forKeyPath: "selectedModeDirection", options: [], context: nil)
+        appDelegate().modeMap.addObserver(self, forKeyPath: "activeModeDirection", options: [], context: nil)
     }
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?,

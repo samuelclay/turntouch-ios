@@ -76,7 +76,7 @@ class TTButtonTimer : NSObject {
         latestButtonState.south = (state & (1 << 3)) != 0x0
         latestButtonState.double = (doubleState != 0xF && doubleState != 0x0)
         
-        print(" ---> Bluetooth data: \(data) (\(doubleState)/\(state)/\(heldState)) was:\(previousButtonState) is:\(latestButtonState)")
+        print(" ---> Bluetooth data: \(data) (\(doubleState)/\(state)/\((heldState ? "H" : "-")) was:\(previousButtonState) is:\(latestButtonState)")
         
         var i = latestButtonState.count
         while i > 0 {
