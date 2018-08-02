@@ -246,6 +246,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         }
     }
     
+    func startLocationMonitoring() {
+        let prefs = UserDefaults.standard
+        if let coords = prefs.dictionary(forKey: "TT:geofence:1") as? [String: NSNumber] {
+            let center = CLLocationCoordinate2D(latitude: coords["lat"] as! CLLocationDegrees,
+                                                longitude: coords["long"] as! CLLocationDegrees)
+            let region = CLCircularRegion(center: center, radius: 12, identifier: "TT:geofence:1")
+            region.notifyOnEntry = true
+            region.notifyOnExit = true
+            
+            locationManager.startMonitoring(for: region)
+        }
+    }
+    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         bluetoothMonitor.scanKnown()
     }

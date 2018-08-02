@@ -363,6 +363,7 @@
 		FFC4B1081D3717D500A97C81 /* TTFTUXView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC4B1071D3717D500A97C81 /* TTFTUXView.swift */; };
 		FFC9FE951D021A0400038817 /* TTActionDiamondView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC9FE941D021A0400038817 /* TTActionDiamondView.swift */; };
 		FFC9FE991D02520300038817 /* NSObject+Class.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC9FE981D02520300038817 /* NSObject+Class.swift */; };
+		FFCB383C2113666100CB122A /* geofence.png in Resources */ = {isa = PBXBuildFile; fileRef = FFCB383B2113666100CB122A /* geofence.png */; };
 		FFD653FB20AE9229004E9DFC /* TTModeBoseDeviceSpeakerOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD653F920AE9229004E9DFC /* TTModeBoseDeviceSpeakerOptions.swift */; };
 		FFD653FC20AE9229004E9DFC /* TTModeBoseDeviceSpeakerOptions.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFD653FA20AE9229004E9DFC /* TTModeBoseDeviceSpeakerOptions.xib */; };
 		FFD653FE20AE9D06004E9DFC /* mode_bose.png in Resources */ = {isa = PBXBuildFile; fileRef = FFD653FD20AE9D06004E9DFC /* mode_bose.png */; };
@@ -797,6 +798,7 @@
 		FFC4B1071D3717D500A97C81 /* TTFTUXView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTFTUXView.swift; path = Views/Modal/TTFTUXView.swift; sourceTree = "<group>"; };
 		FFC9FE941D021A0400038817 /* TTActionDiamondView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTActionDiamondView.swift; path = "Views/Action diamond/TTActionDiamondView.swift"; sourceTree = "<group>"; };
 		FFC9FE981D02520300038817 /* NSObject+Class.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSObject+Class.swift"; path = "Categories/NSObject+Class.swift"; sourceTree = "<group>"; };
+		FFCB383B2113666100CB122A /* geofence.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = geofence.png; sourceTree = "<group>"; };
 		FFD653F920AE9229004E9DFC /* TTModeBoseDeviceSpeakerOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTModeBoseDeviceSpeakerOptions.swift; sourceTree = "<group>"; };
 		FFD653FA20AE9229004E9DFC /* TTModeBoseDeviceSpeakerOptions.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TTModeBoseDeviceSpeakerOptions.xib; sourceTree = "<group>"; };
 		FFD653FD20AE9D06004E9DFC /* mode_bose.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mode_bose.png; sourceTree = "<group>"; };
@@ -1321,6 +1323,7 @@
 			isa = PBXGroup;
 			children = (
 				FF0EDD982105329300F3D5C3 /* switch_mode.png */,
+				FFCB383B2113666100CB122A /* geofence.png */,
 				FF8BDF1C2100EBA000FAAED5 /* gps.png */,
 				FFECC40C203E7B27007AB343 /* twitter-buy.png */,
 				FFECC40D203E7B27007AB343 /* twitter-review.png */,
@@ -1827,6 +1830,7 @@
 				FFB41B571CEE9A3000CD5F09 /* itunes_podcast_icon.png in Resources */,
 				FFB41B2B1CEE9A3000CD5F09 /* double_tap.png in Resources */,
 				FFECC40B203E7891007AB343 /* twitter-turntouch.png in Resources */,
+				FFCB383C2113666100CB122A /* geofence.png in Resources */,
 				FF20232E1D02147A005129E5 /* Icon-29@3x.png in Resources */,
 				FFB41B521CEE9A3000CD5F09 /* itunes_itunesu_icon.png in Resources */,
 				FF534C391EB0351A002EE584 /* TTModeIftttConnect.xib in Resources */,

@@ -62,6 +62,21 @@ class TTGeofencingViewController: UIViewController, MKMapViewDelegate, CLLocatio
     }
     
     @objc func save(_ sender: UIBarButtonItem!) {
+        let prefs = UserDefaults.standard
+        let center = mapView.camera.centerCoordinate
+
+        prefs.set(["lat": NSNumber(value: center.latitude),
+                   "long": NSNumber(value: center.longitude)],
+                  forKey: "TT:geofence:1")
+        prefs.synchronize()
+        
+        if !CLLocationManager.isMonitoringAvailable(for: CLCircularRegion.self) {
+            appDelegate().beginLocationUpdates()
+        } else if CLLocationManager.authorizationStatus() != .authorizedAlways {
+            appDelegate().beginLocationUpdates()
+        } else {
+            appDelegate().startLocationMonitoring()
+        }
         
         appDelegate().mainViewController.closeModal()
     }
@@ -72,7 +87,17 @@ class TTGeofencingViewController: UIViewController, MKMapViewDelegate, CLLocatio
         if let lastLocation = locations.last, lastLocation.timestamp.timeIntervalSinceNow > -5.0 {
             if !regionHasBeenCentered {
                 regionHasBeenCentered = true
-                self.zoomIn(self.mapView)
+                let prefs = UserDefaults.standard
+                if let coords = prefs.dictionary(forKey: "TT:geofence:1") as? [String: NSNumber] {
+                    let center = CLLocationCoordinate2D(latitude: coords["lat"] as! CLLocationDegrees,
+                                                        longitude: coords["long"] as! CLLocationDegrees)
+                    let region = MKCoordinateRegionMakeWithDistance(center, 120, 120)
+                    mapView.setRegion(region, animated: true)
+                    
+                    self.redrawGeofence(coordinate: center)
+                } else {
+                    self.zoomIn(self.mapView)
+                }
             }
         }
     }
@@ -108,31 +133,7 @@ class TTGeofencingViewController: UIViewController, MKMapViewDelegate, CLLocatio
         let circle = MKCircle(center: coordinate, radius: 12)
         mapView.add(circle)
     }
-//
-//    func setupData() {
-//        if CLLocationManager.isMonitoringAvailable(for: CLCircularRegion.self) {
-//            let restaurantAnnotation = MKPointAnnotation()
-//            restaurantAnnotation.coordinate = coordinate;
-//            restaurantAnnotation.title = "\(title)";
-//            mapView.addAnnotation(restaurantAnnotation)
-//
-//            // 5. setup circle
-//            let circle = MKCircle(centerCoordinate: coordinate, radius: regionRadius)
-//            mapView.addOverlay(circle)
-//        }
-//        else {
-//            print("System can't track regions")
-//        }
-//    }
-//
-//    // 6. draw circle
-//    func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
-//        let circleRenderer = MKCircleRenderer(overlay: overlay)
-//        circleRenderer.strokeColor = UIColor.red
-//        circleRenderer.lineWidth = 1.0
-//        return circleRenderer
-//    }
-    
+
     @IBAction func zoomIn(_ sender: Any) {
         if let userLocation = mapView.userLocation.location?.coordinate {
             let region = MKCoordinateRegionMakeWithDistance(userLocation, 120, 120)

@@ -100,6 +100,8 @@ class TTTitleBarView: UIView, TTTitleMenuDelegate {
              "image": "preferences"],
             ["title": "Switch button mode",
              "image": "switch_mode"],
+            ["title": "Setup geofence",
+             "image": "geofence"],
             ["title": "How it works",
              "image": "how_it_works"],
             ["title": "Contact support",
@@ -118,10 +120,12 @@ class TTTitleBarView: UIView, TTTitleMenuDelegate {
         case 2:
             appDelegate().mainViewController.showSwitchButtonModeModal()
         case 3:
-            appDelegate().mainViewController.showFtuxModal()
+            appDelegate().mainViewController.showGeofencingModal()
         case 4:
-            appDelegate().mainViewController.showSupportModal()
+            appDelegate().mainViewController.showFtuxModal()
         case 5:
+            appDelegate().mainViewController.showSupportModal()
+        case 6:
             appDelegate().mainViewController.showAboutModal()
         default:
             break
