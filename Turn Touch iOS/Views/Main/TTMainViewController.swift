@@ -162,7 +162,7 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
         scrollStackView.spacing = 0
         scrollStackView.addArrangedSubview(actionDiamondView)
         actionDiamondConstraint = NSLayoutConstraint(item: actionDiamondView, attribute: .height, relatedBy: .equal,
-                                                     toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 270)
+                                                     toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 420)
         scrollStackView.addConstraint(actionDiamondConstraint)
         
         if appDelegate().modeMap.buttonAppMode() == .TwelveButtons {
@@ -240,6 +240,8 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
         scrollView.setNeedsLayout()
         scrollView.layoutIfNeeded()
         
+        self.applyConstraints()
+
         stackView.addArrangedSubview(deviceTitlesView)
         deviceTitlesConstraint = NSLayoutConstraint(item: deviceTitlesView, attribute: .height,
                                                     relatedBy: .equal, toItem: nil, attribute: .notAnAttribute,
@@ -249,6 +251,11 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
+        
+        self.applyConstraints()
+    }
+    
+    func applyConstraints() {
         let buttonAppMode = appDelegate().modeMap.buttonAppMode()
         
         if self.traitCollection.verticalSizeClass == UIUserInterfaceSizeClass.compact {
@@ -603,6 +610,7 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
         settingsViewController = IASKAppSettingsViewController()
         settingsViewController.showCreditsFooter = false
         settingsViewController.delegate = self
+        settingsViewController.modalPresentationStyle = .formSheet
         
         modalNavController = UINavigationController(rootViewController: settingsViewController)
         modalNavController.modalPresentationStyle = .formSheet

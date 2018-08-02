@@ -170,19 +170,15 @@ class TTModeMusic: TTMode {
     }
     
     deinit {
-        if TTModeMusic.observing {
-            AVAudioSession.sharedInstance().removeObserver(self, forKeyPath: "outputVolume")
-            TTModeMusic.musicPlayer.removeObserver(self, forKeyPath: "nowPlayingItem")
-            TTModeMusic.observing = false
-        }
-    }
-    override func deactivate() {
         // Don't remove the mjusic observer on deactivate
 //        if TTModeMusic.observing {
 //            AVAudioSession.sharedInstance().removeObserver(self, forKeyPath: "outputVolume")
 //            TTModeMusic.musicPlayer.removeObserver(self, forKeyPath: "nowPlayingItem")
 //            TTModeMusic.observing = false
 //        }
+    }
+    override func deactivate() {
+
     }
     
     @objc func volumeDidChange(notification: NSNotification) {
