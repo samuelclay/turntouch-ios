@@ -55,6 +55,7 @@ struct TTModeHueConstants {
     static let kHueRecentBridgeId: String = "hueRecentBridgeId"
     static let kHueRecentBridgeIp: String = "hueRecentBridgeIp"
     static let kHueSavedBridges: String = "hueSavedBridges"
+    static let kCycleScenes: String = "cycleScenes"
 }
 
 protocol TTModeHueDelegate {
@@ -147,15 +148,16 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
                 "TTModeHueLowerBrightness",
                 "TTModeHueShiftColorLeft",
                 "TTModeHueShiftColorRight",
+                "TTModeHueRandom",
+                "TTModeHueCycleScenes",
+                "TTModeHueSceneCustom",
                 "TTModeHueSceneEarlyEvening",
                 "TTModeHueSceneLateEvening",
                 "TTModeHueSceneMorning",
                 "TTModeHueSceneMidnightOil",
-                "TTModeHueSceneCustom",
-                "TTModeHueSceneLightsOff",
                 "TTModeHueSceneColorLoop",
                 "TTModeHueSleep",
-                "TTModeHueRandom"]
+                "TTModeHueSceneLightsOff"]
     }
     
     override func shouldUseModeOptionsFor(_ action: String) -> Bool {
@@ -181,6 +183,10 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
     
     func titleTTModeHueShiftColorRight() -> String {
         return "Shift color right"
+    }
+    
+    func titleTTModeHueCycleScenes() -> String {
+        return "Cycle scenes"
     }
     
     func titleTTModeHueSceneEarlyEvening() -> String {
@@ -293,6 +299,10 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
     
     func imageTTModeHueSceneCustom() -> String {
         return "hue_evening.png"
+    }
+    
+    func imageTTModeHueCycleScenes() -> String {
+        return "hue_cycle.png"
     }
     
     func imageTTModeHueSleep() -> String {
@@ -757,7 +767,7 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
     // MARK: - Hue Bridge
     
     
-    func connectToBridge(reset: Bool = false) {
+    func connectToBridge(reset: Bool = false, reauthenticate: Bool = false) {
         if TTModeHue.hueState == .connecting {
             return
         }
@@ -795,14 +805,14 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
             if DEBUG_HUE {
                 print(" ---> Connecting to bridge: \(savedBridge)")
             }
-            if let username = savedBridge["username"] {
+            if let username = savedBridge["username"], reauthenticate == false {
                 self.authenticateBridge(username: username)
             } else {
                 // New bridge hasn't been pushlinked yet
                 TTModeHue.bridgeAuthenticator = BridgeAuthenticator(bridge: bridge,
-                                                                    uniqueIdentifier: "TurnTouchHue#\(UIDevice.current.name)",
+                                                                    uniqueIdentifier: "TurnTouchHue#\(UIDevice.current.name.prefix(12))",
                                                                     pollingInterval: 1,
-                                                                    timeout: 30)
+                                                                    timeout: 15)
                 TTModeHue.bridgeAuthenticator.delegate = self
                 TTModeHue.bridgeAuthenticator.start()
             }
@@ -875,7 +885,7 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
         self.saveRecentBridge()
         prefs.synchronize()
 
-        self.connectToBridge(reset: true)
+        self.connectToBridge(reset: true, reauthenticate: true)
     }
 
     
@@ -917,6 +927,7 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
     }
     
     func bridgeAuthenticator(_ authenticator: BridgeAuthenticator, didFailWithError error: NSError) {
+        print(" ---> Pushlink failed: \(error)")
         self.connectToBridge()
     }
     
@@ -952,6 +963,15 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                 self.startHueHeartbeat(username: username)
+            }
+
+            DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
+                // If no heartbeat, consider disconnected
+                if TTModeHue.waitingOnScenes && TTModeHue.hueState == .connected {
+                    TTModeHue.hueState = .notConnected
+                    self.findBridges()
+                    appDelegate().mainViewController.optionsView.redrawOptions()
+                }
             }
         }
     }
@@ -1080,6 +1100,8 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
 //        TTModeHue.hueSdk.setLocalHeartbeatInterval(10, forResourceType: .schedules)
 //        TTModeHue.hueSdk.setLocalHeartbeatInterval(10, forResourceType: .sensors)
         TTModeHue.hueSdk.setLocalHeartbeatInterval(10, forResourceType: .config)
+        
+        TTModeHue.waitingOnScenes = true
         
         TTModeHue.hueSdk.stopHeartbeat()
         TTModeHue.hueSdk.startHeartbeat()

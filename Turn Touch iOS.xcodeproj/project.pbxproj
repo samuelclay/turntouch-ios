@@ -37,6 +37,9 @@
 		FF1A84FC1FCFB56F005D8ADE /* TTModeHueBrightnessOptions.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF1A84FA1FCFB56F005D8ADE /* TTModeHueBrightnessOptions.xib */; };
 		FF1A84FE1FCFB593005D8ADE /* TTModeHueRaiseBrightnessOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1A84FD1FCFB593005D8ADE /* TTModeHueRaiseBrightnessOptions.swift */; };
 		FF1A85001FCFB5AF005D8ADE /* TTModeHueLowerBrightnessOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1A84FF1FCFB5AF005D8ADE /* TTModeHueLowerBrightnessOptions.swift */; };
+		FF1DA80F211E1F9000D0D4EA /* hue_cycle.png in Resources */ = {isa = PBXBuildFile; fileRef = FF1DA80E211E1F8F00D0D4EA /* hue_cycle.png */; };
+		FF1DA812211E209200D0D4EA /* TTModeHueCycleScenesOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1DA810211E209200D0D4EA /* TTModeHueCycleScenesOptions.swift */; };
+		FF1DA813211E209200D0D4EA /* TTModeHueCycleScenesOptions.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF1DA811211E209200D0D4EA /* TTModeHueCycleScenesOptions.xib */; };
 		FF20232B1D02147A005129E5 /* Icon-120.png in Resources */ = {isa = PBXBuildFile; fileRef = FF2023181D02147A005129E5 /* Icon-120.png */; };
 		FF20232C1D02147A005129E5 /* Icon-29.png in Resources */ = {isa = PBXBuildFile; fileRef = FF2023191D02147A005129E5 /* Icon-29.png */; };
 		FF20232D1D02147A005129E5 /* Icon-29@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FF20231A1D02147A005129E5 /* Icon-29@2x.png */; };
@@ -463,6 +466,9 @@
 		FF1A84FA1FCFB56F005D8ADE /* TTModeHueBrightnessOptions.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = TTModeHueBrightnessOptions.xib; path = Modes/Hue/TTModeHueBrightnessOptions.xib; sourceTree = "<group>"; };
 		FF1A84FD1FCFB593005D8ADE /* TTModeHueRaiseBrightnessOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TTModeHueRaiseBrightnessOptions.swift; path = Modes/Hue/TTModeHueRaiseBrightnessOptions.swift; sourceTree = "<group>"; };
 		FF1A84FF1FCFB5AF005D8ADE /* TTModeHueLowerBrightnessOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTModeHueLowerBrightnessOptions.swift; sourceTree = "<group>"; };
+		FF1DA80E211E1F8F00D0D4EA /* hue_cycle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hue_cycle.png; sourceTree = "<group>"; };
+		FF1DA810211E209200D0D4EA /* TTModeHueCycleScenesOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TTModeHueCycleScenesOptions.swift; path = Modes/Hue/TTModeHueCycleScenesOptions.swift; sourceTree = "<group>"; };
+		FF1DA811211E209200D0D4EA /* TTModeHueCycleScenesOptions.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = TTModeHueCycleScenesOptions.xib; path = Modes/Hue/TTModeHueCycleScenesOptions.xib; sourceTree = "<group>"; };
 		FF2023181D02147A005129E5 /* Icon-120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-120.png"; sourceTree = "<group>"; };
 		FF2023191D02147A005129E5 /* Icon-29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-29.png"; sourceTree = "<group>"; };
 		FF20231A1D02147A005129E5 /* Icon-29@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-29@2x.png"; sourceTree = "<group>"; };
@@ -1006,6 +1012,8 @@
 				FF1A84FD1FCFB593005D8ADE /* TTModeHueRaiseBrightnessOptions.swift */,
 				FF1A84FF1FCFB5AF005D8ADE /* TTModeHueLowerBrightnessOptions.swift */,
 				FF1A84FA1FCFB56F005D8ADE /* TTModeHueBrightnessOptions.xib */,
+				FF1DA810211E209200D0D4EA /* TTModeHueCycleScenesOptions.swift */,
+				FF1DA811211E209200D0D4EA /* TTModeHueCycleScenesOptions.xib */,
 				FF3036581DB9BF0900728920 /* press_smartbridgeV2.png */,
 			);
 			name = Hue;
@@ -1284,6 +1292,7 @@
 				FF8B752F1F86D4CA00D7867C /* electrical.png */,
 				FF8B753A1F86D4CC00D7867C /* fullscreen.png */,
 				FF8B75351F86D4CB00D7867C /* hue_evening.png */,
+				FF1DA80E211E1F8F00D0D4EA /* hue_cycle.png */,
 				FF8B75361F86D4CB00D7867C /* hue_random.png */,
 				FF8B75231F86D4C700D7867C /* hue_sleep.png */,
 				FF8B75541F86D4CE00D7867C /* hue_sunset.png */,
@@ -1817,6 +1826,7 @@
 				FF2E1C491E43C30800CFBEE0 /* TTModeNestSetTempOptions.xib in Resources */,
 				FFB84B551D9202CB0037872C /* Dalton Maag - Effra Std Bold.ttf in Resources */,
 				FF2023411D021605005129E5 /* Icon-60@3x.png in Resources */,
+				FF1DA813211E209200D0D4EA /* TTModeHueCycleScenesOptions.xib in Resources */,
 				FF58FC52203CFAAA005F547B /* TTAboutViewController.xib in Resources */,
 				FFB41B2C1CEE9A3000CD5F09 /* equalizer-1.png in Resources */,
 				FFB41B411CEE9A3000CD5F09 /* mode_smartlock.png in Resources */,
@@ -1892,6 +1902,7 @@
 				FFF270A01CEE88E500E46575 /* LaunchScreen.storyboard in Resources */,
 				FF52EBCE1F8EE54E002D0EF1 /* TTModePhoneVolumeJumpOptions.xib in Resources */,
 				FFECC40A203E7891007AB343 /* twitter-samuelclay.png in Resources */,
+				FF1DA80F211E1F9000D0D4EA /* hue_cycle.png in Resources */,
 				FF37EDEC1D137A210026F70D /* TTModeHueSceneOptions.xib in Resources */,
 				FF4AF7EC1D24F9E70009C777 /* TTModeSonosConnecting.xib in Resources */,
 				FF4AF7EF1D24F9E70009C777 /* TTModeSonosOptions.xib in Resources */,
@@ -2190,6 +2201,7 @@
 				FFD88F1B20AE7A9F00E0C5CC /* TTModeBoseOptions.swift in Sources */,
 				FFF46BEE1D10E6A300158751 /* TTOptionsView.swift in Sources */,
 				FF4AF7E91D24F9E70009C777 /* TTModeSonosConnected.swift in Sources */,
+				FF1DA812211E209200D0D4EA /* TTModeHueCycleScenesOptions.swift in Sources */,
 				FF458AB31DBED8A8003FD06B /* TTModeHueSceneColorLoopOptions.swift in Sources */,
 				FFC4B0F71D2DE3DB00A97C81 /* UIView+nib.swift in Sources */,
 				FF1A84FE1FCFB593005D8ADE /* TTModeHueRaiseBrightnessOptions.swift in Sources */,

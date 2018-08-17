@@ -1,4 +1,4 @@
-//
+ //
 //  TTModeHuePicker.swift
 //  Turn Touch iOS
 //
@@ -107,8 +107,15 @@ class TTModeHuePicker: TTOptionsDetailViewController, UITextFieldDelegate, UIPop
 //                print(" ---> (\(hueScenes.count) scenes) Tossing scene \(scene.name) \(scene.identifier) because \(roomLights) aren't in \(scene.lightIdentifiers!)")
                 continue
             }
-//            print(" ---> (\(hueScenes.count) scenes) Keeping scene \(scene.name) \(scene.identifier) because \(roomLights) are in \(scene.lightIdentifiers!)")
-
+            var sceneSeen = false
+            for s in scenes {
+                if s["name"] == scene.name {
+//                    print(" ---> (\(hueScenes.count) scenes) Tossing scene \(scene.name) \(scene.identifier) because \(s) in scenes already")
+                    sceneSeen = true
+                    break
+                }
+            }
+            if sceneSeen { continue }
             
             scenes.append(["name": scene.name, "identifier": scene.identifier])
             if sceneSelected == scene.identifier {
@@ -269,8 +276,10 @@ class TTModeHuePicker: TTOptionsDetailViewController, UITextFieldDelegate, UIPop
     }
     
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
-        var pickerLabel = view as! UILabel
-        if view == nil {  //if no label there yet
+        var pickerLabel: UILabel
+        if let view = view {
+            pickerLabel = view as! UILabel
+        } else { //if no label there yet
             pickerLabel = UILabel()
             //color the label's background
             if pickerVC.textField == singlePicker || pickerVC.textField == doublePicker {
