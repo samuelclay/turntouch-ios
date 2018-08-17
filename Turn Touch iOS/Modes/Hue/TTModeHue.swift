@@ -90,6 +90,7 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
     static var foundBridges: [HueBridge] = [] // Only used during bridge choosing
     static var foundScenes: [String] = []
     static var sceneUploadProgress: Float = -1
+    static var cycleScene: Int = 0
 
     required init() {
         super.init()
@@ -349,14 +350,17 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
     
     // MARK: Action methods
     
-    func runScene(sceneName: String, doubleTap: Bool) {
+    func runScene(sceneName: String, doubleTap: Bool, sceneIdentifier: String? = nil) {
         if TTModeHue.hueState != .connected {
             self.connectToBridge()
 //            return
         }
         
         let bridgeSendAPI = TTModeHue.hueSdk.bridgeSendAPI
-        let sceneIdentifier: String? = self.action.optionValue(doubleTap ? TTModeHueConstants.kDoubleTapHueScene : TTModeHueConstants.kHueScene) as? String
+        var sceneIdentifier = sceneIdentifier
+        if sceneIdentifier == nil {
+            sceneIdentifier = self.action.optionValue(doubleTap ? TTModeHueConstants.kDoubleTapHueScene : TTModeHueConstants.kHueScene) as? String
+        }
         var roomIdentifier = self.action.optionValue(TTModeHueConstants.kHueRoom) as? String ?? "all"
         if roomIdentifier == "all" {
             roomIdentifier = "0"
@@ -762,6 +766,18 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
                 }
             }
         }
+    }
+    
+    func runTTModeHueCycleScenes() {
+        guard let scenes = self.action.optionValue(TTModeHueConstants.kCycleScenes) as? [String],
+            scenes.count > 0 else {
+            return
+        }
+        
+        let scene = scenes[TTModeHue.cycleScene % scenes.count]
+        
+        self.runScene(sceneName: scene, doubleTap: false, sceneIdentifier: scene)
+        TTModeHue.cycleScene += 1
     }
     
     // MARK: - Hue Bridge
@@ -1293,7 +1309,7 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
             
             TTModeHue.sceneCreateGroup.notify(queue: TTModeHue.sceneCreateQueue, execute: { 
                 DispatchQueue.main.async {
-                    print(" ---> DONE uploading scenes")
+//                    print(" ---> DONE uploading scenes")
                     TTModeHue.ensuringScenes = false
                     TTModeHue.sceneUploadProgress = -1
                     TTModeHue.sceneDelegates.invoke { (sceneDelegate) in
@@ -1308,7 +1324,7 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
 
         let createdSceneName = "\(sceneName)-\(moment == .button_MOMENT_PRESSUP ? "single" : "double")"
         if TTModeHue.createdScenes.contains(createdSceneName) {
-            print(" ---> Not ensuring scene \(sceneName), just created")
+//            print(" ---> Not ensuring scene \(sceneName), just created")
             return
         }
 
@@ -1316,7 +1332,7 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
         let cache = TTModeHue.hueSdk.resourceCache
 
         guard let lights = cache?.lights, let _ = cache?.groups else {
-            print(" ---> Scenes/lights/rooms not ready yet for scene creation")
+//            print(" ---> Scenes/lights/rooms not ready yet for scene creation")
             return
         }
 
