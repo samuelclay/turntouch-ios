@@ -5,9 +5,9 @@
 [![Platform](https://img.shields.io/cocoapods/p/LFAlertController.svg?style=flat)](http://cocoapods.org/pods/LFAlertController)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 
-
-
-![](Screenshots/Simulator Screen Shot Sep 7, 2016, Sep 7 6.10.17 PM.png)
+App | Modes
+:----:|:----:
+| ![](Screenshots/Simulator%20Screen%20Shot%20Sep%207,%202016,%20Sep%207%206.10.17%20PM.png) | ![](Screenshots/Simulator%20Screen%20Shot%20Sep%207,%202016,%20Sep%207%206.10.22%20PM.png) |
 
 ## Features
 
