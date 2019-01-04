@@ -26,11 +26,12 @@ How It Works | Tap a button | Hold a button | Multiple actions | HUD
 
 ## Features
 
-- [x] Feature 1
-- [x] Feature 2
-- [x] Feature 3
-- [x] Feature 4
-- [x] Feature 5
+[Turn Touch](https://turntouch.com) is a smart home remote control carved out of beautiful mahogany wood. This is a remote control for Hue lights, Sonos speakers, and all the other connected devices in your home. Turn Touch works on iOS and macOS, giving you control of your music, videos, presentations, and more. 
+
+- [x] **Extraordinary design**: This isn't yet another plastic remote. Turn Touch is carved from solid wood and worked to a show-stopping, textured finish. 
+- [x] **Well connected**: Turn Touch connects to most smart devices in your home that speak WiFi. And this is just the first version. Over time, there's no telling what you'll be able to control.
+- [x] **Always ready**: Turn Touch is always on, always connected, and always ready to take your breath away. Once you connect your Turn Touch via Bluetooth it stays connected and always available, even without the Turn Touch app actively running. And there's no delay, when you press a button the result is instant.
+- [x] **Built to last**: Not only will your Turn Touch stand up to drops and shock — its entire circuit board can be inexpensively replaced with newer, future wireless tech. You won't have to buy a new remote every time Apple comes out with a new phone. And instead of flimsy plastic clasps, a set of 8 strong magnets invisibly hold the remote together. 
 
 ## Requirements
 
