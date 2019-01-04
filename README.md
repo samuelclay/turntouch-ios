@@ -64,15 +64,22 @@ ez.detectScreenShot { () -> () in
 
 ## Contribute
 
-We would love you for the contribution to **YourLibraryName**, check the ``LICENSE`` file for more info.
+We would love you for the contribution to the **Turn Touch iOS app**. 
 
-## Meta
+Here's what you will need to do to add a new app:
 
-Your Name – [@YourTwitter](https://twitter.com/dbader_org) – YourEmail@example.com
+1. Copy one of the [/Turn Touch iOS/Modes](Turn Touch iOS/Modes) apps. If you can't choose, use the Music app, as it's pretty easy to clean.
+2. Add your app to the list of available apps in [/Turn Touch iOS/Models/TTModeMap.swift](Turn Touch iOS/Models/TTModeMap.swift)
+3. Make sure to test on your iOS device
+4. Submit a Pull Request with the app improvement or addition.
 
-Distributed under the XYZ license. See ``LICENSE`` for more information.
+## Author
 
-[https://github.com/yourname/github-link](https://github.com/dbader/)
+Samuel Clay – [@samuelclay](https://twitter.com/samuelclay) – [samuelclay.com](http://samuelclay.com)
+
+Distributed under the MIT license. See ``LICENSE`` for more information.
+
+[https://github.com/samuelclay/turntouch-ios](https://github.com/samuelclay)
 
 [swift-image]:https://img.shields.io/badge/swift-3.0-orange.svg
 [swift-url]: https://swift.org/
