@@ -68,10 +68,27 @@ We would love you for the contribution to the **Turn Touch iOS app**.
 
 Here's what you will need to do to add a new app:
 
-1. Copy one of the [/Turn Touch iOS/Modes](Turn Touch iOS/Modes) apps. If you can't choose, use the Music app, as it's pretty easy to clean.
-2. Add your app to the list of available apps in [/Turn Touch iOS/Models/TTModeMap.swift](Turn Touch iOS/Models/TTModeMap.swift)
+1. Copy one of the [/Turn Touch iOS/Modes](Turn%20Touch%20iOS/Modes) apps. If you can't choose, use the Music app, as it's pretty easy to clean.
+2. Add your app to the list of available apps in [/Turn Touch iOS/Models/TTModeMap.swift](Turn%20Touch%20iOS/Models/TTModeMap.swift)
 3. Make sure to test on your iOS device
 4. Submit a Pull Request with the app improvement or addition.
+
+## Turn Touch open source repositories and documentation
+
+Everything about Turn Touch is open source and well documented. Here are all of Turn Touch's repos:
+
+* [Turn Touch Mac OS app](https://github.com/samuelclay/turntouch-app/)
+* [Turn Touch iOS app](https://github.com/samuelclay/turntouch-ios/)
+* [Turn Touch remote firmware and board layout](https://github.com/samuelclay/turntouch-remote/)
+* [Turn Touch enclosure, CAD, and CAM](https://github.com/samuelclay/turntouch-enclosure/)
+
+The entire Turn Touch build process is also documented:
+* [Everything you need to build your own Turn Touch smart remote](http://ofbrooklyn.com/2019/01/3/building-turntouch/) ![](https://s3.amazonaws.com/static.newsblur.com/turntouch/blog/1*1_w7IlHISYWdQjIGPcxRkQ.jpeg)
+* [Step one: Laying out the buttons and writing the firmware](http://ofbrooklyn.com/2019/01/3/building-turntouch/#firmware) ![](https://s3.amazonaws.com/static.newsblur.com/turntouch/blog/1*K_ERgjIZiFIX5yDOa5JJ7g.png)
+* [Step two: Designing the remote to have perfect button clicks](http://ofbrooklyn.com/2019/01/3/building-turntouch/#cad) ![](https://s3.amazonaws.com/static.newsblur.com/turntouch/blog/1*iXMqpq5IsfudAeT3GZlLFA.png)
+* [Step three: CNC machining and fixturing to accurately cut wood](http://ofbrooklyn.com/2019/01/3/building-turntouch/#cnc) ![](https://s3.amazonaws.com/static.newsblur.com/turntouch/blog/1*SYmywFE5tY3GBO9t9lcTiA.png)
+* [Step four: Inlaying the mother of pearl](http://ofbrooklyn.com/2019/01/3/building-turntouch/#laser) ![](https://s3.amazonaws.com/static.newsblur.com/turntouch/blog/1*kl8WDuTd0RpCkkipLeHx0g.png)
+
 
 ## Author
 
