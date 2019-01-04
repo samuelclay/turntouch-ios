@@ -6,44 +6,41 @@ PODS:
   - AFNetworking/Reachability (3.2.1)
   - AFNetworking/Security (3.2.1)
   - AFNetworking/Serialization (3.2.1)
-  - Alamofire (4.5.1)
+  - Alamofire (4.8.0)
   - CocoaAsyncSocket (7.6.3)
   - Firebase (1.2.3)
-  - Gloss (1.2.4)
+  - Gloss (2.1.0)
   - InAppSettingsKit (2.10)
-  - iOSDFULibrary (3.2.1):
-    - Zip (~> 0.7)
+  - iOSDFULibrary (4.2.2):
+    - Zip (~> 1.0)
   - JSONModel (1.2.0)
-  - Log (1.0)
   - NestSDK (0.1.5):
     - Firebase (= 1.2.3)
     - JSONModel (= 1.2.0)
     - SSKeychain (= 1.3.1)
-  - ReachabilitySwift (3)
+  - ReachabilitySwift (4.3.0)
   - SSKeychain (1.3.1)
-  - SwiftyHue (0.3.2):
-    - SwiftyHue/Base (= 0.3.2)
-    - SwiftyHue/BridgeServices (= 0.3.2)
-  - SwiftyHue/Base (0.3.2):
-    - Alamofire (~> 4.5.1)
-    - Gloss (~> 1.2.4)
-    - Log (~> 1.0)
-  - SwiftyHue/BridgeServices (0.3.2):
-    - Alamofire (~> 4.5.1)
-    - CocoaAsyncSocket (~> 7.6.0)
-    - Gloss (~> 1.2.4)
-    - Log (~> 1.0)
+  - SwiftyHue (0.5.1):
+    - SwiftyHue/Base (= 0.5.1)
+    - SwiftyHue/BridgeServices (= 0.5.1)
+  - SwiftyHue/Base (0.5.1):
+    - Alamofire (= 4.8.0)
+    - Gloss (= 2.1.0)
+  - SwiftyHue/BridgeServices (0.5.1):
+    - Alamofire (= 4.8.0)
+    - CocoaAsyncSocket (= 7.6.3)
+    - Gloss (= 2.1.0)
   - SWXMLHash (4.7.6)
-  - Zip (0.8.0)
+  - Zip (1.1.0)
 
 DEPENDENCIES:
   - AFNetworking/NSURLSession (~> 3.1)
   - CocoaAsyncSocket (~> 7.6)
   - InAppSettingsKit (~> 2.8)
-  - iOSDFULibrary (~> 3.0)
+  - iOSDFULibrary (~> 4.0)
   - NestSDK (= 0.1.5)
-  - ReachabilitySwift (~> 3)
-  - SwiftyHue (~> 0.3.0)
+  - ReachabilitySwift (~> 4.0)
+  - SwiftyHue (~> 0.5)
   - SWXMLHash (~> 4.4)
 
 SPEC REPOS:
@@ -56,7 +53,6 @@ SPEC REPOS:
     - InAppSettingsKit
     - iOSDFULibrary
     - JSONModel
-    - Log
     - NestSDK
     - ReachabilitySwift
     - SSKeychain
@@ -66,21 +62,20 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
-  Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
+  Alamofire: 3ec537f71edc9804815215393ae2b1a8ea33a844
   CocoaAsyncSocket: eafaa68a7e0ec99ead0a7b35015e0bf25d2c8987
   Firebase: 7a1b6a0848467348672afebfb306c624a3510f04
-  Gloss: 4e036074610fdb993abcb958ebcd7332588e2333
+  Gloss: 13ab6b4b0ff4cb2448466edc957479b1bccea8ba
   InAppSettingsKit: d965e29be941eb19857271e4625de3fba6e23c9f
-  iOSDFULibrary: f9544a7099c914eb5f1002dc58a5ff8c67dbc86d
+  iOSDFULibrary: 65a30a36d33ef451ef2d6c2b6a002a26eed786af
   JSONModel: 12523685c4b623553ccf844bbbf7007624317b2c
-  Log: 5e368c9528db07517d18d2d04ff5fe2b6f5a1e21
   NestSDK: 0ede51652a4688767b1b07a8dbb159a0b52dc8ac
-  ReachabilitySwift: f5b9bb30a0777fac8f09ce8b067e32faeb29bb64
+  ReachabilitySwift: 408477d1b6ed9779dba301953171e017c31241f3
   SSKeychain: 04c4ec40f4c3deda524e269bc76e5f30e638a174
-  SwiftyHue: 1f0290e4f0c7c49260d339b30d9e01c0adcfb569
+  SwiftyHue: 6cd5ab3a77005a9bba8e5fb85f6ab2ea4e081a3e
   SWXMLHash: f6e0933ce74f2626669dc544851bc9fc1941670d
-  Zip: bb7d8370de00e50699633d91e03f2ec84f1ee437
+  Zip: 8877eede3dda76bcac281225c20e71c25270774c
 
-PODFILE CHECKSUM: 772bccdb97f311e6293dfb6e6c4c8eea460d8c2e
+PODFILE CHECKSUM: 4508c6a3990a7892296ddd9fa3cca56a35d05aaa
 
 COCOAPODS: 1.5.3

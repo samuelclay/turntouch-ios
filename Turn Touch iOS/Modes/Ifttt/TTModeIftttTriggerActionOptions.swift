@@ -24,7 +24,7 @@ class TTModeIftttTriggerActionOptions: TTOptionsDetailViewController, TTTitleMen
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        modeIfttt = self.action.mode as! TTModeIfttt
+        modeIfttt = (self.action.mode as! TTModeIfttt)
     }
 
     override func didReceiveMemoryWarning() {

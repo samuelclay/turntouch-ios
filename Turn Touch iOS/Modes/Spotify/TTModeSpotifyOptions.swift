@@ -18,7 +18,7 @@ class TTModeSpotifyOptions: TTOptionsDetailViewController, TTModeSpotifyDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.modeSpotify = self.mode as! TTModeSpotify
+        self.modeSpotify = (self.mode as! TTModeSpotify)
         self.modeSpotify.delegate = self
         
         self.changeState(TTModeSpotify.spotifyState, mode: self.modeSpotify)

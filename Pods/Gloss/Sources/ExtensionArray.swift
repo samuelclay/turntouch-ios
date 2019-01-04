@@ -25,9 +25,9 @@
 
 import Foundation
 
-// MARK: - Decodable
+// MARK: - JSONDecodable
 
-public extension Array where Element: Decodable {
+public extension Array where Element: JSONDecodable {
     
     // MARK: Public functions
     
@@ -39,7 +39,7 @@ public extension Array where Element: Decodable {
      
      - returns: Array of objects created from JSON.
      */
-    static func from(jsonArray: [JSON]) -> [Element]? {
+    public static func from(jsonArray: [JSON]) -> [Element]? {
         var models: [Element] = []
         
         for json in jsonArray {
@@ -73,7 +73,7 @@ public extension Array where Element: Decodable {
      
      - returns: Object or nil.
      */
-    static func from(data: Data, serializer: JSONSerializer = GlossJSONSerializer(), options: JSONSerialization.ReadingOptions = .mutableContainers) -> [Element]? {
+    public static func from(data: Data, serializer: JSONSerializer = GlossJSONSerializer(), options: JSONSerialization.ReadingOptions = .mutableContainers) -> [Element]? {
         guard
             let jsonArray = (try? JSONSerialization.jsonObject(with: data, options: .mutableContainers)) as? [JSON],
             let models = [Element].from(jsonArray: jsonArray) else {
@@ -85,9 +85,9 @@ public extension Array where Element: Decodable {
     
 }
 
-// MARK: - Encodable
+// MARK: - JSONEncodable
 
-public extension Array where Element: Encodable {
+public extension Array where Element: JSONEncodable {
     
     // MARK: Public functions
     

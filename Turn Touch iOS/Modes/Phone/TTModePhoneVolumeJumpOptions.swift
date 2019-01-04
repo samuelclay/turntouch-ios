@@ -26,7 +26,7 @@ class TTModePhoneVolumeJumpOptions: TTOptionsDetailViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        modePhone = self.mode as! TTModePhone
+        modePhone = (self.mode as! TTModePhone)
         let jump = self.action.optionValue(TTModePhoneConstants.jumpVolume) as! Int
         slider.value = Float(jump) / 100
         

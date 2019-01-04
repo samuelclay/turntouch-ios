@@ -18,7 +18,7 @@ class TTModeBoseOptions: TTOptionsDetailViewController, TTModeBoseDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.modeBose = self.mode as! TTModeBose
+        self.modeBose = (self.mode as! TTModeBose)
         self.modeBose.delegate = self
         
         self.changeState(TTModeBose.boseState, mode: self.modeBose)

@@ -18,7 +18,7 @@ class TTModeWemoOptions: TTOptionsDetailViewController, TTModeWemoDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.modeWemo = self.mode as! TTModeWemo
+        self.modeWemo = (self.mode as! TTModeWemo)
         self.modeWemo.delegate = self
         
         self.changeState(TTModeWemo.wemoState, mode: self.modeWemo)

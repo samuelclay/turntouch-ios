@@ -29,7 +29,7 @@ class TTModeNestConnected: TTOptionsDetailViewController, UITextFieldDelegate, U
         super.viewDidLoad()
         self.view.translatesAutoresizingMaskIntoConstraints = false
         
-        self.modeNest = self.mode as! TTModeNest
+        self.modeNest = (self.mode as! TTModeNest)
         singlePicker.delegate = self
         //        doublePicker.delegate = self
         

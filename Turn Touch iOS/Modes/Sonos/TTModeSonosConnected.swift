@@ -28,7 +28,7 @@ class TTModeSonosConnected: TTOptionsDetailViewController, UITextFieldDelegate, 
         super.viewDidLoad()
         self.view.translatesAutoresizingMaskIntoConstraints = false
         
-        self.modeSonos = self.mode as! TTModeSonos
+        self.modeSonos = (self.mode as! TTModeSonos)
         self.modeSonos.delegate = self
         singlePicker.delegate = self
         //        doublePicker.delegate = self

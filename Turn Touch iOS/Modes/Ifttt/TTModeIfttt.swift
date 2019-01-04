@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import ReachabilitySwift
 import SafariServices
 import Alamofire
 
@@ -31,15 +30,12 @@ protocol TTModeIftttDelegate {
 
 class TTModeIfttt: TTMode {
     
-    static var reachability: Reachability!
     var delegate: TTModeIftttDelegate!
     static var IftttState = TTIftttState.disconnected
     var oauthViewController: SFSafariViewController!
     
     required init() {
         super.init()
-        
-        self.watchReachability()
     }
     
     override class func title() -> String {
@@ -136,37 +132,6 @@ class TTModeIfttt: TTMode {
             { response in
                 print(" ---> IFTTT Button trigger: \(response)")
             }
-    }
-    
-    // MARK: Ifttt Reachability
-    
-    func watchReachability() {
-        if TTModeIfttt.reachability != nil {
-            return
-        }
-        
-        TTModeIfttt.reachability = Reachability()
-        
-        TTModeIfttt.reachability.whenReachable = { reachability in
-            DispatchQueue.main.async {
-                if TTModeIfttt.IftttState != .connected {
-                    print(" ---> Reachable, re-connecting to Ifttt...")
-//                    self.beginConnectingToIfttt()
-                }
-            }
-        }
-        
-        TTModeIfttt.reachability.whenUnreachable = { reachability in
-            if TTModeIfttt.IftttState != .connected {
-                print(" ---> Unreachable, not connected")
-            }
-        }
-        
-        do {
-            try TTModeIfttt.reachability.startNotifier()
-        } catch {
-            print("Unable to start Ifttt notifier")
-        }
     }
     
     func beginConnectingToIfttt() {

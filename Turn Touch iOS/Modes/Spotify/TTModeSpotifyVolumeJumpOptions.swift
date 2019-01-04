@@ -26,7 +26,7 @@ class TTModeSpotifyVolumeJumpOptions: TTOptionsDetailViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        modeSpotify = self.mode as! TTModeSpotify
+        modeSpotify = (self.mode as! TTModeSpotify)
         let jump = self.action.optionValue(TTModeSpotifyConstants.jumpVolume) as! Int
         slider.value = Float(jump) / 100
         

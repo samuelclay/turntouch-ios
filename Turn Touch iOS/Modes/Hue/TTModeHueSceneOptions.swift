@@ -35,7 +35,7 @@ class TTModeHueSceneOptions: TTModeHuePicker {
             s.startAnimating()
         }
         
-        modeHue = self.mode as! TTModeHue
+        modeHue = (self.mode as! TTModeHue)
         
         modeHue.updateScenes()
 

@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import ReachabilitySwift
+import Reachability
 import SwiftyHue
 
 enum TTHueState: Int {

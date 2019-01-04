@@ -39,7 +39,7 @@ class TTDevice: NSObject {
         uuid = peripheral.identifier.uuidString
         
         let prefs = UserDefaults.standard
-        let nicknameKey = "TT:device:\(uuid):nickname"
+        let nicknameKey = "TT:device:\(uuid ?? "nil"):nickname"
         nickname = prefs.string(forKey: nicknameKey)
     }
     

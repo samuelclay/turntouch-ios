@@ -36,7 +36,7 @@ class TTModeNestSetTempOptions: TTOptionsDetailViewController, UITextFieldDelega
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.modeNest = self.mode as! TTModeNest
+        self.modeNest = (self.mode as! TTModeNest)
         self.view.translatesAutoresizingMaskIntoConstraints = false
         
         singlePicker.delegate = self

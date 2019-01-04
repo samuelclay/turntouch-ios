@@ -8,7 +8,7 @@
 
 import UIKit
 import CoreLocation
-import ReachabilitySwift
+import Reachability
 import InAppSettingsKit
  
 @UIApplicationMain

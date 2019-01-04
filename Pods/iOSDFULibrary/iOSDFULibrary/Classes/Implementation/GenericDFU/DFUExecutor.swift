@@ -23,6 +23,7 @@
 import CoreBluetooth
 
 internal protocol BaseExecutorAPI : class, DFUController {
+    
     /**
      Starts the DFU operation.
      */
@@ -31,6 +32,7 @@ internal protocol BaseExecutorAPI : class, DFUController {
 
 internal protocol BaseDFUExecutor : BaseExecutorAPI, BasePeripheralDelegate {
     associatedtype DFUPeripheralType : BaseDFUPeripheralAPI
+    
     /// Target peripheral object
     var peripheral: DFUPeripheralType { get }
     /// The DFU Service Initiator instance that was used to start the service.
@@ -40,6 +42,7 @@ internal protocol BaseDFUExecutor : BaseExecutorAPI, BasePeripheralDelegate {
 }
 
 extension BaseDFUExecutor {
+    
     /// The service delegate will be informed about status changes and errors.
     internal var delegate: DFUServiceDelegate? {
         // The delegate may change during DFU operation (by setting a new one in the initiator). Let's always use the current one.
@@ -127,25 +130,24 @@ internal protocol DFUExecutorAPI : BaseExecutorAPI {
     init(_ initiator: DFUServiceInitiator)
 }
 
-internal protocol DFUExecutor : DFUExecutorAPI, BaseDFUExecutor, DFUPeripheralDelegate {
-    associatedtype DFUPeripheralType : DFUPeripheralAPI
+internal protocol DFUExecutor : DFUExecutorAPI, BaseDFUExecutor, DFUPeripheralDelegate where DFUPeripheralType: DFUPeripheralAPI {
+    
     /// The firmware to be sent over-the-air
     var firmware: DFUFirmware { get }
 }
 
 extension DFUExecutor {
     
-    // MARK: - BasePeripheralDelegate API
+    // MARK: - DFUPeripheralDelegate API
     
-    func peripheralDidDisconnectAfterFirmwarePartSent() {
+    func peripheralDidDisconnectAfterFirmwarePartSent() -> Bool {
         // Check if there is another part of the firmware that has to be sent
         if firmware.hasNextPart() {
             firmware.switchToNextPart()
             DispatchQueue.main.async(execute: {
                 self.delegate?.dfuStateDidChange(to: .connecting)
             })
-            peripheral.switchToNewPeripheralAndConnect()
-            return
+            return true
         }
         // If not, we are done here. Congratulations!
         DispatchQueue.main.async(execute: {
@@ -155,5 +157,6 @@ extension DFUExecutor {
             
         // Release the cyclic reference
         peripheral.destroy()
+        return false
     }
 }

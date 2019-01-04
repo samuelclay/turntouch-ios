@@ -23,7 +23,7 @@ class TTModeWemoDeviceSwitchOptions: TTOptionsDetailViewController, UITableViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.modeWemo = self.mode as! TTModeWemo
+        self.modeWemo = (self.mode as! TTModeWemo)
         self.modeWemo.delegate = self
         
         spinner.forEach({ $0.isHidden = true })

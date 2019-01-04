@@ -26,7 +26,7 @@ class TTModeBoseVolumeJumpOptions: TTOptionsDetailViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        modeBose = self.mode as! TTModeBose
+        modeBose = (self.mode as! TTModeBose)
         let jump = self.action.optionValue(TTModeBoseConstants.jumpVolume) as! Int
         slider.value = Float(jump) / 100
         

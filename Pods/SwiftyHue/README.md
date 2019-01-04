@@ -30,10 +30,9 @@ $ gem install cocoapods
 To integrate SwiftyHue into your Xcode project using CocoaPods, specify it in your `Podfile`:
 ```ruby
 source 'https://github.com/CocoaPods/Specs.git'
-platform :ios, '9.0'
 use_frameworks!
 
-pod 'SwiftyHue', '~> 0.1.2'
+pod 'SwiftyHue', '0.4.1'
 ```
 
 Then, run the following command:
@@ -52,21 +51,20 @@ $ pod install
 target 'MyApp' do
   use_frameworks!
 
-  pod ’SwiftyHue’, '~> 0.1.6'
+  pod ’SwiftyHue’, '0.3.3'
 
 end
 
 target 'MyApp tvOS' do
     use_frameworks!
     
-    pod ’SwiftyHue’, '~> 0.1.6'
-    
+    pod ’SwiftyHue’, '0.3.3'
 end
 
 target 'MyApp watchOS Extension' do
     use_frameworks!
     
-    pod ’SwiftyHue/Base’, '~> 0.1.6'
+    pod ’SwiftyHue/Base’, '0.3.3'
     
 end
 ```
@@ -172,11 +170,26 @@ You can use the SendAPI to send requests to the bridge. For example recall a Sce
 ```Swift
 let sendAPI = swiftyHue.brideSendAPI
 ```
-
-
-
-
 More coming soon...
+
+### Resource API
+
+You can use the resourceAPI to request resources from the bridge. For example all groups.
+
+
+```Swift
+let resourceAPI = swiftyHue.resourceAPI
+
+resourceAPI.fetchGroups { (result) in
+
+    guard let groups = result.value else {
+        //...
+        return
+    }
+    
+    //...
+}
+```
 
 ## Generate documentation
 
@@ -207,4 +220,5 @@ in the root directory of the project.
 Remember to build the SwiftyHue framework targets to run the example application targets.
 
 ## Made with SwiftyHue
-[Bridge Inspector](https://appsto.re/de/JvJodb.i)
+- [Bridge Inspector](https://appsto.re/de/JvJodb.i)
+- [Musicbox - mubo](https://itunes.apple.com/us/app/musicbox-mubo/id1089676976?l=de&ls=1&mt=8)

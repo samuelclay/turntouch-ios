@@ -18,7 +18,7 @@ class TTModeIftttOptions: TTOptionsDetailViewController, TTModeIftttDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.modeIfttt = self.mode as! TTModeIfttt
+        self.modeIfttt = (self.mode as! TTModeIfttt)
         self.modeIfttt.delegate = self
         
         self.changeState(TTModeIfttt.IftttState, mode: self.modeIfttt)

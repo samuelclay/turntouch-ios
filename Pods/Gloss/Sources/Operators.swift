@@ -51,50 +51,50 @@ public func <~~ <T>(key: String, json: JSON) -> T? {
 }
 
 /**
- Convenience operator for decoding JSON to Decodable object.
+ Convenience operator for decoding JSON to JSONDecodable object.
  
  - parameter key:  JSON key for value to decode.
  - parameter json: JSON.
  
  - returns: Decoded value when successful, nil otherwise.
  */
-public func <~~ <T: Decodable>(key: String, json: JSON) -> T? {
+public func <~~ <T: JSONDecodable>(key: String, json: JSON) -> T? {
     return Decoder.decode(decodableForKey: key)(json)
 }
 
 /**
- Convenience operator for decoding JSON to array of Decodable objects.
+ Convenience operator for decoding JSON to array of JSONDecodable objects.
  
  - parameter key:  JSON key for value to decode.
  - parameter json: JSON.
  
  - returns: Decoded value when successful, nil otherwise.
  */
-public func <~~ <T: Decodable>(key: String, json: JSON) -> [T]? {
+public func <~~ <T: JSONDecodable>(key: String, json: JSON) -> [T]? {
     return Decoder.decode(decodableArrayForKey: key)(json)
 }
 
 /**
- Convenience operator for decoding JSON to dictionary of String to Decodable.
+ Convenience operator for decoding JSON to dictionary of String to JSONDecodable.
  
  - parameter key:  JSON key for value to decode.
  - parameter json: JSON.
  
  - returns: Decoded value when successful, nil otherwise.
  */
-public func <~~ <T: Decodable>(key: String, json: JSON) -> [String : T]? {
+public func <~~ <T: JSONDecodable>(key: String, json: JSON) -> [String : T]? {
     return Decoder.decode(decodableDictionaryForKey: key)(json)
 }
 
 /**
- Convenience operator for decoding JSON to dictionary of String to Decodable array.
+ Convenience operator for decoding JSON to dictionary of String to JSONDecodable array.
  
  - parameter key:  JSON key for value to decode.
  - parameter json: JSON.
  
  - returns: Decoded value when successful, nil otherwise.
  */
-public func <~~ <T: Decodable>(key: String, json: JSON) -> [String : [T]]? {
+public func <~~ <T: JSONDecodable>(key: String, json: JSON) -> [String : [T]]? {
     return Decoder.decode(decodableDictionaryForKey: key)(json)
 }
 
@@ -267,6 +267,30 @@ public func <~~ (key: String, json: JSON) -> [UUID]? {
 }
 
 /**
+ Convenience operator for decoding JSON to Double.
+ 
+ - parameter key:  JSON key for value to decode.
+ - parameter json: JSON.
+ 
+ - returns: Decoded value when successful, nil otherwise.
+ */
+public func <~~ (key: String, json: JSON) -> Double? {
+    return Decoder.decode(doubleForKey: key)(json)
+}
+
+/**
+ Convenience operator for decoding JSON to Double array.
+ 
+ - parameter key:  JSON key for value to decode.
+ - parameter json: JSON.
+ 
+ - returns: Decoded value when successful, nil otherwise.
+ */
+public func <~~ (key: String, json: JSON) -> [Double]? {
+    return Decoder.decode(doubleArrayForKey: key)(json)
+}
+
+/**
  Convenience operator for decoding JSON to Decimal.
  
  - parameter key:  JSON key for value to decode.
@@ -331,50 +355,50 @@ public func ~~> <T>(key: String, property: [T]?) -> JSON? {
 }
 
 /**
- Convenience operator for encoding an Encodable object to JSON.
+ Convenience operator for encoding an JSONEncodable object to JSON.
  
  - parameter key:      JSON key for value to encode.
  - parameter property: Object to encode to JSON.
  
  - returns: JSON when successful, nil otherwise.
  */
-public func ~~> <T: Encodable>(key: String, property: T?) -> JSON? {
+public func ~~> <T: JSONEncodable>(key: String, property: T?) -> JSON? {
     return Encoder.encode(encodableForKey: key)(property)
 }
 
 /**
- Convenience operator for encoding an array of Encodable objects to JSON.
+ Convenience operator for encoding an array of JSONEncodable objects to JSON.
  
  - parameter key:      JSON key for value to encode.
  - parameter property: Object to encode to JSON.
  
  - returns: JSON when successful, nil otherwise.
  */
-public func ~~> <T: Encodable>(key: String, property: [T]?) -> JSON? {
+public func ~~> <T: JSONEncodable>(key: String, property: [T]?) -> JSON? {
     return Encoder.encode(encodableArrayForKey: key)(property)
 }
 
 /**
- Convenience operator for encoding a dictionary of String to Encodable to JSON.
+ Convenience operator for encoding a dictionary of String to JSONEncodable to JSON.
  
  - parameter key:      JSON key for value to encode.
  - parameter property: Object to encode to JSON.
  
  - returns: JSON when successful, nil otherwise.
  */
-public func ~~> <T: Encodable>(key: String, property: [String : T]?) -> JSON? {
+public func ~~> <T: JSONEncodable>(key: String, property: [String : T]?) -> JSON? {
     return Encoder.encode(encodableDictionaryForKey: key)(property)
 }
 
 /**
- Convenience operator for encoding a dictionary of String to Encodable array to JSON.
+ Convenience operator for encoding a dictionary of String to JSONEncodable array to JSON.
  
  - parameter key:      JSON key for value to encode.
  - parameter property: Object to encode to JSON.
  
  - returns: JSON when successful, nil otherwise.
  */
-public func ~~> <T: Encodable>(key: String, property: [String : [T]]?) -> JSON? {
+public func ~~> <T: JSONEncodable>(key: String, property: [String : [T]]?) -> JSON? {
     return Encoder.encode(encodableDictionaryForKey: key)(property)
 }
 
@@ -520,6 +544,30 @@ public func ~~> (key: String, property: URL?) -> JSON? {
  */
 public func ~~> (key: String, property: UUID?) -> JSON? {
     return Encoder.encode(uuidForKey: key)(property)
+}
+
+/**
+ Convenience operator for encoding a Double to JSON.
+ 
+ - parameter key:      JSON key for value to encode.
+ - parameter property: Object to encode to JSON.
+ 
+ - returns: JSON when successful, nil otherwise.
+ */
+public func ~~> (key: String, property: Double?) -> JSON? {
+    return Encoder.encode(doubleForKey: key)(property)
+}
+
+/**
+ Convenience operator for encoding a Double array to JSON.
+ 
+ - parameter key:      JSON key for value to encode.
+ - parameter property: Object to encode to JSON.
+ 
+ - returns: JSON when successful, nil otherwise.
+ */
+public func ~~> (key: String, property: [Double]?) -> JSON? {
+    return Encoder.encode(doubleArrayForKey: key)(property)
 }
 
 /**

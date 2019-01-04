@@ -19,7 +19,7 @@ class TTModeNestOptions: TTOptionsDetailViewController, TTModeNestDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.modeNest = self.mode as! TTModeNest
+        self.modeNest = (self.mode as! TTModeNest)
         TTModeNest.delegates.add(delegate: self)
         
         self.changeState(TTModeNest.nestState, mode: self.modeNest)

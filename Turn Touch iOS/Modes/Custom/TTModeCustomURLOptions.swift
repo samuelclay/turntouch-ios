@@ -33,7 +33,7 @@ class TTModeCustomURLOptions: TTOptionsDetailViewController, UITextFieldDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.modeCustom = self.mode as! TTModeCustom
+        self.modeCustom = (self.mode as! TTModeCustom)
         
         let singleUrlString = self.action.optionValue(TTModeCustomConstants.singleCustomUrl)
         let doubleUrlString = self.action.optionValue(TTModeCustomConstants.doubleCustomUrl)

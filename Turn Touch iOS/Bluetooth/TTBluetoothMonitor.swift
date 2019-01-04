@@ -111,7 +111,7 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
         }
         
         if DEBUG_BLUETOOTH {
-            print(" ---> Central manager state: \(String(describing: state)) - \(manager)/\(manager.state)", state!, manager, manager.state)
+            print(" ---> Central manager state: \(String(describing: state)) - \(String(describing: manager))/\(manager.state)", state!, manager, manager.state)
         }
         return false
     }

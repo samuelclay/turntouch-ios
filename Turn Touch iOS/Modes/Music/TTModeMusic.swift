@@ -214,7 +214,7 @@ class TTModeMusic: TTMode {
             TTModeMusic.lastVolume = AVAudioSession.sharedInstance().outputVolume
         }
         TTModeMusic.lastVolume = min(1, TTModeMusic.lastVolume + self.ITUNES_VOLUME_CHANGE)
-        print(" ---> Volume up: \(TTModeMusic.lastVolume)")
+        print(" ---> Volume up: \(String(describing: TTModeMusic.lastVolume))")
         self.volumeSlider.setValue(TTModeMusic.lastVolume, animated: false)
     }
     
@@ -223,7 +223,7 @@ class TTModeMusic: TTMode {
             TTModeMusic.lastVolume = AVAudioSession.sharedInstance().outputVolume
         }
         TTModeMusic.lastVolume = max(0, TTModeMusic.lastVolume - self.ITUNES_VOLUME_CHANGE)
-        print(" ---> Volume down: \(TTModeMusic.lastVolume)")
+        print(" ---> Volume down: \(String(describing: TTModeMusic.lastVolume))")
         self.volumeSlider.setValue(TTModeMusic.lastVolume, animated: false)
     }
     

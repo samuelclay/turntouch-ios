@@ -21,7 +21,7 @@ class TTModeHueOptions: TTOptionsDetailViewController, TTModeHueDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.modeHue = self.mode as! TTModeHue
+        self.modeHue = (self.mode as! TTModeHue)
         TTModeHue.delegates.add(delegate: self)
         self.view.clipsToBounds = true
 

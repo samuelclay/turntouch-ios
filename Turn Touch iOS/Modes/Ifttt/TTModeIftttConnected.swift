@@ -28,7 +28,7 @@ class TTModeIftttConnected: TTOptionsDetailViewController {
         super.viewDidLoad()
         self.view.translatesAutoresizingMaskIntoConstraints = false
         
-        self.modeIfttt = self.mode as! TTModeIfttt
+        self.modeIfttt = (self.mode as! TTModeIfttt)
         //        doublePicker.delegate = self
         
         spinner.forEach({ $0.isHidden = true })

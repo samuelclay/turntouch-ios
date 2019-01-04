@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import ReachabilitySwift
+import Reachability
 import NestSDK
 
 struct TTModeNestConstants {
@@ -264,7 +264,7 @@ class TTModeNest: TTMode, NestSDKAuthorizationViewControllerDelegate {
     }
     
     func viewController(_ viewController: NestSDKAuthorizationViewController!, didFailWithError error: Error!) {
-        print(" ---> Nest did fail: \(error)")
+        print(" ---> Nest did fail: \(String(describing: error))")
         self.cancelConnectingToNest()
     }
     
@@ -313,7 +313,7 @@ class TTModeNest: TTMode, NestSDKAuthorizationViewControllerDelegate {
                     return
                 }
                 if let thermostat = thermostat {
-                    self.logMessage("Thermostat \(thermostat.name) updated, temperature now: \(thermostat.ambientTemperatureF)°F")
+                    self.logMessage("Thermostat \(thermostat.name ?? "nil") updated, temperature now: \(thermostat.ambientTemperatureF)°F")
                     TTModeNest.thermostats[thermostatId] = thermostat
                     TTModeNest.delegates.invoke { (delegate) in
                         delegate?.changeState(TTNestState.connected, mode: self)

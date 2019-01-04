@@ -27,7 +27,7 @@ class TTModeSpotifyConnected: TTOptionsDetailViewController, TTModeSpotifyDelega
         super.viewDidLoad()
         self.view.translatesAutoresizingMaskIntoConstraints = false
         
-        self.modeSpotify = self.mode as! TTModeSpotify
+        self.modeSpotify = (self.mode as! TTModeSpotify)
         self.modeSpotify.delegate = self
         //        doublePicker.delegate = self
         

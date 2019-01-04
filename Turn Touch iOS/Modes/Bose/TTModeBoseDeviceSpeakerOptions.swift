@@ -23,7 +23,7 @@ class TTModeBoseDeviceSwitchOptions: TTOptionsDetailViewController, UITableViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.modeBose = self.mode as! TTModeBose
+        self.modeBose = (self.mode as! TTModeBose)
         self.modeBose.delegate = self
         
         spinner.forEach({ $0.isHidden = true })

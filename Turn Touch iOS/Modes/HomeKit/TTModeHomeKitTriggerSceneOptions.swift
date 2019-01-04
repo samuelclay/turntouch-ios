@@ -33,7 +33,7 @@ class TTModeHomeKitTriggerSceneOptions: TTOptionsDetailViewController, TTModeHom
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        modeHomeKit = self.action.mode as! TTModeHomeKit
+        modeHomeKit = (self.action.mode as! TTModeHomeKit)
         modeHomeKit.delegate = self
         
         spinner.forEach({ $0.isHidden = true })

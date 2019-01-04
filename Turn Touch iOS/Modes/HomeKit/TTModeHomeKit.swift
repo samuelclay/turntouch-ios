@@ -8,7 +8,7 @@
 
 import UIKit
 import HomeKit
-import ReachabilitySwift
+import Reachability
 import SafariServices
 import Alamofire
 
