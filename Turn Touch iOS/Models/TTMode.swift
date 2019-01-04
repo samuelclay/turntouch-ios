@@ -469,7 +469,7 @@ class TTMode : NSObject, TTModeProtocol {
         }
         
         if DEBUG_PREFS_NIL {
-            print(" -> Getting action options \(optionKey): nil")
+            print(" -> Getting nil action options \(optionKey): nil")
         }
         return nil
     }

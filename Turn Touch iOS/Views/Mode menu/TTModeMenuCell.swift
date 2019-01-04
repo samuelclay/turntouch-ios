@@ -78,7 +78,7 @@ class TTModeMenuCell: UICollectionViewCell {
     override func prepareForReuse() {
         if menuType == .menu_MODE || menuType == .menu_ADD_MODE {
             let className = "Turn_Touch_iOS.\(modeName)"
-            modeClass = NSClassFromString(className) as! TTMode.Type
+            modeClass = (NSClassFromString(className) as! TTMode.Type)
         } else if menuType == .menu_ACTION {
             activeMode = appDelegate().modeMap.selectedMode
         } else if menuType == .menu_ADD_ACTION {

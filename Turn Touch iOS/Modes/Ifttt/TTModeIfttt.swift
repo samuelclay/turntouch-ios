@@ -134,7 +134,7 @@ class TTModeIfttt: TTMode {
         Alamofire.request("https://turntouch.com/ifttt/button_trigger", method: .post,
                           parameters: params, encoding: JSONEncoding.default).responseJSON
             { response in
-                print(" ---> Button trigger: \(response)")
+                print(" ---> IFTTT Button trigger: \(response)")
             }
     }
     
@@ -255,7 +255,7 @@ class TTModeIfttt: TTMode {
             for actionDirection: TTModeDirection in [.north, .east, .west, .south] {
                 let actionName = mode.actionNameInDirection(actionDirection)
                 if actionName == "TTModeIftttTriggerAction" {
-                    let tapType = mode.actionOptionValue(TTModeIftttConstants.kIftttTapType,
+                    let tapType = self.actionOptionValue(TTModeIftttConstants.kIftttTapType,
                                                          actionName: actionName, direction: actionDirection) as! String
                     triggers.append(["app_label": modeName,
                                      "app_direction": appDelegate().modeMap.directionName(modeDirection),
