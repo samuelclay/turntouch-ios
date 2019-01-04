@@ -83,12 +83,11 @@ Everything about Turn Touch is open source and well documented. Here are all of 
 * [Turn Touch enclosure, CAD, and CAM](https://github.com/samuelclay/turntouch-enclosure/)
 
 The entire Turn Touch build process is also documented:
-* [Everything you need to build your own Turn Touch smart remote](http://ofbrooklyn.com/2019/01/3/building-turntouch/) ![](https://s3.amazonaws.com/static.newsblur.com/turntouch/blog/1*1_w7IlHISYWdQjIGPcxRkQ.jpeg)
-* [Step one: Laying out the buttons and writing the firmware](http://ofbrooklyn.com/2019/01/3/building-turntouch/#firmware) ![](https://s3.amazonaws.com/static.newsblur.com/turntouch/blog/1*K_ERgjIZiFIX5yDOa5JJ7g.png)
-* [Step two: Designing the remote to have perfect button clicks](http://ofbrooklyn.com/2019/01/3/building-turntouch/#cad) ![](https://s3.amazonaws.com/static.newsblur.com/turntouch/blog/1*iXMqpq5IsfudAeT3GZlLFA.png)
-* [Step three: CNC machining and fixturing to accurately cut wood](http://ofbrooklyn.com/2019/01/3/building-turntouch/#cnc) ![](https://s3.amazonaws.com/static.newsblur.com/turntouch/blog/1*SYmywFE5tY3GBO9t9lcTiA.png)
-* [Step four: Inlaying the mother of pearl](http://ofbrooklyn.com/2019/01/3/building-turntouch/#laser) ![](https://s3.amazonaws.com/static.newsblur.com/turntouch/blog/1*kl8WDuTd0RpCkkipLeHx0g.png)
-
+* <a href="http://ofbrooklyn.com/2019/01/3/building-turntouch/">Everything you need to build your own Turn Touch smart remote<br /><img src="https://s3.amazonaws.com/static.newsblur.com/turntouch/blog/1*1_w7IlHISYWdQjIGPcxRkQ.jpeg" width="400"></a>
+* <a href="http://ofbrooklyn.com/2019/01/3/building-turntouch/#firmware">Step one: Laying out the buttons and writing the firmware <br /><img src="https://s3.amazonaws.com/static.newsblur.com/turntouch/blog/1*K_ERgjIZiFIX5yDOa5JJ7g.png" width="400"></a>
+* <a href="http://ofbrooklyn.com/2019/01/3/building-turntouch/#cad">Step two: Designing the remote to have perfect button clicks <br /><img src="https://s3.amazonaws.com/static.newsblur.com/turntouch/blog/1*iXMqpq5IsfudAeT3GZlLFA.png" width="400"></a>
+* <a href="http://ofbrooklyn.com/2019/01/3/building-turntouch/#cnc">Step three: CNC machining and fixturing to accurately cut wood <br /><img src="https://s3.amazonaws.com/static.newsblur.com/turntouch/blog/1*SYmywFE5tY3GBO9t9lcTiA.png" width="400"></a>
+* <a href="http://ofbrooklyn.com/2019/01/3/building-turntouch/#laser">Step four: Inlaying the mother of pearl <br /><img src="https://s3.amazonaws.com/static.newsblur.com/turntouch/blog/1*kl8WDuTd0RpCkkipLeHx0g.png" width="400"></a>
 
 ## Author
 
