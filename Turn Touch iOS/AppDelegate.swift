@@ -21,11 +21,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     var reachability: Reachability!
     @IBOutlet var mainViewController: TTMainViewController!
     
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 //        self.erasePreferences()
         self.loadPreferences()
 
-        let centralManagerIdentifiers = launchOptions?[UIApplicationLaunchOptionsKey.bluetoothCentrals]
+        let centralManagerIdentifiers = launchOptions?[UIApplication.LaunchOptionsKey.bluetoothCentrals]
         if centralManagerIdentifiers != nil {
             print(" ---> centralManagerIdentifiers: \(String(describing: centralManagerIdentifiers))")
         }
@@ -103,7 +103,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         prefs.synchronize()
     }
     
-    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any]) -> Bool {
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any]) -> Bool {
         let parameters = TTModeSpotify.appRemote.authorizationParameters(from: url)
         
         if let access_token = parameters?[SPTAppRemoteAccessTokenKey] {
@@ -212,7 +212,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             alertController.addAction(cancelAction)
             
             let openAction = UIAlertAction(title: "Open Settings", style: .default) { (action) in
-                if let url = URL(string:UIApplicationOpenSettingsURLString) {
+                if let url = URL(string:UIApplication.openSettingsURLString) {
                     UIApplication.shared.openURL(url)
                 }
             }

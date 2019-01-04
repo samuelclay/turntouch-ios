@@ -39,7 +39,7 @@ class TTModeMenuContainer: UIView {
         }
         flowLayout.minimumInteritemSpacing = 0
         flowLayout.minimumLineSpacing = 0
-        flowLayout.scrollDirection = UICollectionViewScrollDirection.horizontal
+        flowLayout.scrollDirection = UICollectionView.ScrollDirection.horizontal
         
         collectionView = TTModeMenuCollectionView(frame: CGRect.zero, collectionViewLayout: flowLayout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false

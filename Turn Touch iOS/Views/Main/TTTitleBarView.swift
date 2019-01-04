@@ -33,15 +33,15 @@ class TTTitleBarView: UIView, TTTitleMenuDelegate {
             toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 12))
         self.addConstraint(NSLayoutConstraint(item: titleImageView, attribute: .width, relatedBy: .equal,
             toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 100))
-        self.addConstraint(NSLayoutConstraint(item: titleImageView, attribute: NSLayoutAttribute.centerX, relatedBy: .equal,
+        self.addConstraint(NSLayoutConstraint(item: titleImageView, attribute: NSLayoutConstraint.Attribute.centerX, relatedBy: .equal,
             toItem: self, attribute: .centerX, multiplier: 1.0, constant: 0))
-        self.addConstraint(NSLayoutConstraint(item: titleImageView, attribute: NSLayoutAttribute.centerY, relatedBy: .equal,
+        self.addConstraint(NSLayoutConstraint(item: titleImageView, attribute: NSLayoutConstraint.Attribute.centerY, relatedBy: .equal,
             toItem: self, attribute: .centerY, multiplier: 1.0, constant: 0))
         
         let settingsImage = UIImage(named: "settings")
         let settingsButton = UIButton(type: .custom)
-        settingsButton.setImage(settingsImage, for: UIControlState())
-        settingsButton.imageEdgeInsets = UIEdgeInsetsMake(10, 20, 10, 20)
+        settingsButton.setImage(settingsImage, for: UIControl.State())
+        settingsButton.imageEdgeInsets = UIEdgeInsets.init(top: 10, left: 20, bottom: 10, right: 20)
         settingsButton.translatesAutoresizingMaskIntoConstraints = false
         settingsButton.addTarget(self, action: #selector(self.pressSettings(_:)), for: .touchUpInside)
         self.addSubview(settingsButton)
@@ -51,7 +51,7 @@ class TTTitleBarView: UIView, TTTitleMenuDelegate {
             toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: SETTINGS_ICON_SIZE+40))
         self.addConstraint(NSLayoutConstraint(item: settingsButton, attribute: .trailingMargin, relatedBy: .equal,
             toItem: self, attribute: .trailingMargin, multiplier: 1.0, constant: 0))
-        self.addConstraint(NSLayoutConstraint(item: settingsButton, attribute: NSLayoutAttribute.centerY, relatedBy: .equal,
+        self.addConstraint(NSLayoutConstraint(item: settingsButton, attribute: NSLayoutConstraint.Attribute.centerY, relatedBy: .equal,
             toItem: self, attribute: .centerY, multiplier: 1.0, constant: 0))
         
     }

@@ -29,7 +29,7 @@ class TTModeWemoDeviceSwitchOptions: TTOptionsDetailViewController, UITableViewD
         spinner.forEach({ $0.isHidden = true })
         settingsButton.forEach({ $0.isHidden = false })
         
-        self.devicesTable.rowHeight = UITableViewAutomaticDimension
+        self.devicesTable.rowHeight = UITableView.automaticDimension
         self.devicesTable.estimatedRowHeight = 2
         self.devicesTable.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         

@@ -123,7 +123,7 @@ class TTPairingViewController: UIViewController, TTBluetoothMonitorDelegate {
             searchingTimer = Timer.scheduledTimer(timeInterval: 20, target: self,
                                                                     selector: #selector(searchingFailure),
                                                                     userInfo: nil, repeats: false)
-            runner.add(searchingTimer!, forMode: RunLoopMode.commonModes)
+            runner.add(searchingTimer!, forMode: RunLoop.Mode.common)
             
             spinnerScanning.setNeedsDisplay()
             titleLabel.text = "Pairing your Turn Touch"
@@ -173,7 +173,7 @@ class TTPairingViewController: UIViewController, TTBluetoothMonitorDelegate {
             countdownTimer = Timer.scheduledTimer(timeInterval: 1, target: self,
                                                                     selector: #selector(updateCountdown),
                                                                     userInfo: nil, repeats: false)
-            runner.add(countdownTimer!, forMode: RunLoopMode.commonModes)
+            runner.add(countdownTimer!, forMode: RunLoop.Mode.common)
         }
     }
     

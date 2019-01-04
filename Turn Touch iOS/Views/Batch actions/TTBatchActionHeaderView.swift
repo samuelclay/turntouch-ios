@@ -13,7 +13,7 @@ class TTBatchActionHeaderView: UIView {
     var mode: TTMode
     var batchAction: TTAction?
     
-    @IBOutlet var deleteButton: UIButton! = UIButton(type: UIButtonType.system)
+    @IBOutlet var deleteButton: UIButton! = UIButton(type: UIButton.ButtonType.system)
     var modeImage = UIImage()
     var modeTitle = ""
     var modeLabel = UILabel()
@@ -42,12 +42,12 @@ class TTBatchActionHeaderView: UIView {
     
     func setupLabels() {
         self.translatesAutoresizingMaskIntoConstraints = false
-        self.contentMode = UIViewContentMode.redraw;
+        self.contentMode = UIView.ContentMode.redraw;
         self.backgroundColor = UIColor(hex: 0xFCFCFC)
         self.clipsToBounds = true
         
         deleteButton.translatesAutoresizingMaskIntoConstraints = false
-        deleteButton.setTitle("Delete", for: UIControlState.normal)
+        deleteButton.setTitle("Delete", for: UIControl.State.normal)
         deleteButton.titleLabel!.font = UIFont(name: "Effra", size: 13)
         deleteButton.titleLabel!.textColor = UIColor(hex: 0xA0A0A0)
         deleteButton.titleLabel!.lineBreakMode = NSLineBreakMode.byClipping

@@ -39,11 +39,11 @@ class TTModeHomeKitTriggerSceneOptions: TTOptionsDetailViewController, TTModeHom
         spinner.forEach({ $0.isHidden = true })
         refreshButton.forEach({ $0.isHidden = false })
         
-        self.homesTable.rowHeight = UITableViewAutomaticDimension
+        self.homesTable.rowHeight = UITableView.automaticDimension
         self.homesTable.estimatedRowHeight = 2
         self.homesTable.register(UITableViewCell.self, forCellReuseIdentifier: "homesCell")
         
-        self.scenesTable.rowHeight = UITableViewAutomaticDimension
+        self.scenesTable.rowHeight = UITableView.automaticDimension
         self.scenesTable.estimatedRowHeight = 2
         self.scenesTable.register(UITableViewCell.self, forCellReuseIdentifier: "scenesCell")
         

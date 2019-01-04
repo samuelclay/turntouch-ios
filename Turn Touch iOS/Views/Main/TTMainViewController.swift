@@ -211,7 +211,7 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
         scrollStackView.addArrangedSubview(addActionButtonView)
         scrollStackView.addConstraint(addActionButtonConstraint)
         
-        scrollView.setContentHuggingPriority(UILayoutPriority(rawValue: 100), for: UILayoutConstraintAxis.vertical)
+        scrollView.setContentHuggingPriority(UILayoutPriority(rawValue: 100), for: NSLayoutConstraint.Axis.vertical)
         scrollView.alwaysBounceVertical = true
         scrollView.insertSubview(scrollStackView, at: 0)
         scrollView.backgroundColor = UIColor(hex: 0xF5F6F8)

@@ -91,7 +91,7 @@ class TTGeofencingViewController: UIViewController, MKMapViewDelegate, CLLocatio
                 if let coords = prefs.dictionary(forKey: "TT:geofence:1") as? [String: NSNumber] {
                     let center = CLLocationCoordinate2D(latitude: coords["lat"] as! CLLocationDegrees,
                                                         longitude: coords["long"] as! CLLocationDegrees)
-                    let region = MKCoordinateRegionMakeWithDistance(center, 120, 120)
+                    let region = MKCoordinateRegion.init(center: center, latitudinalMeters: 120, longitudinalMeters: 120)
                     mapView.setRegion(region, animated: true)
                     
                     self.redrawGeofence(coordinate: center)
@@ -131,12 +131,12 @@ class TTGeofencingViewController: UIViewController, MKMapViewDelegate, CLLocatio
         mapView.addAnnotation(geofenceAnnotation)
         
         let circle = MKCircle(center: coordinate, radius: 12)
-        mapView.add(circle)
+        mapView.addOverlay(circle)
     }
 
     @IBAction func zoomIn(_ sender: Any) {
         if let userLocation = mapView.userLocation.location?.coordinate {
-            let region = MKCoordinateRegionMakeWithDistance(userLocation, 120, 120)
+            let region = MKCoordinateRegion.init(center: userLocation, latitudinalMeters: 120, longitudinalMeters: 120)
             mapView.setRegion(region, animated: true)
 
             self.redrawGeofence(coordinate: userLocation)

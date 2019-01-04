@@ -193,7 +193,7 @@ class TTModeNestSetTempOptions: TTOptionsDetailViewController, UITextFieldDelega
     
     func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
         let titleData = devices[row]["name"]
-        let myTitle = NSAttributedString(string: titleData!, attributes: [NSAttributedStringKey.font:UIFont(name: "Effra", size: 18.0)!,NSAttributedStringKey.foregroundColor:UIColor.blue])
+        let myTitle = NSAttributedString(string: titleData!, attributes: [NSAttributedString.Key.font:UIFont(name: "Effra", size: 18.0)!,NSAttributedString.Key.foregroundColor:UIColor.blue])
         return myTitle
     }
     
@@ -206,7 +206,7 @@ class TTModeNestSetTempOptions: TTOptionsDetailViewController, UITextFieldDelega
             pickerLabel.backgroundColor = UIColor(hue: hue, saturation: 1.0, brightness: 1.0, alpha: 1.0)
         }
         let titleData = devices[row]["name"]
-        let myTitle = NSAttributedString(string: titleData!, attributes: [NSAttributedStringKey.font:UIFont(name: "Effra", size: 18.0)!,NSAttributedStringKey.foregroundColor:UIColor.black])
+        let myTitle = NSAttributedString(string: titleData!, attributes: [NSAttributedString.Key.font:UIFont(name: "Effra", size: 18.0)!,NSAttributedString.Key.foregroundColor:UIColor.black])
         pickerLabel.attributedText = myTitle
         pickerLabel.textAlignment = .center
         

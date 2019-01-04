@@ -16,7 +16,7 @@ class TTOptionsView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.translatesAutoresizingMaskIntoConstraints = false
-        self.contentMode = UIViewContentMode.top
+        self.contentMode = UIView.ContentMode.top
         self.clipsToBounds = true
         self.clearOptionDetailViews()
         self.registerAsObserver()

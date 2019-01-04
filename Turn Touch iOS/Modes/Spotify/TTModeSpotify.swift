@@ -488,8 +488,8 @@ class TTModeSpotify : TTMode, SPTAppRemotePlayerStateDelegate {
     }
     
     fileprivate func presentAlert(title: String, message: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
         self.delegate?.presentError(alert: alert)
     }
 

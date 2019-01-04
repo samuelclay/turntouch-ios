@@ -10,7 +10,7 @@ import UIKit
 
 class TTModeTitleView: UIView {
 
-    @IBOutlet var changeButton: UIButton! = UIButton(type: UIButtonType.system)
+    @IBOutlet var changeButton: UIButton! = UIButton(type: UIButton.ButtonType.system)
     var modeImage: UIImage = UIImage()
     var modeTitle: String = ""
     var titleLabel: UILabel = UILabel()
@@ -19,11 +19,11 @@ class TTModeTitleView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.translatesAutoresizingMaskIntoConstraints = false
-        self.contentMode = UIViewContentMode.redraw;
+        self.contentMode = UIView.ContentMode.redraw;
         self.backgroundColor = UIColor.clear
         
         changeButton.translatesAutoresizingMaskIntoConstraints = false
-        changeButton.setTitle("Change", for: UIControlState.normal)
+        changeButton.setTitle("Change", for: UIControl.State.normal)
         changeButton.titleLabel!.font = UIFont(name: "Effra", size: 13)
         changeButton.titleLabel!.textColor = UIColor(hex: 0xA0A0A0)
         changeButton.titleLabel!.lineBreakMode = NSLineBreakMode.byClipping

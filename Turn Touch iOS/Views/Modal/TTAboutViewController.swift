@@ -110,7 +110,7 @@ class TTAboutViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         if url.starts(with: "itms"), let reviewURL = URL(string: url) {
             if #available(iOS 10.0, *) {
-                UIApplication.shared.open(reviewURL, options: [:], completionHandler: nil)
+                UIApplication.shared.open(reviewURL, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
             } else {
                 UIApplication.shared.openURL(reviewURL)
             }
@@ -123,4 +123,9 @@ class TTAboutViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
     }
 
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToUIApplicationOpenExternalURLOptionsKeyDictionary(_ input: [String: Any]) -> [UIApplication.OpenExternalURLOptionsKey: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (UIApplication.OpenExternalURLOptionsKey(rawValue: key), value)})
 }

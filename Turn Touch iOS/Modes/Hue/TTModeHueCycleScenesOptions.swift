@@ -28,7 +28,7 @@ class TTModeHueCycleScenesOptions: TTModeHuePicker, UITableViewDelegate, UITable
     override func viewDidLoad() {
         modeHue = self.mode as! TTModeHue
 
-        self.scenesTable.rowHeight = UITableViewAutomaticDimension
+        self.scenesTable.rowHeight = UITableView.automaticDimension
         self.scenesTable.estimatedRowHeight = 2
         self.scenesTable.register(UITableViewCell.self, forCellReuseIdentifier: "sceneCell")
 

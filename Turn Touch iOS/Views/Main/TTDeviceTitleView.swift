@@ -20,7 +20,7 @@ class TTDeviceTitleView: UIView, TTTitleMenuDelegate, DFUServiceDelegate, DFUPro
     var dfuProgress: UIProgressView = UIProgressView()
     var dfuSpinner: TTPairingSpinner = TTPairingSpinner()
     var upgradeButton: UIButton = UIButton()
-    @IBOutlet var settingsButton: UIButton! = UIButton(type: UIButtonType.system)
+    @IBOutlet var settingsButton: UIButton! = UIButton(type: UIButton.ButtonType.system)
     fileprivate var dfuController: DFUServiceController?
 
     init(device: TTDevice) {
@@ -28,7 +28,7 @@ class TTDeviceTitleView: UIView, TTTitleMenuDelegate, DFUServiceDelegate, DFUPro
         
         self.device = device
         self.translatesAutoresizingMaskIntoConstraints = false
-        self.contentMode = UIViewContentMode.redraw;
+        self.contentMode = UIView.ContentMode.redraw;
         self.backgroundColor = UIColor(hex: 0xF5F6F8)
 
         deviceImageView.translatesAutoresizingMaskIntoConstraints = false
@@ -54,7 +54,7 @@ class TTDeviceTitleView: UIView, TTTitleMenuDelegate, DFUServiceDelegate, DFUPro
 
         
         let settingsImage = UIImage(named: "settings")
-        settingsButton.setImage(settingsImage, for: UIControlState())
+        settingsButton.setImage(settingsImage, for: UIControl.State())
         settingsButton.translatesAutoresizingMaskIntoConstraints = false
         settingsButton.addTarget(self, action: #selector(self.pressSettings(_:)), for: .touchUpInside)
         self.addSubview(settingsButton)
@@ -64,7 +64,7 @@ class TTDeviceTitleView: UIView, TTTitleMenuDelegate, DFUServiceDelegate, DFUPro
             toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: SETTINGS_ICON_SIZE))
         self.addConstraint(NSLayoutConstraint(item: settingsButton, attribute: .trailingMargin, relatedBy: .equal,
             toItem: self, attribute: .trailingMargin, multiplier: 1.0, constant: -18))
-        self.addConstraint(NSLayoutConstraint(item: settingsButton, attribute: NSLayoutAttribute.centerY, relatedBy: .equal,
+        self.addConstraint(NSLayoutConstraint(item: settingsButton, attribute: NSLayoutConstraint.Attribute.centerY, relatedBy: .equal,
             toItem: self, attribute: .centerY, multiplier: 1.0, constant: 0))
         
         stateLabel.isHidden = true
@@ -258,7 +258,7 @@ class TTDeviceTitleView: UIView, TTTitleMenuDelegate, DFUServiceDelegate, DFUPro
             if let nickname = self.device.nickname {
                 textfield.text = "\(nickname)"
             }
-            NotificationCenter.default.addObserver(forName: NSNotification.Name.UITextFieldTextDidChange, object: textfield, queue: OperationQueue.main) { (notification) in
+            NotificationCenter.default.addObserver(forName: UITextField.textDidChangeNotification, object: textfield, queue: OperationQueue.main) { (notification) in
                 renameAction.isEnabled = textfield.text != ""
             }
         }

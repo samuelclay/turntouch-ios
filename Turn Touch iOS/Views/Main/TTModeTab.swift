@@ -32,7 +32,7 @@ class TTModeTab: UIView {
         
         super.init(frame:CGRect.zero)
         self.translatesAutoresizingMaskIntoConstraints = false
-        self.contentMode = UIViewContentMode.redraw;
+        self.contentMode = UIView.ContentMode.redraw;
         
         self.addSubview(self.titleLabel)
         self.addConstraint(NSLayoutConstraint(item: self.titleLabel, attribute: .centerX, relatedBy: .equal,

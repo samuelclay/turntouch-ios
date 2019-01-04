@@ -249,7 +249,7 @@ class TTModeMap: NSObject {
         
         if prefs.bool(forKey: "TT:pref:sound_on_app_change") {
             do {
-                try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback, with: .mixWithOthers)
+                try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
                 do {
                     try AVAudioSession.sharedInstance().setActive(true)
                 } catch {
@@ -747,4 +747,9 @@ class TTModeMap: NSObject {
         self.activateModes()
     }
     
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromAVAudioSessionCategory(_ input: AVAudioSession.Category) -> String {
+	return input.rawValue
 }

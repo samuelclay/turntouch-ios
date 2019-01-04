@@ -48,9 +48,9 @@ class TTPairingSpinner: UIView {
             anim.duration = 2.0
             anim.beginTime = spinnerBeginTime - (1.0 * Double(i))
             anim.keyTimes = [0.0, 0.5, 1.0]
-            anim.timingFunctions = [CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut),
-                                    CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut),
-                                    CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)]
+            anim.timingFunctions = [CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut),
+                                    CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut),
+                                    CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)]
             anim.values = [NSValue(caTransform3D: CATransform3DMakeScale(0.0, 0.0, 0.0)),
                            NSValue(caTransform3D: CATransform3DMakeScale(1.0, 1.0, 0.0)),
                            NSValue(caTransform3D: CATransform3DMakeScale(0.0, 0.0, 0.0))]

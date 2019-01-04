@@ -10,7 +10,7 @@ import UIKit
 
 class TTActionTitleView: UIView {
     
-    @IBOutlet var changeButton: UIButton! = UIButton(type: UIButtonType.system)
+    @IBOutlet var changeButton: UIButton! = UIButton(type: UIButton.ButtonType.system)
     var modeImage: UIImage = UIImage()
     var modeTitle: String = ""
     var titleLabel: UILabel = UILabel()
@@ -23,7 +23,7 @@ class TTActionTitleView: UIView {
 //        self.contentMode = UIViewContentMode.Redraw;
         
         changeButton.translatesAutoresizingMaskIntoConstraints = false
-        changeButton.setTitle("Change", for: UIControlState())
+        changeButton.setTitle("Change", for: UIControl.State())
         changeButton.titleLabel!.font = UIFont(name: "Effra", size: 13)
         changeButton.titleLabel!.textColor = UIColor(hex: 0xA0A0A0)
         changeButton.titleLabel!.lineBreakMode = NSLineBreakMode.byClipping
@@ -103,10 +103,10 @@ class TTActionTitleView: UIView {
     
     override func draw(_ rect: CGRect) {
         if appDelegate().modeMap.openedActionChangeMenu {
-            changeButton.setTitle("Done", for: UIControlState())
+            changeButton.setTitle("Done", for: UIControl.State())
             renameButton.isHidden = false
         } else {
-            changeButton.setTitle("Change", for: UIControlState())
+            changeButton.setTitle("Change", for: UIControl.State())
             renameButton.isHidden = true
         }
         
@@ -156,7 +156,7 @@ class TTActionTitleView: UIView {
             if direction != .no_DIRECTION {
                 textfield.text = appDelegate().modeMap.selectedMode.titleInDirection(direction, buttonMoment: .button_MOMENT_PRESSUP)
             }
-            NotificationCenter.default.addObserver(forName: NSNotification.Name.UITextFieldTextDidChange, object: textfield, queue: OperationQueue.main) { (notification) in
+            NotificationCenter.default.addObserver(forName: UITextField.textDidChangeNotification, object: textfield, queue: OperationQueue.main) { (notification) in
                 renameAction.isEnabled = textfield.text != ""
             }
         }

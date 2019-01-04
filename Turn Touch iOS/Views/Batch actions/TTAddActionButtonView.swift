@@ -10,13 +10,13 @@ import UIKit
 
 class TTAddActionButtonView: UIView {
 
-    @IBOutlet var addButton: UIButton! = UIButton(type: UIButtonType.system)
+    @IBOutlet var addButton: UIButton! = UIButton(type: UIButton.ButtonType.system)
     var image: UIImage!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.translatesAutoresizingMaskIntoConstraints = false
-        self.contentMode = UIViewContentMode.redraw;
+        self.contentMode = UIView.ContentMode.redraw;
         self.backgroundColor = UIColor.white
         self.clipsToBounds = true
         
@@ -24,7 +24,7 @@ class TTAddActionButtonView: UIView {
         addButton.translatesAutoresizingMaskIntoConstraints = false
         addButton.setImage(image, for: .normal)
         addButton.imageView?.contentMode = .scaleAspectFit
-        addButton.setTitle("Add new action", for: UIControlState.normal)
+        addButton.setTitle("Add new action", for: UIControl.State.normal)
         addButton.imageView!.setContentHuggingPriority(UILayoutPriority.defaultHigh, for: .horizontal)
         addButton.titleLabel!.font = UIFont(name: "Effra", size: 13)
         addButton.titleLabel!.textColor = UIColor(hex: 0xA0A0A0)

@@ -121,8 +121,8 @@ class TTModeCameraViewController: UIViewController {
         flashButton = UIButton(type: .system)
         flashButton.translatesAutoresizingMaskIntoConstraints = false
         flashButton.tintColor = UIColor.white
-        flashButton.setImage(UIImage(named: "camera-flash.png"), for: UIControlState())
-        flashButton.imageEdgeInsets = UIEdgeInsetsMake(10, 10, 10, 10)
+        flashButton.setImage(UIImage(named: "camera-flash.png"), for: UIControl.State())
+        flashButton.imageEdgeInsets = UIEdgeInsets.init(top: 10, left: 10, bottom: 10, right: 10)
         flashButton.addTarget(self, action: #selector(flashButtonPressed(_:)), for: .touchUpInside)
         self.view.addSubview(flashButton)
         self.view.addConstraint(NSLayoutConstraint(item: flashButton, attribute: .left,
@@ -142,8 +142,8 @@ class TTModeCameraViewController: UIViewController {
         closeButton = UIButton(type: .system)
         closeButton.translatesAutoresizingMaskIntoConstraints = false
         closeButton.tintColor = UIColor.white
-        closeButton.setImage(UIImage(named: "cancel.png"), for: UIControlState())
-        closeButton.imageEdgeInsets = UIEdgeInsetsMake(10, 10, 10, 10)
+        closeButton.setImage(UIImage(named: "cancel.png"), for: UIControl.State())
+        closeButton.imageEdgeInsets = UIEdgeInsets.init(top: 10, left: 10, bottom: 10, right: 10)
         closeButton.addTarget(self, action: #selector(closeButtonPressed(_:)), for: .touchUpInside)
         self.view.addSubview(closeButton)
         self.view.addConstraint(NSLayoutConstraint(item: closeButton, attribute: .right,
@@ -164,8 +164,8 @@ class TTModeCameraViewController: UIViewController {
             switchButton = UIButton(type: .system)
             switchButton.translatesAutoresizingMaskIntoConstraints = false
             switchButton.tintColor = UIColor.white
-            switchButton.setImage(UIImage(named: "camera-switch.png"), for: UIControlState())
-            switchButton.imageEdgeInsets = UIEdgeInsetsMake(10, 10, 10, 10)
+            switchButton.setImage(UIImage(named: "camera-switch.png"), for: UIControl.State())
+            switchButton.imageEdgeInsets = UIEdgeInsets.init(top: 10, left: 10, bottom: 10, right: 10)
             
             switchButton.addTarget(self, action: #selector(switchButtonPressed(_:)), for: .touchUpInside)
             self.view.addSubview(switchButton)
