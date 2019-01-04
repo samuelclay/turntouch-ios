@@ -7,7 +7,7 @@
 
 
 
-![](turntouch-ios/Screenshots/Simulator Screen Shot Sep 7, 2016, Sep 7 6.10.17 PM.png)
+![](Screenshots/Simulator Screen Shot Sep 7, 2016, Sep 7 6.10.17 PM.png)
 
 ## Features
 
