@@ -9,6 +9,10 @@ App | Modes
 :----:|:----:
 | ![](Screenshots/Simulator%20Screen%20Shot%20Sep%207,%202016,%20Sep%207%206.10.17%20PM.png) | ![](Screenshots/Simulator%20Screen%20Shot%20Sep%207,%202016,%20Sep%207%206.10.22%20PM.png) |
 
+How It Works | Tap a button | Hold a button | Multiple actions | HUD
+:---:|:---:|:---:|:---:|:---:
+| ![](Screenshots/Simulator%20Screen%20Shot%20Sep%207,%202016,%20Sep%207%206.10.48%20PM.png) | ![](Screenshots/Simulator%20Screen%20Shot%20Sep%207,%202016,%20Sep%207%206.10.51%20PM.png) | ![](Screenshots/Simulator%20Screen%20Shot%20Sep%207,%202016,%20Sep%207%206.10.52%20PM.png) | ![](Screenshots/Simulator%20Screen%20Shot%20Sep%207,%202016,%20Sep%207%206.10.53%20PM.png) | ![](Screenshots/Simulator%20Screen%20Shot%20Sep%207,%202016,%20Sep%207%206.10.55%20PM.png) |
+
 ## Features
 
 - [x] Feature 1
