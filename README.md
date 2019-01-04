@@ -7,13 +7,22 @@
 [![Platform](https://img.shields.io/cocoapods/p/LFAlertController.svg?style=flat)](http://cocoapods.org/pods/LFAlertController)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 
+
+## Screenshots of Turn Touch on iPhone
+
 App | Modes
 :----:|:----:
 | ![](Screenshots/Simulator%20Screen%20Shot%20Sep%207,%202016,%20Sep%207%206.10.17%20PM.png) | ![](Screenshots/Simulator%20Screen%20Shot%20Sep%207,%202016,%20Sep%207%206.10.22%20PM.png) |
 
 How It Works | Tap a button | Hold a button | Multiple actions | HUD
 :---:|:---:|:---:|:---:|:---:
-| ![](Screenshots/Simulator%20Screen%20Shot%20Sep%207,%202016,%20Sep%207%206.10.48%20PM.png) | ![](Screenshots/Simulator%20Screen%20Shot%20Sep%207,%202016,%20Sep%207%206.10.51%20PM.png) | ![](Screenshots/Simulator%20Screen%20Shot%20Sep%207,%202016,%20Sep%207%206.10.52%20PM.png) | ![](Screenshots/Simulator%20Screen%20Shot%20Sep%207,%202016,%20Sep%207%206.10.53%20PM.png) | ![](Screenshots/Simulator%20Screen%20Shot%20Sep%207,%202016,%20Sep%207%206.10.55%20PM.png) |
+| ![](Screenshots/Simulator%20Screen%20Shot%20Sep%2022,%202016,%20Sep%2022%202.04.46%20PM.png) | ![](Screenshots/Simulator%20Screen%20Shot%20Sep%2022,%202016,%20Sep%2022%202.04.47%20PM.png) | ![](Screenshots/Simulator%20Screen%20Shot%20Sep%2022,%202016,%20Sep%2022%202.04.48%20PM.png) | ![](Screenshots/Simulator%20Screen%20Shot%20Sep%2022,%202016,%20Sep%2022%202.04.49%20PM.png) | ![](Screenshots/Simulator%20Screen%20Shot%20Sep%2022,%202016,%20Sep%2022%202.04.51%20PM.png) 
+
+## Screenshots of Turn Touch on iPad
+
+How It Works | Tap a button | Hold a button | Multiple actions | HUD
+:---:|:---:|:---:|:---:|:---:
+| ![](Screenshots/Simulator%20Screen%20Shot%20Sep%2022,%202016,%20Sep%2022%202.02.22%20PM.png) | ![](Screenshots/Simulator%20Screen%20Shot%20Sep%2022,%202016,%20Sep%2022%202.02.23%20PM.png) | ![](Screenshots/Simulator%20Screen%20Shot%20Sep%2022,%202016,%20Sep%2022%202.02.24%20PM.png) | ![](Screenshots/Simulator%20Screen%20Shot%20Sep%2022,%202016,%20Sep%2022%202.02.26%20PM.png) | ![](Screenshots/Simulator%20Screen%20Shot%20Sep%2022,%202016,%20Sep%2022%202.02.27%20PM.png) | 
 
 ## Features
 
@@ -25,44 +34,21 @@ How It Works | Tap a button | Hold a button | Multiple actions | HUD
 
 ## Requirements
 
-- iOS 8.0+
-- Xcode 7.3
+- iOS 12.0+
+- Xcode 10.1
 
 ## Installation
 
 #### CocoaPods
-You can use [CocoaPods](http://cocoapods.org/) to install `YourLibrary` by adding it to your `Podfile`:
-
-```ruby
-platform :ios, '8.0'
-use_frameworks!
-pod 'YourLibrary'
-```
-
-To get the full benefits import `YourLibrary` wherever you import UIKit
-
-``` swift
-import UIKit
-import YourLibrary
-```
-#### Carthage
-Create a `Cartfile` that lists the framework and run `carthage update`. Follow the [instructions](https://github.com/Carthage/Carthage#if-youre-building-for-ios) to add `$(SRCROOT)/Carthage/Build/iOS/YourLibrary.framework` to an iOS project.
+You can use [CocoaPods](http://cocoapods.org/) to install all of the dependencies:
 
 ```
-github "yourUsername/yourlibrary"
+pod install
 ```
-#### Manually
-1. Download and drop ```YourLibrary.swift``` in your project.  
-2. Congratulations!  
 
-## Usage example
+#### Running on a device
 
-```swift
-import EZSwiftExtensions
-ez.detectScreenShot { () -> () in
-    print("User took a screen shot")
-}
-```
+To use Turn Touch you must run the iOS app on a device. Works with both iPhone and iPad.
 
 ## Contribute
 
