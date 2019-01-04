@@ -16,7 +16,7 @@ public class GenericStatusSensorState: PartialSensorState {
     init?(state: SensorState) {
         
         guard let status: Int = state.status else {
-            print("Can't create GenericStatusState, missing required attribute \"status\""); return nil
+            Log.error("Can't create GenericStatusState, missing required attribute \"status\""); return nil
         }
         
         self.status = status
@@ -27,7 +27,7 @@ public class GenericStatusSensorState: PartialSensorState {
     required public init?(json: JSON) {
         
         guard let status: Int = "status" <~~ json else {
-            print("Can't create GenericStatusState, missing required attribute \"status\" in JSON:\n \(json)"); return nil
+            Log.error("Can't create GenericStatusState, missing required attribute \"status\" in JSON:\n \(json)"); return nil
         }
         
         self.status = status

@@ -19,7 +19,7 @@ public enum BackupError: Int {
     case none, exportFailed, importFailed
 }
 
-public struct Backup: JSONDecodable {
+public struct Backup: Gloss.Decodable, Gloss.Encodable {
     
     public let status: BackupStatus?
     public let errorcode: BackupError?

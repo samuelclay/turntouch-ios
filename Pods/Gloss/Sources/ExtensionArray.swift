@@ -25,9 +25,9 @@
 
 import Foundation
 
-// MARK: - JSONDecodable
+// MARK: - Decodable
 
-public extension Array where Element: JSONDecodable {
+public extension Array where Element: Decodable {
     
     // MARK: Public functions
     
@@ -85,9 +85,9 @@ public extension Array where Element: JSONDecodable {
     
 }
 
-// MARK: - JSONEncodable
+// MARK: - Encodable
 
-public extension Array where Element: JSONEncodable {
+public extension Array where Element: Encodable {
     
     // MARK: Public functions
     

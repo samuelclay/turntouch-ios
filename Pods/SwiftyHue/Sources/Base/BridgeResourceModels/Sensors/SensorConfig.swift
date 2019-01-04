@@ -16,7 +16,7 @@ public enum SensorAlertMode {
         lSelect // Select alert (30 seconds of indication cycles) is active
 }
 
-public class PartialSensorConfig: JSONDecodable {
+public class PartialSensorConfig: Gloss.Decodable, Gloss.Encodable {
 
     public var on: Bool
     public var reachable: Bool?
@@ -34,7 +34,7 @@ public class PartialSensorConfig: JSONDecodable {
     required public init?(json: JSON) {
         
         guard let on: Bool = "on" <~~ json else {
-            print("Can't create SensorConfig, missing required attribute \"on\" in JSON:\n \(json)"); return nil
+            Log.error("Can't create SensorConfig, missing required attribute \"on\" in JSON:\n \(json)"); return nil
         }
         
         self.on = on

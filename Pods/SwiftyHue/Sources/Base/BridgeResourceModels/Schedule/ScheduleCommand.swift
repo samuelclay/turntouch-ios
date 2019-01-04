@@ -9,7 +9,7 @@
 import Foundation
 import Gloss
 
-public class ScheduleCommand: JSONDecodable {
+public class ScheduleCommand: Gloss.Decodable, Gloss.Encodable {
     
     public let address: String
     public let method: String
@@ -18,15 +18,15 @@ public class ScheduleCommand: JSONDecodable {
     public required init?(json: JSON) {
         
         guard let address: String = "address" <~~ json else {
-            print("Can't create ScheduleCommand, missing required attribute \"address\" in JSON:\n \(json)"); return nil
+            Log.error("Can't create ScheduleCommand, missing required attribute \"address\" in JSON:\n \(json)"); return nil
         }
         
         guard let method: String = "method" <~~ json else {
-            print("Can't create ScheduleCommand, missing required attribute \"method\" in JSON:\n \(json)"); return nil
+            Log.error("Can't create ScheduleCommand, missing required attribute \"method\" in JSON:\n \(json)"); return nil
         }
         
         guard let body: JSON = "body" <~~ json else {
-            print("Can't create ScheduleCommand, missing required attribute \"body\" in JSON:\n \(json)"); return nil
+            Log.error("Can't create ScheduleCommand, missing required attribute \"body\" in JSON:\n \(json)"); return nil
         }
         
         self.address = address

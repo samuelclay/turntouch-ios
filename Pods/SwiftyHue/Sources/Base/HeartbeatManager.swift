@@ -89,7 +89,7 @@ public class HeartbeatManager {
 
         let url = "http://\(bridgeAccesssConfig.ipAddress)/api/\(bridgeAccesssConfig.username)/\(resourceType.rawValue.lowercased())"
 
-        print("Heartbeat Request", "\(url)")
+        Log.trace("Heartbeat Request", "\(url)")
         
         Alamofire.request(url).responseJSON { response in // method
             
@@ -102,7 +102,7 @@ public class HeartbeatManager {
             case .failure(let error):
                 
                 self.notifyAboutNoLocalConnection()
-                print("Heartbeat Request Error: ", error)
+                Log.trace("Heartbeat Request Error: ", error)
             }
             
         }
@@ -112,7 +112,7 @@ public class HeartbeatManager {
     
     private func handleSuccessResponseResult(_ result: Result<Any>, resourceType: HeartbeatBridgeResourceType) {
         
-        print("Heartbeat Response for Resource Type \(resourceType.rawValue.lowercased()) received")
+        Log.trace("Heartbeat Response for Resource Type \(resourceType.rawValue.lowercased()) received")
         //Log.trace("Heartbeat Response: \(resourceType.rawValue.lowercaseString): ", result.value)
         
         if responseResultIsPhilipsAPIErrorType(result: result, resourceType: resourceType) {
@@ -160,7 +160,7 @@ public class HeartbeatManager {
         
         for jsonError in jsonErrorArray {
             
-            print("Hearbeat received Error Result", (json: jsonError))
+            Log.info("Hearbeat received Error Result", (json: jsonError))
             let error = HueError(json: jsonError)
             if let error = error {
                 self.notifyAboutError(error)
@@ -175,7 +175,7 @@ public class HeartbeatManager {
         if lastLocalConnectionNotificationPostTime == nil || Date().timeIntervalSince1970 - lastLocalConnectionNotificationPostTime! > 10 {
             
             let notification = BridgeHeartbeatConnectionStatusNotification(rawValue: "localConnection")!
-            print("Post Notification:", notification.rawValue)
+            Log.info("Post Notification:", notification.rawValue)
             NotificationCenter.default.post(name: Notification.Name(rawValue: notification.rawValue), object: nil)
             
             self.lastLocalConnectionNotificationPostTime = Date().timeIntervalSince1970;
@@ -190,7 +190,7 @@ public class HeartbeatManager {
         if lastNoLocalConnectionNotificationPostTime == nil || Date().timeIntervalSince1970 - lastNoLocalConnectionNotificationPostTime! > 10 {
             
             let notification = BridgeHeartbeatConnectionStatusNotification(rawValue: "nolocalConnection")!
-            print("Post Notification:", notification.rawValue)
+            Log.info("Post Notification:", notification.rawValue)
             NotificationCenter.default.post(name: Notification.Name(rawValue: notification.rawValue), object: nil)
             
             self.lastNoLocalConnectionNotificationPostTime = Date().timeIntervalSince1970;
@@ -214,7 +214,7 @@ public class HeartbeatManager {
         
         if let notification = notification {
             
-            print("Post Notification: ", notification.rawValue)
+            Log.trace("Post Notification: ", notification.rawValue)
             NotificationCenter.default.post(name: Notification.Name(rawValue: notification.rawValue), object: nil)
         }
     }

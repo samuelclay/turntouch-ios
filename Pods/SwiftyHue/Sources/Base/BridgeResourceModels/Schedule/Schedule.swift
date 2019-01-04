@@ -29,23 +29,23 @@ public class Schedule: BridgeResource, BridgeResourceDictGenerator {
     public required init?(json: JSON) {
         
         guard let identifier: String = "id" <~~ json else {
-            print("Can't create Schedule, missing required attribute \"id\" in JSON:\n \(json)"); return nil
+            Log.error("Can't create Schedule, missing required attribute \"id\" in JSON:\n \(json)"); return nil
         }
         
         guard let name: String = "name" <~~ json else {
-            print("Can't create Schedule, missing required attribute \"name\" in JSON:\n \(json)"); return nil
+            Log.error("Can't create Schedule, missing required attribute \"name\" in JSON:\n \(json)"); return nil
         }
         
         guard let scheduleDescription: String = "description" <~~ json else {
-            print("Can't create Schedule, missing required attribute \"description\" in JSON:\n \(json)"); return nil
+            Log.error("Can't create Schedule, missing required attribute \"description\" in JSON:\n \(json)"); return nil
         }
         
         guard let command: ScheduleCommand = "command" <~~ json else {
-            print("Can't create Schedule, missing required attribute \"command\" in JSON:\n \(json)"); return nil
+            Log.error("Can't create Schedule, missing required attribute \"command\" in JSON:\n \(json)"); return nil
         }
         
         guard let status: String = "status" <~~ json else {
-            print("Can't create Schedule, missing required attribute \"status\" in JSON:\n \(json)"); return nil
+            Log.error("Can't create Schedule, missing required attribute \"status\" in JSON:\n \(json)"); return nil
         }
         
         self.identifier = identifier

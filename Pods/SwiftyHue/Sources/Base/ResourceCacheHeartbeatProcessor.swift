@@ -52,7 +52,7 @@ class ResourceCacheHeartbeatProcessor: HeartbeatProcessor {
     
     @objc func handleApplicationWillTerminateNotification() {
      
-        print("writeCacheToDisk because Application will terminate")
+        Log.trace("writeCacheToDisk because Application will terminate")
         self.writeCacheToDisk()
     }
     
@@ -105,7 +105,7 @@ class ResourceCacheHeartbeatProcessor: HeartbeatProcessor {
                  break;
             case .config:
                 self.resourceCache.setBridgeConfiguration(bridgeResource as! BridgeConfiguration)
-                print("Stored Native BridgeConfiguration Object In Cache")
+                Log.info("Stored Native BridgeConfiguration Object In Cache")
             case .schedules:
                  break;
             case .sensors:
@@ -120,18 +120,18 @@ class ResourceCacheHeartbeatProcessor: HeartbeatProcessor {
         switch resourceType {
             case .lights:
                 self.resourceCache.setLights(dict as! [String: Light])
-                print("Stored Native Lights Dict In Cache")
+                Log.info("Stored Native Lights Dict In Cache")
             case .groups:
                 self.resourceCache.setGroups(dict as! [String: Group])
-                print("Stored Native Groups Dict In Cache")
+                Log.info("Stored Native Groups Dict In Cache")
             case .scenes:
                 self.resourceCache.setScenes(dict as! [String: PartialScene])
-                print("Stored Native Scenes Dict In Cache")
+                Log.info("Stored Native Scenes Dict In Cache")
             case .config:
                 break;
             case .schedules:
                 self.resourceCache.setSchedules(dict as! [String: Schedule])
-                print("Stored Native Schedules Dict In Cache")
+                Log.info("Stored Native Schedules Dict In Cache")
             case .sensors:
                 
                 var dictConverted: [String: Sensor] = [:]
@@ -139,12 +139,12 @@ class ResourceCacheHeartbeatProcessor: HeartbeatProcessor {
                     dictConverted[key] = (value as! Sensor)
                 }
                 self.resourceCache.setSensors(dictConverted)
-                print("Stored Native Sensors Dict In Cache")
+                Log.info("Stored Native Sensors Dict In Cache")
             
             
             case .rules:
                 self.resourceCache.setRules(dict as! [String: Rule])
-                print("Stored Native Rules Dict In Cache")
+                Log.info("Stored Native Rules Dict In Cache")
         }
     }
     
@@ -309,7 +309,7 @@ class ResourceCacheHeartbeatProcessor: HeartbeatProcessor {
         let encodedJSON = NSKeyedArchiver.archivedData(withRootObject: self.resourceCache.toJSON()!)
         UserDefaults.standard.set(encodedJSON, forKey: "CacheX")
         
-        print("writeCacheToDisk")
+        Log.info("writeCacheToDisk")
 
     }
     
@@ -319,7 +319,7 @@ class ResourceCacheHeartbeatProcessor: HeartbeatProcessor {
         
         if let encodedJSON = encodedJSON {
           
-            print("readCacheFromDisk")
+            Log.info("readCacheFromDisk")
             
             let json = NSKeyedUnarchiver.unarchiveObject(with: encodedJSON) as! JSON
                         
@@ -336,7 +336,7 @@ class ResourceCacheHeartbeatProcessor: HeartbeatProcessor {
     func notifyAboutChangesForResourceType(_ resourceType: HeartbeatBridgeResourceType) {
         
         let notification = ResourceCacheUpdateNotification(resourceType: resourceType)!
-        print("notifyAboutChangesForResourceType: \(notification.rawValue)")
+        Log.info("notifyAboutChangesForResourceType: \(notification.rawValue)")
         NotificationCenter.default.post(name: Notification.Name(rawValue: notification.rawValue), object: nil)
     }
 }

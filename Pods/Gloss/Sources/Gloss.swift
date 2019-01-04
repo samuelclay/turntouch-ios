@@ -36,12 +36,12 @@ public typealias JSON = [String : Any]
 /**
 Convenience protocol for objects that can be translated from and to JSON.
 */
-public protocol Glossy: JSONDecodable, JSONEncodable { }
+public protocol Glossy: Decodable, Encodable { }
 
 /**
 Enables an object to be decoded from JSON.
 */
-public protocol JSONDecodable {
+public protocol Decodable {
 
     /**
      Returns new instance created from provided JSON.
@@ -57,7 +57,7 @@ public protocol JSONDecodable {
 /**
 Enables an object to be encoded to JSON.
 */
-public protocol JSONEncodable {
+public protocol Encodable {
     
     /**
     Encodes and object as JSON.
@@ -124,9 +124,6 @@ public protocol JSONSerializer {
 
 /// Gloss JSON Serializer.
 public struct GlossJSONSerializer: JSONSerializer {
-    
-    /// Creates a new instance.
-    public init() { }
 
     public func json(from data: Data, options: JSONSerialization.ReadingOptions) -> JSON? {
         guard let json = (try? JSONSerialization.jsonObject(with: data, options: options)) as? JSON else {
@@ -160,9 +157,6 @@ public protocol Logger {
 
 /// Gloss Logger.
 public struct GlossLogger: Logger {
-
-    /// Creates a new instance.
-    public init() { }
     
     public func log(message: String) {
         print("[Gloss] \(message)")

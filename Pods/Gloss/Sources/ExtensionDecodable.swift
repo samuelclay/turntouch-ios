@@ -1,5 +1,5 @@
 //
-//  ExtensionJSONDecodable.swift
+//  ExtensionDecodable.swift
 //  Gloss
 //
 // Copyright © 2017 kampro
@@ -24,7 +24,7 @@
 
 import Foundation
 
-public extension JSONDecodable {
+public extension Decodable {
     
     /**
      Initializes array of model objects from provided data.
