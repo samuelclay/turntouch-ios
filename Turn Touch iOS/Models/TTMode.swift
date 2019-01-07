@@ -186,6 +186,9 @@ class TTMode : NSObject, TTModeProtocol {
     
     func modeInDirection(_ direction: TTModeDirection) -> TTMode {
         var mode = self
+        if mode.action != nil && mode.action.batchActionKey != nil {
+            return mode;
+        }
         if appDelegate().modeMap.buttonAppMode() == .TwelveButtons {
             switch direction {
             case .north:
