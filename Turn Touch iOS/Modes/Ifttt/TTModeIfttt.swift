@@ -254,6 +254,51 @@ class TTModeIfttt: TTMode {
             }
         }
         
+        for modeDirection: TTModeDirection in [.single, .double, .hold] {
+            for actionDirection: TTModeDirection in [.north, .east, .west, .south] {
+                if let directionModeName = prefs.string(forKey: "TT:mode-\(appDelegate().modeMap.directionName(modeDirection)):\(appDelegate().modeMap.directionName(actionDirection))") {
+                    let className = "Turn_Touch_iOS.\(directionModeName)"
+                    let modeClass = NSClassFromString(className) as! TTMode.Type
+                    let mode = modeClass.init()
+                    mode.modeDirection = actionDirection;
+                    let modeName = type(of: mode).title()
+                    let actionName = mode.actionNameInDirection(actionDirection)
+                    if actionName == "TTModeIftttTriggerAction" {
+                        let tapType = self.actionOptionValue(TTModeIftttConstants.kIftttTapType,
+                                                             actionName: actionName, direction: actionDirection) as! String
+                        triggers.append(["app_label": modeName,
+                                         "app_direction": appDelegate().modeMap.directionName(modeDirection),
+                                         "button_label": self.actionTitleForAction(actionName, buttonMoment: .button_MOMENT_PRESSUP)!,
+                                         "button_direction": appDelegate().modeMap.directionName(actionDirection),
+                                         "button_tap_type": tapType,
+                                         ])
+                    }
+                    
+                    let modeBatchActionKey = appDelegate().modeMap.batchActions.modeBatchActionKey(modeDirection: modeDirection,
+                                                                                                   actionDirection: actionDirection)
+                    let batchActionKeys: [String]? = prefs.object(forKey: modeBatchActionKey) as? [String]
+                    if let keys = batchActionKeys {
+                        for batchActionKey in keys {
+                            if batchActionKey.contains("TTModeIftttTriggerAction") {
+                                let action = TTAction(batchActionKey: batchActionKey, direction: actionDirection)
+                                action.mode.modeDirection = modeDirection
+                                let tapType = action.mode.batchActionOptionValue(batchActionKey: batchActionKey,
+                                                                                 optionName: TTModeIftttConstants.kIftttTapType,
+                                                                                 actionName: action.actionName,
+                                                                                 actionDirection: actionDirection) as! String
+                                triggers.append(["app_label": modeName,
+                                                 "app_direction": appDelegate().modeMap.directionName(modeDirection),
+                                                 "button_label": mode.actionTitleForAction(actionName, buttonMoment: .button_MOMENT_PRESSUP)!,
+                                                 "button_direction": appDelegate().modeMap.directionName(actionDirection),
+                                                 "button_tap_type": tapType,
+                                                 ])
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        
         return triggers
     }
     
