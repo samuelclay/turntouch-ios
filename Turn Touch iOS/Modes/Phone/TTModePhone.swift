@@ -16,6 +16,7 @@ struct TTModePhoneConstants {
 class TTModePhone: TTMode {
     
     static var volumeMuted: Float?
+    static var modeMusic = TTModeMusic()
     
     override class func title() -> String {
         return "Phone"
@@ -92,6 +93,12 @@ class TTModePhone: TTMode {
     
     // MARK: Actions
     
+    override func activate() {
+        super.activate()
+        
+        TTModePhone.modeMusic.activate()
+    }
+    
     func volumeSlider() -> UISlider? {
         let volumeSlider = (MPVolumeView().subviews.filter{NSStringFromClass($0.classForCoder) == "MPVolumeSlider"}.first as? UISlider)
         
@@ -112,42 +119,20 @@ class TTModePhone: TTMode {
     }
     
     func runTTModePhoneVolumeUp() {
-        let volumeSlider = self.volumeSlider()
-        
-        if let volume = self.currentVolume() {
-            volumeSlider?.setValue(min(volume+0.0625, 1), animated: false)
-        }
+        TTModePhone.modeMusic.runTTModeMusicVolumeUp()
     }
     
     func runTTModePhoneVolumeDown() {
-        let volumeSlider = self.volumeSlider()
-     
-        if let volume = self.currentVolume() {
-            volumeSlider?.setValue(max(volume-0.0625, 0), animated: false)
-        }
+        TTModePhone.modeMusic.runTTModeMusicVolumeDown()
     }
     
     func runTTModePhoneVolumeMute() {
-        let volumeSlider = self.volumeSlider()
-        
-        if let volume = self.currentVolume() {
-            if volume == 0 {
-                if let volumeMuted = TTModePhone.volumeMuted {
-                    volumeSlider?.setValue(max(volumeMuted, 0), animated: false)
-                } else {
-                    volumeSlider?.setValue(max(0.0625*2, 0), animated: false)
-                }
-            } else {
-                TTModePhone.volumeMuted = volume
-                volumeSlider?.setValue(0, animated: false)
-            }
-        }
+        TTModePhone.modeMusic.runTTModeMusicVolumeMute()
     }
     
     func runTTModePhoneVolumeJump() {
         let jump = self.action.optionValue(TTModePhoneConstants.jumpVolume) as! Int
-        let volumeSlider = self.volumeSlider()
-
-        volumeSlider?.setValue(Float(jump) / 100, animated: false)
+        
+        TTModePhone.modeMusic.setVolume(Float(jump)/100)
     }
 }

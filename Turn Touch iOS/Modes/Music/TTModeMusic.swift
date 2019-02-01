@@ -29,6 +29,7 @@ class TTModeMusic: TTMode {
     let ITUNES_VOLUME_CHANGE: Float = 0.06
     static var observing = false
     static var lastVolume: Float!
+    static var muteVolume: Float!
     static var musicPlayer: MPMusicPlayerController!
     static private let containerView = UIView()
     static let volumeView = MPVolumeView(frame: CGRect(x: 100, y: 100, width: 100, height: 100))
@@ -165,6 +166,7 @@ class TTModeMusic: TTMode {
             AVAudioSession.sharedInstance().addObserver(self, forKeyPath: "outputVolume", options: [], context: nil)
             TTModeMusic.musicPlayer.addObserver(self, forKeyPath: "nowPlayingItem", options: [], context: nil)
             TTModeMusic.musicPlayer.beginGeneratingPlaybackNotifications()
+            try? AVAudioSession.sharedInstance().setActive(true)
             TTModeMusic.observing = true
         }
     }
@@ -209,13 +211,17 @@ class TTModeMusic: TTMode {
         }
     }
     
+    func setVolume(_ volume: Float) {
+        self.volumeSlider.setValue(volume, animated: false)
+    }
+    
     func runTTModeMusicVolumeUp() {
         if TTModeMusic.lastVolume == nil {
             TTModeMusic.lastVolume = AVAudioSession.sharedInstance().outputVolume
         }
         TTModeMusic.lastVolume = min(1, TTModeMusic.lastVolume + self.ITUNES_VOLUME_CHANGE)
         print(" ---> Volume up: \(String(describing: TTModeMusic.lastVolume))")
-        self.volumeSlider.setValue(TTModeMusic.lastVolume, animated: false)
+        self.setVolume(TTModeMusic.lastVolume)
     }
     
     func runTTModeMusicVolumeDown() {
@@ -224,7 +230,7 @@ class TTModeMusic: TTMode {
         }
         TTModeMusic.lastVolume = max(0, TTModeMusic.lastVolume - self.ITUNES_VOLUME_CHANGE)
         print(" ---> Volume down: \(String(describing: TTModeMusic.lastVolume))")
-        self.volumeSlider.setValue(TTModeMusic.lastVolume, animated: false)
+        self.setVolume(TTModeMusic.lastVolume)
     }
     
     func runTTModeMusicPlayPause() {
@@ -273,9 +279,28 @@ class TTModeMusic: TTMode {
         self.runTTModeMusicPlay()
     }
     
+    func runTTModeMusicVolumeMute() {
+        if TTModeMusic.lastVolume == nil {
+            TTModeMusic.lastVolume = AVAudioSession.sharedInstance().outputVolume
+        }
+        if TTModeMusic.lastVolume == 0 {
+            print(" ---> Volume unmuting: \(String(describing: TTModeMusic.lastVolume))")
+            if TTModeMusic.muteVolume == nil {
+                TTModeMusic.muteVolume = 0.5
+            }
+            TTModeMusic.lastVolume = TTModeMusic.muteVolume
+            self.setVolume(TTModeMusic.muteVolume)
+        } else {
+            TTModeMusic.muteVolume = min(1, AVAudioSession.sharedInstance().outputVolume)
+            TTModeMusic.lastVolume = 0
+            print(" ---> Volume muting: \(String(describing: TTModeMusic.lastVolume))")
+            self.setVolume(0)
+        }
+    }
+    
     func runTTModeMusicVolumeJump() {
         let jump = self.action.optionValue(TTModeMusicConstants.jumpVolume) as! Int
         
-        volumeSlider.setValue(Float(jump)/100, animated: false)
+        self.setVolume(Float(jump)/100)
     }
 }
