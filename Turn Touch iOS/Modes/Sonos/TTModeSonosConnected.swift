@@ -177,8 +177,10 @@ class TTModeSonosConnected: TTOptionsDetailViewController, UITextFieldDelegate, 
     }
     
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
-        var pickerLabel = view as! UILabel
-        if view == nil {  //if no label there yet
+        var pickerLabel: UILabel
+        if view != nil {  //if no label there yet
+            pickerLabel = view as! UILabel
+        } else {
             pickerLabel = UILabel()
             //color the label's background
             let hue = CGFloat(row)/CGFloat(devices.count)
@@ -188,9 +190,8 @@ class TTModeSonosConnected: TTOptionsDetailViewController, UITextFieldDelegate, 
         let myTitle = NSAttributedString(string: titleData!, attributes: [NSAttributedString.Key.font:UIFont(name: "Effra", size: 18.0)!,NSAttributedString.Key.foregroundColor:UIColor.black])
         pickerLabel.attributedText = myTitle
         pickerLabel.textAlignment = .center
-        
+
         return pickerLabel
-        
     }
     
     func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		85D8B548CD81B8F0353F6C06 /* Pods_Turn_Touch_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACFD869DD1D0B508AA8C9258 /* Pods_Turn_Touch_iOS.framework */; };
 		FF08A2331D501ABD00D433A5 /* TTModeCameraReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF08A2321D501ABD00D433A5 /* TTModeCameraReviewViewController.swift */; };
+		FF08E11B2211F013003215C2 /* SonosPlayable.m in Sources */ = {isa = PBXBuildFile; fileRef = FF08E11A2211F013003215C2 /* SonosPlayable.m */; };
 		FF0EDD992105329400F3D5C3 /* switch_mode.png in Resources */ = {isa = PBXBuildFile; fileRef = FF0EDD982105329300F3D5C3 /* switch_mode.png */; };
 		FF0EDD9C2105333800F3D5C3 /* TTSwitchButtonModeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0EDD9A2105333800F3D5C3 /* TTSwitchButtonModeViewController.swift */; };
 		FF0EDD9D2105333800F3D5C3 /* TTSwitchButtonModeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF0EDD9B2105333800F3D5C3 /* TTSwitchButtonModeViewController.xib */; };
@@ -438,6 +439,8 @@
 		87558F01A91A74C470B9149B /* Pods-Turn Touch iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Turn Touch iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-Turn Touch iOS/Pods-Turn Touch iOS.release.xcconfig"; sourceTree = "<group>"; };
 		ACFD869DD1D0B508AA8C9258 /* Pods_Turn_Touch_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Turn_Touch_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF08A2321D501ABD00D433A5 /* TTModeCameraReviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeCameraReviewViewController.swift; path = Modes/Camera/TTModeCameraReviewViewController.swift; sourceTree = "<group>"; };
+		FF08E1192211F013003215C2 /* SonosPlayable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SonosPlayable.h; sourceTree = "<group>"; };
+		FF08E11A2211F013003215C2 /* SonosPlayable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SonosPlayable.m; sourceTree = "<group>"; };
 		FF0EDD982105329300F3D5C3 /* switch_mode.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = switch_mode.png; sourceTree = "<group>"; };
 		FF0EDD9A2105333800F3D5C3 /* TTSwitchButtonModeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TTSwitchButtonModeViewController.swift; path = Views/Modal/TTSwitchButtonModeViewController.swift; sourceTree = "<group>"; };
 		FF0EDD9B2105333800F3D5C3 /* TTSwitchButtonModeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = TTSwitchButtonModeViewController.xib; path = Views/Modal/TTSwitchButtonModeViewController.xib; sourceTree = "<group>"; };
@@ -1184,6 +1187,8 @@
 				FF4AF7D01D24ECF60009C777 /* SonosDiscover.m */,
 				FF458AB41DBEF1E9003FD06B /* SonosManager.h */,
 				FF458AB51DBEF1E9003FD06B /* SonosManager.m */,
+				FF08E1192211F013003215C2 /* SonosPlayable.h */,
+				FF08E11A2211F013003215C2 /* SonosPlayable.m */,
 				FF4AF7D31D24ECF60009C777 /* XMLReader.h */,
 				FF4AF7D41D24ECF60009C777 /* XMLReader.m */,
 			);
@@ -2259,6 +2264,7 @@
 				FF4AF7C21D248A4D0009C777 /* TTModeWemoDeviceSwitchOptions.swift in Sources */,
 				FF37EDFD1D1B23B70026F70D /* TTModeHueRandomOptions.swift in Sources */,
 				FFC9FE951D021A0400038817 /* TTActionDiamondView.swift in Sources */,
+				FF08E11B2211F013003215C2 /* SonosPlayable.m in Sources */,
 				FF458AB61DBEF1E9003FD06B /* SonosManager.m in Sources */,
 				FF44875F1D078FAC00ED8099 /* TTActionTitleView.swift in Sources */,
 				FFD653FB20AE9229004E9DFC /* TTModeBoseDeviceSpeakerOptions.swift in Sources */,

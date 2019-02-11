@@ -1,9 +1,8 @@
 //
-//  SonosDiscover.h
-//  Sonos Controller
+//  SonosPlayableItem.h
+//  
 //
-//  Created by Axel Möller on 21/11/13.
-//  Copyright (c) 2013 Appreviation AB. All rights reserved.
+//  Created by Rob Howard on 12/6/15.
 //
 //  This code is distributed under the terms and conditions of the MIT license.
 //
@@ -27,10 +26,19 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <CocoaAsyncSocket/GCDAsyncUdpSocket.h>
 
-@interface SonosDiscover : NSObject <GCDAsyncUdpSocketDelegate>
+@interface SonosPlayable : NSObject
 
-+ (void)discoverControllers:(void (^ _Nonnull)(NSArray * _Nonnull))completion;
+@property (nonatomic, strong) NSString *title;
+@property (nonatomic, strong) NSString *descriptionText;
+@property (nonatomic, strong) NSNumber *ordinal;
+@property (nonatomic, strong) NSString *resMD;
+@property (nonatomic, strong) NSString *resProtocolInfo;
+@property (nonatomic, strong) NSString *resText;
+@property (nonatomic, strong) NSString *sonosType;
+@property (nonatomic, strong) NSURL *albumArtUri;
+
+- (NSString *)resTextEscaped;
+- (NSString *)resMDEscaped;
 
 @end

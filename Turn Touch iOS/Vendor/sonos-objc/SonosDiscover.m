@@ -29,7 +29,7 @@ typedef void (^findDevicesBlock)(NSArray *ipAddresses);
             __block NSMutableArray         *controllers      = [[NSMutableArray alloc] init];
             __block dispatch_semaphore_t   responseSemaphore = dispatch_semaphore_create(1);
             __block int                    responseCount     = 0;
-            __block void (^callCompletionHandlerIfReady)(void)   = ^{
+            __block void (^callCompletionHandlerIfReady)()   = ^{
                 dispatch_semaphore_wait(responseSemaphore, DISPATCH_TIME_FOREVER);
                 responseCount++;
                 BOOL shouldCallCompletionHandler = responseCount == ipAddresses.count;
@@ -45,39 +45,17 @@ typedef void (^findDevicesBlock)(NSArray *ipAddresses);
                 callCompletionHandlerIfReady();
                 return;
             }
-            void (^handler)(NSData *, NSURLResponse *, NSError *) = ^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-                NSHTTPURLResponse *hResponse = (NSHTTPURLResponse*)response;
-                if (hResponse.statusCode != 200 || error){
-                    callCompletionHandlerIfReady();
-                    return;
-                }
-                NSDictionary *responseDictionary = [XMLReader dictionaryForXMLData:data error:&error];
-                NSObject *oneOrManyPlayers = responseDictionary[@"ZPSupportInfo"][@"ZonePlayers"][@"ZonePlayer"];
-                NSArray *zonePlayers;
-                if (!oneOrManyPlayers) {
-                    zonePlayers = [[NSArray alloc] init];
-                } else if ([oneOrManyPlayers isKindOfClass:[NSArray class]]) {
-                    zonePlayers = (NSArray *)oneOrManyPlayers;
-                } else {
-                    zonePlayers = [NSArray arrayWithObject:oneOrManyPlayers];
-                }
-                for (NSDictionary *dictionary in zonePlayers){
-                    NSURL *url                  = [NSURL URLWithString:dictionary[@"location"]];
-                    SonosController *controller = [[SonosController alloc] initWithIP:url.host port:[url.port intValue]];
-                    controller.group            = dictionary[@"group"];
-                    controller.name             = dictionary[@"text"];
-                    controller.uuid             = dictionary[@"uuid"];
-                    controller.coordinator      = [dictionary[@"coordinator"] isEqualToString:@"true"];
-                    [controllers addObject:controller];
-                }
+            void (^handler)(SonosController *) = ^(SonosController *controller) {
+                [controllers addObject:controller];
                 callCompletionHandlerIfReady();
             };
-
+          
             for (NSString *ipAddress in ipAddresses) {
-                NSURL        *url     = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@/status/topology", ipAddress]];
-                NSURLSession *session = [NSURLSession sharedSession];
-                
-                [[session dataTaskWithURL:url completionHandler:handler] resume];
+                NSArray *ipParts = [ipAddress componentsSeparatedByString:@":"];
+                SonosController *controller = [[SonosController alloc] initWithIP:ipParts[0] port:[ipParts[1] intValue]];
+                [controller refresh:^(NSError * _Nullable error) {
+                  handler(controller);
+                }];
             }
         }];
     });
