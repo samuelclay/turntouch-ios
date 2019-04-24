@@ -97,11 +97,11 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
         stackView.alignment = .fill
         stackView.spacing = 0
         //        stackView.contentMode = .ScaleToFill
+        let guide = self.view.safeAreaLayoutGuide
         self.view.addSubview(stackView)
         self.view.addConstraint(NSLayoutConstraint(item: stackView, attribute: .width,
                                                    relatedBy: .equal, toItem: self.view, attribute: .width, multiplier: 1.0, constant: 0.0))
-        self.view.addConstraint(NSLayoutConstraint(item: stackView, attribute: .top,
-                                                   relatedBy: .equal, toItem: self.topLayoutGuide, attribute: .bottom, multiplier: 1.0, constant: 0.0))
+        self.view.addConstraint(stackView.topAnchor.constraint(equalToSystemSpacingBelow: guide.topAnchor, multiplier: 1.0))
         self.view.addConstraint(NSLayoutConstraint(item: stackView, attribute: .bottom,
                                                    relatedBy: .equal, toItem: self.view, attribute: .bottom, multiplier: 1.0, constant: 0.0))
         self.view.addConstraint(NSLayoutConstraint(item: stackView, attribute: .left,
@@ -143,7 +143,7 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
                                                 toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 92.0)
         stackView.addConstraint(modeTabsConstraint)
         
-        if appDelegate().modeMap.buttonAppMode() == .SixteenButtons {
+        if appDelegate().modeMap.buttonAppMode() == .SixteenButtons, let modeTitleView = modeTitleView {
             stackView.addArrangedSubview(modeTitleView)
             modeTitleConstraint = NSLayoutConstraint(item: modeTitleView, attribute: .height, relatedBy: .equal,
                                                      toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 64)
@@ -165,7 +165,7 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
                                                      toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 420)
         scrollStackView.addConstraint(actionDiamondConstraint)
         
-        if appDelegate().modeMap.buttonAppMode() == .TwelveButtons {
+        if appDelegate().modeMap.buttonAppMode() == .TwelveButtons, let modeTitleView = modeTitleView {
             modeTitleView.alpha = 0
             scrollStackView.addArrangedSubview(modeTitleView)
             modeTitleConstraint = NSLayoutConstraint(item: modeTitleView, attribute: .height, relatedBy: .equal,

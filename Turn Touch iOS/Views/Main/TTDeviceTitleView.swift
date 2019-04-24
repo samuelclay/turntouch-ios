@@ -52,6 +52,9 @@ class TTDeviceTitleView: UIView, TTTitleMenuDelegate, DFUServiceDelegate, DFUPro
         self.addConstraint(NSLayoutConstraint(item: titleLabel, attribute: .centerY, relatedBy: .equal,
             toItem: self, attribute: .centerY, multiplier: 1.0, constant: 0))
 
+        guard let settingsButton = settingsButton else {
+            return
+        }
         
         let settingsImage = UIImage(named: "settings")
         settingsButton.setImage(settingsImage, for: UIControl.State())

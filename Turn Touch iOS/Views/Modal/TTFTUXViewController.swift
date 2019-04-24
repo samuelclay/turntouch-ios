@@ -36,13 +36,18 @@ class TTFTUXViewController: UIViewController, UIScrollViewDelegate {
 
         nextButton = TTModalButton(ftuxPage: .intro)
         self.view.addSubview(nextButton.view)
-        self.view.addConstraint(NSLayoutConstraint(item: nextButton.view, attribute: .left, relatedBy: .equal,
+        
+        guard let nextButtonView = nextButton.view else {
+            return
+        }
+        
+        self.view.addConstraint(NSLayoutConstraint(item: nextButtonView, attribute: .left, relatedBy: .equal,
             toItem: self.view, attribute: .left, multiplier: 1.0, constant: 0))
-        self.view.addConstraint(NSLayoutConstraint(item: nextButton.view, attribute: .bottom, relatedBy: .equal,
+        self.view.addConstraint(NSLayoutConstraint(item: nextButtonView, attribute: .bottom, relatedBy: .equal,
             toItem: self.view, attribute: .bottom, multiplier: 1.0, constant: 0))
-        self.view.addConstraint(NSLayoutConstraint(item: nextButton.view, attribute: .width, relatedBy: .equal,
+        self.view.addConstraint(NSLayoutConstraint(item: nextButtonView, attribute: .width, relatedBy: .equal,
             toItem: self.view, attribute: .width, multiplier: 1.0, constant: 0))
-        self.view.addConstraint(NSLayoutConstraint(item: nextButton.view, attribute: .height, relatedBy: .equal,
+        self.view.addConstraint(NSLayoutConstraint(item: nextButtonView, attribute: .height, relatedBy: .equal,
             toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 100))
         
         scrollView.delegate = self
@@ -50,8 +55,8 @@ class TTFTUXViewController: UIViewController, UIScrollViewDelegate {
         scrollView.isPagingEnabled = true
         scrollView.showsHorizontalScrollIndicator = false
         self.view.addSubview(scrollView)
-        self.view.addConstraint(NSLayoutConstraint(item: scrollView, attribute: .top, relatedBy: .equal,
-            toItem: self.topLayoutGuide, attribute: .bottom, multiplier: 1.0, constant: 0))
+        let guide = self.view.safeAreaLayoutGuide
+        self.view.addConstraint(scrollView.topAnchor.constraint(equalToSystemSpacingBelow: guide.topAnchor, multiplier: 1.0))
         self.view.addConstraint(NSLayoutConstraint(item: scrollView, attribute: .left, relatedBy: .equal,
             toItem: self.view, attribute: .left, multiplier: 1.0, constant: 0))
         self.view.addConstraint(NSLayoutConstraint(item: scrollView, attribute: .width, relatedBy: .equal,

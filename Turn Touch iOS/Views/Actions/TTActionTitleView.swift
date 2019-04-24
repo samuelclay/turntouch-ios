@@ -29,6 +29,11 @@ class TTActionTitleView: UIView {
         changeButton.titleLabel!.lineBreakMode = NSLineBreakMode.byClipping
         changeButton.addTarget(self, action: #selector(self.pressChange), for: .touchUpInside)
         self.addSubview(changeButton)
+        
+        guard let changeButton = changeButton else {
+            return
+        }
+        
         self.addConstraint(NSLayoutConstraint(item: changeButton, attribute: .trailingMargin, relatedBy: .equal,
             toItem: self, attribute: .trailingMargin, multiplier: 1.0, constant: -24))
         self.addConstraint(NSLayoutConstraint(item: changeButton, attribute: .centerY, relatedBy: .equal,
@@ -38,6 +43,11 @@ class TTActionTitleView: UIView {
         diamondView.ignoreSelectedMode = true
         diamondView.ignoreActiveMode = true
         self.addSubview(diamondView)
+        
+        guard let diamondView = diamondView else {
+            return
+        }
+        
         self.addConstraint(NSLayoutConstraint(item: diamondView, attribute: .leadingMargin, relatedBy: .equal,
             toItem: self, attribute: .leadingMargin, multiplier: 1.0, constant: 24))
         self.addConstraint(NSLayoutConstraint(item: diamondView, attribute: .centerY, relatedBy: .equal,
@@ -46,7 +56,6 @@ class TTActionTitleView: UIView {
             toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 1.3*24))
         diamondView.addConstraint(NSLayoutConstraint(item: diamondView, attribute: .height, relatedBy: .equal,
             toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 24))
-        
         
         titleLabel.font = UIFont(name: "Effra", size: 13)
         titleLabel.textColor = UIColor(hex: 0x404A60)

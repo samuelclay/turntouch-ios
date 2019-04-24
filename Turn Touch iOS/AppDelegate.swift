@@ -131,6 +131,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             modeMap.recordUsage(additionalParams: ["moment": "launch-background"])
         case .inactive:
             modeMap.recordUsage(additionalParams: ["moment": "launch-inactive"])
+        @unknown default:
+            break
         }
     }
     
@@ -213,12 +215,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             
             let openAction = UIAlertAction(title: "Open Settings", style: .default) { (action) in
                 if let url = URL(string:UIApplication.openSettingsURLString) {
-                    UIApplication.shared.openURL(url)
+                    UIApplication.shared.open(url)
                 }
             }
             alertController.addAction(openAction)
             
             self.mainViewController.present(alertController, animated: true, completion: nil)
+        @unknown default:
+            break
         }
     }
     

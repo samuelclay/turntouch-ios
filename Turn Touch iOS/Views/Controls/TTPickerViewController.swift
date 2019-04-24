@@ -26,6 +26,11 @@ class TTPickerViewController: UIViewController {
         picker = UIPickerView()
         picker.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(picker)
+        
+        guard let picker = picker else {
+            return
+        }
+        
         self.view.addConstraint(NSLayoutConstraint(item: picker, attribute: .top, relatedBy: .equal, toItem: self.view, attribute: .top, multiplier: 1.0, constant: 0))
         self.view.addConstraint(NSLayoutConstraint(item: picker, attribute: .leading, relatedBy: .equal, toItem: self.view, attribute: .leading, multiplier: 1.0, constant: 0))
         self.view.addConstraint(NSLayoutConstraint(item: picker, attribute: .trailing, relatedBy: .equal, toItem: self.view, attribute: .trailing, multiplier: 1.0, constant: 0))

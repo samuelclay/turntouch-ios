@@ -86,6 +86,10 @@ class TTOptionsView: UIView {
     func drawModeOptions() {
         self.clearOptionDetailViews()
         
+        guard modeOptionsViewController != nil, let view = modeOptionsViewController.view else {
+            return
+        }
+        
         let modeName = appDelegate().modeMap.selectedMode.nameOfClass
         let modeOptionsViewControllerName = "Turn_Touch_iOS.\(modeName)Options"
         let modeOptionsClass: AnyClass? = NSClassFromString(modeOptionsViewControllerName)
@@ -101,14 +105,14 @@ class TTOptionsView: UIView {
         modeOptionsViewController.view.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(modeOptionsViewController.view)
         
-        self.addConstraint(NSLayoutConstraint(item: modeOptionsViewController.view, attribute: .top,
+        self.addConstraint(NSLayoutConstraint(item: view, attribute: .top,
             relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1.0, constant: 0))
-        self.addConstraint(NSLayoutConstraint(item: modeOptionsViewController.view, attribute: .leading,
+        self.addConstraint(NSLayoutConstraint(item: view, attribute: .leading,
             relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1.0, constant: 0))
-        self.addConstraint(NSLayoutConstraint(item: modeOptionsViewController.view, attribute: .width,
+        self.addConstraint(NSLayoutConstraint(item: view, attribute: .width,
             relatedBy: .equal, toItem: self, attribute: .width, multiplier: 1.0, constant: 0))
         self.addConstraint(NSLayoutConstraint(item: self, attribute: .height,
-            relatedBy: .equal, toItem: modeOptionsViewController.view, attribute: .height, multiplier: 1.0, constant: 0))
+            relatedBy: .equal, toItem: view, attribute: .height, multiplier: 1.0, constant: 0))
         
         appDelegate().mainViewController.adjustOptionsHeight(modeOptionsViewController.view)
     }
@@ -145,14 +149,18 @@ class TTOptionsView: UIView {
         actionOptionsViewController.view.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(actionOptionsViewController.view)
         
-        self.addConstraint(NSLayoutConstraint(item: actionOptionsViewController.view, attribute: .top,
+        guard let actionOptionsView = actionOptionsViewController.view else {
+            return
+        }
+        
+        self.addConstraint(NSLayoutConstraint(item: actionOptionsView, attribute: .top,
             relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1.0, constant: 0))
-        self.addConstraint(NSLayoutConstraint(item: actionOptionsViewController.view, attribute: .leading,
+        self.addConstraint(NSLayoutConstraint(item: actionOptionsView, attribute: .leading,
             relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1.0, constant: 0))
-        self.addConstraint(NSLayoutConstraint(item: actionOptionsViewController.view, attribute: .width,
+        self.addConstraint(NSLayoutConstraint(item: actionOptionsView, attribute: .width,
             relatedBy: .equal, toItem: self, attribute: .width, multiplier: 1.0, constant: 0))
         self.addConstraint(NSLayoutConstraint(item: self, attribute: .height,
-            relatedBy: .equal, toItem: actionOptionsViewController.view, attribute: .height, multiplier: 1.0, constant: 0))
+            relatedBy: .equal, toItem: actionOptionsView, attribute: .height, multiplier: 1.0, constant: 0))
         
         appDelegate().mainViewController.adjustOptionsHeight(actionOptionsViewController.view)
     }

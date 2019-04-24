@@ -53,6 +53,11 @@ class TTBatchActionHeaderView: UIView {
         deleteButton.titleLabel!.lineBreakMode = NSLineBreakMode.byClipping
         deleteButton.addTarget(self, action: #selector(self.pressDelete), for: .touchUpInside)
         self.addSubview(deleteButton)
+        
+        guard let deleteButton = deleteButton else {
+            return
+        }
+        
         self.addConstraint(NSLayoutConstraint(item: deleteButton, attribute: .trailingMargin, relatedBy: .equal,
                                               toItem: self, attribute: .trailingMargin, multiplier: 1.0, constant: -24))
         self.addConstraint(NSLayoutConstraint(item: deleteButton, attribute: .centerY, relatedBy: .equal,
@@ -84,6 +89,11 @@ class TTBatchActionHeaderView: UIView {
         diamondView.ignoreSelectedMode = true
         diamondView.ignoreActiveMode = true
         self.addSubview(diamondView)
+        
+        guard let diamondView = diamondView else {
+            return
+        }
+        
         let diamondLabelConstraint = NSLayoutConstraint(item: diamondView, attribute: .left, relatedBy: .greaterThanOrEqual,
                                                         toItem: modeLabel, attribute: .right, multiplier: 1.0, constant: 12)
         diamondLabelConstraint.priority = UILayoutPriority.defaultHigh

@@ -36,21 +36,25 @@ class TTModeCameraViewController: UIViewController {
         super.viewDidLoad()
         self.view.translatesAutoresizingMaskIntoConstraints = false
         
+        guard let cameraView = camera.view else {
+            return
+        }
+        
         camera = LLSimpleCamera(quality: AVCaptureSession.Preset.high.rawValue,
                                 position: LLCameraPositionRear,
                                 videoEnabled: false)
         camera.attach(to: self, withFrame: self.view.frame)
         camera.fixOrientationAfterCapture = true
-        self.view.addConstraint(NSLayoutConstraint(item: camera.view, attribute: .width,
+        self.view.addConstraint(NSLayoutConstraint(item: cameraView, attribute: .width,
             relatedBy: .equal, toItem: self.view, attribute: .width,
             multiplier: 1.0, constant: 0))
-        self.view.addConstraint(NSLayoutConstraint(item: camera.view, attribute: .height,
+        self.view.addConstraint(NSLayoutConstraint(item: cameraView, attribute: .height,
             relatedBy: .equal, toItem: self.view, attribute: .height,
             multiplier: 1.0, constant: 0))
-        self.view.addConstraint(NSLayoutConstraint(item: camera.view, attribute: .top,
+        self.view.addConstraint(NSLayoutConstraint(item: cameraView, attribute: .top,
             relatedBy: .equal, toItem: self.view, attribute: .top,
             multiplier: 1.0, constant: 0))
-        self.view.addConstraint(NSLayoutConstraint(item: camera.view, attribute: .left,
+        self.view.addConstraint(NSLayoutConstraint(item: cameraView, attribute: .left,
             relatedBy: .equal, toItem: self.view, attribute: .left,
             multiplier: 1.0, constant: 0))
     
@@ -105,12 +109,17 @@ class TTModeCameraViewController: UIViewController {
         
         diamondView = TTActionDiamondView(diamondType: .hud)
         self.view.addSubview(diamondView)
+        
+        guard let diamondView = diamondView else {
+            return
+        }
+        
+        let guide = self.view.safeAreaLayoutGuide
+        
         self.view.addConstraint(NSLayoutConstraint(item: diamondView, attribute: .centerX,
             relatedBy: .equal, toItem: self.view, attribute: .centerX,
             multiplier: 1.0, constant: 0))
-        self.view.addConstraint(NSLayoutConstraint(item: diamondView, attribute: .bottom,
-            relatedBy: .equal, toItem: self.bottomLayoutGuide, attribute: .bottom,
-            multiplier: 1.0, constant: 0))
+        self.view.addConstraint(guide.bottomAnchor.constraint(equalToSystemSpacingBelow: diamondView.bottomAnchor, multiplier: 1.0))
         self.view.addConstraint(NSLayoutConstraint(item: diamondView, attribute: .height,
             relatedBy: .equal, toItem: nil, attribute: .notAnAttribute,
             multiplier: 1.0, constant: diamondSize))
@@ -125,12 +134,15 @@ class TTModeCameraViewController: UIViewController {
         flashButton.imageEdgeInsets = UIEdgeInsets.init(top: 10, left: 10, bottom: 10, right: 10)
         flashButton.addTarget(self, action: #selector(flashButtonPressed(_:)), for: .touchUpInside)
         self.view.addSubview(flashButton)
+        
+        guard let flashButton = flashButton else {
+            return
+        }
+        
         self.view.addConstraint(NSLayoutConstraint(item: flashButton, attribute: .left,
             relatedBy: .equal, toItem: self.view, attribute: .left,
             multiplier: 1.0, constant: 24))
-        self.view.addConstraint(NSLayoutConstraint(item: flashButton, attribute: .top,
-            relatedBy: .equal, toItem: self.topLayoutGuide, attribute: .top,
-            multiplier: 1.0, constant: 0))
+        self.view.addConstraint(guide.bottomAnchor.constraint(equalToSystemSpacingBelow: flashButton.bottomAnchor, multiplier: 1.0))
         self.view.addConstraint(NSLayoutConstraint(item: flashButton, attribute: .height,
             relatedBy: .equal, toItem: nil, attribute: .notAnAttribute,
             multiplier: 1.0, constant: 44))
@@ -146,12 +158,15 @@ class TTModeCameraViewController: UIViewController {
         closeButton.imageEdgeInsets = UIEdgeInsets.init(top: 10, left: 10, bottom: 10, right: 10)
         closeButton.addTarget(self, action: #selector(closeButtonPressed(_:)), for: .touchUpInside)
         self.view.addSubview(closeButton)
+        
+        guard let closeButton = closeButton else {
+            return
+        }
+        
         self.view.addConstraint(NSLayoutConstraint(item: closeButton, attribute: .right,
             relatedBy: .equal, toItem: self.view, attribute: .right,
             multiplier: 1.0, constant: -24))
-        self.view.addConstraint(NSLayoutConstraint(item: closeButton, attribute: .top,
-            relatedBy: .equal, toItem: self.topLayoutGuide, attribute: .top,
-            multiplier: 1.0, constant: 0))
+        self.view.addConstraint(guide.bottomAnchor.constraint(equalToSystemSpacingBelow: closeButton.bottomAnchor, multiplier: 1.0))
         self.view.addConstraint(NSLayoutConstraint(item: closeButton, attribute: .height,
             relatedBy: .equal, toItem: nil, attribute: .notAnAttribute,
             multiplier: 1.0, constant: 44))
@@ -167,14 +182,16 @@ class TTModeCameraViewController: UIViewController {
             switchButton.setImage(UIImage(named: "camera-switch.png"), for: UIControl.State())
             switchButton.imageEdgeInsets = UIEdgeInsets.init(top: 10, left: 10, bottom: 10, right: 10)
             
+            guard let switchButton = switchButton else {
+                return
+            }
+            
             switchButton.addTarget(self, action: #selector(switchButtonPressed(_:)), for: .touchUpInside)
             self.view.addSubview(switchButton)
             self.view.addConstraint(NSLayoutConstraint(item: switchButton, attribute: .centerX,
                 relatedBy: .equal, toItem: self.view, attribute: .centerX,
                 multiplier: 1.0, constant: 0))
-            self.view.addConstraint(NSLayoutConstraint(item: switchButton, attribute: .top,
-                relatedBy: .equal, toItem: self.topLayoutGuide, attribute: .top,
-                multiplier: 1.0, constant: 0))
+            self.view.addConstraint(guide.bottomAnchor.constraint(equalToSystemSpacingBelow: switchButton.bottomAnchor, multiplier: 1.0))
             self.view.addConstraint(NSLayoutConstraint(item: switchButton, attribute: .height,
                 relatedBy: .equal, toItem: nil, attribute: .notAnAttribute,
                 multiplier: 1.0, constant: 42))

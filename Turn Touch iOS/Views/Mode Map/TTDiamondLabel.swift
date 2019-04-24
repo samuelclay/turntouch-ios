@@ -36,6 +36,11 @@ class TTDiamondLabel: UIView {
         }
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.textAlignment = .center
+        
+        guard let titleLabel = titleLabel else {
+            return
+        }
+        
         self.addSubview(titleLabel)
         self.addConstraint(NSLayoutConstraint(item: titleLabel, attribute: .top, relatedBy: .equal,
             toItem: self, attribute: .top, multiplier: 1.0, constant: 0))

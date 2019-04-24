@@ -148,7 +148,7 @@ class TTModeIfttt: TTMode {
             return "\(key)=\(value.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!)"
         }) as Array).joined(separator: "&")
         let url = "https://turntouch.com/ifttt/begin?\(params)"
-        oauthViewController = SFSafariViewController(url: URL(string: url)!, entersReaderIfAvailable: false)
+        oauthViewController = SFSafariViewController(url: URL(string: url)!, configuration: SFSafariViewController.Configuration())
         oauthViewController.modalPresentationStyle = .formSheet
         appDelegate().mainViewController.present(oauthViewController, animated: true, completion: nil)
     }
@@ -166,7 +166,7 @@ class TTModeIfttt: TTMode {
         }) as Array).joined(separator: "&")
         let url = "https://turntouch.com/ifttt/open_recipe?\(params)"
         
-        oauthViewController = SFSafariViewController(url: URL(string: url)!, entersReaderIfAvailable: false)
+        oauthViewController = SFSafariViewController(url: URL(string: url)!, configuration: SFSafariViewController.Configuration())
         oauthViewController.modalPresentationStyle = .formSheet
         appDelegate().mainViewController.present(oauthViewController, animated: true, completion: nil)
     }
