@@ -22,6 +22,10 @@ class TTModeTitleView: UIView {
         self.contentMode = UIView.ContentMode.redraw;
         self.backgroundColor = UIColor.clear
         
+        guard let changeButton = changeButton else {
+            return
+        }
+        
         changeButton.translatesAutoresizingMaskIntoConstraints = false
         changeButton.setTitle("Change", for: UIControl.State.normal)
         changeButton.titleLabel!.font = UIFont(name: "Effra", size: 13)

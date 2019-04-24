@@ -95,8 +95,8 @@ class TTGeofencingViewController: UIViewController, MKMapViewDelegate, CLLocatio
                     mapView.setRegion(region, animated: true)
                     
                     self.redrawGeofence(coordinate: center)
-                } else {
-                    self.zoomIn(self.mapView)
+                } else if let mapView = self.mapView {
+                    self.zoomIn(mapView)
                 }
             }
         }

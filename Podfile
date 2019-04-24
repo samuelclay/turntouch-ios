@@ -1,6 +1,9 @@
 platform :ios, "12.0"
 use_frameworks!
 
+# Ignore all warnings from all pods
+inhibit_all_warnings!
+
 target "Turn Touch iOS" do
     pod "CocoaAsyncSocket", "~> 7.6"
     pod "AFNetworking/NSURLSession", "~> 3.1"

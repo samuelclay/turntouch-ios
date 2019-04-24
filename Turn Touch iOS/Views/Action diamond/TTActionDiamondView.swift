@@ -43,6 +43,11 @@ class TTActionDiamondView: UIView {
             diamondView.ignoreSelectedMode = true
         }
         self.addSubview(diamondView)
+        
+        guard let diamondView = diamondView else {
+            return
+        }
+        
         self.addConstraint(NSLayoutConstraint(item: diamondView, attribute: .centerX, relatedBy: .equal,
             toItem: self, attribute: .centerX, multiplier: 1.0, constant: 0))
         self.addConstraint(NSLayoutConstraint(item: diamondView, attribute: .centerY, relatedBy: .equal,
@@ -61,6 +66,10 @@ class TTActionDiamondView: UIView {
         let maxWidthConstraint = NSLayoutConstraint(item: diamondView, attribute: .width, relatedBy: .lessThanOrEqual, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 420)
         maxWidthConstraint.priority = .required
         self.addConstraint(maxWidthConstraint)
+        
+        guard let northLabel = northLabel, let eastLabel = eastLabel, let westLabel = westLabel, let southLabel = southLabel else {
+            return
+        }
         
         self.addSubview(northLabel)
         self.addConstraint(NSLayoutConstraint(item: northLabel, attribute: .centerX, relatedBy: .equal,

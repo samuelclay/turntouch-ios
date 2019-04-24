@@ -20,6 +20,10 @@ class TTAddActionButtonView: UIView {
         self.backgroundColor = UIColor.white
         self.clipsToBounds = true
         
+        guard let addButton = addButton else {
+            return
+        }
+        
         image = UIImage(named: "button_plus")
         addButton.translatesAutoresizingMaskIntoConstraints = false
         addButton.setImage(image, for: .normal)

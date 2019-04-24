@@ -9,11 +9,11 @@
 import Foundation
 
 public extension NSObject{
-    @nonobjc public class var nameOfClass: String{
+    @nonobjc class var nameOfClass: String{
         return NSStringFromClass(self).components(separatedBy: ".").last!
     }
     
-    @nonobjc public var nameOfClass: String{
+    @nonobjc var nameOfClass: String{
         return NSStringFromClass(type(of: self)).components(separatedBy: ".").last!
     }
 }

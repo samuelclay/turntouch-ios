@@ -31,9 +31,14 @@ class TTModeCameraReviewViewController: UIViewController {
         self.view.backgroundColor = UIColor.clear
         self.view.translatesAutoresizingMaskIntoConstraints = false
         self.navigationController?.setNavigationBarHidden(true, animated: false)
-
+        
         imageView = UIImageView(image: image)
         imageView.contentMode = .scaleAspectFit
+        
+        guard let imageView = imageView else {
+            return
+        }
+        
         self.view.addSubview(imageView)
         self.view.addConstraint(NSLayoutConstraint(item: imageView, attribute: .centerX,
             relatedBy: .equal, toItem: self.view, attribute: .centerX,
@@ -49,13 +54,18 @@ class TTModeCameraReviewViewController: UIViewController {
             multiplier: 1.0, constant: 0))
         
         diamondView = TTActionDiamondView(diamondType: .hud)
+        
+        guard let diamondView = diamondView else {
+            return
+        }
+        
+        let guide = self.view.safeAreaLayoutGuide
+        
         self.view.addSubview(diamondView)
         self.view.addConstraint(NSLayoutConstraint(item: diamondView, attribute: .centerX,
             relatedBy: .equal, toItem: self.view, attribute: .centerX,
             multiplier: 1.0, constant: 0))
-        self.view.addConstraint(NSLayoutConstraint(item: diamondView, attribute: .bottom,
-            relatedBy: .equal, toItem: self.bottomLayoutGuide, attribute: .bottom,
-            multiplier: 1.0, constant: 0))
+        self.view.addConstraint(guide.bottomAnchor.constraint(equalToSystemSpacingBelow: diamondView.bottomAnchor, multiplier: 1.0))
         self.view.addConstraint(NSLayoutConstraint(item: diamondView, attribute: .height,
             relatedBy: .equal, toItem: nil, attribute: .notAnAttribute,
             multiplier: 1.0, constant: diamondSize))

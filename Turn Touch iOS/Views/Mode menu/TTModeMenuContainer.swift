@@ -46,6 +46,11 @@ class TTModeMenuContainer: UIView {
         collectionView.alpha = 0
         collectionView.menuType = menuType
         self.addSubview(collectionView)
+        
+        guard let collectionView = collectionView else {
+            return
+        }
+        
         self.addConstraint(NSLayoutConstraint(item: collectionView, attribute: .height,
             relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: MENU_HEIGHT))
         self.addConstraint(NSLayoutConstraint(item: collectionView, attribute: .width,

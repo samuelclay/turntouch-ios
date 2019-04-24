@@ -108,10 +108,16 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
             state = "Bluetooth in resetting state."
 //        default:
 //            state = "Bluetooth not in any state!"
+        @unknown default:
+            break
         }
         
         if DEBUG_BLUETOOTH {
-            print(" ---> Central manager state: \(String(describing: state)) - \(String(describing: manager))/\(manager.state)", state!, manager, manager.state)
+            if let manager = manager {
+                print(" ---> Central manager state: \(String(describing: state)) - \(String(describing: manager))/\(manager.state)", state!, manager, manager.state)
+            } else {
+                print(" ---> Central manager state: \(String(describing: state)) - no manager", state!)
+            }
         }
         return false
     }
@@ -715,19 +721,15 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
         } else if characteristic.uuid.isEqual(CBUUID(string: DEVICE_V2_CHARACTERISTIC_BATTERY_LEVEL_UUID)) {
             if (characteristic.value == nil || characteristic.value!.count == 0) {
                 print(" ---> (\(bluetoothState)) No battery level: \(device)")
-            } else {
-                let battery = characteristic.value!.withUnsafeBytes({ (bytes: UnsafePointer<UInt8>) -> UInt8 in
-                    return bytes[0]
-                })
+            } else if let value = characteristic.value {
+                let battery = value.withUnsafeBytes { $0[0] }
                 device.batteryPct = NSNumber(value: battery)
             }
         } else if characteristic.uuid.isEqual(CBUUID(string: DEVICE_V2_CHARACTERISTIC_FIRMWARE_UUID)) {
             if (characteristic.value == nil || characteristic.value!.count == 0) {
                 print(" ---> (\(bluetoothState)) No firmware version: \(device)")
-            } else {
-                let firmwareVersion = characteristic.value!.withUnsafeBytes({ (bytes: UnsafePointer<UInt8>) -> UInt8 in
-                    return bytes[0]
-                })
+            } else if let value = characteristic.value {
+                let firmwareVersion = value.withUnsafeBytes { $0[0] }
                 device.setFirmwareVersion(firmwareVersion: Int(firmwareVersion))
             }
         }
@@ -748,7 +750,7 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
         let deviceNickname = device.nickname
         let deviceNicknameData = device.nickname?.data(using: String.Encoding.utf8)
         let prefs = UserDefaults.standard
-        let nicknameKey = "TT:device:\(device.uuid ?? "nil"):nickname"
+        let nicknameKey = "TT:device:\(device.uuid ?? "?"):nickname"
         let existingNickname = prefs.string(forKey: nicknameKey)
         
         var hasDeviceNickname: Bool = false
@@ -775,7 +777,7 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
                 newNickname = "\(randomEmoji) Turn Touch Remote"
             }
             
-            print(" ---> Generating emoji nickname: \(newNickname ?? "nil")")
+            print(" ---> Generating emoji nickname: \(newNickname ?? "?")")
             
             self.writeNicknameToDevice(device, nickname: newNickname)
         }
@@ -824,7 +826,7 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
         device.peripheral.writeValue(data as Data, for: characteristic!, type: .withResponse)
         
         device.setNicknameData(data as Data)
-        prefs.set(nickname, forKey: "TT:device:\(device.uuid ?? "nil"):nickname")
+        prefs.set(nickname, forKey: "TT:device:\(device.uuid ?? "?"):nickname")
         prefs.synchronize()
         
         self.countDevices()

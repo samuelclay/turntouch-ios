@@ -404,7 +404,7 @@ class TTModeMap: NSObject {
             presses.append([
                 "app_name": batchAction.mode.nameOfClass,
                 "app_direction": self.directionName(self.selectedMode.modeDirection),
-                "button_name": batchAction.actionName,
+                "button_name": batchAction.actionName ?? "button",
                 "button_direction": self.directionName(direction),
                 "button_moment": buttonPress,
                 "batch_action": true,

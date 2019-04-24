@@ -269,7 +269,7 @@ class TTModeNest: TTMode, NestSDKAuthorizationViewControllerDelegate {
     }
     
     func viewController(_ viewController: NestSDKAuthorizationViewController!, didReceiveAuthorizationCode authorizationCode: String!) {
-        print(" ---> Nest Authorization: \(authorizationCode)")
+        print(" ---> Nest Authorization: \(authorizationCode ?? "?")")
         self.nestReady()
     }
     

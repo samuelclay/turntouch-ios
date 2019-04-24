@@ -332,8 +332,8 @@ class TTModeWemo: TTMode, TTModeWemoMulticastDelegate, TTModeWemoDeviceDelegate 
                 }
             }
             
-            foundDevices.append(["ipaddress": device.ipAddress, "port": device.port, "name": device.deviceName,
-                                 "serialNumber": device.serialNumber, "macAddress": device.macAddress])
+            foundDevices.append(["ipaddress": device.ipAddress, "port": device.port, "name": device.deviceName ?? "Unnamed",
+                                 "serialNumber": device.serialNumber ?? "", "macAddress": device.macAddress ?? ""])
         }
         
         let prefs = UserDefaults.standard

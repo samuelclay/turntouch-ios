@@ -59,10 +59,15 @@ class TTModeBoseOptions: TTOptionsDetailViewController, TTModeBoseDelegate {
     func drawViewController(_ viewController: TTOptionsDetailViewController) {
         self.view.removeConstraints(self.view.constraints)
         self.view.addSubview(viewController.view)
-        self.view.addConstraint(NSLayoutConstraint(item: viewController.view, attribute: .top, relatedBy: .equal, toItem: self.view, attribute: .top, multiplier: 1.0, constant: 0))
-        self.view.addConstraint(NSLayoutConstraint(item: viewController.view, attribute: .bottom, relatedBy: .equal, toItem: self.view, attribute: .bottom, multiplier: 1.0, constant: 0))
-        self.view.addConstraint(NSLayoutConstraint(item: viewController.view, attribute: .leadingMargin, relatedBy: .equal, toItem: self.view, attribute: .leadingMargin, multiplier: 1.0, constant: 0))
-        self.view.addConstraint(NSLayoutConstraint(item: viewController.view, attribute: .trailingMargin, relatedBy: .equal, toItem: self.view, attribute: .trailingMargin, multiplier: 1.0, constant: 0))
+        
+        guard let view = viewController.view else {
+            return
+        }
+        
+        self.view.addConstraint(NSLayoutConstraint(item: view, attribute: .top, relatedBy: .equal, toItem: self.view, attribute: .top, multiplier: 1.0, constant: 0))
+        self.view.addConstraint(NSLayoutConstraint(item: view, attribute: .bottom, relatedBy: .equal, toItem: self.view, attribute: .bottom, multiplier: 1.0, constant: 0))
+        self.view.addConstraint(NSLayoutConstraint(item: view, attribute: .leadingMargin, relatedBy: .equal, toItem: self.view, attribute: .leadingMargin, multiplier: 1.0, constant: 0))
+        self.view.addConstraint(NSLayoutConstraint(item: view, attribute: .trailingMargin, relatedBy: .equal, toItem: self.view, attribute: .trailingMargin, multiplier: 1.0, constant: 0))
         
         self.view.layoutIfNeeded()
 //        appDelegate().mainViewController.adjustOptionsHeight(nil)
