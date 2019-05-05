@@ -177,7 +177,7 @@ class TTModeSonosConnected: TTOptionsDetailViewController, UITextFieldDelegate, 
     }
     
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
-        var pickerLabel: UILabel
+        var pickerLabel = UILabel()
         if view != nil {  //if no label there yet
             pickerLabel = view as! UILabel
         } else {

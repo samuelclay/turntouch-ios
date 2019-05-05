@@ -317,7 +317,7 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
                     device = foundDevices.addPeripheral(peripheral)
                 }
                 device?.state = .device_STATE_SEARCHING
-                if peripheral.state != .connected {
+                if peripheral.state != .connected || device?.nickname == nil {
                     if peripheral.state == .connecting {
                         manager.cancelPeripheralConnection(peripheral)
                     } else {
@@ -707,8 +707,7 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
             
             print(" ---> (\(bluetoothState)) Hello: \(device)")
             
-            let delayTime = DispatchTime.now() + Double(Int64(2 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
-            DispatchQueue.main.asyncAfter(deadline: delayTime, execute: {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
                 if device.state != .device_STATE_DISCONNECTED {
                     self.ensureNicknameOnDevice(device)
                 }
@@ -749,7 +748,7 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
         let deviceNickname = device.nickname
         let deviceNicknameData = device.nickname?.data(using: String.Encoding.utf8)
         let prefs = UserDefaults.standard
-        let nicknameKey = "TT:device:\(device.uuid):nickname"
+        let nicknameKey = "TT:device:\(device.uuid ?? "nil"):nickname"
         let existingNickname = prefs.string(forKey: nicknameKey)
         
         var hasDeviceNickname: Bool = false
@@ -757,7 +756,7 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
             hasDeviceNickname = (deviceNicknameData! != emptyNickname! as Data) && (deviceNickname!.trimmingCharacters(in: CharacterSet.alphanumerics.inverted).count) > 0
         }
         
-        if existingNickname == nil && hasDeviceNickname {
+        if hasDeviceNickname {
             prefs.set(device.nickname, forKey: nicknameKey)
             prefs.synchronize()
         }
@@ -776,7 +775,7 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
                 newNickname = "\(randomEmoji) Turn Touch Remote"
             }
             
-            print(" ---> Generating emoji nickname: \(newNickname)")
+            print(" ---> Generating emoji nickname: \(newNickname ?? "nil")")
             
             self.writeNicknameToDevice(device, nickname: newNickname)
         }
@@ -825,7 +824,7 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
         device.peripheral.writeValue(data as Data, for: characteristic!, type: .withResponse)
         
         device.setNicknameData(data as Data)
-        prefs.set(nickname, forKey: "TT:device:\(device.uuid):nickname")
+        prefs.set(nickname, forKey: "TT:device:\(device.uuid ?? "nil"):nickname")
         prefs.synchronize()
         
         self.countDevices()
