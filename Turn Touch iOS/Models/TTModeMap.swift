@@ -218,6 +218,7 @@ class TTModeMap: NSObject {
             self.recordButtonMoment(direction, .button_MOMENT_HELD)
         } else if [.single, .double, .hold].contains(direction) {
             self.setupModes()
+            self.selectedMode.modeChangeType = modeChangeType
             self.northMode.activate(direction)
             self.eastMode.activate(direction)
             self.westMode.activate(direction)

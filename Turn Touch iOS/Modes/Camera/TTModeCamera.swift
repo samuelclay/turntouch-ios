@@ -17,7 +17,6 @@ enum TTModeCameraState {
 
 class TTModeCamera: TTMode {
     
-    var cameraActive = false
     var cameraViewController = TTModeCameraViewController()
     var cameraNavController: UINavigationController!
     var cameraState: TTModeCameraState = .cameraInactive
@@ -137,12 +136,15 @@ class TTModeCamera: TTMode {
     
     override func deactivate() {
         self.closeCamera()
-        cameraState = .cameraInactive
     }
     
     func closeCamera() {
+        guard cameraState != .cameraInactive else {
+            return
+        }
+        
         appDelegate().mainViewController.dismiss(animated: true) {
-            self.cameraActive = false
+            self.cameraState = .cameraInactive
         }
     }
     
