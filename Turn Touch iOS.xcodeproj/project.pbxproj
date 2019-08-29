@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		17BA490A231861210052734D /* TTModeMusicSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BA4909231861210052734D /* TTModeMusicSession.swift */; };
 		85D8B548CD81B8F0353F6C06 /* Pods_Turn_Touch_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACFD869DD1D0B508AA8C9258 /* Pods_Turn_Touch_iOS.framework */; };
 		FF08A2331D501ABD00D433A5 /* TTModeCameraReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF08A2321D501ABD00D433A5 /* TTModeCameraReviewViewController.swift */; };
 		FF08E11B2211F013003215C2 /* SonosPlayable.m in Sources */ = {isa = PBXBuildFile; fileRef = FF08E11A2211F013003215C2 /* SonosPlayable.m */; };
@@ -435,6 +436,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		17BA4909231861210052734D /* TTModeMusicSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TTModeMusicSession.swift; path = Modes/Music/TTModeMusicSession.swift; sourceTree = "<group>"; };
 		552AD10F15F394A44BF4BD6D /* Pods-Turn Touch iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Turn Touch iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Turn Touch iOS/Pods-Turn Touch iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		87558F01A91A74C470B9149B /* Pods-Turn Touch iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Turn Touch iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-Turn Touch iOS/Pods-Turn Touch iOS.release.xcconfig"; sourceTree = "<group>"; };
 		ACFD869DD1D0B508AA8C9258 /* Pods_Turn_Touch_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Turn_Touch_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -961,6 +963,7 @@
 			children = (
 				FF86801E1F90297600D9A0B3 /* TTModeMusic.plist */,
 				FF0F10C61CF63F1600CC1F29 /* TTModeMusic.swift */,
+				17BA4909231861210052734D /* TTModeMusicSession.swift */,
 				FF189C71210FA71A000B49F7 /* TTModeMusicPlayPauseOptions.swift */,
 				FF189C72210FA71A000B49F7 /* TTModeMusicPlayPauseOptions.xib */,
 				FF86801A1F90296800D9A0B3 /* TTModeMusicVolumeJumpOptions.swift */,
@@ -2193,6 +2196,7 @@
 				FF1DA812211E209200D0D4EA /* TTModeHueCycleScenesOptions.swift in Sources */,
 				FF458AB31DBED8A8003FD06B /* TTModeHueSceneColorLoopOptions.swift in Sources */,
 				FFC4B0F71D2DE3DB00A97C81 /* UIView+nib.swift in Sources */,
+				17BA490A231861210052734D /* TTModeMusicSession.swift in Sources */,
 				FF1A84FE1FCFB593005D8ADE /* TTModeHueRaiseBrightnessOptions.swift in Sources */,
 				FFF46BDC1D10941500158751 /* DDASLLogger.m in Sources */,
 				FF4AF7D51D24ECF60009C777 /* SonosController.m in Sources */,

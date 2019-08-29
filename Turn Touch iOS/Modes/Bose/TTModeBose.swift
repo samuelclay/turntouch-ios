@@ -37,9 +37,6 @@ protocol TTModeBoseDelegate {
 
 class TTModeBose : TTMode, TTModeBoseMulticastDelegate, TTModeBoseDeviceDelegate {
 
-    var lastVolume: Float?
-    let ITUNES_VOLUME_CHANGE: Float = 0.06
-
     var delegate: TTModeBoseDelegate?
     static var boseState = TTBoseState.disconnected
     static var multicastServer = TTModeBoseMulticastServer()
@@ -225,49 +222,23 @@ class TTModeBose : TTMode, TTModeBoseMulticastDelegate, TTModeBoseDeviceDelegate
     
     override func activate() {
         delegate?.changeState(TTModeBose.boseState, mode: self)
+        TTModeMusicSession.shared.activate()
     }
     
     override func deactivate() {
         TTModeBose.multicastServer.deactivate()
     }
     
-    var volumeSlider: UISlider {
-        get {
-            return (MPVolumeView().subviews.filter { NSStringFromClass($0.classForCoder) == "MPVolumeSlider" }.first as! UISlider)
-        }
-    }
-    
-    func adjustVolume(volume: Int) {
-        if volume == 0 && volumeSlider.value != 0 {
-            lastVolume = volumeSlider.value
-            volumeSlider.setValue(0, animated: false)
-        } else {
-            if lastVolume == nil {
-                lastVolume = AVAudioSession.sharedInstance().outputVolume
-            }
-            lastVolume = min(1, lastVolume! + (Float(volume) * ITUNES_VOLUME_CHANGE))
-            volumeSlider.setValue(lastVolume!, animated: false)
-        }
-    }
-    
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        if keyPath == "outputVolume" {
-            lastVolume = AVAudioSession.sharedInstance().outputVolume
-        } else if keyPath == "nowPlayingInfo" {
-            print(" Now playing info: \(String(describing: keyPath))")
-        }
-    }
-    
     func runTTModeBoseVolumeUp() {
-        self.adjustVolume(volume: 1)
+        TTModeMusicSession.shared.volume(adjustment: .up)
     }
     
     func runTTModeBoseVolumeDown() {
-        self.adjustVolume(volume: -1)
+        TTModeMusicSession.shared.volume(adjustment: .down)
     }
     
     func runTTModeBoseVolumeMute() {
-        self.adjustVolume(volume: 0)
+        TTModeMusicSession.shared.volume(adjustment: .toggleMute)
     }
     
     func runTTModeBoseVolumeJump() {
