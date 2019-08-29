@@ -110,6 +110,8 @@ class TTActionDiamondView: UIView {
             toItem: diamondView, attribute: .height, multiplier: 0.47, constant: 0))
         self.addConstraint(NSLayoutConstraint(item: southLabel, attribute: .width, relatedBy: .equal,
             toItem: diamondView, attribute: .width, multiplier: 1.0, constant: 0))
+        
+        updateLayout()
     }
     
     required init?(coder aDecoder: NSCoder) {

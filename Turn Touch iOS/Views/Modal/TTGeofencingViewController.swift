@@ -57,6 +57,12 @@ class TTGeofencingViewController: UIViewController, MKMapViewDelegate, CLLocatio
         }
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        appDelegate().mainViewController.didCloseModal()
+    }
+    
     @objc func close(_ sender: UIBarButtonItem!) {
         appDelegate().mainViewController.closeModal()
     }

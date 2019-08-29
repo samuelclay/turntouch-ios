@@ -108,6 +108,12 @@ class TTFTUXViewController: UIViewController, UIScrollViewDelegate {
         self.setPage(.intro)
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        appDelegate().mainViewController.didCloseModal()
+    }
+    
     func setPage(_ ftuxPage: TTFTUXPage) {
 //        pageControl.currentPage = ftuxPage.hashValue // handled in scrollViewDidScroll
         scrollView.setContentOffset(CGPoint(x: CGFloat(ftuxPage.rawValue) * scrollView.frame.width, y: 0),
