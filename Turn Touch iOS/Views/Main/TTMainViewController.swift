@@ -564,7 +564,12 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
     
     func closePairingModal() {
         modalNavController.dismiss(animated: true, completion: nil)
-        modalNavController = nil
+    }
+    
+    func didClosePairingModal() {
+        didCloseModal()
+        
+        appDelegate().bluetoothMonitor.delegate = nil
         
         DispatchQueue.main.async {
             appDelegate().beginLocationUpdates()
@@ -595,7 +600,7 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
     
     func closeFtuxModal() {
         modalNavController.dismiss(animated: true, completion: nil)
-        modalNavController = nil
+        didCloseModal()
     }
     
     // MARK: Settings
@@ -611,6 +616,9 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
         settingsViewController.showCreditsFooter = false
         settingsViewController.delegate = self
         settingsViewController.modalPresentationStyle = .formSheet
+        if #available(iOS 13.0, *) {
+            settingsViewController.isModalInPresentation = true
+        }
         
         modalNavController = UINavigationController(rootViewController: settingsViewController)
         modalNavController.modalPresentationStyle = .formSheet
@@ -687,6 +695,10 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
 
     func closeModal() {
         modalNavController.dismiss(animated: true, completion: nil)
+        didCloseModal()
+    }
+    
+    func didCloseModal() {
         modalNavController = nil
     }
     
@@ -694,6 +706,6 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
     
     func settingsViewControllerDidEnd(_ sender: IASKAppSettingsViewController!) {
         sender.synchronizeSettings()
-        self.closeModal()
+        closeModal()
     }
 }

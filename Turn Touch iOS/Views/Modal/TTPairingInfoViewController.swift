@@ -77,6 +77,13 @@ class TTPairingInfoViewController: UIViewController {
         self.checkBluetoothState()
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        appDelegate().mainViewController.didCloseModal()
+        appDelegate().bluetoothMonitor.delegate = nil
+    }
+    
     func checkBluetoothState() {
         switch appDelegate().bluetoothMonitor.manager.state {
         case .poweredOn:

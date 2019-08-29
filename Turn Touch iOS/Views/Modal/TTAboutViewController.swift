@@ -32,6 +32,11 @@ class TTAboutViewController: UIViewController, UITableViewDelegate, UITableViewD
         twitterTableHeightConstraint.constant = CGFloat(max(44, self.menuOptions().count * Int(self.tableView(twitterTable, heightForRowAt: IndexPath(item: 0, section: 0)))))
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        appDelegate().mainViewController.didCloseModal()
+    }
     @objc func close(_ sender: UIBarButtonItem!) {
         appDelegate().mainViewController.closeModal()
     }

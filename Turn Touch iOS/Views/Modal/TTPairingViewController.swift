@@ -66,7 +66,6 @@ class TTPairingViewController: UIViewController, TTBluetoothMonitorDelegate {
     
     @objc func close(_ sender: UIBarButtonItem!) {
         appDelegate().mainViewController.closePairingModal()
-        appDelegate().bluetoothMonitor.delegate = nil
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -76,6 +75,12 @@ class TTPairingViewController: UIViewController, TTBluetoothMonitorDelegate {
     override func viewWillDisappear(_ animated: Bool) {
         appDelegate().bluetoothMonitor.disconnectUnpairedDevices()
         appDelegate().bluetoothMonitor.resetSearch()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        appDelegate().mainViewController.didClosePairingModal()
     }
     
     func checkBluetoothState() {

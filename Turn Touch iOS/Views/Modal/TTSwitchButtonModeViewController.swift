@@ -35,9 +35,10 @@ class TTSwitchButtonModeViewController: UIViewController {
         }
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
         
+        appDelegate().mainViewController.didCloseModal()
         appDelegate().redrawMainLayout()
     }
     
