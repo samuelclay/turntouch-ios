@@ -15,9 +15,6 @@ struct TTModePhoneConstants {
 
 class TTModePhone: TTMode {
     
-    static var volumeMuted: Float?
-    static var modeMusic = TTModeMusic()
-    
     override class func title() -> String {
         return "Phone"
     }
@@ -96,43 +93,24 @@ class TTModePhone: TTMode {
     override func activate() {
         super.activate()
         
-        TTModePhone.modeMusic.activate()
-    }
-    
-    func volumeSlider() -> UISlider? {
-        let volumeSlider = (MPVolumeView().subviews.filter{NSStringFromClass($0.classForCoder) == "MPVolumeSlider"}.first as? UISlider)
-        
-        return volumeSlider
-    }
-    
-    func currentVolume() -> Float? {
-        let audioSession = AVAudioSession.sharedInstance()
-        var volume: Float?
-        do {
-            try audioSession.setActive(true)
-            volume = audioSession.outputVolume
-        } catch {
-            print("Error Setting Up Audio Session")
-        }
-        
-        return volume
+        TTModeMusicSession.shared.activate()
     }
     
     func runTTModePhoneVolumeUp() {
-        TTModePhone.modeMusic.runTTModeMusicVolumeUp()
+        TTModeMusicSession.shared.volume(adjustment: .up)
     }
     
     func runTTModePhoneVolumeDown() {
-        TTModePhone.modeMusic.runTTModeMusicVolumeDown()
+        TTModeMusicSession.shared.volume(adjustment: .down)
     }
     
     func runTTModePhoneVolumeMute() {
-        TTModePhone.modeMusic.runTTModeMusicVolumeMute()
+        TTModeMusicSession.shared.volume(adjustment: .toggleMute)
     }
     
     func runTTModePhoneVolumeJump() {
-        let jump = self.action.optionValue(TTModePhoneConstants.jumpVolume) as! Int
-        
-        TTModePhone.modeMusic.setVolume(Float(jump)/100)
+        if let jump = self.action.optionValue(TTModePhoneConstants.jumpVolume) as? Int {
+            TTModeMusicSession.shared.volume = Float(jump) / 100
+        }
     }
 }

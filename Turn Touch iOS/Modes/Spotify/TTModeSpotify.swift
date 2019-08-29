@@ -56,10 +56,6 @@ class TTModeSpotifyAppDelegate : NSObject, SPTAppRemoteDelegate {
 class TTModeSpotify : TTMode, SPTAppRemotePlayerStateDelegate {
 
     static var reachability: Reachability!
-    var musicPlayer: MPMusicPlayerController!
-    var observing = false
-    var lastVolume: Float?
-    let ITUNES_VOLUME_CHANGE: Float = 0.06
     static var nextAction: TTSpotifyConnectNextAction?
 
     var delegate: TTModeSpotifyDelegate!
@@ -228,17 +224,6 @@ class TTModeSpotify : TTMode, SPTAppRemotePlayerStateDelegate {
     // MARK: Action methods
     
     override func activate() {
-        if musicPlayer == nil {
-            musicPlayer = MPMusicPlayerController.systemMusicPlayer
-        }
-        
-        if !observing {
-            AVAudioSession.sharedInstance().addObserver(self, forKeyPath: "outputVolume", options: [], context: nil)
-            musicPlayer.addObserver(self, forKeyPath: "nowPlayingItem", options: [], context: nil)
-            musicPlayer.beginGeneratingPlaybackNotifications()
-            observing = true
-        }
-        
         TTModeSpotify.accessToken = UserDefaults.standard.string(forKey: TTModeSpotifyConstants.kSpotifyAccessToken)
 
         if !TTModeSpotify.appRemote.isConnected {
@@ -249,53 +234,22 @@ class TTModeSpotify : TTMode, SPTAppRemotePlayerStateDelegate {
         delegate?.changeState(TTModeSpotify.spotifyState, mode: self)
         
         TTModeSpotify.appRemote.playerAPI?.delegate = self
+        TTModeMusicSession.shared.activate()
     }
     
     override func deactivate() {
-        if observing {
-            AVAudioSession.sharedInstance().removeObserver(self, forKeyPath: "outputVolume")
-            musicPlayer.removeObserver(self, forKeyPath: "nowPlayingItem")
-            observing = false
-        }
-    }
-    
-    var volumeSlider: UISlider {
-        get {
-            return (MPVolumeView().subviews.filter { NSStringFromClass($0.classForCoder) == "MPVolumeSlider" }.first as! UISlider)
-        }
-    }
-    
-    func adjustVolume(volume: Int) {
-        if volume == 0 && volumeSlider.value != 0 {
-            lastVolume = volumeSlider.value
-            volumeSlider.setValue(0, animated: false)
-        } else {
-            if lastVolume == nil {
-                lastVolume = AVAudioSession.sharedInstance().outputVolume
-            }
-            lastVolume = min(1, lastVolume! + (Float(volume) * ITUNES_VOLUME_CHANGE))
-            volumeSlider.setValue(lastVolume!, animated: false)
-        }
-    }
-    
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        if keyPath == "outputVolume" {
-            lastVolume = AVAudioSession.sharedInstance().outputVolume
-        } else if keyPath == "nowPlayingInfo" {
-            print(" Now playing info: \(String(describing: musicPlayer.nowPlayingItem))")
-        }
     }
     
     func runTTModeSpotifyVolumeUp() {
-        self.adjustVolume(volume: 1)
+        TTModeMusicSession.shared.volume(adjustment: .up)
     }
     
     func runTTModeSpotifyVolumeDown() {
-        self.adjustVolume(volume: -1)
+        TTModeMusicSession.shared.volume(adjustment: .down)
     }
     
     func runTTModeSpotifyVolumeMute() {
-        self.adjustVolume(volume: 0)
+        TTModeMusicSession.shared.volume(adjustment: .toggleMute)
     }
     
     func runTTModeSpotifyVolumeJump() {
