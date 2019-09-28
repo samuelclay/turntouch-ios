@@ -19,7 +19,11 @@ class TTPairingInfoViewController: UIViewController {
     init(pairingState: TTPairingState) {
         self.pairingState = pairingState
         super.init(nibName: "TTPairingInfoViewController", bundle: nil)
-                
+        
+        if #available(iOS 13.0, *) {
+            isModalInPresentation = true
+        }
+        
         nextButton = TTModalButton(pairingState: pairingState)
         self.view.addSubview(nextButton.view)
         
@@ -46,7 +50,6 @@ class TTPairingInfoViewController: UIViewController {
     
     @objc func close(_ sender: UIBarButtonItem!) {
         appDelegate().mainViewController.closePairingModal()
-        appDelegate().bluetoothMonitor.delegate = nil
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -75,13 +78,6 @@ class TTPairingInfoViewController: UIViewController {
         self.nextButton?.setPairingState(pairingState)
         
         self.checkBluetoothState()
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        
-        appDelegate().mainViewController.didCloseModal()
-        appDelegate().bluetoothMonitor.delegate = nil
     }
     
     func checkBluetoothState() {

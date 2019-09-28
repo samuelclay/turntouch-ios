@@ -563,15 +563,10 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
     }
     
     func closePairingModal() {
-        modalNavController.dismiss(animated: true, completion: nil)
-    }
-    
-    func didClosePairingModal() {
-        didCloseModal()
-        
-        appDelegate().bluetoothMonitor.delegate = nil
-        
-        DispatchQueue.main.async {
+        modalNavController?.dismiss(animated: true) {
+            self.didCloseModal()
+            
+            appDelegate().bluetoothMonitor.delegate = nil
             appDelegate().beginLocationUpdates()
         }
     }

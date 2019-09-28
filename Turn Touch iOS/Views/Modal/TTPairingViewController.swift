@@ -77,12 +77,6 @@ class TTPairingViewController: UIViewController, TTBluetoothMonitorDelegate {
         appDelegate().bluetoothMonitor.resetSearch()
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        
-        appDelegate().mainViewController.didClosePairingModal()
-    }
-    
     func checkBluetoothState() {
         if appDelegate().bluetoothMonitor.manager.state != .poweredOn {
             self.searchingFailure()
