@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "17CFDD48236A7A6C00693BF7"
+               BlueprintIdentifier = "FFF2708F1CEE88E500E46575"
                BuildableName = "Turn Touch iOS.app"
-               BlueprintName = "Turn Touch Dejal"
+               BlueprintName = "Turn Touch iOS"
                ReferencedContainer = "container:Turn Touch iOS.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -44,9 +44,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "17CFDD48236A7A6C00693BF7"
+            BlueprintIdentifier = "FFF2708F1CEE88E500E46575"
             BuildableName = "Turn Touch iOS.app"
-            BlueprintName = "Turn Touch Dejal"
+            BlueprintName = "Turn Touch iOS"
             ReferencedContainer = "container:Turn Touch iOS.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -61,9 +61,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "17CFDD48236A7A6C00693BF7"
+            BlueprintIdentifier = "FFF2708F1CEE88E500E46575"
             BuildableName = "Turn Touch iOS.app"
-            BlueprintName = "Turn Touch Dejal"
+            BlueprintName = "Turn Touch iOS"
             ReferencedContainer = "container:Turn Touch iOS.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

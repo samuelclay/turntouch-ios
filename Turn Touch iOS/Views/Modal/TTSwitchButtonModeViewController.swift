@@ -12,6 +12,7 @@ class TTSwitchButtonModeViewController: UIViewController {
 
     @IBOutlet weak var fourAppSwitch: UISwitch!
     @IBOutlet weak var oneAppSwitch: UISwitch!
+    @IBOutlet weak var performActionsSwitch: UISwitch!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +34,8 @@ class TTSwitchButtonModeViewController: UIViewController {
             oneAppSwitch.isOn = true
             fourAppSwitch.isOn = false
         }
+        
+        performActionsSwitch.isOn = appDelegate().modeMap.buttonActionMode == .performActions
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -79,5 +82,9 @@ class TTSwitchButtonModeViewController: UIViewController {
         fourAppSwitch.isOn = false
         
         appDelegate().modeMap.switchButtonAppMode(.TwelveButtons)
+    }
+    
+    @IBAction func switchPerformActions(_ sender: UISwitch) {
+        appDelegate().modeMap.switchPerformActionMode(sender.isOn ? .performActions : .editActions)
     }
 }

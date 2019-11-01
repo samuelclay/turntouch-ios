@@ -17,6 +17,7 @@ class TTActionDiamondView: UIView {
     var eastLabel: TTDiamondLabel!
     var westLabel: TTDiamondLabel!
     var southLabel: TTDiamondLabel!
+    var changeButton: UIButton! = UIButton(type: UIButton.ButtonType.system)
     var widthRegularConstraint: NSLayoutConstraint!
     var widthCompactConstraint: NSLayoutConstraint!
     var heightRegularConstraint: NSLayoutConstraint!
@@ -111,6 +112,23 @@ class TTActionDiamondView: UIView {
         self.addConstraint(NSLayoutConstraint(item: southLabel, attribute: .width, relatedBy: .equal,
             toItem: diamondView, attribute: .width, multiplier: 1.0, constant: 0))
         
+        changeButton.translatesAutoresizingMaskIntoConstraints = false
+        changeButton.setTitle("Change", for: UIControl.State())
+        changeButton.titleLabel!.font = UIFont(name: "Effra", size: 13)
+        changeButton.titleLabel!.textColor = UIColor(hex: 0xA0A0A0)
+        changeButton.titleLabel!.lineBreakMode = NSLineBreakMode.byClipping
+        changeButton.addTarget(self, action: #selector(self.pressChange), for: .touchUpInside)
+        self.addSubview(changeButton)
+        
+        guard let changeButton = changeButton else {
+            return
+        }
+        
+        self.addConstraint(NSLayoutConstraint(item: changeButton, attribute: .trailingMargin, relatedBy: .equal,
+                                              toItem: self, attribute: .trailingMargin, multiplier: 1.0, constant: -24))
+        self.addConstraint(NSLayoutConstraint(item: changeButton, attribute: .bottom, relatedBy: .equal,
+                                              toItem: self, attribute: .bottom, multiplier: 1.0, constant: -18))
+        
         updateLayout()
     }
     
@@ -122,17 +140,21 @@ class TTActionDiamondView: UIView {
     
     func registerAsObserver() {
         appDelegate().modeMap.addObserver(self, forKeyPath: "selectedModeDirection", options: [], context: nil)
+        appDelegate().modeMap.addObserver(self, forKeyPath: "inspectingModeDirection", options: [], context: nil)
     }
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?,
                                          change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if keyPath == "selectedModeDirection" {
             self.redraw()
+        } else if keyPath == "inspectingModeDirection" {
+            updateChangeButton()
         }
     }
     
     deinit {
         appDelegate().modeMap.removeObserver(self, forKeyPath: "selectedModeDirection")
+        appDelegate().modeMap.removeObserver(self, forKeyPath: "inspectingModeDirection")
     }
     
     // MARK: Drawing
@@ -140,6 +162,16 @@ class TTActionDiamondView: UIView {
     func redraw() {    
         self.setMode(appDelegate().modeMap.selectedMode)
         self.setNeedsLayout()
+    }
+    
+    func updateChangeButton() {
+        changeButton.isHidden = appDelegate().modeMap.buttonActionMode == .editActions
+        
+        if appDelegate().modeMap.inspectingModeDirection != .no_DIRECTION {
+            changeButton.setTitle("Done", for: UIControl.State())
+        } else {
+            changeButton.setTitle("Change", for: UIControl.State())
+        }
     }
     
     func setMode(_ mode: TTMode) {
@@ -184,4 +216,10 @@ class TTActionDiamondView: UIView {
         }
     }
     
+    // MARK: Actions
+    
+    @objc func pressChange(_ sender: UIButton!) {
+        appDelegate().modeMap.toggleInspectingModeDirection(appDelegate().modeMap.lastInspectingModeDirection)
+        self.setNeedsDisplay()
+    }
 }
