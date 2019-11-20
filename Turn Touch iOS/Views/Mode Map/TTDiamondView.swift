@@ -77,7 +77,21 @@ class TTDiamondView: UIView {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
-
+    
+    private func direction(for location: CGPoint) -> TTModeDirection? {
+        if northPathTop.contains(location) || northPathBottom.contains(location) {
+            return .north
+        } else if eastPathTop.contains(location) || eastPathBottom.contains(location) {
+            return .east
+        } else if westPathTop.contains(location) || westPathBottom.contains(location) {
+            return .west
+        } else if southPathTop.contains(location) || southPathBottom.contains(location) {
+            return .south
+        } else {
+            return nil
+        }
+    }
+    
     // MARK: KVO
     
     func registerAsObserver() {
@@ -312,10 +326,6 @@ class TTDiamondView: UIView {
     
     // MARK: Events
 
-    
-    // NOTE: None of these work for some reason. The tap area is tiny and in the center of the diamond.
-    //       You can find this functionality in TTActionDiamondView.
-    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
         
@@ -325,14 +335,9 @@ class TTDiamondView: UIView {
         
         if let touch = touches.first {
             let location = touch.location(in: self)
-            if northPathTop.contains(location) || northPathBottom.contains(location) {
-                overrideActiveDirection = .north
-            } else if eastPathTop.contains(location) || eastPathBottom.contains(location) {
-                overrideActiveDirection = .east
-            } else if westPathTop.contains(location) || westPathBottom.contains(location) {
-                overrideActiveDirection = .west
-            } else if southPathTop.contains(location) || southPathBottom.contains(location) {
-                overrideActiveDirection = .south
+            
+            if let direction = direction(for: location) {
+                overrideActiveDirection = direction
             }
         }
         
@@ -349,14 +354,9 @@ class TTDiamondView: UIView {
         
         if let touch = touches.first {
             let location = touch.location(in: self)
-            if northPathTop.contains(location) || northPathBottom.contains(location) {
-                overrideActiveDirection = .north
-            } else if eastPathTop.contains(location) || eastPathBottom.contains(location) {
-                overrideActiveDirection = .east
-            } else if westPathTop.contains(location) || westPathBottom.contains(location) {
-                overrideActiveDirection = .west
-            } else if southPathTop.contains(location) || southPathBottom.contains(location) {
-                overrideActiveDirection = .south
+            
+            if let direction = direction(for: location) {
+                overrideActiveDirection = direction
             } else {
                 overrideActiveDirection = .no_DIRECTION
             }
@@ -364,6 +364,8 @@ class TTDiamondView: UIView {
         
         self.setNeedsDisplay()
     }
+    
+    var runWorkItem: DispatchWorkItem?
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesEnded(touches, with: event)
@@ -374,14 +376,41 @@ class TTDiamondView: UIView {
         
         if let touch = touches.first {
             let location = touch.location(in: self)
-            if northPathTop.contains(location) || northPathBottom.contains(location) {
-                appDelegate().modeMap.toggleInspectingModeDirection(.north)
-            } else if eastPathTop.contains(location) || eastPathBottom.contains(location) {
-                appDelegate().modeMap.toggleInspectingModeDirection(.east)
-            } else if westPathTop.contains(location) || westPathBottom.contains(location) {
-                appDelegate().modeMap.toggleInspectingModeDirection(.west)
-            } else if southPathTop.contains(location) || southPathBottom.contains(location) {
-                appDelegate().modeMap.toggleInspectingModeDirection(.south)
+            
+            if appDelegate().modeMap.isButtonActionPerform {
+                runWorkItem?.cancel()
+                
+                let workItem = DispatchWorkItem { [weak self] in
+                    guard let self = self else {
+                        return
+                    }
+                    
+                    if let direction = self.direction(for: location) {
+                        appDelegate().modeMap.activeModeDirection = direction
+                        
+                        if touch.tapCount == 1 {
+                            appDelegate().modeMap.runActiveButton()
+                        } else {
+                            appDelegate().modeMap.runDoubleButton(direction)
+                        }
+                    }
+                    
+                    self.overrideActiveDirection = .no_DIRECTION
+                    self.setNeedsDisplay()
+                }
+                
+                if touch.tapCount == 1 {
+                    runWorkItem = workItem
+                    DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(300), execute: workItem)
+                } else {
+                    DispatchQueue.main.async(execute: workItem)
+                }
+                
+                return
+            }
+            
+            if let direction = direction(for: location) {
+                appDelegate().modeMap.toggleInspectingModeDirection(direction)
             } else if appDelegate().modeMap.inspectingModeDirection != .no_DIRECTION {
                 appDelegate().modeMap.toggleInspectingModeDirection(appDelegate().modeMap.inspectingModeDirection)
             }
@@ -400,14 +429,25 @@ class TTDiamondView: UIView {
             }
             
             let location = sender.location(ofTouch: 0, in: self)
-            if northPathTop.contains(location) || northPathBottom.contains(location) {
-                overrideActiveDirection = .north
-            } else if eastPathTop.contains(location) || eastPathBottom.contains(location) {
-                overrideActiveDirection = .east
-            } else if westPathTop.contains(location) || westPathBottom.contains(location) {
-                overrideActiveDirection = .west
-            } else if southPathTop.contains(location) || southPathBottom.contains(location) {
-                overrideActiveDirection = .south
+            
+            if appDelegate().modeMap.isButtonActionPerform {
+                if let direction = direction(for: location) {
+                    if appDelegate().modeMap.buttonAppMode() == .SixteenButtons {
+                        appDelegate().modeMap.switchMode(direction, modeChangeType: .remoteButton)
+                    } else {
+                        appDelegate().modeMap.activeModeDirection = direction
+                        appDelegate().modeMap.runHoldButton(direction)
+                    }
+                }
+                
+                overrideActiveDirection = .no_DIRECTION
+                self.setNeedsDisplay()
+                
+                return
+            }
+            
+            if let direction = direction(for: location) {
+                overrideActiveDirection = direction
             } else {
                 overrideActiveDirection = .no_DIRECTION
             }

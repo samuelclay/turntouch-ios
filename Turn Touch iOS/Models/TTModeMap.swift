@@ -18,6 +18,8 @@ class TTModeMap: NSObject {
     @objc dynamic var inspectingModeDirection: TTModeDirection = .no_DIRECTION
     @objc dynamic var hoverModeDirection: TTModeDirection = .no_DIRECTION
     
+    var lastInspectingModeDirection: TTModeDirection = .north
+    
     @objc dynamic var tempModeName: String?
     @objc dynamic var openedModeChangeMenu: Bool = false
     @objc dynamic var openedActionChangeMenu: Bool = false
@@ -36,6 +38,11 @@ class TTModeMap: NSObject {
     enum TTButtonAppMode: String {
         case SixteenButtons = "16_buttons"
         case TwelveButtons = "12_buttons"
+    }
+    
+    enum TTButtonActionMode: String {
+        case editActions = "edit"
+        case performActions = "perform"
     }
     
     var batchActions = TTBatchActions()
@@ -68,10 +75,12 @@ class TTModeMap: NSObject {
         super.init()
         
         self.addObserver(self, forKeyPath: "selectedModeDirection", options: [], context: nil)
+        self.addObserver(self, forKeyPath: "inspectingModeDirection", options: [], context: nil)
     }
     
     deinit {
         self.removeObserver(self, forKeyPath: "selectedModeDirection")
+        self.removeObserver(self, forKeyPath: "inspectingModeDirection")
     }
     
     // MARK: KVO
@@ -85,6 +94,10 @@ class TTModeMap: NSObject {
                 prefs.set(self.selectedModeDirection.rawValue, forKey: "TT:selectedModeDirection")
                 print(" ---> Saving pref TT:selectedModeDirection: \(self.selectedModeDirection.rawValue)")
                 prefs.synchronize()
+            }
+        } else if keyPath == "inspectingModeDirection" {
+            if inspectingModeDirection != .no_DIRECTION {
+                lastInspectingModeDirection = inspectingModeDirection
             }
         }
     }
@@ -100,6 +113,21 @@ class TTModeMap: NSObject {
         }
         
         return .SixteenButtons
+    }
+    
+    var buttonActionMode: TTButtonActionMode {
+        let prefs = UserDefaults.standard
+        
+        if let actionModePref = prefs.string(forKey: "TT:buttonActionMode"),
+            let actionMode: TTButtonActionMode = TTButtonActionMode(rawValue: actionModePref) {
+            return actionMode
+        }
+        
+        return .editActions
+    }
+    
+    var isButtonActionPerform: Bool {
+        return buttonActionMode == .performActions && !openedModeChangeMenu && !openedActionChangeMenu && !openedAddActionChangeMenu && inspectingModeDirection == .no_DIRECTION
     }
     
     func reset() {
@@ -661,6 +689,7 @@ class TTModeMap: NSObject {
             if self.openedAddActionChangeMenu {
                 self.openedAddActionChangeMenu = false
             }
+            
             self.inspectingModeDirection = .no_DIRECTION
             if buttonAppMode() == .TwelveButtons {
                 self.activateModes()
@@ -748,6 +777,14 @@ class TTModeMap: NSObject {
         self.activateModes()
     }
     
+    func switchPerformActionMode(_ buttonActionMode: TTButtonActionMode) {
+        let prefs = UserDefaults.standard
+        
+        prefs.set(buttonActionMode.rawValue, forKey: "TT:buttonActionMode")
+        prefs.synchronize()
+        
+        reset()
+    }
 }
 
 // Helper function inserted by Swift 4.2 migrator.

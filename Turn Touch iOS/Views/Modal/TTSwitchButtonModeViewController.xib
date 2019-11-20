@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -22,6 +20,7 @@
             <connections>
                 <outlet property="fourAppSwitch" destination="Pvz-sq-eb1" id="qvX-At-4Ue"/>
                 <outlet property="oneAppSwitch" destination="iVr-o5-Y9y" id="1Ta-JG-tSE"/>
+                <outlet property="performActionsSwitch" destination="X1g-B8-MM2" id="fYa-V0-D6N"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -31,7 +30,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ApD-8v-1cu">
-                    <rect key="frame" x="20" y="20" width="335" height="647"/>
+                    <rect key="frame" x="20" y="0.0" width="335" height="667"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="There are two button modes you can use with your Turn Touch." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dgu-WI-Aeh">
                             <rect key="frame" x="0.0" y="24" width="335" height="41.5"/>
@@ -46,7 +45,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Pvz-sq-eb1">
-                            <rect key="frame" x="282" y="97" width="51" height="31"/>
+                            <rect key="frame" x="282" y="96.5" width="51" height="31"/>
                             <connections>
                                 <action selector="switchMode:" destination="-1" eventType="touchUpInside" id="sa5-Mi-09F"/>
                             </connections>
@@ -59,20 +58,39 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12 button mode" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Zt-0J-fgG">
-                            <rect key="frame" x="0.0" y="275" width="270" height="20.5"/>
+                            <rect key="frame" x="0.0" y="274.5" width="270" height="20.5"/>
                             <fontDescription key="fontDescription" name="Effra-Bold" family="Effra" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="iVr-o5-Y9y">
-                            <rect key="frame" x="282" y="270.5" width="51" height="31"/>
+                            <rect key="frame" x="282" y="269" width="51" height="31"/>
                             <connections>
                                 <action selector="switchMode:" destination="-1" eventType="touchUpInside" id="kwG-9Y-89y"/>
                             </connections>
                         </switch>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="8" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0TL-9X-rEb">
-                            <rect key="frame" x="0.0" y="136" width="335" height="103"/>
+                            <rect key="frame" x="0.0" y="135.5" width="335" height="103"/>
                             <string key="text">Each of the four buttons has a single and a double tap action. By holding down a button for a half second, you switch into that button's app. Four apps ⨯ four buttons each = 16 buttons</string>
+                            <fontDescription key="fontDescription" name="Effra-Regular" family="Effra" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Buttons perform actions" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gIr-Q8-UNZ">
+                            <rect key="frame" x="0.0" y="421.5" width="270" height="20.5"/>
+                            <fontDescription key="fontDescription" name="Effra-Bold" family="Effra" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="X1g-B8-MM2">
+                            <rect key="frame" x="282" y="416" width="51" height="31"/>
+                            <connections>
+                                <action selector="switchPerformActions:" destination="-1" eventType="valueChanged" id="6rJ-w1-9gr"/>
+                            </connections>
+                        </switch>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="8" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Kv-gp-YFo">
+                            <rect key="frame" x="0.0" y="450" width="335" height="82.5"/>
+                            <string key="text">If this is off, tapping buttons will select them for editing. If on, tapping buttons will perform their actions, just like on a Turn Touch remote, and a Change button will enable editing.</string>
                             <fontDescription key="fontDescription" name="Effra-Regular" family="Effra" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
@@ -87,19 +105,27 @@
                         <constraint firstItem="0TL-9X-rEb" firstAttribute="top" secondItem="Pvz-sq-eb1" secondAttribute="bottom" constant="8" id="8zT-b3-aag"/>
                         <constraint firstItem="CBh-4i-bYO" firstAttribute="top" secondItem="dgu-WI-Aeh" secondAttribute="bottom" constant="36" id="DYc-kv-9SR"/>
                         <constraint firstItem="wg9-uU-2mZ" firstAttribute="leading" secondItem="ApD-8v-1cu" secondAttribute="leading" id="GtN-5o-tsc"/>
+                        <constraint firstItem="gIr-Q8-UNZ" firstAttribute="leading" secondItem="ApD-8v-1cu" secondAttribute="leading" id="HcB-qd-WYx"/>
                         <constraint firstItem="Pvz-sq-eb1" firstAttribute="leading" secondItem="CBh-4i-bYO" secondAttribute="trailing" constant="12" id="HeZ-7f-FnM"/>
                         <constraint firstItem="0TL-9X-rEb" firstAttribute="leading" secondItem="ApD-8v-1cu" secondAttribute="leading" id="Ise-kW-hcs"/>
                         <constraint firstItem="dgu-WI-Aeh" firstAttribute="centerX" secondItem="ApD-8v-1cu" secondAttribute="centerX" id="Knt-Gd-JB6"/>
                         <constraint firstItem="CBh-4i-bYO" firstAttribute="leading" secondItem="ApD-8v-1cu" secondAttribute="leading" id="L0R-7P-ZVZ"/>
+                        <constraint firstAttribute="trailing" secondItem="X1g-B8-MM2" secondAttribute="trailing" constant="4" id="OMW-CW-hAP"/>
+                        <constraint firstItem="0Kv-gp-YFo" firstAttribute="top" secondItem="gIr-Q8-UNZ" secondAttribute="bottom" constant="8" id="P2d-qJ-gxX"/>
                         <constraint firstItem="6Zt-0J-fgG" firstAttribute="leading" secondItem="ApD-8v-1cu" secondAttribute="leading" id="Qff-QQ-HJQ"/>
+                        <constraint firstAttribute="trailing" secondItem="0Kv-gp-YFo" secondAttribute="trailing" id="ReX-Ii-gmd"/>
                         <constraint firstAttribute="bottom" secondItem="wg9-uU-2mZ" secondAttribute="bottom" id="a3N-oo-sUO"/>
                         <constraint firstItem="dgu-WI-Aeh" firstAttribute="top" secondItem="ApD-8v-1cu" secondAttribute="top" constant="24" id="aER-3I-JeO"/>
+                        <constraint firstItem="0Kv-gp-YFo" firstAttribute="leading" secondItem="ApD-8v-1cu" secondAttribute="leading" id="cYG-hV-6KV"/>
                         <constraint firstItem="Pvz-sq-eb1" firstAttribute="centerY" secondItem="CBh-4i-bYO" secondAttribute="centerY" id="euk-ke-vBg"/>
                         <constraint firstItem="iVr-o5-Y9y" firstAttribute="centerY" secondItem="6Zt-0J-fgG" secondAttribute="centerY" id="gpv-yh-2gL"/>
                         <constraint firstItem="6Zt-0J-fgG" firstAttribute="top" secondItem="0TL-9X-rEb" secondAttribute="bottom" constant="36" id="iif-gZ-R5t"/>
+                        <constraint firstItem="X1g-B8-MM2" firstAttribute="leading" secondItem="gIr-Q8-UNZ" secondAttribute="trailing" constant="12" id="jqU-QZ-cjn"/>
                         <constraint firstItem="iVr-o5-Y9y" firstAttribute="leading" secondItem="6Zt-0J-fgG" secondAttribute="trailing" constant="12" id="kl6-Cn-PFd"/>
+                        <constraint firstItem="X1g-B8-MM2" firstAttribute="centerY" secondItem="gIr-Q8-UNZ" secondAttribute="centerY" id="qRo-vX-osW"/>
                         <constraint firstAttribute="trailing" secondItem="Pvz-sq-eb1" secondAttribute="trailing" constant="4" id="t50-nI-P2D"/>
                         <constraint firstItem="dgu-WI-Aeh" firstAttribute="leading" secondItem="ApD-8v-1cu" secondAttribute="leading" id="v2S-i1-rXU"/>
+                        <constraint firstItem="gIr-Q8-UNZ" firstAttribute="top" secondItem="wg9-uU-2mZ" secondAttribute="bottom" constant="36" id="wt4-A2-Ocs"/>
                     </constraints>
                 </scrollView>
             </subviews>
@@ -111,7 +137,7 @@
                 <constraint firstItem="ApD-8v-1cu" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="prt-un-LDY"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <point key="canvasLocation" x="32.5" y="63.5"/>
+            <point key="canvasLocation" x="31.199999999999999" y="63.418290854572717"/>
         </view>
     </objects>
 </document>
