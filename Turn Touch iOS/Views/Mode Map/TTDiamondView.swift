@@ -432,12 +432,7 @@ class TTDiamondView: UIView {
             
             if appDelegate().modeMap.isButtonActionPerform {
                 if let direction = direction(for: location) {
-                    if appDelegate().modeMap.buttonAppMode() == .SixteenButtons {
-                        appDelegate().modeMap.switchMode(direction, modeChangeType: .remoteButton)
-                    } else {
-                        appDelegate().modeMap.activeModeDirection = direction
-                        appDelegate().modeMap.runHoldButton(direction)
-                    }
+                    appDelegate().modeMap.toggleInspectingModeDirection(direction)
                 }
                 
                 overrideActiveDirection = .no_DIRECTION

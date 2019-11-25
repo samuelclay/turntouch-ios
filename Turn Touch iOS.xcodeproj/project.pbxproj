@@ -3320,7 +3320,7 @@
 					"\"${PODS_ROOT}/BuildHeaders\"",
 					"\"$(SRCROOT)/Pods/Headers/\"",
 				);
-				INFOPLIST_FILE = "Turn Touch iOS copy-Info.plist";
+				INFOPLIST_FILE = "Turn Touch iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/Turn\\ Touch\\ iOS/Vendor/**";
@@ -3361,7 +3361,7 @@
 					"\"${PODS_ROOT}/BuildHeaders\"",
 					"\"$(SRCROOT)/Pods/Headers/\"",
 				);
-				INFOPLIST_FILE = "Turn Touch iOS copy-Info.plist";
+				INFOPLIST_FILE = "Turn Touch iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/Turn\\ Touch\\ iOS/Vendor/**";
