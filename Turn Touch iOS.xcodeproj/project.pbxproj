@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		170C8DC6245906150089B2C0 /* WidgetDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 170C8DC5245906150089B2C0 /* WidgetDelegate.swift */; };
+		170C8DC7245907A70089B2C0 /* TTModeDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB41B7A1CEEA9E300CD5F09 /* TTModeDirection.swift */; };
+		170C8DC8245907B40089B2C0 /* TTModeMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB41B831CF5342100CD5F09 /* TTModeMap.swift */; };
 		17AE44062458FF9C00D06762 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17AE44052458FF9C00D06762 /* NotificationCenter.framework */; };
 		17AE44092458FF9C00D06762 /* WidgetExtensionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17AE44082458FF9C00D06762 /* WidgetExtensionViewController.swift */; };
 		17AE440C2458FF9C00D06762 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17AE440A2458FF9C00D06762 /* MainInterface.storyboard */; };
@@ -909,6 +912,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		170C8DC5245906150089B2C0 /* WidgetDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetDelegate.swift; sourceTree = "<group>"; };
 		17AE44042458FF9C00D06762 /* Turn Touch Widget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Turn Touch Widget.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		17AE44052458FF9C00D06762 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		17AE44082458FF9C00D06762 /* WidgetExtensionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetExtensionViewController.swift; sourceTree = "<group>"; };
@@ -1420,6 +1424,7 @@
 			isa = PBXGroup;
 			children = (
 				17AE44082458FF9C00D06762 /* WidgetExtensionViewController.swift */,
+				170C8DC5245906150089B2C0 /* WidgetDelegate.swift */,
 				17AE440A2458FF9C00D06762 /* MainInterface.storyboard */,
 				17AE440D2458FF9C00D06762 /* Info.plist */,
 			);
@@ -3083,6 +3088,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				170C8DC6245906150089B2C0 /* WidgetDelegate.swift in Sources */,
+				170C8DC8245907B40089B2C0 /* TTModeMap.swift in Sources */,
+				170C8DC7245907A70089B2C0 /* TTModeDirection.swift in Sources */,
 				17AE44092458FF9C00D06762 /* WidgetExtensionViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
