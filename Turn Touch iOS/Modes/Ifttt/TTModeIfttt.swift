@@ -222,7 +222,7 @@ class TTModeIfttt: TTMode {
     
     func collectTriggers() -> [[String: String]] {
         var triggers: [[String: String]] = []
-        let prefs = UserDefaults.standard
+        let prefs = preferences()
         
         // Primary modes first
         for modeDirection: TTModeDirection in [.north, .east, .west, .south] {

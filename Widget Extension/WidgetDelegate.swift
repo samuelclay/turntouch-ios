@@ -34,7 +34,10 @@ class WidgetDelegate: UIResponder {
     }
     
     func loadPreferences() {
-        let prefs = UserDefaults.standard
+        guard let prefs = UserDefaults(suiteName: "group.dejal.turntouch.ios-remote") else {
+            return
+        }
+        
         let defaultPrefsFile = Bundle.main.path(forResource: "Preferences", ofType: "plist")
         let defaultPrefs = NSDictionary(contentsOfFile: defaultPrefsFile!) as! [String: AnyObject]
         prefs.register(defaults: defaultPrefs)
@@ -43,12 +46,10 @@ class WidgetDelegate: UIResponder {
         
         prefs.set(Bundle.main.infoDictionary!["CFBundleShortVersionString"], forKey: "version")
         prefs.set(Bundle.main.infoDictionary!["CFBundleVersion"], forKey: "build_number")
-        
-        prefs.synchronize()
     }
     
     func processDefaultSettings() {
-        let defaults = UserDefaults.standard
+        let defaults = preferences()
         defaults.synchronize()
         
         guard let settingsBundle = Bundle.main.path(forResource: "Settings", ofType: "bundle") as NSString? else {
@@ -85,4 +86,8 @@ class WidgetDelegate: UIResponder {
 
 func appDelegate() -> WidgetDelegate {
     return WidgetDelegate.shared
+}
+
+func preferences() -> UserDefaults {
+    return UserDefaults(suiteName: "group.com.turntouch.ios-remote") ?? UserDefaults.standard
 }

@@ -68,7 +68,7 @@ class TTGeofencingViewController: UIViewController, MKMapViewDelegate, CLLocatio
     }
     
     @objc func save(_ sender: UIBarButtonItem!) {
-        let prefs = UserDefaults.standard
+        let prefs = preferences()
         let center = mapView.camera.centerCoordinate
 
         prefs.set(["lat": NSNumber(value: center.latitude),
@@ -93,7 +93,7 @@ class TTGeofencingViewController: UIViewController, MKMapViewDelegate, CLLocatio
         if let lastLocation = locations.last, lastLocation.timestamp.timeIntervalSinceNow > -5.0 {
             if !regionHasBeenCentered {
                 regionHasBeenCentered = true
-                let prefs = UserDefaults.standard
+                let prefs = preferences()
                 if let coords = prefs.dictionary(forKey: "TT:geofence:1") as? [String: NSNumber] {
                     let center = CLLocationCoordinate2D(latitude: coords["lat"] as! CLLocationDegrees,
                                                         longitude: coords["long"] as! CLLocationDegrees)

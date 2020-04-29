@@ -63,7 +63,7 @@ class TTModeBose : TTMode, TTModeBoseMulticastDelegate, TTModeBoseDeviceDelegate
     }
     
     func resetKnownDevices() {
-        let prefs = UserDefaults.standard
+        let prefs = preferences()
         prefs.removeObject(forKey: TTModeBoseConstants.kBoseFoundDevices)
         prefs.synchronize()
         
@@ -71,7 +71,7 @@ class TTModeBose : TTMode, TTModeBoseMulticastDelegate, TTModeBoseDeviceDelegate
     }
     
     func assembleFoundDevices() {
-        let prefs = UserDefaults.standard
+        let prefs = preferences()
         TTModeBose.foundDevices = []
         
         if let foundDevices = prefs.array(forKey: TTModeBoseConstants.kBoseFoundDevices) as? [[String: AnyObject]] {
@@ -451,7 +451,7 @@ class TTModeBose : TTMode, TTModeBoseMulticastDelegate, TTModeBoseDeviceDelegate
                                  "macAddress": device.macAddress!])
         }
         
-        let prefs = UserDefaults.standard
+        let prefs = preferences()
         prefs.set(foundDevices, forKey: TTModeBoseConstants.kBoseFoundDevices)
         prefs.synchronize()
     }

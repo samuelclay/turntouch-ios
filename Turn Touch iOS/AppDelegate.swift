@@ -30,7 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             print(" ---> centralManagerIdentifiers: \(String(describing: centralManagerIdentifiers))")
         }
 
-//        print(UserDefaults.standardUserDefaults().dictionaryRepresentation())
+//        print(preferences()UserDefaults().dictionaryRepresentation())
         UIApplication.shared.beginReceivingRemoteControlEvents()
         
         bluetoothMonitor = TTBluetoothMonitor()
@@ -76,8 +76,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         print(" ---> applicationDidEnterBackground")
         
         self.recordState()
-//        let prefs = UserDefaults.standardUserDefaults()
-//        prefs.synchronize()
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
@@ -99,8 +97,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         print(" ---> applicationWillTerminate");
         bluetoothMonitor.terminate()
-        let prefs = UserDefaults.standard
-        prefs.synchronize()
     }
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any]) -> Bool {
@@ -137,11 +133,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     }
     
     func erasePreferences() {
-        UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
+        preferences().removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
     }
 
     func loadPreferences() {
-        let prefs = UserDefaults.standard
+        migratePreferencesToGroup()
+        
+        let prefs = preferences()
         let defaultPrefsFile = Bundle.main.path(forResource: "Preferences", ofType: "plist")
         let defaultPrefs = NSDictionary(contentsOfFile: defaultPrefsFile!) as! [String: AnyObject]
         prefs.register(defaults: defaultPrefs)
@@ -154,8 +152,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         prefs.synchronize()
     }
     
+    func migratePreferencesToGroup() {
+        let localDefaults = UserDefaults.standard
+        let localDictionary = localDefaults.dictionaryRepresentation()
+        let groupDefaults = preferences()
+        let didMigrateToAppGroups = "TT:didMigrateToAppGroups"
+        
+        if !groupDefaults.bool(forKey: didMigrateToAppGroups) {
+            for key in localDictionary.keys {
+                if key.hasPrefix("TT:") {
+                    groupDefaults.set(localDictionary[key], forKey: key)
+                }
+            }
+            
+            groupDefaults.set(true, forKey: didMigrateToAppGroups)
+        }
+    }
+    
     func processDefaultSettings() {
-        let defaults = UserDefaults.standard
+        let defaults = preferences()
         defaults.synchronize()
         
         guard let settingsBundle = Bundle.main.path(forResource: "Settings", ofType: "bundle") as NSString? else {
@@ -251,7 +266,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     }
     
     func startLocationMonitoring() {
-        let prefs = UserDefaults.standard
+        let prefs = preferences()
         if let coords = prefs.dictionary(forKey: "TT:geofence:1") as? [String: NSNumber] {
             let center = CLLocationCoordinate2D(latitude: coords["lat"] as! CLLocationDegrees,
                                                 longitude: coords["long"] as! CLLocationDegrees)
@@ -305,6 +320,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 
  }
 
-func appDelegate () -> AppDelegate {
+func appDelegate() -> AppDelegate {
     return UIApplication.shared.delegate as! AppDelegate
+}
+
+func preferences() -> UserDefaults {
+    return UserDefaults(suiteName: "group.com.turntouch.ios-remote") ?? UserDefaults.standard
 }

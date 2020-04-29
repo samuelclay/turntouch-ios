@@ -24,6 +24,9 @@
 		172590542459235600055830 /* TTModeIfttt.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF534C2E1EB0351A002EE584 /* TTModeIfttt.swift */; };
 		172590552459276D00055830 /* TTModeTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB41B781CEEA8E500CD5F09 /* TTModeTab.swift */; };
 		172590562459277A00055830 /* TTDiamondView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0F10D61CF6697A00CC1F29 /* TTDiamondView.swift */; };
+		174A15FC24592A2D00F4AA2E /* TTActionDiamondView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC9FE941D021A0400038817 /* TTActionDiamondView.swift */; };
+		174A15FD24592A3800F4AA2E /* TTDiamondLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0F10DB1CF669BE00CC1F29 /* TTDiamondLabel.swift */; };
+		174A15FF24592CD700F4AA2E /* Preferences.plist in Resources */ = {isa = PBXBuildFile; fileRef = FF0F10BF1CF5638D00CC1F29 /* Preferences.plist */; };
 		17AE44062458FF9C00D06762 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17AE44052458FF9C00D06762 /* NotificationCenter.framework */; };
 		17AE44092458FF9C00D06762 /* WidgetExtensionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17AE44082458FF9C00D06762 /* WidgetExtensionViewController.swift */; };
 		17AE440C2458FF9C00D06762 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17AE440A2458FF9C00D06762 /* MainInterface.storyboard */; };
@@ -927,6 +930,7 @@
 
 /* Begin PBXFileReference section */
 		170C8DC5245906150089B2C0 /* WidgetDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetDelegate.swift; sourceTree = "<group>"; };
+		174A15FE24592C6700F4AA2E /* Turn Touch Widget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Turn Touch Widget.entitlements"; sourceTree = "<group>"; };
 		17AE44042458FF9C00D06762 /* Turn Touch Widget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Turn Touch Widget.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		17AE44052458FF9C00D06762 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		17AE44082458FF9C00D06762 /* WidgetExtensionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetExtensionViewController.swift; sourceTree = "<group>"; };
@@ -1437,6 +1441,7 @@
 		17AE44072458FF9C00D06762 /* Widget Extension */ = {
 			isa = PBXGroup;
 			children = (
+				174A15FE24592C6700F4AA2E /* Turn Touch Widget.entitlements */,
 				17AE44082458FF9C00D06762 /* WidgetExtensionViewController.swift */,
 				170C8DC5245906150089B2C0 /* WidgetDelegate.swift */,
 				17AE440A2458FF9C00D06762 /* MainInterface.storyboard */,
@@ -2409,6 +2414,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				17AE440C2458FF9C00D06762 /* MainInterface.storyboard in Resources */,
+				174A15FF24592CD700F4AA2E /* Preferences.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3107,6 +3113,7 @@
 				170C8DC6245906150089B2C0 /* WidgetDelegate.swift in Sources */,
 				1725905024591EFC00055830 /* TTBatchActions.swift in Sources */,
 				1725904824591E5400055830 /* TTMode.swift in Sources */,
+				174A15FC24592A2D00F4AA2E /* TTActionDiamondView.swift in Sources */,
 				172590542459235600055830 /* TTModeIfttt.swift in Sources */,
 				172590532459231C00055830 /* TTModeMenuContainer.swift in Sources */,
 				1725904A24591E6000055830 /* TTActionMap.swift in Sources */,
@@ -3116,6 +3123,7 @@
 				172590552459276D00055830 /* TTModeTab.swift in Sources */,
 				1725904924591E6000055830 /* TTAction.swift in Sources */,
 				1725904B24591E8200055830 /* TTModeDouble.swift in Sources */,
+				174A15FD24592A3800F4AA2E /* TTDiamondLabel.swift in Sources */,
 				1725904C24591ED900055830 /* UIColor+hex.swift in Sources */,
 				170C8DC7245907A70089B2C0 /* TTModeDirection.swift in Sources */,
 				17AE44092458FF9C00D06762 /* WidgetExtensionViewController.swift in Sources */,
@@ -3479,6 +3487,7 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = "Widget Extension/Turn Touch Widget.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 37;
 				DEVELOPMENT_TEAM = 6Z7QW53WB6;
@@ -3507,6 +3516,7 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = "Widget Extension/Turn Touch Widget.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 37;
 				DEVELOPMENT_TEAM = 6Z7QW53WB6;

@@ -344,7 +344,7 @@ class TTModeSonos: TTMode {
     }
     
     func selectedDevice(coordinator: Bool = false) -> SonosController? {
-        var devices = self.foundDevices()
+        let devices = self.foundDevices()
         if devices.count == 0 {
             return nil
         }
@@ -372,7 +372,7 @@ class TTModeSonos: TTMode {
     
     func cachedDevices() -> [SonosController] {
         var cachedDevices: [SonosController] = []
-        let prefs = UserDefaults.standard
+        let prefs = preferences()
         guard let devices = prefs.array(forKey: TTModeSonosConstants.kSonosCachedDevices) as? [[String: Any]] else {
             return []
         }
@@ -412,7 +412,7 @@ class TTModeSonos: TTMode {
             cachedDevices.append(cachedDevice)
         }
         
-        let prefs = UserDefaults.standard
+        let prefs = preferences()
         prefs.set(cachedDevices, forKey: TTModeSonosConstants.kSonosCachedDevices)
         prefs.synchronize()
     }

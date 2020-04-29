@@ -797,7 +797,7 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
             TTModeHue.bridgesTried = []
         }
         
-        let prefs = UserDefaults.standard
+        let prefs = preferences()
         let savedBridges = prefs.array(forKey: TTModeHueConstants.kHueSavedBridges) as? [[String: String]] ?? []
         
         var bridgeUntried = false
@@ -895,7 +895,7 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
     
     func bridgeSelected(_ bridge: HueBridge) {
         print(" ---> Selected bridge: \(bridge)")
-        let prefs = UserDefaults.standard
+        let prefs = preferences()
 
         TTModeHue.latestBridge = bridge
         self.saveRecentBridge()
@@ -906,7 +906,7 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
 
     
     func delayReconnectToFoundBridges() {
-//        let prefs = UserDefaults.standard
+//        let prefs = preferences()
 //        let savedBridges = prefs.array(forKey: TTModeHueConstants.kHueSavedBridges) as? [[String: String]]
 //
 //        if let bridgeCount = savedBridges?.count, bridgeCount > 0 {
@@ -1041,7 +1041,7 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
     }
     
     func saveRecentBridge(username: String? = nil) {
-        let prefs = UserDefaults.standard
+        let prefs = preferences()
         
         guard let latestBridge = TTModeHue.latestBridge else {
             print(" ---> ERROR: No latest bridge? How did we get here?")
@@ -1085,7 +1085,7 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
     }
     
     func removeSavedBridge(serialNumber: String) {
-        let prefs = UserDefaults.standard
+        let prefs = preferences()
         
         var previouslyFoundBridges = prefs.array(forKey: TTModeHueConstants.kHueSavedBridges) as? [[String: String]] ?? []
         previouslyFoundBridges = previouslyFoundBridges.filter({ (bridge) -> Bool in
@@ -1495,10 +1495,10 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
         TTModeHue.waitingOnScenes = true
         TTModeHue.hueSdk.stopHeartbeat()
         
-        let cacheX = UserDefaults.standard.value(forKey: "CacheX")
+        let cacheX = preferences().value(forKey: "CacheX")
         print(" ---> Deleting Hue cache: \(String(describing: cacheX))")
-        UserDefaults.standard.removeObject(forKey: "CacheX")
-        UserDefaults.standard.synchronize()
+        preferences().removeObject(forKey: "CacheX")
+        preferences().synchronize()
         
         DispatchQueue.global().async {            
             DispatchQueue.main.sync {

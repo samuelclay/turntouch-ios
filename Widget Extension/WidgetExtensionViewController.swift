@@ -14,8 +14,8 @@ class WidgetExtensionViewController: UIViewController, NCWidgetProviding {
     var modeTabsView = UIStackView()
     var modeTabs: [TTModeTab] = []
     var modeTabsConstraint: NSLayoutConstraint!
-//    var actionDiamondView = TTActionDiamondView(diamondType: .interactive)
-//    var actionDiamondConstraint: NSLayoutConstraint!
+    var actionDiamondView = TTActionDiamondView(diamondType: .interactive)
+    var actionDiamondConstraint: NSLayoutConstraint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,38 +58,38 @@ class WidgetExtensionViewController: UIViewController, NCWidgetProviding {
         self.view.addConstraint(NSLayoutConstraint(item: stackView, attribute: .right,
                                                    relatedBy: .equal, toItem: self.view, attribute: .right, multiplier: 1.0, constant: 0.0))
         
-//        if appDelegate().modeMap.buttonAppMode() == .SixteenButtons {
-//            modeTabs = [
-//                TTModeTab(modeDirection:.north),
-//                TTModeTab(modeDirection:.east),
-//                TTModeTab(modeDirection:.west),
-//                TTModeTab(modeDirection:.south),
-//            ]
-//        } else {
-//            modeTabs = [
-//                TTModeTab(modeDirection: .single),
-//                TTModeTab(modeDirection: .double),
-//                TTModeTab(modeDirection: .hold)
-//            ]
-//        }
-//        for view in modeTabs {
-//            modeTabsView.addArrangedSubview(view)
-//        }
-//        modeTabsView.axis = .horizontal
-//        modeTabsView.distribution = .fillEqually
-//        modeTabsView.alignment = .fill
-//        modeTabsView.spacing = 0
-//        modeTabsView.contentMode = .scaleToFill
-//        stackView.addArrangedSubview(modeTabsView);
-//
-//        modeTabsConstraint = NSLayoutConstraint(item: modeTabsView, attribute: .height, relatedBy: .equal,
-//                                                toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 92.0)
-//        stackView.addConstraint(modeTabsConstraint)
-//
-//        actionDiamondConstraint = NSLayoutConstraint(item: actionDiamondView, attribute: .height, relatedBy: .equal,
-//                                                     toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 420)
-//        stackView.addConstraint(actionDiamondConstraint)
-//        stackView.addArrangedSubview(actionDiamondView)
+        if appDelegate().modeMap.buttonAppMode() == .SixteenButtons {
+            modeTabs = [
+                TTModeTab(modeDirection:.north),
+                TTModeTab(modeDirection:.east),
+                TTModeTab(modeDirection:.west),
+                TTModeTab(modeDirection:.south),
+            ]
+        } else {
+            modeTabs = [
+                TTModeTab(modeDirection: .single),
+                TTModeTab(modeDirection: .double),
+                TTModeTab(modeDirection: .hold)
+            ]
+        }
+        for view in modeTabs {
+            modeTabsView.addArrangedSubview(view)
+        }
+        modeTabsView.axis = .horizontal
+        modeTabsView.distribution = .fillEqually
+        modeTabsView.alignment = .fill
+        modeTabsView.spacing = 0
+        modeTabsView.contentMode = .scaleToFill
+        stackView.addArrangedSubview(modeTabsView);
+        
+        modeTabsConstraint = NSLayoutConstraint(item: modeTabsView, attribute: .height, relatedBy: .equal,
+                                                toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 92.0)
+        stackView.addConstraint(modeTabsConstraint)
+        
+        actionDiamondConstraint = NSLayoutConstraint(item: actionDiamondView, attribute: .height, relatedBy: .equal,
+                                                     toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 420)
+        stackView.addConstraint(actionDiamondConstraint)
+        stackView.addArrangedSubview(actionDiamondView)
         
         //        if appDelegate().modeMap.buttonAppMode() == .TwelveButtons, let modeTitleView = modeTitleView {
         //            modeTitleView.alpha = 0

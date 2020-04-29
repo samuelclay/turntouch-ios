@@ -38,7 +38,7 @@ class TTDevice: NSObject {
         peripheral = newPeripheral
         uuid = peripheral.identifier.uuidString
         
-        let prefs = UserDefaults.standard
+        let prefs = preferences()
         let nicknameKey = "TT:device:\(uuid ?? "nil"):nickname"
         nickname = prefs.string(forKey: nicknameKey)
     }
@@ -79,7 +79,7 @@ class TTDevice: NSObject {
     func setFirmwareVersion(firmwareVersion version: Int) {
         firmwareVersion = version
         
-        let prefs = UserDefaults.standard
+        let prefs = preferences()
         let latestVersion = prefs.integer(forKey: "TT:firmware:version")
         
         isFirmwareOld = firmwareVersion! < latestVersion

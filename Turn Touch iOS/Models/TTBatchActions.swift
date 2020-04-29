@@ -26,7 +26,7 @@ class TTBatchActions: NSObject {
     }
     
     func assembleBatchAction(in direction: TTModeDirection) -> [TTAction] {
-        let prefs = UserDefaults.standard
+        let prefs = preferences()
         var batchActions: [TTAction] = []
         let key = self.batchActionKey(in: direction)
         let batchActionKeys: [String]? = prefs.object(forKey: key) as? [String]

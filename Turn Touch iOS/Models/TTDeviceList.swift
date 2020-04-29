@@ -144,7 +144,7 @@ class TTDeviceList: NSObject {
     // MARK: Pairing
     
     func isPeripheralPaired(_ peripheral: CBPeripheral) -> Bool {
-        let prefs = UserDefaults.standard
+        let prefs = preferences()
         let pairedDevices = prefs.array(forKey: "TT:devices:paired") as! [String]?
         
         if pairedDevices == nil {
@@ -176,7 +176,7 @@ class TTDeviceList: NSObject {
     }
     
     func totalPairedCount() -> Int {
-        let prefs = UserDefaults.standard
+        let prefs = preferences()
         let pairedDevices = prefs.array(forKey: "TT:devices:paired") as! [String]?
         
         if pairedDevices == nil {

@@ -170,7 +170,7 @@ class TTMode : NSObject, TTModeProtocol {
     }
     
     func setCustomTitle(_ title: String?, direction: TTModeDirection) {
-        let prefs = UserDefaults.standard
+        let prefs = preferences()
         let modeDirectionName = appDelegate().modeMap.directionName(modeDirection)
         let actionDirectionName = appDelegate().modeMap.directionName(direction)
         let actionName = self.actionNameInDirection(direction)
@@ -216,7 +216,7 @@ class TTMode : NSObject, TTModeProtocol {
         }
         
         // First check if given custom title
-        let prefs = UserDefaults.standard
+        let prefs = preferences()
         let modeDirectionName = appDelegate().modeMap.directionName(modeDirection)
         let actionDirectionName = appDelegate().modeMap.directionName(direction)
         let prefKey = "TT:\(mode.nameOfClass)-\(modeDirectionName):action:\(actionName)-\(actionDirectionName):customTitle"
@@ -279,7 +279,7 @@ class TTMode : NSObject, TTModeProtocol {
             return action.actionName
         }
         
-        let prefs = UserDefaults.standard
+        let prefs = preferences()
         
         let mode = self.modeInDirection(direction)
         let modeDirectionName = appDelegate().modeMap.directionName(modeDirection)
@@ -348,7 +348,7 @@ class TTMode : NSObject, TTModeProtocol {
     // MARK: Mode options
     
     func modeOptionValue(_ optionName: String) -> Any? {
-        let prefs = UserDefaults.standard
+        let prefs = preferences()
         let modeDirectionName = appDelegate().modeMap.directionName(modeDirection)
         
         if modeDirection == .no_DIRECTION {
@@ -391,7 +391,7 @@ class TTMode : NSObject, TTModeProtocol {
     // MARK: Changing mode settings
     
     func changeDirection(_ direction: TTModeDirection, toAction actionClassName: String) {
-        let prefs = UserDefaults.standard
+        let prefs = preferences()
         
         let modeDirectionName = appDelegate().modeMap.directionName(modeDirection)
         let actionDirectionName = appDelegate().modeMap.directionName(direction)
@@ -409,7 +409,7 @@ class TTMode : NSObject, TTModeProtocol {
             print(" ---> BUSTED: \(optionValue)")
             return
         }
-        let prefs = UserDefaults.standard
+        let prefs = preferences()
         let modeDirectionName = appDelegate().modeMap.directionName(modeDirection)
         var optionKey = "TT:mode:\(self.nameOfClass)-\(modeDirectionName):option:\(optionName)"
         
@@ -430,7 +430,7 @@ class TTMode : NSObject, TTModeProtocol {
     // MARK: Action options
     
     func actionOptionValue(_ optionName: String, actionName: String, direction: TTModeDirection) -> Any? {
-        let prefs = UserDefaults.standard
+        let prefs = preferences()
         let modeDirectionName = appDelegate().modeMap.directionName(modeDirection)
         let actionDirectionName = appDelegate().modeMap.directionName(direction)
         
@@ -486,7 +486,7 @@ class TTMode : NSObject, TTModeProtocol {
     
     func batchActionOptionValue(batchActionKey: String, optionName: String, actionName: String,
                                 actionDirection: TTModeDirection) -> Any? {
-        let prefs = UserDefaults.standard
+        let prefs = preferences()
         let modeDirectionName = appDelegate().modeMap.directionName(modeDirection)
         let actionDirectionName = appDelegate().modeMap.directionName(actionDirection)
         let optionKey = "TT:mode:\(modeDirectionName):action:\(actionDirectionName):batchactions:\(batchActionKey):actionoption:\(optionName)"
@@ -553,7 +553,7 @@ class TTMode : NSObject, TTModeProtocol {
             print(" ---> BUSTED: \(optionValue)")
             return
         }
-        let prefs = UserDefaults.standard
+        let prefs = preferences()
         let inspectingModeDirection = direction ?? appDelegate().modeMap.inspectingModeDirection
         let modeDirectionName = appDelegate().modeMap.directionName(modeDirection)
         let actionDirectionName = appDelegate().modeMap.directionName(inspectingModeDirection)
@@ -568,7 +568,7 @@ class TTMode : NSObject, TTModeProtocol {
     
     func changeBatchActionOption(_ batchActionKey: String, optionName: String, to optionValue: Any,
                                  direction: TTModeDirection? = nil, actionDirection: TTModeDirection? = nil) {
-        let prefs = UserDefaults.standard
+        let prefs = preferences()
         let modeDirectionName = appDelegate().modeMap.directionName(direction ?? modeDirection)
         let actionDirectionName = appDelegate().modeMap.directionName(actionDirection ?? appDelegate().modeMap.inspectingModeDirection)
         let optionKey = "TT:mode:\(modeDirectionName):action:\(actionDirectionName):batchactions:\(batchActionKey):actionoption:\(optionName)"
@@ -580,7 +580,7 @@ class TTMode : NSObject, TTModeProtocol {
     }
     
     func removeActionOption(_ optionName: String, direction: TTModeDirection?=nil) {
-        let prefs = UserDefaults.standard
+        let prefs = preferences()
         let inspectingModeDirection = direction ?? appDelegate().modeMap.inspectingModeDirection
         let modeDirectionName = appDelegate().modeMap.directionName(modeDirection)
         let actionDirectionName = appDelegate().modeMap.directionName(inspectingModeDirection)
@@ -595,7 +595,7 @@ class TTMode : NSObject, TTModeProtocol {
     
     func removeBatchActionOption(_ batchActionKey: String, optionName: String,
                                  direction: TTModeDirection? = nil, actionDirection: TTModeDirection? = nil) {
-        let prefs = UserDefaults.standard
+        let prefs = preferences()
         let modeDirectionName = appDelegate().modeMap.directionName(direction ?? modeDirection)
         let actionDirectionName = appDelegate().modeMap.directionName(actionDirection ?? appDelegate().modeMap.inspectingModeDirection)
         let optionKey = "TT:mode:\(modeDirectionName):action:\(actionDirectionName):batchactions:\(batchActionKey):actionoption:\(optionName)"

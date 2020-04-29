@@ -91,7 +91,7 @@ class TTModeMap: NSObject {
     override func observeValue(forKeyPath keyPath: String?, of object: Any?,
                                          change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if keyPath == "selectedModeDirection" {
-            let prefs = UserDefaults.standard
+            let prefs = preferences()
             let original = prefs.integer(forKey: "TT:selectedModeDirection")
             if original != self.selectedModeDirection.rawValue {
                 prefs.set(self.selectedModeDirection.rawValue, forKey: "TT:selectedModeDirection")
@@ -108,7 +108,7 @@ class TTModeMap: NSObject {
     // MARK: Actions
     
     func buttonAppMode() -> TTButtonAppMode {
-        let prefs = UserDefaults.standard
+        let prefs = preferences()
         
         if let appModePref = prefs.string(forKey: "TT:buttonAppMode"),
             let appMode: TTButtonAppMode = TTButtonAppMode(rawValue: appModePref) {
@@ -119,7 +119,7 @@ class TTModeMap: NSObject {
     }
     
     var buttonActionMode: TTButtonActionMode {
-        let prefs = UserDefaults.standard
+        let prefs = preferences()
         
         if let actionModePref = prefs.string(forKey: "TT:buttonActionMode"),
             let actionMode: TTButtonActionMode = TTButtonActionMode(rawValue: actionModePref) {
@@ -139,7 +139,7 @@ class TTModeMap: NSObject {
     }
 
     func setupModes() {
-        let prefs = UserDefaults.standard
+        let prefs = preferences()
         let buttonAppMode = self.buttonAppMode()
         
         for direction: String in ["north", "east", "west", "south"] {
@@ -184,7 +184,7 @@ class TTModeMap: NSObject {
     }
     
     func savedSelectedModeDirection() -> TTModeDirection {
-        let prefs = UserDefaults.standard
+        let prefs = preferences()
         let direction = TTModeDirection(rawValue: prefs.integer(forKey: "TT:selectedModeDirection"))!
         
         if buttonAppMode() == .SixteenButtons {
@@ -263,7 +263,7 @@ class TTModeMap: NSObject {
     }
     
     func notifyModeChange(direction: TTModeDirection) {
-        let prefs = UserDefaults.standard
+        let prefs = preferences()
         
         var url: URL?
         switch direction {
@@ -402,7 +402,7 @@ class TTModeMap: NSObject {
     }
     
     func vibrate() {
-        let prefs = UserDefaults.standard
+        let prefs = preferences()
         if prefs.bool(forKey: "TT:pref:vibrate_on_action") {
             if #available(iOS 10.0, *) {
                 // does nothing on iPhone 6s
@@ -451,7 +451,7 @@ class TTModeMap: NSObject {
     }
     
     func recordUsage(additionalParams: [String: Any]) {
-        let prefs = UserDefaults.standard
+        let prefs = preferences()
         if !prefs.bool(forKey: "TT:pref:share_usage_stats") {
             return
         }
@@ -530,7 +530,7 @@ class TTModeMap: NSObject {
     
     func addBatchAction(for actionName: String) {
         // Adding batch action using the menu, selecting and inspecting directions
-        let prefs = UserDefaults.standard
+        let prefs = preferences()
         let batchKey = self.batchKey()
         var batchActionKeys = self.batchActionKeys()
         let uuid = UUID().uuidString
@@ -552,7 +552,7 @@ class TTModeMap: NSObject {
     
     func addBatchAction(modeDirection: TTModeDirection, actionDirection: TTModeDirection, modeClassName: String, actionName: String) -> String {
         // Adding batch actions automatically
-        let prefs = UserDefaults.standard
+        let prefs = preferences()
         var batchActionKeys = self.batchActionKeys(modeDirection: modeDirection, actionDirection: actionDirection)
         let uuid = UUID().uuidString
         let newActionKey = "\(modeClassName):\(actionName):\(uuid[..<uuid.index(uuid.startIndex, offsetBy: 8)])"
@@ -566,7 +566,7 @@ class TTModeMap: NSObject {
     }
     
     func removeBatchAction(for batchActionKey: String, silent: Bool = false, actionDirection: TTModeDirection? = nil) {
-        let prefs = UserDefaults.standard
+        let prefs = preferences()
         let batchActionKeys = self.batchActionKeys(modeDirection: nil, actionDirection: actionDirection)
         var newBatchActionKeys: [String] = []
         
@@ -589,7 +589,7 @@ class TTModeMap: NSObject {
     }
     
     func batchActionKeys(modeDirection: TTModeDirection? = nil, actionDirection: TTModeDirection? = nil) -> [String] {
-        let prefs = UserDefaults.standard
+        let prefs = preferences()
         var batchActionKeys: [String] = []
         
         if let batchActionsPrefs = prefs.object(forKey: self.batchKey(modeDirection: modeDirection, actionDirection: actionDirection)) as? [String] {
@@ -611,7 +611,7 @@ class TTModeMap: NSObject {
     // MARK: Changing modes, actions, batch actions
     
     func changeDirection(_ direction: TTModeDirection, toMode modeClassName: String) {
-        let prefs = UserDefaults.standard
+        let prefs = preferences()
         let directionName = self.directionName(direction)
         let prefKey = "TT:\(self.modeRoot()):\(directionName)"
         
@@ -725,7 +725,7 @@ class TTModeMap: NSObject {
     
     func userId() -> String {
         var uuid: NSUUID!
-        let prefs = UserDefaults.standard
+        let prefs = preferences()
         
         if let uuidString = NSUbiquitousKeyValueStore.default.string(forKey: TTModeIftttConstants.kIftttUserIdKey) {
             uuid = NSUUID(uuidString: uuidString)
@@ -752,7 +752,7 @@ class TTModeMap: NSObject {
     
     func deviceId() -> String {
         var uuid: NSUUID!
-        let prefs = UserDefaults.standard
+        let prefs = preferences()
         
         if let uuidString = prefs.string(forKey: TTModeIftttConstants.kIftttDeviceIdKey) {
             uuid = NSUUID(uuidString: uuidString)
@@ -771,7 +771,7 @@ class TTModeMap: NSObject {
     // Mark: Button App Modes
     
     func switchButtonAppMode(_ buttonAppMode: TTButtonAppMode) {
-        let prefs = UserDefaults.standard
+        let prefs = preferences()
         
         prefs.set(buttonAppMode.rawValue, forKey: "TT:buttonAppMode")
         prefs.synchronize()
@@ -788,7 +788,7 @@ class TTModeMap: NSObject {
     }
     
     func switchPerformActionMode(_ buttonActionMode: TTButtonActionMode) {
-        let prefs = UserDefaults.standard
+        let prefs = preferences()
         
         prefs.set(buttonActionMode.rawValue, forKey: "TT:buttonActionMode")
         prefs.synchronize()

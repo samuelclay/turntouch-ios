@@ -64,7 +64,7 @@ class TTModeWemo: TTMode, TTModeWemoMulticastDelegate, TTModeWemoDeviceDelegate 
     }
     
     func resetKnownDevices() {
-        let prefs = UserDefaults.standard
+        let prefs = preferences()
         prefs.removeObject(forKey: TTModeWemoConstants.kWemoFoundDevices)
         prefs.synchronize()
         
@@ -72,7 +72,7 @@ class TTModeWemo: TTMode, TTModeWemoMulticastDelegate, TTModeWemoDeviceDelegate 
     }
     
     func assembleFoundDevices() {
-        let prefs = UserDefaults.standard
+        let prefs = preferences()
         TTModeWemo.foundDevices = []
 
         if let foundDevices = prefs.array(forKey: TTModeWemoConstants.kWemoFoundDevices) as? [[String: AnyObject]] {
@@ -336,7 +336,7 @@ class TTModeWemo: TTMode, TTModeWemoMulticastDelegate, TTModeWemoDeviceDelegate 
                                  "serialNumber": device.serialNumber ?? "", "macAddress": device.macAddress ?? ""])
         }
         
-        let prefs = UserDefaults.standard
+        let prefs = preferences()
         prefs.set(foundDevices, forKey: TTModeWemoConstants.kWemoFoundDevices)
         prefs.synchronize()
     }

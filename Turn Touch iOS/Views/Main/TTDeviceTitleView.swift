@@ -81,7 +81,7 @@ class TTDeviceTitleView: UIView, TTTitleMenuDelegate, DFUServiceDelegate, DFUPro
         self.addConstraint(NSLayoutConstraint(item: stateLabel, attribute: .centerY, relatedBy: .equal,
             toItem: self, attribute: .centerY, multiplier: 1.0, constant: 0))
  
-        let latestVersion = UserDefaults.standard.integer(forKey: "TT:firmware:version")
+        let latestVersion = preferences().integer(forKey: "TT:firmware:version")
         upgradeButton.isHidden = false
         upgradeButton.translatesAutoresizingMaskIntoConstraints = false
         upgradeButton.titleLabel!.textAlignment = .right
@@ -292,7 +292,7 @@ class TTDeviceTitleView: UIView, TTTitleMenuDelegate, DFUServiceDelegate, DFUPro
         // Please, read the field documentation before use.
         dfuInitiator.enableUnsafeExperimentalButtonlessServiceInSecureDfu = true
         
-        let latestFirmware = String(format: "%02d", UserDefaults.standard.integer(forKey: "TT:firmware:version"))
+        let latestFirmware = String(format: "%02d", preferences().integer(forKey: "TT:firmware:version"))
         let fileUrl = Bundle.main.url(forResource: "nrf51_\(latestFirmware)", withExtension: "zip", subdirectory: "DFU")!
         let selectedFirmware = DFUFirmware(urlToZipFile: fileUrl)
 

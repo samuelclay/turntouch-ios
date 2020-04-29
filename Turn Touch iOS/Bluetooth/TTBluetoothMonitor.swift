@@ -124,8 +124,8 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
     
     func knownPeripheralIdentifiers() -> [UUID] {
         var identifiers: [UUID] = []
-        let preferences = UserDefaults.standard
-        let pairedDevices = preferences.array(forKey: "TT:devices:paired") as! [String]?
+        let prefs = preferences()
+        let pairedDevices = prefs.array(forKey: "TT:devices:paired") as! [String]?
         if pairedDevices != nil {
             for identifier: String in pairedDevices! {
                 identifiers.append(NSUUID(uuidString: identifier)! as UUID)
@@ -376,7 +376,7 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
     
     func forgetDevice(_ device: TTDevice) {
         var pairedDevicesArray: [String] = []
-        let prefs = UserDefaults.standard
+        let prefs = preferences()
         if let pairedDevices = prefs.array(forKey: "TT:devices:paired") as! [String]? {
             for identifier: String in pairedDevices {
                 if identifier != device.uuid {
@@ -749,7 +749,7 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
         let emptyNickname = NSMutableData(length: 32)
         let deviceNickname = device.nickname
         let deviceNicknameData = device.nickname?.data(using: String.Encoding.utf8)
-        let prefs = UserDefaults.standard
+        let prefs = preferences()
         let nicknameKey = "TT:device:\(device.uuid ?? "?"):nickname"
         let existingNickname = prefs.string(forKey: nicknameKey)
         
@@ -785,7 +785,7 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
     
     func writeNicknameToDevice(_ device: TTDevice, nickname: String) {
         var data = NSMutableData(data: nickname.data(using: String.Encoding.utf8)!)
-        let prefs = UserDefaults.standard
+        let prefs = preferences()
 
         if data.length > 32 {
             var dataString = String(data: data as Data, encoding: String.Encoding.utf8)
@@ -849,14 +849,14 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
     // MARK: Pairing
     
     func pairDeviceSuccess(_ peripheral: CBPeripheral) {
-        let preferences = UserDefaults.standard
-        var pairedDevices = preferences.array(forKey: "TT:devices:paired") as! [String]?
+        let prefs = preferences()
+        var pairedDevices = prefs.array(forKey: "TT:devices:paired") as! [String]?
         if pairedDevices == nil {
             pairedDevices = []
         }
         pairedDevices?.append(peripheral.identifier.uuidString)
-        preferences.set(pairedDevices, forKey: "TT:devices:paired")
-        preferences.synchronize()
+        prefs.set(pairedDevices, forKey: "TT:devices:paired")
+        prefs.synchronize()
         
         if let device = foundDevices.deviceForPeripheral(peripheral) {
             device.isPaired = foundDevices.isDevicePaired(device)

@@ -75,10 +75,10 @@ class TTModeSpotify : TTMode, SPTAppRemotePlayerStateDelegate {
     
     class var accessToken: String? {
         get {
-            return UserDefaults.standard.string(forKey: TTModeSpotifyConstants.kSpotifyAccessToken)
+            return preferences().string(forKey: TTModeSpotifyConstants.kSpotifyAccessToken)
         }
         set {
-            let prefs = UserDefaults.standard
+            let prefs = preferences()
             
             prefs.set(newValue, forKey: TTModeSpotifyConstants.kSpotifyAccessToken)
             prefs.synchronize()
@@ -224,7 +224,7 @@ class TTModeSpotify : TTMode, SPTAppRemotePlayerStateDelegate {
     // MARK: Action methods
     
     override func activate() {
-        TTModeSpotify.accessToken = UserDefaults.standard.string(forKey: TTModeSpotifyConstants.kSpotifyAccessToken)
+        TTModeSpotify.accessToken = preferences().string(forKey: TTModeSpotifyConstants.kSpotifyAccessToken)
 
         if !TTModeSpotify.appRemote.isConnected {
             self.beginConnectingToSpotify()
