@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		17AE44062458FF9C00D06762 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17AE44052458FF9C00D06762 /* NotificationCenter.framework */; };
+		17AE44092458FF9C00D06762 /* WidgetExtensionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17AE44082458FF9C00D06762 /* WidgetExtensionViewController.swift */; };
+		17AE440C2458FF9C00D06762 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17AE440A2458FF9C00D06762 /* MainInterface.storyboard */; };
+		17AE44102458FF9C00D06762 /* Turn Touch Widget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 17AE44042458FF9C00D06762 /* Turn Touch Widget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		17AE4415245900A500D06762 /* Turn Touch Widget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 17AE44042458FF9C00D06762 /* Turn Touch Widget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		17BA490A231861210052734D /* TTModeMusicSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BA4909231861210052734D /* TTModeMusicSession.swift */; };
 		17CFDD4B236A7A6C00693BF7 /* TTModeSonosVolumeJumpOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8680161F9028BA00D9A0B3 /* TTModeSonosVolumeJumpOptions.swift */; };
 		17CFDD4C236A7A6C00693BF7 /* TTModeBoseConnecting.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD88F0C20AE7A9F00E0C5CC /* TTModeBoseConnecting.swift */; };
@@ -861,7 +866,54 @@
 		FFF46BF01D10E6D400158751 /* TTOptionsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF46BEF1D10E6D400158751 /* TTOptionsDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		17AE440E2458FF9C00D06762 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FFF270881CEE88E500E46575 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 17AE44032458FF9C00D06762;
+			remoteInfo = "Widget Extension";
+		};
+		17AE4416245900A500D06762 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FFF270881CEE88E500E46575 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 17AE44032458FF9C00D06762;
+			remoteInfo = "Widget Extension";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		17AE44112458FF9C00D06762 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				17AE44102458FF9C00D06762 /* Turn Touch Widget.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		17AE4418245900A500D06762 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				17AE4415245900A500D06762 /* Turn Touch Widget.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		17AE44042458FF9C00D06762 /* Turn Touch Widget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Turn Touch Widget.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		17AE44052458FF9C00D06762 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
+		17AE44082458FF9C00D06762 /* WidgetExtensionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetExtensionViewController.swift; sourceTree = "<group>"; };
+		17AE440B2458FF9C00D06762 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		17AE440D2458FF9C00D06762 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		17BA4909231861210052734D /* TTModeMusicSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TTModeMusicSession.swift; path = Modes/Music/TTModeMusicSession.swift; sourceTree = "<group>"; };
 		17CFDEFB236A7A6C00693BF7 /* Turn Touch iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Turn Touch iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		552AD10F15F394A44BF4BD6D /* Pods-Turn Touch iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Turn Touch iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Turn Touch iOS/Pods-Turn Touch iOS.debug.xcconfig"; sourceTree = "<group>"; };
@@ -1317,6 +1369,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		17AE44012458FF9C00D06762 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				17AE44062458FF9C00D06762 /* NotificationCenter.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		17CFDDE0236A7A6C00693BF7 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -1351,8 +1411,19 @@
 				FF4AF7AD1D2475780009C777 /* libxml2.2.tbd */,
 				FF4AF7AB1D2475630009C777 /* libxml2.tbd */,
 				ACFD869DD1D0B508AA8C9258 /* Pods_Turn_Touch_iOS.framework */,
+				17AE44052458FF9C00D06762 /* NotificationCenter.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		17AE44072458FF9C00D06762 /* Widget Extension */ = {
+			isa = PBXGroup;
+			children = (
+				17AE44082458FF9C00D06762 /* WidgetExtensionViewController.swift */,
+				17AE440A2458FF9C00D06762 /* MainInterface.storyboard */,
+				17AE440D2458FF9C00D06762 /* Info.plist */,
+			);
+			path = "Widget Extension";
 			sourceTree = "<group>";
 		};
 		2052B86C8110B5F324537385 /* Pods */ = {
@@ -2106,6 +2177,7 @@
 				FFF270921CEE88E500E46575 /* Turn Touch iOS */,
 				FFB41B7D1CF52E5700CD5F09 /* Supporting Files */,
 				FFF46BC81D10941500158751 /* Vendor */,
+				17AE44072458FF9C00D06762 /* Widget Extension */,
 				FFF270911CEE88E500E46575 /* Products */,
 				2052B86C8110B5F324537385 /* Pods */,
 				0F31B8744850402114AE49F7 /* Frameworks */,
@@ -2117,6 +2189,7 @@
 			children = (
 				FFF270901CEE88E500E46575 /* Turn Touch iOS.app */,
 				17CFDEFB236A7A6C00693BF7 /* Turn Touch iOS.app */,
+				17AE44042458FF9C00D06762 /* Turn Touch Widget.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -2195,6 +2268,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		17AE44032458FF9C00D06762 /* Widget Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 17AE44142458FF9C00D06762 /* Build configuration list for PBXNativeTarget "Widget Extension" */;
+			buildPhases = (
+				17AE44002458FF9C00D06762 /* Sources */,
+				17AE44012458FF9C00D06762 /* Frameworks */,
+				17AE44022458FF9C00D06762 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Widget Extension";
+			productName = "Widget Extension";
+			productReference = 17AE44042458FF9C00D06762 /* Turn Touch Widget.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		17CFDD48236A7A6C00693BF7 /* Turn Touch Dejal */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 17CFDEF8236A7A6C00693BF7 /* Build configuration list for PBXNativeTarget "Turn Touch Dejal" */;
@@ -2204,10 +2294,12 @@
 				17CFDDE0236A7A6C00693BF7 /* Frameworks */,
 				17CFDDE5236A7A6C00693BF7 /* Resources */,
 				17CFDEF7236A7A6C00693BF7 /* [CP] Embed Pods Frameworks */,
+				17AE4418245900A500D06762 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				17AE4417245900A500D06762 /* PBXTargetDependency */,
 			);
 			name = "Turn Touch Dejal";
 			productName = "Turn Touch iOS";
@@ -2223,10 +2315,12 @@
 				FFF2708D1CEE88E500E46575 /* Frameworks */,
 				FFF2708E1CEE88E500E46575 /* Resources */,
 				837731E774B58F7A7D8DA486 /* [CP] Embed Pods Frameworks */,
+				17AE44112458FF9C00D06762 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				17AE440F2458FF9C00D06762 /* PBXTargetDependency */,
 			);
 			name = "Turn Touch iOS";
 			productName = "Turn Touch iOS";
@@ -2239,10 +2333,15 @@
 		FFF270881CEE88E500E46575 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0730;
+				LastSwiftUpdateCheck = 1140;
 				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = "Turn Touch";
 				TargetAttributes = {
+					17AE44032458FF9C00D06762 = {
+						CreatedOnToolsVersion = 11.4.1;
+						DevelopmentTeam = 6Z7QW53WB6;
+						ProvisioningStyle = Automatic;
+					};
 					17CFDD48236A7A6C00693BF7 = {
 						DevelopmentTeam = 6Z7QW53WB6;
 					};
@@ -2280,11 +2379,20 @@
 			targets = (
 				FFF2708F1CEE88E500E46575 /* Turn Touch iOS */,
 				17CFDD48236A7A6C00693BF7 /* Turn Touch Dejal */,
+				17AE44032458FF9C00D06762 /* Widget Extension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		17AE44022458FF9C00D06762 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				17AE440C2458FF9C00D06762 /* MainInterface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		17CFDDE5236A7A6C00693BF7 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -2971,6 +3079,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		17AE44002458FF9C00D06762 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				17AE44092458FF9C00D06762 /* WidgetExtensionViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		17CFDD4A236A7A6C00693BF7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -3285,7 +3401,28 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		17AE440F2458FF9C00D06762 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 17AE44032458FF9C00D06762 /* Widget Extension */;
+			targetProxy = 17AE440E2458FF9C00D06762 /* PBXContainerItemProxy */;
+		};
+		17AE4417245900A500D06762 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 17AE44032458FF9C00D06762 /* Widget Extension */;
+			targetProxy = 17AE4416245900A500D06762 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
+		17AE440A2458FF9C00D06762 /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				17AE440B2458FF9C00D06762 /* Base */,
+			);
+			name = MainInterface.storyboard;
+			sourceTree = "<group>";
+		};
 		FFF2709E1CEE88E500E46575 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -3297,6 +3434,60 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		17AE44122458FF9C00D06762 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 37;
+				DEVELOPMENT_TEAM = 6Z7QW53WB6;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "Widget Extension/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MARKETING_VERSION = 2.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.dejal.turntouch.ios-remote.widget";
+				PRODUCT_NAME = "Turn Touch Widget";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		17AE44132458FF9C00D06762 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 37;
+				DEVELOPMENT_TEAM = 6Z7QW53WB6;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "Widget Extension/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MARKETING_VERSION = 2.2;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.dejal.turntouch.ios-remote.widget";
+				PRODUCT_NAME = "Turn Touch Widget";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		17CFDEF9236A7A6C00693BF7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 552AD10F15F394A44BF4BD6D /* Pods-Turn Touch iOS.debug.xcconfig */;
@@ -3491,6 +3682,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 552AD10F15F394A44BF4BD6D /* Pods-Turn Touch iOS.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Turn Touch iOS/Turn Touch iOS.entitlements";
@@ -3532,6 +3724,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 87558F01A91A74C470B9149B /* Pods-Turn Touch iOS.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Turn Touch iOS/Turn Touch iOS.entitlements";
@@ -3572,6 +3765,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		17AE44142458FF9C00D06762 /* Build configuration list for PBXNativeTarget "Widget Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				17AE44122458FF9C00D06762 /* Debug */,
+				17AE44132458FF9C00D06762 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		17CFDEF8236A7A6C00693BF7 /* Build configuration list for PBXNativeTarget "Turn Touch Dejal" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
