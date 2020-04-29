@@ -7,7 +7,9 @@
 //
 
 import UIKit
+#if !WIDGET
 import SWXMLHash
+#endif
 
 enum TTModeWemoDeviceState {
     case on
@@ -96,6 +98,8 @@ class TTModeWemoDevice: NSObject {
     }
     
     func parseSetupXml(_ xmlData: Data) {
+        #warning("to do")
+        #if !WIDGET
         let doc = SWXMLHash.parse(xmlData)
 //        print(" ---> Wemo data: \(String(data: xmlData, encoding: .utf8))")
         deviceName = doc["root"]["device"]["friendlyName"].element?.text
@@ -112,6 +116,7 @@ class TTModeWemoDevice: NSObject {
         DispatchQueue.main.async {
             self.delegate.deviceReady(self)
         }
+        #endif
     }
     
     func requestDeviceState(_ callback: @escaping () -> Void) {
@@ -162,6 +167,8 @@ class TTModeWemoDevice: NSObject {
     }
     
     func parseBasicEventXml(_ data: Data, _ callback: () -> Void) {
+        #warning("to do")
+        #if !WIDGET
         let doc = SWXMLHash.parse(data)
 //        let results = doc["root"]["device"]["friendlyName"].element?.text
         if let stateString = doc["s:Envelope"]["s:Body"]["u:GetBinaryStateResponse"]["BinaryState"].element?.text {
@@ -176,6 +183,7 @@ class TTModeWemoDevice: NSObject {
             print(" ---> Error: could not get binary state for wemo")
             deviceName = "Wemo device (\(self.location()))"
         }
+        #endif
     }
     
     func changeDeviceState(_ state: TTModeWemoDeviceState) {

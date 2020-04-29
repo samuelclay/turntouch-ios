@@ -36,11 +36,14 @@ protocol TTModeWemoDelegate {
     func changeState(_ state: TTWemoState, mode: TTModeWemo)
 }
 
-class TTModeWemo: TTMode, TTModeWemoMulticastDelegate, TTModeWemoDeviceDelegate {
+class TTModeWemo: TTMode, TTModeWemoDeviceDelegate {
     
     var delegate: TTModeWemoDelegate?
     static var wemoState = TTWemoState.disconnected
+    #warning("to do")
+    #if !WIDGET
     static var multicastServer = TTModeWemoMulticastServer()
+    #endif
     static var foundDevices: [TTModeWemoDevice] = []
     static var failedDevices: [TTModeWemoDevice] = []
     static var recentlyFoundDevices: [TTModeWemoDevice] = []
@@ -48,7 +51,10 @@ class TTModeWemo: TTMode, TTModeWemoMulticastDelegate, TTModeWemoDeviceDelegate 
     required init() {
         super.init()
         
+        #warning("to do")
+        #if !WIDGET
         TTModeWemo.multicastServer.delegate = self
+        #endif
         
         if TTModeWemo.foundDevices.count == 0 {
             self.assembleFoundDevices()
@@ -72,6 +78,8 @@ class TTModeWemo: TTMode, TTModeWemoMulticastDelegate, TTModeWemoDeviceDelegate 
     }
     
     func assembleFoundDevices() {
+        #warning("to do")
+        #if !WIDGET
         let prefs = preferences()
         TTModeWemo.foundDevices = []
 
@@ -86,6 +94,7 @@ class TTModeWemo: TTMode, TTModeWemoMulticastDelegate, TTModeWemoDeviceDelegate 
                 print(" ---> Loading wemo: \(newDevice.deviceName!) (\(newDevice.location()))")
             }
         }
+        #endif
     }
     
     override class func title() -> String {
@@ -162,7 +171,10 @@ class TTModeWemo: TTMode, TTModeWemoMulticastDelegate, TTModeWemoDeviceDelegate 
     }
     
     override func deactivate() {
+        #warning("to do")
+        #if !WIDGET
         TTModeWemo.multicastServer.deactivate()
+        #endif
     }
     
     func runTTModeWemoDeviceStart(direction: NSNumber) {
@@ -222,58 +234,21 @@ class TTModeWemo: TTMode, TTModeWemoMulticastDelegate, TTModeWemoDeviceDelegate 
         TTModeWemo.wemoState = .connecting
         delegate?.changeState(TTModeWemo.wemoState, mode: self)
         
+        #warning("to do")
+        #if !WIDGET
         TTModeWemo.multicastServer.delegate = self
         TTModeWemo.multicastServer.beginBroadcast()
+        #endif
     }
     
     func cancelConnectingToWemo() {
         TTModeWemo.wemoState = .connected
         delegate?.changeState(TTModeWemo.wemoState, mode: self)
         
+        #warning("to do")
+        #if !WIDGET
         TTModeWemo.multicastServer.deactivate()
-    }
-    
-    // MARK: Multicast delegate
-    
-    func foundDevice(_ headers: [String: String], host ipAddress: String, port: Int, name: String?, serialNumber: String?, macAddress: String?, live: Bool) -> TTModeWemoDevice {
-        let newDevice = TTModeWemoDevice(ipAddress: ipAddress, port: port)
-        newDevice.delegate = self
-        
-        if let name = name {
-            newDevice.deviceName = name
-        }
-        if let serialNumber = serialNumber {
-            newDevice.serialNumber = serialNumber
-        }
-        if let macAddress = macAddress {
-            newDevice.macAddress = macAddress
-        }
-        
-        for device in TTModeWemo.foundDevices {
-            if device.isEqualToDevice(newDevice) {
-                // Already found
-                return device
-            }
-        }
-        for device in TTModeWemo.recentlyFoundDevices {
-            if device.isEqualToDevice(newDevice) {
-//                return device
-            }
-        }
-        
-        if newDevice.deviceName != nil && newDevice.serialNumber != nil {
-            TTModeWemo.foundDevices.append(newDevice)
-        }
-        TTModeWemo.recentlyFoundDevices.append(newDevice)
-
-        newDevice.requestDeviceInfo()
-        
-        return newDevice
-    }
-    
-    func finishScanning() {
-        TTModeWemo.wemoState = .connected
-        delegate?.changeState(TTModeWemo.wemoState, mode: self)
+        #endif
     }
     
     // MARK: Device delegate
@@ -378,5 +353,51 @@ class TTModeWemo: TTMode, TTModeWemoMulticastDelegate, TTModeWemoDeviceDelegate 
         }
         self.action.changeActionOption(TTModeWemoConstants.kWemoSelectedSerials, to: serialNumbers)
     }
-
 }
+
+#if !WIDGET
+extension TTModeWemo: TTModeWemoMulticastDelegate {
+    // MARK: Multicast delegate
+    
+    func foundDevice(_ headers: [String: String], host ipAddress: String, port: Int, name: String?, serialNumber: String?, macAddress: String?, live: Bool) -> TTModeWemoDevice {
+        let newDevice = TTModeWemoDevice(ipAddress: ipAddress, port: port)
+        newDevice.delegate = self
+        
+        if let name = name {
+            newDevice.deviceName = name
+        }
+        if let serialNumber = serialNumber {
+            newDevice.serialNumber = serialNumber
+        }
+        if let macAddress = macAddress {
+            newDevice.macAddress = macAddress
+        }
+        
+        for device in TTModeWemo.foundDevices {
+            if device.isEqualToDevice(newDevice) {
+                // Already found
+                return device
+            }
+        }
+        for device in TTModeWemo.recentlyFoundDevices {
+            if device.isEqualToDevice(newDevice) {
+                //                return device
+            }
+        }
+        
+        if newDevice.deviceName != nil && newDevice.serialNumber != nil {
+            TTModeWemo.foundDevices.append(newDevice)
+        }
+        TTModeWemo.recentlyFoundDevices.append(newDevice)
+        
+        newDevice.requestDeviceInfo()
+        
+        return newDevice
+    }
+    
+    func finishScanning() {
+        TTModeWemo.wemoState = .connected
+        delegate?.changeState(TTModeWemo.wemoState, mode: self)
+    }
+}
+#endif

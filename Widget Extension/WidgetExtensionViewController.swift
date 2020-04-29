@@ -14,8 +14,15 @@ class WidgetExtensionViewController: UIViewController, NCWidgetProviding {
     var modeTabsView = UIStackView()
     var modeTabs: [TTModeTab] = []
     var modeTabsConstraint: NSLayoutConstraint!
-    var actionDiamondView = TTActionDiamondView(diamondType: .interactive)
+    var actionDiamondView: TTActionDiamondView
     var actionDiamondConstraint: NSLayoutConstraint!
+    
+    required init?(coder: NSCoder) {
+        appDelegate().prepare()
+        actionDiamondView = TTActionDiamondView(diamondType: .interactive)
+        
+        super.init(coder: coder)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -81,6 +88,7 @@ class WidgetExtensionViewController: UIViewController, NCWidgetProviding {
         modeTabsView.spacing = 0
         modeTabsView.contentMode = .scaleToFill
         stackView.addArrangedSubview(modeTabsView);
+        stackView.addArrangedSubview(actionDiamondView)
         
         modeTabsConstraint = NSLayoutConstraint(item: modeTabsView, attribute: .height, relatedBy: .equal,
                                                 toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 92.0)
@@ -89,7 +97,6 @@ class WidgetExtensionViewController: UIViewController, NCWidgetProviding {
         actionDiamondConstraint = NSLayoutConstraint(item: actionDiamondView, attribute: .height, relatedBy: .equal,
                                                      toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 420)
         stackView.addConstraint(actionDiamondConstraint)
-        stackView.addArrangedSubview(actionDiamondView)
         
         //        if appDelegate().modeMap.buttonAppMode() == .TwelveButtons, let modeTitleView = modeTitleView {
         //            modeTitleView.alpha = 0

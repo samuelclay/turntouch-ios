@@ -27,6 +27,11 @@
 		174A15FC24592A2D00F4AA2E /* TTActionDiamondView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC9FE941D021A0400038817 /* TTActionDiamondView.swift */; };
 		174A15FD24592A3800F4AA2E /* TTDiamondLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0F10DB1CF669BE00CC1F29 /* TTDiamondLabel.swift */; };
 		174A15FF24592CD700F4AA2E /* Preferences.plist in Resources */ = {isa = PBXBuildFile; fileRef = FF0F10BF1CF5638D00CC1F29 /* Preferences.plist */; };
+		17611848245A187100D32EB3 /* TTModeWemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF254F6A1D21C2CE00E96378 /* TTModeWemo.swift */; };
+		17611849245A188A00D32EB3 /* TTModeWemoDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF254FD91D21EF1200E96378 /* TTModeWemoDevice.swift */; };
+		1761184B245A1FB400D32EB3 /* TTModeMusic.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0F10C61CF63F1600CC1F29 /* TTModeMusic.swift */; };
+		1761184C245A1FBD00D32EB3 /* TTModeMusicSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BA4909231861210052734D /* TTModeMusicSession.swift */; };
+		1761184E245A220000D32EB3 /* TTModePhone.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0F10C91CF63F3B00CC1F29 /* TTModePhone.swift */; };
 		17AE44062458FF9C00D06762 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17AE44052458FF9C00D06762 /* NotificationCenter.framework */; };
 		17AE44092458FF9C00D06762 /* WidgetExtensionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17AE44082458FF9C00D06762 /* WidgetExtensionViewController.swift */; };
 		17AE440C2458FF9C00D06762 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17AE440A2458FF9C00D06762 /* MainInterface.storyboard */; };
@@ -3113,6 +3118,7 @@
 				170C8DC6245906150089B2C0 /* WidgetDelegate.swift in Sources */,
 				1725905024591EFC00055830 /* TTBatchActions.swift in Sources */,
 				1725904824591E5400055830 /* TTMode.swift in Sources */,
+				1761184C245A1FBD00D32EB3 /* TTModeMusicSession.swift in Sources */,
 				174A15FC24592A2D00F4AA2E /* TTActionDiamondView.swift in Sources */,
 				172590542459235600055830 /* TTModeIfttt.swift in Sources */,
 				172590532459231C00055830 /* TTModeMenuContainer.swift in Sources */,
@@ -3120,14 +3126,18 @@
 				170C8DC8245907B40089B2C0 /* TTModeMap.swift in Sources */,
 				172590522459221100055830 /* TTModeDoubleOptions.swift in Sources */,
 				1725904D24591ED900055830 /* NSObject+Class.swift in Sources */,
+				17611849245A188A00D32EB3 /* TTModeWemoDevice.swift in Sources */,
 				172590552459276D00055830 /* TTModeTab.swift in Sources */,
 				1725904924591E6000055830 /* TTAction.swift in Sources */,
 				1725904B24591E8200055830 /* TTModeDouble.swift in Sources */,
+				1761184B245A1FB400D32EB3 /* TTModeMusic.swift in Sources */,
 				174A15FD24592A3800F4AA2E /* TTDiamondLabel.swift in Sources */,
 				1725904C24591ED900055830 /* UIColor+hex.swift in Sources */,
 				170C8DC7245907A70089B2C0 /* TTModeDirection.swift in Sources */,
 				17AE44092458FF9C00D06762 /* WidgetExtensionViewController.swift in Sources */,
+				17611848245A187100D32EB3 /* TTModeWemo.swift in Sources */,
 				1725904E24591ED900055830 /* NSData+Hex.swift in Sources */,
+				1761184E245A220000D32EB3 /* TTModePhone.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

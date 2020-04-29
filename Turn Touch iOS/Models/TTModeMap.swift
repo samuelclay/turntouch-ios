@@ -145,7 +145,17 @@ class TTModeMap: NSObject {
         for direction: String in ["north", "east", "west", "south"] {
             if let directionModeName = prefs.string(forKey: "TT:\(self.modeRoot()):\(direction)") {
                 let className = "Turn_Touch_iOS.\(directionModeName)"
-                let modeClass = NSClassFromString(className) as! TTMode.Type
+                var possibleModeClass = NSClassFromString(className) as? TTMode.Type
+                
+                if possibleModeClass == nil {
+                    print("\(directionModeName) is not available; using TTModePhone instead")
+                    possibleModeClass = TTModePhone.self
+                }
+                
+                guard let modeClass = possibleModeClass else {
+                    return
+                }
+                
                 switch (direction) {
                 case "north":
                     northMode = modeClass.init()

@@ -16,9 +16,11 @@ class WidgetDelegate: UIResponder {
     var modeMap: TTModeMap!
     @IBOutlet var mainViewController: WidgetExtensionViewController!
     
-    override init() {
+    private override init() {
         super.init()
-        
+    }
+    
+    func prepare() {
         //        self.erasePreferences()
         self.loadPreferences()
         
