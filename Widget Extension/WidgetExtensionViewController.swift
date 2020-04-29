@@ -12,14 +12,17 @@ import NotificationCenter
 class WidgetExtensionViewController: UIViewController, NCWidgetProviding {
     var stackView = UIStackView()
     var modeTabsView = UIStackView()
-//    var modeTabs: [TTModeTab] = []
-//    var modeTabsConstraint: NSLayoutConstraint!
+    var modeTabs: [TTModeTab] = []
+    var modeTabsConstraint: NSLayoutConstraint!
 //    var actionDiamondView = TTActionDiamondView(diamondType: .interactive)
 //    var actionDiamondConstraint: NSLayoutConstraint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+        self.layoutStackview()
+        self.registerAsObserver()
     }
     
     func widgetPerformUpdate(completionHandler: (@escaping (NCUpdateResult) -> Void)) {
@@ -32,43 +35,29 @@ class WidgetExtensionViewController: UIViewController, NCWidgetProviding {
         completionHandler(NCUpdateResult.newData)
     }
     
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-        
-        self.view.backgroundColor = UIColor.white
-        
-        self.layoutStackview()
-        
-        self.registerAsObserver()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
-    
     func layoutStackview() {
-//        modeTabsView.arrangedSubviews.forEach { $0.removeFromSuperview() }
-//        stackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
-//        stackView.constraints.forEach { stackView.removeConstraint($0) }
-//
-//        stackView.translatesAutoresizingMaskIntoConstraints = false
-//        stackView.axis = .vertical
-//        stackView.distribution = .fill
-//        stackView.alignment = .fill
-//        stackView.spacing = 0
-//        //        stackView.contentMode = .ScaleToFill
-//        let guide = self.view.safeAreaLayoutGuide
-//        self.view.addSubview(stackView)
-//        self.view.addConstraint(NSLayoutConstraint(item: stackView, attribute: .width,
-//                                                   relatedBy: .equal, toItem: self.view, attribute: .width, multiplier: 1.0, constant: 0.0))
-//        self.view.addConstraint(stackView.topAnchor.constraint(equalToSystemSpacingBelow: guide.topAnchor, multiplier: 1.0))
-//        self.view.addConstraint(NSLayoutConstraint(item: stackView, attribute: .bottom,
-//                                                   relatedBy: .equal, toItem: self.view, attribute: .bottom, multiplier: 1.0, constant: 0.0))
-//        self.view.addConstraint(NSLayoutConstraint(item: stackView, attribute: .left,
-//                                                   relatedBy: .equal, toItem: self.view, attribute: .left, multiplier: 1.0, constant: 0.0))
-//        self.view.addConstraint(NSLayoutConstraint(item: stackView, attribute: .right,
-//                                                   relatedBy: .equal, toItem: self.view, attribute: .right, multiplier: 1.0, constant: 0.0))
-//
+        modeTabsView.arrangedSubviews.forEach { $0.removeFromSuperview() }
+        stackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
+        stackView.constraints.forEach { stackView.removeConstraint($0) }
+        
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .vertical
+        stackView.distribution = .fill
+        stackView.alignment = .fill
+        stackView.spacing = 0
+        //        stackView.contentMode = .ScaleToFill
+        let guide = self.view.safeAreaLayoutGuide
+        self.view.addSubview(stackView)
+        self.view.addConstraint(NSLayoutConstraint(item: stackView, attribute: .width,
+                                                   relatedBy: .equal, toItem: self.view, attribute: .width, multiplier: 1.0, constant: 0.0))
+        self.view.addConstraint(stackView.topAnchor.constraint(equalToSystemSpacingBelow: guide.topAnchor, multiplier: 1.0))
+        self.view.addConstraint(NSLayoutConstraint(item: stackView, attribute: .bottom,
+                                                   relatedBy: .equal, toItem: self.view, attribute: .bottom, multiplier: 1.0, constant: 0.0))
+        self.view.addConstraint(NSLayoutConstraint(item: stackView, attribute: .left,
+                                                   relatedBy: .equal, toItem: self.view, attribute: .left, multiplier: 1.0, constant: 0.0))
+        self.view.addConstraint(NSLayoutConstraint(item: stackView, attribute: .right,
+                                                   relatedBy: .equal, toItem: self.view, attribute: .right, multiplier: 1.0, constant: 0.0))
+        
 //        if appDelegate().modeMap.buttonAppMode() == .SixteenButtons {
 //            modeTabs = [
 //                TTModeTab(modeDirection:.north),

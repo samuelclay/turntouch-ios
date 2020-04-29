@@ -8,7 +8,9 @@
 
 import UIKit
 import SafariServices
+#if !WIDGET
 import Alamofire
+#endif
 
 struct TTModeIftttConstants {
     static let kIftttUserIdKey = "TT:IFTTT:shared_user_id"
@@ -127,11 +129,14 @@ class TTModeIfttt: TTMode {
             "triggers": [trigger],
         ]
         
+        #warning("would need to replace this with a direct call")
+        #if !WIDGET
         Alamofire.request("https://turntouch.com/ifttt/button_trigger", method: .post,
                           parameters: params, encoding: JSONEncoding.default).responseJSON
             { response in
                 print(" ---> IFTTT Button trigger: \(response)")
             }
+        #endif
     }
     
     func beginConnectingToIfttt() {
@@ -180,6 +185,8 @@ class TTModeIfttt: TTMode {
         params["button_direction"] = actionDirection
 
         print(" ---> Purging: \(params)")
+        #warning("would need to replace this with a direct call")
+        #if !WIDGET
         Alamofire.request("https://turntouch.com/ifttt/purge_trigger", method: .post,
                           parameters: params, encoding: URLEncoding.default).responseJSON
             { response in
@@ -188,6 +195,7 @@ class TTModeIfttt: TTMode {
                     callback()
                 }
         }
+        #endif
     }
     
     func registerTriggers(callback: (() -> Void)? = nil) {
@@ -199,6 +207,8 @@ class TTModeIfttt: TTMode {
             "triggers": triggers,
         ]
         print(" ---> Registering: \(params)")
+        #warning("would need to replace this with a direct call")
+        #if !WIDGET
         Alamofire.request("https://turntouch.com/ifttt/register_triggers", method: .post,
                           parameters: params, encoding: JSONEncoding.default).responseJSON
             { response in
@@ -207,6 +217,7 @@ class TTModeIfttt: TTMode {
                     callback()
                 }
             }
+        #endif
     }
     
     func collectTriggers() -> [[String: String]] {

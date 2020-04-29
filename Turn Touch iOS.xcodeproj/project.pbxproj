@@ -10,6 +10,20 @@
 		170C8DC6245906150089B2C0 /* WidgetDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 170C8DC5245906150089B2C0 /* WidgetDelegate.swift */; };
 		170C8DC7245907A70089B2C0 /* TTModeDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB41B7A1CEEA9E300CD5F09 /* TTModeDirection.swift */; };
 		170C8DC8245907B40089B2C0 /* TTModeMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB41B831CF5342100CD5F09 /* TTModeMap.swift */; };
+		1725904824591E5400055830 /* TTMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB41B811CF5341700CD5F09 /* TTMode.swift */; };
+		1725904924591E6000055830 /* TTAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB41B851CF536AC00CD5F09 /* TTAction.swift */; };
+		1725904A24591E6000055830 /* TTActionMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB41B871CF536BB00CD5F09 /* TTActionMap.swift */; };
+		1725904B24591E8200055830 /* TTModeDouble.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF189C6D210F5B7C000B49F7 /* TTModeDouble.swift */; };
+		1725904C24591ED900055830 /* UIColor+hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0F10BD1CF55A9000CC1F29 /* UIColor+hex.swift */; };
+		1725904D24591ED900055830 /* NSObject+Class.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC9FE981D02520300038817 /* NSObject+Class.swift */; };
+		1725904E24591ED900055830 /* NSData+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4487731D09300B00ED8099 /* NSData+Hex.swift */; };
+		1725904F24591ED900055830 /* UIView+nib.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC4B0F61D2DE3DB00A97C81 /* UIView+nib.swift */; };
+		1725905024591EFC00055830 /* TTBatchActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7C144E1DB2F2AB009CBA28 /* TTBatchActions.swift */; };
+		172590522459221100055830 /* TTModeDoubleOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF189C69210F578B000B49F7 /* TTModeDoubleOptions.swift */; };
+		172590532459231C00055830 /* TTModeMenuContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0F10E21CFFAC5300CC1F29 /* TTModeMenuContainer.swift */; };
+		172590542459235600055830 /* TTModeIfttt.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF534C2E1EB0351A002EE584 /* TTModeIfttt.swift */; };
+		172590552459276D00055830 /* TTModeTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB41B781CEEA8E500CD5F09 /* TTModeTab.swift */; };
+		172590562459277A00055830 /* TTDiamondView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0F10D61CF6697A00CC1F29 /* TTDiamondView.swift */; };
 		17AE44062458FF9C00D06762 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17AE44052458FF9C00D06762 /* NotificationCenter.framework */; };
 		17AE44092458FF9C00D06762 /* WidgetExtensionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17AE44082458FF9C00D06762 /* WidgetExtensionViewController.swift */; };
 		17AE440C2458FF9C00D06762 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17AE440A2458FF9C00D06762 /* MainInterface.storyboard */; };
@@ -3088,10 +3102,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1725904F24591ED900055830 /* UIView+nib.swift in Sources */,
+				172590562459277A00055830 /* TTDiamondView.swift in Sources */,
 				170C8DC6245906150089B2C0 /* WidgetDelegate.swift in Sources */,
+				1725905024591EFC00055830 /* TTBatchActions.swift in Sources */,
+				1725904824591E5400055830 /* TTMode.swift in Sources */,
+				172590542459235600055830 /* TTModeIfttt.swift in Sources */,
+				172590532459231C00055830 /* TTModeMenuContainer.swift in Sources */,
+				1725904A24591E6000055830 /* TTActionMap.swift in Sources */,
 				170C8DC8245907B40089B2C0 /* TTModeMap.swift in Sources */,
+				172590522459221100055830 /* TTModeDoubleOptions.swift in Sources */,
+				1725904D24591ED900055830 /* NSObject+Class.swift in Sources */,
+				172590552459276D00055830 /* TTModeTab.swift in Sources */,
+				1725904924591E6000055830 /* TTAction.swift in Sources */,
+				1725904B24591E8200055830 /* TTModeDouble.swift in Sources */,
+				1725904C24591ED900055830 /* UIColor+hex.swift in Sources */,
 				170C8DC7245907A70089B2C0 /* TTModeDirection.swift in Sources */,
 				17AE44092458FF9C00D06762 /* WidgetExtensionViewController.swift in Sources */,
+				1725904E24591ED900055830 /* NSData+Hex.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3464,7 +3492,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.dejal.turntouch.ios-remote.widget";
 				PRODUCT_NAME = "Turn Touch Widget";
 				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG WIDGET";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -3491,6 +3519,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.dejal.turntouch.ios-remote.widget";
 				PRODUCT_NAME = "Turn Touch Widget";
 				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = WIDGET;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

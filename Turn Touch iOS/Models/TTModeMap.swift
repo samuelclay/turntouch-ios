@@ -9,7 +9,10 @@
 import Foundation
 import AVFoundation
 import AudioToolbox
+import UIKit
+#if !WIDGET
 import Alamofire
+#endif
 
 class TTModeMap: NSObject {
     
@@ -458,11 +461,14 @@ class TTModeMap: NSObject {
             params[k] = v
         }
         
+        #warning("would need to replace this with a direct call")
+        #if !WIDGET
         Alamofire.request("https://turntouch.com/usage/record", method: .post,
                           parameters: params, encoding: JSONEncoding.default).responseJSON
             { response in
 //                print(" ---> Usage: \(params) \(response)")
             }
+        #endif
     }
     
     func deviceAttrs() -> [String: Any] {
@@ -472,11 +478,15 @@ class TTModeMap: NSObject {
         let deviceModel = UIDevice.current.model
         let devicePlatform = UIDevice.current.systemName
         let deviceVersion = UIDevice.current.systemVersion
+#if WIDGET
+        let remoteName: String? = ""
+#else
         let devices = appDelegate().bluetoothMonitor.foundDevices.devices
         var remoteName: String?
         if devices.count >= 1 {
             remoteName = devices[0].nickname
         }
+#endif
         let params: [String: Any] = [
             "user_id": userId,
             "device_id": deviceId,

@@ -225,9 +225,11 @@ class TTDiamondView: UIView {
             if diamondType != .interactive {
                 isInspectingDirection = false
             }
+            #if !WIDGET
             if diamondType == .pairing {
                 isSelectedDirection = appD.bluetoothMonitor.buttonTimer.isDirectionPaired(direction)
             }
+            #endif
             // Fill in the color as a stroke or fill
             var modeColor: UIColor?
             if diamondType == .hud {
@@ -341,7 +343,9 @@ class TTDiamondView: UIView {
             }
         }
         
+        #if !WIDGET
         appDelegate().mainViewController.scrollView.isScrollEnabled = false
+        #endif
         self.setNeedsDisplay()
     }
     
@@ -419,7 +423,9 @@ class TTDiamondView: UIView {
         
         self.setNeedsDisplay()
         
+        #if !WIDGET
         appDelegate().mainViewController.scrollView.isScrollEnabled = true
+        #endif
     }
     
     @objc func longPressed(sender: UILongPressGestureRecognizer) {
@@ -453,9 +459,11 @@ class TTDiamondView: UIView {
                 }
                 appDelegate().modeMap.toggleInspectingModeDirection(overrideActiveDirection)
             }
+            #if !WIDGET
             appDelegate().mainViewController.actionTitleView.pressChange(nil)
             
             appDelegate().mainViewController.scrollView.isScrollEnabled = true
+            #endif
         }
     }
 }

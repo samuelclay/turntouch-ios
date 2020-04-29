@@ -15,6 +15,7 @@ enum TTMenuType {
     case menu_ADD_ACTION
 }
 
+#if !WIDGET
 class TTModeMenuContainer: UIView {
     @IBInspectable var MENU_HEIGHT: CGFloat = 100
     @IBInspectable var MENU_WIDTH: CGFloat = 150
@@ -188,3 +189,4 @@ class TTModeMenuContainer: UIView {
     }
     
 }
+#endif

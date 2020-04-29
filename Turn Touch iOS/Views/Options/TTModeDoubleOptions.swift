@@ -12,6 +12,7 @@ struct TTModeDoubleConstants {
     static let TTModeDoubleEnabled = "TTModeDoubleEnabled"
 }
 
+#if !WIDGET
 class TTModeDoubleOptions: TTOptionsDetailViewController {
 
     @IBOutlet var doubleTapSwitch: UISwitch!
@@ -42,3 +43,4 @@ class TTModeDoubleOptions: TTOptionsDetailViewController {
         self.mode.changeModeOption(TTModeDoubleConstants.TTModeDoubleEnabled, to: doubleTapSwitch.isOn)
     }
 }
+#endif

@@ -6,7 +6,7 @@
 //  Copyright © 2016 Turn Touch. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 public extension UIView {
     @nonobjc class func fromNib(_ nibNameOrNil: String? = nil) -> Self {

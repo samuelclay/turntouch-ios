@@ -280,8 +280,11 @@ class TTModeTab: UIView {
             if appDelegate().modeMap.selectedModeDirection != self.modeDirection {
                 appDelegate().modeMap.switchMode(self.modeDirection, modeChangeType: .modeTab)
             }
+            
+            #if !WIDGET
             appDelegate().mainViewController.modeTitleView.pressChange(nil)
-
+            #endif
+            
             let selectedMode = appDelegate().modeMap.selectedMode.nameOfClass
             appDelegate().modeMap.recordUsage(additionalParams: ["moment": "long-press:mode-tab:\(selectedMode)"])
         }

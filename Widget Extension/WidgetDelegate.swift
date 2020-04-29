@@ -13,8 +13,8 @@ class WidgetDelegate: UIResponder {
     static let shared = WidgetDelegate()
     
     var window: UIWindow?
-//    var modeMap: TTModeMap!
-//    @IBOutlet var mainViewController: WidgetExtensionViewController!
+    var modeMap: TTModeMap!
+    @IBOutlet var mainViewController: WidgetExtensionViewController!
     
     override init() {
         super.init()
@@ -22,15 +22,15 @@ class WidgetDelegate: UIResponder {
         //        self.erasePreferences()
         self.loadPreferences()
         
-//        modeMap = TTModeMap()
-//        modeMap.setupModes()
-//        modeMap.activateModes()
+        modeMap = TTModeMap()
+        modeMap.setupModes()
+        modeMap.activateModes()
     }
     
     func redrawMainLayout() {
-//        modeMap.setupModes()
-//        mainViewController.layoutStackview()
-//        modeMap.activateModes()
+        modeMap.setupModes()
+        mainViewController.layoutStackview()
+        modeMap.activateModes()
     }
     
     func loadPreferences() {
