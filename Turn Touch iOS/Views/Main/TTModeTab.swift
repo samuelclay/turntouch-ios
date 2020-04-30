@@ -11,9 +11,19 @@ import UIKit
 let DIAMOND_SIZE: CGFloat = 24.0
 
 class TTModeTab: UIView {
-
+//    #if WIDGET
+//    @IBInspectable var startColor: UIColor = UIColor(white: 1, alpha: 0.1)
+//    @IBInspectable var endColor: UIColor = UIColor(hex: 0xE7E7E7).withAlphaComponent(0.1)
+//    @IBInspectable var twelveButtonStartColor: UIColor = UIColor(hex: 0xF5F6F8)
+//    @IBInspectable var twelveButtonEndColor: UIColor = UIColor(hex: 0xFFFFFF)
+//    @IBInspectable var highlightColor: UIColor = UIColor(white: 1, alpha: 0.5)
+//    #else
     @IBInspectable var startColor: UIColor = UIColor.white
     @IBInspectable var endColor: UIColor = UIColor(hex: 0xE7E7E7)
+    @IBInspectable var twelveButtonStartColor: UIColor = UIColor(hex: 0xF5F6F8)
+    @IBInspectable var twelveButtonEndColor: UIColor = UIColor(hex: 0xFFFFFF)
+    @IBInspectable var highlightColor: UIColor = UIColor.white
+//    #endif
     
     var mode: TTMode = TTMode()
     var modeDirection: TTModeDirection = .no_DIRECTION
@@ -139,10 +149,10 @@ class TTModeTab: UIView {
     func drawBackground() {
         let context = UIGraphicsGetCurrentContext()
         if appDelegate().modeMap.selectedModeDirection == self.modeDirection {
-            UIColor(hex: 0xFFFFFF).set()
+            highlightColor.set()
             context?.fill(self.bounds);
             if appDelegate().modeMap.buttonAppMode() == .TwelveButtons {
-                let colors = [UIColor(hex: 0xF5F6F8).cgColor, UIColor(hex: 0xFFFFFF).cgColor]
+                let colors = [twelveButtonStartColor.cgColor, twelveButtonEndColor.cgColor]
                 let colorSpace = CGColorSpaceCreateDeviceRGB()
                 let colorLocations:[CGFloat] = [0.0, 1.0]
                 let gradient = CGGradient(colorsSpace: colorSpace,
@@ -175,7 +185,6 @@ class TTModeTab: UIView {
                 context?.fill(self.bounds)
             }
         }
-        
     }
     
     func drawBorders() {

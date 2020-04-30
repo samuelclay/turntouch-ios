@@ -124,6 +124,10 @@ class TTActionDiamondView: UIView {
             return
         }
         
+        #if WIDGET
+        changeButton.isHidden = true
+        #endif
+        
         self.addConstraint(NSLayoutConstraint(item: changeButton, attribute: .trailingMargin, relatedBy: .equal,
                                               toItem: self, attribute: .trailingMargin, multiplier: 1.0, constant: -24))
         self.addConstraint(NSLayoutConstraint(item: changeButton, attribute: .bottom, relatedBy: .equal,
@@ -165,6 +169,9 @@ class TTActionDiamondView: UIView {
     }
     
     func updateChangeButton() {
+        #if WIDGET
+        changeButton.isHidden = true
+        #else
         changeButton.isHidden = appDelegate().modeMap.buttonActionMode == .editActions
         
         if appDelegate().modeMap.inspectingModeDirection != .no_DIRECTION {
@@ -172,6 +179,7 @@ class TTActionDiamondView: UIView {
         } else {
             changeButton.setTitle("Change", for: UIControl.State())
         }
+        #endif
     }
     
     func setMode(_ mode: TTMode) {

@@ -9,13 +9,28 @@
 import UIKit
 import NotificationCenter
 
+enum WidgetError: String, Error {
+    case noErrorsImplementedYet
+}
+
 class WidgetExtensionViewController: UIViewController, NCWidgetProviding {
     var stackView = UIStackView()
     var modeTabsView = UIStackView()
     var modeTabs: [TTModeTab] = []
     var modeTabsConstraint: NSLayoutConstraint!
     var actionDiamondView: TTActionDiamondView
-    var actionDiamondConstraint: NSLayoutConstraint!
+    var actionDiamondWidthConstraint: NSLayoutConstraint!
+    var actionDiamondHeightConstraint: NSLayoutConstraint!
+    
+    /// An error to display instead of the controls, or `nil` if the controls should be displayed.
+    var error: WidgetError?
+    
+    struct Constant {
+        static let defaultCompactHeight: CGFloat = 110
+        static let modeTabsHeight: CGFloat = 92
+        static let actionDiamondCompactWidth: CGFloat = 180
+        static let actionDiamondExpandedHeight: CGFloat = 270
+    }
     
     required init?(coder: NSCoder) {
         appDelegate().prepare()
@@ -24,12 +39,34 @@ class WidgetExtensionViewController: UIViewController, NCWidgetProviding {
         super.init(coder: coder)
     }
     
+    deinit {
+        //        appDelegate().modeMap.removeObserver(self, forKeyPath: "openedModeChangeMenu")
+        //        appDelegate().modeMap.removeObserver(self, forKeyPath: "openedActionChangeMenu")
+        //        appDelegate().modeMap.removeObserver(self, forKeyPath: "openedAddActionChangeMenu")
+                appDelegate().modeMap.removeObserver(self, forKeyPath: "selectedModeDirection")
+        //        appDelegate().modeMap.removeObserver(self, forKeyPath: "inspectingModeDirection")
+        //        appDelegate().modeMap.removeObserver(self, forKeyPath: "tempMode")
+        //        appDelegate().bluetoothMonitor.removeObserver(self, forKeyPath: "nicknamedConnectedCount")
+        //        appDelegate().bluetoothMonitor.removeObserver(self, forKeyPath: "pairedDevicesCount")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        self.layoutStackview()
-        self.registerAsObserver()
+        registerAsObserver()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        extensionContext?.widgetLargestAvailableDisplayMode = error == nil ? .expanded : .compact
+        
+        layoutStackview()
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
     }
     
     func widgetPerformUpdate(completionHandler: (@escaping (NCUpdateResult) -> Void)) {
@@ -39,7 +76,47 @@ class WidgetExtensionViewController: UIViewController, NCWidgetProviding {
         // If there's no update required, use NCUpdateResult.NoData
         // If there's an update, use NCUpdateResult.NewData
         
-        completionHandler(NCUpdateResult.newData)
+        completionHandler(NCUpdateResult.noData)
+    }
+    
+    func widgetActiveDisplayModeDidChange(_ activeDisplayMode: NCWidgetDisplayMode, withMaximumSize maxSize: CGSize) {
+        switch activeDisplayMode {
+        case .compact:
+            // The compact view is a fixed size.
+            preferredContentSize = maxSize
+        case .expanded:
+            let height: CGFloat = Constant.modeTabsHeight + Constant.actionDiamondExpandedHeight
+            
+            preferredContentSize = CGSize(width: maxSize.width, height: min(height, maxSize.height))
+        @unknown default:
+            preconditionFailure("Unexpected value for activeDisplayMode.")
+        }
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        
+        coordinator.animate(alongsideTransition: { [weak self] (UIViewControllerTransitionCoordinatorContext) in
+            guard let self = self else {
+                return
+            }
+            
+            self.stackView.alignment = self.isCompact ? .center : .fill
+            self.applyConstraints()
+        }, completion: nil)
+    }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        
+        applyConstraints()
+    }
+}
+
+/// Helpers.
+extension WidgetExtensionViewController {
+    var isCompact: Bool {
+        return extensionContext?.widgetActiveDisplayMode == NCWidgetDisplayMode.compact
     }
     
     func layoutStackview() {
@@ -50,7 +127,7 @@ class WidgetExtensionViewController: UIViewController, NCWidgetProviding {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
         stackView.distribution = .fill
-        stackView.alignment = .fill
+        stackView.alignment = isCompact ? .center : .fill
         stackView.spacing = 0
         //        stackView.contentMode = .ScaleToFill
         let guide = self.view.safeAreaLayoutGuide
@@ -91,12 +168,13 @@ class WidgetExtensionViewController: UIViewController, NCWidgetProviding {
         stackView.addArrangedSubview(actionDiamondView)
         
         modeTabsConstraint = NSLayoutConstraint(item: modeTabsView, attribute: .height, relatedBy: .equal,
-                                                toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 92.0)
+                                                toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: Constant.modeTabsHeight)
         stackView.addConstraint(modeTabsConstraint)
         
-        actionDiamondConstraint = NSLayoutConstraint(item: actionDiamondView, attribute: .height, relatedBy: .equal,
-                                                     toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 420)
-        stackView.addConstraint(actionDiamondConstraint)
+        actionDiamondWidthConstraint = NSLayoutConstraint(item: actionDiamondView, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 100)
+        actionDiamondHeightConstraint = NSLayoutConstraint(item: actionDiamondView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: Constant.actionDiamondExpandedHeight)
+        stackView.addConstraint(actionDiamondWidthConstraint)
+        stackView.addConstraint(actionDiamondHeightConstraint)
         
         //        if appDelegate().modeMap.buttonAppMode() == .TwelveButtons, let modeTitleView = modeTitleView {
         //            modeTitleView.alpha = 0
@@ -176,40 +254,22 @@ class WidgetExtensionViewController: UIViewController, NCWidgetProviding {
         self.applyConstraints()
     }
     
-    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        super.traitCollectionDidChange(previousTraitCollection)
-        
-        self.applyConstraints()
-    }
-    
     func applyConstraints() {
-//        let buttonAppMode = appDelegate().modeMap.buttonAppMode()
-//
-//        if self.traitCollection.verticalSizeClass == UIUserInterfaceSizeClass.compact {
-//            titleBarConstraint.constant = 28
-//            modeTabsConstraint.constant = 70
-//            switch buttonAppMode {
-//            case .SixteenButtons:
-//                modeTitleConstraint.constant = 48
-//            case .TwelveButtons:
-//                modeTitleConstraint.constant = 0
-//            }
-//        } else {
-//            titleBarConstraint.constant = 44
-//            modeTabsConstraint.constant = 92
-//            switch buttonAppMode {
-//            case .SixteenButtons:
-//                modeTitleConstraint.constant = 64
-//            case .TwelveButtons:
-//                modeTitleConstraint.constant = 0
-//            }
-//        }
-//
-//        if self.traitCollection.horizontalSizeClass == .compact {
-//            actionDiamondConstraint.constant = 270
-//        } else {
-//            actionDiamondConstraint.constant = 420
-//        }
+        guard let context = extensionContext else {
+            return
+        }
+        
+        let maxSize = context.widgetMaximumSize(for: .compact)
+        
+        if isCompact {
+            modeTabsView.isHidden = true
+            actionDiamondWidthConstraint.constant = Constant.actionDiamondCompactWidth
+            actionDiamondHeightConstraint.constant = maxSize.height
+        } else {
+            modeTabsView.isHidden = false
+            actionDiamondWidthConstraint.constant = maxSize.width
+            actionDiamondHeightConstraint.constant = Constant.actionDiamondExpandedHeight
+        }
     }
     
     // MARK: KVO
@@ -218,21 +278,10 @@ class WidgetExtensionViewController: UIViewController, NCWidgetProviding {
         //        appDelegate().modeMap.addObserver(self, forKeyPath: "openedModeChangeMenu", options: [], context: nil)
         //        appDelegate().modeMap.addObserver(self, forKeyPath: "openedActionChangeMenu", options: [], context: nil)
         //        appDelegate().modeMap.addObserver(self, forKeyPath: "openedAddActionChangeMenu", options: [], context: nil)
-        //        appDelegate().modeMap.addObserver(self, forKeyPath: "selectedModeDirection", options: [], context: nil)
+                appDelegate().modeMap.addObserver(self, forKeyPath: "selectedModeDirection", options: [], context: nil)
         //        appDelegate().modeMap.addObserver(self, forKeyPath: "inspectingModeDirection", options: [], context: nil)
         //        appDelegate().modeMap.addObserver(self, forKeyPath: "tempMode", options: [], context: nil)
         //        appDelegate().bluetoothMonitor.addObserver(self, forKeyPath: "nicknamedConnectedCount", options: [], context: nil)
         //        appDelegate().bluetoothMonitor.addObserver(self, forKeyPath: "pairedDevicesCount", options: [], context: nil)
-    }
-    
-    deinit {
-//        appDelegate().modeMap.removeObserver(self, forKeyPath: "openedModeChangeMenu")
-        //        appDelegate().modeMap.removeObserver(self, forKeyPath: "openedActionChangeMenu")
-        //        appDelegate().modeMap.removeObserver(self, forKeyPath: "openedAddActionChangeMenu")
-        //        appDelegate().modeMap.removeObserver(self, forKeyPath: "selectedModeDirection")
-        //        appDelegate().modeMap.removeObserver(self, forKeyPath: "inspectingModeDirection")
-        //        appDelegate().modeMap.removeObserver(self, forKeyPath: "tempMode")
-        //        appDelegate().bluetoothMonitor.removeObserver(self, forKeyPath: "nicknamedConnectedCount")
-        //        appDelegate().bluetoothMonitor.removeObserver(self, forKeyPath: "pairedDevicesCount")
     }
 }

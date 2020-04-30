@@ -1446,11 +1446,11 @@
 		17AE44072458FF9C00D06762 /* Widget Extension */ = {
 			isa = PBXGroup;
 			children = (
-				174A15FE24592C6700F4AA2E /* Turn Touch Widget.entitlements */,
 				17AE44082458FF9C00D06762 /* WidgetExtensionViewController.swift */,
 				170C8DC5245906150089B2C0 /* WidgetDelegate.swift */,
 				17AE440A2458FF9C00D06762 /* MainInterface.storyboard */,
 				17AE440D2458FF9C00D06762 /* Info.plist */,
+				174A15FE24592C6700F4AA2E /* Turn Touch Widget.entitlements */,
 			);
 			path = "Widget Extension";
 			sourceTree = "<group>";
