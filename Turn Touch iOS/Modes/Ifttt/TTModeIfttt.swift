@@ -268,7 +268,7 @@ class TTModeIfttt: TTMode {
         for modeDirection: TTModeDirection in [.single, .double, .hold] {
             for actionDirection: TTModeDirection in [.north, .east, .west, .south] {
                 if let directionModeName = prefs.string(forKey: "TT:mode-\(appDelegate().modeMap.directionName(modeDirection)):\(appDelegate().modeMap.directionName(actionDirection))") {
-                    let className = "Turn_Touch_iOS.\(directionModeName)"
+                    let className = "\(appDelegate().moduleName).\(directionModeName)"
                     let modeClass = NSClassFromString(className) as! TTMode.Type
                     let mode = modeClass.init()
                     mode.modeDirection = actionDirection;

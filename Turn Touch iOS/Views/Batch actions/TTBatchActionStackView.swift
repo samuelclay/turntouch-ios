@@ -53,7 +53,7 @@ class TTBatchActionStackView: UIStackView {
             var actionOptionsViewController: TTOptionsDetailViewController!
             if batchAction.mode.shouldUseModeOptionsFor(batchAction.actionName!) {
                 let modeName = batchAction.mode.nameOfClass
-                let modeOptionsViewControllerName = "Turn_Touch_iOS.\(modeName)Options"
+                let modeOptionsViewControllerName = "\(appDelegate().moduleName).\(modeName)Options"
                 let modeOptionsClass: AnyClass? = NSClassFromString(modeOptionsViewControllerName)
                 if modeOptionsClass == nil {
                     actionOptionsViewController = TTOptionsDetailViewController()
@@ -63,7 +63,7 @@ class TTBatchActionStackView: UIStackView {
                 
                 actionOptionsViewController.menuType = TTMenuType.menu_MODE
             } else {
-                let actionOptionsViewControllerName = "Turn_Touch_iOS.\(batchAction.actionName!)Options"
+                let actionOptionsViewControllerName = "\(appDelegate().moduleName).\(batchAction.actionName!)Options"
                 let actionOptionsClass: AnyClass? = NSClassFromString(actionOptionsViewControllerName)
                 if actionOptionsClass == nil {
                     actionOptionsViewController = TTOptionsDetailViewController()

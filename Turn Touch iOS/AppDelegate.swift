@@ -21,6 +21,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     var reachability: Reachability!
     @IBOutlet var mainViewController: TTMainViewController!
     
+    lazy var moduleName: String = {
+       return NSStringFromClass(Self.self).components(separatedBy: ".")[0]
+    }()
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 //        self.erasePreferences()
         self.loadPreferences()

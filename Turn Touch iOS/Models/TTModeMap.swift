@@ -119,6 +119,9 @@ class TTModeMap: NSObject {
     }
     
     var buttonActionMode: TTButtonActionMode {
+        #if WIDGET
+        return .performActions
+        #else
         let prefs = preferences()
         
         if let actionModePref = prefs.string(forKey: "TT:buttonActionMode"),
@@ -127,6 +130,7 @@ class TTModeMap: NSObject {
         }
         
         return .editActions
+        #endif
     }
     
     var isButtonActionPerform: Bool {
@@ -144,7 +148,7 @@ class TTModeMap: NSObject {
         
         for direction: String in ["north", "east", "west", "south"] {
             if let directionModeName = prefs.string(forKey: "TT:\(self.modeRoot()):\(direction)") {
-                let className = "Turn_Touch_iOS.\(directionModeName)"
+                let className = "\(appDelegate().moduleName).\(directionModeName)"
                 var possibleModeClass = NSClassFromString(className) as? TTMode.Type
                 
                 if possibleModeClass == nil {
@@ -266,7 +270,7 @@ class TTModeMap: NSObject {
             self.southMode.activate(direction)
             batchActions.assemble(modeDirection: direction)
         } else {
-//            let className = "Turn_Touch_iOS.\(modeName)"
+//            let className = "\(appDelegate().moduleName).\(modeName)"
 //            let modeClass = NSClassFromString(className) as! TTMode.Type
             print(" ---> Can't switch into non-direction mode. Easy fix right here...")
         }
@@ -514,7 +518,7 @@ class TTModeMap: NSObject {
     
     func provisionTempMode(name: String) {
         tempModeName = name
-        let className = "Turn_Touch_iOS.\(name)"
+        let className = "\(appDelegate().moduleName).\(name)"
         let modeClass = NSClassFromString(className) as! TTMode.Type
         tempMode = modeClass.init()
         
@@ -798,12 +802,14 @@ class TTModeMap: NSObject {
     }
     
     func switchPerformActionMode(_ buttonActionMode: TTButtonActionMode) {
+        #if !WIDGET
         let prefs = preferences()
         
         prefs.set(buttonActionMode.rawValue, forKey: "TT:buttonActionMode")
         prefs.synchronize()
         
         reset()
+        #endif
     }
 }
 

@@ -26,7 +26,7 @@ class TTAction: NSObject {
         super.init()
         self.batchActionKey = batchActionKey
         let chunks = batchActionKey.components(separatedBy: ":")
-        let className = "Turn_Touch_iOS.\(chunks[0])"
+        let className = "\(appDelegate().moduleName).\(chunks[0])"
         let modeClass = NSClassFromString(className) as! TTMode.Type
         mode = modeClass.init()
         mode.modeDirection = appDelegate().modeMap.selectedModeDirection

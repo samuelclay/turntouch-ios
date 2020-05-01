@@ -43,7 +43,7 @@ class WidgetExtensionViewController: UIViewController, NCWidgetProviding {
         //        appDelegate().modeMap.removeObserver(self, forKeyPath: "openedModeChangeMenu")
         //        appDelegate().modeMap.removeObserver(self, forKeyPath: "openedActionChangeMenu")
         //        appDelegate().modeMap.removeObserver(self, forKeyPath: "openedAddActionChangeMenu")
-                appDelegate().modeMap.removeObserver(self, forKeyPath: "selectedModeDirection")
+        appDelegate().modeMap.removeObserver(self, forKeyPath: "selectedModeDirection")
         //        appDelegate().modeMap.removeObserver(self, forKeyPath: "inspectingModeDirection")
         //        appDelegate().modeMap.removeObserver(self, forKeyPath: "tempMode")
         //        appDelegate().bluetoothMonitor.removeObserver(self, forKeyPath: "nicknamedConnectedCount")
@@ -176,81 +176,6 @@ extension WidgetExtensionViewController {
         stackView.addConstraint(actionDiamondWidthConstraint)
         stackView.addConstraint(actionDiamondHeightConstraint)
         
-        //        if appDelegate().modeMap.buttonAppMode() == .TwelveButtons, let modeTitleView = modeTitleView {
-        //            modeTitleView.alpha = 0
-        //            scrollStackView.addArrangedSubview(modeTitleView)
-        //            modeTitleConstraint = NSLayoutConstraint(item: modeTitleView, attribute: .height, relatedBy: .equal,
-        //                                                     toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 0)
-        //            scrollStackView.addConstraint(modeTitleConstraint)
-        //
-        //            scrollStackView.addArrangedSubview(modeMenuView)
-        //            modeMenuConstaint = NSLayoutConstraint(item: modeMenuView, attribute: .height, relatedBy: .equal,
-        //                                                   toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 1.0)
-        //            scrollStackView.addConstraint(modeMenuConstaint)
-        //        }
-        //
-        //        scrollStackView.addArrangedSubview(actionMenuView)
-        //        actionMenuConstaint = NSLayoutConstraint(item: actionMenuView, attribute: .height, relatedBy: .equal,
-        //                                                 toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 1.0)
-        //        scrollStackView.addConstraint(actionMenuConstaint)
-        //
-        //        actionTitleView.alpha = 0
-        //        scrollStackView.addArrangedSubview(actionTitleView)
-        //        actionTitleConstraint = NSLayoutConstraint(item: actionTitleView, attribute: .height, relatedBy: .equal,
-        //                                                   toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 0)
-        //        scrollStackView.addConstraint(actionTitleConstraint)
-        //
-        //        optionsView.setContentCompressionResistancePriority(UILayoutPriority.defaultHigh, for: .vertical)
-        //        scrollStackView.addArrangedSubview(optionsView)
-        //        optionsConstraint = NSLayoutConstraint(item: optionsView, attribute: .height, relatedBy: .equal,
-        //                                               toItem: nil, attribute: .notAnAttribute,
-        //                                               multiplier: 1.0, constant: 0)
-        //        //        scrollStackView.addConstraint(optionsConstraint)
-        //
-        //        batchActionsStackView.setContentCompressionResistancePriority(UILayoutPriority.defaultHigh, for: .vertical)
-        //        scrollStackView.addArrangedSubview(batchActionsStackView)
-        //
-        //        addActionMenuConstraint = NSLayoutConstraint(item: addActionMenu, attribute: .height, relatedBy: .equal,
-        //                                                     toItem: nil, attribute: .notAnAttribute,
-        //                                                     multiplier: 1.0, constant: 0)
-        //        scrollStackView.addArrangedSubview(addActionMenu)
-        //        scrollStackView.addConstraint(addActionMenuConstraint)
-        //
-        //        addActionButtonConstraint = NSLayoutConstraint(item: addActionButtonView, attribute: .height, relatedBy: .equal,
-        //                                                       toItem: nil, attribute: .notAnAttribute,
-        //                                                       multiplier: 1.0, constant: 0)
-        //        scrollStackView.addArrangedSubview(addActionButtonView)
-        //        scrollStackView.addConstraint(addActionButtonConstraint)
-        //
-        //        scrollView.setContentHuggingPriority(UILayoutPriority(rawValue: 100), for: NSLayoutConstraint.Axis.vertical)
-        //        scrollView.alwaysBounceVertical = true
-        //        scrollView.insertSubview(scrollStackView, at: 0)
-        //        scrollView.backgroundColor = UIColor(hex: 0xF5F6F8)
-        //        scrollView.addConstraint(NSLayoutConstraint(item: scrollStackView, attribute: .top,
-        //                                                    relatedBy: .equal, toItem: scrollView, attribute: .top,
-        //                                                    multiplier: 1.0, constant: 0.0))
-        //        scrollView.addConstraint(NSLayoutConstraint(item: scrollStackView, attribute: .leading,
-        //                                                    relatedBy: .equal, toItem: scrollView, attribute: .leading,
-        //                                                    multiplier: 1.0, constant: 0.0))
-        //        scrollView.addConstraint(NSLayoutConstraint(item: scrollStackView, attribute: .trailing,
-        //                                                    relatedBy: .equal, toItem: scrollView, attribute: .trailing,
-        //                                                    multiplier: 1.0, constant: 0.0))
-        //        scrollView.addConstraint(NSLayoutConstraint(item: scrollStackView, attribute: .width,
-        //                                                    relatedBy: .equal, toItem: scrollView, attribute: .width,
-        //                                                    multiplier: 1.0, constant: 0.0))
-        //        scrollView.addConstraint(NSLayoutConstraint(item: scrollStackView, attribute: .bottom,
-        //                                                    relatedBy: .equal, toItem: scrollView, attribute: .bottom,
-        //                                                    multiplier: 1.0, constant: 0.0))
-        //        stackView.addArrangedSubview(scrollView)
-        //        stackView.addConstraint(NSLayoutConstraint(item: scrollView, attribute: .leading,
-        //                                                   relatedBy: .equal, toItem: stackView, attribute: .leading,
-        //                                                   multiplier: 1.0, constant: 0.0))
-        //        stackView.addConstraint(NSLayoutConstraint(item: scrollView, attribute: .trailing,
-        //                                                   relatedBy: .equal, toItem: stackView, attribute: .trailing,
-        //                                                   multiplier: 1.0, constant: 0.0))
-        //        scrollView.setNeedsLayout()
-        //        scrollView.layoutIfNeeded()
-        
         self.applyConstraints()
     }
     
@@ -272,6 +197,14 @@ extension WidgetExtensionViewController {
         }
     }
     
+    func resetPosition() {
+        if let modeMap = appDelegate().modeMap {
+            modeMap.reset()
+        }
+        
+        modeTabsView.setNeedsDisplay()
+    }
+    
     // MARK: KVO
     
     func registerAsObserver() {
@@ -283,5 +216,31 @@ extension WidgetExtensionViewController {
         //        appDelegate().modeMap.addObserver(self, forKeyPath: "tempMode", options: [], context: nil)
         //        appDelegate().bluetoothMonitor.addObserver(self, forKeyPath: "nicknamedConnectedCount", options: [], context: nil)
         //        appDelegate().bluetoothMonitor.addObserver(self, forKeyPath: "pairedDevicesCount", options: [], context: nil)
+    }
+    
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?,
+                               change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+//        if keyPath == "openedModeChangeMenu" {
+//            self.toggleModeMenu()
+//        } else if keyPath == "openedActionChangeMenu" {
+//            self.toggleActionMenu()
+//        } else if keyPath == "openedAddActionChangeMenu" {
+//            self.toggleAddActionMenu()
+//    } else
+        if keyPath == "selectedModeDirection" {
+            self.resetPosition()
+        }
+//        } else if keyPath == "inspectingModeDirection" {
+//            self.toggleActionView()
+//            self.toggleAddActionMenu()
+//            self.toggleAddActionButtonView()
+//            self.adjustBatchActions()
+//        } else if keyPath == "nicknamedConnectedCount" {
+//            self.adjustDeviceTitles()
+//        } else if keyPath == "pairedDevicesCount" {
+//            self.adjustDeviceTitles()
+//        } else if keyPath == "tempMode" {
+//            self.adjustBatchActions()
+//        }
     }
 }

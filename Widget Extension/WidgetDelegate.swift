@@ -16,13 +16,17 @@ class WidgetDelegate: UIResponder {
     var modeMap: TTModeMap!
     @IBOutlet var mainViewController: WidgetExtensionViewController!
     
+    lazy var moduleName: String = {
+        return NSStringFromClass(Self.self).components(separatedBy: ".")[0]
+    }()
+    
     private override init() {
         super.init()
     }
     
     func prepare() {
         //        self.erasePreferences()
-        self.loadPreferences()
+        loadPreferences()
         
         modeMap = TTModeMap()
         modeMap.setupModes()

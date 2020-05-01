@@ -16,7 +16,6 @@ class TTDiamondLabel: UIView {
     var titleLabel: UILabel!
     var iconView = UIImageView()
     
-    
     init(inDirection: TTModeDirection, diamondType: TTDiamondType = .interactive) {
         super.init(frame: CGRect.zero)
         self.backgroundColor = UIColor.clear
@@ -28,13 +27,14 @@ class TTDiamondLabel: UIView {
         diamondMode = appDelegate().modeMap.selectedMode
         
         titleLabel = UILabel()
+        #if WIDGET
+        titleLabel.font = UIFont(name: "Effra", size: 11)
+        #else
         titleLabel.font = UIFont(name: "Effra", size: 13)
-        if diamondType == .interactive {
-            titleLabel.textColor = UIColor(hex: 0x404A60)
-        } else if diamondType == .hud {
-            titleLabel.textColor = UIColor(hex: 0xFFFFFF)
-        }
+        #endif
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        titleLabel.numberOfLines = 0
+        titleLabel.lineBreakMode = .byWordWrapping
         titleLabel.textAlignment = .center
         
         guard let titleLabel = titleLabel else {
@@ -70,6 +70,12 @@ class TTDiamondLabel: UIView {
     
     override func draw(_ rect: CGRect) {
         super.draw(rect)
+        
+        if diamondType == .interactive {
+            titleLabel.textColor = UIColor(hex: 0x404A60)
+        } else if diamondType == .hud {
+            titleLabel.textColor = UIColor(hex: 0xFFFFFF)
+        }
         
         let actionString = appDelegate().modeMap.selectedMode.titleInDirection(labelDirection,
                                                                                buttonMoment: .button_MOMENT_PRESSUP)
