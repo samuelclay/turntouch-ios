@@ -12,7 +12,7 @@
 	<string>$(TeamIdentifierPrefix)com.turntouch.ios-remote</string>
 	<key>com.apple.security.application-groups</key>
 	<array>
-		<string>group.com.turntouch.ios-remote</string>
+		<string>group.com.turntouch.appgroup</string>
 	</array>
 </dict>
 </plist>

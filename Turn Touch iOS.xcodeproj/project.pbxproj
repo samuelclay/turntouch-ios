@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -2435,7 +2435,6 @@
 					};
 					17AE44032458FF9C00D06762 = {
 						CreatedOnToolsVersion = 11.4.1;
-						ProvisioningStyle = Automatic;
 					};
 					17CFDD48236A7A6C00693BF7 = {
 						DevelopmentTeam = 6Z7QW53WB6;
@@ -2460,7 +2459,7 @@
 				};
 			};
 			buildConfigurationList = FFF2708B1CEE88E500E46575 /* Build configuration list for PBXProject "Turn Touch iOS" */;
-			compatibilityVersion = "Xcode 3.2";
+			compatibilityVersion = "Xcode 11.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -3620,7 +3619,11 @@
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "Widget Extension/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
 				MARKETING_VERSION = 2.2;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -3649,7 +3652,11 @@
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "Widget Extension/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
 				MARKETING_VERSION = 2.2;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.dejal.turntouch.ios-remote.widget";
@@ -3671,18 +3678,24 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_ENTITLEMENTS = "Widget Extension/Turn Touch Widget.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 37;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 6W5HRS3393;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "Widget Extension/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
 				MARKETING_VERSION = 2.2;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.turntouch.ios-remote.widget";
 				PRODUCT_NAME = "Turn Touch Widget";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG WIDGET";
 				SWIFT_VERSION = 5.0;
@@ -3700,17 +3713,23 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_ENTITLEMENTS = "Widget Extension/Turn Touch Widget.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 37;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 6W5HRS3393;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "Widget Extension/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
 				MARKETING_VERSION = 2.2;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.turntouch.ios-remote.widget";
 				PRODUCT_NAME = "Turn Touch Widget";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = WIDGET;
 				SWIFT_VERSION = 5.0;
@@ -3743,7 +3762,10 @@
 				);
 				INFOPLIST_FILE = "Turn Touch iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/Turn\\ Touch\\ iOS/Vendor/**";
 				MARKETING_VERSION = 2.2;
 				OTHER_LDFLAGS = (
@@ -3784,7 +3806,10 @@
 				);
 				INFOPLIST_FILE = "Turn Touch iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/Turn\\ Touch\\ iOS/Vendor/**";
 				MARKETING_VERSION = 2.2;
 				OTHER_LDFLAGS = (
@@ -3901,7 +3926,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -3934,7 +3960,10 @@
 				);
 				INFOPLIST_FILE = "Turn Touch iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/Turn\\ Touch\\ iOS/Vendor/**";
 				MARKETING_VERSION = 2.2;
 				OTHER_LDFLAGS = (
@@ -3976,7 +4005,10 @@
 				);
 				INFOPLIST_FILE = "Turn Touch iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/Turn\\ Touch\\ iOS/Vendor/**";
 				MARKETING_VERSION = 2.2;
 				OTHER_LDFLAGS = (

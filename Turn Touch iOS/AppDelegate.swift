@@ -329,5 +329,5 @@ func appDelegate() -> AppDelegate {
 }
 
 func preferences() -> UserDefaults {
-    return UserDefaults(suiteName: "group.com.turntouch.ios-remote") ?? UserDefaults.standard
+    return UserDefaults(suiteName: "group.com.turntouch.appgroup") ?? UserDefaults.standard
 }
