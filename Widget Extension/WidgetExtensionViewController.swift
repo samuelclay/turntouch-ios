@@ -37,6 +37,8 @@ class WidgetExtensionViewController: UIViewController, NCWidgetProviding {
         actionDiamondView = TTActionDiamondView(diamondType: .interactive)
         
         super.init(coder: coder)
+        
+        appDelegate().mainViewController = self
     }
     
     deinit {
@@ -195,6 +197,8 @@ extension WidgetExtensionViewController {
             actionDiamondWidthConstraint.constant = maxSize.width
             actionDiamondHeightConstraint.constant = Constant.actionDiamondExpandedHeight
         }
+        
+        actionDiamondView.redraw()
     }
     
     func resetPosition() {

@@ -238,7 +238,14 @@ class TTDiamondView: UIView {
             }
             else if diamondType == .interactive {
                 if isActiveDirection {
+                    #if WIDGET
+                    modeColor = UIColor(hex: 0xD3D7D9)
+                    if bottomHalf {
+                        modeColor = UIColor(hex: 0xC3C7C9)
+                    }
+                    #else
                     modeColor = UIColor(hex: 0x505AC0)
+                    #endif
                 }
                 else if isHoveringDirection && !isInspectingDirection {
                     modeColor = UIColor(hex: 0xD3D7D9)
@@ -301,7 +308,11 @@ class TTDiamondView: UIView {
             
             if diamondType == .interactive {
                 if isActiveDirection {
+                    #if WIDGET
+                    UIColor(hex: 0xC0C0C0).set()
+                    #else
                     UIColor(hex: 0xFFFFFF).set()
+                    #endif
                 }
                 else if isInspectingDirection || isHoveringDirection {
                     UIColor(hex: 0xFFFFFF).set()

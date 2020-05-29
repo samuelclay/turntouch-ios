@@ -27,11 +27,7 @@ class TTDiamondLabel: UIView {
         diamondMode = appDelegate().modeMap.selectedMode
         
         titleLabel = UILabel()
-        #if WIDGET
-        titleLabel.font = UIFont(name: "Effra", size: 11)
-        #else
         titleLabel.font = UIFont(name: "Effra", size: 13)
-        #endif
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.numberOfLines = 0
         titleLabel.lineBreakMode = .byWordWrapping
@@ -76,6 +72,14 @@ class TTDiamondLabel: UIView {
         } else if diamondType == .hud {
             titleLabel.textColor = UIColor(hex: 0xFFFFFF)
         }
+        
+        #if WIDGET
+        if appDelegate().mainViewController.isCompact {
+            titleLabel.font = UIFont(name: "Effra", size: 9)
+        } else {
+            titleLabel.font = UIFont(name: "Effra", size: 13)
+        }
+        #endif
         
         let actionString = appDelegate().modeMap.selectedMode.titleInDirection(labelDirection,
                                                                                buttonMoment: .button_MOMENT_PRESSUP)
