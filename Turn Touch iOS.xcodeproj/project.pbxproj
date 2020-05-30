@@ -500,6 +500,14 @@
 		17CFDEF4236A7A6C00693BF7 /* TTModeNest.plist in Resources */ = {isa = PBXBuildFile; fileRef = FF8FB1F31F8F19620085B994 /* TTModeNest.plist */; };
 		17CFDEF5236A7A6C00693BF7 /* temperature.png in Resources */ = {isa = PBXBuildFile; fileRef = FF8B752B1F86D4C900D7867C /* temperature.png */; };
 		17CFDEF6236A7A6C00693BF7 /* webhook.png in Resources */ = {isa = PBXBuildFile; fileRef = FF8B75201F86D4C600D7867C /* webhook.png */; };
+		17EB1EC22481FE5400B88B68 /* TTModeAlarmClock.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0F10CF1CF63F6100CC1F29 /* TTModeAlarmClock.swift */; };
+		17EB1EC32481FE5400B88B68 /* TTModeAlarmClock.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0F10CF1CF63F6100CC1F29 /* TTModeAlarmClock.swift */; };
+		17EB1EF62482085100B88B68 /* TTModeCustom.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4C037D1DFE5B6100EB0C92 /* TTModeCustom.swift */; };
+		17EB1EF72482085200B88B68 /* TTModeCustom.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4C037D1DFE5B6100EB0C92 /* TTModeCustom.swift */; };
+		17EB1EF824820A8200B88B68 /* TTModeHomeKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBFF0051F6CBAA300B3EDA7 /* TTModeHomeKit.swift */; };
+		17EB1EF924820A8200B88B68 /* TTModeHomeKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBFF0051F6CBAA300B3EDA7 /* TTModeHomeKit.swift */; };
+		17EB1EFE24820E0C00B88B68 /* HomeKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFBFF00E1F6CC97700B3EDA7 /* HomeKit.framework */; };
+		17EB1EFF24820E0D00B88B68 /* HomeKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFBFF00E1F6CC97700B3EDA7 /* HomeKit.framework */; };
 		85D8B548CD81B8F0353F6C06 /* Pods_Turn_Touch_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACFD869DD1D0B508AA8C9258 /* Pods_Turn_Touch_iOS.framework */; };
 		FF08A2331D501ABD00D433A5 /* TTModeCameraReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF08A2321D501ABD00D433A5 /* TTModeCameraReviewViewController.swift */; };
 		FF08E11B2211F013003215C2 /* SonosPlayable.m in Sources */ = {isa = PBXBuildFile; fileRef = FF08E11A2211F013003215C2 /* SonosPlayable.m */; };
@@ -1439,6 +1447,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				17EB1EFF24820E0D00B88B68 /* HomeKit.framework in Frameworks */,
 				17585F2A245BCBEA0029E02E /* NotificationCenter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1447,6 +1456,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				17EB1EFE24820E0C00B88B68 /* HomeKit.framework in Frameworks */,
 				17AE44062458FF9C00D06762 /* NotificationCenter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3204,6 +3214,7 @@
 				17585F11245BCBEA0029E02E /* TTDiamondView.swift in Sources */,
 				17585F12245BCBEA0029E02E /* WidgetDelegate.swift in Sources */,
 				17585F13245BCBEA0029E02E /* TTBatchActions.swift in Sources */,
+				17EB1EF924820A8200B88B68 /* TTModeHomeKit.swift in Sources */,
 				17585F14245BCBEA0029E02E /* TTMode.swift in Sources */,
 				17585F15245BCBEA0029E02E /* TTModeMusicSession.swift in Sources */,
 				17585F16245BCBEA0029E02E /* TTActionDiamondView.swift in Sources */,
@@ -3221,6 +3232,8 @@
 				17585F22245BCBEA0029E02E /* TTDiamondLabel.swift in Sources */,
 				17585F23245BCBEA0029E02E /* UIColor+hex.swift in Sources */,
 				17585F24245BCBEA0029E02E /* TTModeDirection.swift in Sources */,
+				17EB1EF72482085200B88B68 /* TTModeCustom.swift in Sources */,
+				17EB1EC32481FE5400B88B68 /* TTModeAlarmClock.swift in Sources */,
 				17585F25245BCBEA0029E02E /* WidgetExtensionViewController.swift in Sources */,
 				17585F26245BCBEA0029E02E /* TTModeWemo.swift in Sources */,
 				17585F27245BCBEA0029E02E /* NSData+Hex.swift in Sources */,
@@ -3236,6 +3249,7 @@
 				172590562459277A00055830 /* TTDiamondView.swift in Sources */,
 				170C8DC6245906150089B2C0 /* WidgetDelegate.swift in Sources */,
 				1725905024591EFC00055830 /* TTBatchActions.swift in Sources */,
+				17EB1EF824820A8200B88B68 /* TTModeHomeKit.swift in Sources */,
 				1725904824591E5400055830 /* TTMode.swift in Sources */,
 				1761184C245A1FBD00D32EB3 /* TTModeMusicSession.swift in Sources */,
 				174A15FC24592A2D00F4AA2E /* TTActionDiamondView.swift in Sources */,
@@ -3253,6 +3267,8 @@
 				174A15FD24592A3800F4AA2E /* TTDiamondLabel.swift in Sources */,
 				1725904C24591ED900055830 /* UIColor+hex.swift in Sources */,
 				170C8DC7245907A70089B2C0 /* TTModeDirection.swift in Sources */,
+				17EB1EF62482085100B88B68 /* TTModeCustom.swift in Sources */,
+				17EB1EC22481FE5400B88B68 /* TTModeAlarmClock.swift in Sources */,
 				17AE44092458FF9C00D06762 /* WidgetExtensionViewController.swift in Sources */,
 				17611848245A187100D32EB3 /* TTModeWemo.swift in Sources */,
 				1725904E24591ED900055830 /* NSData+Hex.swift in Sources */,
@@ -3620,6 +3636,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 37;
 				DEVELOPMENT_TEAM = 6Z7QW53WB6;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Turn\\ Touch\\ iOS/Vendor",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "Widget Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -3633,7 +3653,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.dejal.turntouch.ios-remote.widget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG WIDGET";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG WIDGET DEJAL";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -3652,6 +3672,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 37;
 				DEVELOPMENT_TEAM = 6Z7QW53WB6;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Turn\\ Touch\\ iOS/Vendor",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "Widget Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -3684,6 +3708,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 37;
 				DEVELOPMENT_TEAM = 6W5HRS3393;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Turn\\ Touch\\ iOS/Vendor",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "Widget Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -3718,6 +3746,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 37;
 				DEVELOPMENT_TEAM = 6W5HRS3393;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Turn\\ Touch\\ iOS/Vendor",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "Widget Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -3775,6 +3807,7 @@
 				PRODUCT_NAME = "Turn Touch iOS";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEJAL;
 				SWIFT_INCLUDE_PATHS = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Turn Touch iOS/Vendor/Turn_Touch_iOS-Bridging-Header.h";
 			};

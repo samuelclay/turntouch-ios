@@ -95,5 +95,9 @@ func appDelegate() -> WidgetDelegate {
 }
 
 func preferences() -> UserDefaults {
+    #if DEJAL
+    return UserDefaults(suiteName: "group.com.turntouch.ios-remote") ?? UserDefaults.standard
+    #else
     return UserDefaults(suiteName: "group.com.turntouch.appgroup") ?? UserDefaults.standard
+    #endif
 }

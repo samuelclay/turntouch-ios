@@ -8,9 +8,9 @@
 
 import UIKit
 import HomeKit
-import Reachability
-import SafariServices
-import Alamofire
+//import Reachability
+//import SafariServices
+//import Alamofire
 
 struct TTModeHomeKitConstants {
     static let kHomeKitHomeIdentifier = "homeIdentifier"
@@ -29,7 +29,7 @@ protocol TTModeHomeKitDelegate {
 
 class TTModeHomeKit: TTMode, HMHomeManagerDelegate {
 
-    static var reachability: Reachability!
+//    static var reachability: Reachability!
     var delegate: TTModeHomeKitDelegate!
     static var homeKitState = TTHomeKitState.disconnected
     var homeManager: HMHomeManager!
