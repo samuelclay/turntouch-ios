@@ -16,17 +16,20 @@ enum TTModeCameraState {
 }
 
 class TTModeCamera: TTMode {
-    
+    #if !WIDGET
     var cameraViewController = TTModeCameraViewController()
     var cameraNavController: UINavigationController!
+    #endif
     var cameraState: TTModeCameraState = .cameraInactive
     
     required init() {
         super.init()
         
+        #if !WIDGET
         cameraNavController = UINavigationController(rootViewController: cameraViewController)
         cameraNavController.modalPresentationStyle = .fullScreen
         cameraViewController.modeCamera = self
+        #endif
     }
     
     override class func title() -> String {
@@ -143,12 +146,17 @@ class TTModeCamera: TTMode {
             return
         }
         
+        #if !WIDGET
         appDelegate().mainViewController.dismiss(animated: true) {
             self.cameraState = .cameraInactive
         }
+        #endif
     }
     
     func ensureCamera() -> Bool {
+        #if WIDGET
+        return false
+        #else
         var cameraAlreadyShowing = true
         
         if cameraState == .cameraInactive {
@@ -160,29 +168,42 @@ class TTModeCamera: TTMode {
         }
         
         return cameraAlreadyShowing
+        #endif
     }
     
     func runTTModeCameraShoot() {
+        #if WIDGET
+        appDelegate().runInApp(action: "TTModeCameraShoot")
+        #else
         if !self.ensureCamera() {
             return
         }
         
         cameraViewController.shoot()
+        #endif
     }
     
     func runTTModeCameraSwitchView() {
+        #if WIDGET
+        appDelegate().runInApp(action: "TTModeCameraSwitchView")
+        #else
         if !self.ensureCamera() {
             return
         }
         
         cameraViewController.switchView()
+        #endif
     }
     
     func runTTModeCameraSwitchPhotoVideo() {
+        #if WIDGET
+        appDelegate().runInApp(action: "TTModeCameraSwitchPhotoVideo")
+        #else
         if !self.ensureCamera() {
             return
         }
         
         cameraViewController.switchPhotoVideo()
+        #endif
     }
 }

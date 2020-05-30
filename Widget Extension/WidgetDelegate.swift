@@ -88,6 +88,18 @@ class WidgetDelegate: UIResponder {
             }
         }
     }
+    
+    func runInApp(action: String) {
+        let fullModeName = modeMap.selectedMode.nameOfClass
+        let modeName = fullModeName.dropFirst("TTMode".count)
+        let actionName = action.dropFirst(fullModeName.count)
+        
+        guard let url = URL(string: "turntouch://widget/\(modeName)/\(actionName)") else {
+            return
+        }
+        
+        mainViewController.extensionContext?.open(url)
+    }
 }
 
 func appDelegate() -> WidgetDelegate {

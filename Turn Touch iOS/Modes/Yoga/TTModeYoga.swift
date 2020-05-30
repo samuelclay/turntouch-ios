@@ -11,8 +11,10 @@ import UIKit
 class TTModeYoga: TTMode {
 
     static var yogaActive = false
+    #if !WIDGET
     var yogaViewController: TTModeYogaViewController!
     var yogaNavController: UINavigationController!
+    #endif
 //    var yogaState: TTModeCameraState = .cameraInactive
     var yogaPosition = 0
     let poses = [
@@ -87,6 +89,7 @@ class TTModeYoga: TTMode {
     required init() {
         super.init()
         
+        #if !WIDGET
         yogaViewController = TTModeYogaViewController(nibName: "TTModeYogaViewController", bundle: nil)
 //        yogaViewController.modalTransitionStyle = .crossDissolve
 //        yogaViewController.modalPresentationStyle = .fullScreen
@@ -94,6 +97,7 @@ class TTModeYoga: TTMode {
         yogaNavController = UINavigationController(rootViewController: yogaViewController)
         yogaNavController.modalTransitionStyle = .crossDissolve
         yogaNavController.modalPresentationStyle = .fullScreen
+        #endif
     }
     
     override class func title() -> String {
@@ -184,12 +188,17 @@ class TTModeYoga: TTMode {
     }
     
     func closeYoga() {
+        #if !WIDGET
         appDelegate().mainViewController.dismiss(animated: true) {
             TTModeYoga.yogaActive = false
         }
+        #endif
     }
     
     func ensureYoga() -> Bool {
+        #if WIDGET
+        return false
+        #else
         var yogaAlreadyShowing = true
         
         if !TTModeYoga.yogaActive {
@@ -201,6 +210,7 @@ class TTModeYoga: TTMode {
         }
         
         return yogaAlreadyShowing
+        #endif
     }
     
     func runTTModeYogaTimeUp() {
@@ -218,13 +228,22 @@ class TTModeYoga: TTMode {
     }
     
     func runTTModeYogaNext() {
+        #if WIDGET
+        appDelegate().runInApp(action: "TTModeYogaNext")
+        #else
         self.advanceYogaPosition(by: 1)
+        #endif
     }
     
     func runTTModeYogaPrevious() {
+        #if WIDGET
+        appDelegate().runInApp(action: "TTModeYogaPrevious")
+        #else
         self.advanceYogaPosition(by: -1)
+        #endif
     }
     
+    #if !WIDGET
     func advanceYogaPosition(by increment: Int) {
         if !self.ensureYoga() {
             return
@@ -239,6 +258,5 @@ class TTModeYoga: TTMode {
         
         yogaViewController.advance(to: yogaPosition, pose: poses[yogaPosition], direction: increment)
     }
-    
-
+    #endif
 }

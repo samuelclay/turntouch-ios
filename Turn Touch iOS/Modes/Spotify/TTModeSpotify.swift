@@ -7,8 +7,10 @@
 //
 
 import Foundation
+#if !WIDGET
 import Reachability
 import MediaPlayer
+#endif
 
 struct TTModeSpotifyConstants {
     static let kSpotifyAccessToken = "spotifyAccessToken"
@@ -29,11 +31,14 @@ enum TTSpotifyConnectNextAction {
     case previousTrack
 }
 
+#if !WIDGET
 protocol TTModeSpotifyDelegate {
     func changeState(_ state: TTSpotifyState, mode: TTModeSpotify)
     func presentError(alert: UIAlertController)
 }
+#endif
 
+#if !WIDGET
 class TTModeSpotifyAppDelegate : NSObject, SPTAppRemoteDelegate {
     
     static var recentSpotify: TTModeSpotify?
@@ -52,9 +57,10 @@ class TTModeSpotifyAppDelegate : NSObject, SPTAppRemoteDelegate {
     }
     
 }
+#endif
 
-class TTModeSpotify : TTMode, SPTAppRemotePlayerStateDelegate {
-
+class TTModeSpotify : TTMode {
+    #if !WIDGET
     static var reachability: Reachability!
     static var nextAction: TTSpotifyConnectNextAction?
 
@@ -73,6 +79,9 @@ class TTModeSpotify : TTMode, SPTAppRemotePlayerStateDelegate {
         return appRemote
     }()
     
+    fileprivate var playerState: SPTAppRemotePlayerState?
+    fileprivate var subscribedToPlayerState: Bool = false
+    
     class var accessToken: String? {
         get {
             return preferences().string(forKey: TTModeSpotifyConstants.kSpotifyAccessToken)
@@ -84,11 +93,14 @@ class TTModeSpotify : TTMode, SPTAppRemotePlayerStateDelegate {
             prefs.synchronize()
         }
     }
+    #endif
     
     required init() {
         super.init()
         
+        #if !WIDGET
         self.watchReachability()
+        #endif
     }
    
     override class func title() -> String {
@@ -224,6 +236,7 @@ class TTModeSpotify : TTMode, SPTAppRemotePlayerStateDelegate {
     // MARK: Action methods
     
     override func activate() {
+        #if !WIDGET
         TTModeSpotify.accessToken = preferences().string(forKey: TTModeSpotifyConstants.kSpotifyAccessToken)
 
         if !TTModeSpotify.appRemote.isConnected {
@@ -235,21 +248,34 @@ class TTModeSpotify : TTMode, SPTAppRemotePlayerStateDelegate {
         
         TTModeSpotify.appRemote.playerAPI?.delegate = self
         TTModeMusicSession.shared.activate()
+        #endif
     }
     
     override func deactivate() {
     }
     
     func runTTModeSpotifyVolumeUp() {
+        #if WIDGET
+        appDelegate().runInApp(action: "TTModeSpotifyVolumeUp")
+        #else
         TTModeMusicSession.shared.volume(adjustment: .up)
+        #endif
     }
     
     func runTTModeSpotifyVolumeDown() {
+        #if WIDGET
+        appDelegate().runInApp(action: "TTModeSpotifyVolumeDown")
+        #else
         TTModeMusicSession.shared.volume(adjustment: .down)
+        #endif
     }
     
     func runTTModeSpotifyVolumeMute() {
+        #if WIDGET
+        appDelegate().runInApp(action: "TTModeSpotifyVolumeMute")
+        #else
         TTModeMusicSession.shared.volume(adjustment: .toggleMute)
+        #endif
     }
     
     func runTTModeSpotifyVolumeJump() {
@@ -264,6 +290,9 @@ class TTModeSpotify : TTMode, SPTAppRemotePlayerStateDelegate {
     }
     
     func runTTModeSpotifyPlayPause() {
+        #if WIDGET
+        appDelegate().runInApp(action: "TTModeSpotifyPlayPause")
+        #else
         print(" ---> Toggled Spotify ")
         if !TTModeSpotify.appRemote.isConnected {
             self.beginConnectingToSpotify()
@@ -284,6 +313,7 @@ class TTModeSpotify : TTMode, SPTAppRemotePlayerStateDelegate {
                 }
             })
         }
+        #endif
     }
     
     func doubleRunTTModeSpotifyPlayPause() {
@@ -306,6 +336,9 @@ class TTModeSpotify : TTMode, SPTAppRemotePlayerStateDelegate {
     }
     
     func runTTModeSpotifyNextTrack() {
+        #if WIDGET
+        appDelegate().runInApp(action: "TTModeSpotifyNextTrack")
+        #else
         if !TTModeSpotify.appRemote.isConnected {
             self.beginConnectingToSpotify()
             TTModeSpotify.nextAction = .nextTrack
@@ -320,10 +353,13 @@ class TTModeSpotify : TTMode, SPTAppRemotePlayerStateDelegate {
                 TTModeSpotify.nextAction = .nextTrack
             }
         })
-
+        #endif
     }
     
     func runTTModeSpotifyPreviousTrack() {
+        #if WIDGET
+        appDelegate().runInApp(action: "TTModeSpotifyPreviousTrack")
+        #else
         if !TTModeSpotify.appRemote.isConnected {
             self.beginConnectingToSpotify()
             TTModeSpotify.nextAction = .previousTrack
@@ -338,10 +374,14 @@ class TTModeSpotify : TTMode, SPTAppRemotePlayerStateDelegate {
                 TTModeSpotify.nextAction = .previousTrack
             }
         })
+        #endif
     }
-    
-    // Spotify Connection
-    
+}
+
+// Spotify Connection
+#if !WIDGET
+extension TTModeSpotify: SPTAppRemotePlayerStateDelegate {
+
     func beginConnectingToSpotify(ensureConnection : Bool = false) {
         DispatchQueue.main.async {
             TTModeSpotifyAppDelegate.recentSpotify = self
@@ -418,11 +458,6 @@ class TTModeSpotify : TTMode, SPTAppRemotePlayerStateDelegate {
     }
     
     // MARK: Spotify Protocol
-
-    
-    fileprivate var playerState: SPTAppRemotePlayerState?
-    fileprivate var subscribedToPlayerState: Bool = false
-    
     
     var defaultCallback: SPTAppRemoteCallback {
         get {
@@ -452,4 +487,4 @@ class TTModeSpotify : TTMode, SPTAppRemotePlayerStateDelegate {
     }
     
 }
-
+#endif

@@ -36,15 +36,15 @@ class TTModeCameraViewController: UIViewController {
         super.viewDidLoad()
         self.view.translatesAutoresizingMaskIntoConstraints = false
         
-        guard let cameraView = camera.view else {
-            return
-        }
-        
         camera = LLSimpleCamera(quality: AVCaptureSession.Preset.high.rawValue,
                                 position: LLCameraPositionRear,
                                 videoEnabled: false)
         camera.attach(to: self, withFrame: self.view.frame)
         camera.fixOrientationAfterCapture = true
+        
+        guard let cameraView = camera.view else {
+            return
+        }
         
         self.view.addConstraint(NSLayoutConstraint(item: cameraView, attribute: .width,
             relatedBy: .equal, toItem: self.view, attribute: .width,

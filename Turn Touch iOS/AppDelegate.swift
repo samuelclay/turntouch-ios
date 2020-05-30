@@ -104,6 +104,47 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     }
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any]) -> Bool {
+        if url.host == "widget" {
+            handleWidget(url: url)
+        } else {
+            handleSpotify(url: url)
+        }
+        
+        return true
+    }
+    
+    func handleWidget(url: URL) {
+        let components = url.pathComponents
+        
+        guard components.count > 2 else {
+            return
+        }
+        
+        let modeSuffix = components[1]
+        let actionSuffix = components[2]
+        
+        let modeName = "TTMode\(modeSuffix)"
+        let actionName = "\(modeName)\(actionSuffix)"
+        
+        let className = "\(appDelegate().moduleName).\(modeName)"
+        let possibleModeClass = NSClassFromString(className) as? TTMode.Type
+        
+        guard let modeClass = possibleModeClass else {
+            return
+        }
+        
+        DispatchQueue.main.async {
+            let mode = modeClass.init()
+            
+            let titleSelector = NSSelectorFromString("run\(actionName)")
+            
+            if mode.responds(to: titleSelector) {
+                mode.perform(titleSelector)
+            }
+        }
+    }
+    
+    func handleSpotify(url: URL) {
         let parameters = TTModeSpotify.appRemote.authorizationParameters(from: url)
         
         if let access_token = parameters?[SPTAppRemoteAccessTokenKey] {
@@ -113,8 +154,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         } else if let error_description = parameters?[SPTAppRemoteErrorDescriptionKey] {
             TTModeSpotifyAppDelegate.recentSpotify?.cancelConnectingToSpotify(error: error_description)
         }
-        
-        return true
     }
     
     func redrawMainLayout() {

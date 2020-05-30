@@ -500,6 +500,12 @@
 		17CFDEF4236A7A6C00693BF7 /* TTModeNest.plist in Resources */ = {isa = PBXBuildFile; fileRef = FF8FB1F31F8F19620085B994 /* TTModeNest.plist */; };
 		17CFDEF5236A7A6C00693BF7 /* temperature.png in Resources */ = {isa = PBXBuildFile; fileRef = FF8B752B1F86D4C900D7867C /* temperature.png */; };
 		17CFDEF6236A7A6C00693BF7 /* webhook.png in Resources */ = {isa = PBXBuildFile; fileRef = FF8B75201F86D4C600D7867C /* webhook.png */; };
+		17DA6BDA24831C5100A7E43E /* TTModeCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDA0F9D1D3C49E80019859F /* TTModeCamera.swift */; };
+		17DA6BDB24831C5200A7E43E /* TTModeCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDA0F9D1D3C49E80019859F /* TTModeCamera.swift */; };
+		17DA6BDC24831E0600A7E43E /* TTModeYoga.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB84B291D90BCBF0037872C /* TTModeYoga.swift */; };
+		17DA6BDD24831E0700A7E43E /* TTModeYoga.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB84B291D90BCBF0037872C /* TTModeYoga.swift */; };
+		17DA6BDE2483236100A7E43E /* TTModeSpotify.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE11F37209BCFDF0013D299 /* TTModeSpotify.swift */; };
+		17DA6BDF2483236100A7E43E /* TTModeSpotify.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE11F37209BCFDF0013D299 /* TTModeSpotify.swift */; };
 		17EB1EC22481FE5400B88B68 /* TTModeAlarmClock.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0F10CF1CF63F6100CC1F29 /* TTModeAlarmClock.swift */; };
 		17EB1EC32481FE5400B88B68 /* TTModeAlarmClock.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0F10CF1CF63F6100CC1F29 /* TTModeAlarmClock.swift */; };
 		17EB1EF62482085100B88B68 /* TTModeCustom.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4C037D1DFE5B6100EB0C92 /* TTModeCustom.swift */; };
@@ -3222,6 +3228,7 @@
 				17585F18245BCBEA0029E02E /* TTModeMenuContainer.swift in Sources */,
 				17585F19245BCBEA0029E02E /* TTActionMap.swift in Sources */,
 				17585F1A245BCBEA0029E02E /* TTModeMap.swift in Sources */,
+				17DA6BDD24831E0700A7E43E /* TTModeYoga.swift in Sources */,
 				17585F1B245BCBEA0029E02E /* TTModeDoubleOptions.swift in Sources */,
 				17585F1C245BCBEA0029E02E /* NSObject+Class.swift in Sources */,
 				17585F1D245BCBEA0029E02E /* TTModeWemoDevice.swift in Sources */,
@@ -3230,6 +3237,7 @@
 				17585F20245BCBEA0029E02E /* TTModeDouble.swift in Sources */,
 				17585F21245BCBEA0029E02E /* TTModeMusic.swift in Sources */,
 				17585F22245BCBEA0029E02E /* TTDiamondLabel.swift in Sources */,
+				17DA6BDB24831C5200A7E43E /* TTModeCamera.swift in Sources */,
 				17585F23245BCBEA0029E02E /* UIColor+hex.swift in Sources */,
 				17585F24245BCBEA0029E02E /* TTModeDirection.swift in Sources */,
 				17EB1EF72482085200B88B68 /* TTModeCustom.swift in Sources */,
@@ -3238,6 +3246,7 @@
 				17585F26245BCBEA0029E02E /* TTModeWemo.swift in Sources */,
 				17585F27245BCBEA0029E02E /* NSData+Hex.swift in Sources */,
 				17585F28245BCBEA0029E02E /* TTModePhone.swift in Sources */,
+				17DA6BDF2483236100A7E43E /* TTModeSpotify.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3257,6 +3266,7 @@
 				172590532459231C00055830 /* TTModeMenuContainer.swift in Sources */,
 				1725904A24591E6000055830 /* TTActionMap.swift in Sources */,
 				170C8DC8245907B40089B2C0 /* TTModeMap.swift in Sources */,
+				17DA6BDC24831E0600A7E43E /* TTModeYoga.swift in Sources */,
 				172590522459221100055830 /* TTModeDoubleOptions.swift in Sources */,
 				1725904D24591ED900055830 /* NSObject+Class.swift in Sources */,
 				17611849245A188A00D32EB3 /* TTModeWemoDevice.swift in Sources */,
@@ -3265,6 +3275,7 @@
 				1725904B24591E8200055830 /* TTModeDouble.swift in Sources */,
 				1761184B245A1FB400D32EB3 /* TTModeMusic.swift in Sources */,
 				174A15FD24592A3800F4AA2E /* TTDiamondLabel.swift in Sources */,
+				17DA6BDA24831C5100A7E43E /* TTModeCamera.swift in Sources */,
 				1725904C24591ED900055830 /* UIColor+hex.swift in Sources */,
 				170C8DC7245907A70089B2C0 /* TTModeDirection.swift in Sources */,
 				17EB1EF62482085100B88B68 /* TTModeCustom.swift in Sources */,
@@ -3273,6 +3284,7 @@
 				17611848245A187100D32EB3 /* TTModeWemo.swift in Sources */,
 				1725904E24591ED900055830 /* NSData+Hex.swift in Sources */,
 				1761184E245A220000D32EB3 /* TTModePhone.swift in Sources */,
+				17DA6BDE2483236100A7E43E /* TTModeSpotify.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

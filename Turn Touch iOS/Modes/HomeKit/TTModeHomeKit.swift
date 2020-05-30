@@ -64,6 +64,7 @@ class TTModeHomeKit: TTMode, HMHomeManagerDelegate {
     // MARK: Action titles
     
     func titleTTModeHomeKitTriggerScene() -> String {
+        #warning("need to  set these in the prefs, as the callback won't work in the widget")
         return self.titleTTModeHomeKitTriggerScene(direction: NSNumber(integerLiteral: TTModeDirection.no_DIRECTION.rawValue))
     }
     
