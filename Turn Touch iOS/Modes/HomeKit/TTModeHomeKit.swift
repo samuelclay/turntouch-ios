@@ -15,6 +15,7 @@ import HomeKit
 struct TTModeHomeKitConstants {
     static let kHomeKitHomeIdentifier = "homeIdentifier"
     static let kHomeKitSceneIdentifier = "sceneIdentifier"
+    static let kHomeKitSceneName = "sceneName"
 }
 
 enum TTHomeKitState {
@@ -64,15 +65,21 @@ class TTModeHomeKit: TTMode, HMHomeManagerDelegate {
     // MARK: Action titles
     
     func titleTTModeHomeKitTriggerScene() -> String {
-        #warning("need to  set these in the prefs, as the callback won't work in the widget")
-        return self.titleTTModeHomeKitTriggerScene(direction: NSNumber(integerLiteral: TTModeDirection.no_DIRECTION.rawValue))
+        return titleTTModeHomeKitTriggerScene(direction: NSNumber(integerLiteral: TTModeDirection.no_DIRECTION.rawValue))
     }
     
     func titleTTModeHomeKitTriggerScene(direction: NSNumber) -> String {
         let direction = TTModeDirection(rawValue: direction.intValue)!
         if direction != .no_DIRECTION {
-            let scene = self.selectedScene(in: direction)
-            return scene?.name ?? "Trigger scene"
+            #if !WIDGET
+            if let scene = self.selectedScene(in: direction) {
+                return scene.name
+            }
+            #endif
+            
+            let actionName = actionNameInDirection(direction)
+            let sceneName = actionOptionValue(TTModeHomeKitConstants.kHomeKitSceneName, actionName: actionName, direction: direction) as? String
+            return sceneName ?? "Trigger scene"
         }
         
         return "Trigger scene"
@@ -105,6 +112,7 @@ class TTModeHomeKit: TTMode, HMHomeManagerDelegate {
     // MARK: Action methods
     
     override func activate() {
+        #if !WIDGET
         if homeManager == nil {
             homeManager = HMHomeManager()
             homeManager.delegate = self
@@ -112,6 +120,7 @@ class TTModeHomeKit: TTMode, HMHomeManagerDelegate {
         }
         
         delegate?.changeState(TTModeHomeKit.homeKitState, mode: self)
+        #endif
     }
     
     override func deactivate() {
@@ -132,11 +141,19 @@ class TTModeHomeKit: TTMode, HMHomeManagerDelegate {
     }
     
     func runTTModeHomeKitTriggerScene() {
+        #if WIDGET
+        appDelegate().runInApp(action: "TTModeHomeKitTriggerScene")
+        #else
         self.trigger(doubleTap: false)
+        #endif
     }
     
     func doubleRunTTModeHomeKitTriggerScene() {
+        #if WIDGET
+        appDelegate().runInApp(action: "TTModeHomeKitTriggerScene")
+        #else
         self.trigger(doubleTap: true)
+        #endif
     }
     
     func trigger(doubleTap: Bool) {
@@ -254,6 +271,7 @@ class TTModeHomeKit: TTMode, HMHomeManagerDelegate {
         let selectedSceneIdentifier = self.actionOptionValue(TTModeHomeKitConstants.kHomeKitSceneIdentifier, actionName: actionName, direction: direction) as? String
         for scene in home.actionSets {
             if scene.uniqueIdentifier.uuidString == selectedSceneIdentifier {
+                changeActionOption(TTModeHomeKitConstants.kHomeKitSceneName, to: scene.name, direction: direction)
                 return scene
             }
         }

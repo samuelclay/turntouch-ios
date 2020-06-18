@@ -92,9 +92,11 @@ class WidgetDelegate: UIResponder {
     func runInApp(action: String) {
         let fullModeName = modeMap.selectedMode.nameOfClass
         let modeName = fullModeName.dropFirst("TTMode".count)
+        let modeDirectionName = modeMap.directionName(modeMap.selectedMode.modeDirection)
         let actionName = action.dropFirst(fullModeName.count)
+        let actionDirectionName = modeMap.directionName(modeMap.activeModeDirection)
         
-        guard let url = URL(string: "turntouch://widget/\(modeName)/\(actionName)") else {
+        guard let url = URL(string: "turntouch://widget/\(modeName)/\(modeDirectionName)/\(actionName)/\(actionDirectionName)") else {
             return
         }
         

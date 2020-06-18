@@ -475,14 +475,7 @@ class TTModeMap: NSObject {
             params[k] = v
         }
         
-        #warning("would need to replace this with a direct call")
-        #if !WIDGET
-        Alamofire.request("https://turntouch.com/usage/record", method: .post,
-                          parameters: params, encoding: JSONEncoding.default).responseJSON
-            { response in
-//                print(" ---> Usage: \(params) \(response)")
-            }
-        #endif
+        TTURLRequest.send("https://turntouch.com/usage/record", json: params)
     }
     
     func deviceAttrs() -> [String: Any] {
@@ -663,6 +656,27 @@ class TTModeMap: NSObject {
             return self.holdMode
         default:
             return self.northMode
+        }
+    }
+    
+    func direction(named name: String) -> TTModeDirection {
+        switch name {
+        case "north":
+            return .north
+        case "east":
+            return .east
+        case "west":
+            return .west
+        case "south":
+            return .south
+        case "single":
+            return .single
+        case "double":
+            return .double
+        case "hold":
+            return .hold
+        default:
+            return .no_DIRECTION
         }
     }
     

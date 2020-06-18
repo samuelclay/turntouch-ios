@@ -129,14 +129,14 @@ class TTModeIfttt: TTMode {
             "triggers": [trigger],
         ]
         
-        #warning("would need to replace this with a direct call")
-        #if !WIDGET
-        Alamofire.request("https://turntouch.com/ifttt/button_trigger", method: .post,
-                          parameters: params, encoding: JSONEncoding.default).responseJSON
-            { response in
-                print(" ---> IFTTT Button trigger: \(response)")
+        TTURLRequest.send("https://turntouch.com/ifttt/button_trigger", json: params) { result in
+            switch result {
+            case .success(let json):
+                print(" ---> IFTTT Button trigger: \(json)")
+            case .failure(let error):
+                print(" ---> IFTTT Button error: \(error)")
             }
-        #endif
+        }
     }
     
     func beginConnectingToIfttt() {
@@ -185,17 +185,17 @@ class TTModeIfttt: TTMode {
         params["button_direction"] = actionDirection
 
         print(" ---> Purging: \(params)")
-        #warning("would need to replace this with a direct call")
-        #if !WIDGET
-        Alamofire.request("https://turntouch.com/ifttt/purge_trigger", method: .post,
-                          parameters: params, encoding: URLEncoding.default).responseJSON
-            { response in
-                print(" ---> Purged: \(response)")
-                if let callback = callback {
-                    callback()
-                }
+        TTURLRequest.send("https://turntouch.com/ifttt/purge_trigger", json: params) { result in
+            switch result {
+            case .success(let json):
+                print(" ---> IFTTT Purged trigger: \(json)")
+            case .failure(let error):
+                print(" ---> IFTTT Purged error: \(error)")
+            }
+            if let callback = callback {
+                callback()
+            }
         }
-        #endif
     }
     
     func registerTriggers(callback: (() -> Void)? = nil) {
@@ -207,17 +207,17 @@ class TTModeIfttt: TTMode {
             "triggers": triggers,
         ]
         print(" ---> Registering: \(params)")
-        #warning("would need to replace this with a direct call")
-        #if !WIDGET
-        Alamofire.request("https://turntouch.com/ifttt/register_triggers", method: .post,
-                          parameters: params, encoding: JSONEncoding.default).responseJSON
-            { response in
-                print(" ---> Registered: \(response)")
-                if let callback = callback {
-                    callback()
-                }
+        TTURLRequest.send("https://turntouch.com/ifttt/register_triggers", json: params) { result in
+            switch result {
+            case .success(let json):
+                print(" ---> IFTTT Registered trigger: \(json)")
+            case .failure(let error):
+                print(" ---> IFTTT Registered error: \(error)")
             }
-        #endif
+            if let callback = callback {
+                callback()
+            }
+        }
     }
     
     func collectTriggers() -> [[String: String]] {

@@ -116,30 +116,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     func handleWidget(url: URL) {
         let components = url.pathComponents
         
-        guard components.count > 2 else {
+        guard components.count > 4 else {
             return
         }
         
         let modeSuffix = components[1]
-        let actionSuffix = components[2]
+        let modeDirectionName = components[2]
+        let actionSuffix = components[3]
+        let actionDirectionName = components[4]
         
         let modeName = "TTMode\(modeSuffix)"
+        let modeDirection = modeMap.direction(named: modeDirectionName)
         let actionName = "\(modeName)\(actionSuffix)"
+        let actionDirection = modeMap.direction(named: actionDirectionName)
         
-        let className = "\(appDelegate().moduleName).\(modeName)"
-        let possibleModeClass = NSClassFromString(className) as? TTMode.Type
-        
-        guard let modeClass = possibleModeClass else {
-            return
-        }
+        print("Widget mode \(modeName) (\(modeDirectionName)) action \(actionName) (\(actionDirectionName))")
         
         DispatchQueue.main.async {
-            let mode = modeClass.init()
+            if self.modeMap.selectedModeDirection != modeDirection {
+                print("Widget switching mode to \(modeName) (\(modeDirectionName))")
+                
+                self.modeMap.switchMode(modeDirection, modeChangeType: .modeTab)
+            }
             
-            let titleSelector = NSSelectorFromString("run\(actionName)")
-            
-            if mode.responds(to: titleSelector) {
-                mode.perform(titleSelector)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                print("Widget running action \(actionName) (\(actionDirectionName))")
+                
+                self.modeMap.runDirection(actionDirection)
             }
         }
     }

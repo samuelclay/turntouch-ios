@@ -25,6 +25,10 @@
 		172590552459276D00055830 /* TTModeTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB41B781CEEA8E500CD5F09 /* TTModeTab.swift */; };
 		172590562459277A00055830 /* TTDiamondView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0F10D61CF6697A00CC1F29 /* TTDiamondView.swift */; };
 		17461BD72480C3180052B92A /* Widget Dejal.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 17585F35245BCBEA0029E02E /* Widget Dejal.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		17481639249B1A30004AA0D3 /* TTURLRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17481638249B1A30004AA0D3 /* TTURLRequest.swift */; };
+		1748163A249B1A30004AA0D3 /* TTURLRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17481638249B1A30004AA0D3 /* TTURLRequest.swift */; };
+		1748163B249B1A30004AA0D3 /* TTURLRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17481638249B1A30004AA0D3 /* TTURLRequest.swift */; };
+		1748163C249B1A30004AA0D3 /* TTURLRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17481638249B1A30004AA0D3 /* TTURLRequest.swift */; };
 		174A15FC24592A2D00F4AA2E /* TTActionDiamondView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC9FE941D021A0400038817 /* TTActionDiamondView.swift */; };
 		174A15FD24592A3800F4AA2E /* TTDiamondLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0F10DB1CF669BE00CC1F29 /* TTDiamondLabel.swift */; };
 		174A15FF24592CD700F4AA2E /* Preferences.plist in Resources */ = {isa = PBXBuildFile; fileRef = FF0F10BF1CF5638D00CC1F29 /* Preferences.plist */; };
@@ -987,6 +991,7 @@
 		170C8DC5245906150089B2C0 /* WidgetDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetDelegate.swift; sourceTree = "<group>"; };
 		17461BD52480C0BB0052B92A /* Turn Touch Widget Dejal.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Turn Touch Widget Dejal.entitlements"; sourceTree = "<group>"; };
 		17461BD62480C0CC0052B92A /* Turn Touch Dejal.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Turn Touch Dejal.entitlements"; sourceTree = "<group>"; };
+		17481638249B1A30004AA0D3 /* TTURLRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TTURLRequest.swift; path = Models/TTURLRequest.swift; sourceTree = "<group>"; };
 		174A15FE24592C6700F4AA2E /* Turn Touch Widget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Turn Touch Widget.entitlements"; sourceTree = "<group>"; };
 		17585F35245BCBEA0029E02E /* Widget Dejal.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Widget Dejal.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		17AE44042458FF9C00D06762 /* Turn Touch Widget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Turn Touch Widget.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -2113,6 +2118,7 @@
 				FF7C14501DB2F2DD009CBA28 /* TTDevice.swift */,
 				FF7C14511DB2F2DD009CBA28 /* TTDeviceList.swift */,
 				FF7C144E1DB2F2AB009CBA28 /* TTBatchActions.swift */,
+				17481638249B1A30004AA0D3 /* TTURLRequest.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -3233,6 +3239,7 @@
 				17585F1C245BCBEA0029E02E /* NSObject+Class.swift in Sources */,
 				17585F1D245BCBEA0029E02E /* TTModeWemoDevice.swift in Sources */,
 				17585F1E245BCBEA0029E02E /* TTModeTab.swift in Sources */,
+				1748163C249B1A30004AA0D3 /* TTURLRequest.swift in Sources */,
 				17585F1F245BCBEA0029E02E /* TTAction.swift in Sources */,
 				17585F20245BCBEA0029E02E /* TTModeDouble.swift in Sources */,
 				17585F21245BCBEA0029E02E /* TTModeMusic.swift in Sources */,
@@ -3271,6 +3278,7 @@
 				1725904D24591ED900055830 /* NSObject+Class.swift in Sources */,
 				17611849245A188A00D32EB3 /* TTModeWemoDevice.swift in Sources */,
 				172590552459276D00055830 /* TTModeTab.swift in Sources */,
+				1748163B249B1A30004AA0D3 /* TTURLRequest.swift in Sources */,
 				1725904924591E6000055830 /* TTAction.swift in Sources */,
 				1725904B24591E8200055830 /* TTModeDouble.swift in Sources */,
 				1761184B245A1FB400D32EB3 /* TTModeMusic.swift in Sources */,
@@ -3407,6 +3415,7 @@
 				17CFDDBB236A7A6C00693BF7 /* TTModeWemoDeviceStartOptions.swift in Sources */,
 				17CFDDBC236A7A6C00693BF7 /* UIImage+FixOrientation.m in Sources */,
 				17CFDDBD236A7A6C00693BF7 /* TTBatchActionStackView.swift in Sources */,
+				1748163A249B1A30004AA0D3 /* TTURLRequest.swift in Sources */,
 				17CFDDBE236A7A6C00693BF7 /* TTModeWemoConnecting.swift in Sources */,
 				17CFDDBF236A7A6C00693BF7 /* TTModeSonosOptions.swift in Sources */,
 				17CFDDC0236A7A6C00693BF7 /* TTTitleBarView.swift in Sources */,
@@ -3563,6 +3572,7 @@
 				FF4AF7C71D248A860009C777 /* TTModeWemoDeviceStartOptions.swift in Sources */,
 				FFDA0FA91D3C4F1C0019859F /* UIImage+FixOrientation.m in Sources */,
 				FF7C14551DB30836009CBA28 /* TTBatchActionStackView.swift in Sources */,
+				17481639249B1A30004AA0D3 /* TTURLRequest.swift in Sources */,
 				FF4AF7BA1D248A290009C777 /* TTModeWemoConnecting.swift in Sources */,
 				FF4AF7EE1D24F9E70009C777 /* TTModeSonosOptions.swift in Sources */,
 				FF0F10C21CF60C3D00CC1F29 /* TTTitleBarView.swift in Sources */,
