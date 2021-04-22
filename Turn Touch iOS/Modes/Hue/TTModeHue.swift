@@ -512,6 +512,7 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
         let randomSaturation = TTHueRandomSaturation(rawValue: (self.action.optionValue((doubleTap ?
             TTModeHueConstants.kDoubleTapRandomSaturation : TTModeHueConstants.kRandomSaturation)) as! Int))
         let randomColor: Int = Int(arc4random_uniform(UInt32(MAX_HUE)))
+        let randomColor2: Int = Int(arc4random_uniform(UInt32(MAX_HUE)))
         let roomIdentifier = self.action.optionValue(TTModeHueConstants.kHueRoom) as? String
         
         guard let lights = cache?.lights else {
@@ -530,8 +531,10 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
             
             lightState.on = true
 
-            if (randomColors == .allSame) || (randomColors == .someDifferent && arc4random() % 10 > 5) {
+            if (randomColors == .allSame) {
                 lightState.hue = randomColor
+            } else if (randomColors == .someDifferent) {
+                lightState.hue = [randomColor, randomColor2].randomElement()
             } else {
                 lightState.hue = Int(arc4random() % UInt32(MAX_HUE))
             }
