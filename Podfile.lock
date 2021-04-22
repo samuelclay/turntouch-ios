@@ -9,8 +9,8 @@ PODS:
   - Alamofire (4.8.0)
   - CocoaAsyncSocket (7.6.3)
   - Firebase (1.2.3)
-  - Gloss (2.1.0)
-  - InAppSettingsKit (2.10)
+  - Gloss (3.1.0)
+  - InAppSettingsKit (2.15)
   - iOSDFULibrary (4.2.2):
     - Zip (~> 1.0)
   - JSONModel (1.2.0)
@@ -18,33 +18,33 @@ PODS:
     - Firebase (= 1.2.3)
     - JSONModel (= 1.2.0)
     - SSKeychain (= 1.3.1)
-  - ReachabilitySwift (4.3.0)
+  - ReachabilitySwift (4.3.1)
   - SSKeychain (1.3.1)
-  - SwiftyHue (0.5.2):
-    - SwiftyHue/Base (= 0.5.2)
-    - SwiftyHue/BridgeServices (= 0.5.2)
-  - SwiftyHue/Base (0.5.2):
+  - SwiftyHue (0.5.9):
+    - SwiftyHue/Base (= 0.5.9)
+    - SwiftyHue/BridgeServices (= 0.5.9)
+  - SwiftyHue/Base (0.5.9):
     - Alamofire (= 4.8.0)
-    - Gloss (= 2.1.0)
-  - SwiftyHue/BridgeServices (0.5.2):
+    - Gloss (= 3.1.0)
+  - SwiftyHue/BridgeServices (0.5.9):
     - Alamofire (= 4.8.0)
     - CocoaAsyncSocket (= 7.6.3)
-    - Gloss (= 2.1.0)
-  - SWXMLHash (4.7.6)
+    - Gloss (= 3.1.0)
+  - SWXMLHash (4.9.0)
   - Zip (1.1.0)
 
 DEPENDENCIES:
   - AFNetworking/NSURLSession (~> 3.1)
   - CocoaAsyncSocket (~> 7.6)
   - InAppSettingsKit (~> 2.8)
-  - iOSDFULibrary (~> 4.0)
+  - iOSDFULibrary (~> 4.2.0)
   - NestSDK (= 0.1.5)
   - ReachabilitySwift (~> 4.0)
   - SwiftyHue (~> 0.5)
   - SWXMLHash (~> 4.4)
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  trunk:
     - AFNetworking
     - Alamofire
     - CocoaAsyncSocket
@@ -65,17 +65,17 @@ SPEC CHECKSUMS:
   Alamofire: 3ec537f71edc9804815215393ae2b1a8ea33a844
   CocoaAsyncSocket: eafaa68a7e0ec99ead0a7b35015e0bf25d2c8987
   Firebase: 7a1b6a0848467348672afebfb306c624a3510f04
-  Gloss: 13ab6b4b0ff4cb2448466edc957479b1bccea8ba
-  InAppSettingsKit: d965e29be941eb19857271e4625de3fba6e23c9f
+  Gloss: 2dbf87af0e4dd24753f7de933356ff6c5c012426
+  InAppSettingsKit: 4890a44f9df7a1742c632920f0ea939cbeb29ea2
   iOSDFULibrary: 65a30a36d33ef451ef2d6c2b6a002a26eed786af
   JSONModel: 12523685c4b623553ccf844bbbf7007624317b2c
   NestSDK: 0ede51652a4688767b1b07a8dbb159a0b52dc8ac
-  ReachabilitySwift: 408477d1b6ed9779dba301953171e017c31241f3
+  ReachabilitySwift: 4032e2f59586e11e3b0ebe15b167abdd587a388b
   SSKeychain: 04c4ec40f4c3deda524e269bc76e5f30e638a174
-  SwiftyHue: 99ce6e874bcb9a35e65ecdda44bb80c9b45daac9
-  SWXMLHash: f6e0933ce74f2626669dc544851bc9fc1941670d
+  SwiftyHue: d76c2e48f342d47c17572b584d30984be35c3cc4
+  SWXMLHash: 87b0006848a548b7f9485b40bc71721b3ae39add
   Zip: 8877eede3dda76bcac281225c20e71c25270774c
 
-PODFILE CHECKSUM: e2a3299ce84a650ef05735cdb1022b11ff6b88ca
+PODFILE CHECKSUM: 8238afe81b076a6a5cbb053298b59f7fa24eff4b
 
-COCOAPODS: 1.5.2
+COCOAPODS: 1.10.1

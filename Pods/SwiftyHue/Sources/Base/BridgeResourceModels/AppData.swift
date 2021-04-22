@@ -29,13 +29,12 @@ public struct AppData: Glossy {
     
     public init?(json: JSON) {
         
-        guard let version: Int = "data" <~~ json,
-        let data: String = "version" <~~ json
-        else {return nil}
+        guard let version: Int = "version" <~~ json, let data: String = "data" <~~ json else {
+            return nil
+        }
         
         self.version = version
         self.data = data
-        
     }
     
     public func toJSON() -> JSON? {
@@ -49,9 +48,8 @@ public struct AppData: Glossy {
 
 extension AppData: Hashable {
     
-    public var hashValue: Int {
-        
-        return version
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(version)
     }
 }
 public func ==(lhs: AppData, rhs: AppData) -> Bool {

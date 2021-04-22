@@ -11,7 +11,7 @@ import Gloss
 
 
 public enum SensorType: String {
-    case ZGPSwitch, ZLLSwitch, ClipSwitch = "Clip Switch", CLIPOpenClose, CLIPPresence, CLIPTemperature, CLIPHumidity, Daylight, CLIPGenericFlag, CLIPGenericStatus
+    case ZGPSwitch, ZLLSwitch, ClipSwitch = "Clip Switch", CLIPOpenClose, CLIPPresence, ZLLPresence, CLIPTemperature, ZLLTemperature, CLIPHumidity, Daylight, CLIPGenericFlag, CLIPGenericStatus, CLIPLightLevel, ZLLLightLevel
 }
 
 public func ==(lhs: PartialSensor, rhs: PartialSensor) -> Bool {
@@ -145,9 +145,9 @@ public class Sensor: PartialSensor{
 
 extension Sensor: Hashable {
     
-    public var hashValue: Int {
+    public func hash(into hasher: inout Hasher) {
         
-        return 1
+        hasher.combine(1)
     }
 }
 
@@ -185,15 +185,19 @@ extension Sensor {
     }
     
     public func isPresenceSensor() -> Bool {
-        return type == .CLIPPresence
+        return type == .CLIPPresence || type == .ZLLPresence
     }
     
     public func isSwitchSensor() -> Bool {
         return type == .ZGPSwitch || type == .ZLLSwitch || type == .ClipSwitch
     }
     
+    public func isLightLevelSensor() -> Bool {
+        return type == .CLIPLightLevel || type == .ZLLLightLevel
+    }
+    
     public func isTemperatureSensor() -> Bool {
-        return type == .CLIPTemperature
+        return type == .CLIPTemperature || type == .ZLLTemperature
     }
     
     public func asDaylightSensor() -> DaylightSensor? {
@@ -227,5 +231,9 @@ extension Sensor {
     
     public func asTemperatureSensor() -> TemperatureSensor? {
         return TemperatureSensor(sensor: self)
+    }
+    
+    public func asLightlevelSensor() -> LightLevelSensor? {
+        return LightLevelSensor(sensor: self)
     }
 }

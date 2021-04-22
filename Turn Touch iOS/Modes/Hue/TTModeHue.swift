@@ -1185,7 +1185,7 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
                 var lightState = LightState()
                 lightState.on = true
                 let point = HueUtilities.calculateXY(UIColor(red: 235/255.0, green: 206/255.0, blue: 146/255.0, alpha: 1), forModel: light.modelId)
-                lightState.xy = [Float(point.x), Float(point.y)]
+                lightState.xy = [Double(point.x), Double(point.y)]
                 lightState.brightness = Int(MAX_BRIGHTNESS)
                 lightState.saturation = Int(MAX_BRIGHTNESS)
                 return lightState
@@ -1198,7 +1198,7 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
                 if index % 3 == 2 {
                     point = HueUtilities.calculateXY(UIColor(red: 44/255.0, green: 56/255.0, blue: 225/255.0, alpha: 1), forModel: light.modelId)
                 }
-                lightState.xy = [Float(point.x), Float(point.y)]
+                lightState.xy = [Double(point.x), Double(point.y)]
                 lightState.brightness = Int(200)
                 lightState.saturation = Int(MAX_BRIGHTNESS)
                 return lightState
@@ -1208,7 +1208,7 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
                 var lightState = LightState()
                 lightState.on = true
                 let point = HueUtilities.calculateXY(UIColor(red: 95/255.0, green: 76/255.0, blue: 36/255.0, alpha: 1), forModel: light.modelId)
-                lightState.xy = [Float(point.x), Float(point.y)]
+                lightState.xy = [Double(point.x), Double(point.y)]
                 lightState.brightness = Int(Double(MAX_BRIGHTNESS)*(6/10.0))
                 lightState.saturation = Int(MAX_BRIGHTNESS)
                 return lightState
@@ -1223,7 +1223,7 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
                     point = HueUtilities.calculateXY(UIColor(red: 134/255.0, green: 56/255.0, blue: 205/255.0, alpha: 1), forModel: light.modelId)
                     lightState.brightness = Int(Double(MAX_BRIGHTNESS)*(8/10.0))
                 }
-                lightState.xy = [Float(point.x), Float(point.y)]
+                lightState.xy = [Double(point.x), Double(point.y)]
                 lightState.saturation = Int(MAX_BRIGHTNESS)
                 return lightState
             }
@@ -1237,7 +1237,7 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
                     point = HueUtilities.calculateXY(UIColor(red: 144/255.0, green: 56/255.0, blue: 20/255.0, alpha: 1), forModel: light.modelId)
                     lightState.brightness = Int(Double(MAX_BRIGHTNESS)*(5/10.0))
                 }
-                lightState.xy = [Float(point.x), Float(point.y)]
+                lightState.xy = [Double(point.x), Double(point.y)]
                 lightState.saturation = Int(MAX_BRIGHTNESS / 2)
                 return lightState
             }
@@ -1251,7 +1251,7 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
                     point = HueUtilities.calculateXY(UIColor(red: 134/255.0, green: 76/255.0, blue: 26/255.0, alpha: 1), forModel: light.modelId)
                     lightState.brightness = Int(Double(MAX_BRIGHTNESS)*(6/10.0))
                 }
-                lightState.xy = [Float(point.x), Float(point.y)]
+                lightState.xy = [Double(point.x), Double(point.y)]
                 lightState.saturation = Int(MAX_BRIGHTNESS / 2)
                 return lightState
             }
@@ -1272,7 +1272,7 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
                     lightState.brightness = Int(Double(MAX_BRIGHTNESS)*(3/10.0))
                     lightState.saturation = Int(MAX_BRIGHTNESS)
                 }
-                lightState.xy = [Float(point.x), Float(point.y)]
+                lightState.xy = [Double(point.x), Double(point.y)]
                 return lightState
             }
             
@@ -1292,7 +1292,7 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
                     lightState.brightness = Int(Double(MAX_BRIGHTNESS)*(3/10.0))
                     lightState.saturation = Int(MAX_BRIGHTNESS)
                 }
-                lightState.xy = [Float(point.x), Float(point.y)]
+                lightState.xy = [Double(point.x), Double(point.y)]
                 return lightState
             }
             

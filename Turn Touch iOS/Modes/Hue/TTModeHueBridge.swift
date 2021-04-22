@@ -52,6 +52,12 @@ class TTModeHueBridge: TTOptionsDetailViewController, UITableViewDelegate, UITab
         
         tableHeightConstraint.constant = CGFloat(self.bridgesFound.count * Int(height))
         appDelegate().mainViewController.scrollView.layoutSubviews()
+        
+        if self.bridgesFound.count == 1 {
+            // Select first bridge if there's only one
+            let bridge = self.bridgesFound[0]
+            self.modeHue.bridgeSelected(bridge)
+        }
     }
     
     @IBAction func performRefresh(_ sender: UIButton?) {
