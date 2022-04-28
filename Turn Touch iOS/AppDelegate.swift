@@ -104,15 +104,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     }
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any]) -> Bool {
-        let parameters = TTModeSpotify.appRemote.authorizationParameters(from: url)
+//        let parameters = TTModeSpotify.appRemote.authorizationParameters(from: url)
         
-        if let access_token = parameters?[SPTAppRemoteAccessTokenKey] {
-            TTModeSpotify.appRemote.connectionParameters.accessToken = access_token
-            TTModeSpotify.accessToken = access_token
-            TTModeSpotifyAppDelegate.recentSpotify?.didEstablishConnection()
-        } else if let error_description = parameters?[SPTAppRemoteErrorDescriptionKey] {
-            TTModeSpotifyAppDelegate.recentSpotify?.cancelConnectingToSpotify(error: error_description)
-        }
+//        if let access_token = parameters?[SPTAppRemoteAccessTokenKey] {
+//            TTModeSpotify.appRemote.connectionParameters.accessToken = access_token
+//            TTModeSpotify.accessToken = access_token
+//            TTModeSpotifyAppDelegate.recentSpotify?.didEstablishConnection()
+//        } else if let error_description = parameters?[SPTAppRemoteErrorDescriptionKey] {
+//            TTModeSpotifyAppDelegate.recentSpotify?.cancelConnectingToSpotify(error: error_description)
+//        }
         
         return true
     }

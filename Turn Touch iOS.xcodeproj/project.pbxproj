@@ -16,7 +16,6 @@
 		17CFDD50236A7A6C00693BF7 /* DDFileLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = FFF46BD01D10941500158751 /* DDFileLogger.m */; };
 		17CFDD51236A7A6C00693BF7 /* TTGeofencingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB2750D20FEB60200FBE13E /* TTGeofencingViewController.swift */; };
 		17CFDD52236A7A6C00693BF7 /* TTModeBoseConnected.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD88F0820AE7A9F00E0C5CC /* TTModeBoseConnected.swift */; };
-		17CFDD53236A7A6C00693BF7 /* TTModeSpotifyConnecting.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE11F43209C0EBF0013D299 /* TTModeSpotifyConnecting.swift */; };
 		17CFDD54236A7A6C00693BF7 /* LLSimpleCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = FFDA0FA41D3C4F1C0019859F /* LLSimpleCamera.m */; };
 		17CFDD55236A7A6C00693BF7 /* TTModeSonosConnecting.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4AF7E21D24F9E70009C777 /* TTModeSonosConnecting.swift */; };
 		17CFDD56236A7A6C00693BF7 /* TTModeHueSceneMorningOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3032C01DB828B100728920 /* TTModeHueSceneMorningOptions.swift */; };
@@ -48,13 +47,11 @@
 		17CFDD70236A7A6C00693BF7 /* TTModalButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC4B0F21D2DC38C00A97C81 /* TTModalButton.swift */; };
 		17CFDD71236A7A6C00693BF7 /* TTDeviceList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7C14511DB2F2DD009CBA28 /* TTDeviceList.swift */; };
 		17CFDD72236A7A6C00693BF7 /* TTModeMenuCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0F10EA1CFFB4A800CC1F29 /* TTModeMenuCollectionView.swift */; };
-		17CFDD73236A7A6C00693BF7 /* TTModeSpotify.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE11F37209BCFDF0013D299 /* TTModeSpotify.swift */; };
 		17CFDD74236A7A6C00693BF7 /* TTModeBoseVolumeJumpOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD88F0720AE7A9F00E0C5CC /* TTModeBoseVolumeJumpOptions.swift */; };
 		17CFDD75236A7A6C00693BF7 /* TTModeWemoOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4AF7B01D2486F90009C777 /* TTModeWemoOptions.swift */; };
 		17CFDD76236A7A6C00693BF7 /* TTModeCameraReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF08A2321D501ABD00D433A5 /* TTModeCameraReviewViewController.swift */; };
 		17CFDD77236A7A6C00693BF7 /* TTBatchActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7C144E1DB2F2AB009CBA28 /* TTBatchActions.swift */; };
 		17CFDD78236A7A6C00693BF7 /* TTModeSonos.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4AF7DB1D24F9370009C777 /* TTModeSonos.swift */; };
-		17CFDD79236A7A6C00693BF7 /* TTModeSpotifyConnected.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE11F3C209C0EBF0013D299 /* TTModeSpotifyConnected.swift */; };
 		17CFDD7A236A7A6C00693BF7 /* TTModeDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB41B7A1CEEA9E300CD5F09 /* TTModeDirection.swift */; };
 		17CFDD7B236A7A6C00693BF7 /* TTModeNestConnect.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF21F9361E1C9EEC00DFDBB4 /* TTModeNestConnect.swift */; };
 		17CFDD7C236A7A6C00693BF7 /* TTBatchActionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7C14571DB3085E009CBA28 /* TTBatchActionHeaderView.swift */; };
@@ -62,7 +59,6 @@
 		17CFDD7E236A7A6C00693BF7 /* TTModeHomeKitTriggerSceneOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBFF00A1F6CC3AA00B3EDA7 /* TTModeHomeKitTriggerSceneOptions.swift */; };
 		17CFDD7F236A7A6C00693BF7 /* TTPairingSpinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF44876A1D08E1D600ED8099 /* TTPairingSpinner.swift */; };
 		17CFDD80236A7A6C00693BF7 /* TTModeHomeKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBFF0051F6CBAA300B3EDA7 /* TTModeHomeKit.swift */; };
-		17CFDD81236A7A6C00693BF7 /* TTModeSpotifyVolumeJumpOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE11F44209C0EBF0013D299 /* TTModeSpotifyVolumeJumpOptions.swift */; };
 		17CFDD82236A7A6C00693BF7 /* DDAbstractDatabaseLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = FFF46BCC1D10941500158751 /* DDAbstractDatabaseLogger.m */; };
 		17CFDD83236A7A6C00693BF7 /* TTModeHueSceneMidnightOilOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3032BE1DB8289600728920 /* TTModeHueSceneMidnightOilOptions.swift */; };
 		17CFDD84236A7A6C00693BF7 /* NSObject+Class.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC9FE981D02520300038817 /* NSObject+Class.swift */; };
@@ -95,7 +91,6 @@
 		17CFDD9F236A7A6C00693BF7 /* DDLog.m in Sources */ = {isa = PBXBuildFile; fileRef = FFF46BD21D10941500158751 /* DDLog.m */; };
 		17CFDDA0236A7A6C00693BF7 /* TTModeHueOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF37EDCD1D1113C10026F70D /* TTModeHueOptions.swift */; };
 		17CFDDA1236A7A6C00693BF7 /* DDTTYLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = FFF46BD41D10941500158751 /* DDTTYLogger.m */; };
-		17CFDDA2236A7A6C00693BF7 /* TTModeSpotifyConnect.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE11F41209C0EBF0013D299 /* TTModeSpotifyConnect.swift */; };
 		17CFDDA3236A7A6C00693BF7 /* TTTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF37EDCA1D1102620026F70D /* TTTabView.swift */; };
 		17CFDDA4236A7A6C00693BF7 /* TTTitleMenuPopover.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4487611D08986200ED8099 /* TTTitleMenuPopover.swift */; };
 		17CFDDA5236A7A6C00693BF7 /* TTModeDouble.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF189C6D210F5B7C000B49F7 /* TTModeDouble.swift */; };
@@ -144,7 +139,6 @@
 		17CFDDD0236A7A6C00693BF7 /* MulticastDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF52EBD11F8F05E2002D0EF1 /* MulticastDelegate.swift */; };
 		17CFDDD1236A7A6C00693BF7 /* SonosDiscover.m in Sources */ = {isa = PBXBuildFile; fileRef = FF4AF7D01D24ECF60009C777 /* SonosDiscover.m */; };
 		17CFDDD2236A7A6C00693BF7 /* TTModeWemoDeviceOffOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4AF7C81D248AD00009C777 /* TTModeWemoDeviceOffOptions.swift */; };
-		17CFDDD3236A7A6C00693BF7 /* TTModeSpotifyOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE11F3E209C0EBF0013D299 /* TTModeSpotifyOptions.swift */; };
 		17CFDDD4236A7A6C00693BF7 /* TTModeBoseConnect.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD88F0420AE7A9F00E0C5CC /* TTModeBoseConnect.swift */; };
 		17CFDDD5236A7A6C00693BF7 /* TTPairingInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC4B0EE1D2DBF3E00A97C81 /* TTPairingInfoViewController.swift */; };
 		17CFDDD6236A7A6C00693BF7 /* TTModeCameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDA0FB81D3C55930019859F /* TTModeCameraViewController.swift */; };
@@ -157,7 +151,6 @@
 		17CFDDDD236A7A6C00693BF7 /* TTMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF270C31CEE97AF00E46575 /* TTMainViewController.swift */; };
 		17CFDDDE236A7A6C00693BF7 /* TTAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB41B851CF536AC00CD5F09 /* TTAction.swift */; };
 		17CFDDDF236A7A6C00693BF7 /* TTBluetoothMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF44876C1D08E62200ED8099 /* TTBluetoothMonitor.swift */; };
-		17CFDDE1236A7A6C00693BF7 /* SpotifyAppRemote.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFE11F3A209BD2630013D299 /* SpotifyAppRemote.framework */; };
 		17CFDDE2236A7A6C00693BF7 /* HomeKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFBFF00E1F6CC97700B3EDA7 /* HomeKit.framework */; };
 		17CFDDE3236A7A6C00693BF7 /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = FF4AF7AB1D2475630009C777 /* libxml2.tbd */; };
 		17CFDDE6236A7A6C00693BF7 /* effra-lightitalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FF58FC55203E479B005F547B /* effra-lightitalic.ttf */; };
@@ -262,7 +255,6 @@
 		17CFDE49236A7A6C00693BF7 /* Icon-76@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FF2023281D02147A005129E5 /* Icon-76@2x.png */; };
 		17CFDE4A236A7A6C00693BF7 /* app_music.png in Resources */ = {isa = PBXBuildFile; fileRef = FFB41AC11CEE9A3000CD5F09 /* app_music.png */; };
 		17CFDE4B236A7A6C00693BF7 /* Icon-76.png in Resources */ = {isa = PBXBuildFile; fileRef = FF2023271D02147A005129E5 /* Icon-76.png */; };
-		17CFDE4C236A7A6C00693BF7 /* TTModeSpotifyVolumeJumpOptions.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFE11F40209C0EBF0013D299 /* TTModeSpotifyVolumeJumpOptions.xib */; };
 		17CFDE4D236A7A6C00693BF7 /* cancel.png in Resources */ = {isa = PBXBuildFile; fileRef = FFDA0FAE1D3C4FEE0019859F /* cancel.png */; };
 		17CFDE4E236A7A6C00693BF7 /* itunes_music_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = FFB41AF41CEE9A3000CD5F09 /* itunes_music_icon.png */; };
 		17CFDE4F236A7A6C00693BF7 /* press_smartbridgeV2.png in Resources */ = {isa = PBXBuildFile; fileRef = FF3036581DB9BF0900728920 /* press_smartbridgeV2.png */; };
@@ -312,11 +304,9 @@
 		17CFDE7B236A7A6C00693BF7 /* TTModeHueOptions.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF37EDCE1D1113C10026F70D /* TTModeHueOptions.xib */; };
 		17CFDE7C236A7A6C00693BF7 /* Icon-29.png in Resources */ = {isa = PBXBuildFile; fileRef = FF2023191D02147A005129E5 /* Icon-29.png */; };
 		17CFDE7D236A7A6C00693BF7 /* modal_remote_failed.png in Resources */ = {isa = PBXBuildFile; fileRef = FFB41B0D1CEE9A3000CD5F09 /* modal_remote_failed.png */; };
-		17CFDE7E236A7A6C00693BF7 /* TTModeSpotifyConnecting.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFE11F3D209C0EBF0013D299 /* TTModeSpotifyConnecting.xib */; };
 		17CFDE7F236A7A6C00693BF7 /* north tone.wav in Resources */ = {isa = PBXBuildFile; fileRef = FFC33C381EA173B600321EB9 /* north tone.wav */; };
 		17CFDE80236A7A6C00693BF7 /* TTPairingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF4487681D08D0C600ED8099 /* TTPairingViewController.xib */; };
 		17CFDE81236A7A6C00693BF7 /* single_tap.png in Resources */ = {isa = PBXBuildFile; fileRef = FF37EDEF1D14A9E80026F70D /* single_tap.png */; };
-		17CFDE82236A7A6C00693BF7 /* TTModeSpotifyOptions.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFE11F45209C0EC00013D299 /* TTModeSpotifyOptions.xib */; };
 		17CFDE83236A7A6C00693BF7 /* filmstrip-3.png in Resources */ = {isa = PBXBuildFile; fileRef = FFB41ACB1CEE9A3000CD5F09 /* filmstrip-3.png */; };
 		17CFDE84236A7A6C00693BF7 /* mode_hue.png in Resources */ = {isa = PBXBuildFile; fileRef = FFB41AD61CEE9A3000CD5F09 /* mode_hue.png */; };
 		17CFDE85236A7A6C00693BF7 /* TTModalButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFC4B0F41D2DD82200A97C81 /* TTModalButton.xib */; };
@@ -423,8 +413,6 @@
 		17CFDEEA236A7A6C00693BF7 /* previous_site.png in Resources */ = {isa = PBXBuildFile; fileRef = FF8B75301F86D4CA00D7867C /* previous_site.png */; };
 		17CFDEEB236A7A6C00693BF7 /* previous.png in Resources */ = {isa = PBXBuildFile; fileRef = FF8B75211F86D4C600D7867C /* previous.png */; };
 		17CFDEEC236A7A6C00693BF7 /* script.png in Resources */ = {isa = PBXBuildFile; fileRef = FF8B752D1F86D4C900D7867C /* script.png */; };
-		17CFDEED236A7A6C00693BF7 /* TTModeSpotifyConnected.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFE11F42209C0EBF0013D299 /* TTModeSpotifyConnected.xib */; };
-		17CFDEEE236A7A6C00693BF7 /* TTModeSpotifyConnect.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFE11F3F209C0EBF0013D299 /* TTModeSpotifyConnect.xib */; };
 		17CFDEEF236A7A6C00693BF7 /* scroll_down.png in Resources */ = {isa = PBXBuildFile; fileRef = FF8B75391F86D4CC00D7867C /* scroll_down.png */; };
 		17CFDEF0236A7A6C00693BF7 /* scroll_up.png in Resources */ = {isa = PBXBuildFile; fileRef = FF8B751F1F86D4C600D7867C /* scroll_up.png */; };
 		17CFDEF1236A7A6C00693BF7 /* twitter-review.png in Resources */ = {isa = PBXBuildFile; fileRef = FFECC40D203E7B27007AB343 /* twitter-review.png */; };
@@ -826,18 +814,6 @@
 		FFDC9F6A1FD74B0800261B76 /* hue_brightness_up.png in Resources */ = {isa = PBXBuildFile; fileRef = FFDC9F661FD74B0800261B76 /* hue_brightness_up.png */; };
 		FFDC9F6B1FD74B0800261B76 /* hue_shift_left.png in Resources */ = {isa = PBXBuildFile; fileRef = FFDC9F671FD74B0800261B76 /* hue_shift_left.png */; };
 		FFDC9F6C1FD74B0800261B76 /* hue_brightness_down.png in Resources */ = {isa = PBXBuildFile; fileRef = FFDC9F681FD74B0800261B76 /* hue_brightness_down.png */; };
-		FFE11F38209BCFDF0013D299 /* TTModeSpotify.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE11F37209BCFDF0013D299 /* TTModeSpotify.swift */; };
-		FFE11F3B209BD2630013D299 /* SpotifyAppRemote.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFE11F3A209BD2630013D299 /* SpotifyAppRemote.framework */; };
-		FFE11F46209C0EC00013D299 /* TTModeSpotifyConnected.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE11F3C209C0EBF0013D299 /* TTModeSpotifyConnected.swift */; };
-		FFE11F47209C0EC00013D299 /* TTModeSpotifyConnecting.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFE11F3D209C0EBF0013D299 /* TTModeSpotifyConnecting.xib */; };
-		FFE11F48209C0EC00013D299 /* TTModeSpotifyOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE11F3E209C0EBF0013D299 /* TTModeSpotifyOptions.swift */; };
-		FFE11F49209C0EC00013D299 /* TTModeSpotifyConnect.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFE11F3F209C0EBF0013D299 /* TTModeSpotifyConnect.xib */; };
-		FFE11F4A209C0EC00013D299 /* TTModeSpotifyVolumeJumpOptions.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFE11F40209C0EBF0013D299 /* TTModeSpotifyVolumeJumpOptions.xib */; };
-		FFE11F4B209C0EC00013D299 /* TTModeSpotifyConnect.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE11F41209C0EBF0013D299 /* TTModeSpotifyConnect.swift */; };
-		FFE11F4C209C0EC00013D299 /* TTModeSpotifyConnected.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFE11F42209C0EBF0013D299 /* TTModeSpotifyConnected.xib */; };
-		FFE11F4D209C0EC00013D299 /* TTModeSpotifyConnecting.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE11F43209C0EBF0013D299 /* TTModeSpotifyConnecting.swift */; };
-		FFE11F4E209C0EC00013D299 /* TTModeSpotifyVolumeJumpOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE11F44209C0EBF0013D299 /* TTModeSpotifyVolumeJumpOptions.swift */; };
-		FFE11F4F209C0EC00013D299 /* TTModeSpotifyOptions.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFE11F45209C0EC00013D299 /* TTModeSpotifyOptions.xib */; };
 		FFECC40A203E7891007AB343 /* twitter-samuelclay.png in Resources */ = {isa = PBXBuildFile; fileRef = FFECC408203E7891007AB343 /* twitter-samuelclay.png */; };
 		FFECC40B203E7891007AB343 /* twitter-turntouch.png in Resources */ = {isa = PBXBuildFile; fileRef = FFECC409203E7891007AB343 /* twitter-turntouch.png */; };
 		FFECC40E203E7B27007AB343 /* twitter-buy.png in Resources */ = {isa = PBXBuildFile; fileRef = FFECC40C203E7B27007AB343 /* twitter-buy.png */; };
@@ -1271,18 +1247,6 @@
 		FFDC9F661FD74B0800261B76 /* hue_brightness_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hue_brightness_up.png; sourceTree = "<group>"; };
 		FFDC9F671FD74B0800261B76 /* hue_shift_left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hue_shift_left.png; sourceTree = "<group>"; };
 		FFDC9F681FD74B0800261B76 /* hue_brightness_down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hue_brightness_down.png; sourceTree = "<group>"; };
-		FFE11F37209BCFDF0013D299 /* TTModeSpotify.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TTModeSpotify.swift; path = Modes/Spotify/TTModeSpotify.swift; sourceTree = "<group>"; };
-		FFE11F3A209BD2630013D299 /* SpotifyAppRemote.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpotifyAppRemote.framework; path = "Turn Touch iOS/Vendor/SpotifyAppRemote.framework"; sourceTree = "<group>"; };
-		FFE11F3C209C0EBF0013D299 /* TTModeSpotifyConnected.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeSpotifyConnected.swift; path = Modes/Spotify/TTModeSpotifyConnected.swift; sourceTree = "<group>"; };
-		FFE11F3D209C0EBF0013D299 /* TTModeSpotifyConnecting.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TTModeSpotifyConnecting.xib; path = Modes/Spotify/TTModeSpotifyConnecting.xib; sourceTree = "<group>"; };
-		FFE11F3E209C0EBF0013D299 /* TTModeSpotifyOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeSpotifyOptions.swift; path = Modes/Spotify/TTModeSpotifyOptions.swift; sourceTree = "<group>"; };
-		FFE11F3F209C0EBF0013D299 /* TTModeSpotifyConnect.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TTModeSpotifyConnect.xib; path = Modes/Spotify/TTModeSpotifyConnect.xib; sourceTree = "<group>"; };
-		FFE11F40209C0EBF0013D299 /* TTModeSpotifyVolumeJumpOptions.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TTModeSpotifyVolumeJumpOptions.xib; path = Modes/Spotify/TTModeSpotifyVolumeJumpOptions.xib; sourceTree = "<group>"; };
-		FFE11F41209C0EBF0013D299 /* TTModeSpotifyConnect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeSpotifyConnect.swift; path = Modes/Spotify/TTModeSpotifyConnect.swift; sourceTree = "<group>"; };
-		FFE11F42209C0EBF0013D299 /* TTModeSpotifyConnected.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TTModeSpotifyConnected.xib; path = Modes/Spotify/TTModeSpotifyConnected.xib; sourceTree = "<group>"; };
-		FFE11F43209C0EBF0013D299 /* TTModeSpotifyConnecting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeSpotifyConnecting.swift; path = Modes/Spotify/TTModeSpotifyConnecting.swift; sourceTree = "<group>"; };
-		FFE11F44209C0EBF0013D299 /* TTModeSpotifyVolumeJumpOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeSpotifyVolumeJumpOptions.swift; path = Modes/Spotify/TTModeSpotifyVolumeJumpOptions.swift; sourceTree = "<group>"; };
-		FFE11F45209C0EC00013D299 /* TTModeSpotifyOptions.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TTModeSpotifyOptions.xib; path = Modes/Spotify/TTModeSpotifyOptions.xib; sourceTree = "<group>"; };
 		FFECC408203E7891007AB343 /* twitter-samuelclay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "twitter-samuelclay.png"; sourceTree = "<group>"; };
 		FFECC409203E7891007AB343 /* twitter-turntouch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "twitter-turntouch.png"; sourceTree = "<group>"; };
 		FFECC40C203E7B27007AB343 /* twitter-buy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "twitter-buy.png"; sourceTree = "<group>"; };
@@ -1320,7 +1284,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				17CFDDE1236A7A6C00693BF7 /* SpotifyAppRemote.framework in Frameworks */,
 				17CFDDE2236A7A6C00693BF7 /* HomeKit.framework in Frameworks */,
 				17CFDDE3236A7A6C00693BF7 /* libxml2.tbd in Frameworks */,
 			);
@@ -1330,7 +1293,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FFE11F3B209BD2630013D299 /* SpotifyAppRemote.framework in Frameworks */,
 				FFBFF00F1F6CC97700B3EDA7 /* HomeKit.framework in Frameworks */,
 				FF4AF7AF1D2475B50009C777 /* libxml2.tbd in Frameworks */,
 				85D8B548CD81B8F0353F6C06 /* Pods_Turn_Touch_iOS.framework in Frameworks */,
@@ -1343,7 +1305,6 @@
 		0F31B8744850402114AE49F7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				FFE11F3A209BD2630013D299 /* SpotifyAppRemote.framework */,
 				FFBFF00E1F6CC97700B3EDA7 /* HomeKit.framework */,
 				FFC4B0EC1D2C911E00A97C81 /* AudioToolbox.framework */,
 				FF4AF7AD1D2475780009C777 /* libxml2.2.tbd */,
@@ -1389,7 +1350,6 @@
 				FF21F9311E172BC700DFDBB4 /* Nest */,
 				FF534C2D1EB0351A002EE584 /* Ifttt */,
 				FFBFF0071F6CBAB800B3EDA7 /* HomeKit */,
-				FFE11F39209BCFE90013D299 /* Spotify */,
 			);
 			name = Modes;
 			sourceTree = "<group>";
@@ -2080,24 +2040,6 @@
 			path = LLSimpleCamera;
 			sourceTree = "<group>";
 		};
-		FFE11F39209BCFE90013D299 /* Spotify */ = {
-			isa = PBXGroup;
-			children = (
-				FFE11F37209BCFDF0013D299 /* TTModeSpotify.swift */,
-				FFE11F3E209C0EBF0013D299 /* TTModeSpotifyOptions.swift */,
-				FFE11F45209C0EC00013D299 /* TTModeSpotifyOptions.xib */,
-				FFE11F41209C0EBF0013D299 /* TTModeSpotifyConnect.swift */,
-				FFE11F3F209C0EBF0013D299 /* TTModeSpotifyConnect.xib */,
-				FFE11F43209C0EBF0013D299 /* TTModeSpotifyConnecting.swift */,
-				FFE11F3D209C0EBF0013D299 /* TTModeSpotifyConnecting.xib */,
-				FFE11F3C209C0EBF0013D299 /* TTModeSpotifyConnected.swift */,
-				FFE11F42209C0EBF0013D299 /* TTModeSpotifyConnected.xib */,
-				FFE11F44209C0EBF0013D299 /* TTModeSpotifyVolumeJumpOptions.swift */,
-				FFE11F40209C0EBF0013D299 /* TTModeSpotifyVolumeJumpOptions.xib */,
-			);
-			name = Spotify;
-			sourceTree = "<group>";
-		};
 		FFF270871CEE88E500E46575 = {
 			isa = PBXGroup;
 			children = (
@@ -2387,7 +2329,6 @@
 				17CFDE49236A7A6C00693BF7 /* Icon-76@2x.png in Resources */,
 				17CFDE4A236A7A6C00693BF7 /* app_music.png in Resources */,
 				17CFDE4B236A7A6C00693BF7 /* Icon-76.png in Resources */,
-				17CFDE4C236A7A6C00693BF7 /* TTModeSpotifyVolumeJumpOptions.xib in Resources */,
 				17CFDE4D236A7A6C00693BF7 /* cancel.png in Resources */,
 				17CFDE4E236A7A6C00693BF7 /* itunes_music_icon.png in Resources */,
 				17CFDE4F236A7A6C00693BF7 /* press_smartbridgeV2.png in Resources */,
@@ -2437,11 +2378,9 @@
 				17CFDE7B236A7A6C00693BF7 /* TTModeHueOptions.xib in Resources */,
 				17CFDE7C236A7A6C00693BF7 /* Icon-29.png in Resources */,
 				17CFDE7D236A7A6C00693BF7 /* modal_remote_failed.png in Resources */,
-				17CFDE7E236A7A6C00693BF7 /* TTModeSpotifyConnecting.xib in Resources */,
 				17CFDE7F236A7A6C00693BF7 /* north tone.wav in Resources */,
 				17CFDE80236A7A6C00693BF7 /* TTPairingViewController.xib in Resources */,
 				17CFDE81236A7A6C00693BF7 /* single_tap.png in Resources */,
-				17CFDE82236A7A6C00693BF7 /* TTModeSpotifyOptions.xib in Resources */,
 				17CFDE83236A7A6C00693BF7 /* filmstrip-3.png in Resources */,
 				17CFDE84236A7A6C00693BF7 /* mode_hue.png in Resources */,
 				17CFDE85236A7A6C00693BF7 /* TTModalButton.xib in Resources */,
@@ -2548,8 +2487,6 @@
 				17CFDEEA236A7A6C00693BF7 /* previous_site.png in Resources */,
 				17CFDEEB236A7A6C00693BF7 /* previous.png in Resources */,
 				17CFDEEC236A7A6C00693BF7 /* script.png in Resources */,
-				17CFDEED236A7A6C00693BF7 /* TTModeSpotifyConnected.xib in Resources */,
-				17CFDEEE236A7A6C00693BF7 /* TTModeSpotifyConnect.xib in Resources */,
 				17CFDEEF236A7A6C00693BF7 /* scroll_down.png in Resources */,
 				17CFDEF0236A7A6C00693BF7 /* scroll_up.png in Resources */,
 				17CFDEF1236A7A6C00693BF7 /* twitter-review.png in Resources */,
@@ -2667,7 +2604,6 @@
 				FF20233B1D02147A005129E5 /* Icon-76@2x.png in Resources */,
 				FFB41B231CEE9A3000CD5F09 /* app_music.png in Resources */,
 				FF20233A1D02147A005129E5 /* Icon-76.png in Resources */,
-				FFE11F4A209C0EC00013D299 /* TTModeSpotifyVolumeJumpOptions.xib in Resources */,
 				FFDA0FB51D3C4FEE0019859F /* cancel.png in Resources */,
 				FFB41B551CEE9A3000CD5F09 /* itunes_music_icon.png in Resources */,
 				FF3036591DB9BF0900728920 /* press_smartbridgeV2.png in Resources */,
@@ -2717,11 +2653,9 @@
 				FF37EDD01D1113C10026F70D /* TTModeHueOptions.xib in Resources */,
 				FF20232C1D02147A005129E5 /* Icon-29.png in Resources */,
 				FFB41B6C1CEE9A3000CD5F09 /* modal_remote_failed.png in Resources */,
-				FFE11F47209C0EC00013D299 /* TTModeSpotifyConnecting.xib in Resources */,
 				FFC33C3C1EA173B600321EB9 /* north tone.wav in Resources */,
 				FF4487691D08D0C600ED8099 /* TTPairingViewController.xib in Resources */,
 				FF37EDF01D14A9E80026F70D /* single_tap.png in Resources */,
-				FFE11F4F209C0EC00013D299 /* TTModeSpotifyOptions.xib in Resources */,
 				FFB41B2D1CEE9A3000CD5F09 /* filmstrip-3.png in Resources */,
 				FFB41B381CEE9A3000CD5F09 /* mode_hue.png in Resources */,
 				FFC4B0F51D2DD82200A97C81 /* TTModalButton.xib in Resources */,
@@ -2828,8 +2762,6 @@
 				FF8B75731F86D4EF00D7867C /* previous_site.png in Resources */,
 				FF8B75741F86D4EF00D7867C /* previous.png in Resources */,
 				FF8B75751F86D4EF00D7867C /* script.png in Resources */,
-				FFE11F4C209C0EC00013D299 /* TTModeSpotifyConnected.xib in Resources */,
-				FFE11F49209C0EC00013D299 /* TTModeSpotifyConnect.xib in Resources */,
 				FF8B75761F86D4EF00D7867C /* scroll_down.png in Resources */,
 				FF8B75771F86D4EF00D7867C /* scroll_up.png in Resources */,
 				FFECC40F203E7B27007AB343 /* twitter-review.png in Resources */,
@@ -2862,7 +2794,7 @@
 				"${BUILT_PRODUCTS_DIR}/SSKeychain/SSKeychain.framework",
 				"${BUILT_PRODUCTS_DIR}/SWXMLHash/SWXMLHash.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyHue/SwiftyHue.framework",
-				"${BUILT_PRODUCTS_DIR}/Zip/Zip.framework",
+				"${BUILT_PRODUCTS_DIR}/ZIPFoundation/ZIPFoundation.framework",
 				"${BUILT_PRODUCTS_DIR}/iOSDFULibrary/iOSDFULibrary.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -2878,7 +2810,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SSKeychain.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SWXMLHash.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyHue.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Zip.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ZIPFoundation.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/iOSDFULibrary.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2919,7 +2851,6 @@
 				17CFDD50236A7A6C00693BF7 /* DDFileLogger.m in Sources */,
 				17CFDD51236A7A6C00693BF7 /* TTGeofencingViewController.swift in Sources */,
 				17CFDD52236A7A6C00693BF7 /* TTModeBoseConnected.swift in Sources */,
-				17CFDD53236A7A6C00693BF7 /* TTModeSpotifyConnecting.swift in Sources */,
 				17CFDD54236A7A6C00693BF7 /* LLSimpleCamera.m in Sources */,
 				17CFDD55236A7A6C00693BF7 /* TTModeSonosConnecting.swift in Sources */,
 				17CFDD56236A7A6C00693BF7 /* TTModeHueSceneMorningOptions.swift in Sources */,
@@ -2951,13 +2882,11 @@
 				17CFDD70236A7A6C00693BF7 /* TTModalButton.swift in Sources */,
 				17CFDD71236A7A6C00693BF7 /* TTDeviceList.swift in Sources */,
 				17CFDD72236A7A6C00693BF7 /* TTModeMenuCollectionView.swift in Sources */,
-				17CFDD73236A7A6C00693BF7 /* TTModeSpotify.swift in Sources */,
 				17CFDD74236A7A6C00693BF7 /* TTModeBoseVolumeJumpOptions.swift in Sources */,
 				17CFDD75236A7A6C00693BF7 /* TTModeWemoOptions.swift in Sources */,
 				17CFDD76236A7A6C00693BF7 /* TTModeCameraReviewViewController.swift in Sources */,
 				17CFDD77236A7A6C00693BF7 /* TTBatchActions.swift in Sources */,
 				17CFDD78236A7A6C00693BF7 /* TTModeSonos.swift in Sources */,
-				17CFDD79236A7A6C00693BF7 /* TTModeSpotifyConnected.swift in Sources */,
 				17CFDD7A236A7A6C00693BF7 /* TTModeDirection.swift in Sources */,
 				17CFDD7B236A7A6C00693BF7 /* TTModeNestConnect.swift in Sources */,
 				17CFDD7C236A7A6C00693BF7 /* TTBatchActionHeaderView.swift in Sources */,
@@ -2965,7 +2894,6 @@
 				17CFDD7E236A7A6C00693BF7 /* TTModeHomeKitTriggerSceneOptions.swift in Sources */,
 				17CFDD7F236A7A6C00693BF7 /* TTPairingSpinner.swift in Sources */,
 				17CFDD80236A7A6C00693BF7 /* TTModeHomeKit.swift in Sources */,
-				17CFDD81236A7A6C00693BF7 /* TTModeSpotifyVolumeJumpOptions.swift in Sources */,
 				17CFDD82236A7A6C00693BF7 /* DDAbstractDatabaseLogger.m in Sources */,
 				17CFDD83236A7A6C00693BF7 /* TTModeHueSceneMidnightOilOptions.swift in Sources */,
 				17CFDD84236A7A6C00693BF7 /* NSObject+Class.swift in Sources */,
@@ -2998,7 +2926,6 @@
 				17CFDD9F236A7A6C00693BF7 /* DDLog.m in Sources */,
 				17CFDDA0236A7A6C00693BF7 /* TTModeHueOptions.swift in Sources */,
 				17CFDDA1236A7A6C00693BF7 /* DDTTYLogger.m in Sources */,
-				17CFDDA2236A7A6C00693BF7 /* TTModeSpotifyConnect.swift in Sources */,
 				17CFDDA3236A7A6C00693BF7 /* TTTabView.swift in Sources */,
 				17CFDDA4236A7A6C00693BF7 /* TTTitleMenuPopover.swift in Sources */,
 				17CFDDA5236A7A6C00693BF7 /* TTModeDouble.swift in Sources */,
@@ -3047,7 +2974,6 @@
 				17CFDDD0236A7A6C00693BF7 /* MulticastDelegate.swift in Sources */,
 				17CFDDD1236A7A6C00693BF7 /* SonosDiscover.m in Sources */,
 				17CFDDD2236A7A6C00693BF7 /* TTModeWemoDeviceOffOptions.swift in Sources */,
-				17CFDDD3236A7A6C00693BF7 /* TTModeSpotifyOptions.swift in Sources */,
 				17CFDDD4236A7A6C00693BF7 /* TTModeBoseConnect.swift in Sources */,
 				17CFDDD5236A7A6C00693BF7 /* TTPairingInfoViewController.swift in Sources */,
 				17CFDDD6236A7A6C00693BF7 /* TTModeCameraViewController.swift in Sources */,
@@ -3075,7 +3001,6 @@
 				FFF46BDD1D10941500158751 /* DDFileLogger.m in Sources */,
 				FFB2750F20FEB60200FBE13E /* TTGeofencingViewController.swift in Sources */,
 				FFD88F1520AE7A9F00E0C5CC /* TTModeBoseConnected.swift in Sources */,
-				FFE11F4D209C0EC00013D299 /* TTModeSpotifyConnecting.swift in Sources */,
 				FFDA0FA81D3C4F1C0019859F /* LLSimpleCamera.m in Sources */,
 				FF4AF7EB1D24F9E70009C777 /* TTModeSonosConnecting.swift in Sources */,
 				FF3032C11DB828B100728920 /* TTModeHueSceneMorningOptions.swift in Sources */,
@@ -3107,13 +3032,11 @@
 				FFC4B0F31D2DC38C00A97C81 /* TTModalButton.swift in Sources */,
 				FF7C14531DB2F2DD009CBA28 /* TTDeviceList.swift in Sources */,
 				FF0F10EB1CFFB4A800CC1F29 /* TTModeMenuCollectionView.swift in Sources */,
-				FFE11F38209BCFDF0013D299 /* TTModeSpotify.swift in Sources */,
 				FFD88F1420AE7A9F00E0C5CC /* TTModeBoseVolumeJumpOptions.swift in Sources */,
 				FF4AF7B21D2486F90009C777 /* TTModeWemoOptions.swift in Sources */,
 				FF08A2331D501ABD00D433A5 /* TTModeCameraReviewViewController.swift in Sources */,
 				FF7C144F1DB2F2AB009CBA28 /* TTBatchActions.swift in Sources */,
 				FF4AF7DC1D24F9370009C777 /* TTModeSonos.swift in Sources */,
-				FFE11F46209C0EC00013D299 /* TTModeSpotifyConnected.swift in Sources */,
 				FFB41B7B1CEEA9E300CD5F09 /* TTModeDirection.swift in Sources */,
 				FF21F9381E1C9EEC00DFDBB4 /* TTModeNestConnect.swift in Sources */,
 				FF7C14581DB3085E009CBA28 /* TTBatchActionHeaderView.swift in Sources */,
@@ -3121,7 +3044,6 @@
 				FFBFF00C1F6CC3AA00B3EDA7 /* TTModeHomeKitTriggerSceneOptions.swift in Sources */,
 				FF44876B1D08E1D600ED8099 /* TTPairingSpinner.swift in Sources */,
 				FFBFF0061F6CBAA300B3EDA7 /* TTModeHomeKit.swift in Sources */,
-				FFE11F4E209C0EC00013D299 /* TTModeSpotifyVolumeJumpOptions.swift in Sources */,
 				FFF46BDB1D10941500158751 /* DDAbstractDatabaseLogger.m in Sources */,
 				FF3032BF1DB8289600728920 /* TTModeHueSceneMidnightOilOptions.swift in Sources */,
 				FFC9FE991D02520300038817 /* NSObject+Class.swift in Sources */,
@@ -3154,7 +3076,6 @@
 				FFF46BDE1D10941500158751 /* DDLog.m in Sources */,
 				FF37EDCF1D1113C10026F70D /* TTModeHueOptions.swift in Sources */,
 				FFF46BDF1D10941500158751 /* DDTTYLogger.m in Sources */,
-				FFE11F4B209C0EC00013D299 /* TTModeSpotifyConnect.swift in Sources */,
 				FF37EDCB1D1102620026F70D /* TTTabView.swift in Sources */,
 				FF4487621D08986200ED8099 /* TTTitleMenuPopover.swift in Sources */,
 				FF189C6E210F5B7C000B49F7 /* TTModeDouble.swift in Sources */,
@@ -3203,7 +3124,6 @@
 				FF52EBD21F8F05E3002D0EF1 /* MulticastDelegate.swift in Sources */,
 				FF4AF7D61D24ECF60009C777 /* SonosDiscover.m in Sources */,
 				FF4AF7C91D248AD00009C777 /* TTModeWemoDeviceOffOptions.swift in Sources */,
-				FFE11F48209C0EC00013D299 /* TTModeSpotifyOptions.swift in Sources */,
 				FFD88F1120AE7A9F00E0C5CC /* TTModeBoseConnect.swift in Sources */,
 				FFC4B0F01D2DBF3E00A97C81 /* TTPairingInfoViewController.swift in Sources */,
 				FFDA0FBA1D3C55930019859F /* TTModeCameraViewController.swift in Sources */,
@@ -3432,7 +3352,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Turn Touch iOS/Turn Touch iOS.entitlements";
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 39;
+				CURRENT_PROJECT_VERSION = 40;
 				DEVELOPMENT_TEAM = 6W5HRS3393;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -3449,7 +3369,10 @@
 				INFOPLIST_FILE = "Turn Touch iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/Turn\\ Touch\\ iOS/Vendor/**";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)/**",
+					"$(PROJECT_DIR)/Turn\\ Touch\\ iOS/Vendor/**",
+				);
 				MARKETING_VERSION = 2.3.0;
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -3473,7 +3396,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Turn Touch iOS/Turn Touch iOS.entitlements";
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 39;
+				CURRENT_PROJECT_VERSION = 40;
 				DEVELOPMENT_TEAM = 6W5HRS3393;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -3490,7 +3413,10 @@
 				INFOPLIST_FILE = "Turn Touch iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/Turn\\ Touch\\ iOS/Vendor/**";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)/**",
+					"$(PROJECT_DIR)/Turn\\ Touch\\ iOS/Vendor/**",
+				);
 				MARKETING_VERSION = 2.3.0;
 				OTHER_LDFLAGS = (
 					"-ObjC",

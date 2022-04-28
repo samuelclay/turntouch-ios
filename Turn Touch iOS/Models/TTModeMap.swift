@@ -60,7 +60,7 @@ class TTModeMap: NSObject {
             "TTModeCamera",
             "TTModeMusic",
             "TTModeHue",
-            "TTModeSpotify",
+//            "TTModeSpotify",
             "TTModeWemo",
             "TTModeSonos",
             "TTModeNest",

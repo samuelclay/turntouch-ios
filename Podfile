@@ -14,7 +14,7 @@ target "Turn Touch iOS" do
     # SwiftyHue
     pod "SwiftyHue", "~> 0.5"
     
-    pod "iOSDFULibrary", "~> 4.2.0"
+    pod "iOSDFULibrary", "~> 4.11.1"
     pod "InAppSettingsKit", "~> 2.8"
 end
 
