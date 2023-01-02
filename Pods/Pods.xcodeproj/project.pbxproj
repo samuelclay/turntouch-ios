@@ -350,7 +350,7 @@
 		D086597B58E49236BD73AE38BCFFCA80 /* NSArray+JSONModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 8CFC74B3AFDFC3E29D8D85D4D73F44D0 /* NSArray+JSONModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D175F7837383864410863FB002728108 /* AFNetworkReachabilityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 38CE69417FAFFF0E1ED8A64198C48736 /* AFNetworkReachabilityManager.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		D1A71D65BA27A805CD5A104626A888FA /* Entry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EEA89B66F23D384717AF3C6D5FC9ADF /* Entry.swift */; };
-		D20A4A8D933BEFE48032FB850B0E98EA /* InAppSettingsKit-InAppSettingsKit in Resources */ = {isa = PBXBuildFile; fileRef = 325E862631E06444E4504511C87F1E9C /* InAppSettingsKit-InAppSettingsKit */; };
+		D20A4A8D933BEFE48032FB850B0E98EA /* InAppSettingsKit.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 325E862631E06444E4504511C87F1E9C /* InAppSettingsKit.bundle */; };
 		D2C34E622CD747EA92F7A0B9A4BECFAB /* IASKMultipleValueSelection.h in Headers */ = {isa = PBXBuildFile; fileRef = EA61FC84C6F9A4AE6AE0B016DB2A13C4 /* IASKMultipleValueSelection.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D3BBFE1C1B682B790E0AD5E866C973EA /* GenericFlagSensorConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C720DD3DBE512F5E17DA1B675DBA285 /* GenericFlagSensorConfig.swift */; };
 		D3E70AFCAC8F76E674ECDBAEC5038D34 /* NestSDKAccessToken.h in Headers */ = {isa = PBXBuildFile; fileRef = 5F519A8D7972F076049E4C478DA75382 /* NestSDKAccessToken.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -661,7 +661,7 @@
 		31582B6B5CB0EA4B0D826A164FF6FD27 /* NestSDK-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "NestSDK-dummy.m"; sourceTree = "<group>"; };
 		318383D9BDF913FEF2C35721FA892565 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
 		31B05338DE2431F1B934F44D051F10A4 /* NestSDKAuthorizationManagerAuthorizationResult.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NestSDKAuthorizationManagerAuthorizationResult.h; path = NestSDK/NestSDK/NestSDKAuthorizationManagerAuthorizationResult.h; sourceTree = "<group>"; };
-		325E862631E06444E4504511C87F1E9C /* InAppSettingsKit-InAppSettingsKit */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "InAppSettingsKit-InAppSettingsKit"; path = InAppSettingsKit.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		325E862631E06444E4504511C87F1E9C /* InAppSettingsKit.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InAppSettingsKit.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		32E914B1F015E9FB6D260E062C3DC42B /* NestSDKDataModel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NestSDKDataModel.m; path = NestSDK/NestSDK/NestSDKDataModel.m; sourceTree = "<group>"; };
 		32F2B384874C2E181D220F1E20375918 /* NestSDKProductLocation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NestSDKProductLocation.h; path = NestSDK/NestSDK/NestSDKProductLocation.h; sourceTree = "<group>"; };
 		342266D9C67FB649CE60BF4D3EF672F2 /* NestSDKUtils.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NestSDKUtils.m; path = NestSDK/NestSDK/NestSDKUtils.m; sourceTree = "<group>"; };
@@ -1366,7 +1366,7 @@
 				6CBEFE4F9E22AFDC6347A739BB35FF8C /* CocoaAsyncSocket */,
 				37284CEB64020E591F100F83EE0C3893 /* Gloss */,
 				C082AE78A2C795A7CD50CE6E5575AB9C /* InAppSettingsKit */,
-				325E862631E06444E4504511C87F1E9C /* InAppSettingsKit-InAppSettingsKit */,
+				325E862631E06444E4504511C87F1E9C /* InAppSettingsKit.bundle */,
 				21B1375088A0310C7AE2BE4C8188D12F /* iOSDFULibrary */,
 				BAACA1BF7AB3DD28402C4F9A7C2FD104 /* JSONModel */,
 				3C918D17393E357EB6DCEF9B9698B3D8 /* NestSDK */,
@@ -2352,7 +2352,7 @@
 			);
 			name = "InAppSettingsKit-InAppSettingsKit";
 			productName = InAppSettingsKit;
-			productReference = 325E862631E06444E4504511C87F1E9C /* InAppSettingsKit-InAppSettingsKit */;
+			productReference = 325E862631E06444E4504511C87F1E9C /* InAppSettingsKit.bundle */;
 			productType = "com.apple.product-type.bundle";
 		};
 		9506C7FCDAE6E6967A99655F452EEE93 /* iOSDFULibrary */ = {
@@ -2508,26 +2508,8 @@
 				LastSwiftUpdateCheck = 1240;
 				LastUpgradeCheck = 1240;
 				TargetAttributes = {
-					05DC66D48C5437E41FA701BF244B25A3 = {
-						LastSwiftMigration = 1330;
-					};
-					0B00B2C167CD783351BD1D00BD5AD1F8 = {
-						LastSwiftMigration = 1330;
-					};
-					4D39C49FBE366718F2D3274635E7AF67 = {
-						LastSwiftMigration = 1330;
-					};
-					63678F9A594800CBC7006B45EAB7886B = {
-						LastSwiftMigration = 1330;
-					};
-					9506C7FCDAE6E6967A99655F452EEE93 = {
-						LastSwiftMigration = 1330;
-					};
-					AA15C8469D67684160CC2A7098EB841C = {
-						LastSwiftMigration = 1330;
-					};
-					EAAA1AD3A8A1B59AB91319EE40752C6D = {
-						LastSwiftMigration = 1330;
+					8A996938DFC560C0A3EF0DD6CA6B032A = {
+						DevelopmentTeam = 6W5HRS3393;
 					};
 				};
 			};
@@ -2706,7 +2688,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D20A4A8D933BEFE48032FB850B0E98EA /* InAppSettingsKit-InAppSettingsKit in Resources */,
+				D20A4A8D933BEFE48032FB850B0E98EA /* InAppSettingsKit.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3598,6 +3580,7 @@
 			buildSettings = {
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/InAppSettingsKit";
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 6W5HRS3393;
 				IBSC_MODULE = InAppSettingsKit;
 				INFOPLIST_FILE = "Target Support Files/InAppSettingsKit/ResourceBundle-InAppSettingsKit-InAppSettingsKit-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -3930,6 +3913,7 @@
 			buildSettings = {
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/InAppSettingsKit";
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 6W5HRS3393;
 				IBSC_MODULE = InAppSettingsKit;
 				INFOPLIST_FILE = "Target Support Files/InAppSettingsKit/ResourceBundle-InAppSettingsKit-InAppSettingsKit-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;

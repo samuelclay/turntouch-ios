@@ -31,13 +31,13 @@ class TTOptionsView: UIView {
     func registerAsObserver() {
         appDelegate().modeMap.addObserver(self, forKeyPath: "selectedModeDirection", options: [], context: nil)
         appDelegate().modeMap.addObserver(self, forKeyPath: "inspectingModeDirection", options: [], context: nil)
-//        appDelegate().modeMap.addObserver(self, forKeyPath: "activeModeDirection", options: [], context: nil)
+        appDelegate().modeMap.addObserver(self, forKeyPath: "activeModeDirection", options: [], context: nil)
     }
     
     deinit {
         appDelegate().modeMap.removeObserver(self, forKeyPath: "selectedModeDirection")
         appDelegate().modeMap.removeObserver(self, forKeyPath: "inspectingModeDirection")
-//        appDelegate().modeMap.removeObserver(self, forKeyPath: "activeModeDirection")
+        appDelegate().modeMap.removeObserver(self, forKeyPath: "activeModeDirection")
     }
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
@@ -45,8 +45,8 @@ class TTOptionsView: UIView {
             self.drawModeOptions()
         } else if keyPath == "inspectingModeDirection" {
             self.redrawOptions()
-//        } else if keyPath == "activeModeDirection" {
-//            self.setNeedsDisplay()
+        } else if keyPath == "activeModeDirection" {
+            self.setNeedsDisplay()
         }
     }
     
@@ -86,10 +86,6 @@ class TTOptionsView: UIView {
     func drawModeOptions() {
         self.clearOptionDetailViews()
         
-        guard modeOptionsViewController != nil, let view = modeOptionsViewController.view else {
-            return
-        }
-        
         let modeName = appDelegate().modeMap.selectedMode.nameOfClass
         let modeOptionsViewControllerName = "Turn_Touch_iOS.\(modeName)Options"
         let modeOptionsClass: AnyClass? = NSClassFromString(modeOptionsViewControllerName)
@@ -105,6 +101,10 @@ class TTOptionsView: UIView {
         modeOptionsViewController.view.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(modeOptionsViewController.view)
         
+        
+        guard modeOptionsViewController != nil, let view = modeOptionsViewController.view else {
+            return
+        }
         self.addConstraint(NSLayoutConstraint(item: view, attribute: .top,
             relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1.0, constant: 0))
         self.addConstraint(NSLayoutConstraint(item: view, attribute: .leading,

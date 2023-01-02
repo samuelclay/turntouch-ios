@@ -916,7 +916,7 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
 //            // Try again if bridges known
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(10), execute: {
                 if TTModeHue.hueState != .connected {
-                    self.connectToBridge()
+                    self.connectToBridge(reset: true)
                 }
             })
 //        }
@@ -947,7 +947,7 @@ class TTModeHue: TTMode, BridgeFinderDelegate, BridgeAuthenticatorDelegate, Reso
     
     func bridgeAuthenticator(_ authenticator: BridgeAuthenticator, didFailWithError error: NSError) {
         print(" ---> Pushlink failed: \(error)")
-        self.connectToBridge()
+        self.connectToBridge(reset: true)
     }
     
     func bridgeAuthenticatorDidTimeout(_ authenticator: BridgeAuthenticator) {
