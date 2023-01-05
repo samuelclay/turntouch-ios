@@ -15,7 +15,6 @@
 			dependencies = (
 			);
 			name = Firebase;
-			productName = Firebase;
 		};
 /* End PBXAggregateTarget section */
 
@@ -350,7 +349,7 @@
 		D086597B58E49236BD73AE38BCFFCA80 /* NSArray+JSONModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 8CFC74B3AFDFC3E29D8D85D4D73F44D0 /* NSArray+JSONModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D175F7837383864410863FB002728108 /* AFNetworkReachabilityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 38CE69417FAFFF0E1ED8A64198C48736 /* AFNetworkReachabilityManager.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		D1A71D65BA27A805CD5A104626A888FA /* Entry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EEA89B66F23D384717AF3C6D5FC9ADF /* Entry.swift */; };
-		D20A4A8D933BEFE48032FB850B0E98EA /* InAppSettingsKit.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 325E862631E06444E4504511C87F1E9C /* InAppSettingsKit.bundle */; };
+		D20A4A8D933BEFE48032FB850B0E98EA /* InAppSettingsKit-InAppSettingsKit in Resources */ = {isa = PBXBuildFile; fileRef = 325E862631E06444E4504511C87F1E9C /* InAppSettingsKit-InAppSettingsKit */; };
 		D2C34E622CD747EA92F7A0B9A4BECFAB /* IASKMultipleValueSelection.h in Headers */ = {isa = PBXBuildFile; fileRef = EA61FC84C6F9A4AE6AE0B016DB2A13C4 /* IASKMultipleValueSelection.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D3BBFE1C1B682B790E0AD5E866C973EA /* GenericFlagSensorConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C720DD3DBE512F5E17DA1B675DBA285 /* GenericFlagSensorConfig.swift */; };
 		D3E70AFCAC8F76E674ECDBAEC5038D34 /* NestSDKAccessToken.h in Headers */ = {isa = PBXBuildFile; fileRef = 5F519A8D7972F076049E4C478DA75382 /* NestSDKAccessToken.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -633,7 +632,7 @@
 		250D719BE3A94595FBA960C6D08A1538 /* NestSDKSmokeCOAlarmDataModel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NestSDKSmokeCOAlarmDataModel.m; path = NestSDK/NestSDK/NestSDKSmokeCOAlarmDataModel.m; sourceTree = "<group>"; };
 		254B483C4230EC10FB784CB826C8C426 /* IASKSpecifier.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = IASKSpecifier.h; path = InAppSettingsKit/Models/IASKSpecifier.h; sourceTree = "<group>"; };
 		25D804BB01464C730E2286004571D34F /* PresenceSensorConfig.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PresenceSensorConfig.swift; path = Sources/Base/BridgeResourceModels/Sensors/PresenceSensor/PresenceSensorConfig.swift; sourceTree = "<group>"; };
-		263BCE94371CD3D4AC91486008507F90 /* en.lproj */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder; name = en.lproj; path = InAppSettingsKit/Resources/en.lproj; sourceTree = "<group>"; };
+		263BCE94371CD3D4AC91486008507F90 /* en.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = en.lproj; path = InAppSettingsKit/Resources/en.lproj; sourceTree = "<group>"; };
 		2715B590E9EADBBC5012621BB6FBABEC /* AFNetworking-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "AFNetworking-prefix.pch"; sourceTree = "<group>"; };
 		27A08D5D25C65E7BC9E6C32B7C2C7937 /* IASKSpecifierValuesViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = IASKSpecifierValuesViewController.h; path = InAppSettingsKit/Controllers/IASKSpecifierValuesViewController.h; sourceTree = "<group>"; };
 		27C9F02C0A0ECB7EB221FBB65DFFF44D /* NestSDKLogger.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NestSDKLogger.h; path = NestSDK/NestSDK/NestSDKLogger.h; sourceTree = "<group>"; };
@@ -657,20 +656,20 @@
 		3014C125EDD00CA6EC3110FA5CB4D26D /* NestSDKSmokeCOAlarmDataModel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NestSDKSmokeCOAlarmDataModel.h; path = NestSDK/NestSDK/NestSDKSmokeCOAlarmDataModel.h; sourceTree = "<group>"; };
 		30D7395015136E0FA16BA1A13E522F37 /* SecureDFUServiceInitiator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SecureDFUServiceInitiator.swift; path = iOSDFULibrary/Classes/Implementation/SecureDFU/DFU/SecureDFUServiceInitiator.swift; sourceTree = "<group>"; };
 		312CAA645780ECBB480FBCAF24F23857 /* Result.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Result.swift; path = Source/Result.swift; sourceTree = "<group>"; };
-		31376F68BA72E15137D97C3CB5CDCFDD /* tr.lproj */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder; name = tr.lproj; path = InAppSettingsKit/Resources/tr.lproj; sourceTree = "<group>"; };
+		31376F68BA72E15137D97C3CB5CDCFDD /* tr.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = tr.lproj; path = InAppSettingsKit/Resources/tr.lproj; sourceTree = "<group>"; };
 		31582B6B5CB0EA4B0D826A164FF6FD27 /* NestSDK-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "NestSDK-dummy.m"; sourceTree = "<group>"; };
 		318383D9BDF913FEF2C35721FA892565 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
 		31B05338DE2431F1B934F44D051F10A4 /* NestSDKAuthorizationManagerAuthorizationResult.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NestSDKAuthorizationManagerAuthorizationResult.h; path = NestSDK/NestSDK/NestSDKAuthorizationManagerAuthorizationResult.h; sourceTree = "<group>"; };
-		325E862631E06444E4504511C87F1E9C /* InAppSettingsKit.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InAppSettingsKit.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		325E862631E06444E4504511C87F1E9C /* InAppSettingsKit-InAppSettingsKit */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "InAppSettingsKit-InAppSettingsKit"; path = InAppSettingsKit.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		32E914B1F015E9FB6D260E062C3DC42B /* NestSDKDataModel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NestSDKDataModel.m; path = NestSDK/NestSDK/NestSDKDataModel.m; sourceTree = "<group>"; };
 		32F2B384874C2E181D220F1E20375918 /* NestSDKProductLocation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NestSDKProductLocation.h; path = NestSDK/NestSDK/NestSDKProductLocation.h; sourceTree = "<group>"; };
 		342266D9C67FB649CE60BF4D3EF672F2 /* NestSDKUtils.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NestSDKUtils.m; path = NestSDK/NestSDK/NestSDKUtils.m; sourceTree = "<group>"; };
 		347C23FE5A76966B560010F90CCBA672 /* NestSDKWheresDataModel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NestSDKWheresDataModel.m; path = NestSDK/NestSDK/NestSDKWheresDataModel.m; sourceTree = "<group>"; };
 		357149F66AE6509A84CFE8A74D2D8E75 /* CocoaAsyncSocket.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = CocoaAsyncSocket.debug.xcconfig; sourceTree = "<group>"; };
-		35F354710F40E566C73564B1F6B8D91F /* th.lproj */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder; name = th.lproj; path = InAppSettingsKit/Resources/th.lproj; sourceTree = "<group>"; };
-		35F753ACA56CD877D833D75B2170BDC5 /* nl.lproj */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder; name = nl.lproj; path = InAppSettingsKit/Resources/nl.lproj; sourceTree = "<group>"; };
+		35F354710F40E566C73564B1F6B8D91F /* th.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = th.lproj; path = InAppSettingsKit/Resources/th.lproj; sourceTree = "<group>"; };
+		35F753ACA56CD877D833D75B2170BDC5 /* nl.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = nl.lproj; path = InAppSettingsKit/Resources/nl.lproj; sourceTree = "<group>"; };
 		36E773E1B0C683BC8670AB2C332C72D9 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/SystemConfiguration.framework; sourceTree = DEVELOPER_DIR; };
-		370050E27586FCE181875B6459805DFB /* fr.lproj */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder; name = fr.lproj; path = InAppSettingsKit/Resources/fr.lproj; sourceTree = "<group>"; };
+		370050E27586FCE181875B6459805DFB /* fr.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = fr.lproj; path = InAppSettingsKit/Resources/fr.lproj; sourceTree = "<group>"; };
 		370BB2F975AFE67488FA52D57EAD4CA8 /* JSONModel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = JSONModel.m; path = JSONModel/JSONModel/JSONModel.m; sourceTree = "<group>"; };
 		37284CEB64020E591F100F83EE0C3893 /* Gloss */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Gloss; path = Gloss.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		372C1CFBEFC298F033B42D991755578E /* NestSDKProductResourceDataModel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NestSDKProductResourceDataModel.m; path = NestSDK/NestSDK/NestSDKProductResourceDataModel.m; sourceTree = "<group>"; };
@@ -705,8 +704,8 @@
 		4AE581152D782535BC36AE5D2EF75F6A /* IASKSettingsStoreFile.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = IASKSettingsStoreFile.h; path = InAppSettingsKit/Models/IASKSettingsStoreFile.h; sourceTree = "<group>"; };
 		4AFE2189C9DFB1B3545BD88C5AEB6FAD /* ZIPFoundation.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = ZIPFoundation.modulemap; sourceTree = "<group>"; };
 		4B3B5D0DAD6D029DDF74D2B379464B6E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
-		4B62526FC974C81A8E5798B3383DF45C /* ja.lproj */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder; name = ja.lproj; path = InAppSettingsKit/Resources/ja.lproj; sourceTree = "<group>"; };
-		4C5341FDB1270164F1DEEFAABDF19DD4 /* de.lproj */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder; name = de.lproj; path = InAppSettingsKit/Resources/de.lproj; sourceTree = "<group>"; };
+		4B62526FC974C81A8E5798B3383DF45C /* ja.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = ja.lproj; path = InAppSettingsKit/Resources/ja.lproj; sourceTree = "<group>"; };
+		4C5341FDB1270164F1DEEFAABDF19DD4 /* de.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = de.lproj; path = InAppSettingsKit/Resources/de.lproj; sourceTree = "<group>"; };
 		4C7A39676AAAD618E6A55AFEB9E0636F /* SWXMLHash-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SWXMLHash-dummy.m"; sourceTree = "<group>"; };
 		4D4717E08948FE9E752F019847042B08 /* NestSDKApplicationDelegate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NestSDKApplicationDelegate.h; path = NestSDK/NestSDK/NestSDKApplicationDelegate.h; sourceTree = "<group>"; };
 		4DA814457A9D92E920B900B08EAA0033 /* DFUStream.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DFUStream.swift; path = iOSDFULibrary/Classes/Utilities/Streams/DFUStream.swift; sourceTree = "<group>"; };
@@ -722,7 +721,7 @@
 		511C37DC12C021B22D195097D47197CC /* ZIPFoundation-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ZIPFoundation-Info.plist"; sourceTree = "<group>"; };
 		512121BB3D7C5D0E26B7A2558A642065 /* NestSDK.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = NestSDK.debug.xcconfig; sourceTree = "<group>"; };
 		52F8D22AFC475DDF3B9DA8E3A9C17F4D /* SSKeychain-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SSKeychain-umbrella.h"; sourceTree = "<group>"; };
-		53EAF6F3168A258256EFF4605FC02981 /* ru.lproj */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder; name = ru.lproj; path = InAppSettingsKit/Resources/ru.lproj; sourceTree = "<group>"; };
+		53EAF6F3168A258256EFF4605FC02981 /* ru.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = ru.lproj; path = InAppSettingsKit/Resources/ru.lproj; sourceTree = "<group>"; };
 		5469A320A767F8F7B3A6FA67AE1B6CE2 /* NestSDKProductResourceUseDataModel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NestSDKProductResourceUseDataModel.m; path = NestSDK/NestSDK/NestSDKProductResourceUseDataModel.m; sourceTree = "<group>"; };
 		5549B1AA804635C51281B10213653997 /* ZIPFoundation-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ZIPFoundation-umbrella.h"; sourceTree = "<group>"; };
 		56106CC143465D24B3C2922CB932EE8A /* HueBridgeIcon.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HueBridgeIcon.swift; path = Sources/BridgeServices/BridgeFinder/HueBridgeIcon.swift; sourceTree = "<group>"; };
@@ -738,7 +737,7 @@
 		59543BF36C0E3954FE7D0A92B68E3DF6 /* CocoaAsyncSocket.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = CocoaAsyncSocket.release.xcconfig; sourceTree = "<group>"; };
 		595E566CFE2C587FBE9CD32507C9CAC1 /* Utilities.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Utilities.swift; path = Sources/Base/Utilities.swift; sourceTree = "<group>"; };
 		597E3404E2010239C449C014CAAB9F36 /* AFNetworking-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "AFNetworking-dummy.m"; sourceTree = "<group>"; };
-		598058353878BEF7AF0D6CCD417E9FD6 /* zh-Hans.lproj */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder; name = "zh-Hans.lproj"; path = "InAppSettingsKit/Resources/zh-Hans.lproj"; sourceTree = "<group>"; };
+		598058353878BEF7AF0D6CCD417E9FD6 /* zh-Hans.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = "zh-Hans.lproj"; path = "InAppSettingsKit/Resources/zh-Hans.lproj"; sourceTree = "<group>"; };
 		59825D26F47365EB57E3671F4636E505 /* AFSecurityPolicy.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AFSecurityPolicy.h; path = AFNetworking/AFSecurityPolicy.h; sourceTree = "<group>"; };
 		5A8F899A412BA112BF67DA409E2C4425 /* NestSDKProductResourceUseDataModel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NestSDKProductResourceUseDataModel.h; path = NestSDK/NestSDK/NestSDKProductResourceUseDataModel.h; sourceTree = "<group>"; };
 		5ACF8C200F6B130746AD353DDD2E2AD8 /* NestSDKError.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NestSDKError.m; path = NestSDK/NestSDK/NestSDKError.m; sourceTree = "<group>"; };
@@ -772,7 +771,7 @@
 		66D7E0755EEFA12AD386EA0A4A571428 /* JSONKeyMapper.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JSONKeyMapper.h; path = JSONModel/JSONModelTransformations/JSONKeyMapper.h; sourceTree = "<group>"; };
 		67E9EEB5DE361D427EF4AFDFFE46C095 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
 		6827A12F1B1E6326399C72747C6F05B4 /* ZIPFoundation.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = ZIPFoundation.release.xcconfig; sourceTree = "<group>"; };
-		691B49104F4FAC9A887568B2B454D094 /* es.lproj */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder; name = es.lproj; path = InAppSettingsKit/Resources/es.lproj; sourceTree = "<group>"; };
+		691B49104F4FAC9A887568B2B454D094 /* es.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = es.lproj; path = InAppSettingsKit/Resources/es.lproj; sourceTree = "<group>"; };
 		691D5CA3036AACC3CA861F7198AA4158 /* crc32.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = crc32.swift; path = iOSDFULibrary/Classes/Utilities/crc32.swift; sourceTree = "<group>"; };
 		6933FA2A5094F4E72007FBC745D55458 /* LightState.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LightState.swift; path = Sources/Base/BridgeResourceModels/LightState.swift; sourceTree = "<group>"; };
 		694A5DD40C158EB12AD1037B4D155E76 /* NestSDKWheres.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NestSDKWheres.h; path = NestSDK/NestSDK/NestSDKWheres.h; sourceTree = "<group>"; };
@@ -784,7 +783,7 @@
 		6BC8DED776A24604C87D10ABB5AF40FC /* NestSDKCameraDataModel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NestSDKCameraDataModel.h; path = NestSDK/NestSDK/NestSDKCameraDataModel.h; sourceTree = "<group>"; };
 		6CBEFE4F9E22AFDC6347A739BB35FF8C /* CocoaAsyncSocket */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = CocoaAsyncSocket; path = CocoaAsyncSocket.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F65F1CE4BF8531D62FFE2AAF9A581DA /* RuleAction.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RuleAction.swift; path = Sources/Base/BridgeResourceModels/Rule/RuleAction.swift; sourceTree = "<group>"; };
-		6FD58D47B2D030A5E0C015C3EB9C637A /* nb.lproj */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder; name = nb.lproj; path = InAppSettingsKit/Resources/nb.lproj; sourceTree = "<group>"; };
+		6FD58D47B2D030A5E0C015C3EB9C637A /* nb.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = nb.lproj; path = InAppSettingsKit/Resources/nb.lproj; sourceTree = "<group>"; };
 		7003C6B28C6C8277AB2BB5D2DA01F275 /* NestSDKAccessTokenCache.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NestSDKAccessTokenCache.h; path = NestSDK/NestSDK/NestSDKAccessTokenCache.h; sourceTree = "<group>"; };
 		707E3B85261416BE3645A9CFEC271780 /* NestSDKAuthorizationManagerAuthorizationResult.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NestSDKAuthorizationManagerAuthorizationResult.m; path = NestSDK/NestSDK/NestSDKAuthorizationManagerAuthorizationResult.m; sourceTree = "<group>"; };
 		732FD8298F1BF3E43EA7D719F74B22FC /* NestSDK.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = NestSDK.modulemap; sourceTree = "<group>"; };
@@ -844,7 +843,7 @@
 		8CCE6E5B82F7066DCEEBB71B72F6CADB /* IASKPSTextFieldSpecifierViewCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = IASKPSTextFieldSpecifierViewCell.h; path = InAppSettingsKit/Views/IASKPSTextFieldSpecifierViewCell.h; sourceTree = "<group>"; };
 		8CFC74B3AFDFC3E29D8D85D4D73F44D0 /* NSArray+JSONModel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSArray+JSONModel.h"; path = "JSONModel/JSONModelCategories/NSArray+JSONModel.h"; sourceTree = "<group>"; };
 		8D230CE4DF3ABDC17E2A65022029DB56 /* JSONModelError.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = JSONModelError.m; path = JSONModel/JSONModel/JSONModelError.m; sourceTree = "<group>"; };
-		8D542475D1E2BDB390CD2A9AA3915D53 /* zh-Hant.lproj */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder; name = "zh-Hant.lproj"; path = "InAppSettingsKit/Resources/zh-Hant.lproj"; sourceTree = "<group>"; };
+		8D542475D1E2BDB390CD2A9AA3915D53 /* zh-Hant.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = "zh-Hant.lproj"; path = "InAppSettingsKit/Resources/zh-Hant.lproj"; sourceTree = "<group>"; };
 		8DF3702447BE7C0E0765417802BA3CF3 /* NestSDKDataManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NestSDKDataManager.m; path = NestSDK/NestSDK/NestSDKDataManager.m; sourceTree = "<group>"; };
 		8E5BA17783684EC0C4DF2089BF46AE60 /* NestSDKCameraLastEventDataModel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NestSDKCameraLastEventDataModel.h; path = NestSDK/NestSDK/NestSDKCameraLastEventDataModel.h; sourceTree = "<group>"; };
 		8F3214CD72DD2AB7185DCD959073DAC9 /* JSONModel+networking.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "JSONModel+networking.h"; path = "JSONModel/JSONModelNetworking/JSONModel+networking.h"; sourceTree = "<group>"; };
@@ -868,7 +867,7 @@
 		9A2EF251D7D5D06E22421E9D25930A92 /* SSKeychainQuery.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SSKeychainQuery.m; path = SSKeychain/SSKeychainQuery.m; sourceTree = "<group>"; };
 		9A712EE4CB838E8D8C36A09E56C1236D /* IASKColor.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = IASKColor.m; path = InAppSettingsKit/Views/IASKColor.m; sourceTree = "<group>"; };
 		9B4523917BBF211F48B71F509AB12D7D /* SSKeychain.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SSKeychain.release.xcconfig; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9E525C342EBB3A2E5642E624F1BF32D8 /* JSONModel+networking.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "JSONModel+networking.m"; path = "JSONModel/JSONModelNetworking/JSONModel+networking.m"; sourceTree = "<group>"; };
 		9FAF1DB355DAA7917B20D6E1F10C0702 /* LegacyDFUPeripheralDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LegacyDFUPeripheralDelegate.swift; path = iOSDFULibrary/Classes/Implementation/LegacyDFU/Peripherals/LegacyDFUPeripheralDelegate.swift; sourceTree = "<group>"; };
 		A01717BD1FE6D9B48561689B8C434E66 /* IASKSlider.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = IASKSlider.m; path = InAppSettingsKit/Views/IASKSlider.m; sourceTree = "<group>"; };
@@ -879,7 +878,7 @@
 		A303B22A9961BF8097115147586AEA63 /* DFUStreamHex.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DFUStreamHex.swift; path = iOSDFULibrary/Classes/Utilities/Streams/DFUStreamHex.swift; sourceTree = "<group>"; };
 		A43A6BFE6D42FFF6FF776AC4E93C6A70 /* IntelHex2BinConverter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = IntelHex2BinConverter.swift; path = iOSDFULibrary/Classes/Utilities/HexToBinConverter/IntelHex2BinConverter.swift; sourceTree = "<group>"; };
 		A44F139EDAA8B2365E0575E53AD6CA06 /* UIColor+NestBlue.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIColor+NestBlue.h"; path = "NestSDK/NestSDK/UIColor+NestBlue.h"; sourceTree = "<group>"; };
-		A4C75986B4C4D242B11FEE2BB702DFD9 /* pl.lproj */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder; name = pl.lproj; path = InAppSettingsKit/Resources/pl.lproj; sourceTree = "<group>"; };
+		A4C75986B4C4D242B11FEE2BB702DFD9 /* pl.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = pl.lproj; path = InAppSettingsKit/Resources/pl.lproj; sourceTree = "<group>"; };
 		A4CB7E77CDE6771C7E4A26B9FEA73434 /* Manifest.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Manifest.swift; path = iOSDFULibrary/Classes/Utilities/DFUPackage/Manifest/Manifest.swift; sourceTree = "<group>"; };
 		A4DB94B1BC926B3C7FE602B97F80D153 /* IASKViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = IASKViewController.h; path = InAppSettingsKit/Controllers/IASKViewController.h; sourceTree = "<group>"; };
 		A4FA15D44DF6BAC7550EDEED10862AA3 /* AFNetworking */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = AFNetworking; path = AFNetworking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -887,15 +886,15 @@
 		A54AD621B1303DA1EB4FF51FCBD7D2EC /* NestSDKDataModelProtocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NestSDKDataModelProtocol.h; path = NestSDK/NestSDK/NestSDKDataModelProtocol.h; sourceTree = "<group>"; };
 		A6EBBC284F309466C35BF3FE41B8544D /* SWXMLHash.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SWXMLHash.release.xcconfig; sourceTree = "<group>"; };
 		A7738F7870DCE480CD93E00164B4557D /* LightLevelSensorConfig.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LightLevelSensorConfig.swift; path = Sources/Base/BridgeResourceModels/Sensors/LightLevelSensor/LightLevelSensorConfig.swift; sourceTree = "<group>"; };
-		A7B3305DDB7CCBD5B75E8862EAE29DE6 /* sv.lproj */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder; name = sv.lproj; path = InAppSettingsKit/Resources/sv.lproj; sourceTree = "<group>"; };
+		A7B3305DDB7CCBD5B75E8862EAE29DE6 /* sv.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = sv.lproj; path = InAppSettingsKit/Resources/sv.lproj; sourceTree = "<group>"; };
 		A7D958ED68D7AE12488E95CC427600E2 /* NestSDK.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NestSDK.h; path = NestSDK/NestSDK/NestSDK.h; sourceTree = "<group>"; };
-		A946BB08271BE610A2FDD3A3C63C8467 /* pt.lproj */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder; name = pt.lproj; path = InAppSettingsKit/Resources/pt.lproj; sourceTree = "<group>"; };
+		A946BB08271BE610A2FDD3A3C63C8467 /* pt.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = pt.lproj; path = InAppSettingsKit/Resources/pt.lproj; sourceTree = "<group>"; };
 		AA28384967A43FCE03801A6E9C970B66 /* NestSDKConnectWithNestButton.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NestSDKConnectWithNestButton.h; path = NestSDK/NestSDK/NestSDKConnectWithNestButton.h; sourceTree = "<group>"; };
 		AB3E3A995EA46AB46EFBA71FB1BA4C8F /* NestSDKCameraLastEventDataModel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NestSDKCameraLastEventDataModel.m; path = NestSDK/NestSDK/NestSDKCameraLastEventDataModel.m; sourceTree = "<group>"; };
 		AB4F7196A09F57E9CFC855FDBA542CF7 /* FileManager+ZIP.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "FileManager+ZIP.swift"; path = "Sources/ZIPFoundation/FileManager+ZIP.swift"; sourceTree = "<group>"; };
 		ABE39F7A71D8A5B1601F404B96D79E88 /* SwiftyHue */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SwiftyHue; path = SwiftyHue.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC2FC9E69AABC2B8BA54FE3E6AC8F075 /* OpenCloseSensorConfig.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OpenCloseSensorConfig.swift; path = Sources/Base/BridgeResourceModels/Sensors/OpenCloseSensor/OpenCloseSensorConfig.swift; sourceTree = "<group>"; };
-		AD43F64A19286E48630CF429EA10B607 /* uk.lproj */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder; name = uk.lproj; path = InAppSettingsKit/Resources/uk.lproj; sourceTree = "<group>"; };
+		AD43F64A19286E48630CF429EA10B607 /* uk.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = uk.lproj; path = InAppSettingsKit/Resources/uk.lproj; sourceTree = "<group>"; };
 		AD75F82591FBDB4C34550591AD5C9E44 /* Reachability.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Reachability.swift; path = Sources/Reachability.swift; sourceTree = "<group>"; };
 		AE331E4A16164DC8035F2ADA1DA01B1C /* ZIPFoundation.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = ZIPFoundation.debug.xcconfig; sourceTree = "<group>"; };
 		AF9682743618CA6FE09A8C2E1DD851E5 /* IASKAppSettingsWebViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = IASKAppSettingsWebViewController.m; path = InAppSettingsKit/Controllers/IASKAppSettingsWebViewController.m; sourceTree = "<group>"; };
@@ -905,10 +904,10 @@
 		B00AEA1C87462A8E502BF45BAB170E28 /* BridgeFinderDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BridgeFinderDelegate.swift; path = Sources/BridgeServices/BridgeFinder/BridgeFinderDelegate.swift; sourceTree = "<group>"; };
 		B031A332AE95D0DE3C7F50F56E8D2737 /* DFUController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DFUController.swift; path = iOSDFULibrary/Classes/Implementation/GenericDFU/DFUController.swift; sourceTree = "<group>"; };
 		B182CC15E9586F584570E26F63B5C704 /* GCDAsyncUdpSocket.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = GCDAsyncUdpSocket.m; path = Source/GCD/GCDAsyncUdpSocket.m; sourceTree = "<group>"; };
-		B1A364452B605EEA1C1B7E5BBEDA21DE /* pt-PT.lproj */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder; name = "pt-PT.lproj"; path = "InAppSettingsKit/Resources/pt-PT.lproj"; sourceTree = "<group>"; };
+		B1A364452B605EEA1C1B7E5BBEDA21DE /* pt-PT.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = "pt-PT.lproj"; path = "InAppSettingsKit/Resources/pt-PT.lproj"; sourceTree = "<group>"; };
 		B40A1CC4E8BFAC804A7A1B17A87BB117 /* SwitchSensorConfig.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwitchSensorConfig.swift; path = Sources/Base/BridgeResourceModels/Sensors/SwitchSensor/SwitchSensorConfig.swift; sourceTree = "<group>"; };
 		B42D3202948D0EEE8B28595B2486FD55 /* LegacyDFUExecutor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LegacyDFUExecutor.swift; path = iOSDFULibrary/Classes/Implementation/LegacyDFU/DFU/LegacyDFUExecutor.swift; sourceTree = "<group>"; };
-		B485A7B76BA57DEB1953D6F233BFA511 /* es-MX.lproj */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder; name = "es-MX.lproj"; path = "InAppSettingsKit/Resources/es-MX.lproj"; sourceTree = "<group>"; };
+		B485A7B76BA57DEB1953D6F233BFA511 /* es-MX.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = "es-MX.lproj"; path = "InAppSettingsKit/Resources/es-MX.lproj"; sourceTree = "<group>"; };
 		B4BBCBEA3B44F14EDF399187D32C6870 /* MultipartFormData.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MultipartFormData.swift; path = Source/MultipartFormData.swift; sourceTree = "<group>"; };
 		B52A0FCC22FB07C5EB9440AA091EC633 /* LoggerConfig.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LoggerConfig.swift; path = Sources/Base/Logger/LoggerConfig.swift; sourceTree = "<group>"; };
 		B6D17526A0FAC803A1C112F624C37460 /* CocoaAsyncSocket-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CocoaAsyncSocket-umbrella.h"; sourceTree = "<group>"; };
@@ -934,7 +933,7 @@
 		C082AE78A2C795A7CD50CE6E5575AB9C /* InAppSettingsKit */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = InAppSettingsKit; path = InAppSettingsKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0B079A481D21505070C1BBCB4BF4236 /* Backup.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Backup.swift; path = Sources/Base/BridgeResourceModels/Backup.swift; sourceTree = "<group>"; };
 		C0D50337415EFC7418A25B540B36192E /* Alamofire-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Alamofire-umbrella.h"; sourceTree = "<group>"; };
-		C2E325C568985968E1DE98EB5B9F3380 /* hr.lproj */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder; name = hr.lproj; path = InAppSettingsKit/Resources/hr.lproj; sourceTree = "<group>"; };
+		C2E325C568985968E1DE98EB5B9F3380 /* hr.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = hr.lproj; path = InAppSettingsKit/Resources/hr.lproj; sourceTree = "<group>"; };
 		C615DAA5831306F9DFCD45232541AF41 /* ResourceCacheHeartbeatProcessor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ResourceCacheHeartbeatProcessor.swift; path = Sources/Base/ResourceCacheHeartbeatProcessor.swift; sourceTree = "<group>"; };
 		C6443074254158006FF2559A83BE3841 /* DFUStarterPeripheral.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DFUStarterPeripheral.swift; path = iOSDFULibrary/Classes/Implementation/DFUSelector/DFUStarterPeripheral.swift; sourceTree = "<group>"; };
 		C64556B56991D8270A62A8F25EBB93D9 /* Alamofire-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Alamofire-dummy.m"; sourceTree = "<group>"; };
@@ -966,7 +965,7 @@
 		D53EB3B9D5E479836E5E3D01B3714376 /* JSONModel.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = JSONModel.modulemap; sourceTree = "<group>"; };
 		D5A8B6C63A9581D53ADF82C09144D5C9 /* DFUServiceInitiator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DFUServiceInitiator.swift; path = iOSDFULibrary/Classes/Implementation/DFUServiceInitiator.swift; sourceTree = "<group>"; };
 		D5B224617D998DFCDB65DA024E27B001 /* SoftdeviceBootloaderInfo.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SoftdeviceBootloaderInfo.swift; path = iOSDFULibrary/Classes/Utilities/DFUPackage/Manifest/SoftdeviceBootloaderInfo.swift; sourceTree = "<group>"; };
-		D913F5CAB0AD48B308ADB4BB5B0A6EE5 /* el.lproj */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder; name = el.lproj; path = InAppSettingsKit/Resources/el.lproj; sourceTree = "<group>"; };
+		D913F5CAB0AD48B308ADB4BB5B0A6EE5 /* el.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = el.lproj; path = InAppSettingsKit/Resources/el.lproj; sourceTree = "<group>"; };
 		D944CCF5FF38A01990AD03563EF6E242 /* AFURLRequestSerialization.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AFURLRequestSerialization.h; path = AFNetworking/AFURLRequestSerialization.h; sourceTree = "<group>"; };
 		D954CFFF25FA0566D2FB3777BEF1E246 /* JSONValueTransformer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JSONValueTransformer.h; path = JSONModel/JSONModelTransformations/JSONValueTransformer.h; sourceTree = "<group>"; };
 		D9FAAA761DFE66D50E038853DB5400C8 /* SSKeychain-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SSKeychain-dummy.m"; sourceTree = "<group>"; };
@@ -979,7 +978,7 @@
 		DE612325F78467548A41BBDBDE329356 /* DFUServiceDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DFUServiceDelegate.swift; path = iOSDFULibrary/Classes/Implementation/DFUServiceDelegate.swift; sourceTree = "<group>"; };
 		DE7A1634B256C068107EF2863E644C07 /* ParameterEncoding.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ParameterEncoding.swift; path = Source/ParameterEncoding.swift; sourceTree = "<group>"; };
 		DEC0B3FF685908412ADC25F56DE28B72 /* ButtonlessDFU.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ButtonlessDFU.swift; path = iOSDFULibrary/Classes/Implementation/SecureDFU/Characteristics/ButtonlessDFU.swift; sourceTree = "<group>"; };
-		DED0733989EA6FD155FCC0D13F294EEC /* Base.lproj */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder; name = Base.lproj; path = InAppSettingsKit/Resources/Base.lproj; sourceTree = "<group>"; };
+		DED0733989EA6FD155FCC0D13F294EEC /* Base.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = Base.lproj; path = InAppSettingsKit/Resources/Base.lproj; sourceTree = "<group>"; };
 		DEE0A8A5AF7525D0F3A7985DE586901B /* BridgeConfiguration.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BridgeConfiguration.swift; path = Sources/Base/BridgeResourceModels/BridgeConfiguration.swift; sourceTree = "<group>"; };
 		DF2E7ED8F1FD03D23A38908FDD22F064 /* NestSDKDataManagerHelper.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NestSDKDataManagerHelper.h; path = NestSDK/NestSDK/NestSDKDataManagerHelper.h; sourceTree = "<group>"; };
 		DFC3B9B954DF4D18C9A57A4AE2C56D35 /* JSONModel-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "JSONModel-prefix.pch"; sourceTree = "<group>"; };
@@ -987,11 +986,11 @@
 		E0B81E29B1958C8A0231CA764EFE0207 /* Gloss.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Gloss.debug.xcconfig; sourceTree = "<group>"; };
 		E170E32D80FCF2497972631B21D16B1A /* ReachabilitySwift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = ReachabilitySwift.release.xcconfig; sourceTree = "<group>"; };
 		E18FDD1E39150B2C21F77934E00CF2FB /* NestSDKDeviceDataModel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NestSDKDeviceDataModel.h; path = NestSDK/NestSDK/NestSDKDeviceDataModel.h; sourceTree = "<group>"; };
-		E1A57666F97A3F893EEDD6CD92A1D3C8 /* it.lproj */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder; name = it.lproj; path = InAppSettingsKit/Resources/it.lproj; sourceTree = "<group>"; };
+		E1A57666F97A3F893EEDD6CD92A1D3C8 /* it.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = it.lproj; path = InAppSettingsKit/Resources/it.lproj; sourceTree = "<group>"; };
 		E29B1E0119B64478010F0B51D7B69F3B /* InAppSettingsKit-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "InAppSettingsKit-prefix.pch"; sourceTree = "<group>"; };
 		E29B67DCEB384C660AFFA03921C1D568 /* NestSDKAuthorizationViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NestSDKAuthorizationViewController.m; path = NestSDK/NestSDK/NestSDKAuthorizationViewController.m; sourceTree = "<group>"; };
 		E326456206025E0ACA2749608DF613FC /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/MessageUI.framework; sourceTree = DEVELOPER_DIR; };
-		E3C90AB2901B0F33E88697691AF19071 /* hu.lproj */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder; name = hu.lproj; path = InAppSettingsKit/Resources/hu.lproj; sourceTree = "<group>"; };
+		E3C90AB2901B0F33E88697691AF19071 /* hu.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = hu.lproj; path = InAppSettingsKit/Resources/hu.lproj; sourceTree = "<group>"; };
 		E3F67F7486C0AD1014C438CB65FF0627 /* NestSDKThermostatDataModel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NestSDKThermostatDataModel.m; path = NestSDK/NestSDK/NestSDKThermostatDataModel.m; sourceTree = "<group>"; };
 		E532A8A33277076E4CDF4913DB539616 /* IASKTextView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = IASKTextView.m; path = InAppSettingsKit/Views/IASKTextView.m; sourceTree = "<group>"; };
 		E58AADEDF15997E938365962EA2A3178 /* SecureDFUService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SecureDFUService.swift; path = iOSDFULibrary/Classes/Implementation/SecureDFU/Services/SecureDFUService.swift; sourceTree = "<group>"; };
@@ -1019,7 +1018,7 @@
 		F3D437C657E93FE9DF3D986367F47F91 /* BridgeAuthenticator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BridgeAuthenticator.swift; path = Sources/BridgeServices/BridgeAuthenticator/BridgeAuthenticator.swift; sourceTree = "<group>"; };
 		F47EEAFCDFEC1E0176ECC4ED15631E63 /* SSKeychainQuery.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SSKeychainQuery.h; path = SSKeychain/SSKeychainQuery.h; sourceTree = "<group>"; };
 		F4B1521EEF6D2F4EBD4BAEC0984805EF /* NestSDKETA.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NestSDKETA.h; path = NestSDK/NestSDK/NestSDKETA.h; sourceTree = "<group>"; };
-		F4D1A092C5E2658E07C7BD94433DBB89 /* ca.lproj */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder; name = ca.lproj; path = InAppSettingsKit/Resources/ca.lproj; sourceTree = "<group>"; };
+		F4D1A092C5E2658E07C7BD94433DBB89 /* ca.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = ca.lproj; path = InAppSettingsKit/Resources/ca.lproj; sourceTree = "<group>"; };
 		F5D0BD0176AD662F6210DE572B07D6F7 /* Archive+Reading.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Archive+Reading.swift"; path = "Sources/ZIPFoundation/Archive+Reading.swift"; sourceTree = "<group>"; };
 		F5F3DA76D1FCC9A4A901768902097950 /* BridgeResourcesCache.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BridgeResourcesCache.swift; path = Sources/Base/BridgeResourcesCache.swift; sourceTree = "<group>"; };
 		F792B70DB6E2B769EBD8C22E53C9FC49 /* Pods-Turn Touch iOS-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Turn Touch iOS-acknowledgements.plist"; sourceTree = "<group>"; };
@@ -1297,6 +1296,7 @@
 				C6BF4701441CEE0E6FA8AD70113378DB /* Resources */,
 				A9340D943C778AADB359AE140D7CA2BF /* Support Files */,
 			);
+			name = InAppSettingsKit;
 			path = InAppSettingsKit;
 			sourceTree = "<group>";
 		};
@@ -1355,6 +1355,7 @@
 				846C27EC2AEA524117B1EE6A49DE9A2E /* XMLIndexer+XMLIndexerDeserializable.swift */,
 				F08F930B32FC22A8813F71C2FA30254D /* Support Files */,
 			);
+			name = SWXMLHash;
 			path = SWXMLHash;
 			sourceTree = "<group>";
 		};
@@ -1366,7 +1367,7 @@
 				6CBEFE4F9E22AFDC6347A739BB35FF8C /* CocoaAsyncSocket */,
 				37284CEB64020E591F100F83EE0C3893 /* Gloss */,
 				C082AE78A2C795A7CD50CE6E5575AB9C /* InAppSettingsKit */,
-				325E862631E06444E4504511C87F1E9C /* InAppSettingsKit.bundle */,
+				325E862631E06444E4504511C87F1E9C /* InAppSettingsKit-InAppSettingsKit */,
 				21B1375088A0310C7AE2BE4C8188D12F /* iOSDFULibrary */,
 				BAACA1BF7AB3DD28402C4F9A7C2FD104 /* JSONModel */,
 				3C918D17393E357EB6DCEF9B9698B3D8 /* NestSDK */,
@@ -1419,6 +1420,7 @@
 				9A2EF251D7D5D06E22421E9D25930A92 /* SSKeychainQuery.m */,
 				A2D4C1260245AA27DA951B4AD6466906 /* Support Files */,
 			);
+			name = SSKeychain;
 			path = SSKeychain;
 			sourceTree = "<group>";
 		};
@@ -1456,6 +1458,7 @@
 				B182CC15E9586F584570E26F63B5C704 /* GCDAsyncUdpSocket.m */,
 				07C3749E2CE5991050B8FFE5D96FE788 /* Support Files */,
 			);
+			name = CocoaAsyncSocket;
 			path = CocoaAsyncSocket;
 			sourceTree = "<group>";
 		};
@@ -1547,6 +1550,7 @@
 				5F7109155545F9C3D86CB281C3F1254F /* Serialization */,
 				C07350349E9D6DED23C7B08E36BCC5A4 /* Support Files */,
 			);
+			name = AFNetworking;
 			path = AFNetworking;
 			sourceTree = "<group>";
 		};
@@ -1562,6 +1566,7 @@
 				58088CA8B86BA60DA5F1F126DB747D8A /* Operators.swift */,
 				DB7A283E9904448A42C93B2117223757 /* Support Files */,
 			);
+			name = Gloss;
 			path = Gloss;
 			sourceTree = "<group>";
 		};
@@ -1615,6 +1620,7 @@
 				49B6E87D9E9B92A1AC8E5649582335FC /* ZipArchive.swift */,
 				11966DDDEA595F6E7700C50B6604810F /* Support Files */,
 			);
+			name = iOSDFULibrary;
 			path = iOSDFULibrary;
 			sourceTree = "<group>";
 		};
@@ -1654,6 +1660,7 @@
 				AD75F82591FBDB4C34550591AD5C9E44 /* Reachability.swift */,
 				06A912A43106BA2B85AD2570EAB89362 /* Support Files */,
 			);
+			name = ReachabilitySwift;
 			path = ReachabilitySwift;
 			sourceTree = "<group>";
 		};
@@ -1688,6 +1695,7 @@
 				509CE25865B1C54D0EEAACCAE617358D /* Validation.swift */,
 				4743D2D410B8309A8DA129AC25C10763 /* Support Files */,
 			);
+			name = Alamofire;
 			path = Alamofire;
 			sourceTree = "<group>";
 		};
@@ -1740,6 +1748,7 @@
 				1699994C1EC30C74BCEA6DAE84B66251 /* BridgeServices */,
 				909547896833FAB380A2D692E4FFF13C /* Support Files */,
 			);
+			name = SwiftyHue;
 			path = SwiftyHue;
 			sourceTree = "<group>";
 		};
@@ -1830,6 +1839,7 @@
 				F24A4DDACC399B2E425C1FD7CA45494C /* UIColor+NestBlue.m */,
 				97945AFECCE0923E13F01B1994281EBF /* Support Files */,
 			);
+			name = NestSDK;
 			path = NestSDK;
 			sourceTree = "<group>";
 		};
@@ -1855,6 +1865,7 @@
 			children = (
 				A312E4FA048C359998CEA7BD0A1591A6 /* Support Files */,
 			);
+			name = Firebase;
 			path = Firebase;
 			sourceTree = "<group>";
 		};
@@ -1943,6 +1954,7 @@
 				AB4F7196A09F57E9CFC855FDBA542CF7 /* FileManager+ZIP.swift */,
 				036E2A3EBD49B956E99105CB9DB202B2 /* Support Files */,
 			);
+			name = ZIPFoundation;
 			path = ZIPFoundation;
 			sourceTree = "<group>";
 		};
@@ -1972,6 +1984,7 @@
 				83078D2812C54B824A526783B0151775 /* NSArray+JSONModel.m */,
 				447346C4BB1531CC67CE768F0BCCDD08 /* Support Files */,
 			);
+			name = JSONModel;
 			path = JSONModel;
 			sourceTree = "<group>";
 		};
@@ -2352,7 +2365,7 @@
 			);
 			name = "InAppSettingsKit-InAppSettingsKit";
 			productName = InAppSettingsKit;
-			productReference = 325E862631E06444E4504511C87F1E9C /* InAppSettingsKit.bundle */;
+			productReference = 325E862631E06444E4504511C87F1E9C /* InAppSettingsKit-InAppSettingsKit */;
 			productType = "com.apple.product-type.bundle";
 		};
 		9506C7FCDAE6E6967A99655F452EEE93 /* iOSDFULibrary */ = {
@@ -2507,11 +2520,6 @@
 			attributes = {
 				LastSwiftUpdateCheck = 1240;
 				LastUpgradeCheck = 1240;
-				TargetAttributes = {
-					8A996938DFC560C0A3EF0DD6CA6B032A = {
-						DevelopmentTeam = 6W5HRS3393;
-					};
-				};
 			};
 			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -2688,7 +2696,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D20A4A8D933BEFE48032FB850B0E98EA /* InAppSettingsKit.bundle in Resources */,
+				D20A4A8D933BEFE48032FB850B0E98EA /* InAppSettingsKit-InAppSettingsKit in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3580,7 +3588,6 @@
 			buildSettings = {
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/InAppSettingsKit";
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = 6W5HRS3393;
 				IBSC_MODULE = InAppSettingsKit;
 				INFOPLIST_FILE = "Target Support Files/InAppSettingsKit/ResourceBundle-InAppSettingsKit-InAppSettingsKit-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -3717,7 +3724,8 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_INSTALLED_PRODUCT = NO;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 				SYMROOT = "${SRCROOT}/../build";
 			};
@@ -3913,7 +3921,6 @@
 			buildSettings = {
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/InAppSettingsKit";
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = 6W5HRS3393;
 				IBSC_MODULE = InAppSettingsKit;
 				INFOPLIST_FILE = "Target Support Files/InAppSettingsKit/ResourceBundle-InAppSettingsKit-InAppSettingsKit-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
