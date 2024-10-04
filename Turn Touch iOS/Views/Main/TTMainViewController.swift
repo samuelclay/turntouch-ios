@@ -72,12 +72,24 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
         self.view.backgroundColor = UIColor.white
         
         self.layoutStackview()
-
         self.registerAsObserver()
+        self.registerForKeyboardNotifications() // Add this line
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+    }
+    
+    deinit {
+        appDelegate().modeMap.removeObserver(self, forKeyPath: "openedModeChangeMenu")
+        appDelegate().modeMap.removeObserver(self, forKeyPath: "openedActionChangeMenu")
+        appDelegate().modeMap.removeObserver(self, forKeyPath: "openedAddActionChangeMenu")
+        appDelegate().modeMap.removeObserver(self, forKeyPath: "selectedModeDirection")
+        appDelegate().modeMap.removeObserver(self, forKeyPath: "inspectingModeDirection")
+        appDelegate().modeMap.removeObserver(self, forKeyPath: "tempMode")
+        appDelegate().bluetoothMonitor.removeObserver(self, forKeyPath: "nicknamedConnectedCount")
+        appDelegate().bluetoothMonitor.removeObserver(self, forKeyPath: "pairedDevicesCount")
+        NotificationCenter.default.removeObserver(self) // Add this line
     }
     
     func layoutStackview() {
@@ -296,17 +308,6 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
         appDelegate().modeMap.addObserver(self, forKeyPath: "tempMode", options: [], context: nil)
         appDelegate().bluetoothMonitor.addObserver(self, forKeyPath: "nicknamedConnectedCount", options: [], context: nil)
         appDelegate().bluetoothMonitor.addObserver(self, forKeyPath: "pairedDevicesCount", options: [], context: nil)
-    }
-    
-    deinit {
-        appDelegate().modeMap.removeObserver(self, forKeyPath: "openedModeChangeMenu")
-        appDelegate().modeMap.removeObserver(self, forKeyPath: "openedActionChangeMenu")
-        appDelegate().modeMap.removeObserver(self, forKeyPath: "openedAddActionChangeMenu")
-        appDelegate().modeMap.removeObserver(self, forKeyPath: "selectedModeDirection")
-        appDelegate().modeMap.removeObserver(self, forKeyPath: "inspectingModeDirection")
-        appDelegate().modeMap.removeObserver(self, forKeyPath: "tempMode")
-        appDelegate().bluetoothMonitor.removeObserver(self, forKeyPath: "nicknamedConnectedCount")
-        appDelegate().bluetoothMonitor.removeObserver(self, forKeyPath: "pairedDevicesCount")
     }
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?,
@@ -702,5 +703,27 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
     func settingsViewControllerDidEnd(_ sender: IASKAppSettingsViewController!) {
         sender.synchronizeSettings()
         closeModal()
+    }
+
+    // Add these methods
+    func registerForKeyboardNotifications() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+
+    @objc func keyboardWillShow(_ notification: Notification) {
+        if let userInfo = notification.userInfo,
+           let keyboardFrame = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect {
+            let keyboardHeight = keyboardFrame.height
+            let contentInsets = UIEdgeInsets(top: 0, left: 0, bottom: keyboardHeight, right: 0)
+            scrollView.contentInset = contentInsets
+            scrollView.scrollIndicatorInsets = contentInsets
+        }
+    }
+
+    @objc func keyboardWillHide(_ notification: Notification) {
+        let contentInsets = UIEdgeInsets.zero
+        scrollView.contentInset = contentInsets
+        scrollView.scrollIndicatorInsets = contentInsets
     }
 }
