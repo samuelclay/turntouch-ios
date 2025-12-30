@@ -10,7 +10,6 @@ import UIKit
 import HomeKit
 import Reachability
 import SafariServices
-import Alamofire
 
 struct TTModeHomeKitConstants {
     static let kHomeKitHomeIdentifier = "homeIdentifier"

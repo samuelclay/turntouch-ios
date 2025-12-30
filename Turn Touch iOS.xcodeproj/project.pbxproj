@@ -421,7 +421,13 @@
 		17CFDEF4236A7A6C00693BF7 /* TTModeNest.plist in Resources */ = {isa = PBXBuildFile; fileRef = FF8FB1F31F8F19620085B994 /* TTModeNest.plist */; };
 		17CFDEF5236A7A6C00693BF7 /* temperature.png in Resources */ = {isa = PBXBuildFile; fileRef = FF8B752B1F86D4C900D7867C /* temperature.png */; };
 		17CFDEF6236A7A6C00693BF7 /* webhook.png in Resources */ = {isa = PBXBuildFile; fileRef = FF8B75201F86D4C600D7867C /* webhook.png */; };
+		4936E026C4EFAF4248E245BD /* HueBridgeDiscovery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C3F0BB5ACD58810698E90D /* HueBridgeDiscovery.swift */; };
+		7BC7794502510C5E1BC5B5A0 /* HueModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5375AE68F70EAC9C115202A3 /* HueModels.swift */; };
 		85D8B548CD81B8F0353F6C06 /* Pods_Turn_Touch_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACFD869DD1D0B508AA8C9258 /* Pods_Turn_Touch_iOS.framework */; };
+		896F02F883B74C3BD7ADE91B /* HueBridgeAuthenticator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34E30927BD76905F1724C02 /* HueBridgeAuthenticator.swift */; };
+		924B324066ECDE749847A0F7 /* HueColorUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4639F9FCADEFE3B1674D9E5 /* HueColorUtilities.swift */; };
+		AFCE71B0D91F2634DBA5EC6A /* HueAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235DA88A2E5C1C9C0C4601D3 /* HueAPIClient.swift */; };
+		C84251FD36D602BAD99C1804 /* HueEventStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BDAB6284ED19C05D1CBD952 /* HueEventStream.swift */; };
 		FF08A2331D501ABD00D433A5 /* TTModeCameraReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF08A2321D501ABD00D433A5 /* TTModeCameraReviewViewController.swift */; };
 		FF08E11B2211F013003215C2 /* SonosPlayable.m in Sources */ = {isa = PBXBuildFile; fileRef = FF08E11A2211F013003215C2 /* SonosPlayable.m */; };
 		FF0EDD992105329400F3D5C3 /* switch_mode.png in Resources */ = {isa = PBXBuildFile; fileRef = FF0EDD982105329300F3D5C3 /* switch_mode.png */; };
@@ -839,9 +845,15 @@
 /* Begin PBXFileReference section */
 		17BA4909231861210052734D /* TTModeMusicSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TTModeMusicSession.swift; path = Modes/Music/TTModeMusicSession.swift; sourceTree = "<group>"; };
 		17CFDEFB236A7A6C00693BF7 /* Turn Touch iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Turn Touch iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		235DA88A2E5C1C9C0C4601D3 /* HueAPIClient.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HueAPIClient.swift; path = Modes/Hue/API/HueAPIClient.swift; sourceTree = "<group>"; };
+		45C3F0BB5ACD58810698E90D /* HueBridgeDiscovery.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HueBridgeDiscovery.swift; path = Modes/Hue/API/HueBridgeDiscovery.swift; sourceTree = "<group>"; };
+		5375AE68F70EAC9C115202A3 /* HueModels.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HueModels.swift; path = Modes/Hue/API/HueModels.swift; sourceTree = "<group>"; };
 		566DA69B7B03534CBDCB1040 /* Pods-Turn Touch iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Turn Touch iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-Turn Touch iOS/Pods-Turn Touch iOS.release.xcconfig"; sourceTree = "<group>"; };
+		6BDAB6284ED19C05D1CBD952 /* HueEventStream.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HueEventStream.swift; path = Modes/Hue/API/HueEventStream.swift; sourceTree = "<group>"; };
 		91EFDF0AF89AE132A42C9579 /* Pods-Turn Touch iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Turn Touch iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Turn Touch iOS/Pods-Turn Touch iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		ACFD869DD1D0B508AA8C9258 /* Pods_Turn_Touch_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Turn_Touch_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D4639F9FCADEFE3B1674D9E5 /* HueColorUtilities.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HueColorUtilities.swift; path = Modes/Hue/API/HueColorUtilities.swift; sourceTree = "<group>"; };
+		F34E30927BD76905F1724C02 /* HueBridgeAuthenticator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HueBridgeAuthenticator.swift; path = Modes/Hue/API/HueBridgeAuthenticator.swift; sourceTree = "<group>"; };
 		FF08A2321D501ABD00D433A5 /* TTModeCameraReviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeCameraReviewViewController.swift; path = Modes/Camera/TTModeCameraReviewViewController.swift; sourceTree = "<group>"; };
 		FF08E1192211F013003215C2 /* SonosPlayable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SonosPlayable.h; sourceTree = "<group>"; };
 		FF08E11A2211F013003215C2 /* SonosPlayable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SonosPlayable.m; sourceTree = "<group>"; };
@@ -1323,6 +1335,19 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		C143795DA30C96E7C6EA02F3 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				5375AE68F70EAC9C115202A3 /* HueModels.swift */,
+				D4639F9FCADEFE3B1674D9E5 /* HueColorUtilities.swift */,
+				235DA88A2E5C1C9C0C4601D3 /* HueAPIClient.swift */,
+				45C3F0BB5ACD58810698E90D /* HueBridgeDiscovery.swift */,
+				F34E30927BD76905F1724C02 /* HueBridgeAuthenticator.swift */,
+				6BDAB6284ED19C05D1CBD952 /* HueEventStream.swift */,
+			);
+			name = API;
+			sourceTree = "<group>";
+		};
 		FF0F10BC1CF55A7F00CC1F29 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
@@ -1417,6 +1442,7 @@
 				FF1DA810211E209200D0D4EA /* TTModeHueCycleScenesOptions.swift */,
 				FF1DA811211E209200D0D4EA /* TTModeHueCycleScenesOptions.xib */,
 				FF3036581DB9BF0900728920 /* press_smartbridgeV2.png */,
+				C143795DA30C96E7C6EA02F3 /* API */,
 			);
 			name = Hue;
 			sourceTree = "<group>";
@@ -2784,32 +2810,26 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Turn Touch iOS/Pods-Turn Touch iOS-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
-				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/CocoaAsyncSocket/CocoaAsyncSocket.framework",
-				"${BUILT_PRODUCTS_DIR}/Gloss/Gloss.framework",
 				"${BUILT_PRODUCTS_DIR}/InAppSettingsKit/InAppSettingsKit.framework",
 				"${BUILT_PRODUCTS_DIR}/JSONModel/JSONModel.framework",
 				"${BUILT_PRODUCTS_DIR}/NestSDK/NestSDK.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
 				"${BUILT_PRODUCTS_DIR}/SSKeychain/SSKeychain.framework",
 				"${BUILT_PRODUCTS_DIR}/SWXMLHash/SWXMLHash.framework",
-				"${BUILT_PRODUCTS_DIR}/SwiftyHue/SwiftyHue.framework",
 				"${BUILT_PRODUCTS_DIR}/ZIPFoundation/ZIPFoundation.framework",
 				"${BUILT_PRODUCTS_DIR}/iOSDFULibrary/iOSDFULibrary.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaAsyncSocket.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Gloss.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/InAppSettingsKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JSONModel.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NestSDK.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SSKeychain.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SWXMLHash.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyHue.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ZIPFoundation.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/iOSDFULibrary.framework",
 			);
@@ -3136,6 +3156,12 @@
 				FFF270C51CEE97AF00E46575 /* TTMainViewController.swift in Sources */,
 				FFB41B861CF536AC00CD5F09 /* TTAction.swift in Sources */,
 				FF44876D1D08E62200ED8099 /* TTBluetoothMonitor.swift in Sources */,
+				7BC7794502510C5E1BC5B5A0 /* HueModels.swift in Sources */,
+				924B324066ECDE749847A0F7 /* HueColorUtilities.swift in Sources */,
+				AFCE71B0D91F2634DBA5EC6A /* HueAPIClient.swift in Sources */,
+				4936E026C4EFAF4248E245BD /* HueBridgeDiscovery.swift in Sources */,
+				896F02F883B74C3BD7ADE91B /* HueBridgeAuthenticator.swift in Sources */,
+				C84251FD36D602BAD99C1804 /* HueEventStream.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

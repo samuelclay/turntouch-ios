@@ -9,7 +9,6 @@
 import Foundation
 import AVFoundation
 import AudioToolbox
-import Alamofire
 
 class TTModeMap: NSObject {
     
@@ -452,17 +451,27 @@ class TTModeMap: NSObject {
         if !prefs.bool(forKey: "TT:pref:share_usage_stats") {
             return
         }
-        
+
         var params = self.deviceAttrs()
         for (k, v) in additionalParams {
             params[k] = v
         }
-        
-        Alamofire.request("https://turntouch.com/usage/record", method: .post,
-                          parameters: params, encoding: JSONEncoding.default).responseJSON
-            { response in
-//                print(" ---> Usage: \(params) \(response)")
+
+        guard let url = URL(string: "https://turntouch.com/usage/record") else { return }
+
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+
+        do {
+            request.httpBody = try JSONSerialization.data(withJSONObject: params, options: [])
+            let task = URLSession.shared.dataTask(with: request) { _, _, _ in
+                // Usage recorded silently
             }
+            task.resume()
+        } catch {
+            // Ignore serialization errors
+        }
     }
     
     func deviceAttrs() -> [String: Any] {

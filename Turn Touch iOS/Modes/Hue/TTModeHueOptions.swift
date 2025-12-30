@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SwiftyHue
 
 class TTModeHueOptions: TTOptionsDetailViewController, TTModeHueDelegate {
     

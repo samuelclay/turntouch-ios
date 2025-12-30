@@ -8,7 +8,6 @@
 
 import UIKit
 import SafariServices
-import Alamofire
 
 struct TTModeIftttConstants {
     static let kIftttUserIdKey = "TT:IFTTT:shared_user_id"
@@ -120,18 +119,18 @@ class TTModeIfttt: TTMode {
                        "button_direction": actionDirection,
                        "button_tap_type": tapType,
                        ]
-    
+
         let params: [String: Any] = [
             "user_id": appDelegate().modeMap.userId(),
             "device_id": appDelegate().modeMap.deviceId(),
             "triggers": [trigger],
         ]
-        
-        Alamofire.request("https://turntouch.com/ifttt/button_trigger", method: .post,
-                          parameters: params, encoding: JSONEncoding.default).responseJSON
-            { response in
+
+        Task {
+            await postJSON(url: "https://turntouch.com/ifttt/button_trigger", params: params) { response in
                 print(" ---> IFTTT Button trigger: \(response)")
             }
+        }
     }
     
     func beginConnectingToIfttt() {
@@ -174,39 +173,35 @@ class TTModeIfttt: TTMode {
     func purgeRecipe(direction: TTModeDirection, callback: (() -> Void)? = nil) {
         let modeDirection = appDelegate().modeMap.directionName(self.modeDirection)
         let actionDirection = appDelegate().modeMap.directionName(direction)
-        
+
         var params = appDelegate().modeMap.deviceAttrs() as! [String: String]
         params["app_direction"] = modeDirection
         params["button_direction"] = actionDirection
 
         print(" ---> Purging: \(params)")
-        Alamofire.request("https://turntouch.com/ifttt/purge_trigger", method: .post,
-                          parameters: params, encoding: URLEncoding.default).responseJSON
-            { response in
+        Task {
+            await postFormEncoded(url: "https://turntouch.com/ifttt/purge_trigger", params: params) { response in
                 print(" ---> Purged: \(response)")
-                if let callback = callback {
-                    callback()
-                }
+                callback?()
+            }
         }
     }
     
     func registerTriggers(callback: (() -> Void)? = nil) {
         let triggers = self.collectTriggers()
-        
+
         let params: [String: Any] = [
             "user_id": appDelegate().modeMap.userId(),
             "device_id": appDelegate().modeMap.deviceId(),
             "triggers": triggers,
         ]
         print(" ---> Registering: \(params)")
-        Alamofire.request("https://turntouch.com/ifttt/register_triggers", method: .post,
-                          parameters: params, encoding: JSONEncoding.default).responseJSON
-            { response in
+        Task {
+            await postJSON(url: "https://turntouch.com/ifttt/register_triggers", params: params) { response in
                 print(" ---> Registered: \(response)")
-                if let callback = callback {
-                    callback()
-                }
+                callback?()
             }
+        }
     }
     
     func collectTriggers() -> [[String: String]] {
@@ -315,5 +310,61 @@ class TTModeIfttt: TTMode {
     func logMessage(_ message: String) {
         print(" ---> Ifttt API: \(message)")
     }
-        
+
+    // MARK: - HTTP Helpers
+
+    private func postJSON(url: String, params: [String: Any], completion: @escaping (Any?) -> Void) async {
+        guard let url = URL(string: url) else {
+            completion(nil)
+            return
+        }
+
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+
+        do {
+            request.httpBody = try JSONSerialization.data(withJSONObject: params, options: [])
+            let (data, _) = try await URLSession.shared.data(for: request)
+            let json = try JSONSerialization.jsonObject(with: data, options: [])
+            await MainActor.run {
+                completion(json)
+            }
+        } catch {
+            print(" ---> IFTTT request error: \(error)")
+            await MainActor.run {
+                completion(nil)
+            }
+        }
+    }
+
+    private func postFormEncoded(url: String, params: [String: String], completion: @escaping (Any?) -> Void) async {
+        guard let url = URL(string: url) else {
+            completion(nil)
+            return
+        }
+
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+
+        let bodyString = params.map { key, value in
+            "\(key.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? key)=\(value.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? value)"
+        }.joined(separator: "&")
+        request.httpBody = bodyString.data(using: .utf8)
+
+        do {
+            let (data, _) = try await URLSession.shared.data(for: request)
+            let json = try JSONSerialization.jsonObject(with: data, options: [])
+            await MainActor.run {
+                completion(json)
+            }
+        } catch {
+            print(" ---> IFTTT request error: \(error)")
+            await MainActor.run {
+                completion(nil)
+            }
+        }
+    }
+
 }

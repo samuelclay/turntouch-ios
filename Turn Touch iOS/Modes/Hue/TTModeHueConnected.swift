@@ -36,17 +36,19 @@ class TTModeHueConnected: TTOptionsDetailViewController, TTModeHueSceneDelegate 
     }
     
     func countLights() {
-        let cache = TTModeHue.hueSdk.resourceCache
-        if let scenes = cache?.scenes,
-            let lights = cache?.lights,
-            let rooms = cache?.groups {
-            let roomStr = rooms.count == 1 ? "1 room" : "\(rooms.count) rooms"
-            let lightsStr = lights.count == 1 ? "1 light" : "\(lights.count) lights"
-            let sceneStr = scenes.count == 1 ? "1 scene" : "\(scenes.count) scenes"
-            lightsLabel.text = "\(roomStr), \(lightsStr), \(sceneStr)"
-        } else {
+        guard let cache = TTModeHue.resourceCache else {
             lightsLabel.text = "Loading scenes..."
+            return
         }
+
+        let scenes = cache.scenes
+        let lights = cache.lights
+        let rooms = cache.rooms
+
+        let roomStr = rooms.count == 1 ? "1 room" : "\(rooms.count) rooms"
+        let lightsStr = lights.count == 1 ? "1 light" : "\(lights.count) lights"
+        let sceneStr = scenes.count == 1 ? "1 scene" : "\(scenes.count) scenes"
+        lightsLabel.text = "\(roomStr), \(lightsStr), \(sceneStr)"
     }
     
     func sceneUploadProgress() {
