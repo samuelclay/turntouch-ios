@@ -446,6 +446,18 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
     
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral,
                         advertisementData: [String : Any], rssi RSSI: NSNumber) {
+        // Filter out Sole Page Turner devices (shares same service UUIDs as Turn Touch)
+        let localName = advertisementData[CBAdvertisementDataLocalNameKey] as? String
+        let peripheralName = peripheral.name ?? ""
+        let deviceName = localName ?? peripheralName
+
+        if deviceName.lowercased().contains("sol") || deviceName.lowercased().contains("page turner") {
+            if DEBUG_BLUETOOTH {
+                print(" ---> Ignoring Sole Page Turner device: \(deviceName)")
+            }
+            return
+        }
+
         var device = foundDevices.deviceForPeripheral(peripheral)
         if device == nil {
             if bluetoothState == .bt_STATE_PAIRING_UNKNOWN ||
@@ -462,9 +474,8 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
             }
         }
         bluetoothState = .bt_STATE_CONNECTING_UNKNOWN
-        let localName = advertisementData[CBAdvertisementDataLocalNameKey] as? String ?? "[unknown]"
         if DEBUG_BLUETOOTH {
-            print(" ---> (\(bluetoothState)) Found bluetooth peripheral, connecting: \(localName)/\(device!) (\(RSSI))")
+            print(" ---> (\(bluetoothState)) Found bluetooth peripheral, connecting: \(deviceName)/\(device!) (\(RSSI))")
         }
         manager.connect(device!.peripheral,
                                   options: [
