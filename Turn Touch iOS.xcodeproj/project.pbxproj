@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		01670E5FE526BEDEA7A8DFA2 /* TTModeKasaDiscovery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7CF1FC5D15D6459D4E0268 /* TTModeKasaDiscovery.swift */; };
+		0E8B6D2B0CDAAA8409A4694A /* TTModeKasaLegacyProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4753A99D05104B17459D04 /* TTModeKasaLegacyProtocol.swift */; };
 		17BA490A231861210052734D /* TTModeMusicSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BA4909231861210052734D /* TTModeMusicSession.swift */; };
 		17CFDD4B236A7A6C00693BF7 /* TTModeSonosVolumeJumpOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8680161F9028BA00D9A0B3 /* TTModeSonosVolumeJumpOptions.swift */; };
 		17CFDD4C236A7A6C00693BF7 /* TTModeBoseConnecting.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD88F0C20AE7A9F00E0C5CC /* TTModeBoseConnecting.swift */; };
@@ -421,13 +423,30 @@
 		17CFDEF4236A7A6C00693BF7 /* TTModeNest.plist in Resources */ = {isa = PBXBuildFile; fileRef = FF8FB1F31F8F19620085B994 /* TTModeNest.plist */; };
 		17CFDEF5236A7A6C00693BF7 /* temperature.png in Resources */ = {isa = PBXBuildFile; fileRef = FF8B752B1F86D4C900D7867C /* temperature.png */; };
 		17CFDEF6236A7A6C00693BF7 /* webhook.png in Resources */ = {isa = PBXBuildFile; fileRef = FF8B75201F86D4C600D7867C /* webhook.png */; };
+		18EC830EEFE32E9DFB592948 /* TTModeKasaConnecting.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50608E417A74B27BA8D257F4 /* TTModeKasaConnecting.xib */; };
+		2D9E1B472229317D79F96B48 /* TTModeKasaDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46792770635342BBBD2CFEFE /* TTModeKasaDevice.swift */; };
+		31DDFB1CC92AA28C23054B1D /* TTModeKasaKLAPProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E6A9E687847E88D6560F16 /* TTModeKasaKLAPProtocol.swift */; };
+		391FA55812FB95F0B7E9BE54 /* KasaModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5B76AE65F14BB70B32ED4E /* KasaModels.swift */; };
 		4936E026C4EFAF4248E245BD /* HueBridgeDiscovery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C3F0BB5ACD58810698E90D /* HueBridgeDiscovery.swift */; };
+		6E0B0BF5DAF6CA11C5E16257 /* TTModeKasaConnected.xib in Resources */ = {isa = PBXBuildFile; fileRef = 770BB73EF478B80939120483 /* TTModeKasaConnected.xib */; };
+		741D99898B78685CE5580ED4 /* TTModeKasa.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9EFF5DFCAACDFB30C79301 /* TTModeKasa.swift */; };
+		78E53F14EA7352263F578FD2 /* TTModeKasaConnect.xib in Resources */ = {isa = PBXBuildFile; fileRef = F1EA649FCA694006786E14DE /* TTModeKasaConnect.xib */; };
 		7BC7794502510C5E1BC5B5A0 /* HueModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5375AE68F70EAC9C115202A3 /* HueModels.swift */; };
 		85D8B548CD81B8F0353F6C06 /* Pods_Turn_Touch_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACFD869DD1D0B508AA8C9258 /* Pods_Turn_Touch_iOS.framework */; };
 		896F02F883B74C3BD7ADE91B /* HueBridgeAuthenticator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34E30927BD76905F1724C02 /* HueBridgeAuthenticator.swift */; };
 		924B324066ECDE749847A0F7 /* HueColorUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4639F9FCADEFE3B1674D9E5 /* HueColorUtilities.swift */; };
+		92EA09D860B2C495C3A535B5 /* TTModeKasaConnect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462314B6DEA309FA1ADC3D3B /* TTModeKasaConnect.swift */; };
+		935A0845BDAE01F6B834F8D1 /* TTModeKasaConnected.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060BDFB973DDE458218D2168 /* TTModeKasaConnected.swift */; };
+		A230AA7584782E529F0E7D6C /* TTModeKasaOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF0FCDA15259DD96455F68 /* TTModeKasaOptions.swift */; };
 		AFCE71B0D91F2634DBA5EC6A /* HueAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235DA88A2E5C1C9C0C4601D3 /* HueAPIClient.swift */; };
+		B139C5C19775346B417373CC /* TTModeKasaDeviceSwitchOptions.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E25AF3668A3AB313A0D9AE9 /* TTModeKasaDeviceSwitchOptions.xib */; };
+		B67B8E837000CAD338B09D62 /* TTModeKasaDeviceOnOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14AAC5393CE01385359E7DAD /* TTModeKasaDeviceOnOptions.swift */; };
+		C4106329FC32773BA631C036 /* TTModeKasaDeviceOffOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE01EB449CC19CD354C6E53F /* TTModeKasaDeviceOffOptions.swift */; };
+		C69019A0C6F4D1594FB91E86 /* TTModeKasaDeviceSwitchOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B10B4A6C46F4CBB3D0E6688 /* TTModeKasaDeviceSwitchOptions.swift */; };
 		C84251FD36D602BAD99C1804 /* HueEventStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BDAB6284ED19C05D1CBD952 /* HueEventStream.swift */; };
+		CBAAD521514D1DE70DC5F9C7 /* TTModeKasaConnecting.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFF3C4C8F8C4B174CDFC981D /* TTModeKasaConnecting.swift */; };
+		D049FE7BC933C8FF95286B34 /* TTModeKasaDeviceToggleOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23FE52556725E74228799302 /* TTModeKasaDeviceToggleOptions.swift */; };
+		EF786C5A3E1138233686F5D3 /* TTModeKasaOptions.xib in Resources */ = {isa = PBXBuildFile; fileRef = 56DA8074CE2682DF1A4E6EF4 /* TTModeKasaOptions.xib */; };
 		FF08A2331D501ABD00D433A5 /* TTModeCameraReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF08A2321D501ABD00D433A5 /* TTModeCameraReviewViewController.swift */; };
 		FF08E11B2211F013003215C2 /* SonosPlayable.m in Sources */ = {isa = PBXBuildFile; fileRef = FF08E11A2211F013003215C2 /* SonosPlayable.m */; };
 		FF0EDD992105329400F3D5C3 /* switch_mode.png in Resources */ = {isa = PBXBuildFile; fileRef = FF0EDD982105329300F3D5C3 /* switch_mode.png */; };
@@ -843,17 +862,36 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		00AF0FCDA15259DD96455F68 /* TTModeKasaOptions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TTModeKasaOptions.swift; path = Modes/Kasa/TTModeKasaOptions.swift; sourceTree = "<group>"; };
+		060BDFB973DDE458218D2168 /* TTModeKasaConnected.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TTModeKasaConnected.swift; path = Modes/Kasa/TTModeKasaConnected.swift; sourceTree = "<group>"; };
+		14AAC5393CE01385359E7DAD /* TTModeKasaDeviceOnOptions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TTModeKasaDeviceOnOptions.swift; path = Modes/Kasa/TTModeKasaDeviceOnOptions.swift; sourceTree = "<group>"; };
 		17BA4909231861210052734D /* TTModeMusicSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TTModeMusicSession.swift; path = Modes/Music/TTModeMusicSession.swift; sourceTree = "<group>"; };
 		17CFDEFB236A7A6C00693BF7 /* Turn Touch iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Turn Touch iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1B10B4A6C46F4CBB3D0E6688 /* TTModeKasaDeviceSwitchOptions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TTModeKasaDeviceSwitchOptions.swift; path = Modes/Kasa/TTModeKasaDeviceSwitchOptions.swift; sourceTree = "<group>"; };
 		235DA88A2E5C1C9C0C4601D3 /* HueAPIClient.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HueAPIClient.swift; path = Modes/Hue/API/HueAPIClient.swift; sourceTree = "<group>"; };
+		23FE52556725E74228799302 /* TTModeKasaDeviceToggleOptions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TTModeKasaDeviceToggleOptions.swift; path = Modes/Kasa/TTModeKasaDeviceToggleOptions.swift; sourceTree = "<group>"; };
+		2A7CF1FC5D15D6459D4E0268 /* TTModeKasaDiscovery.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TTModeKasaDiscovery.swift; path = Modes/Kasa/TTModeKasaDiscovery.swift; sourceTree = "<group>"; };
 		45C3F0BB5ACD58810698E90D /* HueBridgeDiscovery.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HueBridgeDiscovery.swift; path = Modes/Hue/API/HueBridgeDiscovery.swift; sourceTree = "<group>"; };
+		462314B6DEA309FA1ADC3D3B /* TTModeKasaConnect.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TTModeKasaConnect.swift; path = Modes/Kasa/TTModeKasaConnect.swift; sourceTree = "<group>"; };
+		46792770635342BBBD2CFEFE /* TTModeKasaDevice.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TTModeKasaDevice.swift; path = Modes/Kasa/TTModeKasaDevice.swift; sourceTree = "<group>"; };
+		50608E417A74B27BA8D257F4 /* TTModeKasaConnecting.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = TTModeKasaConnecting.xib; path = Modes/Kasa/TTModeKasaConnecting.xib; sourceTree = "<group>"; };
 		5375AE68F70EAC9C115202A3 /* HueModels.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HueModels.swift; path = Modes/Hue/API/HueModels.swift; sourceTree = "<group>"; };
 		566DA69B7B03534CBDCB1040 /* Pods-Turn Touch iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Turn Touch iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-Turn Touch iOS/Pods-Turn Touch iOS.release.xcconfig"; sourceTree = "<group>"; };
+		56DA8074CE2682DF1A4E6EF4 /* TTModeKasaOptions.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = TTModeKasaOptions.xib; path = Modes/Kasa/TTModeKasaOptions.xib; sourceTree = "<group>"; };
+		5E25AF3668A3AB313A0D9AE9 /* TTModeKasaDeviceSwitchOptions.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = TTModeKasaDeviceSwitchOptions.xib; path = Modes/Kasa/TTModeKasaDeviceSwitchOptions.xib; sourceTree = "<group>"; };
 		6BDAB6284ED19C05D1CBD952 /* HueEventStream.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HueEventStream.swift; path = Modes/Hue/API/HueEventStream.swift; sourceTree = "<group>"; };
+		770BB73EF478B80939120483 /* TTModeKasaConnected.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = TTModeKasaConnected.xib; path = Modes/Kasa/TTModeKasaConnected.xib; sourceTree = "<group>"; };
 		91EFDF0AF89AE132A42C9579 /* Pods-Turn Touch iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Turn Touch iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Turn Touch iOS/Pods-Turn Touch iOS.debug.xcconfig"; sourceTree = "<group>"; };
+		9B9EFF5DFCAACDFB30C79301 /* TTModeKasa.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TTModeKasa.swift; path = Modes/Kasa/TTModeKasa.swift; sourceTree = "<group>"; };
+		AA4753A99D05104B17459D04 /* TTModeKasaLegacyProtocol.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TTModeKasaLegacyProtocol.swift; path = Modes/Kasa/TTModeKasaLegacyProtocol.swift; sourceTree = "<group>"; };
 		ACFD869DD1D0B508AA8C9258 /* Pods_Turn_Touch_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Turn_Touch_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4639F9FCADEFE3B1674D9E5 /* HueColorUtilities.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HueColorUtilities.swift; path = Modes/Hue/API/HueColorUtilities.swift; sourceTree = "<group>"; };
+		D5E6A9E687847E88D6560F16 /* TTModeKasaKLAPProtocol.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TTModeKasaKLAPProtocol.swift; path = Modes/Kasa/TTModeKasaKLAPProtocol.swift; sourceTree = "<group>"; };
+		DFF3C4C8F8C4B174CDFC981D /* TTModeKasaConnecting.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TTModeKasaConnecting.swift; path = Modes/Kasa/TTModeKasaConnecting.swift; sourceTree = "<group>"; };
+		EF5B76AE65F14BB70B32ED4E /* KasaModels.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = KasaModels.swift; path = Modes/Kasa/KasaModels.swift; sourceTree = "<group>"; };
+		F1EA649FCA694006786E14DE /* TTModeKasaConnect.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = TTModeKasaConnect.xib; path = Modes/Kasa/TTModeKasaConnect.xib; sourceTree = "<group>"; };
 		F34E30927BD76905F1724C02 /* HueBridgeAuthenticator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HueBridgeAuthenticator.swift; path = Modes/Hue/API/HueBridgeAuthenticator.swift; sourceTree = "<group>"; };
+		FE01EB449CC19CD354C6E53F /* TTModeKasaDeviceOffOptions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TTModeKasaDeviceOffOptions.swift; path = Modes/Kasa/TTModeKasaDeviceOffOptions.swift; sourceTree = "<group>"; };
 		FF08A2321D501ABD00D433A5 /* TTModeCameraReviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTModeCameraReviewViewController.swift; path = Modes/Camera/TTModeCameraReviewViewController.swift; sourceTree = "<group>"; };
 		FF08E1192211F013003215C2 /* SonosPlayable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SonosPlayable.h; sourceTree = "<group>"; };
 		FF08E11A2211F013003215C2 /* SonosPlayable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SonosPlayable.m; sourceTree = "<group>"; };
@@ -1335,6 +1373,32 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		5FE03B07AED5B9DB8C3ECB0D /* Kasa */ = {
+			isa = PBXGroup;
+			children = (
+				EF5B76AE65F14BB70B32ED4E /* KasaModels.swift */,
+				9B9EFF5DFCAACDFB30C79301 /* TTModeKasa.swift */,
+				462314B6DEA309FA1ADC3D3B /* TTModeKasaConnect.swift */,
+				060BDFB973DDE458218D2168 /* TTModeKasaConnected.swift */,
+				DFF3C4C8F8C4B174CDFC981D /* TTModeKasaConnecting.swift */,
+				46792770635342BBBD2CFEFE /* TTModeKasaDevice.swift */,
+				FE01EB449CC19CD354C6E53F /* TTModeKasaDeviceOffOptions.swift */,
+				14AAC5393CE01385359E7DAD /* TTModeKasaDeviceOnOptions.swift */,
+				1B10B4A6C46F4CBB3D0E6688 /* TTModeKasaDeviceSwitchOptions.swift */,
+				23FE52556725E74228799302 /* TTModeKasaDeviceToggleOptions.swift */,
+				2A7CF1FC5D15D6459D4E0268 /* TTModeKasaDiscovery.swift */,
+				D5E6A9E687847E88D6560F16 /* TTModeKasaKLAPProtocol.swift */,
+				AA4753A99D05104B17459D04 /* TTModeKasaLegacyProtocol.swift */,
+				00AF0FCDA15259DD96455F68 /* TTModeKasaOptions.swift */,
+				F1EA649FCA694006786E14DE /* TTModeKasaConnect.xib */,
+				770BB73EF478B80939120483 /* TTModeKasaConnected.xib */,
+				50608E417A74B27BA8D257F4 /* TTModeKasaConnecting.xib */,
+				5E25AF3668A3AB313A0D9AE9 /* TTModeKasaDeviceSwitchOptions.xib */,
+				56DA8074CE2682DF1A4E6EF4 /* TTModeKasaOptions.xib */,
+			);
+			name = Kasa;
+			sourceTree = "<group>";
+		};
 		C143795DA30C96E7C6EA02F3 /* API */ = {
 			isa = PBXGroup;
 			children = (
@@ -1375,6 +1439,7 @@
 				FF21F9311E172BC700DFDBB4 /* Nest */,
 				FF534C2D1EB0351A002EE584 /* Ifttt */,
 				FFBFF0071F6CBAB800B3EDA7 /* HomeKit */,
+				5FE03B07AED5B9DB8C3ECB0D /* Kasa */,
 			);
 			name = Modes;
 			sourceTree = "<group>";
@@ -2796,6 +2861,11 @@
 				FF8FB1F41F8F19620085B994 /* TTModeNest.plist in Resources */,
 				FF8B757A1F86D4EF00D7867C /* temperature.png in Resources */,
 				FF8B757B1F86D4EF00D7867C /* webhook.png in Resources */,
+				78E53F14EA7352263F578FD2 /* TTModeKasaConnect.xib in Resources */,
+				6E0B0BF5DAF6CA11C5E16257 /* TTModeKasaConnected.xib in Resources */,
+				18EC830EEFE32E9DFB592948 /* TTModeKasaConnecting.xib in Resources */,
+				B139C5C19775346B417373CC /* TTModeKasaDeviceSwitchOptions.xib in Resources */,
+				EF786C5A3E1138233686F5D3 /* TTModeKasaOptions.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3162,6 +3232,20 @@
 				4936E026C4EFAF4248E245BD /* HueBridgeDiscovery.swift in Sources */,
 				896F02F883B74C3BD7ADE91B /* HueBridgeAuthenticator.swift in Sources */,
 				C84251FD36D602BAD99C1804 /* HueEventStream.swift in Sources */,
+				391FA55812FB95F0B7E9BE54 /* KasaModels.swift in Sources */,
+				741D99898B78685CE5580ED4 /* TTModeKasa.swift in Sources */,
+				92EA09D860B2C495C3A535B5 /* TTModeKasaConnect.swift in Sources */,
+				935A0845BDAE01F6B834F8D1 /* TTModeKasaConnected.swift in Sources */,
+				CBAAD521514D1DE70DC5F9C7 /* TTModeKasaConnecting.swift in Sources */,
+				2D9E1B472229317D79F96B48 /* TTModeKasaDevice.swift in Sources */,
+				C4106329FC32773BA631C036 /* TTModeKasaDeviceOffOptions.swift in Sources */,
+				B67B8E837000CAD338B09D62 /* TTModeKasaDeviceOnOptions.swift in Sources */,
+				C69019A0C6F4D1594FB91E86 /* TTModeKasaDeviceSwitchOptions.swift in Sources */,
+				D049FE7BC933C8FF95286B34 /* TTModeKasaDeviceToggleOptions.swift in Sources */,
+				01670E5FE526BEDEA7A8DFA2 /* TTModeKasaDiscovery.swift in Sources */,
+				31DDFB1CC92AA28C23054B1D /* TTModeKasaKLAPProtocol.swift in Sources */,
+				0E8B6D2B0CDAAA8409A4694A /* TTModeKasaLegacyProtocol.swift in Sources */,
+				A230AA7584782E529F0E7D6C /* TTModeKasaOptions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -69,7 +69,9 @@ class TTOptionsView: UIView {
     }
     
     func clearOptionDetailViews() {
-        self.removeConstraints(self.constraints)
+        // Don't remove all constraints - just remove the child views
+        // Their constraints will be cleaned up automatically
+        // self.removeConstraints(self.constraints)
 
         if modeOptionsViewController != nil {
             modeOptionsViewController.view.removeFromSuperview()
@@ -84,9 +86,11 @@ class TTOptionsView: UIView {
     }
     
     func drawModeOptions() {
+        print(" ---> TTOptionsView.drawModeOptions() called")
         self.clearOptionDetailViews()
-        
+
         let modeName = appDelegate().modeMap.selectedMode.nameOfClass
+        print(" ---> Drawing mode options for: \(modeName)")
         let modeOptionsViewControllerName = "Turn_Touch_iOS.\(modeName)Options"
         let modeOptionsClass: AnyClass? = NSClassFromString(modeOptionsViewControllerName)
         if modeOptionsClass == nil {

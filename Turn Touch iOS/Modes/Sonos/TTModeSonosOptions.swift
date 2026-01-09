@@ -20,11 +20,21 @@ class TTModeSonosOptions: TTOptionsDetailViewController, TTModeSonosDelegate {
 
         self.modeSonos = (self.mode as! TTModeSonos)
         self.modeSonos.delegate = self
-        
+
+        // Must call here, not in viewWillAppear - these VCs aren't added via addChild
+        // so viewWillAppear is never called
         self.changeState(TTModeSonos.sonosState, mode: self.modeSonos)
     }
-    
+
     func changeState(_ state: TTSonosState, mode: TTModeSonos) {
+        // Ensure UI updates happen on main thread
+        if !Thread.isMainThread {
+            DispatchQueue.main.async {
+                self.changeState(state, mode: mode)
+            }
+            return
+        }
+
         switch state {
         case .disconnected:
             self.drawConnectViewController()
@@ -56,8 +66,9 @@ class TTModeSonosOptions: TTOptionsDetailViewController, TTModeSonosDelegate {
         guard let view = viewController.view else {
             return
         }
-        
-        self.view.removeConstraints(self.view.constraints)
+
+        // Don't remove all constraints - clearViewConnectrollers already removed the old subview
+        // and its constraints will be cleaned up automatically
         self.view.addSubview(viewController.view)
         self.view.addConstraint(NSLayoutConstraint(item: view, attribute: .top, relatedBy: .equal, toItem: self.view, attribute: .top, multiplier: 1.0, constant: 0))
         self.view.addConstraint(NSLayoutConstraint(item: view, attribute: .bottom, relatedBy: .equal, toItem: self.view, attribute: .bottom, multiplier: 1.0, constant: 0))

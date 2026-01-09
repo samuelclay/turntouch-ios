@@ -46,8 +46,16 @@ class TTModeHueOptions: TTOptionsDetailViewController, TTModeHueDelegate {
     }
 
     func changeState(_ hueState: TTHueState, mode: TTModeHue, message: Any?) {
+        // Ensure UI updates happen on main thread
+        if !Thread.isMainThread {
+            DispatchQueue.main.async {
+                self.changeState(hueState, mode: mode, message: message)
+            }
+            return
+        }
+
         print(" ---> Changing hue state: \(hueState) - \(message ?? "")")
-        
+
         switch hueState {
         case .notConnected:
             self.drawConnectViewController()
@@ -98,11 +106,12 @@ class TTModeHueOptions: TTOptionsDetailViewController, TTModeHueDelegate {
         
         self.view.addConstraint(NSLayoutConstraint(item: view, attribute: .top, relatedBy: .equal, toItem: self.view, attribute: .top, multiplier: 1.0, constant: 0))
         self.view.addConstraint(NSLayoutConstraint(item: view, attribute: .bottom, relatedBy: .equal, toItem: self.view, attribute: .bottom, multiplier: 1.0, constant: 0))
-        self.view.addConstraint(NSLayoutConstraint(item: view, attribute: .leadingMargin, relatedBy: .equal, toItem: self.view, attribute: .leadingMargin, multiplier: 1.0, constant: 16))
-        self.view.addConstraint(NSLayoutConstraint(item: view, attribute: .width, relatedBy: .equal, toItem: self.view, attribute: .width, multiplier: 1.0, constant: 0))
-        
+        self.view.addConstraint(NSLayoutConstraint(item: view, attribute: .leadingMargin, relatedBy: .equal, toItem: self.view, attribute: .leadingMargin, multiplier: 1.0, constant: 0))
+        self.view.addConstraint(NSLayoutConstraint(item: view, attribute: .trailingMargin, relatedBy: .equal, toItem: self.view, attribute: .trailingMargin, multiplier: 1.0, constant: 0))
+        self.view.addConstraint(NSLayoutConstraint(item: view, attribute: .width, relatedBy: .equal, toItem: self.view, attribute: .width, multiplier: 1.0, constant: 0)) // Shouldn't be needed
+
         self.view.layoutIfNeeded()
-        appDelegate().mainViewController.adjustOptionsHeight(nil)
+//        appDelegate().mainViewController.adjustOptionsHeight(nil)
     }
     
     func drawConnectViewController() {

@@ -104,3 +104,36 @@ Each mode lives in `Turn Touch iOS/Modes/{ModeName}/`:
 ### Firmware Updates
 
 DFU firmware files are in `Turn Touch iOS/DFU/` (nrf51_XX.zip). The app uses Nordic's iOSDFULibrary for over-the-air updates to the Turn Touch remote's nRF51 chip.
+
+## iOS Simulator Testing
+
+Use the iOS Simulator Skill at `~/.claude/skills/ios-simulator-skill/` for automated UI testing. **Important: Use Python 3.13** (not 3.14) due to fb-idb compatibility issues.
+
+```bash
+# Set up PATH for idb
+export PATH="$HOME/Library/Python/3.13/bin:$PATH"
+
+# Boot a simulator
+cd ~/.claude/skills/ios-simulator-skill
+python3.13 skill/scripts/simctl_boot.py --name "iPhone 16" --wait-ready
+
+# Install the app (after building)
+xcrun simctl install booted "/Users/sclay/Library/Developer/Xcode/DerivedData/Turn_Touch_iOS-hhlldweafneihnbqxxlftrsforyz/Build/Products/Debug-iphonesimulator/Turn Touch iOS.app"
+
+# Launch the app
+python3.13 skill/scripts/app_launcher.py --launch com.turntouch.ios-remote
+
+# Map screen elements
+python3.13 skill/scripts/screen_mapper.py --verbose
+
+# Navigate and tap elements
+python3.13 skill/scripts/navigator.py --find-text "Button Text" --tap
+
+# Take screenshots
+xcrun simctl io booted screenshot /tmp/screenshot.png
+
+# Perform gestures
+python3.13 skill/scripts/gesture.py --swipe left
+```
+
+The app bundle ID is `com.turntouch.ios-remote`.
