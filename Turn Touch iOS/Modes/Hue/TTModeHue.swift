@@ -846,7 +846,15 @@ class TTModeHue: TTMode, HueBridgeDiscoveryDelegate, HueBridgeAuthenticatorDeleg
 
     func bridgeDiscoveryError(_ error: HueBridgeDiscoveryError) {
         print(" ---> Bridge discovery error: \(error)")
-        self.showNoBridgesFoundDialog()
+
+        if case .rateLimited = error {
+            TTModeHue.hueState = .notConnected
+            TTModeHue.delegates.invoke { (delegate) in
+                delegate?.changeState(TTModeHue.hueState, mode: self, message: "Philips Hue is rate-limiting requests. Please wait a moment and try again.")
+            }
+        } else {
+            self.showNoBridgesFoundDialog()
+        }
     }
 
     func bridgeSelected(_ bridge: DiscoveredBridge) {

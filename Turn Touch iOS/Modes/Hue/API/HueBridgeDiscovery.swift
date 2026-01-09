@@ -15,6 +15,7 @@ enum HueBridgeDiscoveryError: Error, LocalizedError {
     case invalidResponse
     case noBridgesFound
     case cancelled
+    case rateLimited
 
     var errorDescription: String? {
         switch self {
@@ -26,6 +27,8 @@ enum HueBridgeDiscoveryError: Error, LocalizedError {
             return "No Hue Bridges found on the network"
         case .cancelled:
             return "Discovery was cancelled"
+        case .rateLimited:
+            return "Philips Hue is rate-limiting requests. Please wait a moment and try again."
         }
     }
 }
@@ -91,8 +94,15 @@ class HueBridgeDiscovery {
 
         let (data, response) = try await URLSession.shared.data(for: request)
 
-        guard let httpResponse = response as? HTTPURLResponse,
-              (200...299).contains(httpResponse.statusCode) else {
+        guard let httpResponse = response as? HTTPURLResponse else {
+            throw HueBridgeDiscoveryError.invalidResponse
+        }
+
+        if httpResponse.statusCode == 429 {
+            throw HueBridgeDiscoveryError.rateLimited
+        }
+
+        guard (200...299).contains(httpResponse.statusCode) else {
             throw HueBridgeDiscoveryError.invalidResponse
         }
 
