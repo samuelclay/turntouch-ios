@@ -19,25 +19,17 @@ class TTModeHueOptions: TTOptionsDetailViewController, TTModeHueDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         self.modeHue = (self.mode as! TTModeHue)
         TTModeHue.delegates.add(delegate: self)
         self.view.clipsToBounds = true
 
+        // Must call here, not in viewWillAppear - these VCs aren't added via addChild
+        // so viewWillAppear is never called
         if TTModeHue.hueState == .notConnected {
             TTModeHue.hueState = .connecting
-            self.changeState(TTModeHue.hueState, mode: self.modeHue, message: nil)
         }
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        if TTModeHue.hueState == .notConnected {
-            TTModeHue.hueState = .connecting
-            self.changeState(TTModeHue.hueState, mode: self.modeHue, message: nil)
-        } else if TTModeHue.hueState == .connecting {
-            TTModeHue.hueState = .notConnected
-            self.changeState(TTModeHue.hueState, mode: self.modeHue, message: nil)
-        }
+        self.changeState(TTModeHue.hueState, mode: self.modeHue, message: nil)
     }
 
     override func didReceiveMemoryWarning() {
@@ -99,19 +91,19 @@ class TTModeHueOptions: TTOptionsDetailViewController, TTModeHueDelegate {
     func drawViewController(_ viewController: TTOptionsDetailViewController) {
         self.view.removeConstraints(self.view.constraints)
         self.view.addSubview(viewController.view)
-        
+
         guard let view = viewController.view else {
             return
         }
-        
+        view.translatesAutoresizingMaskIntoConstraints = false
+
         self.view.addConstraint(NSLayoutConstraint(item: view, attribute: .top, relatedBy: .equal, toItem: self.view, attribute: .top, multiplier: 1.0, constant: 0))
-        self.view.addConstraint(NSLayoutConstraint(item: view, attribute: .bottom, relatedBy: .equal, toItem: self.view, attribute: .bottom, multiplier: 1.0, constant: 0))
-        self.view.addConstraint(NSLayoutConstraint(item: view, attribute: .leadingMargin, relatedBy: .equal, toItem: self.view, attribute: .leadingMargin, multiplier: 1.0, constant: 0))
-        self.view.addConstraint(NSLayoutConstraint(item: view, attribute: .trailingMargin, relatedBy: .equal, toItem: self.view, attribute: .trailingMargin, multiplier: 1.0, constant: 0))
-        self.view.addConstraint(NSLayoutConstraint(item: view, attribute: .width, relatedBy: .equal, toItem: self.view, attribute: .width, multiplier: 1.0, constant: 0)) // Shouldn't be needed
+        self.view.addConstraint(NSLayoutConstraint(item: view, attribute: .leading, relatedBy: .equal, toItem: self.view, attribute: .leading, multiplier: 1.0, constant: 0))
+        self.view.addConstraint(NSLayoutConstraint(item: view, attribute: .width, relatedBy: .equal, toItem: self.view, attribute: .width, multiplier: 1.0, constant: 0))
+        self.view.addConstraint(NSLayoutConstraint(item: self.view!, attribute: .height, relatedBy: .equal, toItem: view, attribute: .height, multiplier: 1.0, constant: 0))
 
         self.view.layoutIfNeeded()
-//        appDelegate().mainViewController.adjustOptionsHeight(nil)
+        appDelegate().mainViewController.adjustOptionsHeight(view)
     }
     
     func drawConnectViewController() {

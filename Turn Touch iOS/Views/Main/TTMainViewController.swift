@@ -79,7 +79,7 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
-    
+
     deinit {
         appDelegate().modeMap.removeObserver(self, forKeyPath: "openedModeChangeMenu")
         appDelegate().modeMap.removeObserver(self, forKeyPath: "openedActionChangeMenu")
@@ -224,6 +224,7 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
         scrollStackView.addConstraint(addActionButtonConstraint)
         
         scrollView.setContentHuggingPriority(UILayoutPriority(rawValue: 100), for: NSLayoutConstraint.Axis.vertical)
+        scrollView.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 100), for: .vertical)
         scrollView.alwaysBounceVertical = true
         scrollView.insertSubview(scrollStackView, at: 0)
         scrollView.backgroundColor = UIColor(hex: 0xF5F6F8)
@@ -243,22 +244,16 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
                                                     relatedBy: .equal, toItem: scrollView, attribute: .bottom,
                                                     multiplier: 1.0, constant: 0.0))
         stackView.addArrangedSubview(scrollView)
-        stackView.addConstraint(NSLayoutConstraint(item: scrollView, attribute: .leading,
-                                                   relatedBy: .equal, toItem: stackView, attribute: .leading,
-                                                   multiplier: 1.0, constant: 0.0))
-        stackView.addConstraint(NSLayoutConstraint(item: scrollView, attribute: .trailing,
-                                                   relatedBy: .equal, toItem: stackView, attribute: .trailing,
-                                                   multiplier: 1.0, constant: 0.0))
         scrollView.setNeedsLayout()
         scrollView.layoutIfNeeded()
-        
+
         self.applyConstraints()
 
         stackView.addArrangedSubview(deviceTitlesView)
         deviceTitlesConstraint = NSLayoutConstraint(item: deviceTitlesView, attribute: .height,
                                                     relatedBy: .equal, toItem: nil, attribute: .notAnAttribute,
                                                     multiplier: 1.0, constant: 0)
-        //        stackView.addConstraint(deviceTitlesConstraint)
+        stackView.addConstraint(deviceTitlesConstraint)
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
