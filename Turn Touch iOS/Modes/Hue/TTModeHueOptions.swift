@@ -27,9 +27,11 @@ class TTModeHueOptions: TTOptionsDetailViewController, TTModeHueDelegate {
         // Must call here, not in viewWillAppear - these VCs aren't added via addChild
         // so viewWillAppear is never called
         if TTModeHue.hueState == .notConnected {
-            TTModeHue.hueState = .connecting
+            // Actually start the connection process - don't just set the state
+            self.modeHue.connectToBridge(reset: true)
+        } else {
+            self.changeState(TTModeHue.hueState, mode: self.modeHue, message: nil)
         }
-        self.changeState(TTModeHue.hueState, mode: self.modeHue, message: nil)
     }
 
     override func didReceiveMemoryWarning() {
