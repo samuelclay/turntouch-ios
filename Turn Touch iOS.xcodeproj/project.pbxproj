@@ -412,10 +412,19 @@
 		17CFDEF5236A7A6C00693BF7 /* temperature.png in Resources */ = {isa = PBXBuildFile; fileRef = FF8B752B1F86D4C900D7867C /* temperature.png */; };
 		17CFDEF6236A7A6C00693BF7 /* webhook.png in Resources */ = {isa = PBXBuildFile; fileRef = FF8B75201F86D4C600D7867C /* webhook.png */; };
 		18EC830EEFE32E9DFB592948 /* TTModeKasaConnecting.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50608E417A74B27BA8D257F4 /* TTModeKasaConnecting.xib */; };
+		2AC9F56B2458467F55946889 /* TTModeGoveeDeviceOnOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54412EBB52CED042EB9ED1B5 /* TTModeGoveeDeviceOnOptions.swift */; };
 		2D9E1B472229317D79F96B48 /* TTModeKasaDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46792770635342BBBD2CFEFE /* TTModeKasaDevice.swift */; };
 		31DDFB1CC92AA28C23054B1D /* TTModeKasaKLAPProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E6A9E687847E88D6560F16 /* TTModeKasaKLAPProtocol.swift */; };
 		391FA55812FB95F0B7E9BE54 /* KasaModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5B76AE65F14BB70B32ED4E /* KasaModels.swift */; };
+		3A823D9F9522ABF36D12CC23 /* TTModeGoveeBrightnessUpOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC8C70348418A60C3713A48 /* TTModeGoveeBrightnessUpOptions.swift */; };
 		4936E026C4EFAF4248E245BD /* HueBridgeDiscovery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C3F0BB5ACD58810698E90D /* HueBridgeDiscovery.swift */; };
+		494677783703EF710A243AF7 /* TTModeGoveeConnecting.xib in Resources */ = {isa = PBXBuildFile; fileRef = 71F214C38E1CF616B4E8FF2B /* TTModeGoveeConnecting.xib */; };
+		574B9C68C6614B6247B9109D /* TTModeGoveeDeviceSwitchOptions.xib in Resources */ = {isa = PBXBuildFile; fileRef = 09B91FC3C76634F89A3D7D73 /* TTModeGoveeDeviceSwitchOptions.xib */; };
+		58BC90D52F069AC90227564B /* TTModeGoveeDeviceOffOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C912EB9EBF01E5695289E60C /* TTModeGoveeDeviceOffOptions.swift */; };
+		59B1C6FBDB9DEA96B4D266B0 /* TTModeGoveeConnect.xib in Resources */ = {isa = PBXBuildFile; fileRef = D65D87D1200E48B5D8D63E57 /* TTModeGoveeConnect.xib */; };
+		657D73633D97BDAE42A10155 /* TTModeGoveeConnect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809B9EBDEA3622AD167A31FE /* TTModeGoveeConnect.swift */; };
+		682D3303DEFF0EC65D9B912A /* TTModeGoveeBrightnessDownOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB754CFEB22DAC313FBFD26C /* TTModeGoveeBrightnessDownOptions.swift */; };
+		6ADE867C951E61329776FF30 /* TTModeGoveeOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37EDC5B303929EE9E17BA895 /* TTModeGoveeOptions.swift */; };
 		6E0B0BF5DAF6CA11C5E16257 /* TTModeKasaConnected.xib in Resources */ = {isa = PBXBuildFile; fileRef = 770BB73EF478B80939120483 /* TTModeKasaConnected.xib */; };
 		741D99898B78685CE5580ED4 /* TTModeKasa.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9EFF5DFCAACDFB30C79301 /* TTModeKasa.swift */; };
 		78E53F14EA7352263F578FD2 /* TTModeKasaConnect.xib in Resources */ = {isa = PBXBuildFile; fileRef = F1EA649FCA694006786E14DE /* TTModeKasaConnect.xib */; };
@@ -425,15 +434,24 @@
 		924B324066ECDE749847A0F7 /* HueColorUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4639F9FCADEFE3B1674D9E5 /* HueColorUtilities.swift */; };
 		92EA09D860B2C495C3A535B5 /* TTModeKasaConnect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462314B6DEA309FA1ADC3D3B /* TTModeKasaConnect.swift */; };
 		935A0845BDAE01F6B834F8D1 /* TTModeKasaConnected.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060BDFB973DDE458218D2168 /* TTModeKasaConnected.swift */; };
+		9B3E47C2A2CC4F49AA4D4014 /* GoveeModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE26C6A487709306AC98918 /* GoveeModels.swift */; };
+		9C3F302D7364715AD12231A7 /* TTModeGoveeDeviceSwitchOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069F231180595B9DC3786ED8 /* TTModeGoveeDeviceSwitchOptions.swift */; };
+		9F24613E3AE1A15CA078E60D /* TTModeGovee.swift in Sources */ = {isa = PBXBuildFile; fileRef = E52A191D90E3618D7873090F /* TTModeGovee.swift */; };
 		A230AA7584782E529F0E7D6C /* TTModeKasaOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF0FCDA15259DD96455F68 /* TTModeKasaOptions.swift */; };
 		AFCE71B0D91F2634DBA5EC6A /* HueAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235DA88A2E5C1C9C0C4601D3 /* HueAPIClient.swift */; };
 		B139C5C19775346B417373CC /* TTModeKasaDeviceSwitchOptions.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E25AF3668A3AB313A0D9AE9 /* TTModeKasaDeviceSwitchOptions.xib */; };
+		B144162DE1CE9E42B9437585 /* TTModeGoveeConnected.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83000B94F193CF3C24F5CA37 /* TTModeGoveeConnected.xib */; };
 		B67B8E837000CAD338B09D62 /* TTModeKasaDeviceOnOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14AAC5393CE01385359E7DAD /* TTModeKasaDeviceOnOptions.swift */; };
+		BF3E0D65D5FC4AA6D32A0ACF /* TTModeGoveeConnecting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594514BC9AEDCDD90C8F9492 /* TTModeGoveeConnecting.swift */; };
 		C4106329FC32773BA631C036 /* TTModeKasaDeviceOffOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE01EB449CC19CD354C6E53F /* TTModeKasaDeviceOffOptions.swift */; };
 		C69019A0C6F4D1594FB91E86 /* TTModeKasaDeviceSwitchOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B10B4A6C46F4CBB3D0E6688 /* TTModeKasaDeviceSwitchOptions.swift */; };
 		C84251FD36D602BAD99C1804 /* HueEventStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BDAB6284ED19C05D1CBD952 /* HueEventStream.swift */; };
 		CBAAD521514D1DE70DC5F9C7 /* TTModeKasaConnecting.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFF3C4C8F8C4B174CDFC981D /* TTModeKasaConnecting.swift */; };
+		CE8021498C1E5F1D42ECEED6 /* TTModeGoveeOptions.xib in Resources */ = {isa = PBXBuildFile; fileRef = D454387F1A25834919EED5A4 /* TTModeGoveeOptions.xib */; };
 		D049FE7BC933C8FF95286B34 /* TTModeKasaDeviceToggleOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23FE52556725E74228799302 /* TTModeKasaDeviceToggleOptions.swift */; };
+		D459ACD214BFD26110DC32F4 /* GoveeAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69C1D7C57BD7044AF9BE027 /* GoveeAPIClient.swift */; };
+		E8DC595E06F7C100833C1C27 /* TTModeGoveeDeviceToggleOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C21DEDCB4E75DD75F100ED2 /* TTModeGoveeDeviceToggleOptions.swift */; };
+		EA68328C4859B26AF6B52A7D /* TTModeGoveeConnected.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA62D9236517010B9683CCD /* TTModeGoveeConnected.swift */; };
 		EF786C5A3E1138233686F5D3 /* TTModeKasaOptions.xib in Resources */ = {isa = PBXBuildFile; fileRef = 56DA8074CE2682DF1A4E6EF4 /* TTModeKasaOptions.xib */; };
 		FF08A2331D501ABD00D433A5 /* TTModeCameraReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF08A2321D501ABD00D433A5 /* TTModeCameraReviewViewController.swift */; };
 		FF08E11B2211F013003215C2 /* SonosPlayable.m in Sources */ = {isa = PBXBuildFile; fileRef = FF08E11A2211F013003215C2 /* SonosPlayable.m */; };
@@ -840,6 +858,9 @@
 /* Begin PBXFileReference section */
 		00AF0FCDA15259DD96455F68 /* TTModeKasaOptions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TTModeKasaOptions.swift; path = Modes/Kasa/TTModeKasaOptions.swift; sourceTree = "<group>"; };
 		060BDFB973DDE458218D2168 /* TTModeKasaConnected.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TTModeKasaConnected.swift; path = Modes/Kasa/TTModeKasaConnected.swift; sourceTree = "<group>"; };
+		069F231180595B9DC3786ED8 /* TTModeGoveeDeviceSwitchOptions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TTModeGoveeDeviceSwitchOptions.swift; path = Modes/Govee/TTModeGoveeDeviceSwitchOptions.swift; sourceTree = "<group>"; };
+		09B91FC3C76634F89A3D7D73 /* TTModeGoveeDeviceSwitchOptions.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = TTModeGoveeDeviceSwitchOptions.xib; path = Modes/Govee/TTModeGoveeDeviceSwitchOptions.xib; sourceTree = "<group>"; };
+		0C21DEDCB4E75DD75F100ED2 /* TTModeGoveeDeviceToggleOptions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TTModeGoveeDeviceToggleOptions.swift; path = Modes/Govee/TTModeGoveeDeviceToggleOptions.swift; sourceTree = "<group>"; };
 		14AAC5393CE01385359E7DAD /* TTModeKasaDeviceOnOptions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TTModeKasaDeviceOnOptions.swift; path = Modes/Kasa/TTModeKasaDeviceOnOptions.swift; sourceTree = "<group>"; };
 		17BA4909231861210052734D /* TTModeMusicSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TTModeMusicSession.swift; path = Modes/Music/TTModeMusicSession.swift; sourceTree = "<group>"; };
 		17CFDEFB236A7A6C00693BF7 /* Turn Touch iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Turn Touch iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -847,23 +868,38 @@
 		235DA88A2E5C1C9C0C4601D3 /* HueAPIClient.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HueAPIClient.swift; path = Modes/Hue/API/HueAPIClient.swift; sourceTree = "<group>"; };
 		23FE52556725E74228799302 /* TTModeKasaDeviceToggleOptions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TTModeKasaDeviceToggleOptions.swift; path = Modes/Kasa/TTModeKasaDeviceToggleOptions.swift; sourceTree = "<group>"; };
 		2A7CF1FC5D15D6459D4E0268 /* TTModeKasaDiscovery.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TTModeKasaDiscovery.swift; path = Modes/Kasa/TTModeKasaDiscovery.swift; sourceTree = "<group>"; };
+		37EDC5B303929EE9E17BA895 /* TTModeGoveeOptions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TTModeGoveeOptions.swift; path = Modes/Govee/TTModeGoveeOptions.swift; sourceTree = "<group>"; };
 		45C3F0BB5ACD58810698E90D /* HueBridgeDiscovery.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HueBridgeDiscovery.swift; path = Modes/Hue/API/HueBridgeDiscovery.swift; sourceTree = "<group>"; };
 		462314B6DEA309FA1ADC3D3B /* TTModeKasaConnect.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TTModeKasaConnect.swift; path = Modes/Kasa/TTModeKasaConnect.swift; sourceTree = "<group>"; };
 		46792770635342BBBD2CFEFE /* TTModeKasaDevice.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TTModeKasaDevice.swift; path = Modes/Kasa/TTModeKasaDevice.swift; sourceTree = "<group>"; };
+		4BE26C6A487709306AC98918 /* GoveeModels.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GoveeModels.swift; path = Modes/Govee/GoveeModels.swift; sourceTree = "<group>"; };
+		4EC8C70348418A60C3713A48 /* TTModeGoveeBrightnessUpOptions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TTModeGoveeBrightnessUpOptions.swift; path = Modes/Govee/TTModeGoveeBrightnessUpOptions.swift; sourceTree = "<group>"; };
 		50608E417A74B27BA8D257F4 /* TTModeKasaConnecting.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = TTModeKasaConnecting.xib; path = Modes/Kasa/TTModeKasaConnecting.xib; sourceTree = "<group>"; };
 		5375AE68F70EAC9C115202A3 /* HueModels.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HueModels.swift; path = Modes/Hue/API/HueModels.swift; sourceTree = "<group>"; };
+		54412EBB52CED042EB9ED1B5 /* TTModeGoveeDeviceOnOptions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TTModeGoveeDeviceOnOptions.swift; path = Modes/Govee/TTModeGoveeDeviceOnOptions.swift; sourceTree = "<group>"; };
 		566DA69B7B03534CBDCB1040 /* Pods-Turn Touch iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Turn Touch iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-Turn Touch iOS/Pods-Turn Touch iOS.release.xcconfig"; sourceTree = "<group>"; };
 		56DA8074CE2682DF1A4E6EF4 /* TTModeKasaOptions.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = TTModeKasaOptions.xib; path = Modes/Kasa/TTModeKasaOptions.xib; sourceTree = "<group>"; };
+		594514BC9AEDCDD90C8F9492 /* TTModeGoveeConnecting.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TTModeGoveeConnecting.swift; path = Modes/Govee/TTModeGoveeConnecting.swift; sourceTree = "<group>"; };
 		5E25AF3668A3AB313A0D9AE9 /* TTModeKasaDeviceSwitchOptions.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = TTModeKasaDeviceSwitchOptions.xib; path = Modes/Kasa/TTModeKasaDeviceSwitchOptions.xib; sourceTree = "<group>"; };
 		6BDAB6284ED19C05D1CBD952 /* HueEventStream.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HueEventStream.swift; path = Modes/Hue/API/HueEventStream.swift; sourceTree = "<group>"; };
+		71F214C38E1CF616B4E8FF2B /* TTModeGoveeConnecting.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = TTModeGoveeConnecting.xib; path = Modes/Govee/TTModeGoveeConnecting.xib; sourceTree = "<group>"; };
 		770BB73EF478B80939120483 /* TTModeKasaConnected.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = TTModeKasaConnected.xib; path = Modes/Kasa/TTModeKasaConnected.xib; sourceTree = "<group>"; };
+		809B9EBDEA3622AD167A31FE /* TTModeGoveeConnect.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TTModeGoveeConnect.swift; path = Modes/Govee/TTModeGoveeConnect.swift; sourceTree = "<group>"; };
+		83000B94F193CF3C24F5CA37 /* TTModeGoveeConnected.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = TTModeGoveeConnected.xib; path = Modes/Govee/TTModeGoveeConnected.xib; sourceTree = "<group>"; };
 		91EFDF0AF89AE132A42C9579 /* Pods-Turn Touch iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Turn Touch iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Turn Touch iOS/Pods-Turn Touch iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		9B9EFF5DFCAACDFB30C79301 /* TTModeKasa.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TTModeKasa.swift; path = Modes/Kasa/TTModeKasa.swift; sourceTree = "<group>"; };
 		AA4753A99D05104B17459D04 /* TTModeKasaLegacyProtocol.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TTModeKasaLegacyProtocol.swift; path = Modes/Kasa/TTModeKasaLegacyProtocol.swift; sourceTree = "<group>"; };
+		AB754CFEB22DAC313FBFD26C /* TTModeGoveeBrightnessDownOptions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TTModeGoveeBrightnessDownOptions.swift; path = Modes/Govee/TTModeGoveeBrightnessDownOptions.swift; sourceTree = "<group>"; };
 		ACFD869DD1D0B508AA8C9258 /* Pods_Turn_Touch_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Turn_Touch_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C912EB9EBF01E5695289E60C /* TTModeGoveeDeviceOffOptions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TTModeGoveeDeviceOffOptions.swift; path = Modes/Govee/TTModeGoveeDeviceOffOptions.swift; sourceTree = "<group>"; };
+		CEA62D9236517010B9683CCD /* TTModeGoveeConnected.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TTModeGoveeConnected.swift; path = Modes/Govee/TTModeGoveeConnected.swift; sourceTree = "<group>"; };
+		D454387F1A25834919EED5A4 /* TTModeGoveeOptions.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = TTModeGoveeOptions.xib; path = Modes/Govee/TTModeGoveeOptions.xib; sourceTree = "<group>"; };
 		D4639F9FCADEFE3B1674D9E5 /* HueColorUtilities.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HueColorUtilities.swift; path = Modes/Hue/API/HueColorUtilities.swift; sourceTree = "<group>"; };
 		D5E6A9E687847E88D6560F16 /* TTModeKasaKLAPProtocol.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TTModeKasaKLAPProtocol.swift; path = Modes/Kasa/TTModeKasaKLAPProtocol.swift; sourceTree = "<group>"; };
+		D65D87D1200E48B5D8D63E57 /* TTModeGoveeConnect.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = TTModeGoveeConnect.xib; path = Modes/Govee/TTModeGoveeConnect.xib; sourceTree = "<group>"; };
+		D69C1D7C57BD7044AF9BE027 /* GoveeAPIClient.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GoveeAPIClient.swift; path = Modes/Govee/GoveeAPIClient.swift; sourceTree = "<group>"; };
 		DFF3C4C8F8C4B174CDFC981D /* TTModeKasaConnecting.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TTModeKasaConnecting.swift; path = Modes/Kasa/TTModeKasaConnecting.swift; sourceTree = "<group>"; };
+		E52A191D90E3618D7873090F /* TTModeGovee.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TTModeGovee.swift; path = Modes/Govee/TTModeGovee.swift; sourceTree = "<group>"; };
 		EF5B76AE65F14BB70B32ED4E /* KasaModels.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = KasaModels.swift; path = Modes/Kasa/KasaModels.swift; sourceTree = "<group>"; };
 		F1EA649FCA694006786E14DE /* TTModeKasaConnect.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = TTModeKasaConnect.xib; path = Modes/Kasa/TTModeKasaConnect.xib; sourceTree = "<group>"; };
 		F34E30927BD76905F1724C02 /* HueBridgeAuthenticator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HueBridgeAuthenticator.swift; path = Modes/Hue/API/HueBridgeAuthenticator.swift; sourceTree = "<group>"; };
@@ -1376,6 +1412,37 @@
 			name = API;
 			sourceTree = "<group>";
 		};
+		CF64A01AAD83A2FC9FBEC6C9 /* Govee */ = {
+			isa = PBXGroup;
+			children = (
+				4BE26C6A487709306AC98918 /* GoveeModels.swift */,
+				D69C1D7C57BD7044AF9BE027 /* GoveeAPIClient.swift */,
+				E52A191D90E3618D7873090F /* TTModeGovee.swift */,
+				37EDC5B303929EE9E17BA895 /* TTModeGoveeOptions.swift */,
+				809B9EBDEA3622AD167A31FE /* TTModeGoveeConnect.swift */,
+				594514BC9AEDCDD90C8F9492 /* TTModeGoveeConnecting.swift */,
+				CEA62D9236517010B9683CCD /* TTModeGoveeConnected.swift */,
+				069F231180595B9DC3786ED8 /* TTModeGoveeDeviceSwitchOptions.swift */,
+				54412EBB52CED042EB9ED1B5 /* TTModeGoveeDeviceOnOptions.swift */,
+				C912EB9EBF01E5695289E60C /* TTModeGoveeDeviceOffOptions.swift */,
+				0C21DEDCB4E75DD75F100ED2 /* TTModeGoveeDeviceToggleOptions.swift */,
+				4EC8C70348418A60C3713A48 /* TTModeGoveeBrightnessUpOptions.swift */,
+				AB754CFEB22DAC313FBFD26C /* TTModeGoveeBrightnessDownOptions.swift */,
+				D454387F1A25834919EED5A4 /* TTModeGoveeOptions.xib */,
+				D65D87D1200E48B5D8D63E57 /* TTModeGoveeConnect.xib */,
+				71F214C38E1CF616B4E8FF2B /* TTModeGoveeConnecting.xib */,
+				83000B94F193CF3C24F5CA37 /* TTModeGoveeConnected.xib */,
+				09B91FC3C76634F89A3D7D73 /* TTModeGoveeDeviceSwitchOptions.xib */,
+			);
+			name = Govee;
+			sourceTree = "<group>";
+		};
+			isa = PBXGroup;
+			children = (
+			);
+			path = "";
+			sourceTree = "<group>";
+		};
 		FF0F10BC1CF55A7F00CC1F29 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
@@ -1403,6 +1470,7 @@
 				FF534C2D1EB0351A002EE584 /* Ifttt */,
 				FFBFF0071F6CBAB800B3EDA7 /* HomeKit */,
 				5FE03B07AED5B9DB8C3ECB0D /* Kasa */,
+				CF64A01AAD83A2FC9FBEC6C9 /* Govee */,
 			);
 			name = Modes;
 			sourceTree = "<group>";
@@ -2798,6 +2866,11 @@
 				18EC830EEFE32E9DFB592948 /* TTModeKasaConnecting.xib in Resources */,
 				B139C5C19775346B417373CC /* TTModeKasaDeviceSwitchOptions.xib in Resources */,
 				EF786C5A3E1138233686F5D3 /* TTModeKasaOptions.xib in Resources */,
+				CE8021498C1E5F1D42ECEED6 /* TTModeGoveeOptions.xib in Resources */,
+				59B1C6FBDB9DEA96B4D266B0 /* TTModeGoveeConnect.xib in Resources */,
+				494677783703EF710A243AF7 /* TTModeGoveeConnecting.xib in Resources */,
+				B144162DE1CE9E42B9437585 /* TTModeGoveeConnected.xib in Resources */,
+				574B9C68C6614B6247B9109D /* TTModeGoveeDeviceSwitchOptions.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3160,6 +3233,19 @@
 				31DDFB1CC92AA28C23054B1D /* TTModeKasaKLAPProtocol.swift in Sources */,
 				0E8B6D2B0CDAAA8409A4694A /* TTModeKasaLegacyProtocol.swift in Sources */,
 				A230AA7584782E529F0E7D6C /* TTModeKasaOptions.swift in Sources */,
+				9B3E47C2A2CC4F49AA4D4014 /* GoveeModels.swift in Sources */,
+				D459ACD214BFD26110DC32F4 /* GoveeAPIClient.swift in Sources */,
+				9F24613E3AE1A15CA078E60D /* TTModeGovee.swift in Sources */,
+				6ADE867C951E61329776FF30 /* TTModeGoveeOptions.swift in Sources */,
+				657D73633D97BDAE42A10155 /* TTModeGoveeConnect.swift in Sources */,
+				BF3E0D65D5FC4AA6D32A0ACF /* TTModeGoveeConnecting.swift in Sources */,
+				EA68328C4859B26AF6B52A7D /* TTModeGoveeConnected.swift in Sources */,
+				9C3F302D7364715AD12231A7 /* TTModeGoveeDeviceSwitchOptions.swift in Sources */,
+				2AC9F56B2458467F55946889 /* TTModeGoveeDeviceOnOptions.swift in Sources */,
+				58BC90D52F069AC90227564B /* TTModeGoveeDeviceOffOptions.swift in Sources */,
+				E8DC595E06F7C100833C1C27 /* TTModeGoveeDeviceToggleOptions.swift in Sources */,
+				3A823D9F9522ABF36D12CC23 /* TTModeGoveeBrightnessUpOptions.swift in Sources */,
+				682D3303DEFF0EC65D9B912A /* TTModeGoveeBrightnessDownOptions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
