@@ -74,10 +74,17 @@ class HueBridgeDiscovery {
         }
     }
 
-    /// Start discovery in the background
+    /// Start discovery in the background with proper error handling
     func startDiscovery() {
         discoveryTask = Task {
-            try await discoverBridges()
+            do {
+                return try await discoverBridges()
+            } catch {
+                // Error already reported via delegate in discoverBridges()
+                // This catch prevents unhandled Task errors
+                print("[HueBridgeDiscovery] Discovery task completed with error: \(error)")
+                return []
+            }
         }
     }
 

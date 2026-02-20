@@ -784,15 +784,33 @@ class TTModeHue: TTMode, HueBridgeDiscoveryDelegate, HueBridgeAuthenticatorDeleg
         }
     }
 
+    private static var discoveryTimeoutWork: DispatchWorkItem?
+
     func findBridges() {
         TTModeHue.hueState = .connecting
         TTModeHue.delegates.invoke { (delegate) in
             delegate?.changeState(TTModeHue.hueState, mode: self, message: "Searching for a Hue bridge...")
         }
 
+        // Cancel any existing timeout
+        TTModeHue.discoveryTimeoutWork?.cancel()
+
         TTModeHue.bridgeDiscovery = HueBridgeDiscovery()
         TTModeHue.bridgeDiscovery?.delegate = self
         TTModeHue.bridgeDiscovery?.startDiscovery()
+
+        // Set a 15-second timeout for discovery
+        let timeoutWork = DispatchWorkItem { [weak self] in
+            guard let self = self else { return }
+            // Only trigger timeout if still in connecting state
+            if TTModeHue.hueState == .connecting {
+                print(" ---> Bridge discovery timed out")
+                TTModeHue.bridgeDiscovery?.cancelDiscovery()
+                self.showNoBridgesFoundDialog()
+            }
+        }
+        TTModeHue.discoveryTimeoutWork = timeoutWork
+        DispatchQueue.main.asyncAfter(deadline: .now() + 15, execute: timeoutWork)
     }
 
     func watchReachability() {
@@ -804,8 +822,9 @@ class TTModeHue: TTMode, HueBridgeDiscoveryDelegate, HueBridgeAuthenticatorDeleg
 
         TTModeHue.reachability.whenReachable = { reachability in
             DispatchQueue.main.async {
+                print("[HUE-DIAG] Reachability changed: reachable, state=\(TTModeHue.hueState)")
                 if TTModeHue.hueState != .connected {
-                    print(" ---> Reachable, re-connecting to Hue...")
+                    print("[HUE-DIAG] Reconnecting due to reachability change")
                     self.connectToBridge(reset: true)
                 }
             }
@@ -833,6 +852,10 @@ class TTModeHue: TTMode, HueBridgeDiscoveryDelegate, HueBridgeAuthenticatorDeleg
     }
 
     func bridgeDiscoveryFinished(bridges: [DiscoveredBridge]) {
+        // Cancel the discovery timeout
+        TTModeHue.discoveryTimeoutWork?.cancel()
+        TTModeHue.discoveryTimeoutWork = nil
+
         if bridges.count > 0 {
             TTModeHue.hueState = .bridgeSelect
             TTModeHue.foundBridges = bridges
@@ -845,12 +868,21 @@ class TTModeHue: TTMode, HueBridgeDiscoveryDelegate, HueBridgeAuthenticatorDeleg
     }
 
     func bridgeDiscoveryError(_ error: HueBridgeDiscoveryError) {
+        // Cancel the discovery timeout
+        TTModeHue.discoveryTimeoutWork?.cancel()
+        TTModeHue.discoveryTimeoutWork = nil
+
         print(" ---> Bridge discovery error: \(error)")
 
         if case .rateLimited = error {
             TTModeHue.hueState = .notConnected
             TTModeHue.delegates.invoke { (delegate) in
                 delegate?.changeState(TTModeHue.hueState, mode: self, message: "Philips Hue is rate-limiting requests. Please wait a moment and try again.")
+            }
+        } else if case .networkError(let underlyingError) = error {
+            TTModeHue.hueState = .notConnected
+            TTModeHue.delegates.invoke { (delegate) in
+                delegate?.changeState(TTModeHue.hueState, mode: self, message: "Network error: \(underlyingError.localizedDescription)")
             }
         } else {
             self.showNoBridgesFoundDialog()
@@ -877,10 +909,37 @@ class TTModeHue: TTMode, HueBridgeDiscoveryDelegate, HueBridgeAuthenticatorDeleg
     }
 
     func showNoConnectionDialog() {
+        print("[HUE-DIAG] showNoConnectionDialog called, current state=\(TTModeHue.hueState)")
         NSLog(" ---> Connection to bridge lost")
-        TTModeHue.hueState = .notConnected
-        TTModeHue.delegates.invoke { (delegate) in
-            delegate?.changeState(TTModeHue.hueState, mode: self, message: "Connection to Hue bridge lost")
+
+        // Try to connect to the next saved bridge before giving up
+        let prefs = UserDefaults.standard
+        let savedBridges = prefs.array(forKey: TTModeHueConstants.kHueSavedBridges) as? [[String: String]] ?? []
+
+        var hasUntriedBridge = false
+        for savedBridge in savedBridges {
+            guard let serialNumber = savedBridge["serialNumber"] else { continue }
+            if !TTModeHue.bridgesTried.contains(serialNumber) {
+                hasUntriedBridge = true
+                break
+            }
+        }
+
+        if hasUntriedBridge {
+            print(" ---> Trying next saved bridge...")
+            // Don't reset bridgesTried, just try the next one
+            self.connectToBridge(reset: false)
+        } else {
+            // No more saved bridges to try, fall back to discovery
+            print(" ---> No more saved bridges, starting discovery...")
+            TTModeHue.hueState = .notConnected
+            TTModeHue.delegates.invoke { (delegate) in
+                delegate?.changeState(TTModeHue.hueState, mode: self, message: "Connection to Hue bridge lost. Searching...")
+            }
+            // Give UI time to update then start discovery
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                self.findBridges()
+            }
         }
     }
 
@@ -939,6 +998,7 @@ class TTModeHue: TTMode, HueBridgeDiscoveryDelegate, HueBridgeAuthenticatorDeleg
         if TTModeHue.hueState != .connected {
             TTModeHue.hueState = .connected
             self.saveRecentBridge(username: username)
+            print("[HUE-DIAG] State -> .connected, saved bridge")
 
             // Initialize the API client
             TTModeHue.hueClient = HueAPIClient(bridgeIP: bridge.internalipaddress, applicationKey: username)
@@ -948,17 +1008,23 @@ class TTModeHue: TTMode, HueBridgeDiscoveryDelegate, HueBridgeAuthenticatorDeleg
 
             // Start SSE event stream for real-time updates
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                print("[HUE-DIAG] Starting event stream, waitingOnScenes=\(TTModeHue.waitingOnScenes)")
                 self.startEventStream(username: username)
+                print("[HUE-DIAG] After startEventStream, waitingOnScenes=\(TTModeHue.waitingOnScenes)")
             }
 
             DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
+                print("[HUE-DIAG] Watchdog fired: waitingOnScenes=\(TTModeHue.waitingOnScenes), state=\(TTModeHue.hueState)")
                 // If no resources fetched, consider disconnected
                 if TTModeHue.waitingOnScenes && TTModeHue.hueState == .connected {
+                    print("[HUE-DIAG] WATCHDOG RESET: Resetting to .notConnected because resources not fetched in 10s")
                     TTModeHue.hueState = .notConnected
                     self.findBridges()
                     appDelegate().mainViewController.optionsView.redrawOptions()
                 }
             }
+        } else {
+            print("[HUE-DIAG] authenticateBridge skipped, already .connected")
         }
     }
 
@@ -999,23 +1065,19 @@ class TTModeHue: TTMode, HueBridgeDiscoveryDelegate, HueBridgeAuthenticatorDeleg
                     TTModeHue.resourceCache = cache
                     TTModeHue.waitingOnScenes = false
                     TTModeHue.isFetching = false
+                    print("[HUE-DIAG] fetchResources SUCCESS: \(cache.lights.count) lights, \(cache.rooms.count) rooms, \(cache.scenes.count) scenes, waitingOnScenes=false")
                     self.updateHueConfig()
-
-                    if DEBUG_HUE {
-                        print(" ---> Fetched resources: \(cache.lights.count) lights, \(cache.rooms.count) rooms, \(cache.scenes.count) scenes")
-                    }
                 }
             } catch {
-                print(" ---> Failed to fetch resources: \(error)")
+                print("[HUE-DIAG] fetchResources FAILED: \(error)")
                 await MainActor.run {
                     TTModeHue.isFetching = false
 
                     // Check if this is a rate limit error (429)
                     if case HueAPIClientError.httpError(let statusCode, _) = error, statusCode == 429 {
-                        print(" ---> Rate limited by Hue bridge (429), will retry later")
-                        // Don't show connection lost for rate limiting - just wait
-                        // The next scheduled fetch will try again
+                        print("[HUE-DIAG] Rate limited (429), will retry later")
                     } else {
+                        print("[HUE-DIAG] Calling showNoConnectionDialog from fetchResources failure")
                         self.showNoConnectionDialog()
                     }
                 }
@@ -1112,8 +1174,6 @@ class TTModeHue: TTMode, HueBridgeDiscoveryDelegate, HueBridgeAuthenticatorDeleg
         TTModeHue.eventStream = HueEventStream(bridgeIP: bridge.internalipaddress, applicationKey: username)
         TTModeHue.eventStream?.delegate = self
         TTModeHue.eventStream?.connect()
-
-        TTModeHue.waitingOnScenes = true
     }
 
     // MARK: - HueEventStreamDelegate
@@ -1371,7 +1431,7 @@ class TTModeHue: TTMode, HueBridgeDiscoveryDelegate, HueBridgeAuthenticatorDeleg
                     dimming: nil,
                     color: nil,
                     colorTemperature: nil,
-                    effects: HueEffects(effect: "color_loop", effectValues: nil, status: nil, statusValues: nil),
+                    effects: HueEffects(effect: "prism", effectValues: nil, status: nil, statusValues: nil),
                     dynamics: nil
                 )
             }
@@ -1386,6 +1446,18 @@ class TTModeHue: TTMode, HueBridgeDiscoveryDelegate, HueBridgeAuthenticatorDeleg
                 }
             })
         }
+    }
+
+    /// Get light IDs that belong to a specific room
+    func lightIdsForRoom(_ room: HueRoom, cache: HueResourceCache) -> Set<String> {
+        var lightIds = Set<String>()
+        let deviceIds = Set(room.children.filter { $0.rtype == "device" }.map { $0.rid })
+        for device in cache.devices.values {
+            if deviceIds.contains(device.id), let lightId = device.lightId {
+                lightIds.insert(lightId)
+            }
+        }
+        return lightIds
     }
 
     func ensureScene(sceneName: String, moment: TTButtonMoment, lightsHandler: @escaping ((_ light: HueLight, _ index: Int) -> (HueSceneActionState))) {
@@ -1419,19 +1491,65 @@ class TTModeHue: TTMode, HueBridgeDiscoveryDelegate, HueBridgeAuthenticatorDeleg
             print(" ---> Creating scene \(sceneName)")
             let sceneTitle = self.titleForAction(sceneName, buttonMoment: moment)
 
-            // Build scene actions for all lights
+            // Find a room to associate the scene with
+            guard let (roomId, room) = cache.rooms.first else {
+                print(" ---> No rooms found, cannot create scene")
+                TTModeHue.sceneCreateGroup.leave()
+                TTModeHue.sceneSemaphore.signal()
+                return
+            }
+
+            // Only include lights that belong to this room
+            let roomLightIds = self.lightIdsForRoom(room, cache: cache)
+
+            // Build scene actions only for lights in this room
             var actions: [HueSceneAction] = []
-            for (index, (lightId, light)) in cache.lights.enumerated() {
-                let actionState = lightsHandler(light, index)
+            var index = 0
+            for (lightId, light) in cache.lights {
+                guard roomLightIds.contains(lightId) else { continue }
+
+                var actionState = lightsHandler(light, index)
+
+                // Strip color action if the light doesn't support color
+                if light.color == nil {
+                    actionState = HueSceneActionState(
+                        on: actionState.on,
+                        dimming: actionState.dimming,
+                        color: nil,
+                        colorTemperature: actionState.colorTemperature,
+                        effects: actionState.effects,
+                        dynamics: actionState.dynamics
+                    )
+                }
+
+                // Strip effects if the light doesn't support the requested effect
+                if let requestedEffect = actionState.effects?.effect,
+                   let supportedEffects = light.effects?.effectValues,
+                   !supportedEffects.contains(requestedEffect) {
+                    actionState = HueSceneActionState(
+                        on: actionState.on,
+                        dimming: actionState.dimming,
+                        color: actionState.color,
+                        colorTemperature: actionState.colorTemperature,
+                        effects: nil,
+                        dynamics: actionState.dynamics
+                    )
+                }
+
                 let action = HueSceneAction(
                     target: HueResourceLink(rid: lightId, rtype: "light"),
                     action: actionState
                 )
                 actions.append(action)
+                index += 1
             }
 
-            // Find a room to associate the scene with (use first room or create without room)
-            let roomId = cache.rooms.first?.key ?? ""
+            if actions.isEmpty {
+                print(" ---> No lights in room for scene \(sceneTitle)")
+                TTModeHue.sceneCreateGroup.leave()
+                TTModeHue.sceneSemaphore.signal()
+                return
+            }
 
             Task {
                 do {

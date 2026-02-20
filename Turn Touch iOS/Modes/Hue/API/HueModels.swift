@@ -199,7 +199,7 @@ struct HueDynamics: Codable {
 }
 
 struct HueEffects: Codable {
-    let effect: String?         // "no_effect", "color_loop", etc.
+    let effect: String?         // "no_effect", "prism", "opal", "glisten", "sparkle", "fire", "candle"
     let effectValues: [String]?
     let status: String?
     let statusValues: [String]?
@@ -501,7 +501,7 @@ struct HueDynamicsUpdate: Codable {
 }
 
 struct HueEffectsUpdate: Codable {
-    let effect: String          // "no_effect", "color_loop"
+    let effect: String          // "no_effect", "prism", "opal", "glisten", "sparkle", "fire", "candle"
 }
 
 struct HueSceneRecall: Codable {
