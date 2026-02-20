@@ -200,7 +200,7 @@ actor HueAPIClient {
 
     /// Recall (activate) a scene
     func recallScene(_ sceneId: String, duration: Int? = nil, brightness: Double? = nil) async throws {
-        var action = HueSceneRecallAction(
+        let action = HueSceneRecallAction(
             action: "active",
             duration: duration,
             dimming: brightness.map { HueDimmingUpdate(brightness: $0) }
@@ -365,7 +365,7 @@ extension HueAPIClient {
         brightness: Double? = nil,
         xy: (x: Double, y: Double)? = nil
     ) -> HueSceneAction {
-        var actionState = HueSceneActionState(
+        let actionState = HueSceneActionState(
             on: HueOnState(on: on),
             dimming: brightness.map { HueDimming(brightness: $0, minDimLevel: nil) },
             color: xy.map { HueColor(xy: HueXY(x: $0.x, y: $0.y), gamut: nil, gamutType: nil) },

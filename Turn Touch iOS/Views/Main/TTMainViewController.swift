@@ -74,6 +74,9 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
         self.layoutStackview()
         self.registerAsObserver()
         self.registerForKeyboardNotifications() // Add this line
+        self.registerForTraitChanges([UITraitVerticalSizeClass.self]) { (self: TTMainViewController, _) in
+            self.applyConstraints()
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -256,11 +259,6 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
         stackView.addConstraint(deviceTitlesConstraint)
     }
     
-    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        super.traitCollectionDidChange(previousTraitCollection)
-        
-        self.applyConstraints()
-    }
     
     func applyConstraints() {
         let buttonAppMode = appDelegate().modeMap.buttonAppMode()

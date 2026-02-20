@@ -126,8 +126,9 @@ class HueBridgeAuthenticator {
             }
 
             // Notify delegate of progress
+            let currentRemaining = remainingSeconds
             await MainActor.run {
-                self.delegate?.authenticationProgress(remainingSeconds: remainingSeconds)
+                self.delegate?.authenticationProgress(remainingSeconds: currentRemaining)
             }
 
             // Attempt to authenticate
@@ -163,7 +164,7 @@ class HueBridgeAuthenticator {
 
         let (data, response) = try await session.data(for: request)
 
-        guard let httpResponse = response as? HTTPURLResponse else {
+        guard response is HTTPURLResponse else {
             throw HueBridgeAuthenticatorError.invalidResponse
         }
 

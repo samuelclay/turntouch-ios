@@ -282,8 +282,7 @@ class TTDeviceTitleView: UIView, TTTitleMenuDelegate, DFUServiceDelegate, DFUPro
             return
         }
         
-        let dfuInitiator = DFUServiceInitiator(centralManager: appDelegate().bluetoothMonitor.manager,
-                                               target: device.peripheral)
+        let dfuInitiator = DFUServiceInitiator(queue: nil)
         dfuInitiator.delegate = self
         dfuInitiator.progressDelegate = self
         dfuInitiator.logger = self
@@ -296,7 +295,7 @@ class TTDeviceTitleView: UIView, TTTitleMenuDelegate, DFUServiceDelegate, DFUPro
         let fileUrl = Bundle.main.url(forResource: "nrf51_\(latestFirmware)", withExtension: "zip", subdirectory: "DFU")!
         let selectedFirmware = DFUFirmware(urlToZipFile: fileUrl)
 
-        dfuController = dfuInitiator.with(firmware: selectedFirmware!).start()
+        dfuController = dfuInitiator.with(firmware: selectedFirmware!).start(target: device.peripheral)
         appDelegate().mainViewController.closeDeviceMenu()
         
         device.inDFU = true

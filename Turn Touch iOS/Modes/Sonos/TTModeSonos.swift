@@ -344,7 +344,7 @@ class TTModeSonos: TTMode {
     }
     
     func selectedDevice(coordinator: Bool = false) -> SonosController? {
-        var devices = self.foundDevices()
+        let devices = self.foundDevices()
         if devices.count == 0 {
             return nil
         }

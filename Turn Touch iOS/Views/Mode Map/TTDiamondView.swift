@@ -55,7 +55,10 @@ class TTDiamondView: UIView {
     
     override func awakeFromNib() {
         self.registerAsObserver()
-        
+        self.registerForTraitChanges([UITraitVerticalSizeClass.self]) { (self: TTDiamondView, _) in
+            self.setNeedsDisplay()
+        }
+
         self.contentMode = .redraw
     }
     
@@ -72,6 +75,9 @@ class TTDiamondView: UIView {
         self.addGestureRecognizer(longPressRecognizer)
 
         self.registerAsObserver()
+        self.registerForTraitChanges([UITraitVerticalSizeClass.self]) { (self: TTDiamondView, _) in
+            self.setNeedsDisplay()
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -315,14 +321,6 @@ class TTDiamondView: UIView {
         }
     }
     
-    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        super.traitCollectionDidChange(previousTraitCollection)
-        if self.traitCollection.verticalSizeClass == UIUserInterfaceSizeClass.compact {
-            self.setNeedsDisplay()
-        } else {
-            self.setNeedsDisplay()
-        }
-    }
     
     // MARK: Events
 

@@ -204,8 +204,8 @@ class HueEventStream: NSObject {
         guard event.type == "update" || event.type == "add" else { return }
 
         var lights: [HueLight] = []
-        var scenes: [HueScene] = []
-        var rooms: [HueRoom] = []
+        let scenes: [HueScene] = []
+        let rooms: [HueRoom] = []
 
         for eventData in event.data {
             switch eventData.type {

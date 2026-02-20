@@ -132,7 +132,11 @@ class TTModeCameraViewController: UIViewController {
         flashButton.translatesAutoresizingMaskIntoConstraints = false
         flashButton.tintColor = UIColor.white
         flashButton.setImage(UIImage(named: "camera-flash.png"), for: UIControl.State())
-        flashButton.imageEdgeInsets = UIEdgeInsets.init(top: 10, left: 10, bottom: 10, right: 10)
+        flashButton.configuration = {
+            var config = UIButton.Configuration.plain()
+            config.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10)
+            return config
+        }()
         flashButton.addTarget(self, action: #selector(flashButtonPressed(_:)), for: .touchUpInside)
         self.view.addSubview(flashButton)
         
@@ -156,7 +160,11 @@ class TTModeCameraViewController: UIViewController {
         closeButton.translatesAutoresizingMaskIntoConstraints = false
         closeButton.tintColor = UIColor.white
         closeButton.setImage(UIImage(named: "cancel.png"), for: UIControl.State())
-        closeButton.imageEdgeInsets = UIEdgeInsets.init(top: 10, left: 10, bottom: 10, right: 10)
+        closeButton.configuration = {
+            var config = UIButton.Configuration.plain()
+            config.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10)
+            return config
+        }()
         closeButton.addTarget(self, action: #selector(closeButtonPressed(_:)), for: .touchUpInside)
         self.view.addSubview(closeButton)
         
@@ -181,7 +189,11 @@ class TTModeCameraViewController: UIViewController {
             switchButton.translatesAutoresizingMaskIntoConstraints = false
             switchButton.tintColor = UIColor.white
             switchButton.setImage(UIImage(named: "camera-switch.png"), for: UIControl.State())
-            switchButton.imageEdgeInsets = UIEdgeInsets.init(top: 10, left: 10, bottom: 10, right: 10)
+            switchButton.configuration = {
+                var config = UIButton.Configuration.plain()
+                config.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10)
+                return config
+            }()
             
             guard let switchButton = switchButton else {
                 return

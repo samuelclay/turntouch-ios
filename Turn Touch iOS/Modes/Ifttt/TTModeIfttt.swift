@@ -128,7 +128,7 @@ class TTModeIfttt: TTMode {
 
         Task {
             await postJSON(url: "https://turntouch.com/ifttt/button_trigger", params: params) { response in
-                print(" ---> IFTTT Button trigger: \(response)")
+                print(" ---> IFTTT Button trigger: \(response ?? "nil")")
             }
         }
     }
@@ -181,7 +181,7 @@ class TTModeIfttt: TTMode {
         print(" ---> Purging: \(params)")
         Task {
             await postFormEncoded(url: "https://turntouch.com/ifttt/purge_trigger", params: params) { response in
-                print(" ---> Purged: \(response)")
+                print(" ---> Purged: \(response ?? "nil")")
                 callback?()
             }
         }
@@ -198,7 +198,7 @@ class TTModeIfttt: TTMode {
         print(" ---> Registering: \(params)")
         Task {
             await postJSON(url: "https://turntouch.com/ifttt/register_triggers", params: params) { response in
-                print(" ---> Registered: \(response)")
+                print(" ---> Registered: \(response ?? "nil")")
                 callback?()
             }
         }

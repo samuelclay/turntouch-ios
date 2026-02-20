@@ -518,7 +518,7 @@ struct HueSceneCreate: Codable {
     let metadata: HueSceneMetadata
     let group: HueResourceLink
     let actions: [HueSceneAction]
-    let type: String = "scene"
+    var type: String = "scene"
 }
 
 // MARK: - SSE Event Types

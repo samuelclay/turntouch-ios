@@ -94,7 +94,10 @@ class TTModeKasaConnected: TTOptionsDetailViewController {
             self?.updateCredentialsButton()
         })
 
-        if let topVC = UIApplication.shared.keyWindow?.rootViewController {
+        if let topVC = UIApplication.shared.connectedScenes
+            .compactMap({ $0 as? UIWindowScene })
+            .flatMap({ $0.windows })
+            .first(where: { $0.isKeyWindow })?.rootViewController {
             topVC.present(alert, animated: true)
         }
     }

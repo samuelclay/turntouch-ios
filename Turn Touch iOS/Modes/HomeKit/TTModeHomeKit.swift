@@ -117,13 +117,13 @@ class TTModeHomeKit: TTMode, HMHomeManagerDelegate {
     }
     
     func homeManagerDidUpdateHomes(_ manager: HMHomeManager) {
-        print("HomeKit: \(String(describing: homeManager.primaryHome?.accessories))")
+        print("HomeKit: \(String(describing: homeManager.homes.first?.accessories))")
         
         TTModeHomeKit.homeKitState = .connected
         delegate?.changeState(TTModeHomeKit.homeKitState, mode: self)
     }
     func homeManagerDidUpdatePrimaryHome(_ manager: HMHomeManager) {
-        print("HomeKit: \(String(describing: homeManager.primaryHome?.accessories))")
+        print("HomeKit: \(String(describing: homeManager.homes.first?.accessories))")
         
         TTModeHomeKit.homeKitState = .connected
         delegate?.changeState(TTModeHomeKit.homeKitState, mode: self)
@@ -160,7 +160,7 @@ class TTModeHomeKit: TTMode, HMHomeManagerDelegate {
         
         let selectedHomeIdentifier = self.action.optionValue(TTModeHomeKitConstants.kHomeKitHomeIdentifier) as? String
         if selectedHomeIdentifier == nil {
-            if let primaryHome = homeManager.primaryHome {
+            if let primaryHome = homeManager.homes.first {
                 self.action.changeActionOption(TTModeHomeKitConstants.kHomeKitHomeIdentifier,
                                                to: primaryHome.uniqueIdentifier.uuidString)
             }

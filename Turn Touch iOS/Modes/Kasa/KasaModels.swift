@@ -171,7 +171,7 @@ struct KasaKLAPRequest: Codable {
 // MARK: - KLAP Commands
 
 struct KasaKLAPDeviceInfoRequest: Codable {
-    let method = "get_device_info"
+    var method = "get_device_info"
 }
 
 struct KasaKLAPDeviceInfoResponse: Codable {

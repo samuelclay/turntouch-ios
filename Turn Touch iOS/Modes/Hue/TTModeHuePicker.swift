@@ -77,15 +77,10 @@ class TTModeHuePicker: TTOptionsDetailViewController, UITextFieldDelegate, UIPop
             }
         }
 
-        var roomLights: [String] = []
         rooms = []
         rooms.append(["name": "All Rooms", "identifier": "all"])
         for (_, room) in hueRooms {
             rooms.append(["name": room.metadata.name, "identifier": room.id])
-            if roomSelected == room.id {
-                // Get light IDs from room children
-                roomLights = room.children.filter { $0.rtype == "light" || $0.rtype == "device" }.map { $0.rid }
-            }
         }
 
         for room in rooms {

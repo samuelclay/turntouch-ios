@@ -8,6 +8,7 @@
 
 import Foundation
 import CommonCrypto
+import CryptoKit
 
 protocol TTModeKasaKLAPProtocolDelegate: AnyObject {
     func klapProtocolDidReceiveDeviceInfo(_ info: KasaKLAPDeviceInfo)
@@ -314,7 +315,7 @@ class TTModeKasaKLAPProtocol: NSObject {
         }
 
         // Extract signature and ciphertext
-        let signature = encryptedData.prefix(32)
+        let _ = encryptedData.prefix(32) // signature (unused, verified by device)
         let ciphertext = encryptedData.suffix(from: 32)
 
         // Build IV with current sequence (response uses same seq as request)
@@ -452,10 +453,7 @@ class TTModeKasaKLAPProtocol: NSObject {
     // MARK: - Crypto Utilities
 
     private func md5(_ data: Data) -> Data {
-        var digest = [UInt8](repeating: 0, count: Int(CC_MD5_DIGEST_LENGTH))
-        data.withUnsafeBytes { buffer in
-            _ = CC_MD5(buffer.baseAddress, CC_LONG(data.count), &digest)
-        }
+        let digest = Insecure.MD5.hash(data: data)
         return Data(digest)
     }
 

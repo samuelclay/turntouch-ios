@@ -1607,7 +1607,8 @@ class TTModeHue: TTMode, HueBridgeDiscoveryDelegate, HueBridgeAuthenticatorDeleg
             }
         }
 
-        var deleteCount = 0
+        nonisolated(unsafe) var deleteCount = 0
+        let totalSceneCount = sceneCount
         for (sceneId, scene) in cache.scenes {
             if sceneTitles.contains(scene.metadata.name) {
                 if case .timedOut = TTModeHue.sceneSemaphore.wait(timeout: DispatchTime.now() + DispatchTimeInterval.seconds(10)) {
@@ -1624,7 +1625,7 @@ class TTModeHue: TTMode, HueBridgeDiscoveryDelegate, HueBridgeAuthenticatorDeleg
 
                         await MainActor.run {
                             deleteCount += 1
-                            TTModeHue.sceneUploadProgress = Float(sceneCount - deleteCount)/Float(sceneCount)
+                            TTModeHue.sceneUploadProgress = Float(totalSceneCount - deleteCount)/Float(totalSceneCount)
                             TTModeHue.sceneDelegates.invoke { (sceneDelegate) in
                                 sceneDelegate?.sceneUploadProgress()
                             }

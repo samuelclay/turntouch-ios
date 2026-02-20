@@ -127,7 +127,7 @@ class TTModeCustom: TTMode {
         if let customURL = URL(string: customUrlString) {
             DispatchQueue.global().async {
                 do {
-                    let urlContents = try String(contentsOf: customURL)
+                    let urlContents = try String(contentsOf: customURL, encoding: .utf8)
                     print(" ---> URL returned: \(urlContents.count) bytes")
                     callback(urlContents, true)
                 } catch {
