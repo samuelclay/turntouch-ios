@@ -1400,7 +1400,6 @@
 				FFDA0F9F1D3C49F40019859F /* Camera */,
 				FFB84B2B1D90CD6A0037872C /* Yoga */,
 				FF4C037F1DFE5B7000EB0C92 /* Custom */,
-				FF21F9311E172BC700DFDBB4 /* Nest */,
 				FF534C2D1EB0351A002EE584 /* Ifttt */,
 				FFBFF0071F6CBAB800B3EDA7 /* HomeKit */,
 				5FE03B07AED5B9DB8C3ECB0D /* Kasa */,
@@ -3377,7 +3376,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Turn Touch iOS/Turn Touch iOS.entitlements";
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 43;
+				CURRENT_PROJECT_VERSION = 44;
 				DEVELOPMENT_TEAM = 6W5HRS3393;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -3392,13 +3391,15 @@
 					"\"$(SRCROOT)/Pods/Headers/\"",
 				);
 				INFOPLIST_FILE = "Turn Touch iOS/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				INFOPLIST_KEY_CFBundleDisplayName = "Turn Touch";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)/**",
 					"$(PROJECT_DIR)/Turn\\ Touch\\ iOS/Vendor/**",
 				);
-				MARKETING_VERSION = 2.3.2;
+				MARKETING_VERSION = 3.0;
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"$(inherited)",
@@ -3421,7 +3422,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Turn Touch iOS/Turn Touch iOS.entitlements";
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 43;
+				CURRENT_PROJECT_VERSION = 44;
 				DEVELOPMENT_TEAM = 6W5HRS3393;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -3436,13 +3437,15 @@
 					"\"$(SRCROOT)/Pods/Headers/\"",
 				);
 				INFOPLIST_FILE = "Turn Touch iOS/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				INFOPLIST_KEY_CFBundleDisplayName = "Turn Touch";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)/**",
 					"$(PROJECT_DIR)/Turn\\ Touch\\ iOS/Vendor/**",
 				);
-				MARKETING_VERSION = 2.3.2;
+				MARKETING_VERSION = 3.0;
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"$(inherited)",
