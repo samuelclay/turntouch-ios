@@ -15,7 +15,7 @@ class TTDeviceTitlesView: UIStackView {
         super.init(frame: CGRect.zero)
         self.translatesAutoresizingMaskIntoConstraints = false
         self.axis = .vertical
-        self.distribution = .fillEqually
+        self.distribution = .fill
         self.alignment = .fill
         self.spacing = 0
         

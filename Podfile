@@ -9,7 +9,8 @@ target "Turn Touch iOS" do
     pod "AFNetworking/NSURLSession", "~> 3.1"
     pod "SWXMLHash", "~> 4.4"
     pod "ReachabilitySwift", "~> 4.0"
-    pod "NestSDK", "0.1.5"
+    # NestSDK removed - Google deprecated "Works with Nest" API in 2019
+    # pod "NestSDK", "0.1.5"
 
     # Hue API is now native (no SwiftyHue dependency)
 

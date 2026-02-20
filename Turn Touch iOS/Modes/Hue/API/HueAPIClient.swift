@@ -296,11 +296,6 @@ actor HueAPIClient {
                 throw HueAPIClientError.invalidResponse
             }
 
-            // Log response for debugging
-            if let dataString = String(data: data, encoding: .utf8) {
-                print("[HueAPI] Response (\(httpResponse.statusCode)): \(dataString.prefix(500))")
-            }
-
             guard (200...299).contains(httpResponse.statusCode) else {
                 let message = String(data: data, encoding: .utf8)
                 throw HueAPIClientError.httpError(statusCode: httpResponse.statusCode, message: message)

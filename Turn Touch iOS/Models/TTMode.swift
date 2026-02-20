@@ -8,8 +8,8 @@
 
 import Foundation
 
-let DEBUG_PREFS = true
-let DEBUG_PREFS_NIL = true
+let DEBUG_PREFS = false
+let DEBUG_PREFS_NIL = false
 
 enum ActionLayout {
     case action_LAYOUT_TITLE

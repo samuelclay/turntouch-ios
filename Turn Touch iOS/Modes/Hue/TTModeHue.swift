@@ -38,7 +38,7 @@ enum TTHueRandomSaturation: Int {
 let MAX_HUE = 65535
 let MAX_BRIGHTNESS = 255
 let MAX_BRIGHTNESS_V2: Double = 100.0
-let DEBUG_HUE = true
+let DEBUG_HUE = false
 
 struct TTModeHueConstants {
     static let kRandomColors: String = "randomColors"
@@ -824,7 +824,6 @@ class TTModeHue: TTMode, HueBridgeDiscoveryDelegate, HueBridgeAuthenticatorDeleg
             DispatchQueue.main.async {
                 print("[HUE-DIAG] Reachability changed: reachable, state=\(TTModeHue.hueState)")
                 if TTModeHue.hueState != .connected {
-                    print("[HUE-DIAG] Reconnecting due to reachability change")
                     self.connectToBridge(reset: true)
                 }
             }
@@ -910,7 +909,7 @@ class TTModeHue: TTMode, HueBridgeDiscoveryDelegate, HueBridgeAuthenticatorDeleg
 
     func showNoConnectionDialog() {
         print("[HUE-DIAG] showNoConnectionDialog called, current state=\(TTModeHue.hueState)")
-        NSLog(" ---> Connection to bridge lost")
+        NSLog(" ---> Connection to Hue bridge lost")
 
         // Try to connect to the next saved bridge before giving up
         let prefs = UserDefaults.standard
@@ -1010,12 +1009,10 @@ class TTModeHue: TTMode, HueBridgeDiscoveryDelegate, HueBridgeAuthenticatorDeleg
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                 print("[HUE-DIAG] Starting event stream, waitingOnScenes=\(TTModeHue.waitingOnScenes)")
                 self.startEventStream(username: username)
-                print("[HUE-DIAG] After startEventStream, waitingOnScenes=\(TTModeHue.waitingOnScenes)")
             }
 
             DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
                 print("[HUE-DIAG] Watchdog fired: waitingOnScenes=\(TTModeHue.waitingOnScenes), state=\(TTModeHue.hueState)")
-                // If no resources fetched, consider disconnected
                 if TTModeHue.waitingOnScenes && TTModeHue.hueState == .connected {
                     print("[HUE-DIAG] WATCHDOG RESET: Resetting to .notConnected because resources not fetched in 10s")
                     TTModeHue.hueState = .notConnected
@@ -1065,7 +1062,7 @@ class TTModeHue: TTMode, HueBridgeDiscoveryDelegate, HueBridgeAuthenticatorDeleg
                     TTModeHue.resourceCache = cache
                     TTModeHue.waitingOnScenes = false
                     TTModeHue.isFetching = false
-                    print("[HUE-DIAG] fetchResources SUCCESS: \(cache.lights.count) lights, \(cache.rooms.count) rooms, \(cache.scenes.count) scenes, waitingOnScenes=false")
+                    print("[HUE-DIAG] fetchResources SUCCESS: \(cache.lights.count) lights, \(cache.rooms.count) rooms, \(cache.scenes.count) scenes")
                     self.updateHueConfig()
                 }
             } catch {
@@ -1756,7 +1753,7 @@ class TTModeHue: TTMode, HueBridgeDiscoveryDelegate, HueBridgeAuthenticatorDeleg
 
         for (sceneId, scene) in cache.scenes {
             if scene.metadata.name == sceneTitle {
-                print(" ---> \(actionName) \(scene.metadata.name) is \(sceneId)")
+                // print(" ---> \(actionName) \(scene.metadata.name) is \(sceneId)")
                 return sceneId
             }
         }

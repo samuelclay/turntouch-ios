@@ -50,7 +50,7 @@ class TTBatchActions: NSObject {
         let actionDirectionName = appDelegate().modeMap.directionName(actionDirection)
         let batchKey = "TT:mode:\(modeDirectionName):action:\(actionDirectionName):batchactions"
         
-        print(" ---> modeBatchActionKey: \(batchKey)")
+        // print(" ---> modeBatchActionKey: \(batchKey)")
         return batchKey
     }
     

@@ -63,7 +63,7 @@ class TTModeMap: NSObject {
             "TTModeWemo",
             "TTModeKasa",
             "TTModeSonos",
-            "TTModeNest",
+//            "TTModeNest",
 //            "TTModeAlarmClock",
             "TTModeBose",
             "TTModeYoga",

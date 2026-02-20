@@ -14,7 +14,8 @@
 #import <sonos-objc/SonosManager.h>
 #import <sonos-objc/SonosDiscover.h>
 #import <LLSimpleCamera/LLSimpleCamera.h>
-#import <NestSDK/NestSDK.h>
+// NestSDK removed - Google deprecated "Works with Nest" API in 2019
+//#import <NestSDK/NestSDK.h>
 //#import <SpotifyAppRemote/SpotifyAppRemote.h>
 
 #endif /* TTBridgingHeader_h */

@@ -196,8 +196,7 @@ class HueEventStream: NSObject {
                 processEvent(event)
             }
         } catch {
-            print("[HueEventStream] Failed to parse event: \(error)")
-            print("[HueEventStream] Raw data: \(jsonString.prefix(500))")
+            print("[HueEventStream] Failed to parse event: \(error.localizedDescription)")
         }
     }
 

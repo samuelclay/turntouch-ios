@@ -389,13 +389,13 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
     }
     
     func adjustDeviceTitles() {
-//        dispatch_async(dispatch_get_main_queue()) { 
-//            let devices = appDelegate().bluetoothMonitor.foundDevices.nicknamedConnected()
-//            
-//            UIView.animateWithDuration(0.42) {
-//                self.deviceTitlesConstraint.constant = CGFloat(40 * devices.count)
-//            }
-//        }
+        DispatchQueue.main.async {
+            let devices = appDelegate().bluetoothMonitor.foundDevices.devices
+            UIView.animate(withDuration: 0.42) {
+                self.deviceTitlesConstraint.constant = CGFloat(44 * devices.count)
+                self.view.layoutIfNeeded()
+            }
+        }
     }
     
     func adjustBatchActions() {
