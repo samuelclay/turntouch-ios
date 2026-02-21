@@ -76,6 +76,8 @@ class TTModeNanoleaf: TTMode {
     override class func actions() -> [String] {
         return [
             "TTModeNanoleafToggle",
+            "TTModeNanoleafTurnOn",
+            "TTModeNanoleafTurnOff",
             "TTModeNanoleafSceneCustom",
             "TTModeNanoleafRaiseBrightness",
             "TTModeNanoleafLowerBrightness",
@@ -91,6 +93,14 @@ class TTModeNanoleaf: TTMode {
 
     func titleTTModeNanoleafToggle() -> String {
         return "Toggle on/off"
+    }
+
+    func titleTTModeNanoleafTurnOn() -> String {
+        return "Turn on"
+    }
+
+    func titleTTModeNanoleafTurnOff() -> String {
+        return "Turn off"
     }
 
     func titleTTModeNanoleafSceneCustom() -> String {
@@ -132,6 +142,14 @@ class TTModeNanoleaf: TTMode {
     // MARK: Action images
 
     func imageTTModeNanoleafToggle() -> String {
+        return "nanoleaf_toggle.png"
+    }
+
+    func imageTTModeNanoleafTurnOn() -> String {
+        return "nanoleaf_toggle.png"
+    }
+
+    func imageTTModeNanoleafTurnOff() -> String {
         return "nanoleaf_toggle.png"
     }
 
@@ -183,6 +201,28 @@ class TTModeNanoleaf: TTMode {
                 }
             } catch {
                 print(" ---> Nanoleaf toggle error: \(error)")
+            }
+        }
+    }
+
+    func runTTModeNanoleafTurnOn() {
+        Task {
+            do {
+                try await setPower(on: true)
+                print(" ---> Nanoleaf turned on")
+            } catch {
+                print(" ---> Nanoleaf turn on error: \(error)")
+            }
+        }
+    }
+
+    func runTTModeNanoleafTurnOff() {
+        Task {
+            do {
+                try await setPower(on: false)
+                print(" ---> Nanoleaf turned off")
+            } catch {
+                print(" ---> Nanoleaf turn off error: \(error)")
             }
         }
     }

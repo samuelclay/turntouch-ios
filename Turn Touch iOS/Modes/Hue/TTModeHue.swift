@@ -149,6 +149,8 @@ class TTModeHue: TTMode, HueBridgeDiscoveryDelegate, HueBridgeAuthenticatorDeleg
     override class func actions() -> [String] {
         return ["TTModeHueRaiseBrightness",
                 "TTModeHueLowerBrightness",
+                "TTModeHueRaiseSaturation",
+                "TTModeHueLowerSaturation",
                 "TTModeHueShiftColorLeft",
                 "TTModeHueShiftColorRight",
                 "TTModeHueRandom",
@@ -178,6 +180,14 @@ class TTModeHue: TTMode, HueBridgeDiscoveryDelegate, HueBridgeAuthenticatorDeleg
 
     func titleTTModeHueLowerBrightness() -> String {
         return "Lower brightness"
+    }
+
+    func titleTTModeHueRaiseSaturation() -> String {
+        return "Raise saturation"
+    }
+
+    func titleTTModeHueLowerSaturation() -> String {
+        return "Lower saturation"
     }
 
     func titleTTModeHueShiftColorLeft() -> String {
@@ -321,6 +331,14 @@ class TTModeHue: TTMode, HueBridgeDiscoveryDelegate, HueBridgeAuthenticatorDeleg
     }
 
     func imageTTModeHueLowerBrightness() -> String {
+        return "hue_brightness_down.png"
+    }
+
+    func imageTTModeHueRaiseSaturation() -> String {
+        return "hue_brightness_up.png"
+    }
+
+    func imageTTModeHueLowerSaturation() -> String {
         return "hue_brightness_down.png"
     }
 
@@ -663,6 +681,60 @@ class TTModeHue: TTMode, HueBridgeDiscoveryDelegate, HueBridgeAuthenticatorDeleg
                 }
             } catch {
                 print(" ---> Brightness change error: \(error)")
+            }
+        }
+    }
+
+    func runTTModeHueRaiseSaturation() {
+        self.changeSaturation(amount: 10.0)
+    }
+
+    func doubleRunTTModeHueRaiseSaturation() {
+        self.changeSaturation(amount: 20.0)
+    }
+
+    func runTTModeHueLowerSaturation() {
+        self.changeSaturation(amount: -10.0)
+    }
+
+    func doubleRunTTModeHueLowerSaturation() {
+        self.changeSaturation(amount: -20.0)
+    }
+
+    func changeSaturation(amount: Double) {
+        guard let client = TTModeHue.hueClient else { return }
+
+        // D65 white point in CIE 1931 xy space
+        let whiteX = 0.3127
+        let whiteY = 0.3290
+
+        Task {
+            do {
+                let lights = try await client.fetchLights()
+                let roomIdentifier = self.action.optionValue(TTModeHueConstants.kHueRoom) as? String ?? "all"
+                let roomLights = self.roomLights(for: roomIdentifier)
+
+                for light in lights {
+                    if roomLights?.contains(light.id) == false {
+                        continue
+                    }
+
+                    guard let currentXY = light.color?.xy else { continue }
+
+                    // Vector from white point to current color
+                    let dx = currentXY.x - whiteX
+                    let dy = currentXY.y - whiteY
+
+                    // Scale the vector: +10% moves further from white, -10% moves closer
+                    let scale = 1.0 + (amount / 100.0)
+                    let newX = max(0, min(1, whiteX + dx * scale))
+                    let newY = max(0, min(1, whiteY + dy * scale))
+
+                    try await client.updateLight(light.id, on: true, xy: (newX, newY))
+                    print(" ---> Hue saturation change complete: (\(newX), \(newY))")
+                }
+            } catch {
+                print(" ---> Saturation change error: \(error)")
             }
         }
     }

@@ -37,6 +37,8 @@
 		17CFDD61236A7A6C00693BF7 /* UIView+nib.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC4B0F61D2DE3DB00A97C81 /* UIView+nib.swift */; };
 		17CFDD62236A7A6C00693BF7 /* TTModeMusicSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BA4909231861210052734D /* TTModeMusicSession.swift */; };
 		17CFDD63236A7A6C00693BF7 /* TTModeHueRaiseBrightnessOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1A84FD1FCFB593005D8ADE /* TTModeHueRaiseBrightnessOptions.swift */; };
+		AA26022001AABB0000000002 /* TTModeHueRaiseSaturationOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA26022001AABB0000000001 /* TTModeHueRaiseSaturationOptions.swift */; };
+		AA26022001AABB0000000005 /* TTModeHueLowerSaturationOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA26022001AABB0000000004 /* TTModeHueLowerSaturationOptions.swift */; };
 		17CFDD64236A7A6C00693BF7 /* DDASLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = FFF46BCE1D10941500158751 /* DDASLLogger.m */; };
 		17CFDD65236A7A6C00693BF7 /* SonosController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF4AF7CE1D24ECF60009C777 /* SonosController.m */; };
 		17CFDD66236A7A6C00693BF7 /* TTDiamondView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0F10D61CF6697A00CC1F29 /* TTDiamondView.swift */; };
@@ -505,6 +507,8 @@
 		FF1A84FB1FCFB56F005D8ADE /* TTModeHueBrightnessOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1A84F91FCFB56F005D8ADE /* TTModeHueBrightnessOptions.swift */; };
 		FF1A84FC1FCFB56F005D8ADE /* TTModeHueBrightnessOptions.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF1A84FA1FCFB56F005D8ADE /* TTModeHueBrightnessOptions.xib */; };
 		FF1A84FE1FCFB593005D8ADE /* TTModeHueRaiseBrightnessOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1A84FD1FCFB593005D8ADE /* TTModeHueRaiseBrightnessOptions.swift */; };
+		AA26022001AABB0000000003 /* TTModeHueRaiseSaturationOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA26022001AABB0000000001 /* TTModeHueRaiseSaturationOptions.swift */; };
+		AA26022001AABB0000000006 /* TTModeHueLowerSaturationOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA26022001AABB0000000004 /* TTModeHueLowerSaturationOptions.swift */; };
 		FF1A85001FCFB5AF005D8ADE /* TTModeHueLowerBrightnessOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1A84FF1FCFB5AF005D8ADE /* TTModeHueLowerBrightnessOptions.swift */; };
 		FF1DA80F211E1F9000D0D4EA /* hue_cycle.png in Resources */ = {isa = PBXBuildFile; fileRef = FF1DA80E211E1F8F00D0D4EA /* hue_cycle.png */; };
 		FF1DA812211E209200D0D4EA /* TTModeHueCycleScenesOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1DA810211E209200D0D4EA /* TTModeHueCycleScenesOptions.swift */; };
@@ -980,6 +984,8 @@
 		FF1A84F91FCFB56F005D8ADE /* TTModeHueBrightnessOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TTModeHueBrightnessOptions.swift; path = Modes/Hue/TTModeHueBrightnessOptions.swift; sourceTree = "<group>"; };
 		FF1A84FA1FCFB56F005D8ADE /* TTModeHueBrightnessOptions.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = TTModeHueBrightnessOptions.xib; path = Modes/Hue/TTModeHueBrightnessOptions.xib; sourceTree = "<group>"; };
 		FF1A84FD1FCFB593005D8ADE /* TTModeHueRaiseBrightnessOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TTModeHueRaiseBrightnessOptions.swift; path = Modes/Hue/TTModeHueRaiseBrightnessOptions.swift; sourceTree = "<group>"; };
+		AA26022001AABB0000000001 /* TTModeHueRaiseSaturationOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TTModeHueRaiseSaturationOptions.swift; path = Modes/Hue/TTModeHueRaiseSaturationOptions.swift; sourceTree = "<group>"; };
+		AA26022001AABB0000000004 /* TTModeHueLowerSaturationOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TTModeHueLowerSaturationOptions.swift; path = Modes/Hue/TTModeHueLowerSaturationOptions.swift; sourceTree = "<group>"; };
 		FF1A84FF1FCFB5AF005D8ADE /* TTModeHueLowerBrightnessOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTModeHueLowerBrightnessOptions.swift; sourceTree = "<group>"; };
 		FF1DA80E211E1F8F00D0D4EA /* hue_cycle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hue_cycle.png; sourceTree = "<group>"; };
 		FF1DA810211E209200D0D4EA /* TTModeHueCycleScenesOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TTModeHueCycleScenesOptions.swift; path = Modes/Hue/TTModeHueCycleScenesOptions.swift; sourceTree = "<group>"; };
@@ -1600,6 +1606,8 @@
 				FF1A84F91FCFB56F005D8ADE /* TTModeHueBrightnessOptions.swift */,
 				FF1A84FD1FCFB593005D8ADE /* TTModeHueRaiseBrightnessOptions.swift */,
 				FF1A84FF1FCFB5AF005D8ADE /* TTModeHueLowerBrightnessOptions.swift */,
+				AA26022001AABB0000000001 /* TTModeHueRaiseSaturationOptions.swift */,
+				AA26022001AABB0000000004 /* TTModeHueLowerSaturationOptions.swift */,
 				FF1A84FA1FCFB56F005D8ADE /* TTModeHueBrightnessOptions.xib */,
 				FF1DA810211E209200D0D4EA /* TTModeHueCycleScenesOptions.swift */,
 				FF1DA811211E209200D0D4EA /* TTModeHueCycleScenesOptions.xib */,
@@ -3042,6 +3050,8 @@
 				17CFDD61236A7A6C00693BF7 /* UIView+nib.swift in Sources */,
 				17CFDD62236A7A6C00693BF7 /* TTModeMusicSession.swift in Sources */,
 				17CFDD63236A7A6C00693BF7 /* TTModeHueRaiseBrightnessOptions.swift in Sources */,
+				AA26022001AABB0000000002 /* TTModeHueRaiseSaturationOptions.swift in Sources */,
+				AA26022001AABB0000000005 /* TTModeHueLowerSaturationOptions.swift in Sources */,
 				17CFDD64236A7A6C00693BF7 /* DDASLLogger.m in Sources */,
 				17CFDD65236A7A6C00693BF7 /* SonosController.m in Sources */,
 				17CFDD66236A7A6C00693BF7 /* TTDiamondView.swift in Sources */,
@@ -3186,6 +3196,8 @@
 				FFC4B0F71D2DE3DB00A97C81 /* UIView+nib.swift in Sources */,
 				17BA490A231861210052734D /* TTModeMusicSession.swift in Sources */,
 				FF1A84FE1FCFB593005D8ADE /* TTModeHueRaiseBrightnessOptions.swift in Sources */,
+				AA26022001AABB0000000003 /* TTModeHueRaiseSaturationOptions.swift in Sources */,
+				AA26022001AABB0000000006 /* TTModeHueLowerSaturationOptions.swift in Sources */,
 				FFF46BDC1D10941500158751 /* DDASLLogger.m in Sources */,
 				FF4AF7D51D24ECF60009C777 /* SonosController.m in Sources */,
 				FF0F10D71CF6697A00CC1F29 /* TTDiamondView.swift in Sources */,

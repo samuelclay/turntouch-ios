@@ -95,6 +95,7 @@
                 <constraint firstItem="PgQ-H7-AJF" firstAttribute="leading" secondItem="XDH-50-361" secondAttribute="trailing" constant="22" id="g8l-zr-nSk"/>
                 <constraint firstItem="PgQ-H7-AJF" firstAttribute="centerY" secondItem="XgR-3t-wco" secondAttribute="centerY" id="TGf-2y-NtC"/>
                 <constraint firstItem="PgQ-H7-AJF" firstAttribute="width" secondItem="spW-B6-Q0n" secondAttribute="width" id="1nO-Qt-WWA"/>
+                <constraint firstAttribute="trailingMargin" secondItem="PgQ-H7-AJF" secondAttribute="trailing" constant="2" id="trail-dbl-dur"/>
                 <constraint firstAttribute="bottomMargin" secondItem="mrV-Gn-ich" secondAttribute="bottom" constant="22" id="qD5-cU-xgN"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
