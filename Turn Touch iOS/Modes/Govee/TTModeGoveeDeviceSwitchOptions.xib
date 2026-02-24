@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TTModeGoveeDeviceSwitchOptions" customModule="Turn_Touch_iOS">
+            <connections>
+                <outlet property="devicesTable" destination="WqU-XV-hBv" id="Qf2-RF-Rhj"/>
+                <outlet property="noticeLabel" destination="xEe-HV-oGe" id="rZK-gh-Jbe"/>
+                <outlet property="tableHeightConstraint" destination="XVb-0C-k9j" id="87Y-Vz-q5W"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outletCollection property="spinner" destination="c6u-gn-l11" collectionClass="NSMutableArray" id="SdR-tq-0Ze"/>
+                <outletCollection property="settingsButton" destination="4Hd-ra-HFv" collectionClass="NSMutableArray" id="Zeh-Y5-IIS"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="257"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Hd-ra-HFv">
+                    <rect key="frame" x="561" y="21" width="18" height="18"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="18" id="U0I-eX-kQG"/>
+                        <constraint firstAttribute="height" constant="18" id="c6P-ss-IOs"/>
+                    </constraints>
+                    <state key="normal" image="settings.png"/>
+                    <connections>
+                        <action selector="settings:" destination="-1" eventType="touchUpInside" id="XTS-oW-5B2"/>
+                    </connections>
+                </button>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="c6u-gn-l11">
+                    <rect key="frame" x="560" y="20" width="20" height="20"/>
+                </activityIndicatorView>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" verticalHuggingPriority="249" verticalCompressionResistancePriority="751" alwaysBounceVertical="YES" style="plain" separatorStyle="none" allowsMultipleSelection="YES" rowHeight="52" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="WqU-XV-hBv">
+                    <rect key="frame" x="20" y="20" width="520" height="217"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" priority="999" constant="30" id="XVb-0C-k9j"/>
+                    </constraints>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="E7U-K5-JqQ"/>
+                        <outlet property="delegate" destination="-1" id="ITY-ev-xX8"/>
+                    </connections>
+                </tableView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Govee devices found" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xEe-HV-oGe">
+                    <rect key="frame" x="22" y="20" width="186.5" height="22"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="22" id="pQj-3q-AFB"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="WqU-XV-hBv" secondAttribute="bottom" constant="20" id="60j-BD-OxO"/>
+                <constraint firstItem="xEe-HV-oGe" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leadingMargin" constant="2" id="8is-YH-JYx"/>
+                <constraint firstItem="xEe-HV-oGe" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="20" id="Gda-Br-pXe"/>
+                <constraint firstItem="c6u-gn-l11" firstAttribute="leading" secondItem="WqU-XV-hBv" secondAttribute="trailing" constant="20" id="bz5-TE-aNI"/>
+                <constraint firstItem="WqU-XV-hBv" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="20" id="c0A-BL-4cN"/>
+                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="xEe-HV-oGe" secondAttribute="bottom" constant="20" id="fNJ-3h-WHD"/>
+                <constraint firstItem="4Hd-ra-HFv" firstAttribute="centerX" secondItem="c6u-gn-l11" secondAttribute="centerX" id="n83-Dr-Bty"/>
+                <constraint firstItem="c6u-gn-l11" firstAttribute="top" secondItem="WqU-XV-hBv" secondAttribute="top" id="olX-eg-gnB"/>
+                <constraint firstAttribute="trailingMargin" secondItem="c6u-gn-l11" secondAttribute="trailing" id="pvO-tr-meE"/>
+                <constraint firstItem="4Hd-ra-HFv" firstAttribute="centerY" secondItem="c6u-gn-l11" secondAttribute="centerY" id="sZ4-NE-mjF"/>
+                <constraint firstItem="WqU-XV-hBv" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leadingMargin" id="yIb-LF-xff"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="199" y="158.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="settings.png" width="16" height="16"/>
+    </resources>
+</document>

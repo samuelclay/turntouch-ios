@@ -126,8 +126,8 @@ class TTOptionsView: UIView {
             selectedMode = appDelegate().modeMap.modeInDirection(inspectingModeDirection)
         }
         let actionName = selectedMode.actionNameInDirection(inspectingModeDirection)
-        var actionOptionsViewControllerName = "Turn_Touch_iOS.\(actionName)Options"
-        var actionOptionsClass: AnyClass? = NSClassFromString(actionOptionsViewControllerName)
+        var actionOptionsViewControllerName = "\(actionName)Options"
+        var actionOptionsClass: AnyClass? = NSClassFromString("Turn_Touch_iOS.\(actionOptionsViewControllerName)")
 
         if selectedMode.shouldUseModeOptionsFor(actionName) {
             actionOptionsViewControllerName = "\(selectedMode.nameOfClass)Options"

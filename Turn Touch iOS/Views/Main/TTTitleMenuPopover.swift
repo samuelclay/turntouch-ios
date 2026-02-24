@@ -64,7 +64,7 @@ class TTTitleMenuPopover: UIViewController, UITableViewDelegate, UITableViewData
         cell.imageView?.image = UIImage(named: delegate.menuOptions()[(indexPath as NSIndexPath).row]["image"] ?? "alarm_snooze")
         
         let itemSize:CGSize = CGSize(width: 20, height: 20)
-        UIGraphicsBeginImageContextWithOptions(itemSize, false, UIScreen.main.scale)
+        UIGraphicsBeginImageContextWithOptions(itemSize, false, self.traitCollection.displayScale)
         let imageRect : CGRect = CGRect(x: 0, y: 0, width: itemSize.width, height: itemSize.height)
         cell.imageView!.image?.draw(in: imageRect)
         cell.imageView!.image = UIGraphicsGetImageFromCurrentImageContext()

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TTModeGoveeConnect" customModule="Turn_Touch_iOS" customModuleProvider="target">
+            <connections>
+                <outlet property="apiKeyField" destination="api-key-fld" id="api-key-con"/>
+                <outlet property="connectButton" destination="5z8-dd-EfZ" id="rAz-B9-RPc"/>
+                <outlet property="instructionLabel" destination="instr-lbl" id="instr-con"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="160"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter your Govee API key (Govee Home App > Settings > My Profile > Apply for API Key)" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="instr-lbl">
+                    <rect key="frame" x="20" y="15" width="560" height="36"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <color key="textColor" red="0.4" green="0.4" blue="0.4" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Govee API Key" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="api-key-fld">
+                    <rect key="frame" x="20" y="63" width="560" height="34"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="none" autocorrectionType="no"/>
+                </textField>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5z8-dd-EfZ">
+                    <rect key="frame" x="206" y="109" width="188" height="36"/>
+                    <state key="normal" title="Connect to Govee"/>
+                    <connections>
+                        <action selector="connectToGovee:" destination="-1" eventType="touchUpInside" id="SQI-1R-Gl3"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="instr-lbl" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="15" id="instr-top"/>
+                <constraint firstItem="instr-lbl" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="instr-lead"/>
+                <constraint firstAttribute="trailing" secondItem="instr-lbl" secondAttribute="trailing" constant="20" id="instr-trail"/>
+                <constraint firstItem="api-key-fld" firstAttribute="top" secondItem="instr-lbl" secondAttribute="bottom" constant="12" id="fld-top"/>
+                <constraint firstItem="api-key-fld" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="fld-lead"/>
+                <constraint firstAttribute="trailing" secondItem="api-key-fld" secondAttribute="trailing" constant="20" id="fld-trail"/>
+                <constraint firstItem="5z8-dd-EfZ" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="btn-centerx"/>
+                <constraint firstItem="5z8-dd-EfZ" firstAttribute="top" secondItem="api-key-fld" secondAttribute="bottom" constant="12" id="btn-top"/>
+                <constraint firstAttribute="bottomMargin" secondItem="5z8-dd-EfZ" secondAttribute="bottom" constant="15" id="btn-bot"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="265" y="429.5"/>
+        </view>
+    </objects>
+</document>

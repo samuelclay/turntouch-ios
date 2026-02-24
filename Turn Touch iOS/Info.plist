@@ -52,6 +52,12 @@
 	<string>The Turn Touch camera app uses the camera to take photos</string>
 	<key>NSHomeKitUsageDescription</key>
 	<string>Turn Touch communicates with devices supported with Apple HomeKit</string>
+	<key>NSBonjourServices</key>
+	<array>
+		<string>_nanoleafapi._tcp</string>
+	</array>
+	<key>NSLocalNetworkUsageDescription</key>
+	<string>Turn Touch discovers and controls smart home devices on your local network</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>Location is sparingly used to keep your remote always connected</string>
 	<key>NSLocationAlwaysUsageDescription</key>
@@ -72,8 +78,8 @@
 	<array>
 		<string>Effra_Rg.ttf</string>
 		<string>effra-lightitalic.ttf</string>
-		<string>Dalton Maag - Effra Light</string>
-		<string>Dalton Maag - Effra Std Bold</string>
+		<string>Dalton Maag - Effra Light.ttf</string>
+		<string>Dalton Maag - Effra Std Bold.ttf</string>
 	</array>
 	<key>UIBackgroundModes</key>
 	<array>

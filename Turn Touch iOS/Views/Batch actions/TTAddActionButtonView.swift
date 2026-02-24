@@ -26,15 +26,7 @@ class TTAddActionButtonView: UIView {
         
         image = UIImage(named: "button_plus")
         addButton.translatesAutoresizingMaskIntoConstraints = false
-        addButton.setImage(image, for: .normal)
-        addButton.imageView?.contentMode = .scaleAspectFit
-        addButton.setTitle("Add new action", for: UIControl.State.normal)
-        addButton.imageView!.setContentHuggingPriority(UILayoutPriority.defaultHigh, for: .horizontal)
-        addButton.titleLabel!.font = UIFont(name: "Effra", size: 13)
-        addButton.titleLabel!.textColor = UIColor(hex: 0xA0A0A0)
-        addButton.titleLabel!.lineBreakMode = NSLineBreakMode.byClipping
-        addButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: -128, bottom: 0, right: -128)
-        addButton.titleEdgeInsets = UIEdgeInsets(top: 0, left: -212, bottom: 0, right: 0)
+        addButton.configuration = self.makeButtonConfig(title: "Add new action", image: image)
         addButton.addTarget(self, action: #selector(self.showAddActionMenu(_:)), for: .touchUpInside)
         addButton.setContentHuggingPriority(UILayoutPriority.defaultHigh, for: .horizontal)
         self.addSubview(addButton)
@@ -93,9 +85,31 @@ class TTAddActionButtonView: UIView {
         line.stroke()
     }
     
+    private func resizedImage(_ image: UIImage?, to size: CGSize) -> UIImage? {
+        guard let image = image else { return nil }
+        let renderer = UIGraphicsImageRenderer(size: size)
+        return renderer.image { _ in
+            image.draw(in: CGRect(origin: .zero, size: size))
+        }
+    }
+
+    private func makeButtonConfig(title: String, image: UIImage?) -> UIButton.Configuration {
+        var config = UIButton.Configuration.plain()
+        config.image = resizedImage(image, to: CGSize(width: 14, height: 14))
+        config.imagePadding = 8
+        config.baseForegroundColor = UIColor(hex: 0xA0A0A0)
+        var titleAttr = AttributeContainer()
+        titleAttr.font = UIFont(name: "Effra", size: 13)
+        config.attributedTitle = AttributedString(title, attributes: titleAttr)
+        return config
+    }
+
+    private func updateButtonConfig(title: String, imageName: String) {
+        addButton.configuration = makeButtonConfig(title: title, image: UIImage(named: imageName))
+    }
+
     @objc func showAddActionMenu(_ sender: UIButton!) {
-        addButton.setTitle("Cancel", for: .normal)
-        addButton.setImage(UIImage(named: "button_x"), for: .normal)
+        updateButtonConfig(title: "Cancel", imageName: "button_x")
         addButton.removeTarget(self, action: #selector(self.showAddActionMenu(_:)), for: .touchUpInside)
         addButton.addTarget(self, action: #selector(self.hideAddActionMenu(_:)), for: .touchUpInside)
 
@@ -103,8 +117,7 @@ class TTAddActionButtonView: UIView {
     }
 
     @objc func hideAddActionMenu(_ sender: UIButton!) {
-        addButton.setTitle("Add new action", for: .normal)
-        addButton.setImage(UIImage(named: "button_plus"), for: .normal)
+        updateButtonConfig(title: "Add new action", imageName: "button_plus")
         addButton.removeTarget(self, action: #selector(self.hideAddActionMenu(_:)), for: .touchUpInside)
         addButton.addTarget(self, action: #selector(self.showAddActionMenu(_:)), for: .touchUpInside)
         

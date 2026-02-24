@@ -74,12 +74,15 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
         self.layoutStackview()
         self.registerAsObserver()
         self.registerForKeyboardNotifications() // Add this line
+        self.registerForTraitChanges([UITraitVerticalSizeClass.self]) { (self: TTMainViewController, _) in
+            self.applyConstraints()
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
-    
+
     deinit {
         appDelegate().modeMap.removeObserver(self, forKeyPath: "openedModeChangeMenu")
         appDelegate().modeMap.removeObserver(self, forKeyPath: "openedActionChangeMenu")
@@ -224,6 +227,7 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
         scrollStackView.addConstraint(addActionButtonConstraint)
         
         scrollView.setContentHuggingPriority(UILayoutPriority(rawValue: 100), for: NSLayoutConstraint.Axis.vertical)
+        scrollView.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 100), for: .vertical)
         scrollView.alwaysBounceVertical = true
         scrollView.insertSubview(scrollStackView, at: 0)
         scrollView.backgroundColor = UIColor(hex: 0xF5F6F8)
@@ -243,29 +247,18 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
                                                     relatedBy: .equal, toItem: scrollView, attribute: .bottom,
                                                     multiplier: 1.0, constant: 0.0))
         stackView.addArrangedSubview(scrollView)
-        stackView.addConstraint(NSLayoutConstraint(item: scrollView, attribute: .leading,
-                                                   relatedBy: .equal, toItem: stackView, attribute: .leading,
-                                                   multiplier: 1.0, constant: 0.0))
-        stackView.addConstraint(NSLayoutConstraint(item: scrollView, attribute: .trailing,
-                                                   relatedBy: .equal, toItem: stackView, attribute: .trailing,
-                                                   multiplier: 1.0, constant: 0.0))
         scrollView.setNeedsLayout()
         scrollView.layoutIfNeeded()
-        
+
         self.applyConstraints()
 
         stackView.addArrangedSubview(deviceTitlesView)
         deviceTitlesConstraint = NSLayoutConstraint(item: deviceTitlesView, attribute: .height,
                                                     relatedBy: .equal, toItem: nil, attribute: .notAnAttribute,
                                                     multiplier: 1.0, constant: 0)
-        //        stackView.addConstraint(deviceTitlesConstraint)
+        stackView.addConstraint(deviceTitlesConstraint)
     }
     
-    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        super.traitCollectionDidChange(previousTraitCollection)
-        
-        self.applyConstraints()
-    }
     
     func applyConstraints() {
         let buttonAppMode = appDelegate().modeMap.buttonAppMode()
@@ -394,13 +387,13 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
     }
     
     func adjustDeviceTitles() {
-//        dispatch_async(dispatch_get_main_queue()) { 
-//            let devices = appDelegate().bluetoothMonitor.foundDevices.nicknamedConnected()
-//            
-//            UIView.animateWithDuration(0.42) {
-//                self.deviceTitlesConstraint.constant = CGFloat(40 * devices.count)
-//            }
-//        }
+        DispatchQueue.main.async {
+            let devices = appDelegate().bluetoothMonitor.foundDevices.devices
+            UIView.animate(withDuration: 0.42) {
+                self.deviceTitlesConstraint.constant = CGFloat(44 * devices.count)
+                self.view.layoutIfNeeded()
+            }
+        }
     }
     
     func adjustBatchActions() {

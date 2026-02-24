@@ -78,7 +78,7 @@ class TTGeofencingViewController: UIViewController, MKMapViewDelegate, CLLocatio
         
         if !CLLocationManager.isMonitoringAvailable(for: CLCircularRegion.self) {
             appDelegate().beginLocationUpdates()
-        } else if CLLocationManager.authorizationStatus() != .authorizedAlways {
+        } else if appDelegate().locationManager.authorizationStatus != .authorizedAlways {
             appDelegate().beginLocationUpdates()
         } else {
             appDelegate().startLocationMonitoring()

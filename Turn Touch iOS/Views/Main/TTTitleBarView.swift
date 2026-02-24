@@ -41,7 +41,11 @@ class TTTitleBarView: UIView, TTTitleMenuDelegate {
         let settingsImage = UIImage(named: "settings")
         let settingsButton = UIButton(type: .custom)
         settingsButton.setImage(settingsImage, for: UIControl.State())
-        settingsButton.imageEdgeInsets = UIEdgeInsets.init(top: 10, left: 20, bottom: 10, right: 20)
+        settingsButton.configuration = {
+            var config = UIButton.Configuration.plain()
+            config.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 20, bottom: 10, trailing: 20)
+            return config
+        }()
         settingsButton.translatesAutoresizingMaskIntoConstraints = false
         settingsButton.addTarget(self, action: #selector(self.pressSettings(_:)), for: .touchUpInside)
         self.addSubview(settingsButton)

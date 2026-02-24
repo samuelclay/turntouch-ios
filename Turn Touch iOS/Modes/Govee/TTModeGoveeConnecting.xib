@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TTModeGoveeConnecting" customModule="Turn_Touch_iOS" customModuleProvider="target">
+            <connections>
+                <outlet property="spinner" destination="N06-6p-PE8" id="zzH-HR-Id8"/>
+                <outlet property="cancelButton" destination="YnL-0c-gjt" id="zzH-HR-Id7"/>
+                <outlet property="statusLabel" destination="n3K-Tv-sO5" id="zzH-HR-Id9"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="180"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fetching Govee devices..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n3K-Tv-sO5">
+                    <rect key="frame" x="207.5" y="22" width="185" height="30"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="N06-6p-PE8">
+                    <rect key="frame" x="278" y="70" width="44" height="44"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                </activityIndicatorView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YnL-0c-gjt">
+                    <rect key="frame" x="250" y="130" width="100" height="30"/>
+                    <state key="normal" title="Cancel"/>
+                    <connections>
+                        <action selector="cancelFetch:" destination="-1" eventType="touchUpInside" id="gm0-nf-odd"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="n3K-Tv-sO5" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="VMU-rj-c8O"/>
+                <constraint firstItem="n3K-Tv-sO5" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="22" id="dYp-sn-yQT"/>
+                <constraint firstItem="N06-6p-PE8" firstAttribute="top" secondItem="n3K-Tv-sO5" secondAttribute="bottom" constant="18" id="13R-rM-9zx"/>
+                <constraint firstItem="N06-6p-PE8" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="mUm-Ab-nF7"/>
+                <constraint firstItem="YnL-0c-gjt" firstAttribute="top" secondItem="N06-6p-PE8" secondAttribute="bottom" constant="16" id="sAJ-pL-81F"/>
+                <constraint firstItem="YnL-0c-gjt" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="YnL-center"/>
+                <constraint firstAttribute="bottom" secondItem="YnL-0c-gjt" secondAttribute="bottom" constant="20" id="YnL-bottom"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="214" y="271"/>
+        </view>
+    </objects>
+</document>

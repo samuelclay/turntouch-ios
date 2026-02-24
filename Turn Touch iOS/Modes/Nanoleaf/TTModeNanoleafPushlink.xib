@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Effra_Rg.ttf">
+            <string>Effra-Regular</string>
+        </array>
+        <array key="Dalton Maag - Effra Std Bold.ttf">
+            <string>Effra-Bold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TTModeNanoleafPushlink" customModule="Turn_Touch_iOS" customModuleProvider="target">
+            <connections>
+                <outlet property="deviceNameLabel" destination="lbl-device-name" id="conn-device-name"/>
+                <outlet property="progressView" destination="ZiW-Z9-5iG" id="JOo-mL-Ags"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="180"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Light Panels 50:A1:5A" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lbl-device-name">
+                    <fontDescription key="fontDescription" name="Effra-Bold" family="Effra" pointSize="16"/>
+                    <color key="textColor" red="0.25" green="0.25" blue="0.30" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hold the power button for 5-7 seconds until the LEDs start flashing" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lbl-instruction">
+                    <fontDescription key="fontDescription" name="Effra-Regular" family="Effra" pointSize="13"/>
+                    <color key="textColor" red="0.45" green="0.45" blue="0.50" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" verticalCompressionResistancePriority="751" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ZiW-Z9-5iG">
+                    <constraints>
+                        <constraint firstAttribute="width" constant="200" id="emN-SW-bLk"/>
+                    </constraints>
+                </progressView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="lbl-device-name" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="20" id="top-name"/>
+                <constraint firstItem="lbl-device-name" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="cx-name"/>
+                <constraint firstItem="lbl-device-name" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="24" id="lead-name"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="lbl-device-name" secondAttribute="trailing" constant="24" id="trail-name"/>
+                <constraint firstItem="lbl-instruction" firstAttribute="top" secondItem="lbl-device-name" secondAttribute="bottom" constant="10" id="top-instr"/>
+                <constraint firstItem="lbl-instruction" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="cx-instr"/>
+                <constraint firstItem="lbl-instruction" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="40" id="lead-instr"/>
+                <constraint firstAttribute="trailing" secondItem="lbl-instruction" secondAttribute="trailing" constant="40" id="trail-instr"/>
+                <constraint firstItem="ZiW-Z9-5iG" firstAttribute="top" secondItem="lbl-instruction" secondAttribute="bottom" constant="18" id="top-prog"/>
+                <constraint firstItem="ZiW-Z9-5iG" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="cx-prog"/>
+                <constraint firstAttribute="bottomMargin" secondItem="ZiW-Z9-5iG" secondAttribute="bottom" constant="16" id="bot-prog"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="433" y="235.5"/>
+        </view>
+    </objects>
+</document>

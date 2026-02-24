@@ -25,8 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 //        self.erasePreferences()
         self.loadPreferences()
 
-        let centralManagerIdentifiers = launchOptions?[UIApplication.LaunchOptionsKey.bluetoothCentrals]
-        if centralManagerIdentifiers != nil {
+        if let centralManagerIdentifiers = launchOptions?[UIApplication.LaunchOptionsKey(rawValue: "UIApplicationLaunchOptionsBluetoothCentralsKey")] {
             print(" ---> centralManagerIdentifiers: \(String(describing: centralManagerIdentifiers))")
         }
 
@@ -38,7 +37,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         modeMap.setupModes()
         locationManager = CLLocationManager()
         mainViewController = TTMainViewController()
-        window = UIWindow(frame: UIScreen.main.bounds)
+        let windowScene = UIApplication.shared.connectedScenes.first as! UIWindowScene
+        window = UIWindow(windowScene: windowScene)
         window?.rootViewController = mainViewController
         window?.makeKeyAndVisible()
         modeMap.activateModes()
@@ -67,7 +67,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
-        print("\n ---> applicationWillResignActive")
+        print(" ---> applicationWillResignActive")
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
@@ -87,7 +87,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-        print("\n\n ---> applicationDidBecomeActive")
+        print(" ---> applicationDidBecomeActive")
         
         bluetoothMonitor.countDevices()
         bluetoothMonitor.resetSearch()
@@ -103,19 +103,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         prefs.synchronize()
     }
     
-    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any]) -> Bool {
-//        let parameters = TTModeSpotify.appRemote.authorizationParameters(from: url)
-        
-//        if let access_token = parameters?[SPTAppRemoteAccessTokenKey] {
-//            TTModeSpotify.appRemote.connectionParameters.accessToken = access_token
-//            TTModeSpotify.accessToken = access_token
-//            TTModeSpotifyAppDelegate.recentSpotify?.didEstablishConnection()
-//        } else if let error_description = parameters?[SPTAppRemoteErrorDescriptionKey] {
-//            TTModeSpotifyAppDelegate.recentSpotify?.cancelConnectingToSpotify(error: error_description)
-//        }
-        
-        return true
-    }
     
     func redrawMainLayout() {
         modeMap.setupModes()
@@ -177,7 +164,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
                                 let objectToSet = prefSpecification["DefaultValue"]
                                 defaultsToRegister[key] = objectToSet!
                                 
-                                NSLog("Setting object \(String(describing: objectToSet)) for key \(key)")
+                                // NSLog("Setting object \(String(describing: objectToSet)) for key \(key)")
                             }
                         }
                     }
@@ -199,7 +186,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             return
         }
         
-        switch CLLocationManager.authorizationStatus() {
+        switch locationManager.authorizationStatus {
         case .authorizedAlways:
             self.startSignificantChangeUpdates()
         case .notDetermined:
@@ -237,7 +224,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     }
 
     func monitorRegionAtLocation(center: CLLocationCoordinate2D, identifier: String) {
-        if CLLocationManager.authorizationStatus() == .authorizedAlways {
+        if locationManager.authorizationStatus == .authorizedAlways {
             if CLLocationManager.isMonitoringAvailable(for: CLCircularRegion.self) {
                 let maxDistance = locationManager.maximumRegionMonitoringDistance
                 let region = CLCircularRegion(center: center,

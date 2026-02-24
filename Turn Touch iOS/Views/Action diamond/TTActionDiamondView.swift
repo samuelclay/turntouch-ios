@@ -36,6 +36,9 @@ class TTActionDiamondView: UIView {
         southLabel = TTDiamondLabel(inDirection: .south, diamondType: diamondType)
         
         self.registerAsObserver()
+        self.registerForTraitChanges([UITraitVerticalSizeClass.self]) { (self: TTActionDiamondView, _) in
+            self.updateLayout()
+        }
         
         diamondView = TTDiamondView(frame: frame, diamondType: diamondType)
         diamondView.setContentCompressionResistancePriority(.required, for: .horizontal)
@@ -207,14 +210,6 @@ class TTActionDiamondView: UIView {
         self.layoutIfNeeded()
     }
     
-    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        super.traitCollectionDidChange(previousTraitCollection)
-        if self.traitCollection.verticalSizeClass == UIUserInterfaceSizeClass.compact {
-            self.updateLayout()
-        } else {
-            self.updateLayout()
-        }
-    }
     
     // MARK: Actions
     

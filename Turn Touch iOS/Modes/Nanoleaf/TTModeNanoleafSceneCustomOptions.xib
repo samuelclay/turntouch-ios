@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Effra_Rg.ttf">
+            <string>Effra-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TTModeNanoleafSceneCustomOptions" customModule="Turn_Touch_iOS" customModuleProvider="target">
+            <connections>
+                <outlet property="doublePicker" destination="WhT-xH-XIz" id="q0F-FJ-iAj"/>
+                <outlet property="singlePicker" destination="AcK-qV-YAe" id="9L3-E3-Aw8"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outletCollection property="refreshButton" destination="2WW-SN-3qX" collectionClass="NSMutableArray" id="C1W-MQ-fnG"/>
+                <outletCollection property="refreshButton" destination="bpc-Sm-bgr" collectionClass="NSMutableArray" id="ctK-Fj-YAd"/>
+                <outletCollection property="spinner" destination="zJ2-R2-mLi" collectionClass="NSMutableArray" id="KB1-Br-zcc"/>
+                <outletCollection property="spinner" destination="IFh-w4-INz" collectionClass="NSMutableArray" id="PSI-ys-c8t"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleAspectFit" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="130"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2WW-SN-3qX">
+                    <constraints>
+                        <constraint firstAttribute="width" constant="18" id="mTf-yN-cmp"/>
+                        <constraint firstAttribute="height" constant="18" id="xbV-EN-Mdh"/>
+                    </constraints>
+                    <state key="normal" image="refresh.png"/>
+                    <connections>
+                        <action selector="refreshEffects:" destination="-1" eventType="touchUpInside" id="ToB-z0-FbY"/>
+                    </connections>
+                </button>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="zJ2-R2-mLi"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="single_tap.png" translatesAutoresizingMaskIntoConstraints="NO" id="LHz-wQ-pfb">
+                    <constraints>
+                        <constraint firstAttribute="width" constant="32" id="h6h-fR-Gcz"/>
+                        <constraint firstAttribute="height" constant="30" id="mhy-tn-v90"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Single tap" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Eu-vA-Pmt">
+                    <fontDescription key="fontDescription" name="Effra-Regular" family="Effra" pointSize="13"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AcK-qV-YAe">
+                    <fontDescription key="fontDescription" name="Effra-Regular" family="Effra" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bpc-Sm-bgr">
+                    <constraints>
+                        <constraint firstAttribute="width" constant="18" id="Jk8-0X-cC1"/>
+                        <constraint firstAttribute="height" constant="18" id="QnL-29-w7e"/>
+                    </constraints>
+                    <state key="normal" image="refresh.png"/>
+                    <connections>
+                        <action selector="refreshEffects:" destination="-1" eventType="touchUpInside" id="zt4-xn-bjR"/>
+                    </connections>
+                </button>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="IFh-w4-INz"/>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WhT-xH-XIz">
+                    <fontDescription key="fontDescription" name="Effra-Regular" family="Effra" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Double tap" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BJi-uJ-ihJ">
+                    <fontDescription key="fontDescription" name="Effra-Regular" family="Effra" pointSize="13"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="double_tap.png" translatesAutoresizingMaskIntoConstraints="NO" id="0LA-9r-eSS">
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="eu2-O7-rha"/>
+                        <constraint firstAttribute="width" constant="32" id="oUC-mK-pri"/>
+                    </constraints>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="LHz-wQ-pfb" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leadingMargin" constant="2" id="Qlf-uR-rND"/>
+                <constraint firstItem="2Eu-vA-Pmt" firstAttribute="leading" secondItem="LHz-wQ-pfb" secondAttribute="trailing" constant="8" id="X7E-37-Mo0"/>
+                <constraint firstItem="2Eu-vA-Pmt" firstAttribute="centerY" secondItem="LHz-wQ-pfb" secondAttribute="centerY" id="mEp-5i-Wc8"/>
+                <constraint firstItem="LHz-wQ-pfb" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="20" id="top-single"/>
+                <constraint firstItem="AcK-qV-YAe" firstAttribute="leading" secondItem="2Eu-vA-Pmt" secondAttribute="trailing" constant="12" id="lead-single-tf"/>
+                <constraint firstItem="AcK-qV-YAe" firstAttribute="centerY" secondItem="2Eu-vA-Pmt" secondAttribute="centerY" id="cy-single-tf"/>
+                <constraint firstItem="2WW-SN-3qX" firstAttribute="leading" secondItem="AcK-qV-YAe" secondAttribute="trailing" constant="8" id="lead-refresh1"/>
+                <constraint firstItem="2WW-SN-3qX" firstAttribute="centerY" secondItem="AcK-qV-YAe" secondAttribute="centerY" id="cy-refresh1"/>
+                <constraint firstItem="zJ2-R2-mLi" firstAttribute="centerX" secondItem="2WW-SN-3qX" secondAttribute="centerX" id="cx-spinner1"/>
+                <constraint firstItem="zJ2-R2-mLi" firstAttribute="centerY" secondItem="2WW-SN-3qX" secondAttribute="centerY" id="cy-spinner1"/>
+                <constraint firstAttribute="trailingMargin" secondItem="2WW-SN-3qX" secondAttribute="trailing" constant="2" id="trail-refresh1"/>
+                <constraint firstItem="0LA-9r-eSS" firstAttribute="leading" secondItem="LHz-wQ-pfb" secondAttribute="leading" id="lead-double-img"/>
+                <constraint firstItem="0LA-9r-eSS" firstAttribute="top" secondItem="LHz-wQ-pfb" secondAttribute="bottom" constant="24" id="top-double-img"/>
+                <constraint firstItem="BJi-uJ-ihJ" firstAttribute="leading" secondItem="0LA-9r-eSS" secondAttribute="trailing" constant="8" id="lead-double-lbl"/>
+                <constraint firstItem="BJi-uJ-ihJ" firstAttribute="centerY" secondItem="0LA-9r-eSS" secondAttribute="centerY" id="cy-double-lbl"/>
+                <constraint firstItem="WhT-xH-XIz" firstAttribute="leading" secondItem="AcK-qV-YAe" secondAttribute="leading" id="lead-double-tf"/>
+                <constraint firstItem="WhT-xH-XIz" firstAttribute="centerY" secondItem="BJi-uJ-ihJ" secondAttribute="centerY" id="cy-double-tf"/>
+                <constraint firstItem="bpc-Sm-bgr" firstAttribute="leading" secondItem="WhT-xH-XIz" secondAttribute="trailing" constant="8" id="lead-refresh2"/>
+                <constraint firstItem="bpc-Sm-bgr" firstAttribute="centerY" secondItem="WhT-xH-XIz" secondAttribute="centerY" id="cy-refresh2"/>
+                <constraint firstItem="bpc-Sm-bgr" firstAttribute="trailing" secondItem="2WW-SN-3qX" secondAttribute="trailing" id="trail-refresh2"/>
+                <constraint firstItem="IFh-w4-INz" firstAttribute="centerX" secondItem="bpc-Sm-bgr" secondAttribute="centerX" id="cx-spinner2"/>
+                <constraint firstItem="IFh-w4-INz" firstAttribute="centerY" secondItem="bpc-Sm-bgr" secondAttribute="centerY" id="cy-spinner2"/>
+                <constraint firstAttribute="bottomMargin" secondItem="0LA-9r-eSS" secondAttribute="bottom" constant="22" id="bot-double"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="349" y="359.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="double_tap.png" width="512" height="512"/>
+        <image name="refresh.png" width="128" height="128"/>
+        <image name="single_tap.png" width="512" height="512"/>
+    </resources>
+</document>

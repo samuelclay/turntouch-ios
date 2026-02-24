@@ -9,7 +9,7 @@
 import UIKit
 
 
-protocol TTPickerViewControllerDelegate : class {
+protocol TTPickerViewControllerDelegate : AnyObject {
     func pickerDismissed(_ row : Int, textField: UITextField)
 }
 
