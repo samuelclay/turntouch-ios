@@ -24,7 +24,7 @@ post_install do |installer|
         target.build_configurations.each do |config|
             config.build_settings['SWIFT_VERSION'] = '4.2'
             config.build_settings['SWIFT_OPTIMIZATION_LEVEL'] = '-Owholemodule'
-            config.build_settings['DEBUG_INFORMATION_FORMAT'] = 'dwarf'
+            config.build_settings['DEBUG_INFORMATION_FORMAT'] = 'dwarf-with-dsym'
         end
     end
     installer.generated_projects.each do |project|

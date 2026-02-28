@@ -37,8 +37,6 @@
 		17CFDD61236A7A6C00693BF7 /* UIView+nib.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC4B0F61D2DE3DB00A97C81 /* UIView+nib.swift */; };
 		17CFDD62236A7A6C00693BF7 /* TTModeMusicSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BA4909231861210052734D /* TTModeMusicSession.swift */; };
 		17CFDD63236A7A6C00693BF7 /* TTModeHueRaiseBrightnessOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1A84FD1FCFB593005D8ADE /* TTModeHueRaiseBrightnessOptions.swift */; };
-		AA26022001AABB0000000002 /* TTModeHueRaiseSaturationOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA26022001AABB0000000001 /* TTModeHueRaiseSaturationOptions.swift */; };
-		AA26022001AABB0000000005 /* TTModeHueLowerSaturationOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA26022001AABB0000000004 /* TTModeHueLowerSaturationOptions.swift */; };
 		17CFDD64236A7A6C00693BF7 /* DDASLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = FFF46BCE1D10941500158751 /* DDASLLogger.m */; };
 		17CFDD65236A7A6C00693BF7 /* SonosController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF4AF7CE1D24ECF60009C777 /* SonosController.m */; };
 		17CFDD66236A7A6C00693BF7 /* TTDiamondView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0F10D61CF6697A00CC1F29 /* TTDiamondView.swift */; };
@@ -450,6 +448,10 @@
 		9C3F302D7364715AD12231A7 /* TTModeGoveeDeviceSwitchOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069F231180595B9DC3786ED8 /* TTModeGoveeDeviceSwitchOptions.swift */; };
 		9F24613E3AE1A15CA078E60D /* TTModeGovee.swift in Sources */ = {isa = PBXBuildFile; fileRef = E52A191D90E3618D7873090F /* TTModeGovee.swift */; };
 		A230AA7584782E529F0E7D6C /* TTModeKasaOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF0FCDA15259DD96455F68 /* TTModeKasaOptions.swift */; };
+		AA26022001AABB0000000002 /* TTModeHueRaiseSaturationOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA26022001AABB0000000001 /* TTModeHueRaiseSaturationOptions.swift */; };
+		AA26022001AABB0000000003 /* TTModeHueRaiseSaturationOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA26022001AABB0000000001 /* TTModeHueRaiseSaturationOptions.swift */; };
+		AA26022001AABB0000000005 /* TTModeHueLowerSaturationOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA26022001AABB0000000004 /* TTModeHueLowerSaturationOptions.swift */; };
+		AA26022001AABB0000000006 /* TTModeHueLowerSaturationOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA26022001AABB0000000004 /* TTModeHueLowerSaturationOptions.swift */; };
 		AD5B7E604D25656D2F365C74 /* TTModeNanoleaf.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9296292B02970D7EF4982F /* TTModeNanoleaf.swift */; };
 		AFCE71B0D91F2634DBA5EC6A /* HueAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235DA88A2E5C1C9C0C4601D3 /* HueAPIClient.swift */; };
 		B139C5C19775346B417373CC /* TTModeKasaDeviceSwitchOptions.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E25AF3668A3AB313A0D9AE9 /* TTModeKasaDeviceSwitchOptions.xib */; };
@@ -507,8 +509,6 @@
 		FF1A84FB1FCFB56F005D8ADE /* TTModeHueBrightnessOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1A84F91FCFB56F005D8ADE /* TTModeHueBrightnessOptions.swift */; };
 		FF1A84FC1FCFB56F005D8ADE /* TTModeHueBrightnessOptions.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF1A84FA1FCFB56F005D8ADE /* TTModeHueBrightnessOptions.xib */; };
 		FF1A84FE1FCFB593005D8ADE /* TTModeHueRaiseBrightnessOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1A84FD1FCFB593005D8ADE /* TTModeHueRaiseBrightnessOptions.swift */; };
-		AA26022001AABB0000000003 /* TTModeHueRaiseSaturationOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA26022001AABB0000000001 /* TTModeHueRaiseSaturationOptions.swift */; };
-		AA26022001AABB0000000006 /* TTModeHueLowerSaturationOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA26022001AABB0000000004 /* TTModeHueLowerSaturationOptions.swift */; };
 		FF1A85001FCFB5AF005D8ADE /* TTModeHueLowerBrightnessOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1A84FF1FCFB5AF005D8ADE /* TTModeHueLowerBrightnessOptions.swift */; };
 		FF1DA80F211E1F9000D0D4EA /* hue_cycle.png in Resources */ = {isa = PBXBuildFile; fileRef = FF1DA80E211E1F8F00D0D4EA /* hue_cycle.png */; };
 		FF1DA812211E209200D0D4EA /* TTModeHueCycleScenesOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1DA810211E209200D0D4EA /* TTModeHueCycleScenesOptions.swift */; };
@@ -927,6 +927,8 @@
 		91EFDF0AF89AE132A42C9579 /* Pods-Turn Touch iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Turn Touch iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Turn Touch iOS/Pods-Turn Touch iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		9B9EFF5DFCAACDFB30C79301 /* TTModeKasa.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TTModeKasa.swift; path = Modes/Kasa/TTModeKasa.swift; sourceTree = "<group>"; };
 		9E1860583FDD90DF972A92A3 /* nanoleaf_brightness_down.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; path = nanoleaf_brightness_down.png; sourceTree = "<group>"; };
+		AA26022001AABB0000000001 /* TTModeHueRaiseSaturationOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TTModeHueRaiseSaturationOptions.swift; path = Modes/Hue/TTModeHueRaiseSaturationOptions.swift; sourceTree = "<group>"; };
+		AA26022001AABB0000000004 /* TTModeHueLowerSaturationOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TTModeHueLowerSaturationOptions.swift; path = Modes/Hue/TTModeHueLowerSaturationOptions.swift; sourceTree = "<group>"; };
 		AA4753A99D05104B17459D04 /* TTModeKasaLegacyProtocol.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TTModeKasaLegacyProtocol.swift; path = Modes/Kasa/TTModeKasaLegacyProtocol.swift; sourceTree = "<group>"; };
 		AB754CFEB22DAC313FBFD26C /* TTModeGoveeBrightnessDownOptions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TTModeGoveeBrightnessDownOptions.swift; path = Modes/Govee/TTModeGoveeBrightnessDownOptions.swift; sourceTree = "<group>"; };
 		AB9388C1BF1E0BE3C2D22E9D /* nanoleaf_toggle.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; path = nanoleaf_toggle.png; sourceTree = "<group>"; };
@@ -984,8 +986,6 @@
 		FF1A84F91FCFB56F005D8ADE /* TTModeHueBrightnessOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TTModeHueBrightnessOptions.swift; path = Modes/Hue/TTModeHueBrightnessOptions.swift; sourceTree = "<group>"; };
 		FF1A84FA1FCFB56F005D8ADE /* TTModeHueBrightnessOptions.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = TTModeHueBrightnessOptions.xib; path = Modes/Hue/TTModeHueBrightnessOptions.xib; sourceTree = "<group>"; };
 		FF1A84FD1FCFB593005D8ADE /* TTModeHueRaiseBrightnessOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TTModeHueRaiseBrightnessOptions.swift; path = Modes/Hue/TTModeHueRaiseBrightnessOptions.swift; sourceTree = "<group>"; };
-		AA26022001AABB0000000001 /* TTModeHueRaiseSaturationOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TTModeHueRaiseSaturationOptions.swift; path = Modes/Hue/TTModeHueRaiseSaturationOptions.swift; sourceTree = "<group>"; };
-		AA26022001AABB0000000004 /* TTModeHueLowerSaturationOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TTModeHueLowerSaturationOptions.swift; path = Modes/Hue/TTModeHueLowerSaturationOptions.swift; sourceTree = "<group>"; };
 		FF1A84FF1FCFB5AF005D8ADE /* TTModeHueLowerBrightnessOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTModeHueLowerBrightnessOptions.swift; sourceTree = "<group>"; };
 		FF1DA80E211E1F8F00D0D4EA /* hue_cycle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hue_cycle.png; sourceTree = "<group>"; };
 		FF1DA810211E209200D0D4EA /* TTModeHueCycleScenesOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TTModeHueCycleScenesOptions.swift; path = Modes/Hue/TTModeHueCycleScenesOptions.swift; sourceTree = "<group>"; };
@@ -1511,7 +1511,6 @@
 				7E14CED7D158CF9623A892C2 /* TTModeNanoleaf.plist */,
 			);
 			name = Nanoleaf;
-			path = "";
 			sourceTree = "<group>";
 		};
 		FF0F10BC1CF55A7F00CC1F29 /* Categories */ = {
@@ -3569,7 +3568,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Turn Touch iOS/Turn Touch iOS.entitlements";
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 44;
+				CURRENT_PROJECT_VERSION = 45;
 				DEVELOPMENT_TEAM = 6W5HRS3393;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -3615,7 +3614,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Turn Touch iOS/Turn Touch iOS.entitlements";
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 44;
+				CURRENT_PROJECT_VERSION = 45;
 				DEVELOPMENT_TEAM = 6W5HRS3393;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
