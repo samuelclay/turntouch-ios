@@ -107,33 +107,65 @@ DFU firmware files are in `Turn Touch iOS/DFU/` (nrf51_XX.zip). The app uses Nor
 
 ## iOS Simulator Testing
 
-Use the iOS Simulator Skill at `~/.claude/skills/ios-simulator-skill/` for automated UI testing. **Important: Use Python 3.13** (not 3.14) due to fb-idb compatibility issues.
-
-```bash
-# Set up PATH for idb
-export PATH="$HOME/Library/Python/3.13/bin:$PATH"
-
-# Boot a simulator
-cd ~/.claude/skills/ios-simulator-skill
-python3.13 skill/scripts/simctl_boot.py --name "iPhone 16" --wait-ready
-
-# Install the app (after building)
-xcrun simctl install booted "/Users/sclay/Library/Developer/Xcode/DerivedData/Turn_Touch_iOS-hhlldweafneihnbqxxlftrsforyz/Build/Products/Debug-iphonesimulator/Turn Touch iOS.app"
-
-# Launch the app
-python3.13 skill/scripts/app_launcher.py --launch com.turntouch.ios-remote
-
-# Map screen elements
-python3.13 skill/scripts/screen_mapper.py --verbose
-
-# Navigate and tap elements
-python3.13 skill/scripts/navigator.py --find-text "Button Text" --tap
-
-# Take screenshots
-xcrun simctl io booted screenshot /tmp/screenshot.png
-
-# Perform gestures
-python3.13 skill/scripts/gesture.py --swipe left
-```
+**IMPORTANT**: Always use `run_ios.py` for ALL simulator interactions (screenshots, taps, installs). Do NOT use Chrome DevTools MCP server, `xcrun simctl`, or `idb` directly — `run_ios.py` wraps these and handles PATH setup automatically.
 
 The app bundle ID is `com.turntouch.ios-remote`.
+
+### Choosing a Simulator
+
+1. Run `python3 run_ios.py list` to see available simulators
+2. Use whichever device is already **Booted** (marked with `<-- BOOTED` in the list)
+3. If no device is booted, boot an **iPhone 16e** on the latest available iOS version: `xcrun simctl boot <UDID>`
+
+### Build for Simulator
+
+```bash
+xcodebuild -workspace "Turn Touch iOS.xcworkspace" -scheme "Turn Touch iOS" -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 16e' build
+```
+
+### run_ios.py - Simulator Control Script
+
+**IMPORTANT: You must specify a simulator UDID.** First run `list` to find the booted device, then pass the UDID via `--udid`:
+
+```bash
+# Step 1: Find available simulators and their UDIDs
+python3 run_ios.py list
+
+# Step 2: Use --udid with any action
+python3 run_ios.py --udid <UDID> tap:<x>,<y>              # Tap at coordinates
+python3 run_ios.py --udid <UDID> sleep:<seconds>          # Wait
+python3 run_ios.py --udid <UDID> swipe:<x1>,<y1>,<x2>,<y2> # Swipe
+python3 run_ios.py --udid <UDID> screenshot:/tmp/shot.png  # Take screenshot
+python3 run_ios.py --udid <UDID> launch                    # Launch Turn Touch
+python3 run_ios.py --udid <UDID> terminate                 # Kill Turn Touch
+python3 run_ios.py --udid <UDID> install                   # Install from DerivedData
+
+# Chain multiple actions
+python3 run_ios.py --udid <UDID> launch sleep:2 tap:175,600 sleep:1 screenshot:/tmp/result.png
+```
+
+### Screenshot Coordinate Mapping (iPhone 16e)
+
+Screenshots from `run_ios.py` are 1170x2532 pixels, but tap coordinates use the simulator window size (384x824). To convert screenshot pixel coordinates to tap coordinates:
+
+| Dimension | Screenshot | Simulator | Scale Factor |
+|-----------|------------|-----------|--------------|
+| Width     | 1170       | 384       | 3.047        |
+| Height    | 2532       | 824       | 3.073        |
+
+**Conversion formula:**
+```
+tap_x = screenshot_x / 3.047
+tap_y = screenshot_y / 3.073
+```
+
+**IMPORTANT:** When viewing screenshots, Claude sees a scaled-down thumbnail (not the full 1170x2532). You must estimate coordinates in the **full resolution screenshot space**, not the displayed thumbnail. Think in terms of the 1170x2532 coordinate system:
+
+- Estimate vertical position by counting UI elements and their approximate pixel heights in a 2532px tall screen
+- Status bar: ~100px, headers: ~150px, list rows: ~120px each
+- Then apply the division formula to convert to tap coordinates
+
+### Manual Simulator Commands (reference only — prefer run_ios.py)
+
+- **Boot a simulator**: `xcrun simctl boot <UDID>`
+- **Stream logs**: `xcrun simctl spawn booted log stream --predicate 'process == "Turn Touch iOS"'`
