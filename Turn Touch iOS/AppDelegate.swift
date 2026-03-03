@@ -44,8 +44,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         modeMap.activateModes()
         self.watchReachability()
 
-        DispatchQueue.global().async {
-            self.beginLocationUpdates()
+        let isSimulator = ProcessInfo.processInfo.environment["SIMULATOR_DEVICE_NAME"] != nil
+        if !isSimulator {
+            DispatchQueue.main.async {
+                self.beginLocationUpdates()
+            }
         }
         
         DispatchQueue.main.async {
@@ -192,22 +195,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         case .notDetermined:
             locationManager.requestAlwaysAuthorization()
         case .authorizedWhenInUse, .restricted, .denied:
-            let alertController = UIAlertController(
-                title: "Background Location Access Disabled",
-                message: "In order to have your remote automatically connect, please open this app's settings and set location access to 'Always'.",
-                preferredStyle: .alert)
-            
-            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-            alertController.addAction(cancelAction)
-            
-            let openAction = UIAlertAction(title: "Open Settings", style: .default) { (action) in
-                if let url = URL(string:UIApplication.openSettingsURLString) {
-                    UIApplication.shared.open(url)
+            DispatchQueue.main.async {
+                let alertController = UIAlertController(
+                    title: "Background Location Access Disabled",
+                    message: "In order to have your remote automatically connect, please open this app's settings and set location access to 'Always'.",
+                    preferredStyle: .alert)
+
+                let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+                alertController.addAction(cancelAction)
+
+                let openAction = UIAlertAction(title: "Open Settings", style: .default) { (action) in
+                    if let url = URL(string:UIApplication.openSettingsURLString) {
+                        UIApplication.shared.open(url)
+                    }
                 }
+                alertController.addAction(openAction)
+
+                self.mainViewController.present(alertController, animated: true, completion: nil)
             }
-            alertController.addAction(openAction)
-            
-            self.mainViewController.present(alertController, animated: true, completion: nil)
         @unknown default:
             break
         }
