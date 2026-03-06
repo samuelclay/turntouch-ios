@@ -41,7 +41,7 @@ UDID = os.environ.get("IOS_SIM_UDID", "")
 BUNDLE_ID = os.environ.get("IOS_BUNDLE_ID", "com.turntouch.ios-remote")
 APP_PATH = os.environ.get(
     "IOS_APP_PATH",
-    "/Users/sclay/Library/Developer/Xcode/DerivedData/Turn_Touch_iOS-cbgskxbcrlhxehdfoyfpgtonzzri/Build/Products/Debug-iphonesimulator/Turn Touch iOS.app",
+    "/Users/sclay/Library/Developer/Xcode/DerivedData/Turn_Touch_iOS-hhlldweafneihnbqxxlftrsforyz/Build/Products/Debug-iphonesimulator/Turn Touch iOS.app",
 )
 
 # Add idb to PATH
