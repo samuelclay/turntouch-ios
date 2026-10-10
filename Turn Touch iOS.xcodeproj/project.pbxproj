@@ -419,6 +419,7 @@
 		2AC9F56B2458467F55946889 /* TTModeGoveeDeviceOnOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54412EBB52CED042EB9ED1B5 /* TTModeGoveeDeviceOnOptions.swift */; };
 		2D9E1B472229317D79F96B48 /* TTModeKasaDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46792770635342BBBD2CFEFE /* TTModeKasaDevice.swift */; };
 		31DDFB1CC92AA28C23054B1D /* TTModeKasaKLAPProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E6A9E687847E88D6560F16 /* TTModeKasaKLAPProtocol.swift */; };
+		3273EAE817B8DEA0388BBB35 /* TTPortableModes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11035F71FC520BEA1CB78B53 /* TTPortableModes.swift */; };
 		391FA55812FB95F0B7E9BE54 /* KasaModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5B76AE65F14BB70B32ED4E /* KasaModels.swift */; };
 		3A823D9F9522ABF36D12CC23 /* TTModeGoveeBrightnessUpOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC8C70348418A60C3713A48 /* TTModeGoveeBrightnessUpOptions.swift */; };
 		400577A932997216E5B8CA00 /* TTModeNanoleafSleepOptions.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8259D27DE020D437FEB0D40C /* TTModeNanoleafSleepOptions.xib */; };
@@ -460,6 +461,7 @@
 		B4C8E86E1C68A9192F9CEB43 /* TTModeNanoleaf.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7E14CED7D158CF9623A892C2 /* TTModeNanoleaf.plist */; };
 		B67B8E837000CAD338B09D62 /* TTModeKasaDeviceOnOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14AAC5393CE01385359E7DAD /* TTModeKasaDeviceOnOptions.swift */; };
 		BF3E0D65D5FC4AA6D32A0ACF /* TTModeGoveeConnecting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594514BC9AEDCDD90C8F9492 /* TTModeGoveeConnecting.swift */; };
+		C042D6E93A0A3CC3949C796C /* TTMobileBrowser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6795C7972AD98ABB12C89992 /* TTMobileBrowser.swift */; };
 		C0CC8F3D7E09D6A314F5B1CC /* nanoleaf_sleep.png in Resources */ = {isa = PBXBuildFile; fileRef = 12B8BA2F5DFE6C59037D9EBF /* nanoleaf_sleep.png */; };
 		C4106329FC32773BA631C036 /* TTModeKasaDeviceOffOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE01EB449CC19CD354C6E53F /* TTModeKasaDeviceOffOptions.swift */; };
 		C41755D8AE7F51D0A488C33D /* TTModeNanoleafOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C84FD2FA599702844E1702A /* TTModeNanoleafOptions.swift */; };
@@ -472,12 +474,14 @@
 		D459ACD214BFD26110DC32F4 /* GoveeAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69C1D7C57BD7044AF9BE027 /* GoveeAPIClient.swift */; };
 		D8DB2D213E5C4D96686C58F0 /* TTModeNanoleafConnect.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42A6E6CD2E1FA22C12073A5 /* TTModeNanoleafConnect.swift */; };
 		DFA2DC42214A12DA7DEC854D /* TTModeNanoleafConnecting.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E67F109F50D2CF7157C8461 /* TTModeNanoleafConnecting.xib */; };
+		E01CED671B93B0962810FBF5 /* TTMobileBrowser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6795C7972AD98ABB12C89992 /* TTMobileBrowser.swift */; };
 		E8DC595E06F7C100833C1C27 /* TTModeGoveeDeviceToggleOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C21DEDCB4E75DD75F100ED2 /* TTModeGoveeDeviceToggleOptions.swift */; };
 		EA68328C4859B26AF6B52A7D /* TTModeGoveeConnected.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA62D9236517010B9683CCD /* TTModeGoveeConnected.swift */; };
 		EBB044CF4301138052CC4FE3 /* mode_nanoleaf.png in Resources */ = {isa = PBXBuildFile; fileRef = C240982EA73DDBF8BD6F64CC /* mode_nanoleaf.png */; };
 		EF786C5A3E1138233686F5D3 /* TTModeKasaOptions.xib in Resources */ = {isa = PBXBuildFile; fileRef = 56DA8074CE2682DF1A4E6EF4 /* TTModeKasaOptions.xib */; };
 		F4FB7E207ABD5DB7F2EE2A62 /* TTModeNanoleafConnect.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DE6CA98393262F71FCC3286 /* TTModeNanoleafConnect.xib */; };
 		F57F3AD0521259C480D7B1C1 /* nanoleaf_scene.png in Resources */ = {isa = PBXBuildFile; fileRef = ED7DDB90DED5876393A1EAC4 /* nanoleaf_scene.png */; };
+		F79ED03EADF8DD4D2AE98CD1 /* TTPortableModes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11035F71FC520BEA1CB78B53 /* TTPortableModes.swift */; };
 		F932B041F89215974689773F /* TTModeNanoleafSceneCustomOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA00A1905EECE6EE35C33C6A /* TTModeNanoleafSceneCustomOptions.swift */; };
 		FEAE64D60A66D04C32EBD8B3 /* nanoleaf_brightness_down.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E1860583FDD90DF972A92A3 /* nanoleaf_brightness_down.png */; };
 		FF08A2331D501ABD00D433A5 /* TTModeCameraReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF08A2321D501ABD00D433A5 /* TTModeCameraReviewViewController.swift */; };
@@ -888,6 +892,7 @@
 		069F231180595B9DC3786ED8 /* TTModeGoveeDeviceSwitchOptions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TTModeGoveeDeviceSwitchOptions.swift; path = Modes/Govee/TTModeGoveeDeviceSwitchOptions.swift; sourceTree = "<group>"; };
 		09B91FC3C76634F89A3D7D73 /* TTModeGoveeDeviceSwitchOptions.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = TTModeGoveeDeviceSwitchOptions.xib; path = Modes/Govee/TTModeGoveeDeviceSwitchOptions.xib; sourceTree = "<group>"; };
 		0C21DEDCB4E75DD75F100ED2 /* TTModeGoveeDeviceToggleOptions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TTModeGoveeDeviceToggleOptions.swift; path = Modes/Govee/TTModeGoveeDeviceToggleOptions.swift; sourceTree = "<group>"; };
+		11035F71FC520BEA1CB78B53 /* TTPortableModes.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TTPortableModes.swift; path = Modes/Portable/TTPortableModes.swift; sourceTree = "<group>"; };
 		12B8BA2F5DFE6C59037D9EBF /* nanoleaf_sleep.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; path = nanoleaf_sleep.png; sourceTree = "<group>"; };
 		14AAC5393CE01385359E7DAD /* TTModeKasaDeviceOnOptions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TTModeKasaDeviceOnOptions.swift; path = Modes/Kasa/TTModeKasaDeviceOnOptions.swift; sourceTree = "<group>"; };
 		17BA4909231861210052734D /* TTModeMusicSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TTModeMusicSession.swift; path = Modes/Music/TTModeMusicSession.swift; sourceTree = "<group>"; };
@@ -915,6 +920,7 @@
 		594514BC9AEDCDD90C8F9492 /* TTModeGoveeConnecting.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TTModeGoveeConnecting.swift; path = Modes/Govee/TTModeGoveeConnecting.swift; sourceTree = "<group>"; };
 		5E25AF3668A3AB313A0D9AE9 /* TTModeKasaDeviceSwitchOptions.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = TTModeKasaDeviceSwitchOptions.xib; path = Modes/Kasa/TTModeKasaDeviceSwitchOptions.xib; sourceTree = "<group>"; };
 		6399E488E185BE8C5D449934 /* TTModeNanoleafPushlink.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TTModeNanoleafPushlink.swift; path = Modes/Nanoleaf/TTModeNanoleafPushlink.swift; sourceTree = "<group>"; };
+		6795C7972AD98ABB12C89992 /* TTMobileBrowser.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TTMobileBrowser.swift; path = Modes/Portable/TTMobileBrowser.swift; sourceTree = "<group>"; };
 		6BDAB6284ED19C05D1CBD952 /* HueEventStream.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HueEventStream.swift; path = Modes/Hue/API/HueEventStream.swift; sourceTree = "<group>"; };
 		717B4CF94C039346AD48EC4D /* TTModeNanoleafOptions.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = TTModeNanoleafOptions.xib; path = Modes/Nanoleaf/TTModeNanoleafOptions.xib; sourceTree = "<group>"; };
 		71F214C38E1CF616B4E8FF2B /* TTModeGoveeConnecting.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = TTModeGoveeConnecting.xib; path = Modes/Govee/TTModeGoveeConnecting.xib; sourceTree = "<group>"; };
@@ -2253,6 +2259,8 @@
 				FF0F10BC1CF55A7F00CC1F29 /* Categories */,
 				FFB41AAC1CEE9A3000CD5F09 /* Images */,
 				FF44876E1D08E62700ED8099 /* Bluetooth */,
+				6795C7972AD98ABB12C89992 /* TTMobileBrowser.swift */,
+				11035F71FC520BEA1CB78B53 /* TTPortableModes.swift */,
 			);
 			path = "Turn Touch iOS";
 			sourceTree = "<group>";
@@ -3164,6 +3172,8 @@
 				17CFDDDD236A7A6C00693BF7 /* TTMainViewController.swift in Sources */,
 				17CFDDDE236A7A6C00693BF7 /* TTAction.swift in Sources */,
 				17CFDDDF236A7A6C00693BF7 /* TTBluetoothMonitor.swift in Sources */,
+				C042D6E93A0A3CC3949C796C /* TTMobileBrowser.swift in Sources */,
+				3273EAE817B8DEA0388BBB35 /* TTPortableModes.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3352,6 +3362,8 @@
 				0AABAC4256214E8C045DAD63 /* TTModeNanoleafConnected.swift in Sources */,
 				F932B041F89215974689773F /* TTModeNanoleafSceneCustomOptions.swift in Sources */,
 				883593382D3CCE8612964A1C /* TTModeNanoleafSleepOptions.swift in Sources */,
+				E01CED671B93B0962810FBF5 /* TTMobileBrowser.swift in Sources */,
+				F79ED03EADF8DD4D2AE98CD1 /* TTPortableModes.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
