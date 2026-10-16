@@ -37,34 +37,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         modeMap.setupModes()
         locationManager = CLLocationManager()
         mainViewController = TTMainViewController()
-        let windowScene = UIApplication.shared.connectedScenes.first as! UIWindowScene
-        window = UIWindow(windowScene: windowScene)
-        window?.rootViewController = mainViewController
-        window?.makeKeyAndVisible()
         modeMap.activateModes()
         self.watchReachability()
 
-        let isSimulator = ProcessInfo.processInfo.environment["SIMULATOR_DEVICE_NAME"] != nil
-        if !isSimulator {
+        return true
+    }
+
+    func connectWindow(to scene: UIWindowScene) -> UIWindow {
+        let window = UIWindow(windowScene: scene)
+        window.rootViewController = mainViewController
+        self.window = window
+        window.makeKeyAndVisible()
+        if ProcessInfo.processInfo.environment["SIMULATOR_DEVICE_NAME"] == nil {
             DispatchQueue.main.async {
                 self.beginLocationUpdates()
+                if self.bluetoothMonitor.noKnownDevices() {
+                    self.mainViewController.showPairingModal()
+                }
             }
         }
-        
-        DispatchQueue.main.async {
-            let isSimulator = ProcessInfo.processInfo.environment["SIMULATOR_DEVICE_NAME"] != nil
-            if self.bluetoothMonitor.noKnownDevices() && !isSimulator {
-                self.mainViewController.showPairingModal()
-            }
-        }
-        
-        DispatchQueue.main.async {
-            //            appDelegate().mainViewController.showPairingModal()
-            //            appDelegate().mainViewController.showFtuxModal()
-//            appDelegate().mainViewController.showAboutModal()
-        }
-        
-        return true
+        return window
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
@@ -299,4 +291,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 
 func appDelegate () -> AppDelegate {
     return UIApplication.shared.delegate as! AppDelegate
+}
+
+/// Scene-based window ownership is required by current iOS SDKs. Keep the existing
+/// app lifecycle work (including Bluetooth recovery) shared with the scene callbacks.
+final class TTSceneDelegate: UIResponder, UIWindowSceneDelegate {
+    var window: UIWindow?
+
+    func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+        guard let scene = scene as? UIWindowScene else { return }
+        window = appDelegate().connectWindow(to: scene)
+    }
+    func sceneDidBecomeActive(_ scene: UIScene) { appDelegate().applicationDidBecomeActive(.shared) }
+    func sceneWillResignActive(_ scene: UIScene) { appDelegate().applicationWillResignActive(.shared) }
+    func sceneDidEnterBackground(_ scene: UIScene) { appDelegate().applicationDidEnterBackground(.shared) }
+    func sceneWillEnterForeground(_ scene: UIScene) { appDelegate().applicationWillEnterForeground(.shared) }
 }
