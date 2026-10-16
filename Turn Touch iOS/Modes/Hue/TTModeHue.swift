@@ -118,11 +118,15 @@ class TTModeHue: TTMode, HueBridgeDiscoveryDelegate, HueBridgeAuthenticatorDeleg
         self.removeObservers()
     }
 
+    private static var didInitializeHue = false
+    static var connectionError: String?
+
     func initializeHue(_ force: Bool = false) {
-        if TTModeHue.hueClient != nil && !force {
+        if (TTModeHue.didInitializeHue || TTModeHue.hueClient != nil) && !force {
             return
         }
 
+        TTModeHue.didInitializeHue = true
         self.connectToBridge(reset: true)
     }
 
@@ -800,10 +804,11 @@ class TTModeHue: TTMode, HueBridgeDiscoveryDelegate, HueBridgeAuthenticatorDeleg
     // MARK: - Hue Bridge
 
     func connectToBridge(reset: Bool = false, reauthenticate: Bool = false) {
-        if TTModeHue.hueState == .connecting {
+        if TTModeHue.hueState == .connecting || TTModeHue.hueState == .pushlink {
             return
         }
 
+        TTModeHue.connectionError = nil
         TTModeHue.hueState = .connecting
         TTModeHue.delegates.invoke { (delegate) in
             delegate?.changeState(TTModeHue.hueState, mode: self, message: "Connecting to Hue...")
@@ -859,6 +864,7 @@ class TTModeHue: TTMode, HueBridgeDiscoveryDelegate, HueBridgeAuthenticatorDeleg
     private static var discoveryTimeoutWork: DispatchWorkItem?
 
     func findBridges() {
+        TTModeHue.connectionError = nil
         TTModeHue.hueState = .connecting
         TTModeHue.delegates.invoke { (delegate) in
             delegate?.changeState(TTModeHue.hueState, mode: self, message: "Searching for a Hue bridge...")
@@ -866,6 +872,8 @@ class TTModeHue: TTMode, HueBridgeDiscoveryDelegate, HueBridgeAuthenticatorDeleg
 
         // Cancel any existing timeout
         TTModeHue.discoveryTimeoutWork?.cancel()
+        TTModeHue.bridgeDiscovery?.delegate = nil
+        TTModeHue.bridgeDiscovery?.cancelDiscovery()
 
         TTModeHue.bridgeDiscovery = HueBridgeDiscovery()
         TTModeHue.bridgeDiscovery?.delegate = self
@@ -945,18 +953,15 @@ class TTModeHue: TTMode, HueBridgeDiscoveryDelegate, HueBridgeAuthenticatorDeleg
 
         print(" ---> Bridge discovery error: \(error)")
 
-        if case .rateLimited = error {
-            TTModeHue.hueState = .notConnected
-            TTModeHue.delegates.invoke { (delegate) in
-                delegate?.changeState(TTModeHue.hueState, mode: self, message: "Philips Hue is rate-limiting requests. Please wait a moment and try again.")
-            }
-        } else if case .networkError(let underlyingError) = error {
-            TTModeHue.hueState = .notConnected
-            TTModeHue.delegates.invoke { (delegate) in
-                delegate?.changeState(TTModeHue.hueState, mode: self, message: "Network error: \(underlyingError.localizedDescription)")
-            }
-        } else {
-            self.showNoBridgesFoundDialog()
+        if case .cancelled = error { return }
+        showConnectionError(error.localizedDescription)
+    }
+
+    private func showConnectionError(_ message: String) {
+        TTModeHue.hueState = .notConnected
+        TTModeHue.connectionError = message
+        TTModeHue.delegates.invoke { delegate in
+            delegate?.changeState(.notConnected, mode: self, message: message)
         }
     }
 
@@ -1016,10 +1021,7 @@ class TTModeHue: TTMode, HueBridgeDiscoveryDelegate, HueBridgeAuthenticatorDeleg
 
     func showNoBridgesFoundDialog() {
         NSLog(" ---> Could not find bridge")
-        TTModeHue.hueState = .notConnected
-        TTModeHue.delegates.invoke { (delegate) in
-            delegate?.changeState(TTModeHue.hueState, mode: self, message: "Could not find any Hue bridges")
-        }
+        showConnectionError("Could not find any Hue bridges")
     }
 
     // MARK: - HueBridgeAuthenticatorDelegate
@@ -1051,12 +1053,13 @@ class TTModeHue: TTMode, HueBridgeDiscoveryDelegate, HueBridgeAuthenticatorDeleg
                 self.removeSavedBridge(serialNumber: bridge.id)
             }
 
-            TTModeHue.hueState = .notConnected
-            TTModeHue.delegates.invoke { (delegate) in
-                delegate?.changeState(TTModeHue.hueState, mode: self, message: "Pushlink button not pressed within 30 seconds")
-            }
+            showConnectionError("Pushlink button not pressed within 30 seconds")
+        } else if case .cancelled = error {
+            return
         } else {
-            self.connectToBridge(reset: true)
+            // A failed local request used to immediately start another pushlink attempt.
+            // Keep a stable error screen until the user explicitly retries.
+            showConnectionError("Could not connect to Hue: \(error.localizedDescription)")
         }
     }
 

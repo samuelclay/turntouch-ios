@@ -44,33 +44,30 @@ protocol HueBridgeDiscoveryDelegate: AnyObject {
 class HueBridgeDiscovery {
     private let discoveryURL = URL(string: "https://discovery.meethue.com")!
     private var discoveryTask: Task<[DiscoveredBridge], Error>?
+    // Shared across mode instances so opening another settings view cannot bypass a 429.
+    private static var retryAfter: Date?
 
     weak var delegate: HueBridgeDiscoveryDelegate?
 
     /// Discover Hue Bridges using the NUPNP discovery service
     func discoverBridges() async throws -> [DiscoveredBridge] {
-        delegate?.bridgeDiscoveryStarted()
+        await MainActor.run { delegate?.bridgeDiscoveryStarted() }
 
         do {
             let bridges = try await performDiscovery()
 
             if bridges.isEmpty {
-                let error = HueBridgeDiscoveryError.noBridgesFound
-                delegate?.bridgeDiscoveryError(error)
-                throw error
+                throw HueBridgeDiscoveryError.noBridgesFound
             }
 
-            delegate?.bridgeDiscoveryFinished(bridges: bridges)
+            try Task.checkCancellation()
+            await MainActor.run { delegate?.bridgeDiscoveryFinished(bridges: bridges) }
             return bridges
         } catch {
-            if error is HueBridgeDiscoveryError {
-                delegate?.bridgeDiscoveryError(error as! HueBridgeDiscoveryError)
-                throw error
-            } else {
-                let wrappedError = HueBridgeDiscoveryError.networkError(error)
-                delegate?.bridgeDiscoveryError(wrappedError)
-                throw wrappedError
-            }
+            if Task.isCancelled { throw HueBridgeDiscoveryError.cancelled }
+            let discoveryError = (error as? HueBridgeDiscoveryError) ?? .networkError(error)
+            await MainActor.run { delegate?.bridgeDiscoveryError(discoveryError) }
+            throw discoveryError
         }
     }
 
@@ -95,6 +92,10 @@ class HueBridgeDiscovery {
     }
 
     private func performDiscovery() async throws -> [DiscoveredBridge] {
+        let coolingDown = await MainActor.run {
+            Self.retryAfter.map { $0 > Date() } ?? false
+        }
+        if coolingDown { throw HueBridgeDiscoveryError.rateLimited }
         var request = URLRequest(url: discoveryURL)
         request.httpMethod = "GET"
         request.timeoutInterval = 10
@@ -106,6 +107,8 @@ class HueBridgeDiscovery {
         }
 
         if httpResponse.statusCode == 429 {
+            let seconds = max(60, Double(httpResponse.value(forHTTPHeaderField: "Retry-After") ?? "") ?? 60)
+            await MainActor.run { Self.retryAfter = Date().addingTimeInterval(seconds) }
             throw HueBridgeDiscoveryError.rateLimited
         }
 

@@ -24,14 +24,8 @@ class TTModeHueOptions: TTOptionsDetailViewController, TTModeHueDelegate {
         TTModeHue.delegates.add(delegate: self)
         self.view.clipsToBounds = true
 
-        // Must call here, not in viewWillAppear - these VCs aren't added via addChild
-        // so viewWillAppear is never called
-        if TTModeHue.hueState == .notConnected {
-            // Actually start the connection process - don't just set the state
-            self.modeHue.connectToBridge(reset: true)
-        } else {
-            self.changeState(TTModeHue.hueState, mode: self.modeHue, message: nil)
-        }
+        // Rendering settings must not restart a failed network operation.
+        self.changeState(TTModeHue.hueState, mode: self.modeHue, message: TTModeHue.connectionError)
     }
 
     override func didReceiveMemoryWarning() {
@@ -64,6 +58,8 @@ class TTModeHueOptions: TTOptionsDetailViewController, TTModeHueDelegate {
             self.pushlinkViewController?.setProgress(message as? Int)
         case .connected:
             self.drawConnectedViewController()
+            self.connectedViewController?.countLights()
+            self.connectedViewController?.sceneUploadProgress()
         }
     }
     
@@ -109,6 +105,7 @@ class TTModeHueOptions: TTOptionsDetailViewController, TTModeHueDelegate {
     }
     
     func drawConnectViewController() {
+        guard connectViewController == nil else { return }
         self.clearViewConnectrollers()
         self.connectViewController = TTModeHueConnect(nibName: "TTModeHueConnect", bundle: Bundle.main)
         self.connectViewController!.modeHue = self.modeHue
@@ -116,6 +113,7 @@ class TTModeHueOptions: TTOptionsDetailViewController, TTModeHueDelegate {
     }
     
     func drawConnectingViewController() {
+        guard connectingViewController == nil else { return }
         self.clearViewConnectrollers()
         self.connectingViewController = TTModeHueConnecting(nibName: "TTModeHueConnecting", bundle: Bundle.main)
         self.connectingViewController!.modeHue = self.modeHue
@@ -123,6 +121,7 @@ class TTModeHueOptions: TTOptionsDetailViewController, TTModeHueDelegate {
     }
     
     func drawConnectedViewController() {
+        guard connectedViewController == nil else { return }
         self.clearViewConnectrollers()
         self.connectedViewController = TTModeHueConnected(nibName: "TTModeHueConnected", bundle: Bundle.main)
         self.connectedViewController!.modeHue = self.modeHue
@@ -130,6 +129,7 @@ class TTModeHueOptions: TTOptionsDetailViewController, TTModeHueDelegate {
     }
     
     func drawPushlinkViewController() {
+        guard pushlinkViewController == nil else { return }
         self.clearViewConnectrollers()
         self.pushlinkViewController = TTModeHuePushlink(nibName: "TTModeHuePushlink", bundle: Bundle.main)
         self.pushlinkViewController!.modeHue = self.modeHue
@@ -137,6 +137,7 @@ class TTModeHueOptions: TTOptionsDetailViewController, TTModeHueDelegate {
     }
     
     func drawBridgeViewController() {
+        guard bridgeViewController == nil else { return }
         self.clearViewConnectrollers()
         self.bridgeViewController = TTModeHueBridge(nibName: "TTModeHueBridge", bundle: Bundle.main)
         self.bridgeViewController!.modeHue = self.modeHue
