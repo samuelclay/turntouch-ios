@@ -49,7 +49,7 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
     var addActionMenuConstraint: NSLayoutConstraint!
     var addActionButtonConstraint: NSLayoutConstraint!
     
-    let titleMenu = TTTitleMenuPopover()
+    let titleMenu = TTSettingsPopover()
     let deviceMenu = TTTitleMenuPopover()
     let modeOptionsMenu = TTTitleMenuPopover()
 
@@ -432,6 +432,7 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
     // MARK: Options
     
     func adjustOptionsHeight(_ optionsDetailView: UIView?) {
+        if modalNavController?.viewControllers.first is TTSettingsConnectionViewController { return }
         if optionsConstraint == nil {
             return
         }
@@ -465,10 +466,10 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
     }
     
     func toggleTitleMenu(_ sender: UIButton) {
-        titleMenu.delegate = titleBarView
+        guard presentedViewController == nil else { return }
         titleMenu.modalPresentationStyle = .popover
-        titleMenu.preferredContentSize = CGSize(width: 224,
-                                                height: titleMenu.delegate.menuHeight * titleMenu.delegate.menuOptions().count)
+        titleMenu.preferredContentSize = CGSize(width: min(340, view.bounds.width - 32),
+                                                height: min(600, view.bounds.height * 0.72))
         if let popoverViewController = titleMenu.popoverPresentationController {
             popoverViewController.permittedArrowDirections = .up
             popoverViewController.delegate = self
@@ -594,6 +595,15 @@ class TTMainViewController: UIViewController, UIPopoverPresentationControllerDel
     
     // MARK: Settings
     
+    func showSettingsConnection(_ modeName: String) {
+        guard modalNavController == nil else { return }
+        let controller = TTSettingsConnectionViewController(modeName: modeName)
+        modalNavController = UINavigationController(rootViewController: controller)
+        modalNavController.modalPresentationStyle = .formSheet
+        if #available(iOS 13.0, *) { modalNavController.isModalInPresentation = true }
+        present(modalNavController, animated: true)
+    }
+
     func showSettingsModal() {
         if modalNavController != nil {
             print(" ---> Don't show settings modal, already showing it")

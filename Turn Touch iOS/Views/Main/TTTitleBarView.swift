@@ -11,8 +11,7 @@ import UIKit
 let CORNER_RADIUS: CGFloat = 8.0
 let SETTINGS_ICON_SIZE: CGFloat = 22.0
 
-class TTTitleBarView: UIView, TTTitleMenuDelegate {
-    var menuHeight: Int = 42
+class TTTitleBarView: UIView {
     
     @IBInspectable var startColor: UIColor = UIColor.white
     @IBInspectable var endColor: UIColor = UIColor(hex: 0xE7E7E7)
@@ -38,9 +37,12 @@ class TTTitleBarView: UIView, TTTitleMenuDelegate {
         self.addConstraint(NSLayoutConstraint(item: titleImageView, attribute: NSLayoutConstraint.Attribute.centerY, relatedBy: .equal,
             toItem: self, attribute: .centerY, multiplier: 1.0, constant: 0))
         
-        let settingsImage = UIImage(named: "settings")
+        let settingsImage = UIImage(systemName: "gearshape.fill", withConfiguration: UIImage.SymbolConfiguration(pointSize: 22, weight: .regular))
         let settingsButton = UIButton(type: .custom)
         settingsButton.setImage(settingsImage, for: UIControl.State())
+        settingsButton.tintColor = UIColor(hex: 0x899395)
+        settingsButton.accessibilityLabel = "Settings"
+        settingsButton.accessibilityIdentifier = "settings-button"
         settingsButton.configuration = {
             var config = UIButton.Configuration.plain()
             config.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 20, bottom: 10, trailing: 20)
@@ -94,45 +96,4 @@ class TTTitleBarView: UIView, TTTitleMenuDelegate {
         appDelegate().mainViewController.toggleTitleMenu(sender)
     }
     
-    // MARK: Menu Delegate
-    
-    func menuOptions() -> [[String : String]] {
-        return [
-            ["title": "Add a new remote",
-             "image": "add"],
-            ["title": "Settings",
-             "image": "preferences"],
-            ["title": "Switch button mode",
-             "image": "switch_mode"],
-            ["title": "Setup geofence",
-             "image": "geofence"],
-            ["title": "How it works",
-             "image": "how_it_works"],
-            ["title": "Contact support",
-             "image": "support"],
-            ["title": "About Turn Touch",
-             "image": "about"],
-        ]
-    }
-    
-    func selectMenuOption(_ row: Int) {
-        switch row {
-        case 0:
-            appDelegate().mainViewController.showPairingModal()
-        case 1:
-            appDelegate().mainViewController.showSettingsModal()
-        case 2:
-            appDelegate().mainViewController.showSwitchButtonModeModal()
-        case 3:
-            appDelegate().mainViewController.showGeofencingModal()
-        case 4:
-            appDelegate().mainViewController.showFtuxModal()
-        case 5:
-            appDelegate().mainViewController.showSupportModal()
-        case 6:
-            appDelegate().mainViewController.showAboutModal()
-        default:
-            break
-        }
-    }
 }

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A84D12E607C94B36AB01A002 /* TTSettingsPopover.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84D12E607C94B36AB01A001 /* TTSettingsPopover.swift */; };
+		A84D12E607C94B36AB01A003 /* TTSettingsPopover.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84D12E607C94B36AB01A001 /* TTSettingsPopover.swift */; };
 		01670E5FE526BEDEA7A8DFA2 /* TTModeKasaDiscovery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7CF1FC5D15D6459D4E0268 /* TTModeKasaDiscovery.swift */; };
 		02D87F71C6E811229F9821F0 /* nanoleaf_toggle.png in Resources */ = {isa = PBXBuildFile; fileRef = AB9388C1BF1E0BE3C2D22E9D /* nanoleaf_toggle.png */; };
 		07EE90578787D8890CD2A44D /* TTModeNanoleafSceneCustomOptions.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3F7A82067BFDB542277BFDA /* TTModeNanoleafSceneCustomOptions.xib */; };
@@ -887,6 +889,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A84D12E607C94B36AB01A001 /* TTSettingsPopover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TTSettingsPopover.swift; path = Views/Main/TTSettingsPopover.swift; sourceTree = "<group>"; };
 		00AF0FCDA15259DD96455F68 /* TTModeKasaOptions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TTModeKasaOptions.swift; path = Modes/Kasa/TTModeKasaOptions.swift; sourceTree = "<group>"; };
 		060BDFB973DDE458218D2168 /* TTModeKasaConnected.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TTModeKasaConnected.swift; path = Modes/Kasa/TTModeKasaConnected.swift; sourceTree = "<group>"; };
 		069F231180595B9DC3786ED8 /* TTModeGoveeDeviceSwitchOptions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TTModeGoveeDeviceSwitchOptions.swift; path = Modes/Govee/TTModeGoveeDeviceSwitchOptions.swift; sourceTree = "<group>"; };
@@ -2075,6 +2078,7 @@
 				FFF270C31CEE97AF00E46575 /* TTMainViewController.swift */,
 				FF0F10C11CF60C3D00CC1F29 /* TTTitleBarView.swift */,
 				FF4487611D08986200ED8099 /* TTTitleMenuPopover.swift */,
+				A84D12E607C94B36AB01A001 /* TTSettingsPopover.swift */,
 				FF4487631D08AA8800ED8099 /* TTTitleMenuCell.swift */,
 				FFB41B781CEEA8E500CD5F09 /* TTModeTab.swift */,
 				FF0F10DD1CF6763400CC1F29 /* TTModeTitleView.swift */,
@@ -3116,6 +3120,7 @@
 				17CFDDA1236A7A6C00693BF7 /* DDTTYLogger.m in Sources */,
 				17CFDDA3236A7A6C00693BF7 /* TTTabView.swift in Sources */,
 				17CFDDA4236A7A6C00693BF7 /* TTTitleMenuPopover.swift in Sources */,
+				A84D12E607C94B36AB01A002 /* TTSettingsPopover.swift in Sources */,
 				17CFDDA5236A7A6C00693BF7 /* TTModeDouble.swift in Sources */,
 				17CFDDA6236A7A6C00693BF7 /* TTDeviceTitleView.swift in Sources */,
 				17CFDDA7236A7A6C00693BF7 /* TTModeWemoDeviceSwitchOptions.swift in Sources */,
@@ -3264,6 +3269,7 @@
 				FFF46BDF1D10941500158751 /* DDTTYLogger.m in Sources */,
 				FF37EDCB1D1102620026F70D /* TTTabView.swift in Sources */,
 				FF4487621D08986200ED8099 /* TTTitleMenuPopover.swift in Sources */,
+				A84D12E607C94B36AB01A003 /* TTSettingsPopover.swift in Sources */,
 				FF189C6E210F5B7C000B49F7 /* TTModeDouble.swift in Sources */,
 				FFF46BC51D0E58C000158751 /* TTDeviceTitleView.swift in Sources */,
 				FF4AF7C21D248A4D0009C777 /* TTModeWemoDeviceSwitchOptions.swift in Sources */,
