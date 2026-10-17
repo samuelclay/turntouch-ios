@@ -25,7 +25,7 @@ class TTModeIftttConnecting: TTOptionsDetailViewController {
     func setConnectingWithMessage(_ message: String?) {
         var m = message
         if message == nil {
-            m = "Connecting to Ifttt..."
+            m = TTText("Connecting to Ifttt...")
         }
         
         self.progressMessage.text = m

@@ -116,7 +116,7 @@ class TTActionDiamondView: UIView {
             toItem: diamondView, attribute: .width, multiplier: 1.0, constant: 0))
         
         changeButton.translatesAutoresizingMaskIntoConstraints = false
-        changeButton.setTitle("Change", for: UIControl.State())
+        changeButton.setTitle(TTText("Change"), for: UIControl.State())
         changeButton.titleLabel!.font = UIFont(name: "Effra", size: 13)
         changeButton.titleLabel!.textColor = UIColor(hex: 0xA0A0A0)
         changeButton.titleLabel!.lineBreakMode = NSLineBreakMode.byClipping
@@ -171,9 +171,9 @@ class TTActionDiamondView: UIView {
         changeButton.isHidden = appDelegate().modeMap.buttonActionMode == .editActions
         
         if appDelegate().modeMap.inspectingModeDirection != .no_DIRECTION {
-            changeButton.setTitle("Done", for: UIControl.State())
+            changeButton.setTitle(TTText("Done"), for: UIControl.State())
         } else {
-            changeButton.setTitle("Change", for: UIControl.State())
+            changeButton.setTitle(TTText("Change"), for: UIControl.State())
         }
     }
     

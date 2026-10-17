@@ -88,7 +88,7 @@ class TTDeviceTitleView: UIView, TTTitleMenuDelegate, DFUServiceDelegate, DFUPro
         upgradeButton.titleLabel!.font = UIFont(name: "Effra", size: 13)
         upgradeButton.setTitleColor(upgradeButton.tintColor, for: .normal)
         upgradeButton.titleLabel!.lineBreakMode = NSLineBreakMode.byClipping
-        upgradeButton.setTitle("Upgrade to v\(latestVersion)", for: .normal)
+        upgradeButton.setTitle(TTText("Upgrade to v{0}", latestVersion), for: .normal)
         upgradeButton.addTarget(self, action: #selector(self.pressUpgrade(_:)), for: .touchUpInside)
         self.addSubview(upgradeButton)
         self.addConstraint(NSLayoutConstraint(item: upgradeButton, attribute: .right, relatedBy: .equal,
@@ -222,13 +222,13 @@ class TTDeviceTitleView: UIView, TTTitleMenuDelegate, DFUServiceDelegate, DFUPro
     
     func menuOptions() -> [[String : String]] {
         return [
-            ["title": device.batteryPct != nil ? "Battery: \(device.batteryPct!)%" : "> Not connected",
+            ["title": device.batteryPct != nil ? TTText("Battery: {0}%", device.batteryPct!) : TTText("> Not connected"),
              "image": "battery"],
-            ["title": device.firmwareVersion != nil ? "Firmware: v\(device.firmwareVersion!)" : "—",
+            ["title": device.firmwareVersion != nil ? TTText("Firmware: v{0}", device.firmwareVersion!) : "—",
              "image": "versions"],
-            ["title": "Rename remote",
+            ["title": TTText("Rename remote"),
              "image": "rename"],
-            ["title": "Forget this remote",
+            ["title": TTText("Forget this remote"),
              "image": "remove"],
         ]
     }
@@ -249,8 +249,8 @@ class TTDeviceTitleView: UIView, TTTitleMenuDelegate, DFUServiceDelegate, DFUPro
     
     func showRenameDevice() {
         
-        let renameAlert = UIAlertController(title: "Rename remote", message: nil, preferredStyle: .alert)
-        let renameAction = UIAlertAction(title: "Rename", style: .default, handler: { (action) in
+        let renameAlert = UIAlertController(title: TTText("Rename remote"), message: nil, preferredStyle: .alert)
+        let renameAction = UIAlertAction(title: TTText("Rename"), style: .default, handler: { (action) in
             let newNickname = renameAlert.textFields![0].text!
             print(" ---> New nickname: \(newNickname)")
             
@@ -259,13 +259,13 @@ class TTDeviceTitleView: UIView, TTTitleMenuDelegate, DFUServiceDelegate, DFUPro
 
         renameAlert.addTextField { (textfield) in
             if let nickname = self.device.nickname {
-                textfield.text = "\(nickname)"
+                textfield.text = TTText("{0}", nickname)
             }
             NotificationCenter.default.addObserver(forName: UITextField.textDidChangeNotification, object: textfield, queue: OperationQueue.main) { (notification) in
                 renameAction.isEnabled = textfield.text != ""
             }
         }
-        renameAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action) in
+        renameAlert.addAction(UIAlertAction(title: TTText("Cancel"), style: .cancel, handler: { (action) in
             
         }))
         renameAlert.addAction(renameAction)

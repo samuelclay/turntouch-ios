@@ -60,11 +60,11 @@ class TTModeNanoleaf: TTMode {
     // MARK: Mode
 
     override class func title() -> String {
-        return "Nanoleaf"
+        return TTText("Nanoleaf")
     }
 
     override class func subtitle() -> String {
-        return "Light panels and effects"
+        return TTText("Light panels and effects")
     }
 
     override class func imageName() -> String {
@@ -92,15 +92,15 @@ class TTModeNanoleaf: TTMode {
     // MARK: Action titles
 
     func titleTTModeNanoleafToggle() -> String {
-        return "Toggle on/off"
+        return TTText("Toggle on/off")
     }
 
     func titleTTModeNanoleafTurnOn() -> String {
-        return "Turn on"
+        return TTText("Turn on")
     }
 
     func titleTTModeNanoleafTurnOff() -> String {
-        return "Turn off"
+        return TTText("Turn off")
     }
 
     func titleTTModeNanoleafSceneCustom() -> String {
@@ -116,27 +116,27 @@ class TTModeNanoleaf: TTMode {
                 return effectName
             }
         }
-        return "Trigger effect"
+        return TTText("Trigger effect")
     }
 
     func doubleTitleTTModeNanoleafSceneCustom() -> String {
-        return "Effect 2"
+        return TTText("Effect 2")
     }
 
     func titleTTModeNanoleafRaiseBrightness() -> String {
-        return "Raise brightness"
+        return TTText("Raise brightness")
     }
 
     func titleTTModeNanoleafLowerBrightness() -> String {
-        return "Lower brightness"
+        return TTText("Lower brightness")
     }
 
     func titleTTModeNanoleafSleep() -> String {
-        return "Sleep"
+        return TTText("Sleep")
     }
 
     func doubleTitleTTModeNanoleafSleep() -> String {
-        return "Sleep fast"
+        return TTText("Sleep fast")
     }
 
     // MARK: Action images
@@ -341,7 +341,7 @@ class TTModeNanoleaf: TTMode {
             // Verify the saved device is reachable
             TTModeNanoleaf.nanoleafState = .connecting
             TTModeNanoleaf.delegates.invoke { delegate in
-                delegate?.changeState(.connecting, mode: self, message: "Connecting to \(saved["name"] ?? "Nanoleaf")...")
+                delegate?.changeState(.connecting, mode: self, message: TTText("Connecting to {0}...", saved["name"] ?? "Nanoleaf"))
             }
 
             Task {
@@ -374,7 +374,7 @@ class TTModeNanoleaf: TTMode {
     func findDevices() {
         TTModeNanoleaf.nanoleafState = .connecting
         TTModeNanoleaf.delegates.invoke { delegate in
-            delegate?.changeState(.connecting, mode: self, message: "Searching for Nanoleaf...")
+            delegate?.changeState(.connecting, mode: self, message: TTText("Searching for Nanoleaf..."))
         }
 
         TTModeNanoleaf.discoveredDevices = []
@@ -499,7 +499,7 @@ class TTModeNanoleaf: TTMode {
                 timer.invalidate()
                 TTModeNanoleaf.nanoleafState = .notConnected
                 TTModeNanoleaf.delegates.invoke { delegate in
-                    delegate?.changeState(.notConnected, mode: self, message: "Authentication timed out")
+                    delegate?.changeState(.notConnected, mode: self, message: TTText("Authentication timed out"))
                 }
                 return
             }
@@ -544,7 +544,7 @@ class TTModeNanoleaf: TTMode {
     func authenticateDevice() {
         TTModeNanoleaf.nanoleafState = .connecting
         TTModeNanoleaf.delegates.invoke { delegate in
-            delegate?.changeState(.connecting, mode: self, message: "Loading effects...")
+            delegate?.changeState(.connecting, mode: self, message: TTText("Loading effects..."))
         }
 
         Task {
@@ -570,7 +570,7 @@ class TTModeNanoleaf: TTMode {
                 await MainActor.run {
                     TTModeNanoleaf.nanoleafState = .notConnected
                     TTModeNanoleaf.delegates.invoke { delegate in
-                        delegate?.changeState(.notConnected, mode: self, message: "Connection failed: \(error.localizedDescription)")
+                        delegate?.changeState(.notConnected, mode: self, message: TTText("Connection failed: {0}", error.localizedDescription))
                     }
                 }
             }

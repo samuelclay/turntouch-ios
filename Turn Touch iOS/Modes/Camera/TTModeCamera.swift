@@ -30,11 +30,11 @@ class TTModeCamera: TTMode {
     }
     
     override class func title() -> String {
-        return "Camera"
+        return TTText("Camera")
     }
     
     override class func subtitle() -> String {
-        return "Shoot photos and videos"
+        return TTText("Shoot photos and videos")
     }
     
     override class func imageName() -> String {
@@ -56,38 +56,38 @@ class TTModeCamera: TTMode {
     func titleTTModeCameraShoot() -> String {
         switch cameraState {
         case .cameraInactive, .cameraActive:
-            return "Take photo"
+            return TTText("Take photo")
         case .imageReview:
-            return "Save photo"
+            return TTText("Save photo")
         case .videoReview:
-            return "Save photo"
+            return TTText("Save photo")
         }
     }
     
     func titleTTModeCameraSwitchPhotoVideo() -> String {
         switch cameraState {
         case .cameraInactive, .cameraActive:
-            return "Switch photo/video"
+            return TTText("Switch photo/video")
         case .imageReview:
-            return "Retake"
+            return TTText("Retake")
         case .videoReview:
-            return "Replay"
+            return TTText("Replay")
         }
     }
     
     func titleTTModeCameraSwitchView() -> String {
         switch cameraState {
         case .cameraInactive, .cameraActive:
-            return "Flip front/back"
+            return TTText("Flip front/back")
         case .imageReview:
-            return "Save photo"
+            return TTText("Save photo")
         case .videoReview:
-            return "Save video"
+            return TTText("Save video")
         }
     }
     
     func titleTTModeCameraSwitchFlash() -> String {
-        return "Switch flash"
+        return TTText("Switch flash")
     }
     
     // MARK: Action images

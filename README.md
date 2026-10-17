@@ -94,3 +94,11 @@ Distributed under the MIT license. See ``LICENSE`` for more information.
 [travis-url]: https://travis-ci.org/dbader/node-datadog-metrics
 [codebeat-image]: https://codebeat.co/badges/c19b47ea-2f9d-45df-8458-b2d952fe9dad
 [codebeat-url]: https://codebeat.co/projects/github-com-vsouza-awesomeios-com
+
+## Localization
+
+The app supports English and 20 translations, automatic device-language detection,
+a first-launch chooser, and Language at the top of Settings. See
+[the localization workflow](localization/README.md) for extraction, incremental
+AI translation, catalog validation, and localized store screenshot preparation.
+[Validation results](localization/VALIDATION.md) record the current build and UI checks.

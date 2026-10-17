@@ -57,7 +57,7 @@ class TTModeWemoDeviceSwitchOptions: TTOptionsDetailViewController, UITableViewD
         
         if TTModeWemo.foundDevices.count == 0 {
             if TTModeWemo.wemoState == .connecting {
-                self.noticeLabel.text = "Searching for Wemo devices..."
+                self.noticeLabel.text = TTText("Searching for Wemo devices...")
                 self.noticeLabel.textColor = UIColor.darkGray
                 spinner.forEach({ $0.isHidden = false })
                 settingsButton.forEach({ $0.isHidden = true })
@@ -65,7 +65,7 @@ class TTModeWemoDeviceSwitchOptions: TTOptionsDetailViewController, UITableViewD
                     s.startAnimating()
                 }
             } else {
-                self.noticeLabel.text = "No Wemo devices found"
+                self.noticeLabel.text = TTText("No Wemo devices found")
                 self.noticeLabel.textColor = UIColor.lightGray
                 spinner.forEach({ $0.isHidden = true })
                 settingsButton.forEach({ $0.isHidden = false })
@@ -88,9 +88,9 @@ class TTModeWemoDeviceSwitchOptions: TTOptionsDetailViewController, UITableViewD
     
     func menuOptions() -> [[String : String]] {
         return [
-            ["title": "Search for new devices...",
+            ["title": TTText("Search for new devices..."),
              "image": "search"],
-            ["title": "Remove all and search...",
+            ["title": TTText("Remove all and search..."),
              "image": "remove"],
         ]
     }

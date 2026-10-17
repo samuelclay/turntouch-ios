@@ -33,11 +33,11 @@ class TTModeKasaConnected: TTOptionsDetailViewController {
     private func updateDeviceCount() {
         let count = TTModeKasa.foundDevices.count
         if count == 0 {
-            deviceCountLabel.text = "No Kasa devices found"
+            deviceCountLabel.text = TTText("No Kasa devices found")
         } else if count == 1 {
-            deviceCountLabel.text = "1 Kasa device found"
+            deviceCountLabel.text = TTText("1 Kasa device found")
         } else {
-            deviceCountLabel.text = "\(count) Kasa devices found"
+            deviceCountLabel.text = TTText("{0} Kasa devices found", count)
         }
     }
 
@@ -48,9 +48,9 @@ class TTModeKasaConnected: TTOptionsDetailViewController {
         credentialsButton.isHidden = !hasKlapDevices
 
         if hasCredentials {
-            credentialsButton.setTitle("Update TP-Link Credentials", for: .normal)
+            credentialsButton.setTitle(TTText("Update TP-Link Credentials"), for: .normal)
         } else {
-            credentialsButton.setTitle("Enter TP-Link Credentials", for: .normal)
+            credentialsButton.setTitle(TTText("Enter TP-Link Credentials"), for: .normal)
         }
     }
 
@@ -59,12 +59,12 @@ class TTModeKasaConnected: TTOptionsDetailViewController {
     }
 
     @IBAction func enterCredentials(_ sender: UIButton) {
-        let alert = UIAlertController(title: "TP-Link Credentials",
-                                      message: "Enter your TP-Link/Kasa cloud account credentials for newer devices",
+        let alert = UIAlertController(title: TTText("TP-Link Credentials"),
+                                      message: TTText("Enter your TP-Link/Kasa cloud account credentials for newer devices"),
                                       preferredStyle: .alert)
 
         alert.addTextField { textField in
-            textField.placeholder = "Email"
+            textField.placeholder = TTText("Email")
             textField.keyboardType = .emailAddress
             textField.autocapitalizationType = .none
             if let creds = TTModeKasa.loadCredentials() {
@@ -73,16 +73,16 @@ class TTModeKasaConnected: TTOptionsDetailViewController {
         }
 
         alert.addTextField { textField in
-            textField.placeholder = "Password"
+            textField.placeholder = TTText("Password")
             textField.isSecureTextEntry = true
             if let creds = TTModeKasa.loadCredentials() {
                 textField.text = creds.password
             }
         }
 
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        alert.addAction(UIAlertAction(title: TTText("Cancel"), style: .cancel))
 
-        alert.addAction(UIAlertAction(title: "Save", style: .default) { [weak self] _ in
+        alert.addAction(UIAlertAction(title: TTText("Save"), style: .default) { [weak self] _ in
             guard let username = alert.textFields?[0].text,
                   let password = alert.textFields?[1].text,
                   !username.isEmpty, !password.isEmpty else {

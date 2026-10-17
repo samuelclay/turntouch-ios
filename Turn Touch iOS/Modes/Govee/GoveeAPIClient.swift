@@ -34,12 +34,12 @@ class GoveeAPIClient {
 
     func fetchDevices() {
         guard let apiKey = apiKey, !apiKey.isEmpty else {
-            delegate?.apiClientDidFailWithError("No API key configured")
+            delegate?.apiClientDidFailWithError(TTText("No API key configured"))
             return
         }
 
         guard let url = URL(string: GoveeConstants.baseURL + GoveeConstants.devicesEndpoint) else {
-            delegate?.apiClientDidFailWithError("Invalid URL")
+            delegate?.apiClientDidFailWithError(TTText("Invalid URL"))
             return
         }
 
@@ -54,14 +54,14 @@ class GoveeAPIClient {
             if let error = error {
                 NSLog(" ---> Govee API: Network error: \(error.localizedDescription)")
                 DispatchQueue.main.async {
-                    self?.delegate?.apiClientDidFailWithError("Network error: \(error.localizedDescription)")
+                    self?.delegate?.apiClientDidFailWithError(TTText("Network error: {0}", error.localizedDescription))
                 }
                 return
             }
 
             guard let httpResponse = response as? HTTPURLResponse else {
                 DispatchQueue.main.async {
-                    self?.delegate?.apiClientDidFailWithError("Invalid response")
+                    self?.delegate?.apiClientDidFailWithError(TTText("Invalid response"))
                 }
                 return
             }
@@ -75,14 +75,14 @@ class GoveeAPIClient {
 
             if httpResponse.statusCode == 429 {
                 DispatchQueue.main.async {
-                    self?.delegate?.apiClientDidFailWithError("Rate limit exceeded. Try again later.")
+                    self?.delegate?.apiClientDidFailWithError(TTText("Rate limit exceeded. Try again later."))
                 }
                 return
             }
 
             guard let data = data else {
                 DispatchQueue.main.async {
-                    self?.delegate?.apiClientDidFailWithError("No data received")
+                    self?.delegate?.apiClientDidFailWithError(TTText("No data received"))
                 }
                 return
             }
@@ -91,7 +91,7 @@ class GoveeAPIClient {
                 let deviceListResponse = try JSONDecoder().decode(GoveeDeviceListResponse.self, from: data)
 
                 if let code = deviceListResponse.code, code != 200 {
-                    let msg = deviceListResponse.message ?? "Unknown error"
+                    let msg = deviceListResponse.message ?? TTText("Unknown error")
                     NSLog(" ---> Govee API: Error response: \(msg)")
                     DispatchQueue.main.async {
                         self?.delegate?.apiClientDidFailWithError(msg)
@@ -120,7 +120,7 @@ class GoveeAPIClient {
             } catch {
                 NSLog(" ---> Govee API: JSON parse error: \(error)")
                 DispatchQueue.main.async {
-                    self?.delegate?.apiClientDidFailWithError("Failed to parse response: \(error.localizedDescription)")
+                    self?.delegate?.apiClientDidFailWithError(TTText("Failed to parse response: {0}", error.localizedDescription))
                 }
             }
         }.resume()
@@ -143,12 +143,12 @@ class GoveeAPIClient {
 
     func fetchDeviceState(_ device: GoveeDevice) {
         guard let apiKey = apiKey, !apiKey.isEmpty else {
-            delegate?.apiClientDidFailWithError("No API key configured")
+            delegate?.apiClientDidFailWithError(TTText("No API key configured"))
             return
         }
 
         guard let url = URL(string: GoveeConstants.baseURL + GoveeConstants.stateEndpoint) else {
-            delegate?.apiClientDidFailWithError("Invalid URL")
+            delegate?.apiClientDidFailWithError(TTText("Invalid URL"))
             return
         }
 
@@ -165,7 +165,7 @@ class GoveeAPIClient {
         do {
             request.httpBody = try JSONEncoder().encode(stateRequest)
         } catch {
-            delegate?.apiClientDidFailWithError("Failed to encode request")
+            delegate?.apiClientDidFailWithError(TTText("Failed to encode request"))
             return
         }
 
@@ -221,12 +221,12 @@ class GoveeAPIClient {
 
     private func sendControlCommand(device: GoveeDevice, capabilityType: String, instance: String, value: Int) {
         guard let apiKey = apiKey, !apiKey.isEmpty else {
-            delegate?.apiClientDidFailWithError("No API key configured")
+            delegate?.apiClientDidFailWithError(TTText("No API key configured"))
             return
         }
 
         guard let url = URL(string: GoveeConstants.baseURL + GoveeConstants.controlEndpoint) else {
-            delegate?.apiClientDidFailWithError("Invalid URL")
+            delegate?.apiClientDidFailWithError(TTText("Invalid URL"))
             return
         }
 
@@ -251,7 +251,7 @@ class GoveeAPIClient {
         do {
             request.httpBody = try JSONEncoder().encode(controlRequest)
         } catch {
-            delegate?.apiClientDidFailWithError("Failed to encode request")
+            delegate?.apiClientDidFailWithError(TTText("Failed to encode request"))
             return
         }
 
@@ -268,7 +268,7 @@ class GoveeAPIClient {
 
             guard let data = data else {
                 DispatchQueue.main.async {
-                    self?.delegate?.apiClientDidControlDevice(success: false, error: "No response data")
+                    self?.delegate?.apiClientDidControlDevice(success: false, error: TTText("No response data"))
                 }
                 return
             }
@@ -276,7 +276,7 @@ class GoveeAPIClient {
             do {
                 let controlResponse = try JSONDecoder().decode(GoveeControlResponse.self, from: data)
                 let success = controlResponse.code == 200
-                let errorMsg = success ? nil : (controlResponse.message ?? "Unknown error")
+                let errorMsg = success ? nil : (controlResponse.message ?? TTText("Unknown error"))
 
                 NSLog(" ---> Govee API: Control response: success=\(success), message=\(controlResponse.message ?? "none")")
 

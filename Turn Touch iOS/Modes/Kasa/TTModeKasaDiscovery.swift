@@ -42,12 +42,12 @@ class TTModeKasaDiscovery: NSObject, GCDAsyncUdpSocketDelegate, GCDAsyncSocketDe
         attemptsLeft = 5
         discoveredIPs = []
 
-        delegate?.discoveryStatusUpdate("Creating sockets...")
+        delegate?.discoveryStatusUpdate(TTText("Creating sockets..."))
         createSockets()
 
         NSLog(" ---> Kasa Discovery: legacySocket = \(String(describing: legacySocket)), klapSocket = \(String(describing: klapSocket))")
 
-        delegate?.discoveryStatusUpdate("Sending broadcasts...")
+        delegate?.discoveryStatusUpdate(TTText("Sending broadcasts..."))
         sendDiscoveryBroadcasts()
 
         // Also start TCP scan as fallback (more reliable on iOS)
@@ -82,10 +82,10 @@ class TTModeKasaDiscovery: NSObject, GCDAsyncUdpSocketDelegate, GCDAsyncSocketDe
                 try legacySocket?.bind(toPort: legacyReceivePort) // Use fixed port for iOS
                 try legacySocket?.beginReceiving()
                 NSLog(" ---> Kasa Discovery: Legacy socket ready on port \(legacyReceivePort)")
-                delegate?.discoveryStatusUpdate("Legacy socket ready (port \(legacyReceivePort))")
+                delegate?.discoveryStatusUpdate(TTText("Legacy socket ready (port {0})", legacyReceivePort))
             } catch {
                 NSLog(" ---> Kasa Discovery: Legacy socket error: \(error)")
-                delegate?.discoveryStatusUpdate("Legacy socket ERROR: \(error.localizedDescription)")
+                delegate?.discoveryStatusUpdate(TTText("Legacy socket ERROR: {0}", error.localizedDescription))
             }
         }
 
@@ -100,10 +100,10 @@ class TTModeKasaDiscovery: NSObject, GCDAsyncUdpSocketDelegate, GCDAsyncSocketDe
                 try klapSocket?.bind(toPort: klapReceivePort) // Use fixed port for iOS
                 try klapSocket?.beginReceiving()
                 NSLog(" ---> Kasa Discovery: KLAP socket ready on port \(klapReceivePort)")
-                delegate?.discoveryStatusUpdate("KLAP socket ready (port \(klapReceivePort))")
+                delegate?.discoveryStatusUpdate(TTText("KLAP socket ready (port {0})", klapReceivePort))
             } catch {
                 NSLog(" ---> Kasa Discovery: KLAP socket error: \(error)")
-                delegate?.discoveryStatusUpdate("KLAP socket ERROR: \(error.localizedDescription)")
+                delegate?.discoveryStatusUpdate(TTText("KLAP socket ERROR: {0}", error.localizedDescription))
             }
         }
     }
@@ -122,7 +122,7 @@ class TTModeKasaDiscovery: NSObject, GCDAsyncUdpSocketDelegate, GCDAsyncSocketDe
                 let subnetBroadcast = "\(components[0]).\(components[1]).\(components[2]).255"
                 addresses.append(subnetBroadcast)
                 NSLog(" ---> Kasa Discovery: Using subnet broadcast: \(subnetBroadcast)")
-                delegate?.discoveryStatusUpdate("Subnet: \(subnetBroadcast)")
+                delegate?.discoveryStatusUpdate(TTText("Subnet: {0}", subnetBroadcast))
             }
         }
 
@@ -203,14 +203,14 @@ class TTModeKasaDiscovery: NSObject, GCDAsyncUdpSocketDelegate, GCDAsyncSocketDe
             guard let self = self else { return }
 
             if self.attemptsLeft == 0 {
-                self.delegate?.discoveryStatusUpdate("Discovery complete. Found \(self.discoveredIPs.count) devices.")
+                self.delegate?.discoveryStatusUpdate(TTText("Discovery complete. Found {0} devices.", self.discoveredIPs.count))
                 self.delegate?.discoveryFinishedScanning()
                 return
             }
 
             self.attemptsLeft -= 1
             NSLog(" ---> Kasa Discovery: \(self.attemptsLeft) attempts remaining...")
-            self.delegate?.discoveryStatusUpdate("Scanning... \(self.attemptsLeft) retries left, \(self.discoveredIPs.count) found")
+            self.delegate?.discoveryStatusUpdate(TTText("Scanning... {0} retries left, {1} found", self.attemptsLeft, self.discoveredIPs.count))
             self.sendDiscoveryBroadcasts()
         }
     }
@@ -260,7 +260,7 @@ class TTModeKasaDiscovery: NSObject, GCDAsyncUdpSocketDelegate, GCDAsyncSocketDe
             return
         }
 
-        NSLog(" ---> Kasa Discovery: Starting TCP scan on \(subnetPrefix).x")
+        NSLog(TTText(" ---> Kasa Discovery: Starting TCP scan on {0}.x", subnetPrefix))
         delegate?.discoveryStatusUpdate("TCP scanning \(subnetPrefix).x...")
 
         // Scan common device IPs (skip .0 and .255)
@@ -460,7 +460,7 @@ class TTModeKasaDiscovery: NSObject, GCDAsyncUdpSocketDelegate, GCDAsyncSocketDe
     func udpSocket(_ sock: GCDAsyncUdpSocket, didReceive data: Data, fromAddress address: Data, withFilterContext filterContext: Any?) {
         guard let host = GCDAsyncUdpSocket.host(fromAddress: address) else {
             NSLog(" ---> Kasa Discovery: Could not get host from address")
-            delegate?.discoveryStatusUpdate("Error: Could not parse address")
+            delegate?.discoveryStatusUpdate(TTText("Error: Could not parse address"))
             return
         }
         let port = GCDAsyncUdpSocket.port(fromAddress: address)

@@ -29,7 +29,7 @@ class TTModeHueConnecting: TTOptionsDetailViewController {
     func setConnectingWithMessage(_ message: String?) {
         var m = message
         if message == nil {
-            m = "Connecting to Hue..."
+            m = TTText("Connecting to Hue...")
         }
         
         self.progressMessage.text = m

@@ -21,7 +21,7 @@ class TTModeGoveeConnecting: TTOptionsDetailViewController {
         self.view.translatesAutoresizingMaskIntoConstraints = false
 
         spinner.startAnimating()
-        updateStatus("Fetching Govee devices...")
+        updateStatus(TTText("Fetching Govee devices..."))
     }
 
     func updateStatus(_ status: String) {

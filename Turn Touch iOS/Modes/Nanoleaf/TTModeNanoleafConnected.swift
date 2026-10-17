@@ -24,9 +24,9 @@ class TTModeNanoleafConnected: TTOptionsDetailViewController {
     }
 
     func countEffects() {
-        let name = TTModeNanoleaf.deviceName ?? "Nanoleaf"
+        let name = TTModeNanoleaf.deviceName ?? TTText("Nanoleaf")
         let effectCount = TTModeNanoleaf.cachedEffects.count
-        let effectStr = effectCount == 1 ? "1 effect" : "\(effectCount) effects"
-        effectsLabel.text = "\(name) - \(effectStr)"
+        let effectStr = effectCount == 1 ? TTText("1 effect") : TTText("{0} effects", effectCount)
+        effectsLabel.text = TTText("{0} - {1}", name, effectStr)
     }
 }

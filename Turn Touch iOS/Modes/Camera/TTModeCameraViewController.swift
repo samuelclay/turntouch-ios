@@ -88,7 +88,7 @@ class TTModeCameraViewController: UIViewController {
                         
                         let label = UILabel()
                         label.translatesAutoresizingMaskIntoConstraints = false
-                        label.text = "Please give Turn Touch permission to use the camera. Go to Settings > Camera"
+                        label.text = TTText("Please give Turn Touch permission to use the camera. Go to Settings > Camera")
                         label.numberOfLines = 2
                         label.lineBreakMode = NSLineBreakMode.byWordWrapping
                         label.font = UIFont(name: "Effra", size: 13)
@@ -213,7 +213,7 @@ class TTModeCameraViewController: UIViewController {
                 multiplier: 1.0, constant: 49))
         }
         
-        segmentedControl = UISegmentedControl(items: ["Photo", "Video"])
+        segmentedControl = UISegmentedControl(items: [TTText("Photo"), TTText("Video")])
         segmentedControl.translatesAutoresizingMaskIntoConstraints = false
         segmentedControl.selectedSegmentIndex = 0
         segmentedControl.tintColor = UIColor.white

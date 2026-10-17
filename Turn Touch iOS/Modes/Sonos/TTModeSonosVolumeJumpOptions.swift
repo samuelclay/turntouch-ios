@@ -36,7 +36,7 @@ class TTModeSonosVolumeJumpOptions: TTOptionsDetailViewController {
     func updateLabel() {
         let jump = self.action.optionValue(TTModeSonosConstants.jumpVolume)
         
-        jumpLabel.text = "\(jump!)%"
+        jumpLabel.text = TTText("{0}%", jump!)
     }
     
     override func didReceiveMemoryWarning() {

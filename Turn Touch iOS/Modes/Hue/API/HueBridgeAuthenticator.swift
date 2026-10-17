@@ -28,17 +28,17 @@ enum HueBridgeAuthenticatorError: Error, LocalizedError {
     var errorDescription: String? {
         switch self {
         case .networkError(let error):
-            return "Network error: \(error.localizedDescription)"
+            return TTText("Network error: {0}", error.localizedDescription)
         case .invalidResponse:
-            return "Invalid response from bridge"
+            return TTText("Invalid response from bridge")
         case .linkButtonNotPressed:
-            return "Link button not pressed"
+            return TTText("Link button not pressed")
         case .timeout:
-            return "Authentication timed out"
+            return TTText("Authentication timed out")
         case .cancelled:
-            return "Authentication was cancelled"
+            return TTText("Authentication was cancelled")
         case .authenticationFailed(let message):
-            return "Authentication failed: \(message)"
+            return TTText("Authentication failed: {0}", message)
         }
     }
 }
@@ -197,7 +197,7 @@ class HueBridgeAuthenticator {
                 // Link button not pressed
                 throw HueBridgeAuthenticatorError.linkButtonNotPressed
             default:
-                let description = error["description"] as? String ?? "Unknown error"
+                let description = error["description"] as? String ?? TTText("Unknown error")
                 throw HueBridgeAuthenticatorError.authenticationFailed(description)
             }
         }

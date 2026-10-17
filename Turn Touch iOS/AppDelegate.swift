@@ -48,13 +48,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         window.rootViewController = mainViewController
         self.window = window
         window.makeKeyAndVisible()
-        if ProcessInfo.processInfo.environment["SIMULATOR_DEVICE_NAME"] == nil {
-            DispatchQueue.main.async {
-                self.beginLocationUpdates()
-                if self.bluetoothMonitor.noKnownDevices() {
-                    self.mainViewController.showPairingModal()
+        DispatchQueue.main.async {
+            let continueSetup = {
+                if ProcessInfo.processInfo.environment["SIMULATOR_DEVICE_NAME"] == nil {
+                    self.beginLocationUpdates()
+                    if self.bluetoothMonitor.noKnownDevices() { self.mainViewController.showPairingModal() }
                 }
             }
+            if TTLocalization.needsWelcome { TTLocalization.present(from: self.mainViewController, firstLaunch: true, completion: continueSetup) }
+            else { continueSetup() }
         }
         return window
     }
@@ -189,14 +191,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         case .authorizedWhenInUse, .restricted, .denied:
             DispatchQueue.main.async {
                 let alertController = UIAlertController(
-                    title: "Background Location Access Disabled",
-                    message: "In order to have your remote automatically connect, please open this app's settings and set location access to 'Always'.",
+                    title: TTText("Background Location Access Disabled"),
+                    message: TTText("In order to have your remote automatically connect, please open this app's settings and set location access to 'Always'."),
                     preferredStyle: .alert)
 
-                let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+                let cancelAction = UIAlertAction(title: TTText("Cancel"), style: .cancel, handler: nil)
                 alertController.addAction(cancelAction)
 
-                let openAction = UIAlertAction(title: "Open Settings", style: .default) { (action) in
+                let openAction = UIAlertAction(title: TTText("Open Settings"), style: .default) { (action) in
                     if let url = URL(string:UIApplication.openSettingsURLString) {
                         UIApplication.shared.open(url)
                     }

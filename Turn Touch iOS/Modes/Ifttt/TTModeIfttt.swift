@@ -38,11 +38,11 @@ class TTModeIfttt: TTMode {
     }
     
     override class func title() -> String {
-        return "IFTTT"
+        return TTText("IFTTT")
     }
     
     override class func subtitle() -> String {
-        return "Buttons for If This Then That"
+        return TTText("Buttons for If This Then That")
     }
     
     override class func imageName() -> String {
@@ -60,7 +60,7 @@ class TTModeIfttt: TTMode {
     // MARK: Action titles
     
     func titleTTModeIftttTriggerAction() -> String {
-        return "Trigger action"
+        return TTText("Trigger action")
     }
     
     // MARK: Action images

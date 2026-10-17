@@ -72,13 +72,13 @@ class TTModeKasaDeviceSwitchOptions: TTOptionsDetailViewController,
 
         if TTModeKasa.foundDevices.isEmpty {
             if TTModeKasa.kasaState == .connecting {
-                noticeLabel.text = "Searching for Kasa devices..."
+                noticeLabel.text = TTText("Searching for Kasa devices...")
                 noticeLabel.textColor = UIColor.darkGray
                 spinner.forEach { $0.isHidden = false }
                 settingsButton.forEach { $0.isHidden = true }
                 spinner.forEach { $0.startAnimating() }
             } else {
-                noticeLabel.text = "No Kasa devices found"
+                noticeLabel.text = TTText("No Kasa devices found")
                 noticeLabel.textColor = UIColor.lightGray
                 spinner.forEach { $0.isHidden = true }
                 settingsButton.forEach { $0.isHidden = false }
@@ -101,12 +101,12 @@ class TTModeKasaDeviceSwitchOptions: TTOptionsDetailViewController,
 
     func menuOptions() -> [[String: String]] {
         var options: [[String: String]] = [
-            ["title": "Search for new devices...", "image": "search"],
-            ["title": "Remove all and search...", "image": "remove"]
+            ["title": TTText("Search for new devices..."), "image": "search"],
+            ["title": TTText("Remove all and search..."), "image": "remove"]
         ]
 
         if TTModeKasa.foundDevices.contains(where: { $0.protocolType == .klap }) {
-            options.append(["title": "Enter TP-Link credentials...", "image": "settings"])
+            options.append(["title": TTText("Enter TP-Link credentials..."), "image": "settings"])
         }
 
         return options
@@ -141,12 +141,12 @@ class TTModeKasaDeviceSwitchOptions: TTOptionsDetailViewController,
     }
 
     func enterCredentials() {
-        let alert = UIAlertController(title: "TP-Link Credentials",
-                                      message: "Enter your TP-Link/Kasa cloud account credentials",
+        let alert = UIAlertController(title: TTText("TP-Link Credentials"),
+                                      message: TTText("Enter your TP-Link/Kasa cloud account credentials"),
                                       preferredStyle: .alert)
 
         alert.addTextField { textField in
-            textField.placeholder = "Email"
+            textField.placeholder = TTText("Email")
             textField.keyboardType = .emailAddress
             textField.autocapitalizationType = .none
             if let creds = TTModeKasa.loadCredentials() {
@@ -155,13 +155,13 @@ class TTModeKasaDeviceSwitchOptions: TTOptionsDetailViewController,
         }
 
         alert.addTextField { textField in
-            textField.placeholder = "Password"
+            textField.placeholder = TTText("Password")
             textField.isSecureTextEntry = true
         }
 
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        alert.addAction(UIAlertAction(title: TTText("Cancel"), style: .cancel))
 
-        alert.addAction(UIAlertAction(title: "Save", style: .default) { [weak self] _ in
+        alert.addAction(UIAlertAction(title: TTText("Save"), style: .default) { [weak self] _ in
             guard let username = alert.textFields?[0].text,
                   let password = alert.textFields?[1].text,
                   !username.isEmpty, !password.isEmpty else {
@@ -196,10 +196,10 @@ class TTModeKasaDeviceSwitchOptions: TTOptionsDetailViewController,
         cell.selectionStyle = .blue
 
         // Device name with protocol indicator
-        var name = device.deviceName ?? "Unknown Device"
+        var name = device.deviceName ?? TTText("Unknown Device")
         if device.protocolType == .klap {
             if device.needsAuthentication && !device.isAuthenticated {
-                name += " ⚠️ (needs auth)"
+                name += TTText(" ⚠️ (needs auth)")
             } else {
                 name += " 🔐"
             }

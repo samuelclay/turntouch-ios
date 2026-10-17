@@ -30,7 +30,7 @@ class TTGeofencingViewController: UIViewController, MKMapViewDelegate, CLLocatio
                                           target: self, action: #selector(self.save))
         self.navigationItem.rightBarButtonItem = saveButton
         
-        self.navigationItem.title = "Setup Geofence"
+        self.navigationItem.title = TTText("Setup Geofence")
         
         let mapDragRecognizer = UIPanGestureRecognizer(target: self, action: #selector(self.didDragMap(gestureRecognizer:)))
         mapDragRecognizer.delegate = self
@@ -133,7 +133,7 @@ class TTGeofencingViewController: UIViewController, MKMapViewDelegate, CLLocatio
         
         let geofenceAnnotation = MKPointAnnotation()
         geofenceAnnotation.coordinate = coordinate;
-        geofenceAnnotation.title = "Home";
+        geofenceAnnotation.title = TTText("Home");
         mapView.addAnnotation(geofenceAnnotation)
         
         let circle = MKCircle(center: coordinate, radius: 12)

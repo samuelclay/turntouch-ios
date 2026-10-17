@@ -16,11 +16,11 @@ struct TTModePhoneConstants {
 class TTModePhone: TTMode {
     
     override class func title() -> String {
-        return "Phone"
+        return TTText("Phone")
     }
     
     override class func subtitle() -> String {
-        return "System-level controls"
+        return TTText("System-level controls")
     }
     
     override class func imageName() -> String {
@@ -37,19 +37,19 @@ class TTModePhone: TTMode {
     }
     
     func titleTTModePhoneVolumeUp() -> String {
-        return "Volume up"
+        return TTText("Volume up")
     }
     
     func titleTTModePhoneVolumeDown() -> String {
-        return "Volume down"
+        return TTText("Volume down")
     }
     
     func titleTTModePhoneVolumeMute() -> String {
-        return "Mute"
+        return TTText("Mute")
     }
     
     func titleTTModePhoneVolumeJump() -> String {
-        return "Jump to volume"
+        return TTText("Jump to volume")
     }
     
     // MARK: Action images

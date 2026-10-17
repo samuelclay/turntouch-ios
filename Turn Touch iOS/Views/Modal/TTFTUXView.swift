@@ -106,24 +106,24 @@ class TTFTUXView: UIView {
         switch ftuxPage {
         case .intro:
             imageView.image = UIImage(named: "modal_ftux_action")
-            titleLabel.text = "Here's how it works"
-            subtitleLabel.text = "Your remote has four buttons"
+            titleLabel.text = TTText("Here's how it works")
+            subtitleLabel.text = TTText("Your remote has four buttons")
         case .actions:
             imageView.image = UIImage(named: "modal_ftux_doubletap")
-            titleLabel.text = "Each button performs an action"
-            subtitleLabel.text = "Like changing the lights, playing music, or turning up the volume"
+            titleLabel.text = TTText("Each button performs an action")
+            subtitleLabel.text = TTText("Like changing the lights, playing music, or turning up the volume")
         case .modes:
             imageView.image = UIImage(named: "modal_ftux_mode")
-            titleLabel.text = "Press and hold to change apps"
-            subtitleLabel.text = "Four apps × four buttons per app\n= sixteen different actions"
+            titleLabel.text = TTText("Press and hold to change apps")
+            subtitleLabel.text = TTText("Four apps × four buttons per app\n= sixteen different actions")
         case .batchActions:
             imageView.image = UIImage(named: "modal_ftux_change_action")
-            titleLabel.text = "Each button can do multiple actions"
-            subtitleLabel.text = "There are batch actions and double-tap actions, all configurable in this app"
+            titleLabel.text = TTText("Each button can do multiple actions")
+            subtitleLabel.text = TTText("There are batch actions and double-tap actions, all configurable in this app")
         case .hud:
             imageView.image = UIImage(named: "modal_ftux_change_mode")
-            titleLabel.text = "Press all four buttons for the HUD"
-            subtitleLabel.text = "The Heads-Up Display (HUD) shows what each button does and gives you access to even more actions and apps"
+            titleLabel.text = TTText("Press all four buttons for the HUD")
+            subtitleLabel.text = TTText("The Heads-Up Display (HUD) shows what each button does and gives you access to even more actions and apps")
         }
     }
 }

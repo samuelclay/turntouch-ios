@@ -32,7 +32,7 @@ class TTFTUXViewController: UIViewController, UIScrollViewDelegate {
         let closeButton = UIBarButtonItem(barButtonSystemItem: .cancel,
                                           target: self, action: #selector(self.close))
         self.navigationItem.rightBarButtonItem = closeButton
-        self.navigationItem.title = "How it works"
+        self.navigationItem.title = TTText("How it works")
 
         nextButton = TTModalButton(ftuxPage: .intro)
         self.view.addSubview(nextButton.view)

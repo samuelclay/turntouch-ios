@@ -78,7 +78,7 @@ class TTModeHuePicker: TTOptionsDetailViewController, UITextFieldDelegate, UIPop
         }
 
         rooms = []
-        rooms.append(["name": "All Rooms", "identifier": "all"])
+        rooms.append(["name": TTText("All Rooms"), "identifier": "all"])
         for (_, room) in hueRooms {
             rooms.append(["name": room.metadata.name, "identifier": room.id])
         }

@@ -21,7 +21,7 @@ class TTSwitchButtonModeViewController: UIViewController {
                                          target: self, action: #selector(self.done))
         self.navigationItem.rightBarButtonItem = doneButton
         
-        self.navigationItem.title = "Switch button mode"
+        self.navigationItem.title = TTText("Switch button mode")
     }
 
     override func viewWillAppear(_ animated: Bool) {

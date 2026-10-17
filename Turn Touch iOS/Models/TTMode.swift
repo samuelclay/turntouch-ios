@@ -212,7 +212,7 @@ class TTMode : NSObject, TTModeProtocol {
         let mode = self.modeInDirection(direction)
         if actionName == "" {
             print(" ---> Set title for \(direction)")
-            return "Set \(direction)"
+            return TTText("Set {0}", direction)
         }
         
         // First check if given custom title
@@ -252,7 +252,7 @@ class TTMode : NSObject, TTModeProtocol {
         
         if !self.responds(to: selector) {
             print(" ---> Set title for \(selector)")
-            return "Set \(selector)"
+            return TTText("Set {0}", selector)
         }
         
         let actionTitle = self.perform(selector, with: self).takeUnretainedValue() as! String

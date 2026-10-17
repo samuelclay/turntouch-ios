@@ -16,11 +16,11 @@ struct TTModeMusicConstants {
 class TTModeMusic: TTMode {
     
     override class func title() -> String {
-        return "Music"
+        return TTText("Music")
     }
     
     override class func subtitle() -> String {
-        return "Control your music"
+        return TTText("Control your music")
     }
     
     override class func imageName() -> String {
@@ -42,39 +42,39 @@ class TTModeMusic: TTMode {
     }
     
     func titleTTModeMusicVolumeUp() -> String {
-        return "Volume up"
+        return TTText("Volume up")
     }
     
     func titleTTModeMusicVolumeDown() -> String {
-        return "Volume down"
+        return TTText("Volume down")
     }
     
     func titleTTModeMusicVolumeMute() -> String {
-        return "Mute music"
+        return TTText("Mute music")
     }
     
     func titleTTModeMusicVolumeJump() -> String {
-        return "Jump to volume"
+        return TTText("Jump to volume")
     }
     
     func titleTTModeMusicPlayPause() -> String {
-        return "Play/pause"
+        return TTText("Play/pause")
     }
     
     func titleTTModeMusicPlay() -> String {
-        return "Play music"
+        return TTText("Play music")
     }
     
     func titleTTModeMusicPause() -> String {
-        return "Pause music"
+        return TTText("Pause music")
     }
     
     func titleTTModeMusicNextTrack() -> String {
-        return "Next track"
+        return TTText("Next track")
     }
     
     func titleTTModeMusicPreviousTrack() -> String {
-        return "Previous track"
+        return TTText("Previous track")
     }
     
     // MARK: Action images

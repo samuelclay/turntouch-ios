@@ -57,7 +57,7 @@ class TTModeIftttTriggerActionOptions: TTOptionsDetailViewController, TTTitleMen
     
     func menuOptions() -> [[String : String]] {
         return [
-            ["title": "Replace this recipe...",
+            ["title": TTText("Replace this recipe..."),
              "image": "remove"],
         ]
     }

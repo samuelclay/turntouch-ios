@@ -80,3 +80,7 @@ profile
 DerivedData
 .idea/
 .DS_Store
+
+# Python localization tooling
+__pycache__/
+*.pyc

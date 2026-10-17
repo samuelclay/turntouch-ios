@@ -95,17 +95,17 @@ class TTBluetoothMonitor: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
         var state: String? = nil
         switch manager.state {
         case .unsupported:
-            state = "The platform/hardware doesn't support Bluetooth Low Energy."
+            state = TTText("The platform/hardware doesn't support Bluetooth Low Energy.")
         case .unauthorized:
-            state = "The app is not authorized to use Bluetooth Low Energy."
+            state = TTText("The app is not authorized to use Bluetooth Low Energy.")
         case .poweredOff:
-            state = "Bluetooth is currently powered off."
+            state = TTText("Bluetooth is currently powered off.")
         case .poweredOn:
             return true
         case .unknown:
-            state = "Bluetooth in unknown state."
+            state = TTText("Bluetooth in unknown state.")
         case .resetting:
-            state = "Bluetooth in resetting state."
+            state = TTText("Bluetooth in resetting state.")
 //        default:
 //            state = "Bluetooth not in any state!"
         @unknown default:

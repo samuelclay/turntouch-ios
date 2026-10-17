@@ -22,7 +22,7 @@ class TTModeHueConnect: TTOptionsDetailViewController {
     func setStoppedWithMessage(_ message: String?) {
         var m = message
         if message == nil {
-            m = "Connect to Hue..."
+            m = TTText("Connect to Hue...")
         }
         self.progressMessage.text = m
     }
@@ -32,7 +32,7 @@ class TTModeHueConnect: TTOptionsDetailViewController {
     }
     
     @IBAction func searchForBridge(_ sender: UIButton) {
-        self.setLoadingWithMessage("Searching for Hue...")
+        self.setLoadingWithMessage(TTText("Searching for Hue..."))
         self.modeHue.connectToBridge(reset: true)
     }
 }

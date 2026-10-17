@@ -1,0 +1,1675 @@
+{
+  " ---> Kasa Discovery: Starting TCP scan on {0}.x": [
+    "Turn Touch iOS/Modes/Kasa/TTModeKasaDiscovery.swift"
+  ],
+  " · {0}% battery": [
+    "Turn Touch iOS/Views/Main/TTSettingsPopover.swift"
+  ],
+  " ⚠️ (needs auth)": [
+    "Turn Touch iOS/Modes/Kasa/TTModeKasaDeviceSwitchOptions.swift"
+  ],
+  "1 Govee device found": [
+    "Turn Touch iOS/Modes/Govee/TTModeGoveeConnected.swift"
+  ],
+  "1 Kasa device found": [
+    "Turn Touch iOS/Modes/Kasa/TTModeKasaConnected.swift"
+  ],
+  "1 device": [
+    "Turn Touch iOS/Modes/Govee/TTModeGovee.swift",
+    "Turn Touch iOS/Modes/Kasa/TTModeKasa.swift"
+  ],
+  "1 effect": [
+    "Turn Touch iOS/Modes/Nanoleaf/TTModeNanoleafConnected.swift"
+  ],
+  "1 light": [
+    "Turn Touch iOS/Modes/Hue/TTModeHueConnected.swift"
+  ],
+  "1 minute": [
+    "Turn Touch iOS/Modes/Hue/TTModeHueSleepOptions.swift",
+    "Turn Touch iOS/Modes/Nanoleaf/TTModeNanoleafSleepOptions.swift"
+  ],
+  "1 room": [
+    "Turn Touch iOS/Modes/Hue/TTModeHueConnected.swift"
+  ],
+  "1 scene": [
+    "Turn Touch iOS/Modes/Hue/TTModeHueConnected.swift"
+  ],
+  "1 second": [
+    "Turn Touch iOS/Modes/Hue/TTModeHueSleepOptions.swift",
+    "Turn Touch iOS/Modes/Nanoleaf/TTModeNanoleafSleepOptions.swift"
+  ],
+  "12 actions": [
+    "Turn Touch iOS/Views/Main/TTSettingsPopover.swift"
+  ],
+  "12 button mode": [
+    "Turn Touch iOS/Views/Modal/Base.lproj/TTSwitchButtonModeViewController.xib:6Zt-0J-fgG.text"
+  ],
+  "123°F": [
+    "Turn Touch iOS/Modes/Ifttt/Base.lproj/TTModeIftttConnected.xib:5HU-ip-UUZ.text",
+    "Turn Touch iOS/Modes/Ifttt/Base.lproj/TTModeIftttConnected.xib:Yws-cr-XME.text"
+  ],
+  "16 actions": [
+    "Turn Touch iOS/Views/Main/TTSettingsPopover.swift"
+  ],
+  "16 button mode": [
+    "Turn Touch iOS/Views/Modal/Base.lproj/TTSwitchButtonModeViewController.xib:CBh-4i-bYO.text"
+  ],
+  "30 seconds": [
+    "Turn Touch iOS/Modes/Hue/Base.lproj/TTModeHueSleepOptions.xib:spW-B6-Q0n.text",
+    "Turn Touch iOS/Modes/Nanoleaf/Base.lproj/TTModeNanoleafSleepOptions.xib:spW-B6-Q0n.text"
+  ],
+  "5 seconds": [
+    "Turn Touch iOS/Modes/Hue/Base.lproj/TTModeHueSleepOptions.xib:PgQ-H7-AJF.text",
+    "Turn Touch iOS/Modes/Nanoleaf/Base.lproj/TTModeNanoleafSleepOptions.xib:PgQ-H7-AJF.text"
+  ],
+  "> Not connected": [
+    "Turn Touch iOS/Views/Main/TTDeviceTitleView.swift"
+  ],
+  "A standing yoga pose that tones the legs, reduces stress, and increases stability.": [
+    "Turn Touch iOS/Modes/Yoga/TTModeYoga.swift"
+  ],
+  "API Key": [
+    "Turn Touch iOS/Modes/Govee/TTModeGoveeConnected.swift",
+    "Turn Touch iOS/Modes/Govee/TTModeGoveeDeviceSwitchOptions.swift"
+  ],
+  "API error: {0}": [
+    "Turn Touch iOS/Modes/Hue/API/HueAPIClient.swift"
+  ],
+  "APPS & CONNECTIONS": [
+    "Turn Touch iOS/Views/Main/TTSettingsPopover.swift"
+  ],
+  "About Turn Touch": [
+    "Turn Touch iOS/Views/Main/TTSettingsPopover.swift",
+    "Turn Touch iOS/Views/Modal/TTAboutViewController.swift"
+  ],
+  "Actions: {0}": [
+    "Turn Touch iOS/Modes/HomeKit/TTModeHomeKitTriggerSceneOptions.swift"
+  ],
+  "Add a new remote": [
+    "Turn Touch iOS/Views/Main/TTSettingsPopover.swift"
+  ],
+  "Add new action": [
+    "Turn Touch iOS/Views/Batch actions/TTAddActionButtonView.swift",
+    "Turn Touch iOS/Views/Batch actions/TTAddActionButtonView.swift"
+  ],
+  "Address": [
+    "Turn Touch iOS/Modes/Portable/TTMobileBrowser.swift"
+  ],
+  "Alarm": [
+    "Turn Touch iOS/Modes/Alarm Clock/TTModeAlarmClock.swift"
+  ],
+  "All Rooms": [
+    "Turn Touch iOS/Modes/Hue/TTModeHuePicker.swift"
+  ],
+  "Announcements and updates": [
+    "Turn Touch iOS/Views/Modal/TTAboutViewController.swift"
+  ],
+  "App options": [
+    "Turn Touch iOS/Views/Main/TTSettingsPopover.swift"
+  ],
+  "Ashva Sanchalanasana": [
+    "Turn Touch iOS/Modes/Yoga/Base.lproj/TTModeYogaViewController.xib:qvN-xB-Jfr.text"
+  ],
+  "Authentication failed: {0}": [
+    "Turn Touch iOS/Modes/Hue/API/HueBridgeAuthenticator.swift"
+  ],
+  "Authentication timed out": [
+    "Turn Touch iOS/Modes/Hue/API/HueBridgeAuthenticator.swift",
+    "Turn Touch iOS/Modes/Nanoleaf/TTModeNanoleaf.swift"
+  ],
+  "Authentication was cancelled": [
+    "Turn Touch iOS/Modes/Hue/API/HueBridgeAuthenticator.swift"
+  ],
+  "Automatic (device language)": [
+    "Turn Touch iOS/TTLocalization.swift",
+    "Turn Touch iOS/TTLocalization.swift"
+  ],
+  "BUTTONS": [
+    "Turn Touch iOS/Views/Main/TTSettingsPopover.swift"
+  ],
+  "Background Location Access Disabled": [
+    "Turn Touch iOS/AppDelegate.swift"
+  ],
+  "Battery: {0}%": [
+    "Turn Touch iOS/Views/Main/TTDeviceTitleView.swift"
+  ],
+  "Beautiful Control": [
+    "Turn Touch iOS/Views/Modal/Base.lproj/TTPairingInfoViewController.xib:eZF-s1-Zb8.text"
+  ],
+  "Beautiful control": [
+    "Turn Touch iOS/Views/Modal/TTPairingInfoViewController.swift"
+  ],
+  "Bluetooth in resetting state.": [
+    "Turn Touch iOS/Bluetooth/TTBluetoothMonitor.swift"
+  ],
+  "Bluetooth in unknown state.": [
+    "Turn Touch iOS/Bluetooth/TTBluetoothMonitor.swift"
+  ],
+  "Bluetooth is currently powered off.": [
+    "Turn Touch iOS/Bluetooth/TTBluetoothMonitor.swift",
+    "Turn Touch iOS/Views/Modal/TTPairingInfoViewController.swift"
+  ],
+  "Bluetooth is powered off or isn't responding.": [
+    "Turn Touch iOS/Views/Modal/TTPairingInfoViewController.swift"
+  ],
+  "Boat pose": [
+    "Turn Touch iOS/Modes/Yoga/TTModeYoga.swift"
+  ],
+  "Bose": [
+    "Turn Touch iOS/Modes/Bose/TTModeBose.swift"
+  ],
+  "Bow pose": [
+    "Turn Touch iOS/Modes/Yoga/TTModeYoga.swift"
+  ],
+  "Bright": [
+    "Turn Touch iOS/Modes/Hue/Base.lproj/TTModeHueRandomOptions.xib:1x2-Os-cal.segmentTitles[2]",
+    "Turn Touch iOS/Modes/Hue/Base.lproj/TTModeHueRandomOptions.xib:D65-yd-iZ4.segmentTitles[2]"
+  ],
+  "Brightness": [
+    "Turn Touch iOS/Modes/Hue/Base.lproj/TTModeHueRandomOptions.xib:FHD-iM-Lpn.text",
+    "Turn Touch iOS/Modes/Hue/Base.lproj/TTModeHueRandomOptions.xib:nV7-bP-mJN.text"
+  ],
+  "Brightness down": [
+    "Turn Touch iOS/Modes/Govee/TTModeGovee.swift"
+  ],
+  "Brightness up": [
+    "Turn Touch iOS/Modes/Govee/TTModeGovee.swift"
+  ],
+  "Browse the web": [
+    "Turn Touch iOS/Modes/Portable/TTPortableModes.swift"
+  ],
+  "Build number": [
+    "Settings.bundle:Title"
+  ],
+  "Button": [
+    "Turn Touch iOS/Modes/Bose/Base.lproj/TTModeBoseConnecting.xib:YnL-0c-gjt.normalTitle",
+    "Turn Touch iOS/Modes/Hue/Base.lproj/TTModeHueBridge.xib:N1L-Zw-odV.normalTitle",
+    "Turn Touch iOS/Modes/Ifttt/Base.lproj/TTModeIftttConnecting.xib:7zb-M8-V0r.normalTitle",
+    "Turn Touch iOS/Modes/Sonos/Base.lproj/TTModeSonosConnecting.xib:YnL-0c-gjt.normalTitle",
+    "Turn Touch iOS/Modes/Wemo/Base.lproj/TTModeWemoConnecting.xib:YnL-0c-gjt.normalTitle"
+  ],
+  "Button mode": [
+    "Turn Touch iOS/Views/Main/TTSettingsPopover.swift",
+    "Turn Touch iOS/Views/Main/TTSettingsPopover.swift"
+  ],
+  "Buttons for If This Then That": [
+    "Turn Touch iOS/Modes/Ifttt/TTModeIfttt.swift"
+  ],
+  "Buttons perform actions": [
+    "Turn Touch iOS/Views/Modal/Base.lproj/TTSwitchButtonModeViewController.xib:gIr-Q8-UNZ.text"
+  ],
+  "Buy a Turn Touch": [
+    "Turn Touch iOS/Views/Modal/TTAboutViewController.swift"
+  ],
+  "By enabling this switch you allow for usage stats to be gathered. These are only used to improve the service. Your data will never be sold.": [
+    "Settings.bundle:FooterText"
+  ],
+  "Camera": [
+    "Turn Touch iOS/Modes/Camera/TTModeCamera.swift"
+  ],
+  "Cancel": [
+    "Turn Touch iOS/AppDelegate.swift",
+    "Turn Touch iOS/Modes/Govee/TTModeGoveeConnected.swift",
+    "Turn Touch iOS/Modes/Govee/TTModeGoveeDeviceSwitchOptions.swift",
+    "Turn Touch iOS/Modes/Kasa/TTModeKasaConnected.swift",
+    "Turn Touch iOS/Modes/Kasa/TTModeKasaDeviceSwitchOptions.swift",
+    "Turn Touch iOS/Modes/Portable/TTMobileBrowser.swift",
+    "Turn Touch iOS/TTLocalization.swift",
+    "Turn Touch iOS/Views/Batch actions/TTAddActionButtonView.swift",
+    "Turn Touch iOS/Views/Main/TTDeviceTitleView.swift",
+    "Turn Touch iOS/Modes/Govee/Base.lproj/TTModeGoveeConnecting.xib:YnL-0c-gjt.normalTitle",
+    "Turn Touch iOS/Modes/Kasa/Base.lproj/TTModeKasaConnecting.xib:YnL-0c-gjt.normalTitle"
+  ],
+  "Cat pose": [
+    "Turn Touch iOS/Modes/Yoga/TTModeYoga.swift"
+  ],
+  "Chair pose": [
+    "Turn Touch iOS/Modes/Yoga/TTModeYoga.swift"
+  ],
+  "Change": [
+    "Turn Touch iOS/Views/Action diamond/TTActionDiamondView.swift",
+    "Turn Touch iOS/Views/Action diamond/TTActionDiamondView.swift",
+    "Turn Touch iOS/Views/Actions/TTActionTitleView.swift",
+    "Turn Touch iOS/Views/Actions/TTActionTitleView.swift",
+    "Turn Touch iOS/Views/Main/TTModeTitleView.swift",
+    "Turn Touch iOS/Views/Main/TTModeTitleView.swift"
+  ],
+  "Change API key...": [
+    "Turn Touch iOS/Modes/Govee/TTModeGoveeDeviceSwitchOptions.swift"
+  ],
+  "Child's pose": [
+    "Turn Touch iOS/Modes/Yoga/TTModeYoga.swift"
+  ],
+  "Choose IFTTT Action": [
+    "Turn Touch iOS/Modes/Ifttt/Base.lproj/TTModeIftttTriggerActionOptions.xib:UtA-71-qVu.normalTitle"
+  ],
+  "Choose your language": [
+    "Turn Touch iOS/TTLocalization.swift"
+  ],
+  "Cobra pose": [
+    "Turn Touch iOS/Modes/Yoga/TTModeYoga.swift"
+  ],
+  "Color loop": [
+    "Turn Touch iOS/Modes/Hue/TTModeHue.swift"
+  ],
+  "Colors": [
+    "Turn Touch iOS/Modes/Hue/Base.lproj/TTModeHueRandomOptions.xib:hyi-No-G4S.text",
+    "Turn Touch iOS/Modes/Hue/Base.lproj/TTModeHueRandomOptions.xib:kje-4z-hP8.text"
+  ],
+  "Configure your Turn Touch wooden remote and put lights, music, and everyday actions at your fingertips. Choose actions for single taps, double taps, and holds, or combine several actions on one button.\n\nPair a remote over Bluetooth, choose your apps and devices, and customize your buttons in Settings. Turn Touch supports compatible smart-home devices and services; available functions depend on the integration and device.\n\nA Turn Touch remote is sold separately. Some integrations require compatible hardware, local network access, or a third-party account.\n\nLearn more: https://turntouch.com": [
+    "Store description; maximum=4000 characters"
+  ],
+  "Connect to Govee": [
+    "Turn Touch iOS/Modes/Govee/Base.lproj/TTModeGoveeConnect.xib:5z8-dd-EfZ.normalTitle"
+  ],
+  "Connect to Hue": [
+    "Turn Touch iOS/Modes/Hue/Base.lproj/TTModeHueConnect.xib:60K-9D-4vb.normalTitle"
+  ],
+  "Connect to Hue...": [
+    "Turn Touch iOS/Modes/Hue/TTModeHueConnect.swift"
+  ],
+  "Connect to IFTTT": [
+    "Turn Touch iOS/Modes/Ifttt/Base.lproj/TTModeIftttConnect.xib:4Dj-Uk-hCL.normalTitle"
+  ],
+  "Connect to Nanoleaf": [
+    "Turn Touch iOS/Modes/Nanoleaf/Base.lproj/TTModeNanoleafConnect.xib:60K-9D-4vb.normalTitle"
+  ],
+  "Connect to Nanoleaf...": [
+    "Turn Touch iOS/Modes/Nanoleaf/TTModeNanoleafConnect.swift"
+  ],
+  "Connect to Spotify...": [
+    "Turn Touch iOS/Modes/Bose/Base.lproj/TTModeBoseConnect.xib:5z8-dd-EfZ.normalTitle"
+  ],
+  "Connected": [
+    "Application-owned status or selector label; translated only at rendering, never in state comparisons."
+  ],
+  "Connected to Govee": [
+    "Turn Touch iOS/Modes/Govee/Base.lproj/TTModeGoveeConnected.xib:title-lbl.text"
+  ],
+  "Connected to Hue": [
+    "Turn Touch iOS/Modes/Hue/Base.lproj/TTModeHueConnected.xib:FWr-5Z-Oo5.text"
+  ],
+  "Connected to Kasa": [
+    "Turn Touch iOS/Modes/Kasa/Base.lproj/TTModeKasaConnected.xib:title-lbl.text"
+  ],
+  "Connected to Nanoleaf": [
+    "Turn Touch iOS/Modes/Nanoleaf/Base.lproj/TTModeNanoleafConnected.xib:FWr-5Z-Oo5.text"
+  ],
+  "Connected to X Bose devices": [
+    "Turn Touch iOS/Modes/Bose/Base.lproj/TTModeBoseConnected.xib:Q9k-dy-xeR.text"
+  ],
+  "Connected to X Wemo devices": [
+    "Turn Touch iOS/Modes/Wemo/Base.lproj/TTModeWemoConnected.xib:Neq-Bx-RqE.text"
+  ],
+  "Connected to {0} Bose {1}": [
+    "Turn Touch iOS/Modes/Bose/TTModeBoseConnected.swift"
+  ],
+  "Connected to {0} Wemo {1}": [
+    "Turn Touch iOS/Modes/Wemo/TTModeWemoConnected.swift"
+  ],
+  "Connected wireless speakers": [
+    "Turn Touch iOS/Modes/Sonos/TTModeSonos.swift"
+  ],
+  "Connecting": [
+    "Application-owned status or selector label; translated only at rendering, never in state comparisons."
+  ],
+  "Connecting to Bose...": [
+    "Turn Touch iOS/Modes/Bose/TTModeBoseConnecting.swift"
+  ],
+  "Connecting to Hue...": [
+    "Turn Touch iOS/Modes/Hue/TTModeHue.swift",
+    "Turn Touch iOS/Modes/Hue/TTModeHueConnecting.swift"
+  ],
+  "Connecting to Ifttt...": [
+    "Turn Touch iOS/Modes/Ifttt/TTModeIftttConnecting.swift"
+  ],
+  "Connecting to Nanoleaf...": [
+    "Turn Touch iOS/Modes/Nanoleaf/TTModeNanoleafConnecting.swift"
+  ],
+  "Connecting to Sonos...": [
+    "Turn Touch iOS/Modes/Sonos/TTModeSonosConnecting.swift"
+  ],
+  "Connecting to Spotify...": [
+    "Turn Touch iOS/Modes/Spotify/TTModeSpotifyConnecting.swift"
+  ],
+  "Connecting to Wemo...": [
+    "Turn Touch iOS/Modes/Wemo/TTModeWemoConnecting.swift"
+  ],
+  "Connecting to {0}...": [
+    "Turn Touch iOS/Modes/Nanoleaf/TTModeNanoleaf.swift"
+  ],
+  "Connecting...": [
+    "Turn Touch iOS/Views/Modal/TTPairingViewController.swift"
+  ],
+  "Connection failed": [
+    "Application-owned status or selector label; translated only at rendering, never in state comparisons."
+  ],
+  "Connection failed: {0}": [
+    "Turn Touch iOS/Modes/Nanoleaf/TTModeNanoleaf.swift"
+  ],
+  "Connection to Hue bridge lost. Searching...": [
+    "Turn Touch iOS/Modes/Hue/TTModeHue.swift"
+  ],
+  "Contact support": [
+    "Turn Touch iOS/Views/Main/TTSettingsPopover.swift"
+  ],
+  "Continue": [
+    "Turn Touch iOS/TTLocalization.swift",
+    "Turn Touch iOS/Views/Modal/TTModalButton.swift"
+  ],
+  "Control Bose speakers": [
+    "Turn Touch iOS/Modes/Bose/TTModeBose.swift"
+  ],
+  "Control Spotify music": [
+    "Turn Touch iOS/Modes/Spotify/TTModeSpotify.swift"
+  ],
+  "Control video playback": [
+    "Turn Touch iOS/Modes/Portable/TTPortableModes.swift"
+  ],
+  "Control your music": [
+    "Turn Touch iOS/Modes/Music/TTModeMusic.swift"
+  ],
+  "Control your presentation": [
+    "Turn Touch iOS/Modes/Portable/TTPortableModes.swift"
+  ],
+  "Copyright": [
+    "Settings.bundle:Title"
+  ],
+  "Could not connect to Hue: {0}": [
+    "Turn Touch iOS/Modes/Hue/TTModeHue.swift"
+  ],
+  "Could not find any Hue bridges": [
+    "Turn Touch iOS/Modes/Hue/TTModeHue.swift"
+  ],
+  "Creating sockets...": [
+    "Turn Touch iOS/Modes/Kasa/TTModeKasaDiscovery.swift"
+  ],
+  "Custom": [
+    "Turn Touch iOS/Modes/Custom/TTModeCustom.swift"
+  ],
+  "Custom URL": [
+    "Turn Touch iOS/Modes/Custom/TTModeCustom.swift"
+  ],
+  "Custom scene 2": [
+    "Turn Touch iOS/Modes/Hue/TTModeHue.swift"
+  ],
+  "Cycle scenes": [
+    "Turn Touch iOS/Modes/Hue/TTModeHue.swift"
+  ],
+  "Delete": [
+    "Turn Touch iOS/Views/Batch actions/TTBatchActionHeaderView.swift"
+  ],
+  "Designed and built in San Francisco": [
+    "Turn Touch iOS/Views/Modal/Base.lproj/TTAboutViewController.xib:t4e-d3-Gzc.text"
+  ],
+  "Designer and builder": [
+    "Turn Touch iOS/Views/Modal/TTAboutViewController.swift"
+  ],
+  "Different": [
+    "Turn Touch iOS/Modes/Hue/Base.lproj/TTModeHueRandomOptions.xib:1rZ-au-AQB.segmentTitles[0]",
+    "Turn Touch iOS/Modes/Hue/Base.lproj/TTModeHueRandomOptions.xib:9nB-i3-nT8.segmentTitles[0]"
+  ],
+  "Dim": [
+    "Turn Touch iOS/Modes/Hue/Base.lproj/TTModeHueRandomOptions.xib:1x2-Os-cal.segmentTitles[0]",
+    "Turn Touch iOS/Modes/Hue/Base.lproj/TTModeHueRandomOptions.xib:D65-yd-iZ4.segmentTitles[0]"
+  ],
+  "Disabling double tap allows you to use single taps in rapid succession (for example, changing volume) without triggering this double tap action. \n\nAdditionally, some single tap actions have a double tap action built in that will only work if this double-tap mode is disabled (for example, play/pause will go to the previous track on double tap).": [
+    "Turn Touch iOS/Views/Options/Base.lproj/TTModeDoubleOptions.xib:0Qj-jz-TCD.text"
+  ],
+  "Disconnected": [
+    "Application-owned status or selector label; translated only at rendering, never in state comparisons.",
+    "Turn Touch iOS/Views/Main/TTSettingsPopover.swift",
+    "Turn Touch iOS/Views/Main/TTSettingsPopover.swift"
+  ],
+  "Discovering services": [
+    "Application-owned status or selector label; translated only at rendering, never in state comparisons."
+  ],
+  "Discovering services…": [
+    "Application-owned display label"
+  ],
+  "Discovery complete. Found {0} devices.": [
+    "Turn Touch iOS/Modes/Kasa/TTModeKasaDiscovery.swift"
+  ],
+  "Discovery was cancelled": [
+    "Turn Touch iOS/Modes/Hue/API/HueBridgeDiscovery.swift"
+  ],
+  "Done": [
+    "Turn Touch iOS/Views/Action diamond/TTActionDiamondView.swift",
+    "Turn Touch iOS/Views/Actions/TTActionTitleView.swift",
+    "Turn Touch iOS/Views/Main/TTModeTitleView.swift",
+    "Turn Touch iOS/Views/Main/TTSettingsPopover.swift"
+  ],
+  "Double tap": [
+    "Application-owned status or selector label; translated only at rendering, never in state comparisons.",
+    "Turn Touch iOS/Views/Main/TTModeTab.swift",
+    "Turn Touch iOS/Modes/Hue/Base.lproj/TTModeHueSceneOptions.xib:BJi-uJ-ihJ.text",
+    "Turn Touch iOS/Modes/Hue/Base.lproj/TTModeHueSleepOptions.xib:XgR-3t-wco.text",
+    "Turn Touch iOS/Modes/Nanoleaf/Base.lproj/TTModeNanoleafSceneCustomOptions.xib:BJi-uJ-ihJ.text",
+    "Turn Touch iOS/Modes/Nanoleaf/Base.lproj/TTModeNanoleafSleepOptions.xib:XgR-3t-wco.text"
+  ],
+  "Double tap to go to the previous track": [
+    "Turn Touch iOS/Modes/Music/Base.lproj/TTModeMusicPlayPauseOptions.xib:bSa-8S-8UD.text"
+  ],
+  "Downward-facing dog pose": [
+    "Turn Touch iOS/Modes/Yoga/TTModeYoga.swift"
+  ],
+  "Each button can do multiple actions": [
+    "Turn Touch iOS/Views/Modal/TTFTUXView.swift"
+  ],
+  "Each button performs an action": [
+    "Turn Touch iOS/Views/Modal/TTFTUXView.swift"
+  ],
+  "Each of the four buttons has a single and a double tap action. By holding down a button for a half second, you switch into that button's app. Four apps ⨯ four buttons each = 16 buttons": [
+    "Turn Touch iOS/Views/Modal/Base.lproj/TTSwitchButtonModeViewController.xib:0TL-9X-rEb.text"
+  ],
+  "Each of the four buttons has three types of button presses: single tap, double tap, and hold. Each of the three  button presses runs different actions.": [
+    "Turn Touch iOS/Views/Modal/Base.lproj/TTSwitchButtonModeViewController.xib:wg9-uU-2mZ.text"
+  ],
+  "Early evening": [
+    "Turn Touch iOS/Modes/Hue/TTModeHue.swift"
+  ],
+  "Early evening 2": [
+    "Turn Touch iOS/Modes/Hue/TTModeHue.swift"
+  ],
+  "Effect": [
+    "Application-owned status or selector label; translated only at rendering, never in state comparisons."
+  ],
+  "Effect 2": [
+    "Turn Touch iOS/Modes/Nanoleaf/TTModeNanoleaf.swift"
+  ],
+  "Email": [
+    "Turn Touch iOS/Modes/Kasa/TTModeKasaConnected.swift",
+    "Turn Touch iOS/Modes/Kasa/TTModeKasaDeviceSwitchOptions.swift"
+  ],
+  "Enable double tap": [
+    "Turn Touch iOS/Views/Options/Base.lproj/TTModeDoubleOptions.xib:0uw-SL-RHg.text"
+  ],
+  "Enter API Key": [
+    "Turn Touch iOS/Modes/Govee/TTModeGoveeConnected.swift"
+  ],
+  "Enter TP-Link Credentials": [
+    "Turn Touch iOS/Modes/Kasa/TTModeKasaConnected.swift",
+    "Turn Touch iOS/Modes/Kasa/Base.lproj/TTModeKasaConnected.xib:cred-btn-01.normalTitle"
+  ],
+  "Enter TP-Link credentials...": [
+    "Turn Touch iOS/Modes/Kasa/TTModeKasaDeviceSwitchOptions.swift"
+  ],
+  "Enter an http:// or https:// address.": [
+    "Turn Touch iOS/Modes/Portable/TTMobileBrowser.swift"
+  ],
+  "Enter your Govee API key": [
+    "Turn Touch iOS/Modes/Govee/TTModeGoveeDeviceSwitchOptions.swift"
+  ],
+  "Enter your Govee API key (Govee Home App > Settings > My Profile > Apply for API Key)": [
+    "Turn Touch iOS/Modes/Govee/Base.lproj/TTModeGoveeConnect.xib:instr-lbl.text"
+  ],
+  "Enter your Govee API key (from Govee Home App > Settings > My Profile > Apply for API Key)": [
+    "Turn Touch iOS/Modes/Govee/TTModeGoveeConnected.swift"
+  ],
+  "Enter your TP-Link/Kasa cloud account credentials": [
+    "Turn Touch iOS/Modes/Kasa/TTModeKasaDeviceSwitchOptions.swift"
+  ],
+  "Enter your TP-Link/Kasa cloud account credentials for newer devices": [
+    "Turn Touch iOS/Modes/Kasa/TTModeKasaConnected.swift"
+  ],
+  "Error": [
+    "Turn Touch iOS/Modes/Spotify/TTModeSpotify.swift"
+  ],
+  "Error: Could not parse address": [
+    "Turn Touch iOS/Modes/Kasa/TTModeKasaDiscovery.swift"
+  ],
+  "Error: {0}": [
+    "Turn Touch iOS/Modes/Govee/TTModeGovee.swift"
+  ],
+  "Extended triangle pose": [
+    "Turn Touch iOS/Modes/Yoga/TTModeYoga.swift"
+  ],
+  "Failed to decode response: {0}": [
+    "Turn Touch iOS/Modes/Hue/API/HueAPIClient.swift"
+  ],
+  "Failed to encode request": [
+    "Turn Touch iOS/Modes/Govee/GoveeAPIClient.swift",
+    "Turn Touch iOS/Modes/Govee/GoveeAPIClient.swift"
+  ],
+  "Failed to parse response: {0}": [
+    "Turn Touch iOS/Modes/Govee/GoveeAPIClient.swift"
+  ],
+  "Fast forward": [
+    "Turn Touch iOS/Modes/Portable/TTPortableModes.swift"
+  ],
+  "Fetching Govee devices...": [
+    "Turn Touch iOS/Modes/Govee/TTModeGoveeConnecting.swift",
+    "Turn Touch iOS/Modes/Govee/TTModeGoveeDeviceSwitchOptions.swift",
+    "Turn Touch iOS/Modes/Govee/Base.lproj/TTModeGoveeConnecting.xib:n3K-Tv-sO5.text"
+  ],
+  "Fetching devices from Govee...": [
+    "Turn Touch iOS/Modes/Govee/TTModeGovee.swift"
+  ],
+  "Find your Nanoleaf": [
+    "Turn Touch iOS/Modes/Nanoleaf/Base.lproj/TTModeNanoleafConnect.xib:S8h-Mm-O7v.text"
+  ],
+  "Find your Phillips Hue": [
+    "Turn Touch iOS/Modes/Hue/Base.lproj/TTModeHueConnect.xib:S8h-Mm-O7v.text"
+  ],
+  "Firmware: v{0}": [
+    "Turn Touch iOS/Views/Main/TTDeviceTitleView.swift"
+  ],
+  "Flip front/back": [
+    "Turn Touch iOS/Modes/Camera/TTModeCamera.swift"
+  ],
+  "Follow @samuelclay on Twitter": [
+    "Turn Touch iOS/Views/Modal/TTAboutViewController.swift"
+  ],
+  "Follow @turntouch on Twitter": [
+    "Turn Touch iOS/Views/Modal/TTAboutViewController.swift"
+  ],
+  "Forget this remote": [
+    "Turn Touch iOS/Views/Main/TTDeviceTitleView.swift"
+  ],
+  "Found {0} devices": [
+    "Turn Touch iOS/Modes/Govee/TTModeGovee.swift"
+  ],
+  "Four apps × four buttons per app\n= sixteen different actions": [
+    "Turn Touch iOS/Views/Modal/TTFTUXView.swift"
+  ],
+  "Full screen": [
+    "Turn Touch iOS/Modes/Portable/TTPortableModes.swift"
+  ],
+  "Govee": [
+    "Turn Touch iOS/Modes/Govee/TTModeGovee.swift"
+  ],
+  "Govee API Key": [
+    "Turn Touch iOS/Modes/Govee/TTModeGoveeConnected.swift",
+    "Turn Touch iOS/Modes/Govee/TTModeGoveeDeviceSwitchOptions.swift",
+    "Turn Touch iOS/Modes/Govee/Base.lproj/TTModeGoveeConnect.xib:api-key-fld.placeholder"
+  ],
+  "HELP": [
+    "Turn Touch iOS/Views/Main/TTSettingsPopover.swift"
+  ],
+  "HTTP error {0}: {1}": [
+    "Turn Touch iOS/Modes/Hue/API/HueAPIClient.swift"
+  ],
+  "Help a developer out": [
+    "Settings.bundle:Title"
+  ],
+  "Here's how it works": [
+    "Turn Touch iOS/Views/Modal/TTFTUXView.swift"
+  ],
+  "Hit 1 time": [
+    "Turn Touch iOS/Modes/Custom/TTModeCustomURLOptions.swift",
+    "Turn Touch iOS/Modes/Custom/TTModeCustomURLOptions.swift"
+  ],
+  "Hit a website on command": [
+    "Turn Touch iOS/Modes/Custom/TTModeCustom.swift"
+  ],
+  "Hit {0} times": [
+    "Turn Touch iOS/Modes/Custom/TTModeCustomURLOptions.swift",
+    "Turn Touch iOS/Modes/Custom/TTModeCustomURLOptions.swift"
+  ],
+  "Hold a button to switch between four apps": [
+    "Turn Touch iOS/Views/Main/TTSettingsPopover.swift",
+    "Turn Touch iOS/Views/Main/TTSettingsPopover.swift"
+  ],
+  "Hold the power button for 5-7 seconds until the LEDs start flashing": [
+    "Turn Touch iOS/Modes/Nanoleaf/Base.lproj/TTModeNanoleafPushlink.xib:lbl-instruction.text"
+  ],
+  "Home": [
+    "Turn Touch iOS/Views/Modal/TTGeofencingViewController.swift",
+    "Turn Touch iOS/Modes/HomeKit/Base.lproj/TTModeHomeKitTriggerSceneOptions.xib:h9G-vU-By8.text"
+  ],
+  "HomeKit": [
+    "Turn Touch iOS/Modes/HomeKit/TTModeHomeKit.swift"
+  ],
+  "How it works": [
+    "Turn Touch iOS/Views/Main/TTSettingsPopover.swift",
+    "Turn Touch iOS/Views/Modal/TTFTUXViewController.swift"
+  ],
+  "Hue": [
+    "Turn Touch iOS/Modes/Hue/TTModeHue.swift"
+  ],
+  "IFTTT": [
+    "Turn Touch iOS/Modes/Ifttt/TTModeIfttt.swift"
+  ],
+  "If this is off, tapping buttons will select them for editing. If on, tapping buttons will perform their actions, just like on a Turn Touch remote, and a Change button will enable editing.": [
+    "Turn Touch iOS/Views/Modal/Base.lproj/TTSwitchButtonModeViewController.xib:0Kv-gp-YFo.text"
+  ],
+  "Immediate": [
+    "Turn Touch iOS/Modes/Hue/TTModeHueSleepOptions.swift",
+    "Turn Touch iOS/Modes/Nanoleaf/TTModeNanoleafSleepOptions.swift"
+  ],
+  "In order to have your remote automatically connect, please open this app's settings and set location access to 'Always'.": [
+    "Turn Touch iOS/AppDelegate.swift"
+  ],
+  "Invalid API key": [
+    "Application-owned status or selector label; translated only at rendering, never in state comparisons."
+  ],
+  "Invalid Hue Bridge URL": [
+    "Turn Touch iOS/Modes/Hue/API/HueAPIClient.swift"
+  ],
+  "Invalid URL": [
+    "Turn Touch iOS/Modes/Govee/GoveeAPIClient.swift",
+    "Turn Touch iOS/Modes/Govee/GoveeAPIClient.swift",
+    "Turn Touch iOS/Modes/Govee/GoveeAPIClient.swift"
+  ],
+  "Invalid response": [
+    "Turn Touch iOS/Modes/Govee/GoveeAPIClient.swift"
+  ],
+  "Invalid response from Hue Bridge": [
+    "Turn Touch iOS/Modes/Hue/API/HueAPIClient.swift"
+  ],
+  "Invalid response from bridge": [
+    "Turn Touch iOS/Modes/Hue/API/HueBridgeAuthenticator.swift"
+  ],
+  "Invalid response from discovery service": [
+    "Turn Touch iOS/Modes/Hue/API/HueBridgeDiscovery.swift"
+  ],
+  "Jump to volume": [
+    "Turn Touch iOS/Modes/Bose/TTModeBose.swift",
+    "Turn Touch iOS/Modes/Music/TTModeMusic.swift",
+    "Turn Touch iOS/Modes/Phone/TTModePhone.swift",
+    "Turn Touch iOS/Modes/Sonos/TTModeSonos.swift",
+    "Turn Touch iOS/Modes/Spotify/TTModeSpotify.swift"
+  ],
+  "KLAP socket ERROR: {0}": [
+    "Turn Touch iOS/Modes/Kasa/TTModeKasaDiscovery.swift"
+  ],
+  "KLAP socket ready (port {0})": [
+    "Turn Touch iOS/Modes/Kasa/TTModeKasaDiscovery.swift"
+  ],
+  "Language": [
+    "Turn Touch iOS/TTLocalization.swift",
+    "Turn Touch iOS/Views/Main/TTSettingsPopover.swift",
+    "Turn Touch iOS/Views/Main/TTSettingsPopover.swift"
+  ],
+  "Late evening": [
+    "Turn Touch iOS/Modes/Hue/TTModeHue.swift"
+  ],
+  "Late evening 2": [
+    "Turn Touch iOS/Modes/Hue/TTModeHue.swift"
+  ],
+  "Legacy socket ERROR: {0}": [
+    "Turn Touch iOS/Modes/Kasa/TTModeKasaDiscovery.swift"
+  ],
+  "Legacy socket ready (port {0})": [
+    "Turn Touch iOS/Modes/Kasa/TTModeKasaDiscovery.swift"
+  ],
+  "Less time": [
+    "Turn Touch iOS/Modes/Yoga/TTModeYoga.swift"
+  ],
+  "Light Panels 50:A1:5A": [
+    "Turn Touch iOS/Modes/Nanoleaf/Base.lproj/TTModeNanoleafPushlink.xib:lbl-device-name.text"
+  ],
+  "Light panels and effects": [
+    "Turn Touch iOS/Modes/Nanoleaf/TTModeNanoleaf.swift"
+  ],
+  "Lights and scenes": [
+    "Turn Touch iOS/Modes/Hue/TTModeHue.swift"
+  ],
+  "Lights off": [
+    "Turn Touch iOS/Modes/Hue/TTModeHue.swift"
+  ],
+  "Like changing the lights, playing music, or turning up the volume": [
+    "Turn Touch iOS/Views/Modal/TTFTUXView.swift"
+  ],
+  "Link button not pressed": [
+    "Turn Touch iOS/Modes/Hue/API/HueBridgeAuthenticator.swift"
+  ],
+  "Loading effects...": [
+    "Turn Touch iOS/Modes/Nanoleaf/TTModeNanoleaf.swift"
+  ],
+  "Loading scenes...": [
+    "Turn Touch iOS/Modes/Hue/TTModeHueConnected.swift"
+  ],
+  "Location is sparingly used to keep your remote always connected": [
+    "Info.plist:NSLocationAlwaysAndWhenInUseUsageDescription",
+    "Info.plist:NSLocationAlwaysUsageDescription",
+    "Info.plist:NSLocationWhenInUseUsageDescription"
+  ],
+  "Low lunge pose": [
+    "Turn Touch iOS/Modes/Yoga/TTModeYoga.swift"
+  ],
+  "Low lunge pose with two lines in title": [
+    "Turn Touch iOS/Modes/Yoga/Base.lproj/TTModeYogaViewController.xib:MI3-F5-jip.text"
+  ],
+  "Lower brightness": [
+    "Turn Touch iOS/Modes/Hue/TTModeHue.swift",
+    "Turn Touch iOS/Modes/Nanoleaf/TTModeNanoleaf.swift"
+  ],
+  "Lower saturation": [
+    "Turn Touch iOS/Modes/Hue/TTModeHue.swift"
+  ],
+  "Menu": [
+    "Turn Touch iOS/Modes/Portable/TTPortableModes.swift",
+    "Turn Touch iOS/Modes/Portable/TTPortableModes.swift"
+  ],
+  "Midnight oil": [
+    "Turn Touch iOS/Modes/Hue/TTModeHue.swift"
+  ],
+  "Midnight oil 2": [
+    "Turn Touch iOS/Modes/Hue/TTModeHue.swift"
+  ],
+  "Mix": [
+    "Turn Touch iOS/Modes/Hue/Base.lproj/TTModeHueRandomOptions.xib:1rZ-au-AQB.segmentTitles[1]",
+    "Turn Touch iOS/Modes/Hue/Base.lproj/TTModeHueRandomOptions.xib:1x2-Os-cal.segmentTitles[1]",
+    "Turn Touch iOS/Modes/Hue/Base.lproj/TTModeHueRandomOptions.xib:9nB-i3-nT8.segmentTitles[1]",
+    "Turn Touch iOS/Modes/Hue/Base.lproj/TTModeHueRandomOptions.xib:D65-yd-iZ4.segmentTitles[1]",
+    "Turn Touch iOS/Modes/Hue/Base.lproj/TTModeHueRandomOptions.xib:Spe-eg-tMF.segmentTitles[1]",
+    "Turn Touch iOS/Modes/Hue/Base.lproj/TTModeHueRandomOptions.xib:psd-3I-cgD.segmentTitles[1]"
+  ],
+  "More time": [
+    "Turn Touch iOS/Modes/Yoga/TTModeYoga.swift"
+  ],
+  "Morning": [
+    "Turn Touch iOS/Modes/Hue/TTModeHue.swift"
+  ],
+  "Morning 2": [
+    "Turn Touch iOS/Modes/Hue/TTModeHue.swift"
+  ],
+  "Music": [
+    "Turn Touch iOS/Modes/Music/TTModeMusic.swift"
+  ],
+  "Mute": [
+    "Turn Touch iOS/Modes/Bose/TTModeBose.swift",
+    "Turn Touch iOS/Modes/Phone/TTModePhone.swift",
+    "Turn Touch iOS/Modes/Sonos/TTModeSonos.swift",
+    "Turn Touch iOS/Modes/Spotify/TTModeSpotify.swift"
+  ],
+  "Mute music": [
+    "Turn Touch iOS/Modes/Music/TTModeMusic.swift"
+  ],
+  "Nanoleaf": [
+    "Turn Touch iOS/Modes/Nanoleaf/TTModeNanoleaf.swift",
+    "Turn Touch iOS/Modes/Nanoleaf/TTModeNanoleafConnected.swift"
+  ],
+  "Nanoleaf - X effects": [
+    "Turn Touch iOS/Modes/Nanoleaf/Base.lproj/TTModeNanoleafConnected.xib:2YS-VH-2GU.text"
+  ],
+  "Nearby": [
+    "Application-owned status or selector label; translated only at rendering, never in state comparisons."
+  ],
+  "Network error: {0}": [
+    "Turn Touch iOS/Modes/Govee/GoveeAPIClient.swift",
+    "Turn Touch iOS/Modes/Hue/API/HueAPIClient.swift",
+    "Turn Touch iOS/Modes/Hue/API/HueBridgeAuthenticator.swift",
+    "Turn Touch iOS/Modes/Hue/API/HueBridgeDiscovery.swift"
+  ],
+  "News": [
+    "Turn Touch iOS/Modes/Portable/TTPortableModes.swift"
+  ],
+  "NewsBlur": [
+    "Turn Touch iOS/Modes/Portable/TTMobileBrowser.swift",
+    "Turn Touch iOS/Modes/Portable/TTPortableModes.swift"
+  ],
+  "Next": [
+    "Turn Touch iOS/Modes/Yoga/TTModeYoga.swift",
+    "Turn Touch iOS/Views/Modal/Base.lproj/TTModalButton.xib:uzm-Wu-VJJ.text"
+  ],
+  "Next site": [
+    "Turn Touch iOS/Modes/Portable/TTPortableModes.swift"
+  ],
+  "Next slide": [
+    "Turn Touch iOS/Modes/Portable/TTPortableModes.swift"
+  ],
+  "Next story": [
+    "Turn Touch iOS/Modes/Portable/TTPortableModes.swift"
+  ],
+  "Next track": [
+    "Turn Touch iOS/Modes/Bose/TTModeBose.swift",
+    "Turn Touch iOS/Modes/Music/TTModeMusic.swift",
+    "Turn Touch iOS/Modes/Sonos/TTModeSonos.swift",
+    "Turn Touch iOS/Modes/Spotify/TTModeSpotify.swift"
+  ],
+  "No API key configured": [
+    "Turn Touch iOS/Modes/Govee/GoveeAPIClient.swift",
+    "Turn Touch iOS/Modes/Govee/GoveeAPIClient.swift",
+    "Turn Touch iOS/Modes/Govee/GoveeAPIClient.swift"
+  ],
+  "No Bose speakers found": [
+    "Turn Touch iOS/Modes/Bose/TTModeBoseConnected.swift",
+    "Turn Touch iOS/Modes/Bose/TTModeBoseDeviceSpeakerOptions.swift"
+  ],
+  "No Govee devices found": [
+    "Turn Touch iOS/Modes/Govee/TTModeGoveeConnected.swift",
+    "Turn Touch iOS/Modes/Govee/TTModeGoveeDeviceSwitchOptions.swift",
+    "Turn Touch iOS/Modes/Govee/Base.lproj/TTModeGoveeDeviceSwitchOptions.xib:xEe-HV-oGe.text"
+  ],
+  "No HomeKit rooms found": [
+    "Turn Touch iOS/Modes/HomeKit/Base.lproj/TTModeHomeKitTriggerSceneOptions.xib:m9o-1l-Fhd.text",
+    "Turn Touch iOS/Modes/HomeKit/Base.lproj/TTModeHomeKitTriggerSceneOptions.xib:pOR-ed-GcL.text"
+  ],
+  "No Hue Bridges found on the network": [
+    "Turn Touch iOS/Modes/Hue/API/HueBridgeDiscovery.swift"
+  ],
+  "No Kasa devices found": [
+    "Turn Touch iOS/Modes/Kasa/TTModeKasaConnected.swift",
+    "Turn Touch iOS/Modes/Kasa/TTModeKasaDeviceSwitchOptions.swift",
+    "Turn Touch iOS/Modes/Kasa/Base.lproj/TTModeKasaDeviceSwitchOptions.xib:xEe-HV-oGe.text"
+  ],
+  "No Nanoleaf devices found": [
+    "Application-owned status or selector label; translated only at rendering, never in state comparisons."
+  ],
+  "No URL specified": [
+    "Turn Touch iOS/Modes/Custom/TTModeCustom.swift",
+    "Turn Touch iOS/Modes/Custom/TTModeCustom.swift"
+  ],
+  "No WeMo devices found": [
+    "Turn Touch iOS/Modes/Wemo/Base.lproj/TTModeWemoDeviceSwitchOptions.xib:xEe-HV-oGe.text"
+  ],
+  "No Wemo devices found": [
+    "Turn Touch iOS/Modes/Wemo/TTModeWemoConnected.swift",
+    "Turn Touch iOS/Modes/Wemo/TTModeWemoDeviceSwitchOptions.swift"
+  ],
+  "No data received": [
+    "Turn Touch iOS/Modes/Govee/GoveeAPIClient.swift"
+  ],
+  "No network interfaces found": [
+    "Application-owned status or selector label; translated only at rendering, never in state comparisons."
+  ],
+  "No remotes could be found": [
+    "Turn Touch iOS/Views/Modal/TTPairingInfoViewController.swift"
+  ],
+  "No response data": [
+    "Turn Touch iOS/Modes/Govee/GoveeAPIClient.swift"
+  ],
+  "No scenes found...": [
+    "Turn Touch iOS/Modes/HomeKit/TTModeHomeKitTriggerSceneOptions.swift"
+  ],
+  "Not authenticated with Hue Bridge": [
+    "Turn Touch iOS/Modes/Hue/API/HueAPIClient.swift"
+  ],
+  "Not yet hit": [
+    "Turn Touch iOS/Modes/Custom/TTModeCustomURLOptions.swift",
+    "Turn Touch iOS/Modes/Custom/TTModeCustomURLOptions.swift",
+    "Turn Touch iOS/Modes/Custom/Base.lproj/TTModeCustomURLOptions.xib:2cd-53-LmY.text",
+    "Turn Touch iOS/Modes/Custom/Base.lproj/TTModeCustomURLOptions.xib:Btk-jh-LOr.text"
+  ],
+  "OK": [
+    "Turn Touch iOS/Modes/Spotify/TTModeSpotify.swift",
+    "Turn Touch iOS/Views/Main/TTSettingsPopover.swift"
+  ],
+  "OK / Next": [
+    "Turn Touch iOS/Modes/Portable/TTPortableModes.swift"
+  ],
+  "Only at turntouch.com": [
+    "Turn Touch iOS/Views/Modal/TTAboutViewController.swift"
+  ],
+  "Open": [
+    "Turn Touch iOS/Modes/Portable/TTMobileBrowser.swift",
+    "Turn Touch iOS/Modes/Portable/TTMobileBrowser.swift"
+  ],
+  "Open Settings": [
+    "Turn Touch iOS/AppDelegate.swift"
+  ],
+  "Open video": [
+    "Turn Touch iOS/Modes/Portable/TTMobileBrowser.swift"
+  ],
+  "Open website": [
+    "Turn Touch iOS/Modes/Portable/TTMobileBrowser.swift"
+  ],
+  "Open {0}": [
+    "Turn Touch iOS/Modes/Portable/TTMobileBrowser.swift"
+  ],
+  "PREFERENCES": [
+    "Turn Touch iOS/Views/Main/TTSettingsPopover.swift"
+  ],
+  "Pair remote": [
+    "Turn Touch iOS/Views/Modal/TTModalButton.swift"
+  ],
+  "Pair your Turn Touch": [
+    "Turn Touch iOS/Views/Main/TTSettingsPopover.swift"
+  ],
+  "Pairing a new remote": [
+    "Turn Touch iOS/Views/Modal/TTPairingViewController.swift"
+  ],
+  "Pairing your Turn Touch": [
+    "Turn Touch iOS/Views/Modal/TTPairingViewController.swift",
+    "Turn Touch iOS/Views/Modal/TTPairingViewController.swift",
+    "Turn Touch iOS/Views/Modal/TTPairingViewController.swift",
+    "Turn Touch iOS/Views/Modal/Base.lproj/TTPairingViewController.xib:lJr-fU-0wG.text"
+  ],
+  "Password": [
+    "Turn Touch iOS/Modes/Kasa/TTModeKasaConnected.swift",
+    "Turn Touch iOS/Modes/Kasa/TTModeKasaDeviceSwitchOptions.swift"
+  ],
+  "Pastels": [
+    "Turn Touch iOS/Modes/Hue/Base.lproj/TTModeHueRandomOptions.xib:Spe-eg-tMF.segmentTitles[0]",
+    "Turn Touch iOS/Modes/Hue/Base.lproj/TTModeHueRandomOptions.xib:psd-3I-cgD.segmentTitles[0]"
+  ],
+  "Pause": [
+    "Turn Touch iOS/Modes/Bose/TTModeBose.swift",
+    "Turn Touch iOS/Modes/Sonos/TTModeSonos.swift",
+    "Turn Touch iOS/Modes/Spotify/TTModeSpotify.swift"
+  ],
+  "Pause music": [
+    "Turn Touch iOS/Modes/Music/TTModeMusic.swift"
+  ],
+  "Philips Hue is rate-limiting requests. Please wait a moment and try again.": [
+    "Turn Touch iOS/Modes/Hue/API/HueBridgeDiscovery.swift"
+  ],
+  "Phone": [
+    "Turn Touch iOS/Modes/Phone/TTModePhone.swift"
+  ],
+  "Photo": [
+    "Turn Touch iOS/Modes/Camera/TTModeCameraViewController.swift"
+  ],
+  "Play": [
+    "Turn Touch iOS/Modes/Bose/TTModeBose.swift",
+    "Turn Touch iOS/Modes/Sonos/TTModeSonos.swift",
+    "Turn Touch iOS/Modes/Spotify/TTModeSpotify.swift"
+  ],
+  "Play music": [
+    "Turn Touch iOS/Modes/Music/TTModeMusic.swift"
+  ],
+  "Play presentation": [
+    "Turn Touch iOS/Modes/Portable/TTPortableModes.swift"
+  ],
+  "Play sound on app change": [
+    "Settings.bundle:Title"
+  ],
+  "Play/pause": [
+    "Turn Touch iOS/Modes/Bose/TTModeBose.swift",
+    "Turn Touch iOS/Modes/Music/TTModeMusic.swift",
+    "Turn Touch iOS/Modes/Portable/TTPortableModes.swift",
+    "Turn Touch iOS/Modes/Sonos/TTModeSonos.swift",
+    "Turn Touch iOS/Modes/Spotify/TTModeSpotify.swift"
+  ],
+  "Please give Turn Touch permission to use the camera. Go to Settings > Camera": [
+    "Turn Touch iOS/Modes/Camera/TTModeCameraViewController.swift"
+  ],
+  "Please select a Hue bridge": [
+    "Turn Touch iOS/Modes/Hue/TTModeHueBridge.swift",
+    "Turn Touch iOS/Modes/Hue/Base.lproj/TTModeHueBridge.xib:PyA-AU-hJU.text"
+  ],
+  "Plow pose": [
+    "Turn Touch iOS/Modes/Yoga/TTModeYoga.swift"
+  ],
+  "Practice yoga and movement": [
+    "Turn Touch iOS/Modes/Yoga/TTModeYoga.swift"
+  ],
+  "Presentation": [
+    "Application-owned display label",
+    "Turn Touch iOS/Modes/Portable/TTPortableModes.swift"
+  ],
+  "Press a button on your remote to wake it. If it is connected to another device, disconnect it there first.": [
+    "Turn Touch iOS/Views/Main/TTSettingsPopover.swift"
+  ],
+  "Press all four buttons for the HUD": [
+    "Turn Touch iOS/Views/Modal/TTFTUXView.swift"
+  ],
+  "Press all four buttons to connect": [
+    "Turn Touch iOS/Views/Modal/TTPairingViewController.swift"
+  ],
+  "Press all four buttons to pair": [
+    "Application-owned status or selector label; translated only at rendering, never in state comparisons."
+  ],
+  "Press and hold to change apps": [
+    "Turn Touch iOS/Views/Modal/TTFTUXView.swift"
+  ],
+  "Previous": [
+    "Turn Touch iOS/Modes/Yoga/TTModeYoga.swift"
+  ],
+  "Previous site": [
+    "Turn Touch iOS/Modes/Portable/TTPortableModes.swift"
+  ],
+  "Previous slide": [
+    "Turn Touch iOS/Modes/Portable/TTPortableModes.swift"
+  ],
+  "Previous story": [
+    "Turn Touch iOS/Modes/Portable/TTPortableModes.swift"
+  ],
+  "Previous track": [
+    "Turn Touch iOS/Modes/Bose/TTModeBose.swift",
+    "Turn Touch iOS/Modes/Music/TTModeMusic.swift",
+    "Turn Touch iOS/Modes/Sonos/TTModeSonos.swift",
+    "Turn Touch iOS/Modes/Spotify/TTModeSpotify.swift"
+  ],
+  "Pushlink button not pressed within 30 seconds": [
+    "Turn Touch iOS/Modes/Hue/TTModeHue.swift"
+  ],
+  "REMOTES": [
+    "Turn Touch iOS/Views/Main/TTSettingsPopover.swift"
+  ],
+  "Raise brightness": [
+    "Turn Touch iOS/Modes/Hue/TTModeHue.swift",
+    "Turn Touch iOS/Modes/Nanoleaf/TTModeNanoleaf.swift"
+  ],
+  "Raise saturation": [
+    "Turn Touch iOS/Modes/Hue/TTModeHue.swift"
+  ],
+  "Random": [
+    "Turn Touch iOS/Modes/Hue/TTModeHue.swift"
+  ],
+  "Random 2": [
+    "Turn Touch iOS/Modes/Hue/TTModeHue.swift"
+  ],
+  "Rate limit exceeded. Try again later.": [
+    "Turn Touch iOS/Modes/Govee/GoveeAPIClient.swift"
+  ],
+  "Rate this app": [
+    "Turn Touch iOS/Views/Modal/TTAboutViewController.swift"
+  ],
+  "Read your NewsBlur stories": [
+    "Turn Touch iOS/Modes/Portable/TTPortableModes.swift"
+  ],
+  "Refresh devices": [
+    "Turn Touch iOS/Modes/Govee/Base.lproj/TTModeGoveeConnected.xib:tzo-RQ-7oz.normalTitle"
+  ],
+  "Refresh devices...": [
+    "Turn Touch iOS/Modes/Govee/TTModeGoveeDeviceSwitchOptions.swift"
+  ],
+  "Reload scenes": [
+    "Turn Touch iOS/Modes/Hue/Base.lproj/TTModeHueConnected.xib:szy-7s-qNO.normalTitle"
+  ],
+  "Remove all and refresh...": [
+    "Turn Touch iOS/Modes/Govee/TTModeGoveeDeviceSwitchOptions.swift"
+  ],
+  "Remove all and search...": [
+    "Turn Touch iOS/Modes/Bose/TTModeBoseDeviceSpeakerOptions.swift",
+    "Turn Touch iOS/Modes/Kasa/TTModeKasaDeviceSwitchOptions.swift",
+    "Turn Touch iOS/Modes/Wemo/TTModeWemoDeviceSwitchOptions.swift"
+  ],
+  "Rename": [
+    "Turn Touch iOS/Views/Actions/TTActionTitleView.swift",
+    "Turn Touch iOS/Views/Main/TTDeviceTitleView.swift"
+  ],
+  "Rename action": [
+    "Turn Touch iOS/Views/Actions/TTActionTitleView.swift"
+  ],
+  "Rename remote": [
+    "Turn Touch iOS/Views/Main/TTDeviceTitleView.swift",
+    "Turn Touch iOS/Views/Main/TTDeviceTitleView.swift"
+  ],
+  "Replace this recipe...": [
+    "Turn Touch iOS/Modes/Ifttt/TTModeIftttTriggerActionOptions.swift"
+  ],
+  "Replay": [
+    "Turn Touch iOS/Modes/Camera/TTModeCamera.swift"
+  ],
+  "Reset to default": [
+    "Turn Touch iOS/Views/Actions/TTActionTitleView.swift"
+  ],
+  "Retake": [
+    "Turn Touch iOS/Modes/Camera/TTModeCamera.swift"
+  ],
+  "Review on the App Store": [
+    "Turn Touch iOS/Views/Modal/TTAboutViewController.swift"
+  ],
+  "Rewind": [
+    "Turn Touch iOS/Modes/Portable/TTPortableModes.swift"
+  ],
+  "Room": [
+    "Application-owned status or selector label; translated only at rendering, never in state comparisons.",
+    "Turn Touch iOS/Modes/Hue/Base.lproj/TTModeHueBrightnessOptions.xib:uRi-OS-oPJ.text",
+    "Turn Touch iOS/Modes/Hue/Base.lproj/TTModeHueCycleScenesOptions.xib:rTD-YQ-Ncs.text",
+    "Turn Touch iOS/Modes/Hue/Base.lproj/TTModeHueRandomOptions.xib:F2t-Yv-B15.text",
+    "Turn Touch iOS/Modes/Hue/Base.lproj/TTModeHueSceneOptions.xib:ubW-S7-Ycn.text",
+    "Turn Touch iOS/Modes/Hue/Base.lproj/TTModeHueSleepOptions.xib:uSj-Pe-mCl.text"
+  ],
+  "Room temperature": [
+    "Turn Touch iOS/Modes/Ifttt/Base.lproj/TTModeIftttConnected.xib:xUY-1P-NtR.text"
+  ],
+  "Run actions from the screen": [
+    "Turn Touch iOS/Views/Main/TTSettingsPopover.swift",
+    "Turn Touch iOS/Views/Main/TTSettingsPopover.swift"
+  ],
+  "Same": [
+    "Turn Touch iOS/Modes/Hue/Base.lproj/TTModeHueRandomOptions.xib:1rZ-au-AQB.segmentTitles[2]",
+    "Turn Touch iOS/Modes/Hue/Base.lproj/TTModeHueRandomOptions.xib:9nB-i3-nT8.segmentTitles[2]"
+  ],
+  "Saturation": [
+    "Turn Touch iOS/Modes/Hue/Base.lproj/TTModeHueRandomOptions.xib:3k2-7v-dKe.text",
+    "Turn Touch iOS/Modes/Hue/Base.lproj/TTModeHueRandomOptions.xib:jVk-FM-b82.text"
+  ],
+  "Save": [
+    "Turn Touch iOS/Modes/Govee/TTModeGoveeConnected.swift",
+    "Turn Touch iOS/Modes/Govee/TTModeGoveeDeviceSwitchOptions.swift",
+    "Turn Touch iOS/Modes/Kasa/TTModeKasaConnected.swift",
+    "Turn Touch iOS/Modes/Kasa/TTModeKasaDeviceSwitchOptions.swift"
+  ],
+  "Save photo": [
+    "Turn Touch iOS/Modes/Camera/TTModeCamera.swift",
+    "Turn Touch iOS/Modes/Camera/TTModeCamera.swift",
+    "Turn Touch iOS/Modes/Camera/TTModeCamera.swift"
+  ],
+  "Save video": [
+    "Turn Touch iOS/Modes/Camera/TTModeCamera.swift"
+  ],
+  "Scan for devices": [
+    "Turn Touch iOS/Modes/Bose/Base.lproj/TTModeBoseConnected.xib:DQV-FF-phP.normalTitle",
+    "Turn Touch iOS/Modes/Wemo/Base.lproj/TTModeWemoConnected.xib:tzo-RQ-7oz.normalTitle"
+  ],
+  "Scanning... {0} retries left, {1} found": [
+    "Turn Touch iOS/Modes/Kasa/TTModeKasaDiscovery.swift"
+  ],
+  "Scene": [
+    "Application-owned status or selector label; translated only at rendering, never in state comparisons.",
+    "Turn Touch iOS/Modes/HomeKit/Base.lproj/TTModeHomeKitTriggerSceneOptions.xib:CgV-Tp-T7G.text"
+  ],
+  "Scenes": [
+    "Turn Touch iOS/Modes/Hue/Base.lproj/TTModeHueCycleScenesOptions.xib:Rka-1Q-S05.text"
+  ],
+  "Scenes: {0} · Rooms: {1}": [
+    "Turn Touch iOS/Modes/HomeKit/TTModeHomeKitTriggerSceneOptions.swift"
+  ],
+  "Screen taps edit your buttons": [
+    "Turn Touch iOS/Views/Main/TTSettingsPopover.swift",
+    "Turn Touch iOS/Views/Main/TTSettingsPopover.swift"
+  ],
+  "Screen taps perform actions": [
+    "Turn Touch iOS/Views/Main/TTSettingsPopover.swift",
+    "Turn Touch iOS/Views/Main/TTSettingsPopover.swift"
+  ],
+  "Scroll down": [
+    "Turn Touch iOS/Modes/Portable/TTPortableModes.swift",
+    "Turn Touch iOS/Modes/Portable/TTPortableModes.swift"
+  ],
+  "Scroll up": [
+    "Turn Touch iOS/Modes/Portable/TTPortableModes.swift",
+    "Turn Touch iOS/Modes/Portable/TTPortableModes.swift"
+  ],
+  "ScrollUp": [
+    "Turn Touch iOS/Modes/Portable/TTPortableModes.swift"
+  ],
+  "Search for Kasa devices...": [
+    "Turn Touch iOS/Modes/Kasa/Base.lproj/TTModeKasaConnect.xib:5z8-dd-EfZ.normalTitle"
+  ],
+  "Search for Sonos speakers...": [
+    "Turn Touch iOS/Modes/Sonos/Base.lproj/TTModeSonosConnect.xib:5z8-dd-EfZ.normalTitle"
+  ],
+  "Search for Wemo devices...": [
+    "Turn Touch iOS/Modes/Wemo/Base.lproj/TTModeWemoConnect.xib:5z8-dd-EfZ.normalTitle"
+  ],
+  "Search for devices": [
+    "Turn Touch iOS/Modes/Kasa/Base.lproj/TTModeKasaConnected.xib:tzo-RQ-7oz.normalTitle"
+  ],
+  "Search for new devices...": [
+    "Turn Touch iOS/Modes/Bose/TTModeBoseDeviceSpeakerOptions.swift",
+    "Turn Touch iOS/Modes/Kasa/TTModeKasaDeviceSwitchOptions.swift",
+    "Turn Touch iOS/Modes/Wemo/TTModeWemoDeviceSwitchOptions.swift"
+  ],
+  "Searching for Bose speakers...": [
+    "Turn Touch iOS/Modes/Bose/TTModeBoseDeviceSpeakerOptions.swift"
+  ],
+  "Searching for Bose speakers....": [
+    "Turn Touch iOS/Modes/Bose/Base.lproj/TTModeBoseConnecting.xib:n3K-Tv-sO5.text"
+  ],
+  "Searching for Hue bridges...": [
+    "Turn Touch iOS/Modes/Hue/TTModeHueBridge.swift"
+  ],
+  "Searching for Hue...": [
+    "Turn Touch iOS/Modes/Hue/TTModeHueConnect.swift"
+  ],
+  "Searching for Kasa devices...": [
+    "Turn Touch iOS/Modes/Kasa/TTModeKasaDeviceSwitchOptions.swift",
+    "Turn Touch iOS/Modes/Kasa/Base.lproj/TTModeKasaConnecting.xib:n3K-Tv-sO5.text"
+  ],
+  "Searching for Nanoleaf...": [
+    "Turn Touch iOS/Modes/Nanoleaf/TTModeNanoleaf.swift",
+    "Turn Touch iOS/Modes/Nanoleaf/TTModeNanoleafConnect.swift"
+  ],
+  "Searching for Nest thermostats...": [
+    "Turn Touch iOS/Modes/Ifttt/Base.lproj/TTModeIftttConnecting.xib:uUg-Vi-poj.text"
+  ],
+  "Searching for Sonos speakers...": [
+    "Turn Touch iOS/Modes/Sonos/Base.lproj/TTModeSonosConnecting.xib:n3K-Tv-sO5.text"
+  ],
+  "Searching for Wemo devices...": [
+    "Turn Touch iOS/Modes/Wemo/TTModeWemoDeviceSwitchOptions.swift",
+    "Turn Touch iOS/Modes/Wemo/Base.lproj/TTModeWemoConnecting.xib:n3K-Tv-sO5.text"
+  ],
+  "Searching for a Hue bridge...": [
+    "Turn Touch iOS/Modes/Hue/TTModeHue.swift",
+    "Turn Touch iOS/Modes/Hue/Base.lproj/TTModeHueConnecting.xib:Yf6-NQ-hkT.text"
+  ],
+  "Searching for a Nanoleaf...": [
+    "Turn Touch iOS/Modes/Nanoleaf/Base.lproj/TTModeNanoleafConnecting.xib:Yf6-NQ-hkT.text"
+  ],
+  "Searching for homes...": [
+    "Turn Touch iOS/Modes/HomeKit/TTModeHomeKitTriggerSceneOptions.swift"
+  ],
+  "Searching for remotes...": [
+    "Turn Touch iOS/Views/Modal/TTPairingViewController.swift",
+    "Turn Touch iOS/Views/Modal/Base.lproj/TTPairingViewController.xib:ZTX-d8-wqR.text"
+  ],
+  "Seated forward bend": [
+    "Turn Touch iOS/Modes/Yoga/TTModeYoga.swift"
+  ],
+  "Sending broadcasts...": [
+    "Turn Touch iOS/Modes/Kasa/TTModeKasaDiscovery.swift"
+  ],
+  "Set up and manage connection": [
+    "Turn Touch iOS/Views/Main/TTSettingsPopover.swift"
+  ],
+  "Set {0}": [
+    "Turn Touch iOS/Models/TTMode.swift",
+    "Turn Touch iOS/Models/TTMode.swift"
+  ],
+  "Settings": [
+    "Turn Touch iOS/Views/Main/TTSettingsPopover.swift",
+    "Turn Touch iOS/Views/Main/TTTitleBarView.swift"
+  ],
+  "Setup Geofence": [
+    "Turn Touch iOS/Views/Modal/TTGeofencingViewController.swift"
+  ],
+  "Setup geofence": [
+    "Turn Touch iOS/Views/Main/TTSettingsPopover.swift"
+  ],
+  "Share usage stats": [
+    "Settings.bundle:Title"
+  ],
+  "Shift color left": [
+    "Turn Touch iOS/Modes/Hue/TTModeHue.swift"
+  ],
+  "Shift color right": [
+    "Turn Touch iOS/Modes/Hue/TTModeHue.swift"
+  ],
+  "Shoot photos and videos": [
+    "Turn Touch iOS/Modes/Camera/TTModeCamera.swift"
+  ],
+  "Show all apps": [
+    "Turn Touch iOS/Views/Main/TTSettingsPopover.swift"
+  ],
+  "Show fewer apps": [
+    "Turn Touch iOS/Views/Main/TTSettingsPopover.swift"
+  ],
+  "Show me how it works": [
+    "Turn Touch iOS/Views/Modal/TTModalButton.swift"
+  ],
+  "Single tap": [
+    "Application-owned status or selector label; translated only at rendering, never in state comparisons.",
+    "Turn Touch iOS/Views/Main/TTModeTab.swift",
+    "Turn Touch iOS/Modes/Hue/Base.lproj/TTModeHueSceneOptions.xib:2Eu-vA-Pmt.text",
+    "Turn Touch iOS/Modes/Hue/Base.lproj/TTModeHueSleepOptions.xib:FLT-Da-zeL.text",
+    "Turn Touch iOS/Modes/Nanoleaf/Base.lproj/TTModeNanoleafSceneCustomOptions.xib:2Eu-vA-Pmt.text",
+    "Turn Touch iOS/Modes/Nanoleaf/Base.lproj/TTModeNanoleafSleepOptions.xib:FLT-Da-zeL.text"
+  ],
+  "Single tap, double tap, and hold": [
+    "Turn Touch iOS/Views/Main/TTSettingsPopover.swift",
+    "Turn Touch iOS/Views/Main/TTSettingsPopover.swift"
+  ],
+  "Sleep": [
+    "Turn Touch iOS/Modes/Hue/TTModeHue.swift",
+    "Turn Touch iOS/Modes/Nanoleaf/TTModeNanoleaf.swift"
+  ],
+  "Sleep fast": [
+    "Turn Touch iOS/Modes/Hue/TTModeHue.swift",
+    "Turn Touch iOS/Modes/Nanoleaf/TTModeNanoleaf.swift"
+  ],
+  "Smart lights and devices": [
+    "Turn Touch iOS/Modes/Govee/TTModeGovee.swift"
+  ],
+  "Smart plugs and switches": [
+    "Turn Touch iOS/Modes/Kasa/TTModeKasa.swift"
+  ],
+  "Smart power meter and outlet": [
+    "Turn Touch iOS/Modes/Wemo/TTModeWemo.swift"
+  ],
+  "Sonos": [
+    "Turn Touch iOS/Modes/Sonos/TTModeSonos.swift"
+  ],
+  "Sounds & Vibration": [
+    "Settings.bundle:Title"
+  ],
+  "Sounds, vibration & privacy": [
+    "Turn Touch iOS/Views/Main/TTSettingsPopover.swift"
+  ],
+  "Speakers": [
+    "Turn Touch iOS/Modes/Sonos/Base.lproj/TTModeSonosConnected.xib:9BV-EW-maG.text"
+  ],
+  "Spotify": [
+    "Turn Touch iOS/Modes/Spotify/TTModeSpotify.swift"
+  ],
+  "Starting discovery...": [
+    "Turn Touch iOS/Modes/Kasa/TTModeKasaConnecting.swift"
+  ],
+  "Strong": [
+    "Turn Touch iOS/Modes/Hue/Base.lproj/TTModeHueRandomOptions.xib:Spe-eg-tMF.segmentTitles[2]",
+    "Turn Touch iOS/Modes/Hue/Base.lproj/TTModeHueRandomOptions.xib:psd-3I-cgD.segmentTitles[2]"
+  ],
+  "Subnet: {0}": [
+    "Turn Touch iOS/Modes/Kasa/TTModeKasaDiscovery.swift"
+  ],
+  "Switch button mode": [
+    "Turn Touch iOS/Views/Modal/TTSwitchButtonModeViewController.swift"
+  ],
+  "Switch flash": [
+    "Turn Touch iOS/Modes/Camera/TTModeCamera.swift"
+  ],
+  "Switch photo/video": [
+    "Turn Touch iOS/Modes/Camera/TTModeCamera.swift"
+  ],
+  "Switch to another bridge": [
+    "Turn Touch iOS/Modes/Hue/Base.lproj/TTModeHueConnected.xib:K3R-sB-HiJ.normalTitle"
+  ],
+  "Switch to another device": [
+    "Turn Touch iOS/Modes/Nanoleaf/Base.lproj/TTModeNanoleafConnected.xib:K3R-sB-HiJ.normalTitle"
+  ],
+  "System-level controls": [
+    "Turn Touch iOS/Modes/Phone/TTModePhone.swift"
+  ],
+  "TP-Link Credentials": [
+    "Turn Touch iOS/Modes/Kasa/TTModeKasaConnected.swift",
+    "Turn Touch iOS/Modes/Kasa/TTModeKasaDeviceSwitchOptions.swift"
+  ],
+  "TP-Link Kasa": [
+    "Turn Touch iOS/Modes/Kasa/TTModeKasa.swift"
+  ],
+  "Take photo": [
+    "Turn Touch iOS/Modes/Camera/TTModeCamera.swift"
+  ],
+  "Temperature set to": [
+    "Turn Touch iOS/Modes/Ifttt/Base.lproj/TTModeIftttConnected.xib:wv1-2k-arM.text"
+  ],
+  "That worked perfectly": [
+    "Turn Touch iOS/Views/Modal/TTPairingInfoViewController.swift"
+  ],
+  "That's all there is to it": [
+    "Turn Touch iOS/Views/Modal/TTModalButton.swift"
+  ],
+  "The Heads-Up Display (HUD) shows what each button does and gives you access to even more actions and apps": [
+    "Turn Touch iOS/Views/Modal/TTFTUXView.swift"
+  ],
+  "The Turn Touch camera app saves photos to your photo library": [
+    "Info.plist:NSPhotoLibraryUsageDescription"
+  ],
+  "The Turn Touch camera app uses the camera to take photos": [
+    "Info.plist:NSCameraUsageDescription"
+  ],
+  "The Turn Touch camera app uses the microphone when recording video": [
+    "Info.plist:NSMicrophoneUsageDescription"
+  ],
+  "The Turn Touch music app uses your library to control playback": [
+    "Info.plist:NSAppleMusicUsageDescription"
+  ],
+  "The app is not authorized to use Bluetooth Low Energy.": [
+    "Turn Touch iOS/Bluetooth/TTBluetoothMonitor.swift"
+  ],
+  "The asana emphasizes alignment of the head, spine and hips.": [
+    "Turn Touch iOS/Modes/Yoga/TTModeYoga.swift"
+  ],
+  "The name comes from the Sanskrit words vriksa, meaning \"tree\", and asana, meaning \"pose\".": [
+    "Turn Touch iOS/Modes/Yoga/TTModeYoga.swift"
+  ],
+  "The platform/hardware doesn't support Bluetooth Low Energy.": [
+    "Turn Touch iOS/Bluetooth/TTBluetoothMonitor.swift"
+  ],
+  "The word \"Trikonasana\" comes from the Sanskrit words \"tri\", meaning \"three\", \"kona\", meaning \"angle\", and \"asana\", meaning \"pose\".": [
+    "Turn Touch iOS/Modes/Yoga/TTModeYoga.swift"
+  ],
+  "There are batch actions and double-tap actions, all configurable in this app": [
+    "Turn Touch iOS/Views/Modal/TTFTUXView.swift"
+  ],
+  "There are two button modes you can use with your Turn Touch.": [
+    "Turn Touch iOS/Views/Modal/Base.lproj/TTSwitchButtonModeViewController.xib:dgu-WI-Aeh.text"
+  ],
+  "Thermostat": [
+    "Turn Touch iOS/Modes/Ifttt/Base.lproj/TTModeIftttConnected.xib:bd1-fL-FoJ.text"
+  ],
+  "This device doesn't support Bluetooth Low Energy.": [
+    "Turn Touch iOS/Views/Modal/TTPairingInfoViewController.swift"
+  ],
+  "To improve connection reliability, choose where your Turn Touch will live": [
+    "Turn Touch iOS/Views/Modal/Base.lproj/TTGeofencingViewController.xib:lcq-QE-utz.text"
+  ],
+  "Toggle device": [
+    "Turn Touch iOS/Modes/Govee/TTModeGovee.swift",
+    "Turn Touch iOS/Modes/Kasa/TTModeKasa.swift",
+    "Turn Touch iOS/Modes/Wemo/TTModeWemo.swift"
+  ],
+  "Toggle on/off": [
+    "Turn Touch iOS/Modes/Nanoleaf/TTModeNanoleaf.swift"
+  ],
+  "Toggle slides": [
+    "Turn Touch iOS/Modes/Portable/TTPortableModes.swift"
+  ],
+  "Tree pose": [
+    "Turn Touch iOS/Modes/Yoga/TTModeYoga.swift"
+  ],
+  "Trigger action": [
+    "Turn Touch iOS/Modes/Ifttt/TTModeIfttt.swift"
+  ],
+  "Trigger effect": [
+    "Turn Touch iOS/Modes/Nanoleaf/TTModeNanoleaf.swift"
+  ],
+  "Trigger scene": [
+    "Turn Touch iOS/Modes/HomeKit/TTModeHomeKit.swift",
+    "Turn Touch iOS/Modes/HomeKit/TTModeHomeKit.swift",
+    "Turn Touch iOS/Modes/Hue/TTModeHue.swift"
+  ],
+  "Try again": [
+    "Turn Touch iOS/Views/Modal/TTModalButton.swift"
+  ],
+  "Turn Touch": [
+    "Store title; maximum=30 characters",
+    "Turn Touch iOS/Views/Main/TTSettingsPopover.swift"
+  ],
+  "Turn Touch communicates with devices supported with Apple HomeKit": [
+    "Info.plist:NSHomeKitUsageDescription"
+  ],
+  "Turn Touch discovers and controls smart home devices on your local network": [
+    "Info.plist:NSLocalNetworkUsageDescription"
+  ],
+  "Turn Touch for iOS · {0}\nOriginal design and artwork © Turn Touch": [
+    "Turn Touch iOS/Views/Main/TTSettingsPopover.swift"
+  ],
+  "Turn Touch iOS App": [
+    "Settings.bundle:Title"
+  ],
+  "Turn Touch is not authorized to use Bluetooth Low Energy.": [
+    "Turn Touch iOS/Views/Modal/TTPairingInfoViewController.swift"
+  ],
+  "Turn Touch uses Bluetooth to connect to your remotes": [
+    "Info.plist:NSBluetoothAlwaysUsageDescription",
+    "Info.plist:NSBluetoothPeripheralUsageDescription"
+  ],
+  "Turn off": [
+    "Turn Touch iOS/Modes/Govee/TTModeGovee.swift",
+    "Turn Touch iOS/Modes/Kasa/TTModeKasa.swift",
+    "Turn Touch iOS/Modes/Nanoleaf/TTModeNanoleaf.swift",
+    "Turn Touch iOS/Modes/Wemo/TTModeWemo.swift"
+  ],
+  "Turn on": [
+    "Turn Touch iOS/Modes/Govee/TTModeGovee.swift",
+    "Turn Touch iOS/Modes/Kasa/TTModeKasa.swift",
+    "Turn Touch iOS/Modes/Nanoleaf/TTModeNanoleaf.swift",
+    "Turn Touch iOS/Modes/Wemo/TTModeWemo.swift"
+  ],
+  "URL": [
+    "Turn Touch iOS/Modes/Custom/Base.lproj/TTModeCustomURLOptions.xib:8Gh-Bt-PUL.text",
+    "Turn Touch iOS/Modes/Custom/Base.lproj/TTModeCustomURLOptions.xib:vbm-la-ute.text"
+  ],
+  "Uh Oh...": [
+    "Turn Touch iOS/Views/Modal/TTPairingInfoViewController.swift"
+  ],
+  "Unknown Device": [
+    "Turn Touch iOS/Modes/Kasa/TTModeKasaDeviceSwitchOptions.swift"
+  ],
+  "Unknown error": [
+    "Turn Touch iOS/Modes/Govee/GoveeAPIClient.swift",
+    "Turn Touch iOS/Modes/Govee/GoveeAPIClient.swift",
+    "Turn Touch iOS/Modes/Hue/API/HueAPIClient.swift",
+    "Turn Touch iOS/Modes/Hue/API/HueBridgeAuthenticator.swift"
+  ],
+  "Unnamed": [
+    "Turn Touch iOS/Modes/Wemo/TTModeWemo.swift"
+  ],
+  "Update API Key": [
+    "Turn Touch iOS/Modes/Govee/TTModeGoveeConnected.swift",
+    "Turn Touch iOS/Modes/Govee/Base.lproj/TTModeGoveeConnected.xib:api-btn-01.normalTitle"
+  ],
+  "Update TP-Link Credentials": [
+    "Turn Touch iOS/Modes/Kasa/TTModeKasaConnected.swift"
+  ],
+  "Upgrade to v{0}": [
+    "Turn Touch iOS/Views/Main/TTDeviceTitleView.swift"
+  ],
+  "Uttanasana pose with clasped hands": [
+    "Turn Touch iOS/Modes/Yoga/TTModeYoga.swift"
+  ],
+  "Vajra pose": [
+    "Turn Touch iOS/Modes/Yoga/TTModeYoga.swift"
+  ],
+  "Version": [
+    "Settings.bundle:Title"
+  ],
+  "Vibrate on app change": [
+    "Settings.bundle:Title"
+  ],
+  "Vibrate on button press": [
+    "Settings.bundle:Title"
+  ],
+  "Video": [
+    "Application-owned display label",
+    "Turn Touch iOS/Modes/Camera/TTModeCameraViewController.swift",
+    "Turn Touch iOS/Modes/Portable/TTPortableModes.swift",
+    "Turn Touch iOS/Modes/Portable/TTPortableModes.swift"
+  ],
+  "Volume down": [
+    "Turn Touch iOS/Modes/Bose/TTModeBose.swift",
+    "Turn Touch iOS/Modes/Music/TTModeMusic.swift",
+    "Turn Touch iOS/Modes/Phone/TTModePhone.swift",
+    "Turn Touch iOS/Modes/Portable/TTPortableModes.swift",
+    "Turn Touch iOS/Modes/Portable/TTPortableModes.swift",
+    "Turn Touch iOS/Modes/Sonos/TTModeSonos.swift",
+    "Turn Touch iOS/Modes/Spotify/TTModeSpotify.swift"
+  ],
+  "Volume up": [
+    "Turn Touch iOS/Modes/Bose/TTModeBose.swift",
+    "Turn Touch iOS/Modes/Music/TTModeMusic.swift",
+    "Turn Touch iOS/Modes/Phone/TTModePhone.swift",
+    "Turn Touch iOS/Modes/Portable/TTPortableModes.swift",
+    "Turn Touch iOS/Modes/Portable/TTPortableModes.swift",
+    "Turn Touch iOS/Modes/Sonos/TTModeSonos.swift",
+    "Turn Touch iOS/Modes/Spotify/TTModeSpotify.swift"
+  ],
+  "Wake up on time to music": [
+    "Turn Touch iOS/Modes/Alarm Clock/TTModeAlarmClock.swift"
+  ],
+  "Warrioir I pose": [
+    "Turn Touch iOS/Modes/Yoga/TTModeYoga.swift"
+  ],
+  "Warrior II pose": [
+    "Turn Touch iOS/Modes/Yoga/TTModeYoga.swift"
+  ],
+  "Web": [
+    "Application-owned display label",
+    "Turn Touch iOS/Modes/Portable/TTPortableModes.swift"
+  ],
+  "Welcome to Turn Touch": [
+    "Turn Touch iOS/TTLocalization.swift",
+    "Turn Touch iOS/Views/Modal/TTPairingInfoViewController.swift",
+    "Turn Touch iOS/Views/Modal/Base.lproj/TTPairingInfoViewController.xib:62h-DM-WNF.text"
+  ],
+  "Wemo": [
+    "Turn Touch iOS/Modes/Wemo/TTModeWemo.swift"
+  ],
+  "Wemo device ({0})": [
+    "Turn Touch iOS/Modes/Wemo/TTModeWemoDevice.swift"
+  ],
+  "Wooden remote control": [
+    "Store subtitle; maximum=30 characters"
+  ],
+  "X Govee devices found": [
+    "Turn Touch iOS/Modes/Govee/Base.lproj/TTModeGoveeConnected.xib:Neq-Bx-RqE.text"
+  ],
+  "X Kasa devices found": [
+    "Turn Touch iOS/Modes/Kasa/Base.lproj/TTModeKasaConnected.xib:Neq-Bx-RqE.text"
+  ],
+  "X rooms, Y lights, Z scenes": [
+    "Turn Touch iOS/Modes/Hue/Base.lproj/TTModeHueConnected.xib:2YS-VH-2GU.text"
+  ],
+  "Yoga": [
+    "Turn Touch iOS/Modes/Yoga/TTModeYoga.swift"
+  ],
+  "You can change this anytime in Settings. Language changes apply the next time you launch Turn Touch.": [
+    "Turn Touch iOS/TTLocalization.swift"
+  ],
+  "Your favorite actions, one touch away": [
+    "Store screenshot-caption; maximum=100 characters"
+  ],
+  "Your home at your command.": [
+    "Turn Touch iOS/Modes/HomeKit/TTModeHomeKit.swift"
+  ],
+  "Your remote has been paired": [
+    "Turn Touch iOS/Views/Modal/TTPairingInfoViewController.swift"
+  ],
+  "Your remote has four buttons": [
+    "Turn Touch iOS/Views/Modal/TTFTUXView.swift"
+  ],
+  "connected": [
+    "Turn Touch iOS/Models/TTDevice.swift"
+  ],
+  "connecting": [
+    "Turn Touch iOS/Models/TTDevice.swift"
+  ],
+  "disconnected": [
+    "Turn Touch iOS/Models/TTDevice.swift"
+  ],
+  "double": [
+    "Application-owned display label"
+  ],
+  "east": [
+    "Application-owned display label"
+  ],
+  "hold": [
+    "Application-owned display label"
+  ],
+  "https://": [
+    "Turn Touch iOS/Modes/Custom/Base.lproj/TTModeCustomURLOptions.xib:OyF-ny-O37.placeholder",
+    "Turn Touch iOS/Modes/Custom/Base.lproj/TTModeCustomURLOptions.xib:UjG-4t-jS5.placeholder"
+  ],
+  "north": [
+    "Application-owned display label"
+  ],
+  "pairing": [
+    "Turn Touch iOS/Models/TTDevice.swift"
+  ],
+  "searching": [
+    "Turn Touch iOS/Models/TTDevice.swift"
+  ],
+  "single": [
+    "Application-owned display label"
+  ],
+  "south": [
+    "Application-owned display label"
+  ],
+  "west": [
+    "Application-owned display label"
+  ],
+  "{0} Govee devices found": [
+    "Turn Touch iOS/Modes/Govee/TTModeGoveeConnected.swift"
+  ],
+  "{0} Kasa devices found": [
+    "Turn Touch iOS/Modes/Kasa/TTModeKasaConnected.swift"
+  ],
+  "{0} devices": [
+    "Turn Touch iOS/Modes/Govee/TTModeGovee.swift",
+    "Turn Touch iOS/Modes/Kasa/TTModeKasa.swift"
+  ],
+  "{0} effects": [
+    "Turn Touch iOS/Modes/Nanoleaf/TTModeNanoleafConnected.swift"
+  ],
+  "{0} lights": [
+    "Turn Touch iOS/Modes/Hue/TTModeHueConnected.swift"
+  ],
+  "{0} minutes": [
+    "Turn Touch iOS/Modes/Hue/TTModeHueSleepOptions.swift",
+    "Turn Touch iOS/Modes/Nanoleaf/TTModeNanoleafSleepOptions.swift"
+  ],
+  "{0} rooms": [
+    "Turn Touch iOS/Modes/Hue/TTModeHueConnected.swift"
+  ],
+  "{0} scenes": [
+    "Turn Touch iOS/Modes/Hue/TTModeHueConnected.swift"
+  ],
+  "{0} seconds": [
+    "Turn Touch iOS/Modes/Hue/TTModeHueSleepOptions.swift",
+    "Turn Touch iOS/Modes/Nanoleaf/TTModeNanoleafSleepOptions.swift"
+  ],
+  "— Charlotte Perkins Gilman, 1903": [
+    "Turn Touch iOS/Views/Modal/Base.lproj/TTAboutViewController.xib:Hdy-58-24f.text"
+  ],
+  "“The home is a human institution. All human institutions are open to improvement.” ": [
+    "Turn Touch iOS/Views/Modal/Base.lproj/TTAboutViewController.xib:oCt-G2-aj8.text"
+  ]
+}
