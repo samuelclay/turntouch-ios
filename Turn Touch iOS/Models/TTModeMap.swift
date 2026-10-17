@@ -72,6 +72,7 @@ class TTModeMap: NSObject {
             "TTModeCustom",
             "TTModeIfttt",
             "TTModeHomeKit",
+            "TTModeHomeAssistant",
             "TTModeWeb",
             "TTModeNews",
             "TTModeVideo",

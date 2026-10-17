@@ -71,6 +71,7 @@
 	<string>Turn Touch communicates with devices supported with Apple HomeKit</string>
 	<key>NSBonjourServices</key>
 	<array>
+		<string>_home-assistant._tcp</string>
 		<string>_nanoleafapi._tcp</string>
 	</array>
 	<key>NSLocalNetworkUsageDescription</key>

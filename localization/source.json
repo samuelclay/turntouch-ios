@@ -82,8 +82,29 @@
     "Turn Touch iOS/Views/Main/TTSettingsPopover.swift",
     "Turn Touch iOS/Views/Modal/TTAboutViewController.swift"
   ],
+  "Access token": [
+    "Turn Touch iOS/Modes/HomeAssistant/TTModeHomeAssistant.swift"
+  ],
+  "Action data (optional JSON)": [
+    "Turn Touch iOS/Modes/HomeAssistant/TTModeHomeAssistant.swift",
+    "Turn Touch iOS/Modes/HomeAssistant/TTModeHomeAssistant.swift",
+    "Turn Touch iOS/Modes/HomeAssistant/TTModeHomeAssistant.swift",
+    "Turn Touch iOS/Modes/HomeAssistant/TTModeHomeAssistant.swift"
+  ],
+  "Action data must be a JSON object, for example {\"brightness_pct\": 50}.": [
+    "Home Assistant shared Objective-C client"
+  ],
+  "Action settings": [
+    "Turn Touch iOS/Modes/HomeAssistant/TTModeHomeAssistant.swift",
+    "Turn Touch iOS/Modes/HomeAssistant/TTModeHomeAssistant.swift",
+    "Turn Touch iOS/Modes/HomeAssistant/TTModeHomeAssistant.swift",
+    "Turn Touch iOS/Modes/HomeAssistant/TTModeHomeAssistant.swift"
+  ],
   "Actions: {0}": [
     "Turn Touch iOS/Modes/HomeKit/TTModeHomeKitTriggerSceneOptions.swift"
+  ],
+  "Activate scene": [
+    "Home Assistant shared Objective-C client"
   ],
   "Add a new remote": [
     "Turn Touch iOS/Views/Main/TTSettingsPopover.swift"
@@ -91,6 +112,9 @@
   "Add new action": [
     "Turn Touch iOS/Views/Batch actions/TTAddActionButtonView.swift",
     "Turn Touch iOS/Views/Batch actions/TTAddActionButtonView.swift"
+  ],
+  "Add the required action data field: ": [
+    "Turn Touch iOS/Modes/HomeAssistant/TTModeHomeAssistant.swift"
   ],
   "Address": [
     "Turn Touch iOS/Modes/Portable/TTMobileBrowser.swift"
@@ -100,6 +124,9 @@
   ],
   "All Rooms": [
     "Turn Touch iOS/Modes/Hue/TTModeHuePicker.swift"
+  ],
+  "All entities": [
+    "Turn Touch iOS/Modes/HomeAssistant/TTModeHomeAssistant.swift"
   ],
   "Announcements and updates": [
     "Turn Touch iOS/Views/Modal/TTAboutViewController.swift"
@@ -123,6 +150,9 @@
   "Automatic (device language)": [
     "Turn Touch iOS/TTLocalization.swift",
     "Turn Touch iOS/TTLocalization.swift"
+  ],
+  "Automations": [
+    "Turn Touch iOS/Modes/HomeAssistant/TTModeHomeAssistant.swift"
   ],
   "BUTTONS": [
     "Turn Touch iOS/Views/Main/TTSettingsPopover.swift"
@@ -243,8 +273,24 @@
   "Choose IFTTT Action": [
     "Turn Touch iOS/Modes/Ifttt/Base.lproj/TTModeIftttTriggerActionOptions.xib:UtA-71-qVu.normalTitle"
   ],
+  "Choose a valid Home Assistant action.": [
+    "Home Assistant shared Objective-C client"
+  ],
+  "Choose an entity first.": [
+    "Home Assistant shared Objective-C client",
+    "Turn Touch iOS/Modes/HomeAssistant/TTModeHomeAssistant.swift"
+  ],
+  "Choose the target in the entity list, not in action data.": [
+    "Home Assistant shared Objective-C client"
+  ],
+  "Choose what the remote button does in Home Assistant.": [
+    "Turn Touch iOS/Modes/HomeAssistant/TTModeHomeAssistant.swift"
+  ],
   "Choose your language": [
     "Turn Touch iOS/TTLocalization.swift"
+  ],
+  "Climate": [
+    "Turn Touch iOS/Modes/HomeAssistant/TTModeHomeAssistant.swift"
   ],
   "Cobra pose": [
     "Turn Touch iOS/Modes/Yoga/TTModeYoga.swift"
@@ -259,8 +305,14 @@
   "Configure your Turn Touch wooden remote and put lights, music, and everyday actions at your fingertips. Choose actions for single taps, double taps, and holds, or combine several actions on one button.\n\nPair a remote over Bluetooth, choose your apps and devices, and customize your buttons in Settings. Turn Touch supports compatible smart-home devices and services; available functions depend on the integration and device.\n\nA Turn Touch remote is sold separately. Some integrations require compatible hardware, local network access, or a third-party account.\n\nLearn more: https://turntouch.com": [
     "Store description; maximum=4000 characters"
   ],
+  "Connect": [
+    "Turn Touch iOS/Modes/HomeAssistant/TTModeHomeAssistant.swift"
+  ],
   "Connect to Govee": [
     "Turn Touch iOS/Modes/Govee/Base.lproj/TTModeGoveeConnect.xib:5z8-dd-EfZ.normalTitle"
+  ],
+  "Connect to Home Assistant first.": [
+    "Home Assistant shared Objective-C client"
   ],
   "Connect to Hue": [
     "Turn Touch iOS/Modes/Hue/Base.lproj/TTModeHueConnect.xib:60K-9D-4vb.normalTitle"
@@ -279,6 +331,9 @@
   ],
   "Connect to Spotify...": [
     "Turn Touch iOS/Modes/Bose/Base.lproj/TTModeBoseConnect.xib:5z8-dd-EfZ.normalTitle"
+  ],
+  "Connect using the Home Assistant menu.": [
+    "Turn Touch iOS/Modes/HomeAssistant/TTModeHomeAssistant.swift"
   ],
   "Connected": [
     "Application-owned status or selector label; translated only at rendering, never in state comparisons."
@@ -341,6 +396,15 @@
   "Connecting...": [
     "Turn Touch iOS/Views/Modal/TTPairingViewController.swift"
   ],
+  "Connection cancelled.": [
+    "Home Assistant shared Objective-C client"
+  ],
+  "Connection changed.": [
+    "Home Assistant shared Objective-C client"
+  ],
+  "Connection changed. Please try again.": [
+    "Home Assistant shared Objective-C client"
+  ],
   "Connection failed": [
     "Application-owned status or selector label; translated only at rendering, never in state comparisons."
   ],
@@ -349,6 +413,9 @@
   ],
   "Connection to Hue bridge lost. Searching...": [
     "Turn Touch iOS/Modes/Hue/TTModeHue.swift"
+  ],
+  "Connection…": [
+    "Turn Touch iOS/Modes/HomeAssistant/TTModeHomeAssistant.swift"
   ],
   "Contact support": [
     "Turn Touch iOS/Views/Main/TTSettingsPopover.swift"
@@ -372,6 +439,10 @@
   "Control your presentation": [
     "Turn Touch iOS/Modes/Portable/TTPortableModes.swift"
   ],
+  "Controllable entities": [
+    "Turn Touch iOS/Modes/HomeAssistant/TTModeHomeAssistant.swift",
+    "Turn Touch iOS/Modes/HomeAssistant/TTModeHomeAssistant.swift"
+  ],
   "Copyright": [
     "Settings.bundle:Title"
   ],
@@ -380,6 +451,18 @@
   ],
   "Could not find any Hue bridges": [
     "Turn Touch iOS/Modes/Hue/TTModeHue.swift"
+  ],
+  "Could not read actions.": [
+    "Home Assistant shared Objective-C client"
+  ],
+  "Could not read entities.": [
+    "Home Assistant shared Objective-C client"
+  ],
+  "Could not save the Home Assistant credentials in Keychain. Please unlock your keychain and try again.": [
+    "Home Assistant shared Objective-C client"
+  ],
+  "Covers": [
+    "Turn Touch iOS/Modes/HomeAssistant/TTModeHomeAssistant.swift"
   ],
   "Creating sockets...": [
     "Turn Touch iOS/Modes/Kasa/TTModeKasaDiscovery.swift"
@@ -416,6 +499,9 @@
   "Disabling double tap allows you to use single taps in rapid succession (for example, changing volume) without triggering this double tap action. \n\nAdditionally, some single tap actions have a double tap action built in that will only work if this double-tap mode is disabled (for example, play/pause will go to the previous track on double tap).": [
     "Turn Touch iOS/Views/Options/Base.lproj/TTModeDoubleOptions.xib:0Qj-jz-TCD.text"
   ],
+  "Disconnect": [
+    "Turn Touch iOS/Modes/HomeAssistant/TTModeHomeAssistant.swift"
+  ],
   "Disconnected": [
     "Application-owned status or selector label; translated only at rendering, never in state comparisons.",
     "Turn Touch iOS/Views/Main/TTSettingsPopover.swift",
@@ -441,6 +527,7 @@
   ],
   "Double tap": [
     "Application-owned status or selector label; translated only at rendering, never in state comparisons.",
+    "Turn Touch iOS/Modes/HomeAssistant/TTModeHomeAssistant.swift",
     "Turn Touch iOS/Views/Main/TTModeTab.swift",
     "Turn Touch iOS/Modes/Hue/Base.lproj/TTModeHueSceneOptions.xib:BJi-uJ-ihJ.text",
     "Turn Touch iOS/Modes/Hue/Base.lproj/TTModeHueSleepOptions.xib:XgR-3t-wco.text",
@@ -471,6 +558,9 @@
   "Early evening 2": [
     "Turn Touch iOS/Modes/Hue/TTModeHue.swift"
   ],
+  "East": [
+    "Turn Touch iOS/Modes/HomeAssistant/TTModeHomeAssistant.swift"
+  ],
   "Effect": [
     "Application-owned status or selector label; translated only at rendering, never in state comparisons."
   ],
@@ -494,7 +584,11 @@
   "Enter TP-Link credentials...": [
     "Turn Touch iOS/Modes/Kasa/TTModeKasaDeviceSwitchOptions.swift"
   ],
+  "Enter a Home Assistant address and access token.": [
+    "Home Assistant shared Objective-C client"
+  ],
   "Enter an http:// or https:// address.": [
+    "Turn Touch iOS/Modes/HomeAssistant/TTModeHomeAssistant.swift",
     "Turn Touch iOS/Modes/Portable/TTMobileBrowser.swift"
   ],
   "Enter your Govee API key": [
@@ -617,6 +711,29 @@
     "Turn Touch iOS/Views/Modal/TTGeofencingViewController.swift",
     "Turn Touch iOS/Modes/HomeKit/Base.lproj/TTModeHomeKitTriggerSceneOptions.xib:h9G-vU-By8.text"
   ],
+  "Home Assistant": [
+    "Turn Touch iOS/Modes/HomeAssistant/TTHomeAssistantSignIn.swift",
+    "Turn Touch iOS/Modes/HomeAssistant/TTModeHomeAssistant.swift"
+  ],
+  "Home Assistant accepted the action.": [
+    "Turn Touch iOS/Modes/HomeAssistant/TTModeHomeAssistant.swift"
+  ],
+  "Home Assistant action": [
+    "Turn Touch iOS/Modes/HomeAssistant/TTModeHomeAssistant.swift",
+    "Turn Touch iOS/Modes/HomeAssistant/TTModeHomeAssistant.swift"
+  ],
+  "Home Assistant address": [
+    "Turn Touch iOS/Modes/HomeAssistant/TTModeHomeAssistant.swift"
+  ],
+  "Home Assistant menu": [
+    "Turn Touch iOS/Modes/HomeAssistant/TTModeHomeAssistant.swift"
+  ],
+  "Home Assistant returned HTTP %ld. Check the action and its required fields.": [
+    "Home Assistant shared Objective-C client"
+  ],
+  "Home Assistant returned an invalid sign-in response.": [
+    "Home Assistant shared Objective-C client"
+  ],
   "HomeKit": [
     "Turn Touch iOS/Modes/HomeKit/TTModeHomeKit.swift"
   ],
@@ -663,6 +780,9 @@
   "Invalid response from discovery service": [
     "Turn Touch iOS/Modes/Hue/API/HueBridgeDiscovery.swift"
   ],
+  "Invalid sign-in response.": [
+    "Home Assistant shared Objective-C client"
+  ],
   "Jump to volume": [
     "Turn Touch iOS/Modes/Bose/TTModeBose.swift",
     "Turn Touch iOS/Modes/Music/TTModeMusic.swift",
@@ -702,6 +822,9 @@
   "Light panels and effects": [
     "Turn Touch iOS/Modes/Nanoleaf/TTModeNanoleaf.swift"
   ],
+  "Lights": [
+    "Turn Touch iOS/Modes/HomeAssistant/TTModeHomeAssistant.swift"
+  ],
   "Lights and scenes": [
     "Turn Touch iOS/Modes/Hue/TTModeHue.swift"
   ],
@@ -737,6 +860,9 @@
   ],
   "Lower saturation": [
     "Turn Touch iOS/Modes/Hue/TTModeHue.swift"
+  ],
+  "Media players": [
+    "Turn Touch iOS/Modes/HomeAssistant/TTModeHomeAssistant.swift"
   ],
   "Menu": [
     "Turn Touch iOS/Modes/Portable/TTPortableModes.swift",
@@ -862,17 +988,26 @@
   "No data received": [
     "Turn Touch iOS/Modes/Govee/GoveeAPIClient.swift"
   ],
+  "No matching entities": [
+    "Turn Touch iOS/Modes/HomeAssistant/TTModeHomeAssistant.swift"
+  ],
   "No network interfaces found": [
     "Application-owned status or selector label; translated only at rendering, never in state comparisons."
   ],
   "No remotes could be found": [
     "Turn Touch iOS/Views/Modal/TTPairingInfoViewController.swift"
   ],
+  "No required action data.": [
+    "Turn Touch iOS/Modes/HomeAssistant/TTModeHomeAssistant.swift"
+  ],
   "No response data": [
     "Turn Touch iOS/Modes/Govee/GoveeAPIClient.swift"
   ],
   "No scenes found...": [
     "Turn Touch iOS/Modes/HomeKit/TTModeHomeKitTriggerSceneOptions.swift"
+  ],
+  "North": [
+    "Turn Touch iOS/Modes/HomeAssistant/TTModeHomeAssistant.swift"
   ],
   "Not authenticated with Hue Bridge": [
     "Turn Touch iOS/Modes/Hue/API/HueAPIClient.swift"
@@ -900,6 +1035,9 @@
   "Open Settings": [
     "Turn Touch iOS/AppDelegate.swift"
   ],
+  "Open token settings": [
+    "Turn Touch iOS/Modes/HomeAssistant/TTModeHomeAssistant.swift"
+  ],
   "Open video": [
     "Turn Touch iOS/Modes/Portable/TTMobileBrowser.swift"
   ],
@@ -908,6 +1046,10 @@
   ],
   "Open {0}": [
     "Turn Touch iOS/Modes/Portable/TTMobileBrowser.swift"
+  ],
+  "Other": [
+    "Turn Touch iOS/Modes/HomeAssistant/TTModeHomeAssistant.swift",
+    "Turn Touch iOS/Modes/HomeAssistant/TTModeHomeAssistant.swift"
   ],
   "PREFERENCES": [
     "Turn Touch iOS/Views/Main/TTSettingsPopover.swift"
@@ -980,6 +1122,9 @@
     "Turn Touch iOS/Modes/Hue/TTModeHueBridge.swift",
     "Turn Touch iOS/Modes/Hue/Base.lproj/TTModeHueBridge.xib:PyA-AU-hJU.text"
   ],
+  "Please sign in to Home Assistant again.": [
+    "Home Assistant shared Objective-C client"
+  ],
   "Plow pose": [
     "Turn Touch iOS/Modes/Yoga/TTModeYoga.swift"
   ],
@@ -1051,6 +1196,9 @@
   "Read your NewsBlur stories": [
     "Turn Touch iOS/Modes/Portable/TTPortableModes.swift"
   ],
+  "Refresh": [
+    "Turn Touch iOS/Modes/HomeAssistant/TTModeHomeAssistant.swift"
+  ],
   "Refresh devices": [
     "Turn Touch iOS/Modes/Govee/Base.lproj/TTModeGoveeConnected.xib:tzo-RQ-7oz.normalTitle"
   ],
@@ -1085,6 +1233,9 @@
   "Replay": [
     "Turn Touch iOS/Modes/Camera/TTModeCamera.swift"
   ],
+  "Required data: ": [
+    "Turn Touch iOS/Modes/HomeAssistant/TTModeHomeAssistant.swift"
+  ],
   "Reset to default": [
     "Turn Touch iOS/Views/Actions/TTActionTitleView.swift"
   ],
@@ -1111,6 +1262,15 @@
   "Run actions from the screen": [
     "Turn Touch iOS/Views/Main/TTSettingsPopover.swift",
     "Turn Touch iOS/Views/Main/TTSettingsPopover.swift"
+  ],
+  "Run automation (check conditions)": [
+    "Home Assistant shared Objective-C client"
+  ],
+  "Run script": [
+    "Home Assistant shared Objective-C client"
+  ],
+  "Running action…": [
+    "Turn Touch iOS/Modes/HomeAssistant/TTModeHomeAssistant.swift"
   ],
   "Same": [
     "Turn Touch iOS/Modes/Hue/Base.lproj/TTModeHueRandomOptions.xib:1rZ-au-AQB.segmentTitles[2]",
@@ -1146,6 +1306,7 @@
     "Turn Touch iOS/Modes/HomeKit/Base.lproj/TTModeHomeKitTriggerSceneOptions.xib:CgV-Tp-T7G.text"
   ],
   "Scenes": [
+    "Turn Touch iOS/Modes/HomeAssistant/TTModeHomeAssistant.swift",
     "Turn Touch iOS/Modes/Hue/Base.lproj/TTModeHueCycleScenesOptions.xib:Rka-1Q-S05.text"
   ],
   "Scenes: {0} · Rooms: {1}": [
@@ -1159,6 +1320,9 @@
     "Turn Touch iOS/Views/Main/TTSettingsPopover.swift",
     "Turn Touch iOS/Views/Main/TTSettingsPopover.swift"
   ],
+  "Scripts": [
+    "Turn Touch iOS/Modes/HomeAssistant/TTModeHomeAssistant.swift"
+  ],
   "Scroll down": [
     "Turn Touch iOS/Modes/Portable/TTPortableModes.swift",
     "Turn Touch iOS/Modes/Portable/TTPortableModes.swift"
@@ -1169,6 +1333,9 @@
   ],
   "ScrollUp": [
     "Turn Touch iOS/Modes/Portable/TTPortableModes.swift"
+  ],
+  "Search Home Assistant": [
+    "Turn Touch iOS/Modes/HomeAssistant/TTModeHomeAssistant.swift"
   ],
   "Search for Kasa devices...": [
     "Turn Touch iOS/Modes/Kasa/Base.lproj/TTModeKasaConnect.xib:5z8-dd-EfZ.normalTitle"
@@ -1237,6 +1404,9 @@
   "Sending broadcasts...": [
     "Turn Touch iOS/Modes/Kasa/TTModeKasaDiscovery.swift"
   ],
+  "Set remote button": [
+    "Turn Touch iOS/Modes/HomeAssistant/TTModeHomeAssistant.swift"
+  ],
   "Set up and manage connection": [
     "Turn Touch iOS/Views/Main/TTSettingsPopover.swift"
   ],
@@ -1275,8 +1445,14 @@
   "Show me how it works": [
     "Turn Touch iOS/Views/Modal/TTModalButton.swift"
   ],
+  "Sign in…": [
+    "Turn Touch iOS/Modes/HomeAssistant/TTModeHomeAssistant.swift",
+    "Turn Touch iOS/Modes/HomeAssistant/TTModeHomeAssistant.swift",
+    "Turn Touch iOS/Modes/HomeAssistant/TTModeHomeAssistant.swift"
+  ],
   "Single tap": [
     "Application-owned status or selector label; translated only at rendering, never in state comparisons.",
+    "Turn Touch iOS/Modes/HomeAssistant/TTModeHomeAssistant.swift",
     "Turn Touch iOS/Views/Main/TTModeTab.swift",
     "Turn Touch iOS/Modes/Hue/Base.lproj/TTModeHueSceneOptions.xib:2Eu-vA-Pmt.text",
     "Turn Touch iOS/Modes/Hue/Base.lproj/TTModeHueSleepOptions.xib:FLT-Da-zeL.text",
@@ -1313,6 +1489,9 @@
   "Sounds, vibration & privacy": [
     "Turn Touch iOS/Views/Main/TTSettingsPopover.swift"
   ],
+  "South": [
+    "Turn Touch iOS/Modes/HomeAssistant/TTModeHomeAssistant.swift"
+  ],
   "Speakers": [
     "Turn Touch iOS/Modes/Sonos/Base.lproj/TTModeSonosConnected.xib:9BV-EW-maG.text"
   ],
@@ -1344,6 +1523,9 @@
   "Switch to another device": [
     "Turn Touch iOS/Modes/Nanoleaf/Base.lproj/TTModeNanoleafConnected.xib:K3R-sB-HiJ.normalTitle"
   ],
+  "Switches": [
+    "Turn Touch iOS/Modes/HomeAssistant/TTModeHomeAssistant.swift"
+  ],
   "System-level controls": [
     "Turn Touch iOS/Modes/Phone/TTModePhone.swift"
   ],
@@ -1359,6 +1541,9 @@
   ],
   "Temperature set to": [
     "Turn Touch iOS/Modes/Ifttt/Base.lproj/TTModeIftttConnected.xib:wv1-2k-arM.text"
+  ],
+  "Test action": [
+    "Turn Touch iOS/Modes/HomeAssistant/TTModeHomeAssistant.swift"
   ],
   "That worked perfectly": [
     "Turn Touch iOS/Views/Modal/TTPairingInfoViewController.swift"
@@ -1393,6 +1578,9 @@
   "The platform/hardware doesn't support Bluetooth Low Energy.": [
     "Turn Touch iOS/Bluetooth/TTBluetoothMonitor.swift"
   ],
+  "The server did not return Home Assistant JSON. Check its address.": [
+    "Home Assistant shared Objective-C client"
+  ],
   "The word \"Trikonasana\" comes from the Sanskrit words \"tri\", meaning \"three\", \"kona\", meaning \"angle\", and \"asana\", meaning \"pose\".": [
     "Turn Touch iOS/Modes/Yoga/TTModeYoga.swift"
   ],
@@ -1405,8 +1593,14 @@
   "Thermostat": [
     "Turn Touch iOS/Modes/Ifttt/Base.lproj/TTModeIftttConnected.xib:bd1-fL-FoJ.text"
   ],
+  "This Home Assistant user does not have permission for that action.": [
+    "Home Assistant shared Objective-C client"
+  ],
   "This device doesn't support Bluetooth Low Energy.": [
     "Turn Touch iOS/Views/Modal/TTPairingInfoViewController.swift"
+  ],
+  "This entity has no callable actions. Sensors are usually read-only.": [
+    "Turn Touch iOS/Modes/HomeAssistant/TTModeHomeAssistant.swift"
   ],
   "To improve connection reliability, choose where your Turn Touch will live": [
     "Turn Touch iOS/Views/Modal/Base.lproj/TTGeofencingViewController.xib:lcq-QE-utz.text"
@@ -1506,6 +1700,9 @@
   "Upgrade to v{0}": [
     "Turn Touch iOS/Views/Main/TTDeviceTitleView.swift"
   ],
+  "Use access token…": [
+    "Turn Touch iOS/Modes/HomeAssistant/TTModeHomeAssistant.swift"
+  ],
   "Uttanasana pose with clasped hands": [
     "Turn Touch iOS/Modes/Yoga/TTModeYoga.swift"
   ],
@@ -1569,6 +1766,9 @@
   "Wemo device ({0})": [
     "Turn Touch iOS/Modes/Wemo/TTModeWemoDevice.swift"
   ],
+  "West": [
+    "Turn Touch iOS/Modes/HomeAssistant/TTModeHomeAssistant.swift"
+  ],
   "Wooden remote control": [
     "Store subtitle; maximum=30 characters"
   ],
@@ -1587,11 +1787,17 @@
   "You can change this anytime in Settings. Language changes apply the next time you launch Turn Touch.": [
     "Turn Touch iOS/TTLocalization.swift"
   ],
+  "Your Home Assistant session expired or the token is invalid. Connect again.": [
+    "Home Assistant shared Objective-C client"
+  ],
   "Your favorite actions, one touch away": [
     "Store screenshot-caption; maximum=100 characters"
   ],
   "Your home at your command.": [
     "Turn Touch iOS/Modes/HomeKit/TTModeHomeKit.swift"
+  ],
+  "Your home, scenes, and automations": [
+    "Turn Touch iOS/Modes/HomeAssistant/TTModeHomeAssistant.swift"
   ],
   "Your remote has been paired": [
     "Turn Touch iOS/Views/Modal/TTPairingInfoViewController.swift"
@@ -1615,7 +1821,8 @@
     "Application-owned display label"
   ],
   "hold": [
-    "Application-owned display label"
+    "Application-owned display label",
+    "Turn Touch iOS/Modes/HomeAssistant/TTModeHomeAssistant.swift"
   ],
   "https://": [
     "Turn Touch iOS/Modes/Custom/Base.lproj/TTModeCustomURLOptions.xib:OyF-ny-O37.placeholder",
@@ -1661,6 +1868,9 @@
   "{0} minutes": [
     "Turn Touch iOS/Modes/Hue/TTModeHueSleepOptions.swift",
     "Turn Touch iOS/Modes/Nanoleaf/TTModeNanoleafSleepOptions.swift"
+  ],
+  "{0} now runs “{1}”.": [
+    "Turn Touch iOS/Modes/HomeAssistant/TTModeHomeAssistant.swift"
   ],
   "{0} rooms": [
     "Turn Touch iOS/Modes/Hue/TTModeHueConnected.swift"

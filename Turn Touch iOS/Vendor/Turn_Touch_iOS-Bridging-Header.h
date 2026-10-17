@@ -18,4 +18,6 @@
 //#import <NestSDK/NestSDK.h>
 //#import <SpotifyAppRemote/SpotifyAppRemote.h>
 
+#import "../Modes/HomeAssistant/TTHomeAssistantClient.h"
+
 #endif /* TTBridgingHeader_h */

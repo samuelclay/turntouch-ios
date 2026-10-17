@@ -146,7 +146,7 @@ final class TTSettingsPopover: UIViewController {
         performRow.spacing = 12
         section(TTText("BUTTONS"), rows: [inset(modeControls, by: 16), inset(performRow, by: 16)])
 
-        let favorites = ["TTModeHue", "TTModeNanoleaf", "TTModeGovee", "TTModeSonos", "TTModeKasa"]
+        let favorites = ["TTModeHomeAssistant", "TTModeHue", "TTModeNanoleaf", "TTModeGovee", "TTModeSonos", "TTModeKasa"]
         let names = favorites + (showAllApps ? modeMap.availableModes.filter { !favorites.contains($0) } : [])
         var appRows: [UIView] = names.compactMap { name in
             guard let type = NSClassFromString("Turn_Touch_iOS.\(name)") as? TTMode.Type,

@@ -49,6 +49,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         self.window = window
         window.makeKeyAndVisible()
         DispatchQueue.main.async {
+            #if DEBUG
+            if ProcessInfo.processInfo.arguments.contains("--ha-ui-test") {
+                self.mainViewController.present(TTHomeAssistantTestHost(), animated: false)
+                return
+            }
+            if ProcessInfo.processInfo.arguments.contains("--home-assistant") {
+                self.mainViewController.showSettingsConnection("TTModeHomeAssistant")
+                return
+            }
+            #endif
             let continueSetup = {
                 if ProcessInfo.processInfo.environment["SIMULATOR_DEVICE_NAME"] == nil {
                     self.beginLocationUpdates()
