@@ -6826,7 +6826,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Turn Touch iOS/Turn Touch iOS.entitlements";
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 46;
+				CURRENT_PROJECT_VERSION = 48;
 				DEVELOPMENT_TEAM = 6W5HRS3393;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -6849,7 +6849,7 @@
 					"$(inherited)/**",
 					"$(PROJECT_DIR)/Turn\\ Touch\\ iOS/Vendor/**",
 				);
-				MARKETING_VERSION = 3.0;
+				MARKETING_VERSION = 3.1;
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"$(inherited)",
@@ -6872,7 +6872,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Turn Touch iOS/Turn Touch iOS.entitlements";
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 46;
+				CURRENT_PROJECT_VERSION = 48;
 				DEVELOPMENT_TEAM = 6W5HRS3393;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -6895,7 +6895,7 @@
 					"$(inherited)/**",
 					"$(PROJECT_DIR)/Turn\\ Touch\\ iOS/Vendor/**",
 				);
-				MARKETING_VERSION = 3.0;
+				MARKETING_VERSION = 3.1;
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"$(inherited)",

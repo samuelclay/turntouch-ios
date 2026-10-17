@@ -1458,6 +1458,9 @@
   "Turn Touch is not authorized to use Bluetooth Low Energy.": [
     "Turn Touch iOS/Views/Modal/TTPairingInfoViewController.swift"
   ],
+  "Turn Touch now speaks 21 languages. Choose your language when you first open the app, or change it from Language at the top of Settings. Menus, actions, and settings are translated. Automatic follows your device language, with English as the fallback. Reopen the app after changing languages.": [
+    "Store whats-new; maximum=4000 characters"
+  ],
   "Turn Touch uses Bluetooth to connect to your remotes": [
     "Info.plist:NSBluetoothAlwaysUsageDescription",
     "Info.plist:NSBluetoothPeripheralUsageDescription"
@@ -1623,6 +1626,9 @@
   ],
   "pairing": [
     "Turn Touch iOS/Models/TTDevice.swift"
+  ],
+  "remote,wooden,Bluetooth,buttons,music,lights,smart home,Hue,Sonos": [
+    "Store keywords; maximum=100 characters"
   ],
   "searching": [
     "Turn Touch iOS/Models/TTDevice.swift"

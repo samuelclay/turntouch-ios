@@ -14,5 +14,13 @@
   "screenshot-caption": {
     "text": "Your favorite actions, one touch away",
     "maximum": 100
+  },
+  "whats-new": {
+    "text": "Turn Touch now speaks 21 languages. Choose your language when you first open the app, or change it from Language at the top of Settings. Menus, actions, and settings are translated. Automatic follows your device language, with English as the fallback. Reopen the app after changing languages.",
+    "maximum": 4000
+  },
+  "keywords": {
+    "text": "remote,wooden,Bluetooth,buttons,music,lights,smart home,Hue,Sonos",
+    "maximum": 100
   }
 }

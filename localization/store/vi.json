@@ -1,6 +1,8 @@
 {
   "description": "Thiết lập điều khiển bằng gỗ Turn Touch để điều khiển đèn, nhạc và các thao tác hằng ngày ngay trong tầm tay. Chọn thao tác cho một lần chạm, chạm hai lần hoặc nhấn giữ, hoặc kết hợp nhiều thao tác trên cùng một nút.\n\nGhép nối điều khiển qua Bluetooth, chọn ứng dụng và thiết bị, rồi tùy chỉnh các nút trong Cài đặt. Turn Touch hỗ trợ các thiết bị và dịch vụ nhà thông minh tương thích; chức năng khả dụng tùy thuộc vào tích hợp và thiết bị.\n\nĐiều khiển Turn Touch được bán riêng. Một số tích hợp yêu cầu phần cứng tương thích, quyền truy cập mạng cục bộ hoặc tài khoản bên thứ ba.\n\nTìm hiểu thêm: https://turntouch.com",
+  "keywords": "điều khiển từ xa,gỗ,Bluetooth,nút,nhạc,đèn,nhà thông minh,Hue,Sonos",
   "screenshot-caption": "Thao tác yêu thích, trong tầm tay",
   "subtitle": "Điều khiển từ xa bằng gỗ",
-  "title": "Turn Touch"
+  "title": "Turn Touch",
+  "whats-new": "Turn Touch hiện hỗ trợ 21 ngôn ngữ. Chọn ngôn ngữ khi mở ứng dụng lần đầu hoặc đổi tại mục Ngôn ngữ ở đầu phần Cài đặt. Menu, thao tác và cài đặt đã được dịch. Tự động sẽ dùng ngôn ngữ thiết bị, mặc định là tiếng Anh. Mở lại ứng dụng sau khi đổi ngôn ngữ."
 }

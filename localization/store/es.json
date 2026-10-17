@@ -1,6 +1,8 @@
 {
   "description": "Configura tu mando de madera Turn Touch y controla luces, música y acciones cotidianas con solo tocar un botón. Elige acciones para toques, toques dobles y pulsaciones largas, o combina varias acciones en un mismo botón.\n\nEmpareja un mando por Bluetooth, elige tus apps y dispositivos, y personaliza los botones en Ajustes. Turn Touch es compatible con dispositivos y servicios de hogar inteligente; las funciones disponibles dependen de la integración y el dispositivo.\n\nEl mando Turn Touch se vende por separado. Algunas integraciones requieren hardware compatible, acceso a la red local o una cuenta de terceros.\n\nMás información: https://turntouch.com",
+  "keywords": "mando a distancia,madera,Bluetooth,botones,música,luces,domótica,Hue,Sonos",
   "screenshot-caption": "Tus acciones favoritas, al alcance de un toque",
   "subtitle": "Mando de madera",
-  "title": "Turn Touch"
+  "title": "Turn Touch",
+  "whats-new": "Turn Touch ahora está disponible en 21 idiomas. Elige el idioma al abrir la app por primera vez o cámbialo en Idioma, en la parte superior de Ajustes. Los menús, las acciones y los ajustes están traducidos. Automático usa el idioma de tu dispositivo y, si no está disponible, inglés. Vuelve a abrir la app después de cambiar el idioma."
 }

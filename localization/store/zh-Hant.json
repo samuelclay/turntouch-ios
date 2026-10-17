@@ -1,6 +1,8 @@
 {
   "description": "設定您的 Turn Touch 木製遙控器，讓燈光、音樂和日常操作一鍵即達。為單擊、連按兩下和長按選擇操作，也可以在同一按鈕上組合多項操作。\n\n透過 Bluetooth 配對遙控器，選擇您的應用程式和裝置，並在「設定」中自訂按鈕。Turn Touch 支援相容的智慧家庭裝置和服務；可用功能依整合方式和裝置而異。\n\nTurn Touch 遙控器需另行購買。部分整合功能需要相容硬體、本機網路存取權或第三方帳戶。\n\n深入瞭解：https://turntouch.com",
+  "keywords": "遙控器,木製,Bluetooth,按鈕,音樂,燈光,智慧家庭,Hue,Sonos",
   "screenshot-caption": "喜愛的功能，一按即用",
   "subtitle": "木製遙控器",
-  "title": "Turn Touch"
+  "title": "Turn Touch",
+  "whats-new": "Turn Touch 現支援 21 種語言。首次開啟 App 時可選擇語言，或前往「設定」頂端的「語言」變更。選單、操作和設定皆已翻譯。「自動」會依照裝置語言設定，並以英文為預設。變更語言後，請重新開啟 App。"
 }

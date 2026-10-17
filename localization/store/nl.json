@@ -1,6 +1,8 @@
 {
   "description": "Configureer je houten Turn Touch-afstandsbediening en bedien lampen, muziek en dagelijkse taken met één druk op de knop. Kies acties voor één tik, twee tikken en ingedrukt houden, of combineer meerdere acties op één knop.\n\nKoppel een afstandsbediening via Bluetooth, kies je apps en apparaten en pas je knoppen aan in Instellingen. Turn Touch ondersteunt compatibele smarthomeapparaten en -diensten; beschikbare functies zijn afhankelijk van de integratie en het apparaat.\n\nEen Turn Touch-afstandsbediening wordt apart verkocht. Voor sommige integraties is compatibele hardware, toegang tot het lokale netwerk of een account bij een derde partij nodig.\n\nMeer informatie: https://turntouch.com",
+  "keywords": "afstandsbediening,hout,Bluetooth,knoppen,muziek,verlichting,smart home,Hue,Sonos",
   "screenshot-caption": "Je favoriete acties binnen handbereik",
   "subtitle": "Houten afstandsbediening",
-  "title": "Turn Touch"
+  "title": "Turn Touch",
+  "whats-new": "Turn Touch spreekt nu 21 talen. Kies je taal wanneer je de app voor het eerst opent, of wijzig deze via Taal bovenaan in Instellingen. Menu’s, acties en instellingen zijn vertaald. Automatisch volgt de taal van je apparaat, met Engels als terugvaloptie. Open de app opnieuw nadat je de taal hebt gewijzigd."
 }

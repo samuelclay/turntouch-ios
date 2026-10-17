@@ -1,6 +1,8 @@
 {
   "description": "Atur remote kayu Turn Touch Anda dan kendalikan lampu, musik, serta tindakan sehari-hari dengan mudah. Pilih tindakan untuk sekali ketuk, ketuk dua kali, dan tekan lama, atau gabungkan beberapa tindakan pada satu tombol.\n\nPasangkan remote melalui Bluetooth, pilih aplikasi dan perangkat, lalu sesuaikan tombol di Setelan. Turn Touch mendukung perangkat dan layanan rumah pintar yang kompatibel; fitur yang tersedia bergantung pada integrasi dan perangkat.\n\nRemote Turn Touch dijual terpisah. Beberapa integrasi memerlukan perangkat keras yang kompatibel, akses jaringan lokal, atau akun pihak ketiga.\n\nPelajari lebih lanjut: https://turntouch.com",
+  "keywords": "remote,kayu,Bluetooth,tombol,musik,lampu,rumah pintar,Hue,Sonos",
   "screenshot-caption": "Tindakan favorit Anda, cukup satu sentuhan",
   "subtitle": "Remote control kayu",
-  "title": "Turn Touch"
+  "title": "Turn Touch",
+  "whats-new": "Turn Touch kini mendukung 21 bahasa. Pilih bahasa saat pertama kali membuka aplikasi, atau ubah di Bahasa pada bagian atas Pengaturan. Menu, tindakan, dan pengaturan telah diterjemahkan. Otomatis mengikuti bahasa perangkat, dengan bahasa Inggris sebagai pilihan cadangan. Buka ulang aplikasi setelah mengubah bahasa."
 }

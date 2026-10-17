@@ -1,0 +1,1853 @@
+{
+  "version": "3.1",
+  "assets": [
+    {
+      "language": "en",
+      "locale": "en-US",
+      "file": "store/en-US/images/ipad/01-remote.png",
+      "width": 2064,
+      "height": 2752,
+      "sha256": "e588b805e7a17c5db8d121e62170abc123570087a9a5cb4a801b8099c1f0c18b"
+    },
+    {
+      "language": "en",
+      "locale": "en-US",
+      "file": "store/en-US/images/ipad/02-settings.png",
+      "width": 2064,
+      "height": 2752,
+      "sha256": "c2f7ad350343d28ea0030c3e28d4b03c7a1bbd690a4b9cd4229258d2bea7d358"
+    },
+    {
+      "language": "en",
+      "locale": "en-US",
+      "file": "store/en-US/images/ipad/03-apps.png",
+      "width": 2064,
+      "height": 2752,
+      "sha256": "9f2a1bc61e57e69f729ee6f9ba55f47d2744deb5795e165fc0c99761d3a78856"
+    },
+    {
+      "language": "en",
+      "locale": "en-US",
+      "file": "store/en-US/images/iphone/01-remote.png",
+      "width": 1320,
+      "height": 2868,
+      "sha256": "b784b55f7327c4201de2c4acc4787be2dd5ca99dcf7a10de358a02c722123017"
+    },
+    {
+      "language": "en",
+      "locale": "en-US",
+      "file": "store/en-US/images/iphone/02-settings.png",
+      "width": 1320,
+      "height": 2868,
+      "sha256": "bea6cdda52cf05c19c18c8d4f7db28aae2610d0fbd874f6d65619947da4e94e8"
+    },
+    {
+      "language": "en",
+      "locale": "en-US",
+      "file": "store/en-US/images/iphone/03-apps.png",
+      "width": 1320,
+      "height": 2868,
+      "sha256": "c708846da6edca5ed6198b69b534c761c9f847f69b28a6abd7a53ae7f7cb45a3"
+    },
+    {
+      "language": "en",
+      "locale": "en-US",
+      "file": "store/en-US/images/iphone-medium/01-remote.png",
+      "width": 1206,
+      "height": 2622,
+      "sha256": "9afadd5e8fe81d834309fba77227dfc7979ee1b0629a5a510a41e86ca0ed51d6"
+    },
+    {
+      "language": "en",
+      "locale": "en-US",
+      "file": "store/en-US/images/iphone-medium/02-settings.png",
+      "width": 1206,
+      "height": 2622,
+      "sha256": "62db62c0d468165acdfc1346c7b47fc15c5a33baf50434ffb7f58e9b7180eba4"
+    },
+    {
+      "language": "en",
+      "locale": "en-US",
+      "file": "store/en-US/images/iphone-medium/03-apps.png",
+      "width": 1206,
+      "height": 2622,
+      "sha256": "41499cdd19b7ddad3a5cb5d0c577b58d72f3fe095558f354e2e27b8454b51f56"
+    },
+    {
+      "language": "en",
+      "locale": "en-US",
+      "file": "store/artwork/exports/en/turntouch-en-header.png",
+      "width": 3840,
+      "height": 1646,
+      "sha256": "4b22db403e65fa281da178e9a90f5cdb89416d4d14d75f0281a2f85cd1174585"
+    },
+    {
+      "language": "en",
+      "locale": "en-US",
+      "file": "store/artwork/exports/en/turntouch-en-search.jpg",
+      "width": 3840,
+      "height": 2560,
+      "sha256": "0ee8d2b9dbf848926b2607cc8a628ac88eca5978328373d240daaafb68b8bf9d"
+    },
+    {
+      "language": "es",
+      "locale": "es-ES",
+      "file": "store/es-ES/images/ipad/01-remote.png",
+      "width": 2064,
+      "height": 2752,
+      "sha256": "4e8c2f5925abd4bc75835dee7fdaf6295abaeac25e8b028600e562887321c79d"
+    },
+    {
+      "language": "es",
+      "locale": "es-ES",
+      "file": "store/es-ES/images/ipad/02-settings.png",
+      "width": 2064,
+      "height": 2752,
+      "sha256": "608f9c3d22848fa965d15c2e80d155abf06f07d687f0a89b1ea577d3be98a14e"
+    },
+    {
+      "language": "es",
+      "locale": "es-ES",
+      "file": "store/es-ES/images/ipad/03-apps.png",
+      "width": 2064,
+      "height": 2752,
+      "sha256": "024cc0dbfb13935a58fc1ecb76047073e075c2a2ec49c3e41d0a78d85d03c997"
+    },
+    {
+      "language": "es",
+      "locale": "es-ES",
+      "file": "store/es-ES/images/iphone/01-remote.png",
+      "width": 1320,
+      "height": 2868,
+      "sha256": "48f2c169b68c8a018f16769980938c363424c154faf81ea9f84376b00eb358b1"
+    },
+    {
+      "language": "es",
+      "locale": "es-ES",
+      "file": "store/es-ES/images/iphone/02-settings.png",
+      "width": 1320,
+      "height": 2868,
+      "sha256": "f769a9a06e73e63d1dbb39564c84730b0a3134ae2ba9a307fa82b93e3f6caa01"
+    },
+    {
+      "language": "es",
+      "locale": "es-ES",
+      "file": "store/es-ES/images/iphone/03-apps.png",
+      "width": 1320,
+      "height": 2868,
+      "sha256": "9c7c346b9b42eabb5ece95bdd6f985a25828b410b24de84571e39680a024cca1"
+    },
+    {
+      "language": "es",
+      "locale": "es-ES",
+      "file": "store/es-ES/images/iphone-medium/01-remote.png",
+      "width": 1206,
+      "height": 2622,
+      "sha256": "5c8a17d76eff005f11f2ffe61d3a2c500e81fb7159eff44e9a3ee72ad94a0015"
+    },
+    {
+      "language": "es",
+      "locale": "es-ES",
+      "file": "store/es-ES/images/iphone-medium/02-settings.png",
+      "width": 1206,
+      "height": 2622,
+      "sha256": "3976eb92b5f4342e39d3409eb14d20568a5d2c633685f22a3fa5bec9eadb201d"
+    },
+    {
+      "language": "es",
+      "locale": "es-ES",
+      "file": "store/es-ES/images/iphone-medium/03-apps.png",
+      "width": 1206,
+      "height": 2622,
+      "sha256": "b3ff470fca4dfb05551fcf945779c24dfd21a25f45d56dc02cccf53d0e108504"
+    },
+    {
+      "language": "es",
+      "locale": "es-ES",
+      "file": "store/artwork/exports/es/turntouch-es-header.png",
+      "width": 3840,
+      "height": 1646,
+      "sha256": "bb1bb99a51088a661d27d5bdf90696008d209195801416605a05798921aeeb77"
+    },
+    {
+      "language": "es",
+      "locale": "es-ES",
+      "file": "store/artwork/exports/es/turntouch-es-search.jpg",
+      "width": 3840,
+      "height": 2560,
+      "sha256": "3a821c9e74d617ad9ba036014d1c1c0cbad58e4a3829e700ae0dd94b42e002ec"
+    },
+    {
+      "language": "fr",
+      "locale": "fr-FR",
+      "file": "store/fr-FR/images/ipad/01-remote.png",
+      "width": 2064,
+      "height": 2752,
+      "sha256": "eeeedd6477bd56ef2edb0696963cc5ae69552ca65708372f872d05900c29ecdf"
+    },
+    {
+      "language": "fr",
+      "locale": "fr-FR",
+      "file": "store/fr-FR/images/ipad/02-settings.png",
+      "width": 2064,
+      "height": 2752,
+      "sha256": "4efc578c31166a41183a949635d041ab04e017837e790f78a6d74cfa4f8c3b12"
+    },
+    {
+      "language": "fr",
+      "locale": "fr-FR",
+      "file": "store/fr-FR/images/ipad/03-apps.png",
+      "width": 2064,
+      "height": 2752,
+      "sha256": "dc58e45bd053b02f4a9b56da213c09d680a55520c91c2dba657b6b45f9b48dda"
+    },
+    {
+      "language": "fr",
+      "locale": "fr-FR",
+      "file": "store/fr-FR/images/iphone/01-remote.png",
+      "width": 1320,
+      "height": 2868,
+      "sha256": "473ad2b7cb1f146bac6cf861f264afe578f000305b6f7eac25df26391bbfff1e"
+    },
+    {
+      "language": "fr",
+      "locale": "fr-FR",
+      "file": "store/fr-FR/images/iphone/02-settings.png",
+      "width": 1320,
+      "height": 2868,
+      "sha256": "b38748e47005ae46482f26a6ed316c62da215d00d0944d07c7984e45287e5b35"
+    },
+    {
+      "language": "fr",
+      "locale": "fr-FR",
+      "file": "store/fr-FR/images/iphone/03-apps.png",
+      "width": 1320,
+      "height": 2868,
+      "sha256": "95985ab5d19dc8c976ddc9e5388ff2e9c6c04802627b228a39168dd6e0e453fb"
+    },
+    {
+      "language": "fr",
+      "locale": "fr-FR",
+      "file": "store/fr-FR/images/iphone-medium/01-remote.png",
+      "width": 1206,
+      "height": 2622,
+      "sha256": "d077689ffcb06d37243d23ca7e8b56a9311810732f726bcd244f10c2b9e15db6"
+    },
+    {
+      "language": "fr",
+      "locale": "fr-FR",
+      "file": "store/fr-FR/images/iphone-medium/02-settings.png",
+      "width": 1206,
+      "height": 2622,
+      "sha256": "9c3960dae031bfe2852374bdae9debcd39b88511d563fe07e61e06d1d59295c0"
+    },
+    {
+      "language": "fr",
+      "locale": "fr-FR",
+      "file": "store/fr-FR/images/iphone-medium/03-apps.png",
+      "width": 1206,
+      "height": 2622,
+      "sha256": "49fccb62ace2d6ef81e04ea20f8f720a13c098eaf7d0ac5034b4ab0eea39243a"
+    },
+    {
+      "language": "fr",
+      "locale": "fr-FR",
+      "file": "store/artwork/exports/fr/turntouch-fr-header.png",
+      "width": 3840,
+      "height": 1646,
+      "sha256": "56b738343c9eecb35daaa73599c688d530a504f5d68e687cdc55af5cf62f782f"
+    },
+    {
+      "language": "fr",
+      "locale": "fr-FR",
+      "file": "store/artwork/exports/fr/turntouch-fr-search.jpg",
+      "width": 3840,
+      "height": 2560,
+      "sha256": "9e81096c713f5e4ee48c3d5a97ebaa1eeac2f9e647e909c97c11c0877496f009"
+    },
+    {
+      "language": "de",
+      "locale": "de",
+      "file": "store/de/images/ipad/01-remote.png",
+      "width": 2064,
+      "height": 2752,
+      "sha256": "4c83f8d00aafe43d29acaab1c290d6460b93902c96bff33a26cef316facdafe2"
+    },
+    {
+      "language": "de",
+      "locale": "de",
+      "file": "store/de/images/ipad/02-settings.png",
+      "width": 2064,
+      "height": 2752,
+      "sha256": "4aa97f7f75e36010a35fa17236dca77ae1b1a92f9df348d691a8d2e65fa545de"
+    },
+    {
+      "language": "de",
+      "locale": "de",
+      "file": "store/de/images/ipad/03-apps.png",
+      "width": 2064,
+      "height": 2752,
+      "sha256": "da51a6531020a1285eca8420449dabc186f2e66da1cba30e4753d2f8a7df324a"
+    },
+    {
+      "language": "de",
+      "locale": "de",
+      "file": "store/de/images/iphone/01-remote.png",
+      "width": 1320,
+      "height": 2868,
+      "sha256": "d87784451f79dc79333463008d8ce7c0a4536ec8388d5ae5e4fcfa28caef0e2b"
+    },
+    {
+      "language": "de",
+      "locale": "de",
+      "file": "store/de/images/iphone/02-settings.png",
+      "width": 1320,
+      "height": 2868,
+      "sha256": "1a1a9f4c8fa1e7faf4761483c5beea27944cb1265abbb7ee61e3e2e541ce959b"
+    },
+    {
+      "language": "de",
+      "locale": "de",
+      "file": "store/de/images/iphone/03-apps.png",
+      "width": 1320,
+      "height": 2868,
+      "sha256": "9318f8c08381ea872b5a04e6019057d5679a28b266916a6c07dc067f1f21e297"
+    },
+    {
+      "language": "de",
+      "locale": "de",
+      "file": "store/de/images/iphone-medium/01-remote.png",
+      "width": 1206,
+      "height": 2622,
+      "sha256": "d848f6c5d6c7e28f41834854e71994bc295fbf3c48d96563a3b69832d803a21e"
+    },
+    {
+      "language": "de",
+      "locale": "de",
+      "file": "store/de/images/iphone-medium/02-settings.png",
+      "width": 1206,
+      "height": 2622,
+      "sha256": "d1ae1aee8270aecb13464fc1b6a9b3d6215a539ff1e20c3138949b119fc31531"
+    },
+    {
+      "language": "de",
+      "locale": "de",
+      "file": "store/de/images/iphone-medium/03-apps.png",
+      "width": 1206,
+      "height": 2622,
+      "sha256": "c72e2db503be0b1f67d2fe39b231da552845dc4bd3705551c10998d4200b3602"
+    },
+    {
+      "language": "de",
+      "locale": "de",
+      "file": "store/artwork/exports/de/turntouch-de-header.png",
+      "width": 3840,
+      "height": 1646,
+      "sha256": "6904b1f539f9fd2de143962104e10f760afd0404825ff23912c0b9532b82cbb5"
+    },
+    {
+      "language": "de",
+      "locale": "de",
+      "file": "store/artwork/exports/de/turntouch-de-search.jpg",
+      "width": 3840,
+      "height": 2560,
+      "sha256": "c2259e459659bf24978b2fe580597366e27b8eda97c7421feb3731f6c812c93d"
+    },
+    {
+      "language": "pt-BR",
+      "locale": "pt-BR",
+      "file": "store/pt-BR/images/ipad/01-remote.png",
+      "width": 2064,
+      "height": 2752,
+      "sha256": "dd12d597c1004a6791601861e22ca95784fa2f0c0e09db6a728d0adc9b5b8693"
+    },
+    {
+      "language": "pt-BR",
+      "locale": "pt-BR",
+      "file": "store/pt-BR/images/ipad/02-settings.png",
+      "width": 2064,
+      "height": 2752,
+      "sha256": "88c90912019c719a4597bc4c75ed5c0cb302e17ede9c0819cbbfd2b625677ebe"
+    },
+    {
+      "language": "pt-BR",
+      "locale": "pt-BR",
+      "file": "store/pt-BR/images/ipad/03-apps.png",
+      "width": 2064,
+      "height": 2752,
+      "sha256": "0a20b804492b252d1a4150c30b73964967a7f730448f49612bd05871dd56a2a8"
+    },
+    {
+      "language": "pt-BR",
+      "locale": "pt-BR",
+      "file": "store/pt-BR/images/iphone/01-remote.png",
+      "width": 1320,
+      "height": 2868,
+      "sha256": "8b3c1374e5e30ba07471ced0c980cce151d7368447c579aa04a4c7fc181478b5"
+    },
+    {
+      "language": "pt-BR",
+      "locale": "pt-BR",
+      "file": "store/pt-BR/images/iphone/02-settings.png",
+      "width": 1320,
+      "height": 2868,
+      "sha256": "866d26b81f218bcd7d318ada885b89f7a50cd3c4ddb0f9a9a2ab38055a199e75"
+    },
+    {
+      "language": "pt-BR",
+      "locale": "pt-BR",
+      "file": "store/pt-BR/images/iphone/03-apps.png",
+      "width": 1320,
+      "height": 2868,
+      "sha256": "7d17b21b44dc5618e1454ce904a52653926d2b16862d58d2f6b727adb0f58e92"
+    },
+    {
+      "language": "pt-BR",
+      "locale": "pt-BR",
+      "file": "store/pt-BR/images/iphone-medium/01-remote.png",
+      "width": 1206,
+      "height": 2622,
+      "sha256": "136788f8dc813dacf545a0d35528ace8920db58fb869b770272e468af7b50a45"
+    },
+    {
+      "language": "pt-BR",
+      "locale": "pt-BR",
+      "file": "store/pt-BR/images/iphone-medium/02-settings.png",
+      "width": 1206,
+      "height": 2622,
+      "sha256": "eb0108f6a7172e8241b7f984748aec010a2576c5e9b06f29c038a0e876e1248d"
+    },
+    {
+      "language": "pt-BR",
+      "locale": "pt-BR",
+      "file": "store/pt-BR/images/iphone-medium/03-apps.png",
+      "width": 1206,
+      "height": 2622,
+      "sha256": "7975c562e776a698ac4e3d812441c91a7ab29874283a8fb6fc9bd0c86c25819f"
+    },
+    {
+      "language": "pt-BR",
+      "locale": "pt-BR",
+      "file": "store/artwork/exports/pt-BR/turntouch-pt-BR-header.png",
+      "width": 3840,
+      "height": 1646,
+      "sha256": "c19201f04bcfb5cda258a78b30e7f0a0c32ff0382ec07eb09a72824d11256d9e"
+    },
+    {
+      "language": "pt-BR",
+      "locale": "pt-BR",
+      "file": "store/artwork/exports/pt-BR/turntouch-pt-BR-search.jpg",
+      "width": 3840,
+      "height": 2560,
+      "sha256": "eb9d8c8a4dc542112c3f1052cb5d2279403943322f1bb1b2474bb129741cbd87"
+    },
+    {
+      "language": "it",
+      "locale": "it",
+      "file": "store/it/images/ipad/01-remote.png",
+      "width": 2064,
+      "height": 2752,
+      "sha256": "469148131dd7c294bae6b67fc7aa78707646ca51e8773c5c1680044a8b0e6093"
+    },
+    {
+      "language": "it",
+      "locale": "it",
+      "file": "store/it/images/ipad/02-settings.png",
+      "width": 2064,
+      "height": 2752,
+      "sha256": "205b469b2cd7006b05aa1e3da4fc4d531b4ecb6121947490fd79524ed03203e3"
+    },
+    {
+      "language": "it",
+      "locale": "it",
+      "file": "store/it/images/ipad/03-apps.png",
+      "width": 2064,
+      "height": 2752,
+      "sha256": "cb442b40b0201b1b16586f712d9da3bab7478935da3bebfed5358d4ce5a61c00"
+    },
+    {
+      "language": "it",
+      "locale": "it",
+      "file": "store/it/images/iphone/01-remote.png",
+      "width": 1320,
+      "height": 2868,
+      "sha256": "a4f73c05921ec454e29fae5eb92e6ac14445490f9a3e1a7a938f3a4929ffe5ae"
+    },
+    {
+      "language": "it",
+      "locale": "it",
+      "file": "store/it/images/iphone/02-settings.png",
+      "width": 1320,
+      "height": 2868,
+      "sha256": "aa68b553ff9f60816e9d138110bd5760bef5c69f7de811dce1303b08882aca8b"
+    },
+    {
+      "language": "it",
+      "locale": "it",
+      "file": "store/it/images/iphone/03-apps.png",
+      "width": 1320,
+      "height": 2868,
+      "sha256": "601257389a3981fc4243ef73242501a160ec32754bcf03ec5f98538e72c0065a"
+    },
+    {
+      "language": "it",
+      "locale": "it",
+      "file": "store/it/images/iphone-medium/01-remote.png",
+      "width": 1206,
+      "height": 2622,
+      "sha256": "92c6b46b381bde1fb7516b8353fd1395ad666f2f1d0ac2574c37b2ad1320045d"
+    },
+    {
+      "language": "it",
+      "locale": "it",
+      "file": "store/it/images/iphone-medium/02-settings.png",
+      "width": 1206,
+      "height": 2622,
+      "sha256": "d38eb39f48939921c73f9ba664e24247ce8c78af91c047cd46f1237ae154de3a"
+    },
+    {
+      "language": "it",
+      "locale": "it",
+      "file": "store/it/images/iphone-medium/03-apps.png",
+      "width": 1206,
+      "height": 2622,
+      "sha256": "1298392e54b88d015e83fa4248d6783d2d1c52d9cef235f3d686c62b4fb95485"
+    },
+    {
+      "language": "it",
+      "locale": "it",
+      "file": "store/artwork/exports/it/turntouch-it-header.png",
+      "width": 3840,
+      "height": 1646,
+      "sha256": "fc0263f2ae5ae045560a5e4c93d79073f064c1863a1a4bcfa85d1dbecf210d82"
+    },
+    {
+      "language": "it",
+      "locale": "it",
+      "file": "store/artwork/exports/it/turntouch-it-search.jpg",
+      "width": 3840,
+      "height": 2560,
+      "sha256": "38614a64e51a4a025827f4da9793667227b85d8a7d444df8a8be36320cb46a96"
+    },
+    {
+      "language": "nl",
+      "locale": "nl",
+      "file": "store/nl/images/ipad/01-remote.png",
+      "width": 2064,
+      "height": 2752,
+      "sha256": "e6803cfbc102ed93bd58fab1a040b546f69d0881c63e629fcbdd8682a0efa0c8"
+    },
+    {
+      "language": "nl",
+      "locale": "nl",
+      "file": "store/nl/images/ipad/02-settings.png",
+      "width": 2064,
+      "height": 2752,
+      "sha256": "afd5dba1ddf61f389d9404d045cb87188b86d2f03f9fb55e765ebf31ff7e2c2a"
+    },
+    {
+      "language": "nl",
+      "locale": "nl",
+      "file": "store/nl/images/ipad/03-apps.png",
+      "width": 2064,
+      "height": 2752,
+      "sha256": "d3989886245dae5b5a46536828524b4bdf8e90acc979637b26441e173de67efb"
+    },
+    {
+      "language": "nl",
+      "locale": "nl",
+      "file": "store/nl/images/iphone/01-remote.png",
+      "width": 1320,
+      "height": 2868,
+      "sha256": "2f06778e4f62f9d71957914b1795e4324575e610e06ae9d57fbfdd733017c03e"
+    },
+    {
+      "language": "nl",
+      "locale": "nl",
+      "file": "store/nl/images/iphone/02-settings.png",
+      "width": 1320,
+      "height": 2868,
+      "sha256": "b1c7b2b4ec4e6b54281b2b382814398ba07828717c0942ebaf24cc9cd8ae477c"
+    },
+    {
+      "language": "nl",
+      "locale": "nl",
+      "file": "store/nl/images/iphone/03-apps.png",
+      "width": 1320,
+      "height": 2868,
+      "sha256": "e4005c92576af96b70e4851f2a04f5dd5eed9ada2c103d9b8fe8c000de163d65"
+    },
+    {
+      "language": "nl",
+      "locale": "nl",
+      "file": "store/nl/images/iphone-medium/01-remote.png",
+      "width": 1206,
+      "height": 2622,
+      "sha256": "4a0deb0119e1b92a179a4b57befd0c7e6b92149e90a2bbff3144760c9e6edbea"
+    },
+    {
+      "language": "nl",
+      "locale": "nl",
+      "file": "store/nl/images/iphone-medium/02-settings.png",
+      "width": 1206,
+      "height": 2622,
+      "sha256": "c76c15ce293f72e518b9fe2d00f000e90ab0de45640e3361069383d1627c1459"
+    },
+    {
+      "language": "nl",
+      "locale": "nl",
+      "file": "store/nl/images/iphone-medium/03-apps.png",
+      "width": 1206,
+      "height": 2622,
+      "sha256": "d79033bbc30206f2324682f9ffc60460afc5efbcfbec355dde05edb9650b680e"
+    },
+    {
+      "language": "nl",
+      "locale": "nl",
+      "file": "store/artwork/exports/nl/turntouch-nl-header.png",
+      "width": 3840,
+      "height": 1646,
+      "sha256": "7226958f145db2b36ed120383ea3b378da19e89e5e1f0e1615baa65ab8766648"
+    },
+    {
+      "language": "nl",
+      "locale": "nl",
+      "file": "store/artwork/exports/nl/turntouch-nl-search.jpg",
+      "width": 3840,
+      "height": 2560,
+      "sha256": "9b9ab335791564ad445afad0f8d863931f74483056e729abec32d612e25ea1de"
+    },
+    {
+      "language": "pl",
+      "locale": "pl",
+      "file": "store/pl/images/ipad/01-remote.png",
+      "width": 2064,
+      "height": 2752,
+      "sha256": "33f21c0fe1695376e469de548658f3c98de939e27413745bb01e547d5f0f3fde"
+    },
+    {
+      "language": "pl",
+      "locale": "pl",
+      "file": "store/pl/images/ipad/02-settings.png",
+      "width": 2064,
+      "height": 2752,
+      "sha256": "f74a7061bb18f41f388d4eb85d0352467919f1789ae6dedf19bc9993e0ed478e"
+    },
+    {
+      "language": "pl",
+      "locale": "pl",
+      "file": "store/pl/images/ipad/03-apps.png",
+      "width": 2064,
+      "height": 2752,
+      "sha256": "e656314a8f1382098e1a9b364f4ccb70b2c023616aa01b7f343fa946962b4e29"
+    },
+    {
+      "language": "pl",
+      "locale": "pl",
+      "file": "store/pl/images/iphone/01-remote.png",
+      "width": 1320,
+      "height": 2868,
+      "sha256": "7f2ff932c9b5166f22ff16008d03e7161b8d0c552836b4f2cbf10b6964db9c42"
+    },
+    {
+      "language": "pl",
+      "locale": "pl",
+      "file": "store/pl/images/iphone/02-settings.png",
+      "width": 1320,
+      "height": 2868,
+      "sha256": "d3c6b4d023aec2d50368988defb8bdd164e4575311522647a781827293347e9b"
+    },
+    {
+      "language": "pl",
+      "locale": "pl",
+      "file": "store/pl/images/iphone/03-apps.png",
+      "width": 1320,
+      "height": 2868,
+      "sha256": "177a35bf97a684ed26af49157035072084afbcdfe92d1701bba29e174831568a"
+    },
+    {
+      "language": "pl",
+      "locale": "pl",
+      "file": "store/pl/images/iphone-medium/01-remote.png",
+      "width": 1206,
+      "height": 2622,
+      "sha256": "cccabe473e29330fb563f0cc6b9556687f475af0823b1f02f62d5a8b1ae0c09a"
+    },
+    {
+      "language": "pl",
+      "locale": "pl",
+      "file": "store/pl/images/iphone-medium/02-settings.png",
+      "width": 1206,
+      "height": 2622,
+      "sha256": "7cdf1d781791c34ae804ab24a04b90746a4acfa82e49e5bc892d08a04f103567"
+    },
+    {
+      "language": "pl",
+      "locale": "pl",
+      "file": "store/pl/images/iphone-medium/03-apps.png",
+      "width": 1206,
+      "height": 2622,
+      "sha256": "8e4d41245f1c6ee147e3cda13f8d239c1d1fb9bc614220ad8fe1458e9869955a"
+    },
+    {
+      "language": "pl",
+      "locale": "pl",
+      "file": "store/artwork/exports/pl/turntouch-pl-header.png",
+      "width": 3840,
+      "height": 1646,
+      "sha256": "2603a874cd41c5acbdb8b9728716552454d5cd018ce4d177fffa25185835be9e"
+    },
+    {
+      "language": "pl",
+      "locale": "pl",
+      "file": "store/artwork/exports/pl/turntouch-pl-search.jpg",
+      "width": 3840,
+      "height": 2560,
+      "sha256": "2195553094354bf2ca0106d3d3aab62d2007c0b2a5220e0929b7343066a1fdf6"
+    },
+    {
+      "language": "tr",
+      "locale": "tr",
+      "file": "store/tr/images/ipad/01-remote.png",
+      "width": 2064,
+      "height": 2752,
+      "sha256": "7e206e764b0ab2152236f4757e65e3fb55d934ffaef689d15ff21afd97f2e46e"
+    },
+    {
+      "language": "tr",
+      "locale": "tr",
+      "file": "store/tr/images/ipad/02-settings.png",
+      "width": 2064,
+      "height": 2752,
+      "sha256": "caaf48ab2707cd73bb32481ae3d40c7275bc00cbe1357824954ce98b58e94b96"
+    },
+    {
+      "language": "tr",
+      "locale": "tr",
+      "file": "store/tr/images/ipad/03-apps.png",
+      "width": 2064,
+      "height": 2752,
+      "sha256": "736eb1f3e5288548ac66f27a7986a11086db40b56ec87968c00fd547b29e6a9f"
+    },
+    {
+      "language": "tr",
+      "locale": "tr",
+      "file": "store/tr/images/iphone/01-remote.png",
+      "width": 1320,
+      "height": 2868,
+      "sha256": "151165ab0a9b4acf0045fc304ee40c63752380dce17eede9d2a4082112a3efae"
+    },
+    {
+      "language": "tr",
+      "locale": "tr",
+      "file": "store/tr/images/iphone/02-settings.png",
+      "width": 1320,
+      "height": 2868,
+      "sha256": "a69951134e2130c06d8c810c3cc84ee6a61b8fdf19fec44a281577d556cb1d69"
+    },
+    {
+      "language": "tr",
+      "locale": "tr",
+      "file": "store/tr/images/iphone/03-apps.png",
+      "width": 1320,
+      "height": 2868,
+      "sha256": "98a2294fa28770ae1af815d2c5604f9c508194752e0a53febeae84423f4d7193"
+    },
+    {
+      "language": "tr",
+      "locale": "tr",
+      "file": "store/tr/images/iphone-medium/01-remote.png",
+      "width": 1206,
+      "height": 2622,
+      "sha256": "fbccd9205ad490b716ad82ebaa764164e45ee51a2e4c9961691bc3f72208ce02"
+    },
+    {
+      "language": "tr",
+      "locale": "tr",
+      "file": "store/tr/images/iphone-medium/02-settings.png",
+      "width": 1206,
+      "height": 2622,
+      "sha256": "2cee41686184fad7ba5a6cdd0734f152511f05787e2da5ed585d2782f9072aa6"
+    },
+    {
+      "language": "tr",
+      "locale": "tr",
+      "file": "store/tr/images/iphone-medium/03-apps.png",
+      "width": 1206,
+      "height": 2622,
+      "sha256": "b9b4eee38b0dae6b68557f28c7e783d55bca3c2fcea90c68c193fe1344eefca9"
+    },
+    {
+      "language": "tr",
+      "locale": "tr",
+      "file": "store/artwork/exports/tr/turntouch-tr-header.png",
+      "width": 3840,
+      "height": 1646,
+      "sha256": "fb0a5843c904c339c074e4b275c7767c56add7e990c0b20d19ad5878bd649cb3"
+    },
+    {
+      "language": "tr",
+      "locale": "tr",
+      "file": "store/artwork/exports/tr/turntouch-tr-search.jpg",
+      "width": 3840,
+      "height": 2560,
+      "sha256": "a2d33b8d64eaa586ec7816fa0ac73644d97d8838fbf302e50a1f32a78fc0b672"
+    },
+    {
+      "language": "ru",
+      "locale": "ru",
+      "file": "store/ru/images/ipad/01-remote.png",
+      "width": 2064,
+      "height": 2752,
+      "sha256": "b6b95469cdcbf2f991f772e300653b65cf0cada94299b5fca2714bf56cf08337"
+    },
+    {
+      "language": "ru",
+      "locale": "ru",
+      "file": "store/ru/images/ipad/02-settings.png",
+      "width": 2064,
+      "height": 2752,
+      "sha256": "617f07b203d292b09a19c8bb6301a11521d98d6580ba946362ec712d9f75f698"
+    },
+    {
+      "language": "ru",
+      "locale": "ru",
+      "file": "store/ru/images/ipad/03-apps.png",
+      "width": 2064,
+      "height": 2752,
+      "sha256": "18ac72f27d41bf7495b3abec896faf7dfc762b325e3acfbc05674679b77e9769"
+    },
+    {
+      "language": "ru",
+      "locale": "ru",
+      "file": "store/ru/images/iphone/01-remote.png",
+      "width": 1320,
+      "height": 2868,
+      "sha256": "c640dcb74f0bbe07ecd96e33c98882ffac773398fc165229dd218daa7cd05475"
+    },
+    {
+      "language": "ru",
+      "locale": "ru",
+      "file": "store/ru/images/iphone/02-settings.png",
+      "width": 1320,
+      "height": 2868,
+      "sha256": "35860f7c8ae3b9b1c9c6144c970a47068defb6ad51a318f904dd70abb4667929"
+    },
+    {
+      "language": "ru",
+      "locale": "ru",
+      "file": "store/ru/images/iphone/03-apps.png",
+      "width": 1320,
+      "height": 2868,
+      "sha256": "4cd384adaef023f8ab8d2020658cd613dc4d29a24c7d7e7a3cb93c516e3f0b80"
+    },
+    {
+      "language": "ru",
+      "locale": "ru",
+      "file": "store/ru/images/iphone-medium/01-remote.png",
+      "width": 1206,
+      "height": 2622,
+      "sha256": "06d14163524a0c353143a9c427330da707d53f67e741f58fdb0e7de6300ef166"
+    },
+    {
+      "language": "ru",
+      "locale": "ru",
+      "file": "store/ru/images/iphone-medium/02-settings.png",
+      "width": 1206,
+      "height": 2622,
+      "sha256": "336ac15ad223c83ee2e3e361e1a591e5844ad8cbed2c95332f04a63f872ec59c"
+    },
+    {
+      "language": "ru",
+      "locale": "ru",
+      "file": "store/ru/images/iphone-medium/03-apps.png",
+      "width": 1206,
+      "height": 2622,
+      "sha256": "2e625159405e105fb593cf48c92633766a7c88e700746672991b8df418c8027c"
+    },
+    {
+      "language": "ru",
+      "locale": "ru",
+      "file": "store/artwork/exports/ru/turntouch-ru-header.png",
+      "width": 3840,
+      "height": 1646,
+      "sha256": "90de51ca35949b07d8bcb4e100dd2bfa2855074b479a8f5b11302e553287989f"
+    },
+    {
+      "language": "ru",
+      "locale": "ru",
+      "file": "store/artwork/exports/ru/turntouch-ru-search.jpg",
+      "width": 3840,
+      "height": 2560,
+      "sha256": "829d7c1d1495be76eec8aff534e99c7f57c665d6c37e7fc1dad38e81a5db422e"
+    },
+    {
+      "language": "uk",
+      "locale": "uk",
+      "file": "store/uk/images/ipad/01-remote.png",
+      "width": 2064,
+      "height": 2752,
+      "sha256": "9815763b0e1c5a3baf4bc30a3eb45ae64972be98e8596711602cb0c78816a2c0"
+    },
+    {
+      "language": "uk",
+      "locale": "uk",
+      "file": "store/uk/images/ipad/02-settings.png",
+      "width": 2064,
+      "height": 2752,
+      "sha256": "bc2f0e2249c815380a6bf905af8c1c4dd22f7182203add6707cbc83b6c2b3aab"
+    },
+    {
+      "language": "uk",
+      "locale": "uk",
+      "file": "store/uk/images/ipad/03-apps.png",
+      "width": 2064,
+      "height": 2752,
+      "sha256": "9f22910b69bb8d6e1057a8018382b9716fdad8a18762c9539dca3a107d656d4d"
+    },
+    {
+      "language": "uk",
+      "locale": "uk",
+      "file": "store/uk/images/iphone/01-remote.png",
+      "width": 1320,
+      "height": 2868,
+      "sha256": "d4bcabd1ccdddfeecc88132854204ab96cf74c5cf9c14adbd67607e75e43b437"
+    },
+    {
+      "language": "uk",
+      "locale": "uk",
+      "file": "store/uk/images/iphone/02-settings.png",
+      "width": 1320,
+      "height": 2868,
+      "sha256": "c7da1ffe3599e7cfa7a13f9953c93b01afe2adc2aba0bb38be8ab514aae82b2a"
+    },
+    {
+      "language": "uk",
+      "locale": "uk",
+      "file": "store/uk/images/iphone/03-apps.png",
+      "width": 1320,
+      "height": 2868,
+      "sha256": "040b3694e40c32e94812758fb0d5862ed61e8b27d3cded8c8371ed038f708907"
+    },
+    {
+      "language": "uk",
+      "locale": "uk",
+      "file": "store/uk/images/iphone-medium/01-remote.png",
+      "width": 1206,
+      "height": 2622,
+      "sha256": "8a798009db4c55cc78d9313cd7a5e39f3e153a3dbd15caa3a5bb6ca49c0cc37f"
+    },
+    {
+      "language": "uk",
+      "locale": "uk",
+      "file": "store/uk/images/iphone-medium/02-settings.png",
+      "width": 1206,
+      "height": 2622,
+      "sha256": "ad79e199d03a106a187c7dcfca413a4c1dab38b7d9345721d02ddd1240b75d03"
+    },
+    {
+      "language": "uk",
+      "locale": "uk",
+      "file": "store/uk/images/iphone-medium/03-apps.png",
+      "width": 1206,
+      "height": 2622,
+      "sha256": "53afd7198b2d628b2e1bffea2182afc98597d731e696e063479959a9f9fa1d7d"
+    },
+    {
+      "language": "uk",
+      "locale": "uk",
+      "file": "store/artwork/exports/uk/turntouch-uk-header.png",
+      "width": 3840,
+      "height": 1646,
+      "sha256": "410ac16d55351e12c0035232eea9dcc970c8a70ad10a089f0ad96ee75d20693d"
+    },
+    {
+      "language": "uk",
+      "locale": "uk",
+      "file": "store/artwork/exports/uk/turntouch-uk-search.jpg",
+      "width": 3840,
+      "height": 2560,
+      "sha256": "ae8f8bbc0a0816d826570db3ad879cd0a6ac810d3a4c714ab89b38cd1dc09009"
+    },
+    {
+      "language": "ar",
+      "locale": "ar-SA",
+      "file": "store/ar-SA/images/ipad/01-remote.png",
+      "width": 2064,
+      "height": 2752,
+      "sha256": "ab8da94b030a2044c8661067de2053bda4d51b5d7863e8a178cd607ac7950e9d"
+    },
+    {
+      "language": "ar",
+      "locale": "ar-SA",
+      "file": "store/ar-SA/images/ipad/02-settings.png",
+      "width": 2064,
+      "height": 2752,
+      "sha256": "f0b968a6a172450962e13487df902953e1889e4b51b6d54885205ab784099ccf"
+    },
+    {
+      "language": "ar",
+      "locale": "ar-SA",
+      "file": "store/ar-SA/images/ipad/03-apps.png",
+      "width": 2064,
+      "height": 2752,
+      "sha256": "e632ac317ef65be6cbd0a2541edd38ead39e940230a0bba2a344dcde3e78d345"
+    },
+    {
+      "language": "ar",
+      "locale": "ar-SA",
+      "file": "store/ar-SA/images/iphone/01-remote.png",
+      "width": 1320,
+      "height": 2868,
+      "sha256": "594519efd2f46db6759ad0f11db9ed88f682f2781a35ab8e15b5fc5f3e29b055"
+    },
+    {
+      "language": "ar",
+      "locale": "ar-SA",
+      "file": "store/ar-SA/images/iphone/02-settings.png",
+      "width": 1320,
+      "height": 2868,
+      "sha256": "3b7ac568b06e89d68ffe195bab6864ce1efffddffa6ef3044587dce28617c1b2"
+    },
+    {
+      "language": "ar",
+      "locale": "ar-SA",
+      "file": "store/ar-SA/images/iphone/03-apps.png",
+      "width": 1320,
+      "height": 2868,
+      "sha256": "4dacfa9f56a56039a8ada6dd14cf29bd01afbaae98c6cd9ec7b5441787c29740"
+    },
+    {
+      "language": "ar",
+      "locale": "ar-SA",
+      "file": "store/ar-SA/images/iphone-medium/01-remote.png",
+      "width": 1206,
+      "height": 2622,
+      "sha256": "49e923f3515b269639d46d657b64e47c70247749c526068a6918fc3021add59e"
+    },
+    {
+      "language": "ar",
+      "locale": "ar-SA",
+      "file": "store/ar-SA/images/iphone-medium/02-settings.png",
+      "width": 1206,
+      "height": 2622,
+      "sha256": "d8fb43b8a6cb7637acfeee0b939de36ded8208d6109315cb6c3d3dd5f30400a0"
+    },
+    {
+      "language": "ar",
+      "locale": "ar-SA",
+      "file": "store/ar-SA/images/iphone-medium/03-apps.png",
+      "width": 1206,
+      "height": 2622,
+      "sha256": "14cf7b94dadad1f56526f65f0ab1ca5208ed617a5f1fb39cb69f2dd2041404af"
+    },
+    {
+      "language": "ar",
+      "locale": "ar-SA",
+      "file": "store/artwork/exports/ar/turntouch-ar-header.png",
+      "width": 3840,
+      "height": 1646,
+      "sha256": "ee4d16da6b75241157cec74d1810412902f32e68d18c1877adc62ffe7c18f866"
+    },
+    {
+      "language": "ar",
+      "locale": "ar-SA",
+      "file": "store/artwork/exports/ar/turntouch-ar-search.jpg",
+      "width": 3840,
+      "height": 2560,
+      "sha256": "ac26c9ae8c6b63e66d5b32100d96b95752c80cd06cbb405c0d2e6bf0c2ae1305"
+    },
+    {
+      "language": "he",
+      "locale": "he",
+      "file": "store/he/images/ipad/01-remote.png",
+      "width": 2064,
+      "height": 2752,
+      "sha256": "87a83b5a31032a8a7ab3aab279abefc9caee7436f208137ca093d64049f5f8a9"
+    },
+    {
+      "language": "he",
+      "locale": "he",
+      "file": "store/he/images/ipad/02-settings.png",
+      "width": 2064,
+      "height": 2752,
+      "sha256": "2e578d0f30c367042bc28f5a95d00bb98dbbd2ce252792ca8f2e82fa113261c6"
+    },
+    {
+      "language": "he",
+      "locale": "he",
+      "file": "store/he/images/ipad/03-apps.png",
+      "width": 2064,
+      "height": 2752,
+      "sha256": "b25f8d9bd1ef1f9c2166dc944cbe2be91cdc18c199063dbd05c9122f5f41e13b"
+    },
+    {
+      "language": "he",
+      "locale": "he",
+      "file": "store/he/images/iphone/01-remote.png",
+      "width": 1320,
+      "height": 2868,
+      "sha256": "7da2d1287d6c5395ad839bf2a74b12e45337a10f9f4ce9f4ac187ea9c9305ff3"
+    },
+    {
+      "language": "he",
+      "locale": "he",
+      "file": "store/he/images/iphone/02-settings.png",
+      "width": 1320,
+      "height": 2868,
+      "sha256": "49259d4a9ea2aaa09127b13c3bf6b382b82d81bfb49852edc0ab3939fd56f979"
+    },
+    {
+      "language": "he",
+      "locale": "he",
+      "file": "store/he/images/iphone/03-apps.png",
+      "width": 1320,
+      "height": 2868,
+      "sha256": "4aec8f91ef62675175d5b4bf94b7f565e3ae934e91604dccbfb161fff60c00c6"
+    },
+    {
+      "language": "he",
+      "locale": "he",
+      "file": "store/he/images/iphone-medium/01-remote.png",
+      "width": 1206,
+      "height": 2622,
+      "sha256": "e832f9d2a2dd791d8617f3b3002c52694d49a2c2e429345ad6e85bd26f905370"
+    },
+    {
+      "language": "he",
+      "locale": "he",
+      "file": "store/he/images/iphone-medium/02-settings.png",
+      "width": 1206,
+      "height": 2622,
+      "sha256": "b0d4532a4bcb8b0d8055a77071455b406a74a354b38c06e68266113f7f5c68b0"
+    },
+    {
+      "language": "he",
+      "locale": "he",
+      "file": "store/he/images/iphone-medium/03-apps.png",
+      "width": 1206,
+      "height": 2622,
+      "sha256": "83e6d45f4065d33c61089a5b56bb85e08475d322d7d0a386761a35b52f01f065"
+    },
+    {
+      "language": "he",
+      "locale": "he",
+      "file": "store/artwork/exports/he/turntouch-he-header.png",
+      "width": 3840,
+      "height": 1646,
+      "sha256": "969dfb9c5e6b515c034e0973f8cc5cb2e3bb138d20af3d6388fc8edddd6f92f6"
+    },
+    {
+      "language": "he",
+      "locale": "he",
+      "file": "store/artwork/exports/he/turntouch-he-search.jpg",
+      "width": 3840,
+      "height": 2560,
+      "sha256": "9b49739ca62de51eb0542bd25e5bb1c6e60f41c84bac75cfebcbcca0f94d409e"
+    },
+    {
+      "language": "hi",
+      "locale": "hi",
+      "file": "store/hi/images/ipad/01-remote.png",
+      "width": 2064,
+      "height": 2752,
+      "sha256": "ba37050082196c43ce7aa585152ff72106b2bf34836a5956e9b499e2911b0622"
+    },
+    {
+      "language": "hi",
+      "locale": "hi",
+      "file": "store/hi/images/ipad/02-settings.png",
+      "width": 2064,
+      "height": 2752,
+      "sha256": "e76e0d4f38c78b4046b8a6c360fc284a627dce78a4abe75d48fe43415437fddd"
+    },
+    {
+      "language": "hi",
+      "locale": "hi",
+      "file": "store/hi/images/ipad/03-apps.png",
+      "width": 2064,
+      "height": 2752,
+      "sha256": "6847e53b14f9832ba784ae620b16d73764e80f066daf54d5aca24cf0352855e7"
+    },
+    {
+      "language": "hi",
+      "locale": "hi",
+      "file": "store/hi/images/iphone/01-remote.png",
+      "width": 1320,
+      "height": 2868,
+      "sha256": "04630254524f8327a852a46ab61181e5e5de56b4b7a59d2df265d8c776864f75"
+    },
+    {
+      "language": "hi",
+      "locale": "hi",
+      "file": "store/hi/images/iphone/02-settings.png",
+      "width": 1320,
+      "height": 2868,
+      "sha256": "9e6077b9b437dcc6dd3bc35ec72fc27f0945beecea31d689efa5e53ed45a03ee"
+    },
+    {
+      "language": "hi",
+      "locale": "hi",
+      "file": "store/hi/images/iphone/03-apps.png",
+      "width": 1320,
+      "height": 2868,
+      "sha256": "b0c93526ebbd1b06a38359c4c8ffe113197a4653e51dd3740d1bef34b3be3733"
+    },
+    {
+      "language": "hi",
+      "locale": "hi",
+      "file": "store/hi/images/iphone-medium/01-remote.png",
+      "width": 1206,
+      "height": 2622,
+      "sha256": "38ffec071c8834d5836f1f19aaad40f804c1888fc71708608f6f2be7ad464b6d"
+    },
+    {
+      "language": "hi",
+      "locale": "hi",
+      "file": "store/hi/images/iphone-medium/02-settings.png",
+      "width": 1206,
+      "height": 2622,
+      "sha256": "4df6049e8507db076731bbd0e377cbbae6ed54d532a026b36cd0a314d2a01767"
+    },
+    {
+      "language": "hi",
+      "locale": "hi",
+      "file": "store/hi/images/iphone-medium/03-apps.png",
+      "width": 1206,
+      "height": 2622,
+      "sha256": "4dee9dd20efe236153da44d6db5c63e6dd655e532a06f857fcd3faf84c249bcb"
+    },
+    {
+      "language": "hi",
+      "locale": "hi",
+      "file": "store/artwork/exports/hi/turntouch-hi-header.png",
+      "width": 3840,
+      "height": 1646,
+      "sha256": "05a57c1b8f777950c405e07fff4edabe1be5b330886f925c0bedd2cfe7efd395"
+    },
+    {
+      "language": "hi",
+      "locale": "hi",
+      "file": "store/artwork/exports/hi/turntouch-hi-search.jpg",
+      "width": 3840,
+      "height": 2560,
+      "sha256": "5034362cdb6af472433e84498ba727ecf046d1e0b3c5bbc737d1b575811cf426"
+    },
+    {
+      "language": "id",
+      "locale": "id",
+      "file": "store/id/images/ipad/01-remote.png",
+      "width": 2064,
+      "height": 2752,
+      "sha256": "4e477e5eca1a2893e5ca5d676f02cde86f23d62f76701ac7aa88a6f6a8fc0691"
+    },
+    {
+      "language": "id",
+      "locale": "id",
+      "file": "store/id/images/ipad/02-settings.png",
+      "width": 2064,
+      "height": 2752,
+      "sha256": "b1faa7f882b3d5c4f60796ec070e6c1afb09a33d3984e57da1c75fc727f909d1"
+    },
+    {
+      "language": "id",
+      "locale": "id",
+      "file": "store/id/images/ipad/03-apps.png",
+      "width": 2064,
+      "height": 2752,
+      "sha256": "f991b9a5ef80756f5122137e4cdc66f438de894340bc1239953d285459c26458"
+    },
+    {
+      "language": "id",
+      "locale": "id",
+      "file": "store/id/images/iphone/01-remote.png",
+      "width": 1320,
+      "height": 2868,
+      "sha256": "88eb6d62593a183940b33484a6ca3861a141c60fd528769d230a3787a507caf8"
+    },
+    {
+      "language": "id",
+      "locale": "id",
+      "file": "store/id/images/iphone/02-settings.png",
+      "width": 1320,
+      "height": 2868,
+      "sha256": "c95b90a61187a3f0bfe9310329b1775f68ea090737e8927be7e5041b3ceacf03"
+    },
+    {
+      "language": "id",
+      "locale": "id",
+      "file": "store/id/images/iphone/03-apps.png",
+      "width": 1320,
+      "height": 2868,
+      "sha256": "2d2f5f8275b022935f93d0286a95439027eb2c4755d6cc550f90ce7735d0e91a"
+    },
+    {
+      "language": "id",
+      "locale": "id",
+      "file": "store/id/images/iphone-medium/01-remote.png",
+      "width": 1206,
+      "height": 2622,
+      "sha256": "61044a46a42c8d48bf1a7980e53dfa33dcc7df174d3fcf2bc07fe59a932c69fe"
+    },
+    {
+      "language": "id",
+      "locale": "id",
+      "file": "store/id/images/iphone-medium/02-settings.png",
+      "width": 1206,
+      "height": 2622,
+      "sha256": "4992dc025affaa6c0ce1dbe1a9c2c1e88d3fad8023b0c4088535efbcd8f916d4"
+    },
+    {
+      "language": "id",
+      "locale": "id",
+      "file": "store/id/images/iphone-medium/03-apps.png",
+      "width": 1206,
+      "height": 2622,
+      "sha256": "4a8de464c3ac3f6ae0302c9816ea6c3c60677d0f2da6d526c4c0329a70038ae8"
+    },
+    {
+      "language": "id",
+      "locale": "id",
+      "file": "store/artwork/exports/id/turntouch-id-header.png",
+      "width": 3840,
+      "height": 1646,
+      "sha256": "ca92748123e9142c95eb47d3adf3b726fa9f0842253b7836e81a31e7347bf5d3"
+    },
+    {
+      "language": "id",
+      "locale": "id",
+      "file": "store/artwork/exports/id/turntouch-id-search.jpg",
+      "width": 3840,
+      "height": 2560,
+      "sha256": "73b8ac68d8911a9c6f23cc0d647721572ca5b19cd0045701c0f17737ee49cc3e"
+    },
+    {
+      "language": "vi",
+      "locale": "vi",
+      "file": "store/vi/images/ipad/01-remote.png",
+      "width": 2064,
+      "height": 2752,
+      "sha256": "d05276ce2ee2a607e4dfda0dc1de2fa610010f405b67b839f6885f47cee9243a"
+    },
+    {
+      "language": "vi",
+      "locale": "vi",
+      "file": "store/vi/images/ipad/02-settings.png",
+      "width": 2064,
+      "height": 2752,
+      "sha256": "0943c363d0ae55f5e7d946cf7e4a1361a30891bf599370593b0a8e4133da1ec9"
+    },
+    {
+      "language": "vi",
+      "locale": "vi",
+      "file": "store/vi/images/ipad/03-apps.png",
+      "width": 2064,
+      "height": 2752,
+      "sha256": "6cc6b043acaaded6be05357ec8e3d8beeb2d96c291159cf64de5a5c0c780b4e7"
+    },
+    {
+      "language": "vi",
+      "locale": "vi",
+      "file": "store/vi/images/iphone/01-remote.png",
+      "width": 1320,
+      "height": 2868,
+      "sha256": "7fcf9df01355957230f1b646ebc8fdbe6eb744a7d55a03cc74578a89ff834b5e"
+    },
+    {
+      "language": "vi",
+      "locale": "vi",
+      "file": "store/vi/images/iphone/02-settings.png",
+      "width": 1320,
+      "height": 2868,
+      "sha256": "454790888d1771610e14212859cc46fe47c261b3c67e5a6fb84dfe36db983408"
+    },
+    {
+      "language": "vi",
+      "locale": "vi",
+      "file": "store/vi/images/iphone/03-apps.png",
+      "width": 1320,
+      "height": 2868,
+      "sha256": "5210fd0dc2508643c8629f41ecffad703e54d916da6284786a701e3529233d61"
+    },
+    {
+      "language": "vi",
+      "locale": "vi",
+      "file": "store/vi/images/iphone-medium/01-remote.png",
+      "width": 1206,
+      "height": 2622,
+      "sha256": "bc1ed6e7902e54f6429a108c27ee4c616f7d5ef02190404892faf680d537755b"
+    },
+    {
+      "language": "vi",
+      "locale": "vi",
+      "file": "store/vi/images/iphone-medium/02-settings.png",
+      "width": 1206,
+      "height": 2622,
+      "sha256": "f292a41ff457fbeb378fb9eec2d5825e2cdc45ce95badae8417fbe463723ea46"
+    },
+    {
+      "language": "vi",
+      "locale": "vi",
+      "file": "store/vi/images/iphone-medium/03-apps.png",
+      "width": 1206,
+      "height": 2622,
+      "sha256": "6c00c82d19962fbe1e1d2a8cc07818d955c6f7e0ff23a870727a1749bf2b55fd"
+    },
+    {
+      "language": "vi",
+      "locale": "vi",
+      "file": "store/artwork/exports/vi/turntouch-vi-header.png",
+      "width": 3840,
+      "height": 1646,
+      "sha256": "a170699bcf39e4945e1fb51e92300906699261021e43a08c616181aed746ebe7"
+    },
+    {
+      "language": "vi",
+      "locale": "vi",
+      "file": "store/artwork/exports/vi/turntouch-vi-search.jpg",
+      "width": 3840,
+      "height": 2560,
+      "sha256": "9fd251402628b84518f2891fff4863f8ba472456528acd7ce30a7d7a811f5fab"
+    },
+    {
+      "language": "th",
+      "locale": "th",
+      "file": "store/th/images/ipad/01-remote.png",
+      "width": 2064,
+      "height": 2752,
+      "sha256": "dca8c3f9ac40def5e1f7b22ca03854a095c6fbe3242d2dc1816c6f025de4a5bf"
+    },
+    {
+      "language": "th",
+      "locale": "th",
+      "file": "store/th/images/ipad/02-settings.png",
+      "width": 2064,
+      "height": 2752,
+      "sha256": "390c9d5f88307d0e61cea4b9e26fcc025321f5a854756489af978c8eef80960c"
+    },
+    {
+      "language": "th",
+      "locale": "th",
+      "file": "store/th/images/ipad/03-apps.png",
+      "width": 2064,
+      "height": 2752,
+      "sha256": "498ce748b910323243451a86a0bfd2887f292243ee9e321b0ca2a2557096d4fa"
+    },
+    {
+      "language": "th",
+      "locale": "th",
+      "file": "store/th/images/iphone/01-remote.png",
+      "width": 1320,
+      "height": 2868,
+      "sha256": "803528fd5b785092bc1376784a33aab9e63243c6a787cf0cb4f5934e6414cfd0"
+    },
+    {
+      "language": "th",
+      "locale": "th",
+      "file": "store/th/images/iphone/02-settings.png",
+      "width": 1320,
+      "height": 2868,
+      "sha256": "7051bc52c2ee22ee0b24730159d8df2579e40b1fb806629c2750343b55bd5a59"
+    },
+    {
+      "language": "th",
+      "locale": "th",
+      "file": "store/th/images/iphone/03-apps.png",
+      "width": 1320,
+      "height": 2868,
+      "sha256": "ef7dfae42dae8fabe17b351dbbd87715d19ea8587281a740dbd5746b96ab3e49"
+    },
+    {
+      "language": "th",
+      "locale": "th",
+      "file": "store/th/images/iphone-medium/01-remote.png",
+      "width": 1206,
+      "height": 2622,
+      "sha256": "07d2592e5302a93b5cad7ffa2db2e420d8f263a3e9d0b2e6380335b825de4139"
+    },
+    {
+      "language": "th",
+      "locale": "th",
+      "file": "store/th/images/iphone-medium/02-settings.png",
+      "width": 1206,
+      "height": 2622,
+      "sha256": "f5e7ed5615914232e908774eb8788da49184193ee769450a63249611939b84ca"
+    },
+    {
+      "language": "th",
+      "locale": "th",
+      "file": "store/th/images/iphone-medium/03-apps.png",
+      "width": 1206,
+      "height": 2622,
+      "sha256": "f3cd3666c119a213e17c56e030c32b00ef2b7963e57b23301352d19fbe0e0bf2"
+    },
+    {
+      "language": "th",
+      "locale": "th",
+      "file": "store/artwork/exports/th/turntouch-th-header.png",
+      "width": 3840,
+      "height": 1646,
+      "sha256": "9e957988a13ba279369c6604d4e2bb401049d2a140f3394706c7fb69e6f61ecb"
+    },
+    {
+      "language": "th",
+      "locale": "th",
+      "file": "store/artwork/exports/th/turntouch-th-search.jpg",
+      "width": 3840,
+      "height": 2560,
+      "sha256": "be6bd35d4a5065b3393029648e05580043c32784a87dad9c5800561788b7561d"
+    },
+    {
+      "language": "ja",
+      "locale": "ja",
+      "file": "store/ja/images/ipad/01-remote.png",
+      "width": 2064,
+      "height": 2752,
+      "sha256": "470628fd0a5e30319b82393093766b3b3c23e67fa1916c3a3a682d8145713cde"
+    },
+    {
+      "language": "ja",
+      "locale": "ja",
+      "file": "store/ja/images/ipad/02-settings.png",
+      "width": 2064,
+      "height": 2752,
+      "sha256": "8f91fc64f16d1c6943f4102d28a9d3784fb363b44dcca328c1c21b4b65ac7119"
+    },
+    {
+      "language": "ja",
+      "locale": "ja",
+      "file": "store/ja/images/ipad/03-apps.png",
+      "width": 2064,
+      "height": 2752,
+      "sha256": "843976fbfe6630cd652df45b01d1c674e868ac2ac9ce5c85d49396df5f789a73"
+    },
+    {
+      "language": "ja",
+      "locale": "ja",
+      "file": "store/ja/images/iphone/01-remote.png",
+      "width": 1320,
+      "height": 2868,
+      "sha256": "3a74ad480bdffacd582c885ec94ecd72d0f595a3ac557aea67077578d0eb11b7"
+    },
+    {
+      "language": "ja",
+      "locale": "ja",
+      "file": "store/ja/images/iphone/02-settings.png",
+      "width": 1320,
+      "height": 2868,
+      "sha256": "52a587abd387183d39858779e10a166e05a7de44b7337a966806a23f4852931e"
+    },
+    {
+      "language": "ja",
+      "locale": "ja",
+      "file": "store/ja/images/iphone/03-apps.png",
+      "width": 1320,
+      "height": 2868,
+      "sha256": "300f0a9557a54dd1640891b57c297214ff7d4e8ef9ce78ce2e162867f1fc1394"
+    },
+    {
+      "language": "ja",
+      "locale": "ja",
+      "file": "store/ja/images/iphone-medium/01-remote.png",
+      "width": 1206,
+      "height": 2622,
+      "sha256": "d656d54a44ed22bd6cea55bc49cb3ee7b67aff5c9232f8b3a6883eed611e0e9e"
+    },
+    {
+      "language": "ja",
+      "locale": "ja",
+      "file": "store/ja/images/iphone-medium/02-settings.png",
+      "width": 1206,
+      "height": 2622,
+      "sha256": "f3864486ef55ba99710c7c4c5c75efe3b06e42bd204f8cddb5b843793d1edaa3"
+    },
+    {
+      "language": "ja",
+      "locale": "ja",
+      "file": "store/ja/images/iphone-medium/03-apps.png",
+      "width": 1206,
+      "height": 2622,
+      "sha256": "c23e270df813631c5ada0de966828b58f93eb7b7af1681fce2c57ee583721458"
+    },
+    {
+      "language": "ja",
+      "locale": "ja",
+      "file": "store/artwork/exports/ja/turntouch-ja-header.png",
+      "width": 3840,
+      "height": 1646,
+      "sha256": "a9ae6db802be3d199b011bd0c26d06f18c08dd3804a90e94c90182cca9264805"
+    },
+    {
+      "language": "ja",
+      "locale": "ja",
+      "file": "store/artwork/exports/ja/turntouch-ja-search.jpg",
+      "width": 3840,
+      "height": 2560,
+      "sha256": "3e9fef55c71ee0ed733e74554edc575e891b463340d43edb2e3579149a538dfa"
+    },
+    {
+      "language": "ko",
+      "locale": "ko",
+      "file": "store/ko/images/ipad/01-remote.png",
+      "width": 2064,
+      "height": 2752,
+      "sha256": "9353152fff2ed7af6adb32df7fb1b3bc75a8fd78acc17f08cd155e7e622f6aa2"
+    },
+    {
+      "language": "ko",
+      "locale": "ko",
+      "file": "store/ko/images/ipad/02-settings.png",
+      "width": 2064,
+      "height": 2752,
+      "sha256": "f41837c4c20973d3a56ba6982fe5436c9dd6782205ac1cf33eac3ee8b0a1c8ba"
+    },
+    {
+      "language": "ko",
+      "locale": "ko",
+      "file": "store/ko/images/ipad/03-apps.png",
+      "width": 2064,
+      "height": 2752,
+      "sha256": "b524c3d8e7c6376db888a212c32f5ea1fa5cef12968cdbf4c10bd7fe9d148c37"
+    },
+    {
+      "language": "ko",
+      "locale": "ko",
+      "file": "store/ko/images/iphone/01-remote.png",
+      "width": 1320,
+      "height": 2868,
+      "sha256": "1ee2014ba7dd4e1ff611c940c803b14e2a40a3c50f7b678157e2e16b71db9f80"
+    },
+    {
+      "language": "ko",
+      "locale": "ko",
+      "file": "store/ko/images/iphone/02-settings.png",
+      "width": 1320,
+      "height": 2868,
+      "sha256": "b9b39926b09cf732d5462da0d283aeafcf701557b81639dab57a386697ccbc3e"
+    },
+    {
+      "language": "ko",
+      "locale": "ko",
+      "file": "store/ko/images/iphone/03-apps.png",
+      "width": 1320,
+      "height": 2868,
+      "sha256": "12e3c4c74c69883b6c6f56eacef4597490f07e9d1d9b7b7dd42a73d8d40d998a"
+    },
+    {
+      "language": "ko",
+      "locale": "ko",
+      "file": "store/ko/images/iphone-medium/01-remote.png",
+      "width": 1206,
+      "height": 2622,
+      "sha256": "ea6d3d304a7399b33e8252834a6e2393d221425ddb3d6d23ca4c6ef97ca225a9"
+    },
+    {
+      "language": "ko",
+      "locale": "ko",
+      "file": "store/ko/images/iphone-medium/02-settings.png",
+      "width": 1206,
+      "height": 2622,
+      "sha256": "746536afe45534b1a04af2d3b490e8a1a95bd9cd5e9617faff2f2bff1f468e17"
+    },
+    {
+      "language": "ko",
+      "locale": "ko",
+      "file": "store/ko/images/iphone-medium/03-apps.png",
+      "width": 1206,
+      "height": 2622,
+      "sha256": "b62b0e3a7678d0332ba997125aec5ffcfaac73b0063c84546327bd871d4a4ff7"
+    },
+    {
+      "language": "ko",
+      "locale": "ko",
+      "file": "store/artwork/exports/ko/turntouch-ko-header.png",
+      "width": 3840,
+      "height": 1646,
+      "sha256": "b5bbad8c349f09cd4868cebb7e7315011d7ba4ee376710bcd61279cde1330168"
+    },
+    {
+      "language": "ko",
+      "locale": "ko",
+      "file": "store/artwork/exports/ko/turntouch-ko-search.jpg",
+      "width": 3840,
+      "height": 2560,
+      "sha256": "65ea2d35bcbe912aec2b4f994e363756f6dde8751538d16397e62c3e6e32f631"
+    },
+    {
+      "language": "zh-Hans",
+      "locale": "zh-Hans",
+      "file": "store/zh-Hans/images/ipad/01-remote.png",
+      "width": 2064,
+      "height": 2752,
+      "sha256": "de916db92ea26833f6250d52ee66e9698269a87074b6d9ff7d6a9f3a44fdf76c"
+    },
+    {
+      "language": "zh-Hans",
+      "locale": "zh-Hans",
+      "file": "store/zh-Hans/images/ipad/02-settings.png",
+      "width": 2064,
+      "height": 2752,
+      "sha256": "1f4ba13184cbc17b96a962cfcc5d4ea9f2bdc052cb2e63a3cb6f054ebe52afcb"
+    },
+    {
+      "language": "zh-Hans",
+      "locale": "zh-Hans",
+      "file": "store/zh-Hans/images/ipad/03-apps.png",
+      "width": 2064,
+      "height": 2752,
+      "sha256": "c463008e92f6913de71c961af49f75775bb41bc2f84975c395cda930ee184129"
+    },
+    {
+      "language": "zh-Hans",
+      "locale": "zh-Hans",
+      "file": "store/zh-Hans/images/iphone/01-remote.png",
+      "width": 1320,
+      "height": 2868,
+      "sha256": "c0f38c5dab9d079872651ef2eb811f7573d968441cb15896d7bbd663ee68a072"
+    },
+    {
+      "language": "zh-Hans",
+      "locale": "zh-Hans",
+      "file": "store/zh-Hans/images/iphone/02-settings.png",
+      "width": 1320,
+      "height": 2868,
+      "sha256": "5e89c70a41f291bea0d919c34c6239321d49e5b7dd5e10190f4e43dbaaa3b98d"
+    },
+    {
+      "language": "zh-Hans",
+      "locale": "zh-Hans",
+      "file": "store/zh-Hans/images/iphone/03-apps.png",
+      "width": 1320,
+      "height": 2868,
+      "sha256": "12a3add3572f04b1fa13ff6088053e5ab24384f3f73889ed71c3e96a1e6e01c2"
+    },
+    {
+      "language": "zh-Hans",
+      "locale": "zh-Hans",
+      "file": "store/zh-Hans/images/iphone-medium/01-remote.png",
+      "width": 1206,
+      "height": 2622,
+      "sha256": "7993e62978fdc50f0b54ab8be9af00b48e29ecc9af9ec41eca0be666e14266f3"
+    },
+    {
+      "language": "zh-Hans",
+      "locale": "zh-Hans",
+      "file": "store/zh-Hans/images/iphone-medium/02-settings.png",
+      "width": 1206,
+      "height": 2622,
+      "sha256": "2549f04819b36c1199127f92a0e740d43a69e7bc963f98ec76e0c2f8419853f5"
+    },
+    {
+      "language": "zh-Hans",
+      "locale": "zh-Hans",
+      "file": "store/zh-Hans/images/iphone-medium/03-apps.png",
+      "width": 1206,
+      "height": 2622,
+      "sha256": "51126f1c75ee65d5cb461c58a145aa6120ed8feadf4b5a57c30372729b08e2f3"
+    },
+    {
+      "language": "zh-Hans",
+      "locale": "zh-Hans",
+      "file": "store/artwork/exports/zh-Hans/turntouch-zh-Hans-header.png",
+      "width": 3840,
+      "height": 1646,
+      "sha256": "1f827a9cd6700d2f1f4fd4217f94bfd15ef50d34ad5e7b17a20bd62e4d23fa56"
+    },
+    {
+      "language": "zh-Hans",
+      "locale": "zh-Hans",
+      "file": "store/artwork/exports/zh-Hans/turntouch-zh-Hans-search.jpg",
+      "width": 3840,
+      "height": 2560,
+      "sha256": "425b501a7fde3055c5a25db80f20cdb0ab89009180a858326442cdc09f4d04a6"
+    },
+    {
+      "language": "zh-Hant",
+      "locale": "zh-Hant",
+      "file": "store/zh-Hant/images/ipad/01-remote.png",
+      "width": 2064,
+      "height": 2752,
+      "sha256": "9751b43a43a944c3a92247e728240a97cf886aa229b61bba1461b9b9cea35200"
+    },
+    {
+      "language": "zh-Hant",
+      "locale": "zh-Hant",
+      "file": "store/zh-Hant/images/ipad/02-settings.png",
+      "width": 2064,
+      "height": 2752,
+      "sha256": "2cd0ace729b866320608f4dcb5313b61f4d74d6f592f11e678cff5e4ee703cc6"
+    },
+    {
+      "language": "zh-Hant",
+      "locale": "zh-Hant",
+      "file": "store/zh-Hant/images/ipad/03-apps.png",
+      "width": 2064,
+      "height": 2752,
+      "sha256": "2589a1c23cb3ebca476f276d223d26ecca04675d706feb71e1c7417e17b7ffc0"
+    },
+    {
+      "language": "zh-Hant",
+      "locale": "zh-Hant",
+      "file": "store/zh-Hant/images/iphone/01-remote.png",
+      "width": 1320,
+      "height": 2868,
+      "sha256": "46e905f747b4b55f606ca6cb4b8cfc696f405579891b19d83aab72ee8575ed9f"
+    },
+    {
+      "language": "zh-Hant",
+      "locale": "zh-Hant",
+      "file": "store/zh-Hant/images/iphone/02-settings.png",
+      "width": 1320,
+      "height": 2868,
+      "sha256": "885e868b58dc062d6667bcc7e7e1436bb4db4456856049dc25df139f4f1e6213"
+    },
+    {
+      "language": "zh-Hant",
+      "locale": "zh-Hant",
+      "file": "store/zh-Hant/images/iphone/03-apps.png",
+      "width": 1320,
+      "height": 2868,
+      "sha256": "3a87e28ffb3684811ffc3d548d8425c1e4a6972357e60284c1899d7051e4418a"
+    },
+    {
+      "language": "zh-Hant",
+      "locale": "zh-Hant",
+      "file": "store/zh-Hant/images/iphone-medium/01-remote.png",
+      "width": 1206,
+      "height": 2622,
+      "sha256": "8f64dba9f1742478db0a8906077c6d4ee54d95d8d3aae9952a9e196ec86b7cd2"
+    },
+    {
+      "language": "zh-Hant",
+      "locale": "zh-Hant",
+      "file": "store/zh-Hant/images/iphone-medium/02-settings.png",
+      "width": 1206,
+      "height": 2622,
+      "sha256": "09a1476c7860460cc54263244e12462f1e64dc32d1d15d666aecc29d1eeee58b"
+    },
+    {
+      "language": "zh-Hant",
+      "locale": "zh-Hant",
+      "file": "store/zh-Hant/images/iphone-medium/03-apps.png",
+      "width": 1206,
+      "height": 2622,
+      "sha256": "fd484200dc8ed686b4758e88c2712cbb0eb17882c4a4ee2b3b8a098094fff9b4"
+    },
+    {
+      "language": "zh-Hant",
+      "locale": "zh-Hant",
+      "file": "store/artwork/exports/zh-Hant/turntouch-zh-Hant-header.png",
+      "width": 3840,
+      "height": 1646,
+      "sha256": "0b814f9c9988154ae47db243b3e63cab7d1e7dddea2e83010c3f36da37f76e04"
+    },
+    {
+      "language": "zh-Hant",
+      "locale": "zh-Hant",
+      "file": "store/artwork/exports/zh-Hant/turntouch-zh-Hant-search.jpg",
+      "width": 3840,
+      "height": 2560,
+      "sha256": "e2735c0056ba11e687b1d61ea42847632bd4b31b145b7584db40c27ab5f6653a"
+    }
+  ]
+}

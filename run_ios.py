@@ -18,6 +18,15 @@ Actions:
     launch                - Launch the Turn Touch app
     terminate             - Terminate the Turn Touch app
     install               - Install the app from DerivedData
+    home                  - Go to the Home Screen
+    boot                  - Boot the selected simulator and wait until ready
+    describe              - Print the accessibility tree
+    tap-id:<identifier>   - Tap an accessibility identifier
+    tap-label:<label>     - Tap an exact accessibility label
+    assert-label:<label>  - Fail unless the label is visible
+    statusbar             - Set a deterministic screenshot status bar
+    statusbar-reset       - Clear screenshot status-bar overrides
+    restart-input         - Restart only this simulator's idb input connection
 
 Examples:
     python3 run_ios.py list
@@ -27,6 +36,7 @@ Environment:
     IOS_SIM_UDID     - Simulator UDID (alternative to --udid flag)
     IOS_BUNDLE_ID    - App bundle identifier (defaults to Turn Touch)
     IOS_APP_PATH     - Path to the built .app for install
+    IDB_DEVELOPER_DIR - Optional compatible SDK directory for idb input
 """
 
 import os
@@ -35,6 +45,8 @@ import shlex
 import subprocess
 import sys
 import time
+import signal
+import json
 
 # Configuration
 UDID = os.environ.get("IOS_SIM_UDID", "")
@@ -48,13 +60,18 @@ APP_PATH = os.environ.get(
 os.environ["PATH"] = os.environ["PATH"] + ":" + os.path.expanduser("~/Library/Python/3.13/bin")
 
 
-def run_cmd(cmd, description=None):
+def run_cmd(cmd, description=None, check=False):
     """Run a shell command and return output."""
     if description:
         print(f"  -> {description}")
-    result = subprocess.run(cmd, shell=True, capture_output=True, text=True)
+    env = os.environ.copy()
+    if cmd.startswith("idb ") and env.get("IDB_DEVELOPER_DIR"):
+        env["DEVELOPER_DIR"] = env["IDB_DEVELOPER_DIR"]
+    result = subprocess.run(cmd, shell=True, capture_output=True, text=True, env=env)
     if result.returncode != 0 and result.stderr:
         print(f"  Warning: {result.stderr.strip()}")
+    if check:
+        result.check_returncode()
     return result.stdout.strip()
 
 
@@ -84,7 +101,7 @@ def do_tap(coords):
     """Tap at x,y coordinates."""
     x, y = coords.split(",")
     print(f"  Tap: ({x}, {y})")
-    run_cmd(f"idb ui tap --udid {UDID} {x} {y}")
+    run_cmd(f"idb ui tap --udid {UDID} {x} {y}", check=True)
 
 
 def do_sleep(seconds):
@@ -108,7 +125,7 @@ def do_swipe(coords):
 def do_screenshot(path):
     """Take screenshot and save to path."""
     print(f"  Screenshot: {path}")
-    run_cmd(f"xcrun simctl io {UDID} screenshot {path}")
+    run_cmd(f"xcrun simctl io {UDID} screenshot {path}", check=True)
 
 
 def do_launch(language=None, welcome=False):
@@ -166,6 +183,32 @@ def parse_and_execute(action):
         do_terminate()
     elif cmd == "install":
         do_install()
+    elif cmd in ["tap-id", "tap-label", "assert-label"]:
+        nodes = json.loads(run_cmd(f"idb ui describe-all --udid {UDID}", check=True))
+        key = "AXUniqueId" if cmd == "tap-id" else "AXLabel"
+        matches = [node for node in nodes if node.get(key) == arg]
+        if not matches:
+            raise RuntimeError(f"No visible {key}: {arg}")
+        if cmd != "assert-label":
+            frame = matches[0]["frame"]
+            do_tap(f"{round(frame['x'] + frame['width']/2)},{round(frame['y'] + frame['height']/2)}")
+    elif cmd == "restart-input":
+        for row in subprocess.check_output(["ps", "-axo", "pid=,command="], text=True).splitlines():
+            pid, command = row.strip().split(" ", 1)
+            if command.startswith("/opt/homebrew/bin/idb_companion --udid " + UDID + " "):
+                os.kill(int(pid), signal.SIGTERM)
+        run_cmd(f"idb disconnect {UDID}")
+    elif cmd == "home":
+        run_cmd(f"idb ui button HOME --udid {UDID}", check=True)
+    elif cmd == "describe":
+        print(run_cmd(f"idb ui describe-all --udid {UDID}"))
+    elif cmd == "statusbar-reset":
+        run_cmd(f"xcrun simctl status_bar {UDID} clear")
+    elif cmd == "boot":
+        run_cmd(f"xcrun simctl boot {UDID}")
+        run_cmd(f"xcrun simctl bootstatus {UDID} -b")
+    elif cmd == "statusbar":
+        run_cmd(f"xcrun simctl status_bar {UDID} override --time 9:41 --dataNetwork wifi --wifiMode active --wifiBars 3 --batteryState charged --batteryLevel 100")
     elif cmd == "list":
         do_list()
     else:
