@@ -51,11 +51,11 @@ class TTModeSonos: TTMode {
     }
     
     override class func title() -> String {
-        return "Sonos"
+        return TTText("Sonos")
     }
     
     override class func subtitle() -> String {
-        return "Connected wireless speakers"
+        return TTText("Connected wireless speakers")
     }
     
     override class func imageName() -> String {
@@ -88,39 +88,39 @@ class TTModeSonos: TTMode {
     // MARK: Action titles
     
     func titleTTModeSonosVolumeUp() -> String {
-        return "Volume up"
+        return TTText("Volume up")
     }
     
     func titleTTModeSonosVolumeDown() -> String {
-        return "Volume down"
+        return TTText("Volume down")
     }
     
     func titleTTModeSonosVolumeMute() -> String {
-        return "Mute"
+        return TTText("Mute")
     }
     
     func titleTTModeSonosVolumeJump() -> String {
-        return "Jump to volume"
+        return TTText("Jump to volume")
     }
     
     func titleTTModeSonosPlayPause() -> String {
-        return "Play/pause"
+        return TTText("Play/pause")
     }
     
     func titleTTModeSonosPlay() -> String {
-        return "Play"
+        return TTText("Play")
     }
     
     func titleTTModeSonosPause() -> String {
-        return "Pause"
+        return TTText("Pause")
     }
     
     func titleTTModeSonosNextTrack() -> String {
-        return "Next track"
+        return TTText("Next track")
     }
     
     func titleTTModeSonosPreviousTrack() -> String {
-        return "Previous track"
+        return TTText("Previous track")
     }
     
     

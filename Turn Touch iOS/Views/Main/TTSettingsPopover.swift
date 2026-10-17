@@ -22,13 +22,13 @@ final class TTSettingsPopover: UIViewController {
         view.layer.cornerRadius = 16
         view.clipsToBounds = true
 
-        let title = label("Settings", size: 20, bold: true)
+        let title = label(TTText("Settings"), size: 20, bold: true)
         let done = UIButton(type: .system)
-        done.setTitle("Done", for: .normal)
+        done.setTitle(TTText("Done"), for: .normal)
         done.titleLabel?.font = font(15)
         done.tintColor = blue
         done.addTarget(self, action: #selector(close), for: .touchUpInside)
-        done.widthAnchor.constraint(equalToConstant: 56).isActive = true
+        done.widthAnchor.constraint(greaterThanOrEqualToConstant: 56).isActive = true
         let header = UIStackView(arrangedSubviews: [title, done])
         header.alignment = .center
         header.translatesAutoresizingMaskIntoConstraints = false
@@ -92,68 +92,71 @@ final class TTSettingsPopover: UIViewController {
         let prefs = UserDefaults.standard
         let devices = appDelegate().bluetoothMonitor.foundDevices.devices
         let paired = prefs.stringArray(forKey: "TT:devices:paired") ?? []
+        section(TTText("Language"), rows: [link(TTText("Language"), subtitle: TTLocalization.displayName, icon: "preferences") { [weak self] in
+            self?.leave { TTLocalization.present(from: main) }
+        }])
         var remoteRows: [UIView] = []
         for id in paired {
             let device = devices.first { $0.uuid == id }
-            let title = label(device?.nickname ?? prefs.string(forKey: "TT:device:\(id):nickname") ?? "Turn Touch", size: 17)
-            let detail = label("Disconnected", size: 13, color: muted)
+            let title = label(device?.nickname ?? prefs.string(forKey: "TT:device:\(id):nickname") ?? TTText("Turn Touch"), size: 17)
+            let detail = label(TTText("Disconnected"), size: 13, color: muted)
             remoteLabels.append((id, title, detail))
             remoteRows.append(link(title: title, subtitle: detail, icon: "remote_graphic") { [weak self] in
                 guard let self = self else { return }
                 if let row = main.deviceTitlesView.arrangedSubviews.compactMap({ $0 as? TTDeviceTitleView }).first(where: { $0.device.uuid == id }), let button = row.settingsButton {
                     self.leave { main.toggleDeviceMenu(button, deviceTitleView: row, device: row.device) }
                 } else {
-                    let alert = UIAlertController(title: title.text, message: "Press a button on your remote to wake it. If it is connected to another device, disconnect it there first.", preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: .default))
+                    let alert = UIAlertController(title: title.text, message: TTText("Press a button on your remote to wake it. If it is connected to another device, disconnect it there first."), preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: TTText("OK"), style: .default))
                     self.present(alert, animated: true)
                 }
             })
         }
-        remoteRows.append(link("Add a new remote", subtitle: paired.isEmpty ? "Pair your Turn Touch" : nil, icon: "add") { [weak self] in self?.leave { main.showPairingModal() } })
-        section("REMOTES", rows: remoteRows)
+        remoteRows.append(link(TTText("Add a new remote"), subtitle: paired.isEmpty ? TTText("Pair your Turn Touch") : nil, icon: "add") { [weak self] in self?.leave { main.showPairingModal() } })
+        section(TTText("REMOTES"), rows: remoteRows)
         refreshRemotes()
 
         let twelve = modeMap.buttonAppMode() == .TwelveButtons
-        let description = label(twelve ? "Single tap, double tap, and hold" : "Hold a button to switch between four apps", size: 14, color: muted)
+        let description = label(twelve ? TTText("Single tap, double tap, and hold") : TTText("Hold a button to switch between four apps"), size: 14, color: muted)
         buttonDescription = description
-        let segment = UISegmentedControl(items: ["12 actions", "16 actions"])
-        segment.accessibilityLabel = "Button mode"
+        let segment = UISegmentedControl(items: [TTText("12 actions"), TTText("16 actions")])
+        segment.accessibilityLabel = TTText("Button mode")
         segment.selectedSegmentIndex = twelve ? 0 : 1
         segment.setTitleTextAttributes([.font: font(15), .foregroundColor: ink], for: .normal)
         segment.setTitleTextAttributes([.font: font(15, bold: true), .foregroundColor: blue], for: .selected)
         segment.addTarget(self, action: #selector(changeButtonMode(_:)), for: .valueChanged)
         segment.heightAnchor.constraint(equalToConstant: 40).isActive = true
-        let modeControls = UIStackView(arrangedSubviews: [label("Button mode", size: 17), description, segment])
+        let modeControls = UIStackView(arrangedSubviews: [label(TTText("Button mode"), size: 17), description, segment])
         modeControls.axis = .vertical
         modeControls.spacing = 6
         modeControls.setCustomSpacing(14, after: description)
 
         let perform = UISwitch()
-        perform.accessibilityLabel = "Run actions from the screen"
+        perform.accessibilityLabel = TTText("Run actions from the screen")
         perform.onTintColor = blue
         perform.isOn = modeMap.buttonActionMode == .performActions
         perform.addTarget(self, action: #selector(changePerformMode(_:)), for: .valueChanged)
-        let performDetail = label(perform.isOn ? "Screen taps perform actions" : "Screen taps edit your buttons", size: 14, color: muted)
+        let performDetail = label(perform.isOn ? TTText("Screen taps perform actions") : TTText("Screen taps edit your buttons"), size: 14, color: muted)
         performDescription = performDetail
-        let performLabels = UIStackView(arrangedSubviews: [label("Run actions from the screen", size: 17), performDetail])
+        let performLabels = UIStackView(arrangedSubviews: [label(TTText("Run actions from the screen"), size: 17), performDetail])
         performLabels.axis = .vertical
         performLabels.spacing = 4
         let performRow = UIStackView(arrangedSubviews: [performLabels, perform])
         performRow.alignment = .center
         performRow.spacing = 12
-        section("BUTTONS", rows: [inset(modeControls, by: 16), inset(performRow, by: 16)])
+        section(TTText("BUTTONS"), rows: [inset(modeControls, by: 16), inset(performRow, by: 16)])
 
         let favorites = ["TTModeHue", "TTModeNanoleaf", "TTModeGovee", "TTModeSonos", "TTModeKasa"]
         let names = favorites + (showAllApps ? modeMap.availableModes.filter { !favorites.contains($0) } : [])
         var appRows: [UIView] = names.compactMap { name in
             guard let type = NSClassFromString("Turn_Touch_iOS.\(name)") as? TTMode.Type,
                   NSClassFromString("Turn_Touch_iOS.\(name)Options") is TTOptionsDetailViewController.Type else { return nil }
-            return link(type.title(), subtitle: favorites.contains(name) ? "Set up and manage connection" : "App options", icon: type.imageName()) { [weak self] in
+            return link(type.title(), subtitle: favorites.contains(name) ? TTText("Set up and manage connection") : TTText("App options"), icon: type.imageName()) { [weak self] in
                 self?.leave { main.showSettingsConnection(name) }
             }
         }
         let more = TTSettingsButton()
-        more.setTitle(showAllApps ? "Show fewer apps" : "Show all apps", for: .normal)
+        more.setTitle(showAllApps ? TTText("Show fewer apps") : TTText("Show all apps"), for: .normal)
         more.setTitleColor(blue, for: .normal)
         more.titleLabel?.font = font(15)
         more.heightAnchor.constraint(equalToConstant: 48).isActive = true
@@ -167,18 +170,18 @@ final class TTSettingsPopover: UIViewController {
             self.scrollView.setContentOffset(CGPoint(x: 0, y: min(offset.y, maximum)), animated: false)
         }
         appRows.append(more)
-        section("APPS & CONNECTIONS", rows: appRows)
-        section("PREFERENCES", rows: [
-            link("Sounds, vibration & privacy", icon: "preferences") { [weak self] in self?.leave { main.showSettingsModal() } },
-            link("Setup geofence", icon: "geofence") { [weak self] in self?.leave { main.showGeofencingModal() } }
+        section(TTText("APPS & CONNECTIONS"), rows: appRows)
+        section(TTText("PREFERENCES"), rows: [
+            link(TTText("Sounds, vibration & privacy"), icon: "preferences") { [weak self] in self?.leave { main.showSettingsModal() } },
+            link(TTText("Setup geofence"), icon: "geofence") { [weak self] in self?.leave { main.showGeofencingModal() } }
         ])
-        section("HELP", rows: [
-            link("How it works", icon: "how_it_works") { [weak self] in self?.leave { main.showFtuxModal() } },
-            link("Contact support", icon: "support") { [weak self] in self?.leave { main.showSupportModal() } },
-            link("About Turn Touch", icon: "about") { [weak self] in self?.leave { main.showAboutModal() } }
+        section(TTText("HELP"), rows: [
+            link(TTText("How it works"), icon: "how_it_works") { [weak self] in self?.leave { main.showFtuxModal() } },
+            link(TTText("Contact support"), icon: "support") { [weak self] in self?.leave { main.showSupportModal() } },
+            link(TTText("About Turn Touch"), icon: "about") { [weak self] in self?.leave { main.showAboutModal() } }
         ])
         let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? ""
-        let footer = label("Turn Touch for iOS · \(version)\nOriginal design and artwork © Turn Touch", size: 12, color: muted)
+        let footer = label(TTText("Turn Touch for iOS · {0}\nOriginal design and artwork © Turn Touch", version), size: 12, color: muted)
         footer.textAlignment = .center
         content.addArrangedSubview(footer)
     }
@@ -187,22 +190,22 @@ final class TTSettingsPopover: UIViewController {
         let twelve = sender.selectedSegmentIndex == 0
         appDelegate().modeMap.switchButtonAppMode(twelve ? .TwelveButtons : .SixteenButtons)
         needsLayoutRefresh = true
-        buttonDescription?.text = twelve ? "Single tap, double tap, and hold" : "Hold a button to switch between four apps"
+        buttonDescription?.text = twelve ? TTText("Single tap, double tap, and hold") : TTText("Hold a button to switch between four apps")
     }
 
     @objc private func changePerformMode(_ sender: UISwitch) {
         appDelegate().modeMap.switchPerformActionMode(sender.isOn ? .performActions : .editActions)
         needsLayoutRefresh = true
-        performDescription?.text = sender.isOn ? "Screen taps perform actions" : "Screen taps edit your buttons"
+        performDescription?.text = sender.isOn ? TTText("Screen taps perform actions") : TTText("Screen taps edit your buttons")
     }
 
     private func refreshRemotes() {
         let devices = appDelegate().bluetoothMonitor.foundDevices.devices
         for (id, title, detail) in remoteLabels {
-            guard let device = devices.first(where: { $0.uuid == id }) else { detail.text = "Disconnected"; continue }
+            guard let device = devices.first(where: { $0.uuid == id }) else { detail.text = TTText("Disconnected"); continue }
             title.text = device.nickname ?? title.text
             detail.text = device.stateLabel().capitalized
-            if device.state == .device_STATE_CONNECTED, let battery = device.batteryPct { detail.text! += " · \(battery)% battery" }
+            if device.state == .device_STATE_CONNECTED, let battery = device.batteryPct { detail.text! += TTText(" · {0}% battery", battery) }
         }
     }
 
@@ -211,11 +214,13 @@ final class TTSettingsPopover: UIViewController {
     }
 
     private func label(_ text: String, size: CGFloat, bold: Bool = false, color: UIColor? = nil) -> UILabel {
-        let label = UILabel()
+        let label = TTSettingsWrappingLabel()
         label.text = text
         label.font = font(size, bold: bold)
         label.textColor = color ?? ink
         label.numberOfLines = 0
+        label.lineBreakMode = .byWordWrapping
+        label.setContentCompressionResistancePriority(.required, for: .vertical)
         return label
     }
 
@@ -343,4 +348,15 @@ final class TTSettingsConnectionViewController: UIViewController {
     }
 
     @objc private func close() { appDelegate().mainViewController.closeModal() }
+}
+
+/// Recalculate multiline height after a horizontal stack assigns its actual width.
+private final class TTSettingsWrappingLabel: UILabel {
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        if bounds.width > 0 && preferredMaxLayoutWidth != bounds.width {
+            preferredMaxLayoutWidth = bounds.width
+            invalidateIntrinsicContentSize()
+        }
+    }
 }

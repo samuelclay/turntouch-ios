@@ -73,25 +73,25 @@ class TTModeCustomURLOptions: TTOptionsDetailViewController, UITextFieldDelegate
         
         let singleHitCount = self.action.optionValue(TTModeCustomConstants.singleHitCount) as? Int ?? 0
         if singleHitCount == 1 {
-            singleLabel.text = "Hit 1 time"
+            singleLabel.text = TTText("Hit 1 time")
             singleLabel.textColor = UIColor.black
         } else if singleHitCount > 1 {
-            singleLabel.text = "Hit \(singleHitCount) times"
+            singleLabel.text = TTText("Hit {0} times", singleHitCount)
             singleLabel.textColor = UIColor.black
         } else {
-            singleLabel.text = "Not yet hit"
+            singleLabel.text = TTText("Not yet hit")
             singleLabel.textColor = UIColor.lightGray
         }
 
         let doubleHitCount = self.action.optionValue(TTModeCustomConstants.doubleHitCount) as? Int ?? 0
         if doubleHitCount == 1 {
-            doubleLabel.text = "Hit 1 time"
+            doubleLabel.text = TTText("Hit 1 time")
             doubleLabel.textColor = UIColor.black
         } else if doubleHitCount > 1 {
-            doubleLabel.text = "Hit \(doubleHitCount) times"
+            doubleLabel.text = TTText("Hit {0} times", doubleHitCount)
             doubleLabel.textColor = UIColor.black
         } else {
-            doubleLabel.text = "Not yet hit"
+            doubleLabel.text = TTText("Not yet hit")
             doubleLabel.textColor = UIColor.lightGray
         }
     }

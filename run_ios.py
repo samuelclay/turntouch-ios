@@ -111,10 +111,18 @@ def do_screenshot(path):
     run_cmd(f"xcrun simctl io {UDID} screenshot {path}")
 
 
-def do_launch():
+def do_launch(language=None, welcome=False):
     """Launch the Turn Touch app."""
     print("  Launching Turn Touch...")
-    result = run_cmd(f"xcrun simctl launch {UDID} {BUNDLE_ID}")
+    arguments = ""
+    if language:
+        import json
+        from pathlib import Path
+        supported = json.loads((Path(__file__).parent / "localization/languages.json").read_text())
+        if language not in supported:
+            raise ValueError("Unsupported language: " + language)
+        arguments = " " + " ".join(shlex.quote(value) for value in ["-AppleLanguages", "(" + language + ")", "-AppleLocale", language, "-TT:language", language, "-TT:language:welcomed", "NO" if welcome else "YES"])
+    result = run_cmd(f"xcrun simctl launch {UDID} {BUNDLE_ID}{arguments}")
     print(f"  {result}")
 
 
@@ -151,7 +159,9 @@ def parse_and_execute(action):
     elif cmd == "screenshot":
         do_screenshot(arg)
     elif cmd == "launch":
-        do_launch()
+        do_launch(arg)
+    elif cmd == "welcome":
+        do_launch(arg, welcome=True)
     elif cmd == "terminate":
         do_terminate()
     elif cmd == "install":

@@ -15,7 +15,7 @@ final class TTMobileBrowser: UIViewController, WKNavigationDelegate, UIDocumentP
     init(modeName: String) {
         self.modeName = modeName
         super.init(nibName: nil, bundle: nil)
-        title = modeName == "News" ? "NewsBlur" : modeName
+        title = modeName == "News" ? TTText("NewsBlur") : TTText(modeName)
     }
     required init?(coder: NSCoder) { fatalError("Use init(modeName:)") }
     override func viewDidLoad() {
@@ -50,7 +50,7 @@ final class TTMobileBrowser: UIViewController, WKNavigationDelegate, UIDocumentP
         thumbnails.layoutMode = .horizontal
         thumbnails.isHidden = true
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(close))
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: modeName == "Presentation" ? "Open" : "Address", style: .plain, target: self, action: #selector(open))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: modeName == "Presentation" ? TTText("Open") : TTText("Address"), style: .plain, target: self, action: #selector(open))
         if let saved = UserDefaults.standard.string(forKey: urlKey), let url = URL(string: saved) {
             webView.load(URLRequest(url: url))
         } else if modeName == "News" {
@@ -64,14 +64,14 @@ final class TTMobileBrowser: UIViewController, WKNavigationDelegate, UIDocumentP
             picker.delegate = self
             present(picker, animated: true)
         } else {
-            let alert = UIAlertController(title: "Open \(modeName == "Video" ? "video" : "website")", message: "Enter an http:// or https:// address.", preferredStyle: .alert)
+            let alert = UIAlertController(title: (modeName == "Video" ? TTText("Open video") : TTText("Open website")), message: TTText("Enter an http:// or https:// address."), preferredStyle: .alert)
             alert.addTextField { field in
                 field.keyboardType = .URL
                 field.autocapitalizationType = .none
                 field.text = UserDefaults.standard.string(forKey: self.urlKey)
             }
-            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
-            alert.addAction(UIAlertAction(title: "Open", style: .default) { _ in
+            alert.addAction(UIAlertAction(title: TTText("Cancel"), style: .cancel))
+            alert.addAction(UIAlertAction(title: TTText("Open"), style: .default) { _ in
                 guard let value = alert.textFields?.first?.text, let url = URL(string: value), ["http", "https"].contains(url.scheme ?? "") else { return }
                 UserDefaults.standard.set(value, forKey: self.urlKey)
                 self.webView.load(URLRequest(url: url))
@@ -128,7 +128,7 @@ class TTMobileBrowserOptions: TTOptionsDetailViewController {
     override func loadView() {
         let container = UIView()
         let button = UIButton(type: .system)
-        button.setTitle("Open \(type(of: mode).title())", for: .normal)
+        button.setTitle(TTText("Open {0}", type(of: mode).title()), for: .normal)
         button.titleLabel?.font = UIFont(name: "Effra", size: 16)
         button.addTarget(self, action: #selector(openBrowser), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false

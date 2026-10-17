@@ -57,7 +57,7 @@ class TTPairingViewController: UIViewController, TTBluetoothMonitorDelegate {
         let closeButton = UIBarButtonItem(barButtonSystemItem: .cancel,
                                           target: self, action: #selector(self.close))
         self.navigationItem.rightBarButtonItem = closeButton
-        self.navigationItem.title = "Pairing a new remote"
+        self.navigationItem.title = TTText("Pairing a new remote")
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -125,8 +125,8 @@ class TTPairingViewController: UIViewController, TTBluetoothMonitorDelegate {
             runner.add(searchingTimer!, forMode: RunLoop.Mode.common)
             
             spinnerScanning.setNeedsDisplay()
-            titleLabel.text = "Pairing your Turn Touch"
-            subtitleLabel.text = "Searching for remotes..."
+            titleLabel.text = TTText("Pairing your Turn Touch")
+            subtitleLabel.text = TTText("Searching for remotes...")
             countdownTimer?.invalidate()
             countdownTimer = nil
         } else if connecting && !connected {
@@ -134,8 +134,8 @@ class TTPairingViewController: UIViewController, TTBluetoothMonitorDelegate {
 
             countdownIndicator.isHidden = true
             spinnerScanning.isHidden = false
-            titleLabel.text = "Pairing your Turn Touch"
-            subtitleLabel.text = "Connecting..."
+            titleLabel.text = TTText("Pairing your Turn Touch")
+            subtitleLabel.text = TTText("Connecting...")
             searchingTimer?.invalidate()
         } else if connected {
             appDelegate().modeMap.recordUsage(additionalParams: ["moment": "pairing-buttons"])
@@ -143,8 +143,8 @@ class TTPairingViewController: UIViewController, TTBluetoothMonitorDelegate {
             countdownIndicator.isHidden = false
             countdownIndicator.progress = 0
             spinnerScanning.isHidden = true
-            titleLabel.text = "Pairing your Turn Touch"
-            subtitleLabel.text = "Press all four buttons to connect"
+            titleLabel.text = TTText("Pairing your Turn Touch")
+            subtitleLabel.text = TTText("Press all four buttons to connect")
             searchingTimer?.invalidate()
             self.updateCountdown()
         }

@@ -28,9 +28,9 @@ class TTModeBoseConnected: TTOptionsDetailViewController {
         let count = TTModeBose.foundDevices.count
         let deviceCount = count == 1 ? "speaker" : "speakers"
         if count > 0 {
-            connectedLabel.text = "Connected to \(count) Bose \(deviceCount)"
+            connectedLabel.text = TTText("Connected to {0} Bose {1}", count, deviceCount)
         } else {
-            connectedLabel.text = "No Bose speakers found"
+            connectedLabel.text = TTText("No Bose speakers found")
         }
     }
     

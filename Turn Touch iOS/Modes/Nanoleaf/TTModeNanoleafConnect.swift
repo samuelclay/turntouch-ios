@@ -19,11 +19,11 @@ class TTModeNanoleafConnect: TTOptionsDetailViewController {
     }
 
     func setStoppedWithMessage(_ message: String?) {
-        self.progressMessage.text = message ?? "Connect to Nanoleaf..."
+        self.progressMessage.text = message ?? TTText("Connect to Nanoleaf...")
     }
 
     @IBAction func searchForDevice(_ sender: UIButton) {
-        self.progressMessage.text = "Searching for Nanoleaf..."
+        self.progressMessage.text = TTText("Searching for Nanoleaf...")
         self.modeNanoleaf.findDevices()
     }
 }

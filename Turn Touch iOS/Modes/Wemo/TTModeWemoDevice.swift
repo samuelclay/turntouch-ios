@@ -106,7 +106,7 @@ class TTModeWemoDevice: NSObject {
             print(" ---> Found wemo: \(self)")
         } else {
             print(" ---> Error: could not find friendlyName for Wemo")
-            deviceName = "Wemo device (\(self.location()))"
+            deviceName = TTText("Wemo device ({0})", self.location())
         }
         
         DispatchQueue.main.async {

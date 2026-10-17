@@ -16,69 +16,69 @@ class TTModeYoga: TTMode {
 //    var yogaState: TTModeCameraState = .cameraInactive
     var yogaPosition = 0
     let poses = [
-        ["name": "Extended triangle pose",
+        ["name": TTText("Extended triangle pose"),
          "file": "yoga_position_1",
          "lang": "Utthita Trikonasana",
-         "desc": "A standing yoga pose that tones the legs, reduces stress, and increases stability.",
-         "from": "The word \"Trikonasana\" comes from the Sanskrit words \"tri\", meaning \"three\", \"kona\", meaning \"angle\", and \"asana\", meaning \"pose\"."],
-        ["name": "Tree pose",
+         "desc": TTText("A standing yoga pose that tones the legs, reduces stress, and increases stability."),
+         "from": TTText("The word \"Trikonasana\" comes from the Sanskrit words \"tri\", meaning \"three\", \"kona\", meaning \"angle\", and \"asana\", meaning \"pose\".")],
+        ["name": TTText("Tree pose"),
          "file": "yoga_position_2",
          "lang": "Vriksasana",
-         "desc": "The asana emphasizes alignment of the head, spine and hips.",
-         "from": "The name comes from the Sanskrit words vriksa, meaning \"tree\", and asana, meaning \"pose\"."],
-        ["name": "Warrioir I pose",
+         "desc": TTText("The asana emphasizes alignment of the head, spine and hips."),
+         "from": TTText("The name comes from the Sanskrit words vriksa, meaning \"tree\", and asana, meaning \"pose\".")],
+        ["name": TTText("Warrioir I pose"),
          "file": "yoga_position_3",
          "lang": "Virabhadrasana I",
          "desc": ""],
-        ["name": "Cat pose",
+        ["name": TTText("Cat pose"),
          "file": "yoga_position_4",
          "lang": "Marjariasana",
          "desc": ""],
-        ["name": "Boat pose",
+        ["name": TTText("Boat pose"),
          "file": "yoga_position_5",
          "lang": "Navasana",
          "desc": ""],
-        ["name": "Low lunge pose",
+        ["name": TTText("Low lunge pose"),
          "file": "yoga_position_6",
          "lang": "Ashva Sanchalanasana",
          "desc": ""],
-        ["name": "Warrior II pose",
+        ["name": TTText("Warrior II pose"),
          "file": "yoga_position_7",
          "lang": "Virabhadrasana II",
          "desc": ""],
-        ["name": "Bow pose",
+        ["name": TTText("Bow pose"),
          "file": "yoga_position_8",
          "lang": "Dhanurasana",
          "desc": ""],
-        ["name": "Plow pose",
+        ["name": TTText("Plow pose"),
          "file": "yoga_position_9",
          "lang": "Halasana",
          "desc": ""],
-        ["name": "Cobra pose",
+        ["name": TTText("Cobra pose"),
          "file": "yoga_position_10",
          "lang": "Bhujangasana",
          "desc": ""],
-        ["name": "Downward-facing dog pose",
+        ["name": TTText("Downward-facing dog pose"),
          "file": "yoga_position_11",
          "lang": "Adho Mukha Shvanasana",
          "desc": ""],
-        ["name": "Chair pose",
+        ["name": TTText("Chair pose"),
          "file": "yoga_position_12",
          "lang": "Utkatasana",
          "desc": ""],
-        ["name": "Child's pose",
+        ["name": TTText("Child's pose"),
          "file": "yoga_position_13",
          "lang": "Balasana",
          "desc": ""],
-        ["name": "Vajra pose",
+        ["name": TTText("Vajra pose"),
          "file": "yoga_position_14",
          "lang": "Vajrasana",
          "desc": ""],
-        ["name": "Seated forward bend",
+        ["name": TTText("Seated forward bend"),
          "file": "yoga_position_15",
          "lang": "Paschimottanasana",
          "desc": ""],
-        ["name": "Uttanasana pose with clasped hands",
+        ["name": TTText("Uttanasana pose with clasped hands"),
          "file": "yoga_position_16",
          "lang": "Uttanasana",
          "desc": ""],
@@ -97,11 +97,11 @@ class TTModeYoga: TTMode {
     }
     
     override class func title() -> String {
-        return "Yoga"
+        return TTText("Yoga")
     }
     
     override class func subtitle() -> String {
-        return "Practice yoga and movement"
+        return TTText("Practice yoga and movement")
     }
     
     override class func imageName() -> String {
@@ -118,19 +118,19 @@ class TTModeYoga: TTMode {
     }
     
     func titleTTModeYogaTimeUp() -> String {
-        return "More time"
+        return TTText("More time")
     }
     
     func titleTTModeYogaTimeDown() -> String {
-        return "Less time"
+        return TTText("Less time")
     }
     
     func titleTTModeYogaNext() -> String {
-        return "Next"
+        return TTText("Next")
     }
     
     func titleTTModeYogaPrevious() -> String {
-        return "Previous"
+        return TTText("Previous")
     }
     
     // MARK: Action images

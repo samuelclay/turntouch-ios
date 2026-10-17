@@ -20,15 +20,15 @@ enum HueBridgeDiscoveryError: Error, LocalizedError {
     var errorDescription: String? {
         switch self {
         case .networkError(let error):
-            return "Network error: \(error.localizedDescription)"
+            return TTText("Network error: {0}", error.localizedDescription)
         case .invalidResponse:
-            return "Invalid response from discovery service"
+            return TTText("Invalid response from discovery service")
         case .noBridgesFound:
-            return "No Hue Bridges found on the network"
+            return TTText("No Hue Bridges found on the network")
         case .cancelled:
-            return "Discovery was cancelled"
+            return TTText("Discovery was cancelled")
         case .rateLimited:
-            return "Philips Hue is rate-limiting requests. Please wait a moment and try again."
+            return TTText("Philips Hue is rate-limiting requests. Please wait a moment and try again.")
         }
     }
 }

@@ -21,7 +21,7 @@ class TTModeKasaConnecting: TTOptionsDetailViewController {
         self.view.translatesAutoresizingMaskIntoConstraints = false
 
         spinner.startAnimating()
-        updateStatus("Starting discovery...")
+        updateStatus(TTText("Starting discovery..."))
     }
 
     func updateStatus(_ status: String) {

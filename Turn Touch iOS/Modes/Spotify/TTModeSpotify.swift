@@ -92,11 +92,11 @@ class TTModeSpotify : TTMode, SPTAppRemotePlayerStateDelegate {
     }
    
     override class func title() -> String {
-        return "Spotify"
+        return TTText("Spotify")
     }
     
     override class func subtitle() -> String {
-        return "Control Spotify music"
+        return TTText("Control Spotify music")
     }
     
     override class func imageName() -> String {
@@ -129,39 +129,39 @@ class TTModeSpotify : TTMode, SPTAppRemotePlayerStateDelegate {
     // MARK: Action titles
     
     func titleTTModeSpotifyVolumeUp() -> String {
-        return "Volume up"
+        return TTText("Volume up")
     }
     
     func titleTTModeSpotifyVolumeDown() -> String {
-        return "Volume down"
+        return TTText("Volume down")
     }
     
     func titleTTModeSpotifyVolumeMute() -> String {
-        return "Mute"
+        return TTText("Mute")
     }
     
     func titleTTModeSpotifyVolumeJump() -> String {
-        return "Jump to volume"
+        return TTText("Jump to volume")
     }
     
     func titleTTModeSpotifyPlayPause() -> String {
-        return "Play/pause"
+        return TTText("Play/pause")
     }
     
     func titleTTModeSpotifyPlay() -> String {
-        return "Play"
+        return TTText("Play")
     }
     
     func titleTTModeSpotifyPause() -> String {
-        return "Pause"
+        return TTText("Pause")
     }
     
     func titleTTModeSpotifyNextTrack() -> String {
-        return "Next track"
+        return TTText("Next track")
     }
     
     func titleTTModeSpotifyPreviousTrack() -> String {
-        return "Previous track"
+        return TTText("Previous track")
     }
     
     
@@ -437,13 +437,13 @@ class TTModeSpotify : TTMode, SPTAppRemotePlayerStateDelegate {
     
     fileprivate func displayError(_ error: NSError?) {
         if let error = error {
-            presentAlert(title: "Error", message: error.description)
+            presentAlert(title: TTText("Error"), message: error.description)
         }
     }
     
     fileprivate func presentAlert(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+        alert.addAction(UIAlertAction(title: TTText("OK"), style: UIAlertAction.Style.default, handler: nil))
         self.delegate?.presentError(alert: alert)
     }
 

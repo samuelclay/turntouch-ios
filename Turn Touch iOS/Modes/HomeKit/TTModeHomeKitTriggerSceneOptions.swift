@@ -74,7 +74,7 @@ class TTModeHomeKitTriggerSceneOptions: TTOptionsDetailViewController, TTModeHom
         } else if state == .connecting {
             spinner.forEach({ $0.isHidden = true })
             refreshButton.forEach({ $0.isHidden = false })
-            homesNoticeLabel.text = "Searching for homes..."
+            homesNoticeLabel.text = TTText("Searching for homes...")
         }
         
         self.selectDevices()
@@ -113,7 +113,7 @@ class TTModeHomeKitTriggerSceneOptions: TTOptionsDetailViewController, TTModeHom
                 if scenes.count > 0 {
                     return scenes.count
                 } else {
-                    scenesNoticeLabel.text = "No scenes found..."
+                    scenesNoticeLabel.text = TTText("No scenes found...")
                     return 0
                 }
             } else {
@@ -141,12 +141,12 @@ class TTModeHomeKitTriggerSceneOptions: TTOptionsDetailViewController, TTModeHom
         if tableView == homesTable {
             let home = modeHomeKit.homeManager.homes[indexPath.row]
             cell.textLabel?.text = home.name
-            cell.detailTextLabel?.text = "\(home.actionSets.count) scene" + (home.actionSets.count==1 ? "":"s") + " in \(home.rooms.count) room" + (home.rooms.count==1 ? "":"s")
+            cell.detailTextLabel?.text = TTText("Scenes: {0} · Rooms: {1}", home.actionSets.count, home.rooms.count)
         } else if tableView == scenesTable {
             if let home = modeHomeKit.selectedHome() {
                 let scene = home.actionSets[indexPath.row]
                 cell.textLabel?.text = scene.name
-                cell.detailTextLabel?.text = "\(scene.actions.count) actions" + (scene.actions.count==1 ? "":"s")
+                cell.detailTextLabel?.text = TTText("Actions: {0}", scene.actions.count)
             }
         }
         

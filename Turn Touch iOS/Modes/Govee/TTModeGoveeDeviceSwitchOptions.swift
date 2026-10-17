@@ -71,13 +71,13 @@ class TTModeGoveeDeviceSwitchOptions: TTOptionsDetailViewController,
 
         if TTModeGovee.foundDevices.isEmpty {
             if TTModeGovee.goveeState == .connecting {
-                noticeLabel.text = "Fetching Govee devices..."
+                noticeLabel.text = TTText("Fetching Govee devices...")
                 noticeLabel.textColor = UIColor.darkGray
                 spinner.forEach { $0.isHidden = false }
                 settingsButton.forEach { $0.isHidden = true }
                 spinner.forEach { $0.startAnimating() }
             } else {
-                noticeLabel.text = "No Govee devices found"
+                noticeLabel.text = TTText("No Govee devices found")
                 noticeLabel.textColor = UIColor.lightGray
                 spinner.forEach { $0.isHidden = true }
                 settingsButton.forEach { $0.isHidden = false }
@@ -100,9 +100,9 @@ class TTModeGoveeDeviceSwitchOptions: TTOptionsDetailViewController,
 
     func menuOptions() -> [[String: String]] {
         return [
-            ["title": "Refresh devices...", "image": "search"],
-            ["title": "Remove all and refresh...", "image": "remove"],
-            ["title": "Change API key...", "image": "settings"]
+            ["title": TTText("Refresh devices..."), "image": "search"],
+            ["title": TTText("Remove all and refresh..."), "image": "remove"],
+            ["title": TTText("Change API key..."), "image": "settings"]
         ]
     }
 
@@ -135,12 +135,12 @@ class TTModeGoveeDeviceSwitchOptions: TTOptionsDetailViewController,
     }
 
     func changeApiKey() {
-        let alert = UIAlertController(title: "Govee API Key",
-                                      message: "Enter your Govee API key",
+        let alert = UIAlertController(title: TTText("Govee API Key"),
+                                      message: TTText("Enter your Govee API key"),
                                       preferredStyle: .alert)
 
         alert.addTextField { textField in
-            textField.placeholder = "API Key"
+            textField.placeholder = TTText("API Key")
             textField.autocapitalizationType = .none
             textField.autocorrectionType = .no
             if let key = TTModeGovee.loadApiKey() {
@@ -148,9 +148,9 @@ class TTModeGoveeDeviceSwitchOptions: TTOptionsDetailViewController,
             }
         }
 
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        alert.addAction(UIAlertAction(title: TTText("Cancel"), style: .cancel))
 
-        alert.addAction(UIAlertAction(title: "Save", style: .default) { [weak self] _ in
+        alert.addAction(UIAlertAction(title: TTText("Save"), style: .default) { [weak self] _ in
             guard let apiKey = alert.textFields?[0].text,
                   !apiKey.trimmingCharacters(in: .whitespaces).isEmpty else {
                 return

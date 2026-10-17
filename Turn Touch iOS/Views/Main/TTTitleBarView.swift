@@ -41,7 +41,7 @@ class TTTitleBarView: UIView {
         let settingsButton = UIButton(type: .custom)
         settingsButton.setImage(settingsImage, for: UIControl.State())
         settingsButton.tintColor = UIColor(hex: 0x899395)
-        settingsButton.accessibilityLabel = "Settings"
+        settingsButton.accessibilityLabel = TTText("Settings")
         settingsButton.accessibilityIdentifier = "settings-button"
         settingsButton.configuration = {
             var config = UIButton.Configuration.plain()

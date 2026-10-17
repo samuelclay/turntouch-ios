@@ -66,17 +66,17 @@ class TTModeKasa: TTMode, TTModeKasaDiscoveryDelegate, TTModeKasaDeviceDelegate 
     // MARK: - Mode Info
 
     override class func title() -> String {
-        return "TP-Link Kasa"
+        return TTText("TP-Link Kasa")
     }
 
     override class func subtitle() -> String {
         let count = foundDevices.count
         if count == 0 {
-            return "Smart plugs and switches"
+            return TTText("Smart plugs and switches")
         } else if count == 1 {
-            return "1 device"
+            return TTText("1 device")
         } else {
-            return "\(count) devices"
+            return TTText("{0} devices", count)
         }
     }
 
@@ -97,15 +97,15 @@ class TTModeKasa: TTMode, TTModeKasaDiscoveryDelegate, TTModeKasaDeviceDelegate 
     // MARK: - Action Titles
 
     func titleTTModeKasaDeviceOn() -> String {
-        return "Turn on"
+        return TTText("Turn on")
     }
 
     func titleTTModeKasaDeviceOff() -> String {
-        return "Turn off"
+        return TTText("Turn off")
     }
 
     func titleTTModeKasaDeviceToggle() -> String {
-        return "Toggle device"
+        return TTText("Toggle device")
     }
 
     // MARK: - Action Images

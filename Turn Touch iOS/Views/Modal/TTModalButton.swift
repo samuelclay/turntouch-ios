@@ -54,13 +54,13 @@ class TTModalButton: UIViewController {
         if modalPairing != nil {
             switch modalPairing! {
             case .intro:
-                buttonLabel.text = "Pair remote"
+                buttonLabel.text = TTText("Pair remote")
                 backgroundView.backgroundColor = UIColor(hex: 0x4383C0)
             case .success:
-                buttonLabel.text = "Show me how it works"
+                buttonLabel.text = TTText("Show me how it works")
                 backgroundView.backgroundColor = UIColor(hex: 0x2FB789)
             case .failure:
-                buttonLabel.text = "Try again"
+                buttonLabel.text = TTText("Try again")
                 backgroundView.backgroundColor = UIColor(hex: 0xFFCA44)
             default:
                 break
@@ -68,10 +68,10 @@ class TTModalButton: UIViewController {
         } else if ftuxPage != nil {
             switch ftuxPage! {
             case .hud:
-                buttonLabel.text = "That's all there is to it"
+                buttonLabel.text = TTText("That's all there is to it")
                 backgroundView.backgroundColor = UIColor(hex: 0x434340)
             default:
-                buttonLabel.text = "Continue"
+                buttonLabel.text = TTText("Continue")
                 backgroundView.backgroundColor = UIColor(hex: 0x4383C0)
             }
         }

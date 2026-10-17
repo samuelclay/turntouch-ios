@@ -69,17 +69,17 @@ class TTModeGovee: TTMode, GoveeAPIClientDelegate {
     // MARK: - Mode Info
 
     override class func title() -> String {
-        return "Govee"
+        return TTText("Govee")
     }
 
     override class func subtitle() -> String {
         let count = foundDevices.count
         if count == 0 {
-            return "Smart lights and devices"
+            return TTText("Smart lights and devices")
         } else if count == 1 {
-            return "1 device"
+            return TTText("1 device")
         } else {
-            return "\(count) devices"
+            return TTText("{0} devices", count)
         }
     }
 
@@ -102,23 +102,23 @@ class TTModeGovee: TTMode, GoveeAPIClientDelegate {
     // MARK: - Action Titles
 
     func titleTTModeGoveeDeviceOn() -> String {
-        return "Turn on"
+        return TTText("Turn on")
     }
 
     func titleTTModeGoveeDeviceOff() -> String {
-        return "Turn off"
+        return TTText("Turn off")
     }
 
     func titleTTModeGoveeDeviceToggle() -> String {
-        return "Toggle device"
+        return TTText("Toggle device")
     }
 
     func titleTTModeGoveeBrightnessUp() -> String {
-        return "Brightness up"
+        return TTText("Brightness up")
     }
 
     func titleTTModeGoveeBrightnessDown() -> String {
-        return "Brightness down"
+        return TTText("Brightness down")
     }
 
     // MARK: - Action Images
@@ -263,7 +263,7 @@ class TTModeGovee: TTMode, GoveeAPIClientDelegate {
 
         DispatchQueue.main.async {
             self.delegate?.changeState(TTModeGovee.goveeState, mode: self)
-            self.delegate?.fetchStatusUpdate("Fetching devices from Govee...")
+            self.delegate?.fetchStatusUpdate(TTText("Fetching devices from Govee..."))
         }
 
         TTModeGovee.apiClient.delegate = self
@@ -394,7 +394,7 @@ class TTModeGovee: TTMode, GoveeAPIClientDelegate {
 
         TTModeGovee.goveeState = .connected
         delegate?.changeState(TTModeGovee.goveeState, mode: self)
-        delegate?.fetchStatusUpdate("Found \(devices.count) devices")
+        delegate?.fetchStatusUpdate(TTText("Found {0} devices", devices.count))
     }
 
     func apiClientDidFailWithError(_ error: String) {
@@ -407,7 +407,7 @@ class TTModeGovee: TTMode, GoveeAPIClientDelegate {
         }
 
         delegate?.changeState(TTModeGovee.goveeState, mode: self)
-        delegate?.fetchStatusUpdate("Error: \(error)")
+        delegate?.fetchStatusUpdate(TTText("Error: {0}", TTText(error)))
     }
 
     func apiClientDidControlDevice(success: Bool, error: String?) {

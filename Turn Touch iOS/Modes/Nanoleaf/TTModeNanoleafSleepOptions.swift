@@ -51,15 +51,15 @@ class TTModeNanoleafSleepOptions: TTOptionsDetailViewController {
         var durationString: String!
         switch duration {
         case 0:
-            durationString = "Immediate"
+            durationString = TTText("Immediate")
         case 1:
-            durationString = "1 second"
+            durationString = TTText("1 second")
         case 1..<60:
-            durationString = "\(duration) seconds"
+            durationString = TTText("{0} seconds", duration)
         case 60..<60*2:
-            durationString = "1 minute"
+            durationString = TTText("1 minute")
         default:
-            durationString = "\(duration/60) minutes"
+            durationString = TTText("{0} minutes", duration/60)
         }
 
         if doubleTap {

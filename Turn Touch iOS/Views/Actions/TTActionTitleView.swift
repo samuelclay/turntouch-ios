@@ -23,7 +23,7 @@ class TTActionTitleView: UIView {
 //        self.contentMode = UIViewContentMode.Redraw;
         
         changeButton.translatesAutoresizingMaskIntoConstraints = false
-        changeButton.setTitle("Change", for: UIControl.State())
+        changeButton.setTitle(TTText("Change"), for: UIControl.State())
         changeButton.titleLabel!.font = UIFont(name: "Effra", size: 13)
         changeButton.titleLabel!.textColor = UIColor(hex: 0xA0A0A0)
         changeButton.titleLabel!.lineBreakMode = NSLineBreakMode.byClipping
@@ -112,10 +112,10 @@ class TTActionTitleView: UIView {
     
     override func draw(_ rect: CGRect) {
         if appDelegate().modeMap.openedActionChangeMenu {
-            changeButton.setTitle("Done", for: UIControl.State())
+            changeButton.setTitle(TTText("Done"), for: UIControl.State())
             renameButton.isHidden = false
         } else {
-            changeButton.setTitle("Change", for: UIControl.State())
+            changeButton.setTitle(TTText("Change"), for: UIControl.State())
             renameButton.isHidden = true
         }
         
@@ -151,8 +151,8 @@ class TTActionTitleView: UIView {
     
     @objc func pressRename(_ sender: UIButton!) {
         let direction = appDelegate().modeMap.inspectingModeDirection
-        let renameAlert = UIAlertController(title: "Rename action", message: nil, preferredStyle: .alert)
-        let renameAction = UIAlertAction(title: "Rename", style: .default, handler: { (action) in
+        let renameAlert = UIAlertController(title: TTText("Rename action"), message: nil, preferredStyle: .alert)
+        let renameAction = UIAlertAction(title: TTText("Rename"), style: .default, handler: { (action) in
             let newActionTitle = renameAlert.textFields![0].text!
             print(" ---> New action title: \(newActionTitle)")
             
@@ -169,7 +169,7 @@ class TTActionTitleView: UIView {
                 renameAction.isEnabled = textfield.text != ""
             }
         }
-        renameAlert.addAction(UIAlertAction(title: "Reset to default", style: .cancel, handler: { (action) in
+        renameAlert.addAction(UIAlertAction(title: TTText("Reset to default"), style: .cancel, handler: { (action) in
             appDelegate().modeMap.selectedMode.setCustomTitle(nil, direction: direction)
             appDelegate().mainViewController.actionDiamondView.redraw()
             self.setNeedsDisplay()

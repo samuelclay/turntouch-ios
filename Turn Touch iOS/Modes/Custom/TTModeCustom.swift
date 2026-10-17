@@ -22,11 +22,11 @@ struct TTModeCustomConstants {
 class TTModeCustom: TTMode {
     
     override class func title() -> String {
-        return "Custom"
+        return TTText("Custom")
     }
     
     override class func subtitle() -> String {
-        return "Hit a website on command"
+        return TTText("Hit a website on command")
     }
     
     override class func imageName() -> String {
@@ -40,7 +40,7 @@ class TTModeCustom: TTMode {
     }
     
     func titleTTModeCustomURL() -> String {
-        return "Custom URL"
+        return TTText("Custom URL")
     }
         
     // MARK: Action images
@@ -114,13 +114,13 @@ class TTModeCustom: TTMode {
     func hitUrl(_ urlString: String?, callback: @escaping (String, Bool) -> Void) {
         guard let customUrlString = urlString else {
             print(" ---> No URL specified")
-            callback("No URL specified", false)
+            callback(TTText("No URL specified"), false)
             return
         }
 
         if customUrlString.count == 0 {
             print(" ---> No URL specified")
-            callback("No URL specified", false)
+            callback(TTText("No URL specified"), false)
             return
         }
         

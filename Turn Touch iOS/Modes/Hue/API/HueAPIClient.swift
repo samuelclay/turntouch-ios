@@ -20,19 +20,19 @@ enum HueAPIClientError: Error, LocalizedError {
     var errorDescription: String? {
         switch self {
         case .invalidURL:
-            return "Invalid Hue Bridge URL"
+            return TTText("Invalid Hue Bridge URL")
         case .notAuthenticated:
-            return "Not authenticated with Hue Bridge"
+            return TTText("Not authenticated with Hue Bridge")
         case .networkError(let error):
-            return "Network error: \(error.localizedDescription)"
+            return TTText("Network error: {0}", error.localizedDescription)
         case .invalidResponse:
-            return "Invalid response from Hue Bridge"
+            return TTText("Invalid response from Hue Bridge")
         case .httpError(let statusCode, let message):
-            return "HTTP error \(statusCode): \(message ?? "Unknown error")"
+            return TTText("HTTP error {0}: {1}", statusCode, message ?? TTText("Unknown error"))
         case .decodingError(let error):
-            return "Failed to decode response: \(error.localizedDescription)"
+            return TTText("Failed to decode response: {0}", error.localizedDescription)
         case .apiError(let errors):
-            return "API error: \(errors.map { $0.description }.joined(separator: ", "))"
+            return TTText("API error: {0}", errors.map { $0.description }.joined(separator: ", "))
         }
     }
 }

@@ -137,11 +137,11 @@ class TTModeHue: TTMode, HueBridgeDiscoveryDelegate, HueBridgeAuthenticatorDeleg
     // MARK: Mode
 
     override class func title() -> String {
-        return "Hue"
+        return TTText("Hue")
     }
 
     override class func subtitle() -> String {
-        return "Lights and scenes"
+        return TTText("Lights and scenes")
     }
 
     override class func imageName() -> String {
@@ -179,71 +179,71 @@ class TTModeHue: TTMode, HueBridgeDiscoveryDelegate, HueBridgeAuthenticatorDeleg
     }
 
     func titleTTModeHueRaiseBrightness() -> String {
-        return "Raise brightness"
+        return TTText("Raise brightness")
     }
 
     func titleTTModeHueLowerBrightness() -> String {
-        return "Lower brightness"
+        return TTText("Lower brightness")
     }
 
     func titleTTModeHueRaiseSaturation() -> String {
-        return "Raise saturation"
+        return TTText("Raise saturation")
     }
 
     func titleTTModeHueLowerSaturation() -> String {
-        return "Lower saturation"
+        return TTText("Lower saturation")
     }
 
     func titleTTModeHueShiftColorLeft() -> String {
-        return "Shift color left"
+        return TTText("Shift color left")
     }
 
     func titleTTModeHueShiftColorRight() -> String {
-        return "Shift color right"
+        return TTText("Shift color right")
     }
 
     func titleTTModeHueCycleScenes() -> String {
-        return "Cycle scenes"
+        return TTText("Cycle scenes")
     }
 
     func titleTTModeHueSceneEarlyEvening() -> String {
-        return "Early evening"
+        return TTText("Early evening")
     }
 
     func doubleTitleTTModeHueSceneEarlyEvening() -> String {
-        return "Early evening 2"
+        return TTText("Early evening 2")
     }
 
     func titleTTModeHueSceneLateEvening() -> String {
-        return "Late evening"
+        return TTText("Late evening")
     }
 
     func doubleTitleTTModeHueSceneLateEvening() -> String {
-        return "Late evening 2"
+        return TTText("Late evening 2")
     }
 
     func titleTTModeHueSceneMorning() -> String {
-        return "Morning"
+        return TTText("Morning")
     }
 
     func doubleTitleTTModeHueSceneMorning() -> String {
-        return "Morning 2"
+        return TTText("Morning 2")
     }
 
     func titleTTModeHueSceneMidnightOil() -> String {
-        return "Midnight oil"
+        return TTText("Midnight oil")
     }
 
     func doubleTitleTTModeHueSceneMidnightOil() -> String {
-        return "Midnight oil 2"
+        return TTText("Midnight oil 2")
     }
 
     func titleTTModeHueSceneLightsOff() -> String {
-        return "Lights off"
+        return TTText("Lights off")
     }
 
     func titleTTModeHueSceneColorLoop() -> String {
-        return "Color loop"
+        return TTText("Color loop")
     }
 
     func titleTTModeHueSceneCustom() -> String {
@@ -265,27 +265,27 @@ class TTModeHue: TTMode, HueBridgeDiscoveryDelegate, HueBridgeAuthenticatorDeleg
             }
         }
 
-        return "Trigger scene"
+        return TTText("Trigger scene")
     }
 
     func doubleTitleTTModeHueSceneCustom() -> String {
-        return "Custom scene 2"
+        return TTText("Custom scene 2")
     }
 
     func titleTTModeHueSleep() -> String {
-        return "Sleep"
+        return TTText("Sleep")
     }
 
     func doubleTitleTTModeHueSleep() -> String {
-        return "Sleep fast"
+        return TTText("Sleep fast")
     }
 
     func titleTTModeHueRandom() -> String {
-        return "Random"
+        return TTText("Random")
     }
 
     func doubleTitleTTModeHueRandom() -> String {
-        return "Random 2"
+        return TTText("Random 2")
     }
 
     // MARK: Action images
@@ -811,7 +811,7 @@ class TTModeHue: TTMode, HueBridgeDiscoveryDelegate, HueBridgeAuthenticatorDeleg
         TTModeHue.connectionError = nil
         TTModeHue.hueState = .connecting
         TTModeHue.delegates.invoke { (delegate) in
-            delegate?.changeState(TTModeHue.hueState, mode: self, message: "Connecting to Hue...")
+            delegate?.changeState(TTModeHue.hueState, mode: self, message: TTText("Connecting to Hue..."))
         }
 
         if reset {
@@ -867,7 +867,7 @@ class TTModeHue: TTMode, HueBridgeDiscoveryDelegate, HueBridgeAuthenticatorDeleg
         TTModeHue.connectionError = nil
         TTModeHue.hueState = .connecting
         TTModeHue.delegates.invoke { (delegate) in
-            delegate?.changeState(TTModeHue.hueState, mode: self, message: "Searching for a Hue bridge...")
+            delegate?.changeState(TTModeHue.hueState, mode: self, message: TTText("Searching for a Hue bridge..."))
         }
 
         // Cancel any existing timeout
@@ -1010,7 +1010,7 @@ class TTModeHue: TTMode, HueBridgeDiscoveryDelegate, HueBridgeAuthenticatorDeleg
             print(" ---> No more saved bridges, starting discovery...")
             TTModeHue.hueState = .notConnected
             TTModeHue.delegates.invoke { (delegate) in
-                delegate?.changeState(TTModeHue.hueState, mode: self, message: "Connection to Hue bridge lost. Searching...")
+                delegate?.changeState(TTModeHue.hueState, mode: self, message: TTText("Connection to Hue bridge lost. Searching..."))
             }
             // Give UI time to update then start discovery
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
@@ -1021,7 +1021,7 @@ class TTModeHue: TTMode, HueBridgeDiscoveryDelegate, HueBridgeAuthenticatorDeleg
 
     func showNoBridgesFoundDialog() {
         NSLog(" ---> Could not find bridge")
-        showConnectionError("Could not find any Hue bridges")
+        showConnectionError(TTText("Could not find any Hue bridges"))
     }
 
     // MARK: - HueBridgeAuthenticatorDelegate
@@ -1053,13 +1053,13 @@ class TTModeHue: TTMode, HueBridgeDiscoveryDelegate, HueBridgeAuthenticatorDeleg
                 self.removeSavedBridge(serialNumber: bridge.id)
             }
 
-            showConnectionError("Pushlink button not pressed within 30 seconds")
+            showConnectionError(TTText("Pushlink button not pressed within 30 seconds"))
         } else if case .cancelled = error {
             return
         } else {
             // A failed local request used to immediately start another pushlink attempt.
             // Keep a stable error screen until the user explicitly retries.
-            showConnectionError("Could not connect to Hue: \(error.localizedDescription)")
+            showConnectionError(TTText("Could not connect to Hue: {0}", error.localizedDescription))
         }
     }
 

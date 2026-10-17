@@ -130,9 +130,9 @@ class TTModeTab: UIView {
             UIColor(hex: 0x808388) : UIColor(hex: 0x404A60)
         self.titleLabel.textColor = textColor
         if [.single, .double].contains(modeDirection) {
-            self.titleLabel.text = "\(self.modeTitle) tap".uppercased()
+            self.titleLabel.text = (self.modeDirection == .single ? TTText("Single tap") : TTText("Double tap")).uppercased()
         } else {
-            self.titleLabel.text = self.modeTitle.uppercased()
+            self.titleLabel.text = TTText(self.modeTitle).uppercased()
         }
     }
     

@@ -27,7 +27,7 @@ class TTModeTitleView: UIView {
         }
         
         changeButton.translatesAutoresizingMaskIntoConstraints = false
-        changeButton.setTitle("Change", for: UIControl.State.normal)
+        changeButton.setTitle(TTText("Change"), for: UIControl.State.normal)
         changeButton.titleLabel!.font = UIFont(name: "Effra", size: 13)
         changeButton.titleLabel!.textColor = UIColor(hex: 0xA0A0A0)
         changeButton.titleLabel!.lineBreakMode = NSLineBreakMode.byClipping
@@ -95,9 +95,9 @@ class TTModeTitleView: UIView {
     
     override func draw(_ rect: CGRect) {
         if appDelegate().modeMap.openedModeChangeMenu {
-            changeButton.setTitle("Done", for: .normal)
+            changeButton.setTitle(TTText("Done"), for: .normal)
         } else {
-            changeButton.setTitle("Change", for: .normal)
+            changeButton.setTitle(TTText("Change"), for: .normal)
         }
         
         if appDelegate().modeMap.buttonAppMode() == .SixteenButtons {

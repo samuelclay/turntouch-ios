@@ -41,11 +41,11 @@ class TTModeHomeKit: TTMode, HMHomeManagerDelegate {
     }
     
     override class func title() -> String {
-        return "HomeKit"
+        return TTText("HomeKit")
     }
     
     override class func subtitle() -> String {
-        return "Your home at your command."
+        return TTText("Your home at your command.")
     }
     
     override class func imageName() -> String {
@@ -70,10 +70,10 @@ class TTModeHomeKit: TTMode, HMHomeManagerDelegate {
         let direction = TTModeDirection(rawValue: direction.intValue)!
         if direction != .no_DIRECTION {
             let scene = self.selectedScene(in: direction)
-            return scene?.name ?? "Trigger scene"
+            return scene?.name ?? TTText("Trigger scene")
         }
         
-        return "Trigger scene"
+        return TTText("Trigger scene")
     }
     
     // MARK: Action images

@@ -89,11 +89,11 @@ class TTModeBose : TTMode, TTModeBoseMulticastDelegate, TTModeBoseDeviceDelegate
     }
    
     override class func title() -> String {
-        return "Bose"
+        return TTText("Bose")
     }
     
     override class func subtitle() -> String {
-        return "Control Bose speakers"
+        return TTText("Control Bose speakers")
     }
     
     override class func imageName() -> String {
@@ -126,39 +126,39 @@ class TTModeBose : TTMode, TTModeBoseMulticastDelegate, TTModeBoseDeviceDelegate
     // MARK: Action titles
     
     func titleTTModeBoseVolumeUp() -> String {
-        return "Volume up"
+        return TTText("Volume up")
     }
     
     func titleTTModeBoseVolumeDown() -> String {
-        return "Volume down"
+        return TTText("Volume down")
     }
     
     func titleTTModeBoseVolumeMute() -> String {
-        return "Mute"
+        return TTText("Mute")
     }
     
     func titleTTModeBoseVolumeJump() -> String {
-        return "Jump to volume"
+        return TTText("Jump to volume")
     }
     
     func titleTTModeBosePlayPause() -> String {
-        return "Play/pause"
+        return TTText("Play/pause")
     }
     
     func titleTTModeBosePlay() -> String {
-        return "Play"
+        return TTText("Play")
     }
     
     func titleTTModeBosePause() -> String {
-        return "Pause"
+        return TTText("Pause")
     }
     
     func titleTTModeBoseNextTrack() -> String {
-        return "Next track"
+        return TTText("Next track")
     }
     
     func titleTTModeBosePreviousTrack() -> String {
-        return "Previous track"
+        return TTText("Previous track")
     }
     
     

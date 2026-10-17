@@ -21,7 +21,7 @@ class TTAboutViewController: UIViewController, UITableViewDelegate, UITableViewD
         let closeButton = UIBarButtonItem(barButtonSystemItem: .done,
                                           target: self, action: #selector(self.close))
         self.navigationItem.rightBarButtonItem = closeButton
-        self.navigationItem.title = "About Turn Touch"
+        self.navigationItem.title = TTText("About Turn Touch")
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -45,20 +45,20 @@ class TTAboutViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func menuOptions() -> [[String : String]] {
         return [
-            ["title": "Follow @turntouch on Twitter",
-             "subtitle": "Announcements and updates",
+            ["title": TTText("Follow @turntouch on Twitter"),
+             "subtitle": TTText("Announcements and updates"),
              "image": "twitter-turntouch",
              "url": "https://twitter.com/turntouch"],
-            ["title": "Follow @samuelclay on Twitter",
-             "subtitle": "Designer and builder",
+            ["title": TTText("Follow @samuelclay on Twitter"),
+             "subtitle": TTText("Designer and builder"),
              "image": "twitter-samuelclay",
              "url": "https://twitter.com/samuelclay"],
-            ["title": "Buy a Turn Touch",
-             "subtitle": "Only at turntouch.com",
+            ["title": TTText("Buy a Turn Touch"),
+             "subtitle": TTText("Only at turntouch.com"),
              "image": "twitter-buy",
              "url": "https://shop.turntouch.com"],
-            ["title": "Review on the App Store",
-             "subtitle": "Rate this app",
+            ["title": TTText("Review on the App Store"),
+             "subtitle": TTText("Rate this app"),
              "image": "twitter-review",
              "url": "itms-apps://itunes.apple.com/us/app/itunes-u/id1152075244?action=write-review"],
         ]

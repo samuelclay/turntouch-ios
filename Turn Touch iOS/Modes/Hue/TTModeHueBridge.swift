@@ -40,7 +40,7 @@ class TTModeHueBridge: TTOptionsDetailViewController, UITableViewDelegate, UITab
     func setBridges(_ foundBridges: [DiscoveredBridge]) {
         self.bridgesFound = foundBridges
 
-        self.label.text = "Please select a Hue bridge"
+        self.label.text = TTText("Please select a Hue bridge")
 
         print(" ---> Found hue bridges: \(self.bridgesFound)")
         self.tableView.reloadData()
@@ -57,7 +57,7 @@ class TTModeHueBridge: TTOptionsDetailViewController, UITableViewDelegate, UITab
 
     @IBAction func performRefresh(_ sender: UIButton?) {
         self.modeHue.findBridges()
-        self.label.text = "Searching for Hue bridges..."
+        self.label.text = TTText("Searching for Hue bridges...")
     }
 
     // MARK: Table view data source
@@ -74,10 +74,10 @@ class TTModeHueBridge: TTOptionsDetailViewController, UITableViewDelegate, UITab
         let cell = TTTitleMenuCell(style: .subtitle, reuseIdentifier: nil)
 
         let bridge = self.bridgesFound[(indexPath as NSIndexPath).row%self.bridgesFound.count]
-        cell.textLabel?.text = "\(bridge.friendlyName ?? "Hue Bridge")"
+        cell.textLabel?.text = TTText("{0}", bridge.friendlyName ?? "Hue Bridge")
         cell.textLabel?.font = UIFont(name: "Effra", size: 18)
 
-        cell.detailTextLabel?.text = "\(bridge.modelName)"
+        cell.detailTextLabel?.text = TTText("{0}", bridge.modelName)
         cell.detailTextLabel?.font = UIFont(name: "Effra", size: 15)
 
         cell.accessoryType = .disclosureIndicator

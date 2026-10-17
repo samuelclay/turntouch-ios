@@ -19,6 +19,6 @@ class TTModeNanoleafConnecting: TTOptionsDetailViewController {
     }
 
     func setConnectingWithMessage(_ message: String?) {
-        self.progressMessage.text = message ?? "Connecting to Nanoleaf..."
+        self.progressMessage.text = message ?? TTText("Connecting to Nanoleaf...")
     }
 }

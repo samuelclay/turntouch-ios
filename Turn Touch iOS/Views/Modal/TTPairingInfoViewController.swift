@@ -59,18 +59,18 @@ class TTPairingInfoViewController: UIViewController {
         case .intro:
             self.navigationItem.title = ""
             self.heroImage?.image = UIImage(named: "modal_remote_hero")
-            self.titleLabel?.text = "Welcome to Turn Touch"
-            self.subtitleLabel?.text = "Beautiful control"
+            self.titleLabel?.text = TTText("Welcome to Turn Touch")
+            self.subtitleLabel?.text = TTText("Beautiful control")
         case .success:
 //            self.navigationItem.title = "Success!"
             self.heroImage?.image = UIImage(named: "modal_remote_paired")
-            self.titleLabel?.text = "That worked perfectly"
-            self.subtitleLabel?.text = "Your remote has been paired"
+            self.titleLabel?.text = TTText("That worked perfectly")
+            self.subtitleLabel?.text = TTText("Your remote has been paired")
         case .failure:
 //            self.navigationItem.title = "Could not find any remotes..."
             self.heroImage?.image = UIImage(named: "modal_remote_failed")
-            self.titleLabel?.text = "Uh Oh..."
-            self.subtitleLabel?.text = "No remotes could be found"
+            self.titleLabel?.text = TTText("Uh Oh...")
+            self.subtitleLabel?.text = TTText("No remotes could be found")
         default:
             break
         }
@@ -85,13 +85,13 @@ class TTPairingInfoViewController: UIViewController {
         case .poweredOn:
             return
         case .unsupported:
-            self.subtitleLabel?.text = "This device doesn't support Bluetooth Low Energy."
+            self.subtitleLabel?.text = TTText("This device doesn't support Bluetooth Low Energy.")
         case .unauthorized:
-            self.subtitleLabel?.text = "Turn Touch is not authorized to use Bluetooth Low Energy."
+            self.subtitleLabel?.text = TTText("Turn Touch is not authorized to use Bluetooth Low Energy.")
         case .poweredOff:
-            self.subtitleLabel?.text = "Bluetooth is currently powered off."
+            self.subtitleLabel?.text = TTText("Bluetooth is currently powered off.")
         default:
-            self.subtitleLabel?.text = "Bluetooth is powered off or isn't responding."
+            self.subtitleLabel?.text = TTText("Bluetooth is powered off or isn't responding.")
         }
     }
 }

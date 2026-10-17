@@ -24,7 +24,7 @@ class TTModeWemoConnecting: TTOptionsDetailViewController {
     func setConnectingWithMessage(_ message: String?) {
         var m = message
         if message == nil {
-            m = "Connecting to Wemo..."
+            m = TTText("Connecting to Wemo...")
         }
         
         self.progressMessage.text = m

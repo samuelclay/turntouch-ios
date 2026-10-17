@@ -24,7 +24,7 @@ class TTModeBoseConnecting: TTOptionsDetailViewController {
     func setConnectingWithMessage(_ message: String?) {
         var m = message
         if message == nil {
-            m = "Connecting to Bose..."
+            m = TTText("Connecting to Bose...")
         }
         
         self.progressMessage.text = m

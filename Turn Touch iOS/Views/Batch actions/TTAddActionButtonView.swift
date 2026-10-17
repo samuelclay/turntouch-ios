@@ -26,7 +26,7 @@ class TTAddActionButtonView: UIView {
         
         image = UIImage(named: "button_plus")
         addButton.translatesAutoresizingMaskIntoConstraints = false
-        addButton.configuration = self.makeButtonConfig(title: "Add new action", image: image)
+        addButton.configuration = self.makeButtonConfig(title: TTText("Add new action"), image: image)
         addButton.addTarget(self, action: #selector(self.showAddActionMenu(_:)), for: .touchUpInside)
         addButton.setContentHuggingPriority(UILayoutPriority.defaultHigh, for: .horizontal)
         self.addSubview(addButton)
@@ -109,7 +109,7 @@ class TTAddActionButtonView: UIView {
     }
 
     @objc func showAddActionMenu(_ sender: UIButton!) {
-        updateButtonConfig(title: "Cancel", imageName: "button_x")
+        updateButtonConfig(title: TTText("Cancel"), imageName: "button_x")
         addButton.removeTarget(self, action: #selector(self.showAddActionMenu(_:)), for: .touchUpInside)
         addButton.addTarget(self, action: #selector(self.hideAddActionMenu(_:)), for: .touchUpInside)
 
@@ -117,7 +117,7 @@ class TTAddActionButtonView: UIView {
     }
 
     @objc func hideAddActionMenu(_ sender: UIButton!) {
-        updateButtonConfig(title: "Add new action", imageName: "button_plus")
+        updateButtonConfig(title: TTText("Add new action"), imageName: "button_plus")
         addButton.removeTarget(self, action: #selector(self.hideAddActionMenu(_:)), for: .touchUpInside)
         addButton.addTarget(self, action: #selector(self.showAddActionMenu(_:)), for: .touchUpInside)
         

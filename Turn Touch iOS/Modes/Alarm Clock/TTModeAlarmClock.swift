@@ -11,11 +11,11 @@ import UIKit
 class TTModeAlarmClock: TTMode {
 
     override class func title() -> String {
-        return "Alarm"
+        return TTText("Alarm")
     }
     
     override class func subtitle() -> String {
-        return "Wake up on time to music"
+        return TTText("Wake up on time to music")
     }
     
     override class func imageName() -> String {

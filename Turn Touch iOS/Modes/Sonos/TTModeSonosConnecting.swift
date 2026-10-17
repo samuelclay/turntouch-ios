@@ -24,7 +24,7 @@ class TTModeSonosConnecting: TTOptionsDetailViewController {
     func setConnectingWithMessage(_ message: String?) {
         var m = message
         if message == nil {
-            m = "Connecting to Sonos..."
+            m = TTText("Connecting to Sonos...")
         }
         
         self.progressMessage.text = m

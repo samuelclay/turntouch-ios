@@ -1,0 +1,442 @@
+{
+  "Turn Touch iOS/Base.lproj/LaunchScreen.storyboard": {
+    "sha256": "5edfc8861c8029a18b4b0b826a75ce6c598efd46b095ffa32b6e73b76a361a8c",
+    "strings": {}
+  },
+  "Turn Touch iOS/Modes/Bose/Base.lproj/TTModeBoseConnect.xib": {
+    "sha256": "0cecfee69f8bf14ffb2f9cf8d67e602b8e99ff249a6ab3b33a8e4cf1f2ecc81d",
+    "strings": {
+      "5z8-dd-EfZ.normalTitle": "Connect to Spotify..."
+    }
+  },
+  "Turn Touch iOS/Modes/Bose/Base.lproj/TTModeBoseConnected.xib": {
+    "sha256": "86804b93b1a9158bb0819319f4b7510ec5e485d9dda10b3c5048cf144c8f25df",
+    "strings": {
+      "DQV-FF-phP.normalTitle": "Scan for devices",
+      "Q9k-dy-xeR.text": "Connected to X Bose devices"
+    }
+  },
+  "Turn Touch iOS/Modes/Bose/Base.lproj/TTModeBoseConnecting.xib": {
+    "sha256": "f0068a343fb05c0436d255517cfe1689b4ec9e4d13659df03c2812807f4debf8",
+    "strings": {
+      "YnL-0c-gjt.normalTitle": "Button",
+      "n3K-Tv-sO5.text": "Searching for Bose speakers...."
+    }
+  },
+  "Turn Touch iOS/Modes/Bose/Base.lproj/TTModeBoseDeviceSpeakerOptions.xib": {
+    "sha256": "8b7e208008a3ac2ec05d1084be6964fb093ab1d2dc8e8e02c838e67cd30fa310",
+    "strings": {}
+  },
+  "Turn Touch iOS/Modes/Bose/Base.lproj/TTModeBoseOptions.xib": {
+    "sha256": "4c5d279e487d3dc7c5640a02c5d99565420eef783f2c990c42d113e7e69451a0",
+    "strings": {}
+  },
+  "Turn Touch iOS/Modes/Bose/Base.lproj/TTModeBoseVolumeJumpOptions.xib": {
+    "sha256": "5ca327f9f2ee904e1830958394b5793d1369fd15f4ff95c15d3116ee6a7c645f",
+    "strings": {
+      "aUd-Uq-x33.text": "50%"
+    }
+  },
+  "Turn Touch iOS/Modes/Custom/Base.lproj/TTModeCustomURLOptions.xib": {
+    "sha256": "a23403923a007e64205fef50dfcb23b4a57a36ea36888c3ede7fcca7434133ef",
+    "strings": {
+      "2cd-53-LmY.text": "Not yet hit",
+      "8Gh-Bt-PUL.text": "URL",
+      "Btk-jh-LOr.text": "Not yet hit",
+      "OyF-ny-O37.placeholder": "https://",
+      "UjG-4t-jS5.placeholder": "https://",
+      "vbm-la-ute.text": "URL"
+    }
+  },
+  "Turn Touch iOS/Modes/Govee/Base.lproj/TTModeGoveeConnect.xib": {
+    "sha256": "c6c7f3e8174f9610f2a01cac4fbb2dec3086f878ffa1e7876fc4242adfbc012f",
+    "strings": {
+      "5z8-dd-EfZ.normalTitle": "Connect to Govee",
+      "api-key-fld.placeholder": "Govee API Key",
+      "instr-lbl.text": "Enter your Govee API key (Govee Home App > Settings > My Profile > Apply for API Key)"
+    }
+  },
+  "Turn Touch iOS/Modes/Govee/Base.lproj/TTModeGoveeConnected.xib": {
+    "sha256": "89195b492d983c87113191eea657047bf9f39788f80337364671e35a44cb61e3",
+    "strings": {
+      "Neq-Bx-RqE.text": "X Govee devices found",
+      "api-btn-01.normalTitle": "Update API Key",
+      "title-lbl.text": "Connected to Govee",
+      "tzo-RQ-7oz.normalTitle": "Refresh devices"
+    }
+  },
+  "Turn Touch iOS/Modes/Govee/Base.lproj/TTModeGoveeConnecting.xib": {
+    "sha256": "238c5e1a283a5c68689035447f6a5a7ee647c88cfedf5bf349de4f3a5cc7f80c",
+    "strings": {
+      "YnL-0c-gjt.normalTitle": "Cancel",
+      "n3K-Tv-sO5.text": "Fetching Govee devices..."
+    }
+  },
+  "Turn Touch iOS/Modes/Govee/Base.lproj/TTModeGoveeDeviceSwitchOptions.xib": {
+    "sha256": "7ce40cb80ed9177ba3736663d75a97118ed8fbb0758820779c6cdd173d22b108",
+    "strings": {
+      "xEe-HV-oGe.text": "No Govee devices found"
+    }
+  },
+  "Turn Touch iOS/Modes/Govee/Base.lproj/TTModeGoveeOptions.xib": {
+    "sha256": "e8c24f1f0e4382e70d428d8080cc9e0c732cd267156146d9ddabd4bf3c7ead08",
+    "strings": {}
+  },
+  "Turn Touch iOS/Modes/HomeKit/Base.lproj/TTModeHomeKitTriggerSceneOptions.xib": {
+    "sha256": "6c2a004145d21c9cbe4d12b966bfdc267f4a4b7f9316706d5bb3b0a391ffab73",
+    "strings": {
+      "CgV-Tp-T7G.text": "Scene",
+      "h9G-vU-By8.text": "Home",
+      "m9o-1l-Fhd.text": "No HomeKit rooms found",
+      "pOR-ed-GcL.text": "No HomeKit rooms found"
+    }
+  },
+  "Turn Touch iOS/Modes/Hue/Base.lproj/TTModeHueBridge.xib": {
+    "sha256": "0edf79acd5732646ae2ac326b0e2b42a5ee8a3ce924ade9a5ea1f3a2eb0a73e3",
+    "strings": {
+      "N1L-Zw-odV.normalTitle": "Button",
+      "PyA-AU-hJU.text": "Please select a Hue bridge"
+    }
+  },
+  "Turn Touch iOS/Modes/Hue/Base.lproj/TTModeHueBrightnessOptions.xib": {
+    "sha256": "340247bd157e80acc7b13e6abc118fac10ed9de8dcf582e6283feceb9d84b759",
+    "strings": {
+      "uRi-OS-oPJ.text": "Room"
+    }
+  },
+  "Turn Touch iOS/Modes/Hue/Base.lproj/TTModeHueConnect.xib": {
+    "sha256": "80a4a6f588e158da282fe789bca4ddc3b439a4b02cb5ad63a229135f2e089428",
+    "strings": {
+      "60K-9D-4vb.normalTitle": "Connect to Hue",
+      "S8h-Mm-O7v.text": "Find your Phillips Hue"
+    }
+  },
+  "Turn Touch iOS/Modes/Hue/Base.lproj/TTModeHueConnected.xib": {
+    "sha256": "b3c2c33a1901804cd35db6509717a21f9ff0542259c69ed3026d6ef71e9bd3ca",
+    "strings": {
+      "2YS-VH-2GU.text": "X rooms, Y lights, Z scenes",
+      "FWr-5Z-Oo5.text": "Connected to Hue",
+      "K3R-sB-HiJ.normalTitle": "Switch to another bridge",
+      "szy-7s-qNO.normalTitle": "Reload scenes"
+    }
+  },
+  "Turn Touch iOS/Modes/Hue/Base.lproj/TTModeHueConnecting.xib": {
+    "sha256": "9f0f611d387bfc4f77165ee839cd1d10bfbd4e3a8eeea4b4732b9025be4f0531",
+    "strings": {
+      "Yf6-NQ-hkT.text": "Searching for a Hue bridge..."
+    }
+  },
+  "Turn Touch iOS/Modes/Hue/Base.lproj/TTModeHueCycleScenesOptions.xib": {
+    "sha256": "1635f2c3f53f4c06356a16f7b0fcf9f9b22b275bd928efba0e641291663036f2",
+    "strings": {
+      "Rka-1Q-S05.text": "Scenes",
+      "rTD-YQ-Ncs.text": "Room"
+    }
+  },
+  "Turn Touch iOS/Modes/Hue/Base.lproj/TTModeHueOptions.xib": {
+    "sha256": "655906bb614b0aac6da66ab5ca0c73fc927d289aebf1fa3c49f2ebc6c284b8dc",
+    "strings": {}
+  },
+  "Turn Touch iOS/Modes/Hue/Base.lproj/TTModeHuePushlink.xib": {
+    "sha256": "dae2bd54379794240ae234f79ef23d3c85b85edb3d61186b9bf8a36fc937bb87",
+    "strings": {}
+  },
+  "Turn Touch iOS/Modes/Hue/Base.lproj/TTModeHueRandomOptions.xib": {
+    "sha256": "ac61b5c4b3b03d96348f299cfbc9facc94d6b4944ff615b248f6444a437c620b",
+    "strings": {
+      "1rZ-au-AQB.segmentTitles[0]": "Different",
+      "1rZ-au-AQB.segmentTitles[1]": "Mix",
+      "1rZ-au-AQB.segmentTitles[2]": "Same",
+      "1x2-Os-cal.segmentTitles[0]": "Dim",
+      "1x2-Os-cal.segmentTitles[1]": "Mix",
+      "1x2-Os-cal.segmentTitles[2]": "Bright",
+      "3k2-7v-dKe.text": "Saturation",
+      "9nB-i3-nT8.segmentTitles[0]": "Different",
+      "9nB-i3-nT8.segmentTitles[1]": "Mix",
+      "9nB-i3-nT8.segmentTitles[2]": "Same",
+      "D65-yd-iZ4.segmentTitles[0]": "Dim",
+      "D65-yd-iZ4.segmentTitles[1]": "Mix",
+      "D65-yd-iZ4.segmentTitles[2]": "Bright",
+      "F2t-Yv-B15.text": "Room",
+      "FHD-iM-Lpn.text": "Brightness",
+      "Spe-eg-tMF.segmentTitles[0]": "Pastels",
+      "Spe-eg-tMF.segmentTitles[1]": "Mix",
+      "Spe-eg-tMF.segmentTitles[2]": "Strong",
+      "hyi-No-G4S.text": "Colors",
+      "jVk-FM-b82.text": "Saturation",
+      "kje-4z-hP8.text": "Colors",
+      "nV7-bP-mJN.text": "Brightness",
+      "psd-3I-cgD.segmentTitles[0]": "Pastels",
+      "psd-3I-cgD.segmentTitles[1]": "Mix",
+      "psd-3I-cgD.segmentTitles[2]": "Strong"
+    }
+  },
+  "Turn Touch iOS/Modes/Hue/Base.lproj/TTModeHueSceneOptions.xib": {
+    "sha256": "8ddf3a3ab75e5f0ae3e4d8f49d8f0571ea701c823e599641d78cba71eff72699",
+    "strings": {
+      "2Eu-vA-Pmt.text": "Single tap",
+      "BJi-uJ-ihJ.text": "Double tap",
+      "ubW-S7-Ycn.text": "Room"
+    }
+  },
+  "Turn Touch iOS/Modes/Hue/Base.lproj/TTModeHueSleepOptions.xib": {
+    "sha256": "659b9ec0465d4d7addb736e2a04fcfb377d2eb8c6f48deefb039791e54a2b55d",
+    "strings": {
+      "FLT-Da-zeL.text": "Single tap",
+      "PgQ-H7-AJF.text": "5 seconds",
+      "XgR-3t-wco.text": "Double tap",
+      "spW-B6-Q0n.text": "30 seconds",
+      "uSj-Pe-mCl.text": "Room"
+    }
+  },
+  "Turn Touch iOS/Modes/Ifttt/Base.lproj/TTModeIftttConnect.xib": {
+    "sha256": "cae948b28897d084e54a779052ff78cd0342a644e5ad2bb6c4e8bb3bb5a08dc0",
+    "strings": {
+      "4Dj-Uk-hCL.normalTitle": "Connect to IFTTT"
+    }
+  },
+  "Turn Touch iOS/Modes/Ifttt/Base.lproj/TTModeIftttConnected.xib": {
+    "sha256": "e71ae9b1d4e6f4c90f1f18a133855fb02afffe392b5e490ab305cec09e2819fe",
+    "strings": {
+      "5HU-ip-UUZ.text": "123°F",
+      "Yws-cr-XME.text": "123°F",
+      "bd1-fL-FoJ.text": "Thermostat",
+      "wv1-2k-arM.text": "Temperature set to",
+      "xUY-1P-NtR.text": "Room temperature"
+    }
+  },
+  "Turn Touch iOS/Modes/Ifttt/Base.lproj/TTModeIftttConnecting.xib": {
+    "sha256": "5b0c79ebaee4db6093db8bfa288e2f36b9d8a6b426d1410b2bb9c531fbb933fb",
+    "strings": {
+      "7zb-M8-V0r.normalTitle": "Button",
+      "uUg-Vi-poj.text": "Searching for Nest thermostats..."
+    }
+  },
+  "Turn Touch iOS/Modes/Ifttt/Base.lproj/TTModeIftttOptions.xib": {
+    "sha256": "88563e9956468665f926693e77b68e21ece5b447191eac07d70b8b2d6c4d19de",
+    "strings": {}
+  },
+  "Turn Touch iOS/Modes/Ifttt/Base.lproj/TTModeIftttTriggerActionOptions.xib": {
+    "sha256": "9505fc2f191fa8b24e837b6b9be506590ec6a6092ff3e08bac98a7d54b52716d",
+    "strings": {
+      "UtA-71-qVu.normalTitle": "Choose IFTTT Action"
+    }
+  },
+  "Turn Touch iOS/Modes/Kasa/Base.lproj/TTModeKasaConnect.xib": {
+    "sha256": "27bfccff074be6a54c48f3ecc26d7b0e4cadc06af205f54e49692dae5d6f837c",
+    "strings": {
+      "5z8-dd-EfZ.normalTitle": "Search for Kasa devices..."
+    }
+  },
+  "Turn Touch iOS/Modes/Kasa/Base.lproj/TTModeKasaConnected.xib": {
+    "sha256": "08ed490ce118f7d6a35ea618545860d802f7041062c4cd7379825839bdd54bc1",
+    "strings": {
+      "Neq-Bx-RqE.text": "X Kasa devices found",
+      "cred-btn-01.normalTitle": "Enter TP-Link Credentials",
+      "title-lbl.text": "Connected to Kasa",
+      "tzo-RQ-7oz.normalTitle": "Search for devices"
+    }
+  },
+  "Turn Touch iOS/Modes/Kasa/Base.lproj/TTModeKasaConnecting.xib": {
+    "sha256": "335001b0213a88c598bff168d5250926336058c76ef4ca2ef7edf967ed180dac",
+    "strings": {
+      "YnL-0c-gjt.normalTitle": "Cancel",
+      "n3K-Tv-sO5.text": "Searching for Kasa devices..."
+    }
+  },
+  "Turn Touch iOS/Modes/Kasa/Base.lproj/TTModeKasaDeviceSwitchOptions.xib": {
+    "sha256": "78bd7d5583f790f5b1c343c3c3d03cf044f4265584365a045c703b96688cb73e",
+    "strings": {
+      "xEe-HV-oGe.text": "No Kasa devices found"
+    }
+  },
+  "Turn Touch iOS/Modes/Kasa/Base.lproj/TTModeKasaOptions.xib": {
+    "sha256": "77ca8c3c3e4147e1cd602cf59be6878211bd839c05351db6272c6b5c749a5e5b",
+    "strings": {}
+  },
+  "Turn Touch iOS/Modes/Music/Base.lproj/TTModeMusicPlayPauseOptions.xib": {
+    "sha256": "ee3b3120392de40276d8b773bdb7108e6a9120349d0c06040ab82c82ecf01bc3",
+    "strings": {
+      "bSa-8S-8UD.text": "Double tap to go to the previous track"
+    }
+  },
+  "Turn Touch iOS/Modes/Music/Base.lproj/TTModeMusicVolumeJumpOptions.xib": {
+    "sha256": "a3132414985bcdcc6c8164f857edd437647647a9759cda725cc9581a51e1319f",
+    "strings": {
+      "CQB-2O-6GM.text": "50%"
+    }
+  },
+  "Turn Touch iOS/Modes/Nanoleaf/Base.lproj/TTModeNanoleafConnect.xib": {
+    "sha256": "47cc5af10e69071203bdffc4bc8a485b0c3d18726c6c06be9338b6fbbbeadb2c",
+    "strings": {
+      "60K-9D-4vb.normalTitle": "Connect to Nanoleaf",
+      "S8h-Mm-O7v.text": "Find your Nanoleaf"
+    }
+  },
+  "Turn Touch iOS/Modes/Nanoleaf/Base.lproj/TTModeNanoleafConnected.xib": {
+    "sha256": "abbd08a56da18bab35681445a315b8ef3e32af7753883e30d7658637ce38c0f1",
+    "strings": {
+      "2YS-VH-2GU.text": "Nanoleaf - X effects",
+      "FWr-5Z-Oo5.text": "Connected to Nanoleaf",
+      "K3R-sB-HiJ.normalTitle": "Switch to another device"
+    }
+  },
+  "Turn Touch iOS/Modes/Nanoleaf/Base.lproj/TTModeNanoleafConnecting.xib": {
+    "sha256": "b12bb4e22091a9dd0b73eb25a8a7fa805d6a4985d40630a962c9e96eb6cb1403",
+    "strings": {
+      "Yf6-NQ-hkT.text": "Searching for a Nanoleaf..."
+    }
+  },
+  "Turn Touch iOS/Modes/Nanoleaf/Base.lproj/TTModeNanoleafOptions.xib": {
+    "sha256": "930180fcf188cc8a8935df6f0ca4408fc8de6ec56df52bb70260e146ef3a5fa2",
+    "strings": {}
+  },
+  "Turn Touch iOS/Modes/Nanoleaf/Base.lproj/TTModeNanoleafPushlink.xib": {
+    "sha256": "34f32d9d074ce2f83ced3dc00d57c3376593c661950ca136904d42dc3a7ebfb5",
+    "strings": {
+      "lbl-device-name.text": "Light Panels 50:A1:5A",
+      "lbl-instruction.text": "Hold the power button for 5-7 seconds until the LEDs start flashing"
+    }
+  },
+  "Turn Touch iOS/Modes/Nanoleaf/Base.lproj/TTModeNanoleafSceneCustomOptions.xib": {
+    "sha256": "4f7a840a58683d1bf4ccdc8cc29744950919d14bf73fb8fea153c7b298b21246",
+    "strings": {
+      "2Eu-vA-Pmt.text": "Single tap",
+      "BJi-uJ-ihJ.text": "Double tap"
+    }
+  },
+  "Turn Touch iOS/Modes/Nanoleaf/Base.lproj/TTModeNanoleafSleepOptions.xib": {
+    "sha256": "7fc53d2a086d049d2cce7cf6e55b7e878eace66a338c4cfcae89677ed70f9d4c",
+    "strings": {
+      "FLT-Da-zeL.text": "Single tap",
+      "PgQ-H7-AJF.text": "5 seconds",
+      "XgR-3t-wco.text": "Double tap",
+      "spW-B6-Q0n.text": "30 seconds"
+    }
+  },
+  "Turn Touch iOS/Modes/Phone/Base.lproj/TTModePhoneVolumeJumpOptions.xib": {
+    "sha256": "e2ee748096db1632d1bfa347fe36995bc583e4a6ee43b93210b13fee30cd3582",
+    "strings": {
+      "LGB-x3-gM0.text": "50%"
+    }
+  },
+  "Turn Touch iOS/Modes/Sonos/Base.lproj/TTModeSonosConnect.xib": {
+    "sha256": "7bd53a79cb15eeeccce3dd185fb4784bff87902d7795a314eb794942c284832e",
+    "strings": {
+      "5z8-dd-EfZ.normalTitle": "Search for Sonos speakers..."
+    }
+  },
+  "Turn Touch iOS/Modes/Sonos/Base.lproj/TTModeSonosConnected.xib": {
+    "sha256": "0f3757c46c96df6f58ed2c5d0e4a0ed36c3f7f0be29ada0fa93a9c23d9fd5597",
+    "strings": {
+      "9BV-EW-maG.text": "Speakers"
+    }
+  },
+  "Turn Touch iOS/Modes/Sonos/Base.lproj/TTModeSonosConnecting.xib": {
+    "sha256": "2fdf15dd7e07dcbf3f0f595b468c0599393fcc7828a6741e359760bb390155d8",
+    "strings": {
+      "YnL-0c-gjt.normalTitle": "Button",
+      "n3K-Tv-sO5.text": "Searching for Sonos speakers..."
+    }
+  },
+  "Turn Touch iOS/Modes/Sonos/Base.lproj/TTModeSonosOptions.xib": {
+    "sha256": "3af7fda5fd5716d77ad9f54fbd208822e26e168a8a899ac0c2d38358329d350a",
+    "strings": {}
+  },
+  "Turn Touch iOS/Modes/Sonos/Base.lproj/TTModeSonosVolumeJumpOptions.xib": {
+    "sha256": "bb7be48e9a444ff1d80d0201fcb8c5517ebb65753c5755ddfccfeff435d55fcc",
+    "strings": {
+      "aUd-Uq-x33.text": "50%"
+    }
+  },
+  "Turn Touch iOS/Modes/Wemo/Base.lproj/TTModeWemoConnect.xib": {
+    "sha256": "434d3e629ee300b78cdf91dceb9025f1ae448df7475d1cad44349e0135ab5ce5",
+    "strings": {
+      "5z8-dd-EfZ.normalTitle": "Search for Wemo devices..."
+    }
+  },
+  "Turn Touch iOS/Modes/Wemo/Base.lproj/TTModeWemoConnected.xib": {
+    "sha256": "87c6b5644bd47615b86905a76179296e29d2a0398d779df2dd1fd12641e2cd27",
+    "strings": {
+      "Neq-Bx-RqE.text": "Connected to X Wemo devices",
+      "tzo-RQ-7oz.normalTitle": "Scan for devices"
+    }
+  },
+  "Turn Touch iOS/Modes/Wemo/Base.lproj/TTModeWemoConnecting.xib": {
+    "sha256": "5a772cb7d649cbd14332e03c0bebb5e3fe2f44c54294e637f45f64f4f91d2bc5",
+    "strings": {
+      "YnL-0c-gjt.normalTitle": "Button",
+      "n3K-Tv-sO5.text": "Searching for Wemo devices..."
+    }
+  },
+  "Turn Touch iOS/Modes/Wemo/Base.lproj/TTModeWemoDeviceSwitchOptions.xib": {
+    "sha256": "48682d0a03ea433d702aba58b4a9940c9d3f2e329a0d5b4656204574114b0aa3",
+    "strings": {
+      "xEe-HV-oGe.text": "No WeMo devices found"
+    }
+  },
+  "Turn Touch iOS/Modes/Wemo/Base.lproj/TTModeWemoOptions.xib": {
+    "sha256": "d902c71070f6c3d567d181896c43e5b9f656b508c3cb4b2f2de60e14c6b47321",
+    "strings": {}
+  },
+  "Turn Touch iOS/Modes/Yoga/Base.lproj/TTModeYogaViewController.xib": {
+    "sha256": "6474433d0575452c3476aa40d721bfffc5396580078281f20d14cec8727af604",
+    "strings": {
+      "MI3-F5-jip.text": "Low lunge pose with two lines in title",
+      "qvN-xB-Jfr.text": "Ashva Sanchalanasana"
+    }
+  },
+  "Turn Touch iOS/Views/Modal/Base.lproj/TTAboutViewController.xib": {
+    "sha256": "6fb688ae834da57e13ebf0abf0195632f7aa1db0cb65ae10924d53f02f9fde2c",
+    "strings": {
+      "Hdy-58-24f.text": "— Charlotte Perkins Gilman, 1903",
+      "oCt-G2-aj8.text": "“The home is a human institution. All human institutions are open to improvement.” ",
+      "t4e-d3-Gzc.text": "Designed and built in San Francisco"
+    }
+  },
+  "Turn Touch iOS/Views/Modal/Base.lproj/TTGeofencingViewController.xib": {
+    "sha256": "6e23b57f5c3dfdb4236c6da21c78d9c2aa24a70765ac273e58b7e1fc51385d5f",
+    "strings": {
+      "lcq-QE-utz.text": "To improve connection reliability, choose where your Turn Touch will live"
+    }
+  },
+  "Turn Touch iOS/Views/Modal/Base.lproj/TTModalButton.xib": {
+    "sha256": "750399a82f7c4e2b037089bbc047bd3b569d543548999752a02a7f0d22f6d2ba",
+    "strings": {
+      "uzm-Wu-VJJ.text": "Next"
+    }
+  },
+  "Turn Touch iOS/Views/Modal/Base.lproj/TTPairingInfoViewController.xib": {
+    "sha256": "05f5bc26f1ab6dc247bf485ec9d356bd440c8f725abf0c9569c79915cd6b2f1f",
+    "strings": {
+      "62h-DM-WNF.text": "Welcome to Turn Touch",
+      "eZF-s1-Zb8.text": "Beautiful Control"
+    }
+  },
+  "Turn Touch iOS/Views/Modal/Base.lproj/TTPairingViewController.xib": {
+    "sha256": "d85c92aaa2e1f3905272f2fae5078002892a0a61219969f4589638bc8dd9b037",
+    "strings": {
+      "ZTX-d8-wqR.text": "Searching for remotes...",
+      "lJr-fU-0wG.text": "Pairing your Turn Touch"
+    }
+  },
+  "Turn Touch iOS/Views/Modal/Base.lproj/TTSwitchButtonModeViewController.xib": {
+    "sha256": "52ceba4065459eb73ad54c49e117fd3acbe219dce049b72675d849a8e6264d4a",
+    "strings": {
+      "0Kv-gp-YFo.text": "If this is off, tapping buttons will select them for editing. If on, tapping buttons will perform their actions, just like on a Turn Touch remote, and a Change button will enable editing.",
+      "0TL-9X-rEb.text": "Each of the four buttons has a single and a double tap action. By holding down a button for a half second, you switch into that button's app. Four apps ⨯ four buttons each = 16 buttons",
+      "6Zt-0J-fgG.text": "12 button mode",
+      "CBh-4i-bYO.text": "16 button mode",
+      "dgu-WI-Aeh.text": "There are two button modes you can use with your Turn Touch.",
+      "gIr-Q8-UNZ.text": "Buttons perform actions",
+      "wg9-uU-2mZ.text": "Each of the four buttons has three types of button presses: single tap, double tap, and hold. Each of the three  button presses runs different actions."
+    }
+  },
+  "Turn Touch iOS/Views/Options/Base.lproj/TTModeDoubleOptions.xib": {
+    "sha256": "189a5bb4938f6b3b32dc06b90ead52135c42e1de199ca69a3729dcf839cea28a",
+    "strings": {
+      "0Qj-jz-TCD.text": "Disabling double tap allows you to use single taps in rapid succession (for example, changing volume) without triggering this double tap action. \n\nAdditionally, some single tap actions have a double tap action built in that will only work if this double-tap mode is disabled (for example, play/pause will go to the previous track on double tap).",
+      "0uw-SL-RHg.text": "Enable double tap"
+    }
+  }
+}

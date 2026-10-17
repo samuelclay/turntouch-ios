@@ -47,7 +47,7 @@ class TTBatchActionHeaderView: UIView {
         self.clipsToBounds = true
         
         deleteButton.translatesAutoresizingMaskIntoConstraints = false
-        deleteButton.setTitle("Delete", for: UIControl.State.normal)
+        deleteButton.setTitle(TTText("Delete"), for: UIControl.State.normal)
         deleteButton.titleLabel!.font = UIFont(name: "Effra", size: 13)
         deleteButton.titleLabel!.textColor = UIColor(hex: 0xA0A0A0)
         deleteButton.titleLabel!.lineBreakMode = NSLineBreakMode.byClipping

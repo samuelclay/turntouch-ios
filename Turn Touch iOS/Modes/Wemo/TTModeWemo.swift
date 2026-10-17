@@ -89,11 +89,11 @@ class TTModeWemo: TTMode, TTModeWemoMulticastDelegate, TTModeWemoDeviceDelegate 
     }
     
     override class func title() -> String {
-        return "Wemo"
+        return TTText("Wemo")
     }
     
     override class func subtitle() -> String {
-        return "Smart power meter and outlet"
+        return TTText("Smart power meter and outlet")
     }
     
     override class func imageName() -> String {
@@ -111,15 +111,15 @@ class TTModeWemo: TTMode, TTModeWemoMulticastDelegate, TTModeWemoDeviceDelegate 
     // MARK: Action titles
     
     func titleTTModeWemoDeviceStart() -> String {
-        return "Turn on"
+        return TTText("Turn on")
     }
     
     func titleTTModeWemoDeviceOff() -> String {
-        return "Turn off"
+        return TTText("Turn off")
     }
     
     @objc func titleTTModeWemoDeviceToggle() -> String {
-        return "Toggle device"
+        return TTText("Toggle device")
     }
     
     // MARK: Action images
@@ -332,7 +332,7 @@ class TTModeWemo: TTMode, TTModeWemoMulticastDelegate, TTModeWemoDeviceDelegate 
                 }
             }
             
-            foundDevices.append(["ipaddress": device.ipAddress, "port": device.port, "name": device.deviceName ?? "Unnamed",
+            foundDevices.append(["ipaddress": device.ipAddress, "port": device.port, "name": device.deviceName ?? TTText("Unnamed"),
                                  "serialNumber": device.serialNumber ?? "", "macAddress": device.macAddress ?? ""])
         }
         

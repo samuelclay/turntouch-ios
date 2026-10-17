@@ -24,7 +24,7 @@ class TTModeSpotifyConnecting: TTOptionsDetailViewController {
     func setConnectingWithMessage(_ message: String?) {
         var m = message
         if message == nil {
-            m = "Connecting to Spotify..."
+            m = TTText("Connecting to Spotify...")
         }
         
         self.progressMessage.text = m
