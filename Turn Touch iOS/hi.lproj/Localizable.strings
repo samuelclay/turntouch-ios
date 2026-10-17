@@ -428,6 +428,7 @@
 "Turn Touch for iOS · {0}\nOriginal design and artwork © Turn Touch" = "iOS के लिए Turn Touch · {0}\nमूल डिज़ाइन और कलाकृति © Turn Touch";
 "Turn Touch iOS App" = "Turn Touch iOS ऐप";
 "Turn Touch is not authorized to use Bluetooth Low Energy." = "Turn Touch को Bluetooth Low Energy इस्तेमाल करने की अनुमति नहीं है।";
+"Turn Touch now speaks 21 languages. Choose your language when you first open the app, or change it from Language at the top of Settings. Menus, actions, and settings are translated. Automatic follows your device language, with English as the fallback. Reopen the app after changing languages." = "Turn Touch अब 21 भाषाओं में उपलब्ध है। ऐप पहली बार खोलते समय अपनी भाषा चुनें, या Settings के सबसे ऊपर Language से बदलें। मेनू, कार्रवाइयाँ और सेटिंग्स अनुवादित हैं। Automatic आपके डिवाइस की भाषा चुनता है; उपलब्ध न होने पर English का उपयोग करता है। भाषा बदलने के बाद ऐप फिर से खोलें।";
 "Turn Touch uses Bluetooth to connect to your remotes" = "Turn Touch आपके रिमोट से कनेक्ट करने के लिए Bluetooth का उपयोग करता है";
 "Turn off" = "बंद करें";
 "Turn on" = "चालू करें";
@@ -473,6 +474,7 @@
 "https://" = "https://";
 "north" = "उत्तर";
 "pairing" = "पेयर हो रहा है";
+"remote,wooden,Bluetooth,buttons,music,lights,smart home,Hue,Sonos" = "रिमोट,लकड़ी,Bluetooth,बटन,संगीत,लाइट्स,स्मार्ट होम,Hue,Sonos";
 "searching" = "खोज जारी है";
 "single" = "एक बार";
 "south" = "दक्षिण";
