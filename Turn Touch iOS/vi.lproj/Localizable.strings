@@ -428,6 +428,7 @@
 "Turn Touch for iOS · {0}\nOriginal design and artwork © Turn Touch" = "Turn Touch cho iOS · {0}\nThiết kế và hình minh họa gốc © Turn Touch";
 "Turn Touch iOS App" = "Ứng dụng Turn Touch cho iOS";
 "Turn Touch is not authorized to use Bluetooth Low Energy." = "Turn Touch chưa được phép sử dụng Bluetooth Low Energy.";
+"Turn Touch now speaks 21 languages. Choose your language when you first open the app, or change it from Language at the top of Settings. Menus, actions, and settings are translated. Automatic follows your device language, with English as the fallback. Reopen the app after changing languages." = "Turn Touch hiện hỗ trợ 21 ngôn ngữ. Chọn ngôn ngữ khi mở ứng dụng lần đầu hoặc đổi tại mục Ngôn ngữ ở đầu phần Cài đặt. Menu, thao tác và cài đặt đã được dịch. Tự động sẽ dùng ngôn ngữ thiết bị, mặc định là tiếng Anh. Mở lại ứng dụng sau khi đổi ngôn ngữ.";
 "Turn Touch uses Bluetooth to connect to your remotes" = "Turn Touch dùng Bluetooth để kết nối với điều khiển từ xa";
 "Turn off" = "Tắt";
 "Turn on" = "Bật";
@@ -473,6 +474,7 @@
 "https://" = "https://";
 "north" = "bắc";
 "pairing" = "đang ghép nối";
+"remote,wooden,Bluetooth,buttons,music,lights,smart home,Hue,Sonos" = "điều khiển từ xa,gỗ,Bluetooth,nút,nhạc,đèn,nhà thông minh,Hue,Sonos";
 "searching" = "đang tìm kiếm";
 "single" = "một lần";
 "south" = "nam";

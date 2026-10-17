@@ -428,6 +428,7 @@
 "Turn Touch for iOS · {0}\nOriginal design and artwork © Turn Touch" = "Turn Touch for iOS · {0}\nOriginal design and artwork © Turn Touch";
 "Turn Touch iOS App" = "Turn Touch iOS App";
 "Turn Touch is not authorized to use Bluetooth Low Energy." = "Turn Touch is not authorized to use Bluetooth Low Energy.";
+"Turn Touch now speaks 21 languages. Choose your language when you first open the app, or change it from Language at the top of Settings. Menus, actions, and settings are translated. Automatic follows your device language, with English as the fallback. Reopen the app after changing languages." = "Turn Touch now speaks 21 languages. Choose your language when you first open the app, or change it from Language at the top of Settings. Menus, actions, and settings are translated. Automatic follows your device language, with English as the fallback. Reopen the app after changing languages.";
 "Turn Touch uses Bluetooth to connect to your remotes" = "Turn Touch uses Bluetooth to connect to your remotes";
 "Turn off" = "Turn off";
 "Turn on" = "Turn on";
@@ -473,6 +474,7 @@
 "https://" = "https://";
 "north" = "north";
 "pairing" = "pairing";
+"remote,wooden,Bluetooth,buttons,music,lights,smart home,Hue,Sonos" = "remote,wooden,Bluetooth,buttons,music,lights,smart home,Hue,Sonos";
 "searching" = "searching";
 "single" = "single";
 "south" = "south";

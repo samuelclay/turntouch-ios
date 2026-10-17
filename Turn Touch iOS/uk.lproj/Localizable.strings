@@ -428,6 +428,7 @@
 "Turn Touch for iOS · {0}\nOriginal design and artwork © Turn Touch" = "Turn Touch для iOS · {0}\nОригінальний дизайн і графіка © Turn Touch";
 "Turn Touch iOS App" = "Програма Turn Touch для iOS";
 "Turn Touch is not authorized to use Bluetooth Low Energy." = "Turn Touch не має дозволу на використання Bluetooth Low Energy.";
+"Turn Touch now speaks 21 languages. Choose your language when you first open the app, or change it from Language at the top of Settings. Menus, actions, and settings are translated. Automatic follows your device language, with English as the fallback. Reopen the app after changing languages." = "Turn Touch тепер підтримує 21 мову. Виберіть мову під час першого відкриття програми або змініть її в розділі «Мова» у верхній частині «Налаштувань». Меню, дії та налаштування перекладено. Режим «Автоматично» використовує мову пристрою, а якщо її не підтримано — англійську. Після зміни мови відкрийте програму знову.";
 "Turn Touch uses Bluetooth to connect to your remotes" = "Turn Touch використовує Bluetooth для підключення до пультів";
 "Turn off" = "Вимкнути";
 "Turn on" = "Увімкнути";
@@ -473,6 +474,7 @@
 "https://" = "https://";
 "north" = "північ";
 "pairing" = "сполучення";
+"remote,wooden,Bluetooth,buttons,music,lights,smart home,Hue,Sonos" = "пульт,дерев’яний,Bluetooth,кнопки,музика,світло,розумний дім,Hue,Sonos";
 "searching" = "пошук";
 "single" = "одинарне";
 "south" = "південь";
