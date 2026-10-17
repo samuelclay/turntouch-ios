@@ -332,9 +332,6 @@
   "Connect to Spotify...": [
     "Turn Touch iOS/Modes/Bose/Base.lproj/TTModeBoseConnect.xib:5z8-dd-EfZ.normalTitle"
   ],
-  "Connect using the Home Assistant menu.": [
-    "Turn Touch iOS/Modes/HomeAssistant/TTModeHomeAssistant.swift"
-  ],
   "Connected": [
     "Application-owned status or selector label; translated only at rendering, never in state comparisons."
   ],
@@ -1446,6 +1443,7 @@
     "Turn Touch iOS/Views/Modal/TTModalButton.swift"
   ],
   "Sign in…": [
+    "Turn Touch iOS/Modes/HomeAssistant/TTModeHomeAssistant.swift",
     "Turn Touch iOS/Modes/HomeAssistant/TTModeHomeAssistant.swift",
     "Turn Touch iOS/Modes/HomeAssistant/TTModeHomeAssistant.swift",
     "Turn Touch iOS/Modes/HomeAssistant/TTModeHomeAssistant.swift"

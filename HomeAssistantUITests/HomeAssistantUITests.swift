@@ -13,6 +13,11 @@ final class HomeAssistantUITests: XCTestCase {
             XCTAssertTrue(app.tables.staticTexts["Evening"].waitForExistence(timeout: 15))
             XCTAssertTrue(app.buttons["ha-save"].isEnabled)
             let screenshot = XCTAttachment(screenshot: app.screenshot()); screenshot.name = "Home Assistant \(language)"; screenshot.lifetime = .keepAlways; add(screenshot)
+            app.buttons["ha-menu"].tap()
+            // Menu labels are localized; use the destructive action's locale-specific title.
+            app.buttons[language == "de" ? "Trennen" : "قطع الاتصال"].tap()
+            XCTAssertTrue(app.buttons["ha-sign-in"].waitForExistence(timeout: 5))
+            let signedOut = XCTAttachment(screenshot: app.screenshot()); signedOut.name = "Home Assistant sign in \(language)"; signedOut.lifetime = .keepAlways; add(signedOut)
             app.terminate()
         }
     }
@@ -25,7 +30,9 @@ final class HomeAssistantUITests: XCTestCase {
         addUIInterruptionMonitor(withDescription: "Local network") { alert in
             let allow = alert.buttons["Allow"]; if allow.exists { allow.tap(); return true }; return false
         }
-        XCTAssertTrue(app.buttons["Home Assistant menu"].waitForExistence(timeout: 10))
+        XCTAssertTrue(app.buttons["ha-sign-in"].waitForExistence(timeout: 10))
+        app.buttons["ha-sign-in"].tap()
+        XCTAssertTrue(app.textFields["Home Assistant address"].waitForExistence(timeout: 3))
         app.buttons["Home Assistant menu"].tap()
         app.buttons["Use access token…"].tap()
         let address = app.textFields["Home Assistant address"]

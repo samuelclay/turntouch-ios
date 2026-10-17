@@ -50,6 +50,8 @@ class TTModeHomeAssistantOptions: TTOptionsDetailViewController, UITableViewData
     private let save = UIButton(type: .system)
     private let status = UILabel()
     private let empty = UILabel()
+    private let signIn = UIButton(type: .system)
+    private let signedOut = UIView()
     private var observer: NSObjectProtocol?
     private var entityID = ""
     private var serviceID = ""
@@ -86,7 +88,7 @@ class TTModeHomeAssistantOptions: TTOptionsDetailViewController, UITableViewData
         field(search, TTText("Search Home Assistant")); search.addTarget(self, action: #selector(filterChanged), for: .editingChanged); search.accessibilityIdentifier = "ha-search"
         button(filter, TTText("Controllable entities"), #selector(noop)); filter.backgroundColor = .clear; filter.showsMenuAsPrimaryAction = true
         filter.menu = UIMenu(children: categories.map { id, title in UIAction(title: title) { [weak self] _ in self?.category = id; self?.filter.setTitle(title + " ▾", for: .normal); self?.filterChanged() } })
-        menu.setImage(UIImage(systemName: "ellipsis.circle"), for: .normal); menu.tintColor = .secondaryLabel; menu.accessibilityLabel = TTText("Home Assistant menu"); menu.widthAnchor.constraint(equalToConstant: 44).isActive = true; menu.showsMenuAsPrimaryAction = true
+        menu.setImage(UIImage(systemName: "ellipsis.circle"), for: .normal); menu.tintColor = .secondaryLabel; menu.accessibilityLabel = TTText("Home Assistant menu"); menu.accessibilityIdentifier = "ha-menu"; menu.widthAnchor.constraint(equalToConstant: 44).isActive = true; menu.showsMenuAsPrimaryAction = true
         let toolbar = UIStackView(arrangedSubviews: [filter, menu]); toolbar.spacing = 8
         field(address, TTText("Home Assistant address")); address.keyboardType = .URL; address.text = client.serverURL.isEmpty ? "http://homeassistant.local:8123" : client.serverURL
         field(token, TTText("Access token")); token.isSecureTextEntry = true; token.isHidden = true
@@ -94,6 +96,10 @@ class TTModeHomeAssistantOptions: TTOptionsDetailViewController, UITableViewData
         connection.axis = .vertical; connection.spacing = 8; [address, token, connect].forEach(connection.addArrangedSubview); connection.isHidden = true
         table.dataSource = self; table.delegate = self; table.rowHeight = 56; table.backgroundColor = .white; table.layer.borderWidth = 0.5; table.layer.borderColor = UIColor.separator.cgColor; table.layer.cornerRadius = 8
         table.heightAnchor.constraint(equalToConstant: 210).isActive = true; table.tableFooterView = UIView(); table.keyboardDismissMode = .onDrag
+        button(signIn, TTText("Sign in…"), #selector(startSignIn), primary: true)
+        signIn.titleLabel?.font = font(18); signIn.accessibilityIdentifier = "ha-sign-in"
+        signIn.translatesAutoresizingMaskIntoConstraints = false; signedOut.addSubview(signIn)
+        NSLayoutConstraint.activate([signIn.centerYAnchor.constraint(equalTo: signedOut.centerYAnchor), signIn.leadingAnchor.constraint(equalTo: signedOut.leadingAnchor, constant: 24), signIn.trailingAnchor.constraint(equalTo: signedOut.trailingAnchor, constant: -24), signIn.heightAnchor.constraint(greaterThanOrEqualToConstant: 56)])
         empty.font = font(14); empty.textColor = .secondaryLabel; empty.numberOfLines = 0; empty.textAlignment = .center
         button(disclosure, TTText("Action settings") + "  ›", #selector(toggleSettings)); disclosure.backgroundColor = .clear; disclosure.accessibilityLabel = TTText("Action settings")
         button(servicePicker, "", #selector(noop)); servicePicker.showsMenuAsPrimaryAction = true
@@ -138,8 +144,9 @@ class TTModeHomeAssistantOptions: TTOptionsDetailViewController, UITableViewData
             let content = [name(item), id, item["tt_area"] as? String ?? "", item["tt_device"] as? String ?? ""].joined(separator: " ")
             return matches && ((search.text ?? "").isEmpty || content.range(of: search.text ?? "", options: [.caseInsensitive, .diacriticInsensitive]) != nil)
         }
-        empty.text = client.connected ? TTText("No matching entities") : TTText("Connect using the Home Assistant menu.")
-        table.backgroundView = visible.isEmpty ? empty : nil; table.reloadData()
+        empty.text = TTText("No matching entities")
+        signIn.isEnabled = !busy
+        table.backgroundView = client.connected ? (visible.isEmpty ? empty : nil) : signedOut; table.reloadData()
     }
     private func update() {
         filterChanged()
@@ -166,6 +173,7 @@ class TTModeHomeAssistantOptions: TTOptionsDetailViewController, UITableViewData
     @objc private func toggleSettings() { settings.isHidden.toggle(); disclosure.setTitle(TTText("Action settings") + (settings.isHidden ? "  ›" : "  ⌄"), for: .normal); view.setNeedsLayout() }
     @objc private func toggleData() { advanced.isHidden.toggle(); dataDisclosure.setTitle(TTText("Action data (optional JSON)") + (advanced.isHidden ? "  ›" : "  ⌄"), for: .normal); view.setNeedsLayout() }
     private func toggleConnection() { connection.isHidden.toggle(); if !connection.isHidden { discover() }; view.setNeedsLayout() }
+    @objc private func startSignIn() { showConnection(token: false) }
     private func showConnection(token: Bool) { connection.isHidden = false; self.token.isHidden = !token; connect.setTitle(token ? TTText("Connect") : TTText("Sign in…"), for: .normal); discover(); view.setNeedsLayout() }
     private func discover() { browser.stop(); browser.searchForServices(ofType: "_home-assistant._tcp.", inDomain: "local.") }
     func netServiceBrowser(_ browser: NetServiceBrowser, didFind service: NetService, moreComing: Bool) { services.append(service); service.delegate = self; service.resolve(withTimeout: 5) }
