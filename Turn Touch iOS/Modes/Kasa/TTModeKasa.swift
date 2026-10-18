@@ -81,7 +81,7 @@ class TTModeKasa: TTMode, TTModeKasaDiscoveryDelegate, TTModeKasaDeviceDelegate 
     }
 
     override class func imageName() -> String {
-        return "mode_wemo.png" // Reuse Wemo icon for now
+        return "mode_kasa.png"
     }
 
     // MARK: - Actions

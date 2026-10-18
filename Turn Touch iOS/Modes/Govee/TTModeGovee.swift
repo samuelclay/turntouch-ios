@@ -84,7 +84,7 @@ class TTModeGovee: TTMode, GoveeAPIClientDelegate {
     }
 
     override class func imageName() -> String {
-        return "mode_hue.png"
+        return "mode_govee.png"
     }
 
     // MARK: - Actions

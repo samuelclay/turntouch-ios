@@ -26,6 +26,9 @@ class TTModeTab: UIView {
         self.modeDirection = modeDirection
         let font = UIFont(name: "Effra", size: 13)
         self.titleLabel.font = font
+        self.titleLabel.numberOfLines = 2
+        self.titleLabel.textAlignment = .center
+        self.titleLabel.lineBreakMode = .byWordWrapping
         self.titleLabel.shadowOffset = CGSize(width: 0, height: 0.5)
         self.titleLabel.shadowColor = UIColor.white
         self.titleLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -39,6 +42,7 @@ class TTModeTab: UIView {
             toItem: self, attribute: .centerX, multiplier: 1.0, constant: 0))
         self.addConstraint(NSLayoutConstraint(item: self.titleLabel, attribute: .bottom, relatedBy: .equal,
             toItem: self, attribute: .bottom, multiplier: 1.0, constant: -12))
+        self.titleLabel.widthAnchor.constraint(lessThanOrEqualTo: self.widthAnchor, constant: -16).isActive = true
 
         diamondView.overrideSelectedDirection = self.modeDirection
         diamondView.ignoreSelectedMode = true
@@ -132,7 +136,10 @@ class TTModeTab: UIView {
         if [.single, .double].contains(modeDirection) {
             self.titleLabel.text = (self.modeDirection == .single ? TTText("Single tap") : TTText("Double tap")).uppercased()
         } else {
-            self.titleLabel.text = TTText(self.modeTitle).uppercased()
+            let title = TTText(self.modeTitle).uppercased()
+            // Keep the brand readable inside each narrow mode selector.
+            self.titleLabel.text = mode is TTModeHomeAssistant
+                ? title.replacingOccurrences(of: " ", with: "\n") : title
         }
     }
     
