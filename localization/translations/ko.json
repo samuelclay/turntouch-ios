@@ -217,6 +217,7 @@
   "Home Assistant accepted the action.": "Home Assistant가 동작을 수락했습니다.",
   "Home Assistant action": "Home Assistant 동작",
   "Home Assistant address": "Home Assistant 주소",
+  "Home Assistant comes to Turn Touch. Connect your home, browse devices, scenes, scripts, and automations, and assign actions to your remote buttons. Refreshed icons for TP-Link Kasa, Nanoleaf, and Govee and clearer labels make setup easier.": "Turn Touch에서 Home Assistant를 사용할 수 있습니다. 집을 연결하고 기기, 장면, 스크립트, 자동화를 탐색하여 리모컨 버튼에 동작을 지정하세요. TP-Link Kasa, Nanoleaf, Govee의 새로운 아이콘과 더 명확한 레이블로 설정이 쉬워졌습니다.",
   "Home Assistant menu": "Home Assistant 메뉴",
   "Home Assistant returned HTTP %ld. Check the action and its required fields.": "Home Assistant가 HTTP %ld을(를) 반환했습니다. 작업과 필수 입력란을 확인하세요.",
   "Home Assistant returned an invalid sign-in response.": "Home Assistant가 잘못된 로그인 응답을 반환했습니다.",

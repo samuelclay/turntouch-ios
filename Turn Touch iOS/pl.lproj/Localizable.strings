@@ -216,6 +216,7 @@
 "Home Assistant accepted the action." = "Home Assistant przyjął akcję.";
 "Home Assistant action" = "Akcja Home Assistant";
 "Home Assistant address" = "Adres Home Assistant";
+"Home Assistant comes to Turn Touch. Connect your home, browse devices, scenes, scripts, and automations, and assign actions to your remote buttons. Refreshed icons for TP-Link Kasa, Nanoleaf, and Govee and clearer labels make setup easier." = "Home Assistant trafia do Turn Touch. Połącz swój dom, przeglądaj urządzenia, sceny, skrypty i automatyzacje oraz przypisuj działania do przycisków pilota. Nowe ikony TP-Link Kasa, Nanoleaf i Govee oraz czytelniejsze etykiety ułatwiają konfigurację.";
 "Home Assistant menu" = "Menu Home Assistant";
 "Home Assistant returned HTTP %ld. Check the action and its required fields." = "Home Assistant zwrócił HTTP %ld. Sprawdź czynność i wymagane pola.";
 "Home Assistant returned an invalid sign-in response." = "Home Assistant zwrócił nieprawidłową odpowiedź logowania.";
@@ -486,7 +487,6 @@
 "Turn Touch for iOS · {0}\nOriginal design and artwork © Turn Touch" = "Turn Touch na iOS · {0}\nOryginalny projekt i grafika © Turn Touch";
 "Turn Touch iOS App" = "Aplikacja Turn Touch na iOS";
 "Turn Touch is not authorized to use Bluetooth Low Energy." = "Turn Touch nie ma uprawnień do korzystania z Bluetooth Low Energy.";
-"Turn Touch now speaks 21 languages. Choose your language when you first open the app, or change it from Language at the top of Settings. Menus, actions, and settings are translated. Automatic follows your device language, with English as the fallback. Reopen the app after changing languages." = "Turn Touch obsługuje teraz 21 języków. Wybierz język przy pierwszym uruchomieniu aplikacji lub zmień go w sekcji Język u góry Ustawień. Przetłumaczone są menu, działania i ustawienia. Opcja Automatycznie używa języka urządzenia, a gdy nie jest on dostępny — angielskiego. Po zmianie języka uruchom ponownie aplikację.";
 "Turn Touch uses Bluetooth to connect to your remotes" = "Turn Touch używa Bluetooth do łączenia się z pilotami";
 "Turn off" = "Wyłącz";
 "Turn on" = "Włącz";

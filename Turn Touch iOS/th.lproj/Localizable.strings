@@ -216,6 +216,7 @@
 "Home Assistant accepted the action." = "Home Assistant ยอมรับการทำงานแล้ว";
 "Home Assistant action" = "การทำงานของ Home Assistant";
 "Home Assistant address" = "ที่อยู่ Home Assistant";
+"Home Assistant comes to Turn Touch. Connect your home, browse devices, scenes, scripts, and automations, and assign actions to your remote buttons. Refreshed icons for TP-Link Kasa, Nanoleaf, and Govee and clearer labels make setup easier." = "Home Assistant พร้อมใช้งานบน Turn Touch แล้ว เชื่อมต่อบ้านของคุณ เลือกดูอุปกรณ์ ฉาก สคริปต์ และระบบอัตโนมัติ แล้วกำหนดการทำงานให้ปุ่มบนรีโมต ไอคอนใหม่ของ TP-Link Kasa, Nanoleaf และ Govee พร้อมป้ายกำกับที่ชัดเจนขึ้นช่วยให้ตั้งค่าได้ง่ายขึ้น";
 "Home Assistant menu" = "เมนู Home Assistant";
 "Home Assistant returned HTTP %ld. Check the action and its required fields." = "Home Assistant ตอบกลับ HTTP %ld ตรวจสอบการทำงานและฟิลด์ที่จำเป็น";
 "Home Assistant returned an invalid sign-in response." = "Home Assistant ส่งการตอบกลับการลงชื่อเข้าใช้ที่ไม่ถูกต้อง";
@@ -486,7 +487,6 @@
 "Turn Touch for iOS · {0}\nOriginal design and artwork © Turn Touch" = "Turn Touch สำหรับ iOS · {0}\nออกแบบและสร้างสรรค์งานศิลป์ดั้งเดิม © Turn Touch";
 "Turn Touch iOS App" = "แอป Turn Touch สำหรับ iOS";
 "Turn Touch is not authorized to use Bluetooth Low Energy." = "Turn Touch ไม่ได้รับอนุญาตให้ใช้ Bluetooth Low Energy";
-"Turn Touch now speaks 21 languages. Choose your language when you first open the app, or change it from Language at the top of Settings. Menus, actions, and settings are translated. Automatic follows your device language, with English as the fallback. Reopen the app after changing languages." = "ตอนนี้ Turn Touch รองรับ 21 ภาษา เลือกภาษาได้เมื่อเปิดแอปครั้งแรก หรือเปลี่ยนได้ที่ Language ด้านบนของ Settings เมนู การทำงาน และการตั้งค่าจะแปลให้แล้ว โหมด Automatic จะใช้ภาษาของอุปกรณ์ โดยใช้ภาษาอังกฤษหากไม่รองรับ หลังเปลี่ยนภาษา ให้เปิดแอปอีกครั้ง";
 "Turn Touch uses Bluetooth to connect to your remotes" = "Turn Touch ใช้ Bluetooth เพื่อเชื่อมต่อกับรีโมตของคุณ";
 "Turn off" = "ปิด";
 "Turn on" = "เปิด";

@@ -216,6 +216,7 @@
 "Home Assistant accepted the action." = "Home Assistantがアクションを受け付けました。";
 "Home Assistant action" = "Home Assistantアクション";
 "Home Assistant address" = "Home Assistantのアドレス";
+"Home Assistant comes to Turn Touch. Connect your home, browse devices, scenes, scripts, and automations, and assign actions to your remote buttons. Refreshed icons for TP-Link Kasa, Nanoleaf, and Govee and clearer labels make setup easier." = "Turn TouchがHome Assistantに対応しました。ご自宅に接続し、デバイス、シーン、スクリプト、オートメーションを参照して、リモコンのボタンにアクションを割り当てられます。TP-Link Kasa、Nanoleaf、Goveeのアイコンを刷新し、ラベルも分かりやすくして、設定を簡単にしました。";
 "Home Assistant menu" = "Home Assistantメニュー";
 "Home Assistant returned HTTP %ld. Check the action and its required fields." = "Home AssistantからHTTP %ldが返されました。操作と必須フィールドを確認してください。";
 "Home Assistant returned an invalid sign-in response." = "Home Assistantから無効なサインイン応答が返されました。";
@@ -486,7 +487,6 @@
 "Turn Touch for iOS · {0}\nOriginal design and artwork © Turn Touch" = "Turn Touch for iOS · {0}\nオリジナルのデザインとアートワーク © Turn Touch";
 "Turn Touch iOS App" = "Turn Touch iOS App";
 "Turn Touch is not authorized to use Bluetooth Low Energy." = "Turn TouchにはBluetooth Low Energyの使用が許可されていません。";
-"Turn Touch now speaks 21 languages. Choose your language when you first open the app, or change it from Language at the top of Settings. Menus, actions, and settings are translated. Automatic follows your device language, with English as the fallback. Reopen the app after changing languages." = "Turn Touchが21言語に対応しました。アプリを初めて開くときに言語を選ぶか、「設定」の上部にある「言語」から変更できます。メニュー、操作、設定が翻訳されています。「自動」はデバイスの言語に従い、英語が既定の言語になります。言語を変更した後は、アプリを再起動してください。";
 "Turn Touch uses Bluetooth to connect to your remotes" = "Turn TouchはBluetoothでリモコンに接続します";
 "Turn off" = "オフにする";
 "Turn on" = "オンにする";

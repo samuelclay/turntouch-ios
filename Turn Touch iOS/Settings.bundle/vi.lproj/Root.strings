@@ -216,6 +216,7 @@
 "Home Assistant accepted the action." = "Home Assistant đã chấp nhận hành động.";
 "Home Assistant action" = "Hành động Home Assistant";
 "Home Assistant address" = "Địa chỉ Home Assistant";
+"Home Assistant comes to Turn Touch. Connect your home, browse devices, scenes, scripts, and automations, and assign actions to your remote buttons. Refreshed icons for TP-Link Kasa, Nanoleaf, and Govee and clearer labels make setup easier." = "Home Assistant đã có trên Turn Touch. Kết nối ngôi nhà, duyệt thiết bị, ngữ cảnh, tập lệnh và tự động hóa, rồi gán thao tác cho các nút điều khiển. Biểu tượng mới cho TP-Link Kasa, Nanoleaf và Govee cùng nhãn rõ ràng hơn giúp thiết lập dễ dàng.";
 "Home Assistant menu" = "Menu Home Assistant";
 "Home Assistant returned HTTP %ld. Check the action and its required fields." = "Home Assistant trả về HTTP %ld. Kiểm tra tác vụ và các trường bắt buộc.";
 "Home Assistant returned an invalid sign-in response." = "Home Assistant trả về phản hồi đăng nhập không hợp lệ.";
@@ -486,7 +487,6 @@
 "Turn Touch for iOS · {0}\nOriginal design and artwork © Turn Touch" = "Turn Touch cho iOS · {0}\nThiết kế và hình minh họa gốc © Turn Touch";
 "Turn Touch iOS App" = "Ứng dụng Turn Touch cho iOS";
 "Turn Touch is not authorized to use Bluetooth Low Energy." = "Turn Touch chưa được phép sử dụng Bluetooth Low Energy.";
-"Turn Touch now speaks 21 languages. Choose your language when you first open the app, or change it from Language at the top of Settings. Menus, actions, and settings are translated. Automatic follows your device language, with English as the fallback. Reopen the app after changing languages." = "Turn Touch hiện hỗ trợ 21 ngôn ngữ. Chọn ngôn ngữ khi mở ứng dụng lần đầu hoặc đổi tại mục Ngôn ngữ ở đầu phần Cài đặt. Menu, thao tác và cài đặt đã được dịch. Tự động sẽ dùng ngôn ngữ thiết bị, mặc định là tiếng Anh. Mở lại ứng dụng sau khi đổi ngôn ngữ.";
 "Turn Touch uses Bluetooth to connect to your remotes" = "Turn Touch dùng Bluetooth để kết nối với điều khiển từ xa";
 "Turn off" = "Tắt";
 "Turn on" = "Bật";

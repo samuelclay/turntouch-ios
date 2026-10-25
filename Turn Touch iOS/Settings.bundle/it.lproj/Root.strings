@@ -216,6 +216,7 @@
 "Home Assistant accepted the action." = "Home Assistant ha accettato l’azione.";
 "Home Assistant action" = "Azione Home Assistant";
 "Home Assistant address" = "Indirizzo di Home Assistant";
+"Home Assistant comes to Turn Touch. Connect your home, browse devices, scenes, scripts, and automations, and assign actions to your remote buttons. Refreshed icons for TP-Link Kasa, Nanoleaf, and Govee and clearer labels make setup easier." = "Home Assistant arriva su Turn Touch. Collega la tua casa, esplora dispositivi, scene, script e automazioni e assegna azioni ai pulsanti del telecomando. Le nuove icone di TP-Link Kasa, Nanoleaf e Govee e le etichette più chiare semplificano la configurazione.";
 "Home Assistant menu" = "Menu di Home Assistant";
 "Home Assistant returned HTTP %ld. Check the action and its required fields." = "Home Assistant ha restituito HTTP %ld. Controlla l'azione e i campi obbligatori.";
 "Home Assistant returned an invalid sign-in response." = "Home Assistant ha restituito una risposta di accesso non valida.";
@@ -486,7 +487,6 @@
 "Turn Touch for iOS · {0}\nOriginal design and artwork © Turn Touch" = "Turn Touch per iOS · {0}\nDesign e illustrazioni originali © Turn Touch";
 "Turn Touch iOS App" = "App Turn Touch per iOS";
 "Turn Touch is not authorized to use Bluetooth Low Energy." = "Turn Touch non è autorizzato a usare Bluetooth Low Energy.";
-"Turn Touch now speaks 21 languages. Choose your language when you first open the app, or change it from Language at the top of Settings. Menus, actions, and settings are translated. Automatic follows your device language, with English as the fallback. Reopen the app after changing languages." = "Turn Touch ora è disponibile in 21 lingue. Scegli la lingua quando apri l’app per la prima volta oppure modificala in Lingua, in cima alle Impostazioni. Menu, azioni e impostazioni sono tradotti. Automatico segue la lingua del dispositivo e usa l’inglese come lingua predefinita. Riapri l’app dopo aver cambiato lingua.";
 "Turn Touch uses Bluetooth to connect to your remotes" = "Turn Touch usa il Bluetooth per connettersi ai tuoi telecomandi";
 "Turn off" = "Spegni";
 "Turn on" = "Accendi";

@@ -217,6 +217,7 @@
   "Home Assistant accepted the action.": "Home Assistant ने कार्रवाई स्वीकार कर ली।",
   "Home Assistant action": "Home Assistant कार्रवाई",
   "Home Assistant address": "Home Assistant का पता",
+  "Home Assistant comes to Turn Touch. Connect your home, browse devices, scenes, scripts, and automations, and assign actions to your remote buttons. Refreshed icons for TP-Link Kasa, Nanoleaf, and Govee and clearer labels make setup easier.": "Home Assistant अब Turn Touch पर है। अपने घर को कनेक्ट करें, डिवाइस, सीन, स्क्रिप्ट और ऑटोमेशन ब्राउज़ करें और रिमोट के बटनों को कार्रवाइयाँ असाइन करें। TP-Link Kasa, Nanoleaf और Govee के नए आइकन और अधिक स्पष्ट लेबल सेटअप को आसान बनाते हैं।",
   "Home Assistant menu": "Home Assistant मेनू",
   "Home Assistant returned HTTP %ld. Check the action and its required fields.": "Home Assistant ने HTTP %ld लौटाया। कार्रवाई और उसके आवश्यक फ़ील्ड जाँचें।",
   "Home Assistant returned an invalid sign-in response.": "Home Assistant ने अमान्य साइन-इन जवाब लौटाया।",

@@ -216,6 +216,7 @@
 "Home Assistant accepted the action." = "Home Assistant menerima tindakan.";
 "Home Assistant action" = "Tindakan Home Assistant";
 "Home Assistant address" = "Alamat Home Assistant";
+"Home Assistant comes to Turn Touch. Connect your home, browse devices, scenes, scripts, and automations, and assign actions to your remote buttons. Refreshed icons for TP-Link Kasa, Nanoleaf, and Govee and clearer labels make setup easier." = "Home Assistant hadir di Turn Touch. Hubungkan rumah Anda, jelajahi perangkat, adegan, skrip, dan otomatisasi, lalu tetapkan tindakan ke tombol remote. Ikon baru untuk TP-Link Kasa, Nanoleaf, dan Govee serta label yang lebih jelas memudahkan penyiapan.";
 "Home Assistant menu" = "Menu Home Assistant";
 "Home Assistant returned HTTP %ld. Check the action and its required fields." = "Home Assistant mengembalikan HTTP %ld. Periksa tindakan dan kolom yang diperlukan.";
 "Home Assistant returned an invalid sign-in response." = "Home Assistant mengembalikan respons masuk yang tidak valid.";
@@ -486,7 +487,6 @@
 "Turn Touch for iOS · {0}\nOriginal design and artwork © Turn Touch" = "Turn Touch untuk iOS · {0}\nDesain dan karya seni asli © Turn Touch";
 "Turn Touch iOS App" = "Aplikasi Turn Touch untuk iOS";
 "Turn Touch is not authorized to use Bluetooth Low Energy." = "Turn Touch tidak diizinkan menggunakan Bluetooth Low Energy.";
-"Turn Touch now speaks 21 languages. Choose your language when you first open the app, or change it from Language at the top of Settings. Menus, actions, and settings are translated. Automatic follows your device language, with English as the fallback. Reopen the app after changing languages." = "Turn Touch kini mendukung 21 bahasa. Pilih bahasa saat pertama kali membuka aplikasi, atau ubah di Bahasa pada bagian atas Pengaturan. Menu, tindakan, dan pengaturan telah diterjemahkan. Otomatis mengikuti bahasa perangkat, dengan bahasa Inggris sebagai pilihan cadangan. Buka ulang aplikasi setelah mengubah bahasa.";
 "Turn Touch uses Bluetooth to connect to your remotes" = "Turn Touch menggunakan Bluetooth untuk terhubung ke remote Anda";
 "Turn off" = "Matikan";
 "Turn on" = "Nyalakan";

@@ -216,6 +216,7 @@
 "Home Assistant accepted the action." = "Home Assistant 已接受操作。";
 "Home Assistant action" = "Home Assistant 操作";
 "Home Assistant address" = "Home Assistant 地址";
+"Home Assistant comes to Turn Touch. Connect your home, browse devices, scenes, scripts, and automations, and assign actions to your remote buttons. Refreshed icons for TP-Link Kasa, Nanoleaf, and Govee and clearer labels make setup easier." = "Turn Touch 现已支持 Home Assistant。连接您的家，浏览设备、场景、脚本和自动化，并为遥控器按钮分配操作。TP-Link Kasa、Nanoleaf 和 Govee 的全新图标以及更清晰的标签让设置更加轻松。";
 "Home Assistant menu" = "Home Assistant 菜单";
 "Home Assistant returned HTTP %ld. Check the action and its required fields." = "Home Assistant 返回 HTTP %ld。请检查操作及其必填字段。";
 "Home Assistant returned an invalid sign-in response." = "Home Assistant 返回了无效的登录响应。";
@@ -486,7 +487,6 @@
 "Turn Touch for iOS · {0}\nOriginal design and artwork © Turn Touch" = "iOS 版 Turn Touch · {0}\n原创设计与插画 © Turn Touch";
 "Turn Touch iOS App" = "Turn Touch iOS App";
 "Turn Touch is not authorized to use Bluetooth Low Energy." = "Turn Touch 未获准使用低功耗蓝牙。";
-"Turn Touch now speaks 21 languages. Choose your language when you first open the app, or change it from Language at the top of Settings. Menus, actions, and settings are translated. Automatic follows your device language, with English as the fallback. Reopen the app after changing languages." = "Turn Touch 现已支持 21 种语言。首次打开应用时选择语言，也可在“设置”顶部的“语言”中更改。菜单、操作和设置均已翻译。“自动”会跟随设备语言，默认使用英语。更改语言后请重新打开应用。";
 "Turn Touch uses Bluetooth to connect to your remotes" = "Turn Touch 使用蓝牙连接遥控器";
 "Turn off" = "关闭";
 "Turn on" = "打开";

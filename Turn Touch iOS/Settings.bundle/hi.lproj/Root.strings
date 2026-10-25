@@ -216,6 +216,7 @@
 "Home Assistant accepted the action." = "Home Assistant ने कार्रवाई स्वीकार कर ली।";
 "Home Assistant action" = "Home Assistant कार्रवाई";
 "Home Assistant address" = "Home Assistant का पता";
+"Home Assistant comes to Turn Touch. Connect your home, browse devices, scenes, scripts, and automations, and assign actions to your remote buttons. Refreshed icons for TP-Link Kasa, Nanoleaf, and Govee and clearer labels make setup easier." = "Home Assistant अब Turn Touch पर है। अपने घर को कनेक्ट करें, डिवाइस, सीन, स्क्रिप्ट और ऑटोमेशन ब्राउज़ करें और रिमोट के बटनों को कार्रवाइयाँ असाइन करें। TP-Link Kasa, Nanoleaf और Govee के नए आइकन और अधिक स्पष्ट लेबल सेटअप को आसान बनाते हैं।";
 "Home Assistant menu" = "Home Assistant मेनू";
 "Home Assistant returned HTTP %ld. Check the action and its required fields." = "Home Assistant ने HTTP %ld लौटाया। कार्रवाई और उसके आवश्यक फ़ील्ड जाँचें।";
 "Home Assistant returned an invalid sign-in response." = "Home Assistant ने अमान्य साइन-इन जवाब लौटाया।";
@@ -486,7 +487,6 @@
 "Turn Touch for iOS · {0}\nOriginal design and artwork © Turn Touch" = "iOS के लिए Turn Touch · {0}\nमूल डिज़ाइन और कलाकृति © Turn Touch";
 "Turn Touch iOS App" = "Turn Touch iOS ऐप";
 "Turn Touch is not authorized to use Bluetooth Low Energy." = "Turn Touch को Bluetooth Low Energy इस्तेमाल करने की अनुमति नहीं है।";
-"Turn Touch now speaks 21 languages. Choose your language when you first open the app, or change it from Language at the top of Settings. Menus, actions, and settings are translated. Automatic follows your device language, with English as the fallback. Reopen the app after changing languages." = "Turn Touch अब 21 भाषाओं में उपलब्ध है। ऐप पहली बार खोलते समय अपनी भाषा चुनें, या Settings के सबसे ऊपर Language से बदलें। मेनू, कार्रवाइयाँ और सेटिंग्स अनुवादित हैं। Automatic आपके डिवाइस की भाषा चुनता है; उपलब्ध न होने पर English का उपयोग करता है। भाषा बदलने के बाद ऐप फिर से खोलें।";
 "Turn Touch uses Bluetooth to connect to your remotes" = "Turn Touch आपके रिमोट से कनेक्ट करने के लिए Bluetooth का उपयोग करता है";
 "Turn off" = "बंद करें";
 "Turn on" = "चालू करें";

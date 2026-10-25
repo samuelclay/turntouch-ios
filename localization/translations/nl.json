@@ -217,6 +217,7 @@
   "Home Assistant accepted the action.": "Home Assistant heeft de actie geaccepteerd.",
   "Home Assistant action": "Home Assistant-actie",
   "Home Assistant address": "Home Assistant-adres",
+  "Home Assistant comes to Turn Touch. Connect your home, browse devices, scenes, scripts, and automations, and assign actions to your remote buttons. Refreshed icons for TP-Link Kasa, Nanoleaf, and Govee and clearer labels make setup easier.": "Home Assistant komt naar Turn Touch. Verbind je huis, blader door apparaten, scènes, scripts en automatiseringen en wijs acties toe aan de knoppen van je afstandsbediening. Nieuwe pictogrammen voor TP-Link Kasa, Nanoleaf en Govee en duidelijkere labels maken het instellen eenvoudiger.",
   "Home Assistant menu": "Home Assistant-menu",
   "Home Assistant returned HTTP %ld. Check the action and its required fields.": "Home Assistant gaf HTTP %ld terug. Controleer de actie en de verplichte velden.",
   "Home Assistant returned an invalid sign-in response.": "Home Assistant gaf een ongeldig antwoord bij het aanmelden.",

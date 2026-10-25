@@ -216,6 +216,7 @@
 "Home Assistant accepted the action." = "Home Assistant קיבל את הפעולה.";
 "Home Assistant action" = "פעולת Home Assistant";
 "Home Assistant address" = "כתובת Home Assistant";
+"Home Assistant comes to Turn Touch. Connect your home, browse devices, scenes, scripts, and automations, and assign actions to your remote buttons. Refreshed icons for TP-Link Kasa, Nanoleaf, and Govee and clearer labels make setup easier." = "Home Assistant מגיע ל-Turn Touch. חברו את הבית, עיינו במכשירים, בסצנות, בסקריפטים ובאוטומציות, ושייכו פעולות לכפתורי השלט. סמלים חדשים ל-TP-Link Kasa, ל-Nanoleaf ול-Govee ותוויות ברורות יותר מקלים על ההגדרה.";
 "Home Assistant menu" = "תפריט Home Assistant";
 "Home Assistant returned HTTP %ld. Check the action and its required fields." = "Home Assistant החזיר HTTP %ld. בדוק את הפעולה ואת השדות הנדרשים לה.";
 "Home Assistant returned an invalid sign-in response." = "Home Assistant החזיר תגובת התחברות לא תקינה.";
@@ -486,7 +487,6 @@
 "Turn Touch for iOS · {0}\nOriginal design and artwork © Turn Touch" = "Turn Touch ל־iOS · {0}\nעיצוב ויצירות מקוריות © Turn Touch";
 "Turn Touch iOS App" = "אפליקציית Turn Touch ל-iOS";
 "Turn Touch is not authorized to use Bluetooth Low Energy." = "ל־Turn Touch אין הרשאה להשתמש ב־Bluetooth Low Energy.";
-"Turn Touch now speaks 21 languages. Choose your language when you first open the app, or change it from Language at the top of Settings. Menus, actions, and settings are translated. Automatic follows your device language, with English as the fallback. Reopen the app after changing languages." = "Turn Touch תומכת כעת ב-21 שפות. בחרו שפה בפתיחה הראשונה של האפליקציה, או שנו אותה באפשרות ״שפה״ בראש ההגדרות. התפריטים, הפעולות וההגדרות מתורגמים. האפשרות ״אוטומטי״ משתמשת בשפת המכשיר, ואם אינה זמינה — באנגלית. לאחר שינוי השפה, פתחו מחדש את האפליקציה.";
 "Turn Touch uses Bluetooth to connect to your remotes" = "Turn Touch משתמש ב-Bluetooth כדי להתחבר לשלטים שלך";
 "Turn off" = "כיבוי";
 "Turn on" = "הפעלה";

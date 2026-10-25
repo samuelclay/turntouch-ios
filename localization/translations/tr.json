@@ -217,6 +217,7 @@
   "Home Assistant accepted the action.": "Home Assistant eylemi kabul etti.",
   "Home Assistant action": "Home Assistant işlemi",
   "Home Assistant address": "Home Assistant adresi",
+  "Home Assistant comes to Turn Touch. Connect your home, browse devices, scenes, scripts, and automations, and assign actions to your remote buttons. Refreshed icons for TP-Link Kasa, Nanoleaf, and Govee and clearer labels make setup easier.": "Home Assistant artık Turn Touch’ta. Evinizi bağlayın; cihazlara, sahnelere, betiklere ve otomasyonlara göz atın ve kumandanızın düğmelerine eylemler atayın. TP-Link Kasa, Nanoleaf ve Govee için yenilenen simgeler ve daha anlaşılır etiketler kurulumu kolaylaştırır.",
   "Home Assistant menu": "Home Assistant menüsü",
   "Home Assistant returned HTTP %ld. Check the action and its required fields.": "Home Assistant HTTP %ld yanıtını verdi. İşlemi ve gerekli alanları kontrol edin.",
   "Home Assistant returned an invalid sign-in response.": "Home Assistant geçersiz bir oturum açma yanıtı verdi.",

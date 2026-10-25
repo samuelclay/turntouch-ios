@@ -722,6 +722,9 @@
   "Home Assistant address": [
     "Turn Touch iOS/Modes/HomeAssistant/TTModeHomeAssistant.swift"
   ],
+  "Home Assistant comes to Turn Touch. Connect your home, browse devices, scenes, scripts, and automations, and assign actions to your remote buttons. Refreshed icons for TP-Link Kasa, Nanoleaf, and Govee and clearer labels make setup easier.": [
+    "Store whats-new; maximum=4000 characters"
+  ],
   "Home Assistant menu": [
     "Turn Touch iOS/Modes/HomeAssistant/TTModeHomeAssistant.swift"
   ],
@@ -1649,9 +1652,6 @@
   ],
   "Turn Touch is not authorized to use Bluetooth Low Energy.": [
     "Turn Touch iOS/Views/Modal/TTPairingInfoViewController.swift"
-  ],
-  "Turn Touch now speaks 21 languages. Choose your language when you first open the app, or change it from Language at the top of Settings. Menus, actions, and settings are translated. Automatic follows your device language, with English as the fallback. Reopen the app after changing languages.": [
-    "Store whats-new; maximum=4000 characters"
   ],
   "Turn Touch uses Bluetooth to connect to your remotes": [
     "Info.plist:NSBluetoothAlwaysUsageDescription",
