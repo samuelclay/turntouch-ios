@@ -1,0 +1,18 @@
+{
+  "version": "3.1",
+  "build": 48,
+  "status": "Waiting for Review",
+  "submission_id": "af019fac-a145-4329-a9a9-a1ef158d3018",
+  "submitted_at": "2026-10-16T20:19:00-07:00",
+  "source_commit": "c65c9c4b8c258feeea1f2f15cf5cf6f487d8afad",
+  "release_policy": "Automatic release to all users after approval",
+  "languages": 21,
+  "assets": {
+    "headers": 21,
+    "search_results": 21,
+    "screenshots": 189
+  },
+  "screenshots_assigned": 126,
+  "optional_large_iphone_screenshots_in_library": 63,
+  "url": "https://appstoreconnect.apple.com/apps/1152075244/distribution/reviewsubmissions/details/af019fac-a145-4329-a9a9-a1ef158d3018"
+}

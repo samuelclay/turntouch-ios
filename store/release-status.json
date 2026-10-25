@@ -1,18 +1,19 @@
 {
-  "version": "3.1",
-  "build": 48,
+  "version": "3.2",
+  "build": 49,
   "status": "Waiting for Review",
-  "submission_id": "af019fac-a145-4329-a9a9-a1ef158d3018",
-  "submitted_at": "2026-10-16T20:19:00-07:00",
-  "source_commit": "c65c9c4b8c258feeea1f2f15cf5cf6f487d8afad",
-  "release_policy": "Automatic release to all users after approval",
+  "submission_id": "a8b9d9aa-6ca4-48cb-b608-75c9e7fba420",
+  "submitted_at": "2026-10-24T22:39:00-07:00",
+  "verified_at": "2026-10-25T05:41:13.507625+00:00",
+  "source_commit": "1d247a0a8d09a80c105f625b5c81882ed6e751d5",
+  "release_policy": "Automatic release to all users after approval; no phased rollout",
   "languages": 21,
-  "assets": {
-    "headers": 21,
-    "search_results": 21,
-    "screenshots": 189
+  "localized_assets": "Existing headers, search results, iPhone screenshots and iPad screenshots inherited from 3.1",
+  "validation": {
+    "home_assistant_client_assertions": 50,
+    "archive": "Xcode 27.0, iOS minimum 26.0",
+    "upload": "Accepted and processed",
+    "ci": "Localization passed"
   },
-  "screenshots_assigned": 126,
-  "optional_large_iphone_screenshots_in_library": 63,
-  "url": "https://appstoreconnect.apple.com/apps/1152075244/distribution/reviewsubmissions/details/af019fac-a145-4329-a9a9-a1ef158d3018"
+  "url": "https://appstoreconnect.apple.com/apps/1152075244/distribution/reviewsubmissions/details/a8b9d9aa-6ca4-48cb-b608-75c9e7fba420"
 }
